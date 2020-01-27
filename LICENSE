@@ -1,3 +1,6 @@
+The following license applies to software contained in this repository.
+
+----
 MIT License
 
 Copyright (c) 2020 Carnegie Mellon University
@@ -20,6 +23,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+----
+The following statement applies to documents contained in this repository, and can also be found in each
+individual document.
 
 This material is based upon work funded and supported by the Department of Defense
 under Contract No. FA8702-15-D-0002 with Carnegie Mellon University for the operation
@@ -59,4 +65,4 @@ Software Engineering Institute at permission@sei.cmu.edu.
 
 Carnegie Mellon®, CERT Coordination Center® and OCTAVE® are registered in the U.S. Patent and
 Trademark Office by Carnegie Mellon University.
-DM19-1222
+DM18-1203, DM19-1222
