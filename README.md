@@ -23,6 +23,10 @@ The two methods just loop through their respective lookup tables until
 they hit a match, then return the outcome. Maybe not the best implementation, but it worked
 well enough for what was needed at the time.
 
+`ssvc-calc`
+
+Directory with SSVC calculator using D3 graph.
+
 ## References
 
 1. Spring, J., Hatleback, E., Householder, A., Manion, A., and Shick, D. "Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization." White Paper, Software Engineering Institute, Carnegie Mellon University (2019). https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=636379
