@@ -1,0 +1,15 @@
+html, body {    height: 100%;    background-color: #333;}
+.text-center { background-color: #333; display: -ms-flexbox; display: -webkit-box; display: flex;  -ms-flex-pack: center; -webkit-box-pack: center; justify-content: center; color: #fff; text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, .5);  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5); }
+.brand { float: left; margin-bottom: 0;  color: #fff}
+.btn-white,.btn-white:hover,.btn-white:focus { color: #fff; }
+a.wordmark {  color: #fff; padding-left: 12px; margin-top:12px;}
+a.wordmark:hover { text-decoration: none; }
+.top-container { background-color: #b00; color: #fff; }
+.nav-head {padding: .25rem 0; font-weight: 700;color: #fff; background-color: transparent;
+	   border-bottom: .1rem solid transparent; border-bottom-color: #b00;  float: right;}
+.nav-head a.active {padding: .25rem 0; font-weight: 700;color: #fff; background-color: transparent;  border-bottom: 0.2rem solid #fff; }
+.nav-head a {padding: .25rem 0; font-weight: 700;color: #fff; }
+.nav-head a:hover, .nav-head a:focus {  border-bottom: .24rem solid grey; }
+.bottom-space { padding-top: 12px; }
+.shift-top { border-top: 2px solid #fff; }
+

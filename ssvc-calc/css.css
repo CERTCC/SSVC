@@ -1,0 +1,278 @@
+/* css version 2.1 */
+@media screen and (max-width: 1000px) {
+    .cert-tweet { display: none; }
+    .tright a:nth-child(n+2) { display: none;}
+    #graph {
+	position: absolute;
+	left: 0px;
+    }
+    .mastfoot { display:none; }
+    #mwb,.tescape { max-width: 450px; }
+    
+}
+#cve_table th .text-muted {
+    font-size:0.8em;
+}
+#cve_table th {
+    vertical-align: middle;
+}
+.tloader {
+    background-color: rgb(1,1,1,0.3);
+}
+.tloader img {
+    filter: invert(1);
+    opacity: 0.8;
+    width: 60px;
+    position: absolute;
+    top: 30%;
+}
+.cve_samples{
+    width: auto;
+    display:inline;
+}
+#topalert {
+    display: none;
+}
+span.bold {
+    font-weight: bold;
+}
+.table-pwell-being {
+    background: transparent !important;
+    font-size: 12px;
+}
+.table-pwell-being p {
+    display: inline;
+}
+.table-pwell-being th,
+.table-pwell-being td {
+    padding: 2px;
+}
+.table-well-being {
+    font-size: 10px;
+}
+.table-well-being th,
+.table-well-being td {
+    text-align: center
+}
+.circletext {
+    color: white;
+    border: 2px solid white;
+    padding: 2px 8px 2px 8px;
+    border-radius: 12px;
+}
+.circletext:hover {
+    text-decoration: none;
+    color: #fefefe;
+}
+.top_fixed {
+    display:none;
+    position:fixed;
+    top:10px;
+    z-index: 1050;
+    background-color: rgba(0,0,0,0.9);
+    height: 100%;
+    width:75%;
+    padding:12px;
+    border-radius:10px;
+}
+.top_blue {
+    width: 50%;
+    background-color: rgba(70, 130, 180, 1);
+    text-align: left;
+    height: auto;
+}
+#mpopup b,
+.top_blue b,
+.table-pwell-being strong {
+    color: #ffc107;
+}
+#mpopup h5,
+.top_blue h5 {
+    text-align: center;
+    text-decoration: underline;
+}
+#mpopup hr {
+    margin: 2px;
+}
+
+.swal-title:not(:last-child) {
+    margin-bottom: 2px;
+}
+.swal-title:first-child {
+    margin-top: 2px;
+}
+.cert-tweet {
+    width: 48px;
+    position: fixed;
+    top: 6px;
+    left: 6px;
+}
+.tright {
+    right:6px;
+    top: 6px;
+    position:fixed;
+}
+.octicon-mark-github {
+    width: 24px;
+}
+.mauto {
+    width: auto;
+    display:inline;
+}
+html,.blackbody {
+    background-color: #222;
+    color: white;
+    text-shadow: none;
+    box-shadow:none;
+}
+    
+.blackbody table {
+    background-color: #222;
+    color: white;
+}
+.blackbody img.cert-tweet {
+    filter: invert(0.87);
+}
+.blackbody svg.topbar {
+    filter: invert(1);
+}
+.blackbody text {
+    fill: white;
+}
+.blackbody .text-secondary {
+    color: #ffffe0 !important;
+}
+	       
+.blackbody input, .blackbody select, .blackbody textarea {
+    background-color: #333 !important;
+    color: white !important;
+}
+.blackbody .coverpage, .blackbody pre {
+    background: rgba(3,3,3,0.9);
+    color: white;
+}
+.blackbody .dldr {
+    color: #dddddd;
+}
+.blackbody .modal-content {
+    background-color: #222;
+    color: white;
+}
+.blackbody .close {
+    color: white;
+}
+.dldr {
+    color:#222;
+}
+.vul_template {
+    border: 1px solid grey;
+    padding: 2px;
+    border-radius: 4px;
+}
+.cvss_score {
+    display:inline;
+    width: 14ch;
+}
+#main_table td:first-child,
+.pcmp_table td:first-child,
+.cmp_table td:first-child {
+    width: 40%;
+    max-width:40%;
+}
+#mpopup {
+    display: none;
+    position: absolute;
+    z-index: 200;
+    background: rgba(70, 130, 180, 1);    
+    border-radius: 5px;
+    padding: 4px;
+    text-align: left;
+    max-width: 400px;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+}
+
+.node text {
+    font: 12px sans-serif;
+}
+.link {
+    fill: none;
+    /* stroke: #ccc; */
+    stroke: #ffffff;
+    stroke-width: 2px;
+}
+.xlink {
+    fill: none;
+    /*    stroke: #ccc; */
+    stroke: #ffffff;
+    stroke-width: 2px;
+}
+.btext {
+    fill: #17a2b8;
+    text-anchor: middle;
+    /* dynamic font-size later change to class  */
+    font-size: 20px;
+}
+.chosen {
+    stroke: #C9BDDF;
+    fill: #C9BDDF;
+}
+.fullTree {
+    font-size: 14px;
+}
+html, body {
+    height: 100%;
+}
+
+#swidtext, #cyclonedxtext {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+.scontent {
+    display:none;
+    height:100%;
+}
+::placeholder { 
+    font-weight: 400;
+}
+
+:-ms-input-placeholder { 
+    font-weight: 400;
+}
+
+::-ms-input-placeholder { 
+    font-weight: 400;
+}
+.cmp_template,.spdx,.swid { display:none; }
+.coverpage {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    height: 100%;
+    padding: 6%;
+    position: fixed;
+    z-index: 120;
+    display: none;
+    font-size: 2em;
+    overflow: scroll;
+}
+.form-control { font-weight: 800; }
+pre {
+    white-space: pre-line;
+    font-size: 14px;
+    border: 2px solid grey;
+}
+#spdx,#swid,#cyclonedx,#privacy {
+    display:none;
+}
