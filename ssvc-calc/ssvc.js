@@ -78,6 +78,13 @@ document.onkeyup = function(evt) {
 	$('.tescape').fadeOut()
     }
 }
+function cve_table_toggle() {
+    $('#cve_table').toggleClass('d-none')
+    if($('#cve_table').hasClass('d-none'))
+	$('#table_toggle').html("&#8853;")
+    else
+	$('#table_toggle').html("&#8854;")
+}
 function tooltip_cycle_through() {
     var tips = ['#dt_start','#dt_full_tree','#dt_clear']
     $(tips[0]).tooltip('show')
@@ -126,9 +133,13 @@ function readFile(input) {
     reader.onload = function() {
 	//console.log(reader.result);
 	try {
-	    parse_file(reader.result)
+	    if(input.id == "dtreecsvload")
+		parse_file(reader.result)
+	    else
+		tsv_load(reader.result)
 	}catch(err) {
 	    topalert("Reading data in file as text failed, Sorry check format and try again!","danger")
+	    console.log(err)
 	}
     };
     
@@ -152,14 +163,16 @@ function process(w) {
 	return
     }
     dt_clear()
+    $('#biscuit').fadeIn()
     dt_start()
     $('#cve_table tbody tr td').remove()
     var steps = ['Exploit','Virulence','Technical']
-    var stimes = [1600,3200,4800]
+    var stimes = [1600,3200,5100]
     //console.log(new Date().getTime())    
     for(var i=0; i< steps.length; i++) {
 	clickprocess(steps[i],cve_data,stimes[i])
     }
+    $('#biscuit').fadeOut(4930)
     for(var k in cve_data)
 	$('#cve_table tbody tr').append("<td class='d-temp'>"+cve_data[k]+"</td>")
     $('#table_toggle').show()
@@ -172,37 +185,47 @@ function clickprocess(tstep,cve_data,stime) {
 	if(tstep in cve_data) {
 	    if($(".prechk-"+cve_data[tstep].toLowerCase()).length == 1) {
 		$(".prechk-"+cve_data[tstep].toLowerCase()).simClick()
+	    } else {
+		console.log("Try again in a few seconds "+tstep)
+		//clickprocess(tstep,cve_data,stime-1000)
 	    }
+	} else {
+	    console.log("Some strange error "+tstep)
+	    console.log(cve_data)
 	}
     },stime)
 }
 
 function load_tsv_score() {
-    $.get("sample-ssvc.txt",function(data) {
-	var y = data.split("\n")
-	var heads = y.shift().split("\t")
-	var scores = y.map(x => { return x
-				  .split("\t")
-				  .reduce((map,obj,i) => {
-				      map[heads[i]] = obj; return map;
-				  },{}) })
-	    .filter(x => 'CVE' in x && x.CVE.length > 3)
-	    .sort(function(a, b) { if(a.CVE < b.CVE) return -1; else return 1})
-	for(var i=0; i<scores.length;i++) {
-	    if(!('CVE' in scores[i])) continue
-	    $('#cve_samples').append($("<option></option>")
-				     .attr("id",scores[i].CVE)
-				     .text(scores[i].CVE)
-				     .data(scores[i]))
-	}
-	$('#cve_samples').removeClass("d-none").addClass("form-control cve_samples")
-	for(var i=0; i<heads.length;i++)
-	    $('#cve_table thead tr').append("<th>"+heads[i]
-					    .replace(/(\([^)]+\))/,
-						     '<br><span class="text-muted">$1</span>')+
-					    "</th>")
-	
-    })
+    $.get("sample-ssvc.txt",tsv_load);
+}
+function tsv_load(data) {
+    var rmv = $('#cve_samples option:nth-child(n+2)').remove().length
+    $('#cve_table thead tr th').remove()
+    var y = data.split("\n")
+    var heads = y.shift().split("\t")
+    var scores = y.map(x => { return x
+			      .split("\t")
+			      .reduce((map,obj,i) => {
+				  map[heads[i]] = obj; return map;
+			      },{}) })
+	.filter(x => 'CVE' in x && x.CVE.length > 3)
+	.sort(function(a, b) { if(a.CVE < b.CVE) return -1; else return 1})
+    for(var i=0; i<scores.length;i++) {
+	if(!('CVE' in scores[i])) continue
+	$('#cve_samples').append($("<option></option>")
+				 .attr("id",scores[i].CVE)
+				 .text(scores[i].CVE)
+				 .data(scores[i]))
+    }
+    $('#cve_samples').removeClass("d-none").addClass("form-control cve_samples")
+    for(var i=0; i<heads.length;i++)
+	$('#cve_table thead tr').append("<th>"+heads[i]
+					.replace(/(\([^)]+\))/,
+						 '<br><span class="text-muted">$1</span>')+
+					"</th>")
+    if(rmv) 
+	topalert("Loaded TSV CVE samples count of "+scores.length,"success")
 }
 function parse_file(xraw) {
     //var xraw = 'TSV data'
@@ -574,7 +597,8 @@ function doclick(d) {
 	$('.pathlink').remove()
 	if(('name' in d) &&
 	   (d.name.indexOf("Mission ") == 0) ) {
-	    $('#mwbform').trigger('reset')
+	    $('#wb').val(0)
+	    $('#mp').val(0)
 	    $('#mwb').modal()
 	}
 	if('id' in d) {

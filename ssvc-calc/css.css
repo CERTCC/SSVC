@@ -8,7 +8,10 @@
     }
     .mastfoot { display:none; }
     #mwb,.tescape { max-width: 450px; }
-    
+    .nomobile { display: none; }
+}
+#biscuit {
+    background-color: rgba(2,2,2,0.3);
 }
 #cve_table th .text-muted {
     font-size:0.8em;

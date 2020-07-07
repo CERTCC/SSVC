@@ -23,7 +23,7 @@
 	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
 	    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1592948503">
+    <link rel="stylesheet" href="css.css?v=1594088614">
   </head>
   <body class="text-center blackbody">
     <img src="../cert_tweet_logo.jpg" class="cert-tweet" alt="CERT Logo"
@@ -52,7 +52,7 @@
 	      <img src="../cmu-logo.png" alt="CMU Logo"/>
 	    </a>
 	  </h3>
-	  <nav class="nav nav-head justify-content-center">
+	  <nav class="nav nav-head justify-content-center nomobile">
 	    <span style="padding-left: 2rem"></span>
 	    <a class="nav-link active" href="https://democert.org/ssvc/">SSVC</a>
 	    <span style="padding-left: 2rem"></span>
@@ -90,9 +90,9 @@
 	  <select id="cve_samples" class="d-none" onchange="process(this)">
 	    <option>Choose sample CVE</option>
 	  </select>
-	  <a href="javascript:void(0)" title="View preivous score"
+	  <a href="javascript:void(0)" title="View previous score"
 	     alt="View previous score" id="table_toggle" style="display:none"
-	     onclick="$('#cve_table').toggleClass('d-none')">
+	     onclick="cve_table_toggle()">
 	    &#8853; </a>
 	  <table id="cve_table" class="table table-dark d-none">
 	    <thead><tr></tr></thead>
@@ -112,9 +112,16 @@
 		  <a href="https://www.cisa.gov/cybersecurity"
 		     target="_blank" rel="noopener">CISA.</a> </p>
 	      </div>
-	      <a href="javascript:void(0)" onclick="$('#dtreecsvload').click()">Import Decision Tree</a>
+	      <a href="javascript:void(0)" onclick="$('#cvetsvload').click()">
+		Import CVE</a>
+	      <input type="file" onchange="readFile(this)" style="display:none"
+		     id="dtreecsvload">	      
+	      <a href="javascript:void(0)" onclick="$('#dtreecsvload').click()">
+		Import Decision Tree</a>
 	      <input type="file" onchange="readFile(this)" style="display:none"
 		     id="dtreecsvload">
+	      <input type="file" onchange="readFile(this)" style="display:none"
+		     id="cvetsvload">	      
     
 	      <div class="float-right" style="display:none">
 		Explore other &nbsp; 
@@ -263,7 +270,7 @@
       <div style="text-align:left">
 	<h4>Introduction:</h4>
 	<p>
-	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  patch developers and patch appliers.  In this instance of SSVC app, SSVC is being present for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities.
+	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  patch developers and patch appliers.  In this instance of SSVC app, SSVC is being prototyped for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities. Note: the current actions defined as "Track", "Track*", "Critical" and "High" are likely to be updated.
 	</p>
       </div>
       <div style="text-align:left">
@@ -344,9 +351,8 @@
       </div>
     </div>
     <div id="biscuit" class="top_fixed tescape tloader">
-      <img src="loading.gif"/>
     </div>
-    <script src="ssvc.js?v=1592948503"></script>
+    <script src="ssvc.js?v=1594088614"></script>
   </body>
 </html>
 
