@@ -3,7 +3,7 @@ Stakeholder-Specific Vulnerability Categorization Calculator
 
 SSVC Calc is a SSVC calculator app that guides you through the simple steps needed in making
 a vulnerability priority decision.  The result of applying SSVC is a priority decision,
-providing yuo with a recommended action.
+providing yuo with a recommended action. See the demo in our [SSVC calc website](https://democert.org/ssvc/)
 
 Some examples of actions are 
 defer, scheduled, out-of-band, and immediate.
