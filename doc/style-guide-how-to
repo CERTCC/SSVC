@@ -1,0 +1,56 @@
+
+In the text, please use the following conventions:
+
+=================================================
+
+Names of decision points are capitalized and italics (md is * or _)
+Values for specific decisions at a decision point are lower case and bold (md is ** or __)
+(Values uppercase at the start of a sentence, but try to avoid such sentence constructions). 
+Headings that declare the decision point name or values should not be additionally emphasized. 
+  That is, if the name is the whole heading, don't use emphasis. If the name is part of another heading (which is not the case anywhere in v1.1), use emphasis. 
+
+So we would have:
+_Utility_ or *Technical Impact* which might have values of __super effective__ or **partial**
+
+=================================================
+
+Names of decisions are italicized (* or _) and lower case.
+For example: the decision is to move forward with *scheduled* priority. 
+ - [ ] This choice collides with decision point names, the cap vs lowercase is probably not enough for readers to easily distinguish them. Not sure what to do here. 
+
+=================================================
+
+Short summaries after the section header declaring the name of the decision point should be in block quotes. 
+For example:
+### Exploitation
+> Evidence of Active Exploitation of a Vulnerability
+
+The short summary should be in title case. 
+There should not be a blank line between the heading and the block quote
+
+=================================================
+
+Terms quoted from other sources
+
+In order not to collide use of emphasis, italics (*word*) should not be used to identify a vocabulary word that is not the name of a decision point.
+If the word or phrase need not be emphasized, it should simply but put in double quotes ("). 
+If the word or phrase needs to be emphasized because it is critical to understanding the passage and it should stand out from the surrouding text, code block blackticks can be used (`). 
+This code block style should be used sparingly, primarily for the first place that a key term is defined. 
+
+=================================================
+
+Comments in the source code use HTML comments:
+<!-- This is a comment that won't show in the output -->
+
+Obviously don't put sensitive information in the comments.
+Comments should be used to note where editorial decisions have been made to about style. For example, though *Exposure* is the decision point, we may still want to talk about exposure generally, and it might be helpful to note in a comment that the word exposure is not emphasized on purpose. 
+
+=================================================
+=================================================
+=================================================
+=================================================
+=================================================
+=================================================
+=================================================
+=================================================
+=================================================

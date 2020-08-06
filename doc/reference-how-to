@@ -1,0 +1,20 @@
+https://stackoverflow.com/questions/4779582/markdown-and-including-multiple-files
+
+We could define the references as a link, and then that would stay consistent
+There could be a separate file of link definitions. 
+This file could also have the text references, I suppose. And then at least all the definitions would be in the same place. 
+Note link reference definitions can contain a title
+https://github.github.com/gfm/#link-reference-definitions
+This title will be the HTML mouse-over text, and should contain the full reference data.
+In this way, we can eliminate the need for a formal references section.  
+
+
+It would be nice if footnotes which are a comment and not a reference could use the md footnote syntax 
+https://pandoc.org/MANUAL.html#footnote
+But right now GFM doesn't support that. 
+Footnotes and asides should be either: written in to the flow of the text OR set off with a **** (horizontal rule) and marked as an aside and ended with another hrule. The second option is not preferred, but can be used for asides that are at least a full paragraph. 
+
+ 
+
+
+

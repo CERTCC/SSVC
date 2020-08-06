@@ -1,0 +1,15 @@
+
+
+# Introduction
+
+Many organizations use the Common Vulnerability Scoring System (CVSS) to prioritize actions during vulnerability management. This paper builds on prior work about prioritizing actions during vulnerability management by presenting a testable Stakeholder-Specific Vulnerability Categorization (SSVC) that avoids some problems with CVSS. SSVC takes the form of decision trees for different vulnerability management communities. We welcome others to test and improve it.
+
+This paper proposes a functional system to make our proposal concrete as well as preliminary tests of its usefulness. However, our proposal is a detailed hypothesis to test or a conversation starter; it is not a final proposal. The stakeholders in vulnerability management are diverse, and that diversity must be accommodated in the main functionality, rather than squeezed into hard-to-use optional features. Given this, as much as it is practical, we aim to avoid one-size-fits-all solutions.
+
+We will improve vulnerability management by framing decisions better.  The modeling framework determines what output types are possible, identifies the inputs, determines the aspects of vulnerability management that are in scope, defines the aspects of context that are incorporated, describes how the model handles context and different roles, and determines what those roles should be. As such, the modeling framework is important but difficult to pin down. We approach this problem as a satisficing process. We do not seek optimal formalisms, but an adequate formalism. Others may have different satisfactory models, and that is okay.
+
+The organizing concept of our decision-making procedure is decision trees. A decision tree represents important elements of a decision, possible decision values, and possible outcomes. We suggest decision trees as an adequate formalism for practical, widespread advice about vulnerability prioritization. We do not claim this approach is the only viable option. We also suggest that specific vulnerability management stakeholder communities use decision trees. These suggestions are hypotheses for viable replacements for CVSS in those communities, but the hypotheses require empirical testing before they can be justifiably considered fit for use. We propose a methodology for such testing.
+
+The rest of the paper is organized as follows. [Section](#current-state-of-practice) 2 summarizes the current state of vulnerability management. Section 3 describes our design goals for an improved prioritization method. Section 4 proposes a definition of decision points and decision trees as a prioritization method. Section 5 describes an early test of this method against the design goals, as much to show an adequate usability test methodology as for the results. Section 6 provides examples of applying the methodology of Section 4 to sample vulnerabilities. Section 7 identifies future work. Section 8 identifies limitations in the design. Section 9 concludes with some final thoughts.
+
+
