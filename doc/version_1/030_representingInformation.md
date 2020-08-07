@@ -46,11 +46,10 @@ Logics are generally better suited for capturing qualitative decisions.  Boolean
 
 Decision trees are used differently in operations research than in ML.  In ML, decision trees are used as a predictive model to classify a target variable based on dependent variables. In operations research and decision analysis, a decision tree is a tool used to document a human process. In decision analysis “decision analysts frequently use specialized tools, such as decision tree techniques, to evaluate uncertain situations. Unfortunately, many people, some of them educators, have confused decision analysis with decision trees. This is like confusing surgery with the scalpel.”\[22\] We use decision trees in the tradition of decision analysis, not ML.
 
-Table 1: Comparison of Formalization Options for Vulnerability
-Prioritization Decisions
+Table 1: Comparison of Formalization Options for Vulnerability Prioritization Decisions
 
 | | **Outputs Designed to be Decisions** | **Pluralistic Recommendations** | **Qualitative Inputs** | **Qualitative Outputs** | **Transparent** | **Explainable** |
-| --- | --- | --- | --- | --- | --- | --- |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: |
 | **Parametric Regression**  | :x: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
 | **CVSS v3.0**  | :x: | :x: | :white_check_mark: | :x: | :x: | :x: |
 | **Bayesian Belief Networks**                 | :x: | Maybe | :x: | :x: | :white_check_mark: | :white_check_mark: |

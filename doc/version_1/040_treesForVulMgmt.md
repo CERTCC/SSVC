@@ -10,6 +10,7 @@ Viable decision guidance for vulnerability management should, at a minimum, cons
 Stakeholders in vulnerability management can be identified within multiple independent axes. For example, they can be identified by their responsibility: whether the organization *develops*, *applies*, or *coordinates* patches. Organizations may also be distinguished by type of industry sector. While it might be useful to enumerate all the sectors of the economy, we propose to draft decision points that include those from multiple important sectors. For example, we have safety-related questions in the decision path for all developers and appliers, so whether or not the stakeholder is in a safety-critical sector, the decision will be addressed.
 
 The choice not to segregate the decisions by sector is reinforced by the fact that any given software system might be used by different sectors.  It is less likely that one organization has multiple responsibilities within the vulnerability management process. Even if there is overlap within an organization, the two responsibilities are often located in distinct business units with distinct decision-making processes. We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision trees—one for each of the “patch development” and “patch deployment” responsibilities in the vulnerability management process. We leave “coordinating patches” as future work. Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work.
+<!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using "patch" here. -->
 
 The next two sections describe the decision space and the relevant decision points that we propose for these two responsibilities within the vulnerability management process.
 
@@ -22,21 +23,21 @@ Relatedly, C-level executives and public policy professionals often make, shape,
 
 Stakeholders with different responsibilities in vulnerability management have largely different decisions to make. This section focuses on the differences among organizations based on their vulnerability management responsibilities. Some decision makers may have different responsibilities in relation to different software. For example, an Android app developer is a developer of the app, but is a patch applier for any changes to the Android OS API. This situation is true for libraries in general. A web browser developer makes decisions about applying patches to DNS lookup libraries and transport layer security (TLS) libraries. A video game developer makes decisions about applying patches released to the Unreal Engine. A medical device developer makes decisions about applying patches to the Linux kernel. The list goes on.  Alternatively, one might view applying patches as, de facto, including some development and distribution of the updated product. Or one might take the converse view, that development, de facto, includes updating libraries. Either way, in each of these examples (mobile device apps, web browsers, video games, medical devices), we recommend that the professionals making genuine decisions do three things: (1) identify the decisions explicitly, (2) describe how they view their role(s), and (3) identify which software projects their decision relates to. If their decisions are explicit, then the decision makers can use the recommendations from this document that are relevant to them.
 
-###Developing Patches
+### Developing Patches
 
 
 At a basic level, the decision at a software development organization is whether to issue a work order and what resources to expend to fix a vulnerability in the organization’s software. Prioritization is required because, at least in the current history of software engineering, the effort to patch all known vulnerabilities will exceed available resources. The organization considers several other factors to build the patch; refactoring a large portion of the code base may be necessary for some patches, while others require relatively small changes. We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in Table 2.
 
 Table 2: Proposed Meaning for Developer Priority Outcomes
 
-| Developer Priority | Description                                                                                                                                                                            |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Defer              | Do not work on the patch at present.                                                                                                                                                  |
-| Scheduled          | Develop a fix within regularly scheduled maintenance using developer resources as normal.                                                                                             |
-| Out-of-Band        | Develop a fix out-of-band, taking resources away from other projects and releasing the fix as a security patch when it is ready.                                                       |
+| Developer Priority | Description |
+| ------------------ | ----------- |
+| Defer              | Do not work on the patch at present.    |
+| Scheduled          | Develop a fix within regularly scheduled maintenance using developer resources as normal.  |
+| Out-of-Band        | Develop a fix out-of-band, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
 | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
-###Applying Patches
+### Applying Patches
  Whether or not to apply an available patch is a binary decision. However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied. We recognize that vulnerability management actions are different when a patch is available and when it is not available.
 
 When a patch is available, usually the action is to apply it. When a patch it not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability.
@@ -55,13 +56,13 @@ Table 3: Proposed Meaning for Applier Priority Outcomes
 | Out-of-Band      | Act more quickly than usual to apply the fix out-of-band, during the next available opportunity, working overtime if necessary.                    |
 | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
-###Coordinating Patches
+### Coordinating Patches
 In coordinated vulnerability disclosure (CVD), the available decision is whether or not to coordinate a vulnerability report. VRDA provides a starting point for a decision tree for this situation.<sup>23</sup> VRDA is likely adequate for national-level CSIRTs that do general CVD, but other CSIRT types may have different needs. Future work may elicit those types and make a few different decision options. Specialized coordination organizations exist (e.g., ICS-CERT, which conducts CVD for safety-critical systems). We have not developed a coordination tree in this work, but future work could use our principles and design techniques to refine and evaluate VRDA or some other decision tree for coordinated vulnerability disclosure. The CERT guide to CVD provides something similar for those deciding how to report and disclose vulnerabilities they have discovered.\[24\]
 
-Within each setting, the decisions are a kind of equivalence class for priority. That is, if an organization must deploy patches for three vulnerabilities, and if these vulnerabilities are all assigned the “scheduled” priority, then the organization can decide which to deploy first. The priority is equivalent. This approach may feel uncomfortable since CVSS gives the appearance of a finer grained priority. CVSS appears to say, “Not just 4.0 to 6.9 is ‘medium’ severity, but 4.6 is more severe than 4.5.” However, as discussed previously (see page 4), CVSS is designed to be accurate only within +/- 0.5, and, in practice, is scored with errors of around +/- 1.5 to 2.5.\[25\] An error of this magnitude is enough to make all of the “normal” range from 4.0 to 6.9 equivalent, because 5.5 +/- 1.5 is the range 4.0 to 7.0. Our proposal is an improvement over this approach. CVSS errors often cross decision boundaries; in other words, the error range often includes the transition between “high” and “critical” or “medium.” Since our approach keeps the decisions qualitatively defined, this fuzziness does not
+Within each setting, the decisions are a kind of equivalence class for priority. That is, if an organization must deploy patches for three vulnerabilities, and if these vulnerabilities are all assigned the *scheduled* priority, then the organization can decide which to deploy first. The priority is equivalent. This approach may feel uncomfortable since CVSS gives the appearance of a finer grained priority. CVSS appears to say, “Not just 4.0 to 6.9 is ‘medium’ severity, but 4.6 is more severe than 4.5.” However, as discussed previously (see page 4), CVSS is designed to be accurate only within +/- 0.5, and, in practice, is scored with errors of around +/- 1.5 to 2.5.\[25\] An error of this magnitude is enough to make all of the “normal” range from 4.0 to 6.9 equivalent, because 5.5 +/- 1.5 is the range 4.0 to 7.0. Our proposal is an improvement over this approach. CVSS errors often cross decision boundaries; in other words, the error range often includes the transition between “high” and “critical” or “medium.” Since our approach keeps the decisions qualitatively defined, this fuzziness does not
 affect the results.
 
-Returning to the example of an organization with three vulnerabilities to patch that were assigned “scheduled” priority, in SSVC, they can be patched in any order. This is an improvement over CVSS, since based on the scoring errors, CVSS was essentially just giving random fine-grained priorities within qualitative categories anyway. With our system, organizations can be more deliberate about conveniently organizing work that is of equivalent priority.
+Returning to the example of an organization with three vulnerabilities to patch that were assigned *scheduled* priority, in SSVC, they can be patched in any order. This is an improvement over CVSS, since based on the scoring errors, CVSS was essentially just giving random fine-grained priorities within qualitative categories anyway. With our system, organizations can be more deliberate about conveniently organizing work that is of equivalent priority.
 
 ## Scope
 
@@ -69,26 +70,19 @@ One important variable in the answers to all the below decision points is scope.
 
 ### Boundaries of the Affected System
 
-One distinction is whether the system of interest is software per se or a cyber-physical system. One problem is that in every practical case, both are involved. Software is what has vulnerabilities and is what vulnerability management is focused on patching. Multiple pieces of software run on any given computer system. To consider software vulnerabilities in a useful scope, we follow prior work and propose that a vulnerability affects “the set of software instructions that executes in an environment with a coherent function and set of permissions.”\[26\] This definition is useful because it lets us keep to common usage and intuition and call the Linux kernel—at least a specific version of it—“one piece” of software. But decision points about safety and mission impact are not about the software per se; they are about the cyber-physical system, of which the software is a part.  The term *physical* in *cyber-physical system* should be interpreted broadly; selling stocks or manipulating press outlet content are both best understood as affecting human social institutions. These social institutions do not have much of a corporeal instantiation, but they are physical in the sense that they are not merely software, and so are parts of cyber-physical systems.
+One distinction is whether the system of interest is software per se or a cyber-physical system. One problem is that in every practical case, both are involved. Software is what has vulnerabilities and is what vulnerability management is focused on patching. Multiple pieces of software run on any given computer system. To consider software vulnerabilities in a useful scope, we follow prior work and propose that a vulnerability affects “the set of software instructions that executes in an environment with a coherent function and set of permissions.”\[26\] This definition is useful because it lets us keep to common usage and intuition and call the Linux kernel—at least a specific version of it—“one piece” of software. But decision points about safety and mission impact are not about the software per se; they are about the cyber-physical system, of which the software is a part.  The term "physical" in "cyber-physical system" should be interpreted broadly; selling stocks or manipulating press outlet content are both best understood as affecting human social institutions. These social institutions do not have much of a corporeal instantiation, but they are physical in the sense that they are not merely software, and so are parts of cyber-physical systems.
 
 The hard part of delineating the boundaries of the affected system is specifying what it means for one system to be a part of another. Just because a computer is bolted to a wall does not mean the computer is part of the wall’s purpose, which is separating physical space. At the same time, an off-premises DNS server may be part of the site security assurance system if the on-premises security cameras rely on the DNS server to connect to the displays at the guard’s desk. We define computer software as part of a cyber-physical system if the two systems are mutually manipulable; that is, changes in the part (the software) will (at least, often) make detectable and relevant changes to the whole (the cyber-physical system), and changes in the whole will (often) make relevant and detectable changes in the part.\[27\]
 
 When reasoning about a vulnerability, we assign the vulnerability to the nearest, relevant—yet more abstract—discrete component. This assignment is particularly important when assessing technical impact on a component. This description bears some clarification, via each of the adjectives:
 
-  - *Nearest* is relative to the abstraction at which the vulnerability
-    exists.
+  - `Nearest` is relative to the abstraction at which the vulnerability exists.
 
-  - *Relevant* implies that the impacted component must be in the chain
-    of abstraction moving upward from the location of the flaw.
+  - `Relevant` implies that the impacted component must be in the chain of abstraction moving upward from the location of the flaw.
 
-  - *More abstract* means it’s at least one level of abstraction above
-    the specific location of the vulnerability. For example, if the
-    vulnerability is localized to a single line of code in a function,
-    then the function, the module, the library, the application, the
-    product, and the system it belongs to are all *more abstract*.
+  - `More abstract` means it’s at least one level of abstraction above the specific location of the vulnerability. For example, if the vulnerability is localized to a single line of code in a function, then the function, the module, the library, the application, the product, and the system it belongs to are all "more abstract."
 
-  - *Discrete* means there is an identifiable thing that can be fixed
-    (e.g., the unit of patching).
+  - `Discrete` means there is an identifiable thing that can be fixed (e.g., the unit of patching).
 
 Products, libraries, and applications tend to be appropriate objects of focus when seeking the right level to analyze the impact of a vulnerability. Hence, when reasoning about the technical impact of a vulnerability localized to a function in a module in an open source library, the nearest relevant discrete abstraction is the library because the patches are made available at the library level. Similarly, analysis of a vulnerability in closed source database software that supports an enterprise resource management (ERM) system would consider the technical impact to the database, not to the ERM system.
 
@@ -109,34 +103,20 @@ We propose satisfactory decision points for vulnerability management in the next
 
 The intent of this measure is the present state of exploitation of the vulnerability. The intent is not to predict future exploitation but only to acknowledge the current state of affairs. Predictive systems, such as EPSS, could be used to augment this decision or to notify stakeholders of likely changes.\[28\]
 
-Table 4: Exploitation Decision Values
-
-<table>
-<tbody>
-<tr class="odd">
-<td>None</td>
-<td>There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability.</td>
-</tr>
-<tr class="even">
-<td>PoC<br />
-(Proof of Concept)</td>
-<td>One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks.</td>
-</tr>
-<tr class="odd">
-<td>Active</td>
-<td>Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting.</td>
-</tr>
-</tbody>
-</table>
+| | Table 4: Exploitation Decision Values |
+| --- | --- |
+| None | There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability. |
+| PoC<br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
+| Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
 
 ### Technical Impact (Developer)
 > Technical Impact of Exploiting the Vulnerability
 
 When evaluating *technical impact*, recall the scope definition above. Total control is relative to the affected component where the vulnerability resides. If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 
-Table 5: Technical Impact Decision Values
 
-|  |
+
+|  |  Table 5: Technical Impact Decision Values |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
 | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability                                                                                                                                                                                                                                                                                                                 |
@@ -150,7 +130,7 @@ Roughly, *utility* is a combination of two things: (1) the value of each exploit
 
 Table 6: Utility Decision Values
 
-|  |
+|  | Table 6: Utility Decision Values |
 | --------------- | ------------------------------------------------------------------------------ |
 | Laborious       | Slow virulence and diffuse value                                               |
 | Efficient       | {Rapid virulence and diffuse value} OR {Slow virulence and concentrated value} |
@@ -202,16 +182,17 @@ Table 6: Utility Decision Values
     amount of data, but because it is uniquely valuable to law
     enforcement.
 
-The output for the *utility* decision point is visualized in Table 7.
+The output for the *Utility* decision point is visualized in Table 7.
 
-Table 7: Utility to the Adversary, as a Combination of Virulence and
-Value Density
+Table 7: Utility to the Adversary, as a Combination of Virulence and Value Density
 
-| **Virulence** | Rapid | Efficient         | Super Effective |
-| ------------- | ----- | ----------------- | --------------- |
-|               | Slow  | Laborious         | Efficient       |
-|               |       | Diffuse           | Concentrated    |
-|               |       | **Value Density** |                 |
+| *Virulence* | *Value Density* | *Utility* |
+| ----------- | --------------- |       --: |
+| **slow**  | **diffuse**   | laborious |
+| **slow**  | **concentrated** | efficient |
+| **rapid** | **diffuse**   | efficient |
+| **rapid** | **concentrated** | super effective |
+
 
 Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as Zerodium,\[31\] make such pricing structures public. The valuable exploits track the virulence and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors. However, future work should look for and prevent large mismatches between the outputs of the *utility* decision point and the exploit markets.
 
@@ -382,22 +363,20 @@ resiliency</td>
 
 Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access. If a vulnerability cannot be patched, other mitigations may be used. Usually, the effect of these mitigations is to reduce exposure of the vulnerable component. Therefore, an applier’s response to Exposure may change if such mitigations are put in place. If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success. Whether that mitigation allows the applier to defer further action varies according to each case.
 
-Table 9: Exposure Decision Values
 
-|  |
+
+|  | Table 9: Exposure Decision Values |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Small       | Local service or program; highly controlled network                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Small       | Local service or program; highly controlled network       |
 | Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
-| Unavoidable | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Unavoidable | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
 
 ### Mission Impact (Applier)
 > Impact on Mission Essential Functions\[35\] of the Organization
 
 A `mission essential function (MEF)` is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” (footnote 35, page A-1). Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a\[n MEF\] during a disruption to normal operations” (footnote 35, page B-2). The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.
 
-Table 10: Mission Impact Decision Values
-
-|  |
+|  | Table 10: Mission Impact Decision Values |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | None                   | Little to no impact                                                                                                                                                       |
 | Non-Essential Degraded | Degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
@@ -407,7 +386,7 @@ Table 10: Mission Impact Decision Values
 
 #### Advice for Gathering Information to Answer the Mission Impact Question
 
-The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2<sup>35</sup> or OCTAVE FORTE.\[36\] This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
+The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2\[35\] or OCTAVE FORTE.\[36\] This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
 As a heuristic, we suggest using the question described in Section 4.4.3, *Utility*, to constrain *Mission Impact*. If *Utility* is **super effective**, then *Mission Impact* is at least **MEF support crippled**. If *Utility* is **efficient**, then *Mission Impact* is at least **non-essential degraded**.
 
