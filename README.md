@@ -5,7 +5,7 @@ Stakeholder-Specific Vulnerability Categorization
 
 `doc/*`
 
-Draft and final versions of reports. See `(doc/README.md)[doc/README.md]`for
+Draft and final versions of reports. See (`doc/README.md`)[doc/README.md] for
 more info.
 
 `doc/pdfs/*.pdf`
@@ -32,7 +32,7 @@ but it worked well enough for what was needed at the time.
 `ssvc-calc`
 
 Directory with SSVC calculator using D3 graph.
-See `(ssvc-calc/README.md)[ssvc-calc/README.md]`for more info.
+See (`ssvc-calc/README.md`)[ssvc-calc/README.md]for more info.
 
 ## References
 
