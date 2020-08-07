@@ -1,5 +1,8 @@
-https://stackoverflow.com/questions/4779582/markdown-and-including-multiple-files
+Would most prefer using pandoc-citeproc. Still need to figure out how this would work.
+If it will work, prefer converting references to a .bib file for compatibility with latex. 
 
+If pandoc-citeproc won't work, we can define our own method of doing citations using link definitions. 
+https://stackoverflow.com/questions/4779582/markdown-and-including-multiple-files
 We could define the references as a link, and then that would stay consistent
 There could be a separate file of link definitions. 
 This file could also have the text references, I suppose. And then at least all the definitions would be in the same place. 
