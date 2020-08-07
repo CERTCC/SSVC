@@ -76,13 +76,13 @@ The hard part of delineating the boundaries of the affected system is specifying
 
 When reasoning about a vulnerability, we assign the vulnerability to the nearest, relevant—yet more abstract—discrete component. This assignment is particularly important when assessing technical impact on a component. This description bears some clarification, via each of the adjectives:
 
-  - `Nearest` is relative to the abstraction at which the vulnerability exists.
+  - **Nearest** is relative to the abstraction at which the vulnerability exists.
 
-  - `Relevant` implies that the impacted component must be in the chain of abstraction moving upward from the location of the flaw.
+  - **Relevant** implies that the impacted component must be in the chain of abstraction moving upward from the location of the flaw.
 
-  - `More abstract` means it’s at least one level of abstraction above the specific location of the vulnerability. For example, if the vulnerability is localized to a single line of code in a function, then the function, the module, the library, the application, the product, and the system it belongs to are all "more abstract."
+  - **More abstract** means it’s at least one level of abstraction above the specific location of the vulnerability. For example, if the vulnerability is localized to a single line of code in a function, then the function, the module, the library, the application, the product, and the system it belongs to are all "more abstract."
 
-  - `Discrete` means there is an identifiable thing that can be fixed (e.g., the unit of patching).
+  - **Discrete** means there is an identifiable thing that can be fixed (e.g., the unit of patching).
 
 Products, libraries, and applications tend to be appropriate objects of focus when seeking the right level to analyze the impact of a vulnerability. Hence, when reasoning about the technical impact of a vulnerability localized to a function in a module in an open source library, the nearest relevant discrete abstraction is the library because the patches are made available at the library level. Similarly, analysis of a vulnerability in closed source database software that supports an enterprise resource management (ERM) system would consider the technical impact to the database, not to the ERM system.
 
@@ -199,7 +199,7 @@ Alternative heuristics for proxying adversary utility are plausible. One such ex
 ### Safety Impact (Developer, Applier)
 > Safety Impacts of Affected System Compromise
 
-We take an expansive view of safety, in which a safety violation is a violation of what the Centers for Disease Control (CDC) calls `well-being`.\[32\] Physical well-being violations are common safety violations, but we also include economic, social, emotional, and psychological well-being as important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
+We take an expansive view of safety, in which a safety violation is a violation of what the Centers for Disease Control (CDC) calls **well-being**.\[32\] Physical well-being violations are common safety violations, but we also include economic, social, emotional, and psychological well-being as important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
 
 The stakeholder should consider the safety impact on the operators\[33\] and users of the software they provide. If software is repackaged and resold by a stakeholder to further downstream entities who will then sell a product, the initial stakeholder can only reasonably consider so many links in that supply chain. But a stakeholder should know its immediate consumers one step away in the supply chain. Those consumers may repackage or build on the software and then provide that product further on.
 
@@ -374,7 +374,7 @@ Measuring attack surface precisely is difficult, and we do not propose to perfec
 ### Mission Impact (Applier)
 > Impact on Mission Essential Functions\[35\] of the Organization
 
-A `mission essential function (MEF)` is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” (footnote 35, page A-1). Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a\[n MEF\] during a disruption to normal operations” (footnote 35, page B-2). The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.
+A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” (footnote 35, page A-1). Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a\[n MEF\] during a disruption to normal operations” (footnote 35, page B-2). The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.
 
 |  | Table 10: Mission Impact Decision Values |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

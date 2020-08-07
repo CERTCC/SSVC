@@ -9,14 +9,20 @@ Values for specific decisions at a decision point are lower case and bold (md is
 Headings that declare the decision point name or values should not be additionally emphasized. 
   That is, if the name is the whole heading, don't use emphasis. If the name is part of another heading (which is not the case anywhere in v1.1), use emphasis. 
 
+Decision points, decision values, and stakeholder decisions should always be in a link cross-referenced to the table in which they are defined. 
+Definitional tables should have anchors to use. (see crossref-how-to)
+
+
 So we would have:
-_Utility_ or *Technical Impact* which might have values of __super effective__ or **partial**
+[_Utility_](#utility) or [*Technical Impact*](#technical-impact) which might have values of [super effective](#utility) or [partial](#technical-impact)
+
+ - [ ] It will take some work to convert all of these, and in version 1 this sytle is not yet consistently applied. Will do for v2. 
 
 =================================================
 
 Names of decisions are italicized (* or _) and lower case.
-For example: the decision is to move forward with *scheduled* priority. 
- - [ ] This choice collides with decision point names, the cap vs lowercase is probably not enough for readers to easily distinguish them. Not sure what to do here. 
+For example: the decision is to move forward with [*scheduled*](#applier-decisions) priority. 
+ - [ ] This choice collides with decision point names. However, the cap vs lowercase combined with the anchor crossreference is probably enough for readers to distinguish them. Seek feedback on this.  
 
 =================================================
 
@@ -34,8 +40,8 @@ Terms quoted from other sources
 
 In order not to collide use of emphasis, italics (*word*) should not be used to identify a vocabulary word that is not the name of a decision point.
 If the word or phrase need not be emphasized, it should simply but put in double quotes ("). 
-If the word or phrase needs to be emphasized because it is critical to understanding the passage and it should stand out from the surrouding text, code block blackticks can be used (`). 
-This code block style should be used sparingly, primarily for the first place that a key term is defined. 
+If the word or phrase needs to be emphasized because it is critical to understanding the passage and it should stand out from the surrouding text, bold can be used (** or __). 
+This style should be used sparingly, primarily for the first place that a key term is defined. 
 
 =================================================
 

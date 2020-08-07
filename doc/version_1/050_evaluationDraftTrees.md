@@ -188,7 +188,7 @@ The following changes are reflected in Section 4, Decision Trees for Vulnerabili
 
   - We added advice for information gathering to answer safety impact and mission impact questions. This change is needed because of the particularly wide variety of background assumptions analysts made that influenced results and agreement.
 
-  - We clarified that “MEF failure” refers to any `one` essential function failing, not failure of all of them. We changed most severe mission impact to “mission failure” to better reflect the relationship between MEFs and the organization’s mission.
+  - We clarified that “MEF failure” refers to any **one** essential function failing, not failure of all of them. We changed most severe mission impact to “mission failure” to better reflect the relationship between MEFs and the organization’s mission.
 
   - We removed the “developer portfolio value” question since it had poor agreement, and there is no clear way to fix it. We replaced this question with *Utility*, which better captures the relevant kinds of value (namely, to the adversary) of the affected component while remaining amenable to pragmatic analysis.
 

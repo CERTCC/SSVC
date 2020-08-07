@@ -17,7 +17,7 @@ We avoid numerical representations and consider only qualitative data as inputs 
 
 We make the deliberation process as clear as practical; therefore, we risk belaboring some points to ensure our assumptions and reasoning are explicit. Transparency should improve trust in the results.
 
-Finally, any result of a decision-making process should be `explainable`. (Explainable is defined and used with its common meaning.  This meaning is not the same as “explainable,” as used in the research area of explainable artificial intelligence.) An explanation should make the process intelligible to an interested, competent, non-expert person.  There are at least two reasons common explainability is important: (1) for troubleshooting and error correction and (2) for justifying proposed decisions.
+Finally, any result of a decision-making process should be **explainable**. (Explainable is defined and used with its common meaning.  This meaning is not the same as “explainable,” as used in the research area of explainable artificial intelligence.) An explanation should make the process intelligible to an interested, competent, non-expert person.  There are at least two reasons common explainability is important: (1) for troubleshooting and error correction and (2) for justifying proposed decisions.
 
 To summarize, the following are our design goals for a vulnerability
 management process:
