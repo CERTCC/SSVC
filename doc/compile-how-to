@@ -1,3 +1,0 @@
-pandoc --standalone --from=gfm --to=html --metadata-file=version_1/000_frontmatter.yaml -o ssvc_v1-1.html version_1/*md
-
-
