@@ -3,9 +3,9 @@
 
 # Representing Information for Decisions About Vulnerabilities
 
-We chose to build our model with *decisions* as the central concept. We propose that decisions—rather than severity—are a more useful output.  Our design requirements for an adequate decision-making process is that it clearly define whose decisions are involved, properly use evidentiary categories, be based on reliably available evidence, be transparent, and be explainable. Our inspiration and justification for these design goals is that they are the features of a satisfactory scientific enterprise\[18\] adapted to this vulnerability management problem.
+We chose to build our model with decisions as the central concept. We propose that decisions—rather than severity—are a more useful output.  Our design requirements for an adequate decision-making process is that it clearly define whose decisions are involved, properly use evidentiary categories, be based on reliably available evidence, be transparent, and be explainable. Our inspiration and justification for these design goals is that they are the features of a satisfactory scientific enterprise\[18\] adapted to this vulnerability management problem.
 
-To consider decisions about managing the vulnerability rather than just technical severity, one must be clear about *whose* decisions are involved. Organizations that produce patches and fix software clearly have different decisions to make than those that deploy patches or other security mitigations. Furthermore, organizations in the aviation industry have different priorities than organizations that make word processors. These differences indicate a requirement: any formalism must be able to capture adequately the different decisions and priorities exhibited by different stakeholder groups. And as a usability requirement, the number of stakeholder groups needs to be small enough to be manageable, both by those issuing scores and those seeking them.
+To consider decisions about managing the vulnerability rather than just technical severity, one must be clear about whose decisions are involved. Organizations that produce patches and fix software clearly have different decisions to make than those that deploy patches or other security mitigations. Furthermore, organizations in the aviation industry have different priorities than organizations that make word processors. These differences indicate a requirement: any formalism must be able to capture adequately the different decisions and priorities exhibited by different stakeholder groups. And as a usability requirement, the number of stakeholder groups needs to be small enough to be manageable, both by those issuing scores and those seeking them.
 
 The goal of adequacy is more appropriate than optimality. Our search process need not be exhaustive; we are satisficing rather than optimizing.\[19\] Satisficing is more appropriate to qualitative criteria; we do not need to order different methods as to which are more transparent than others, for example. Finding any system that meets all of desired criteria is enough.
 
@@ -17,12 +17,12 @@ We avoid numerical representations and consider only qualitative data as inputs 
 
 We make the deliberation process as clear as practical; therefore, we risk belaboring some points to ensure our assumptions and reasoning are explicit. Transparency should improve trust in the results.
 
-Finally, any result of a decision-making process should be *explainable*. (Explainable is defined and used with its common meaning.  This meaning is not the same as “explainable,” as used in the research area of explainable artificial intelligence.) An explanation should make the process intelligible to an interested, competent, non-expert person.  There are at least two reasons common explainability is important: (1) for troubleshooting and error correction and (2) for justifying proposed decisions.
-  
+Finally, any result of a decision-making process should be `explainable`. (Explainable is defined and used with its common meaning.  This meaning is not the same as “explainable,” as used in the research area of explainable artificial intelligence.) An explanation should make the process intelligible to an interested, competent, non-expert person.  There are at least two reasons common explainability is important: (1) for troubleshooting and error correction and (2) for justifying proposed decisions.
+
 To summarize, the following are our design goals for a vulnerability
 management process:
 
-  - Outputs are *decisions.*
+  - Outputs are decisions.
 
   - Pluralistic recommendations are made among a manageable number of
     stakeholder groups.
@@ -49,16 +49,16 @@ Decision trees are used differently in operations research than in ML.  In ML, d
 Table 1: Comparison of Formalization Options for Vulnerability
 Prioritization Decisions
 
-|                                              | **Outputs Designed to be Decisions** | **Pluralistic Recommendations** | **Qualitative Inputs** | **Qualitative Outputs** | **Transparent** | **Explainable** |
-| -------------------------------------------- | ------------------------------------ | ------------------------------- | ---------------------- | ----------------------- | --------------- | --------------- |
-| **Parametric Regression**                    |                                      |                                 |                        |                         |                 |                 |
-| **CVSS v3.0**                                |                                      |                                 |                        |                         |                 |                 |
-| **Bayesian Belief Networks**                 |                                      | Maybe                           |                        |                         |                 |                 |
-| **Neural Networks**                          |                                      |                                 |                        |                         |                 |                 |
-| **Random Forest**                            |                                      |                                 |                        | Maybe                   |                 | Maybe           |
-| **Other Machine Learning**                   |                                      | Maybe                           |                        |                         |                 |                 |
-| **Boolean First Order Logics**               | Maybe                                | Maybe                           |                        |                         |                 | Maybe           |
-| **Decision Trees (as in decision analysis)** |                                      |                                 |                        |                         |                 |                 |
+| | **Outputs Designed to be Decisions** | **Pluralistic Recommendations** | **Qualitative Inputs** | **Qualitative Outputs** | **Transparent** | **Explainable** |
+| --- | --- | --- | --- | --- | --- | --- |
+| **Parametric Regression**  | :x: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
+| **CVSS v3.0**  | :x: | :x: | :white_check_mark: | :x: | :x: | :x: |
+| **Bayesian Belief Networks**                 | :x: | Maybe | :x: | :x: | :white_check_mark: | :white_check_mark: |
+| **Neural Networks**                          | :x: | :x: | :x: | :x: | :x: | :x: |
+| **Random Forest**                            | :white_check_mark: | :white_check_mark:     | :white_check_mark: | Maybe | :x: | Maybe |
+| **Other Machine Learning**                   | :x: | Maybe | :x: | :x: | :x: | :x: |
+| **Boolean First Order Logics**               | Maybe | Maybe | :white_check_mark: | :white_check_mark: | :white_check_mark: | Maybe |
+| **Decision Trees (as in decision analysis)** | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ## Decision Trees
 
@@ -67,4 +67,3 @@ A decision tree is an acyclic, flowchart-like structure where nodes represent as
 Decision trees can be used to meet all of the desired criteria described above. The two less-obvious criteria met by decision trees are plural recommendations and transparent tree-construction processes. Decision trees support plural recommendations simply because a separate tree can represent each stakeholder group. The opportunity for transparency surfaces immediately: any deviation among the decision trees for different stakeholder groups should have a documented reason—supported by public evidence when possible—for the deviation. Transparency may be difficult to achieve, since each node in the tree and each of the values need to be explained and justified, but this cost is paid infrequently.
 
 There has been limited but positive use of decision trees in vulnerability management. For example, Vulnerability Response Decision Assistance (VRDA) studies how to make decisions about how to respond to vulnerability reports.\[23\] This paper continues roughly in the vein of such work to construct multiple decision trees for prioritization within the vulnerability management process.
-
