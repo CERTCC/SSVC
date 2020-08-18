@@ -3,9 +3,14 @@ Stakeholder-Specific Vulnerability Categorization
 
 # What's here
 
-`doc/*.pdf`
+`doc/*`
 
-Both reports referenced below can be found in this directory.
+Draft and final versions of reports. See [`doc/README.md`](doc/README.md) for
+more info.
+
+`doc/pdfs/*.pdf`
+
+Final versions of both reports referenced below can be found in this directory.
 
 `data/*.csv`
 
@@ -17,15 +22,17 @@ change what the module above recommends.
 
 `src/ssvc.py`
 
-`ssvc.py` has two methods: `applier_tree()` and `developer_tree()`
+A basic Python module for interacting with the SSVC trees. `ssvc.py` has
+two methods: `applier_tree()` and `developer_tree()`
 
 The two methods just loop through their respective lookup tables until
-they hit a match, then return the outcome. Maybe not the best implementation, but it worked
-well enough for what was needed at the time.
+they hit a match, then return the outcome. Maybe not the best implementation,
+but it worked well enough for what was needed at the time.
 
 `ssvc-calc`
 
 Directory with SSVC calculator using D3 graph.
+See [`ssvc-calc/README.md`](ssvc-calc/README.md) for more info.
 
 ## References
 
