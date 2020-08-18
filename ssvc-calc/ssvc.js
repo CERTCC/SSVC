@@ -40,34 +40,34 @@ var raw = [
     {"name":"Track*:none:slow:total:high","id":29,"children":[],"parent":"Mission & Well-being:none:slow:total",props:"{}"},
     {"name":"Track:none:rapid:partial:low","id":30,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
     {"name":"Track:none:rapid:partial:medium","id":31,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
-    {"name":"High:none:rapid:partial:high","id":32,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
+    {"name":"Attend:none:rapid:partial:high","id":32,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
     {"name":"Track:none:rapid:total:low","id":33,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
     {"name":"Track:none:rapid:total:medium","id":34,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
-    {"name":"High:none:rapid:total:high","id":35,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
+    {"name":"Attend:none:rapid:total:high","id":35,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
     {"name":"Track:poc:slow:partial:low","id":36,"children":[],"parent":"Mission & Well-being:poc:slow:partial",props:"{}"},
     {"name":"Track:poc:slow:partial:medium","id":37,"children":[],"parent":"Mission & Well-being:poc:slow:partial",props:"{}"},
     {"name":"Track*:poc:slow:partial:high","id":38,"children":[],"parent":"Mission & Well-being:poc:slow:partial",props:"{}"},
     {"name":"Track:poc:slow:total:low","id":39,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
     {"name":"Track*:poc:slow:total:medium","id":40,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
-    {"name":"High:poc:slow:total:high","id":41,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
+    {"name":"Attend:poc:slow:total:high","id":41,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
     {"name":"Track:poc:rapid:partial:low","id":42,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
     {"name":"Track:poc:rapid:partial:medium","id":43,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
-    {"name":"High:poc:rapid:partial:high","id":44,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
+    {"name":"Attend:poc:rapid:partial:high","id":44,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
     {"name":"Track:poc:rapid:total:low","id":45,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
     {"name":"Track*:poc:rapid:total:medium","id":46,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
-    {"name":"High:poc:rapid:total:high","id":47,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
+    {"name":"Attend:poc:rapid:total:high","id":47,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
     {"name":"Track:active:slow:partial:low","id":48,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
     {"name":"Track:active:slow:partial:medium","id":49,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
-    {"name":"High:active:slow:partial:high","id":50,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
+    {"name":"Attend:active:slow:partial:high","id":50,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
     {"name":"Track:active:slow:total:low","id":51,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
-    {"name":"High:active:slow:total:medium","id":52,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
-    {"name":"Critical:active:slow:total:high","id":53,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
-    {"name":"High:active:rapid:partial:low","id":54,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
-    {"name":"High:active:rapid:partial:medium","id":55,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
-    {"name":"Critical:active:rapid:partial:high","id":56,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
-    {"name":"High:active:rapid:total:low","id":57,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
-    {"name":"Critical:active:rapid:total:medium","id":58,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
-    {"name":"Critical:active:rapid:total:high","id":59,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
+    {"name":"Attend:active:slow:total:medium","id":52,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
+    {"name":"Act:active:slow:total:high","id":53,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
+    {"name":"Attend:active:rapid:partial:low","id":54,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
+    {"name":"Attend:active:rapid:partial:medium","id":55,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
+    {"name":"Act:active:rapid:partial:high","id":56,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
+    {"name":"Attend:active:rapid:total:low","id":57,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
+    {"name":"Act:active:rapid:total:medium","id":58,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
+    {"name":"Act:active:rapid:total:high","id":59,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
 
 ]
 
@@ -325,8 +325,8 @@ function draw_graph() {
 	var add_offset = 0
 	if(raw.length > 60 )
 	    add_offset = (raw.length - 60)*5
-	width = 1000 - margin.right - margin.left + add_offset
-	height = 1200 - margin.top - margin.bottom + add_offset
+	width = 1200 - margin.right - margin.left + add_offset
+	height = 1300 - margin.top - margin.bottom + add_offset
     }
     duration = 750
     tree = d3.layout.tree()
@@ -400,6 +400,7 @@ function update(source) {
 	.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
     
     var lcolors = {"Track":"#28a745","Track*":"#ffc107","High":"#EE8733","Critical":"#dc3545"}
+    lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
     /*
       nodeEnter.append("text")
       .attr("x", function(d) { return check_children(d,"-13","-60")})
