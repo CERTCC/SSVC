@@ -3,6 +3,9 @@ const _version = 2.8
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
+var lcolors = {"Track":"#28a745","Track*":"#ffc107","High":"#EE8733","Critical":"#dc3545"}
+lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
+
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
     this.each(function (i, e) {
@@ -129,12 +132,18 @@ function calculate_mwb() {
 function readFile(input) {
     var file = input.files[0];
     var reader = new FileReader();
+    //console.log(file)
     reader.readAsText(file);
     reader.onload = function() {
+	//console.log(reader)
 	//console.log(reader.result);
 	try {
-	    if(input.id == "dtreecsvload")
-		parse_file(reader.result)
+	    if(input.id == "dtreecsvload") {
+		if(file.name.match(/\.json$/i))
+		    parse_json(reader.result)
+		else
+		    parse_file(reader.result)
+	    }
 	    else
 		tsv_load(reader.result)
 	}catch(err) {
@@ -227,6 +236,65 @@ function tsv_load(data) {
     if(rmv) 
 	topalert("Loaded TSV CVE samples count of "+scores.length,"success")
 }
+function parse_json(xraw) {
+    var zraw = []
+    var tm = JSON.parse(xraw)
+    if(!('decision_points' in tm)) {
+	topalert("JSON schema has no decision_points","danger")
+	return
+    }
+    if(!('decision_table' in tm)) {
+	topalert("JSON schema has no decision table, we can't help you with that","danger")
+	return
+    }
+    if(!('decisions' in tm)) {
+	topalert("JSON schema has no decisions, we can't help you with that","danger")
+	return
+    }
+    /* Map colors if present */
+    tm.decisions.map(d => 'color' in d ? lcolors[d.label] = d.color : d.color = "white")
+    
+    /* decisions_points have a label field which we care about with type != child */    
+    var x = tm.decision_points.filter(q => q["decision_type"] != "child").map(r => r.label)
+    //console.log(x)
+    var y = tm.decision_table
+    //console.log(y)
+    var yraw = [...Array(x.length)].map(u => [])
+    var id = 1
+    var thash = {}
+    for(var i=0; i<y.length; i++) {
+	//var tname = y[i].pop()+":"+y[i].join(":")
+	if(!('Decision' in y[i]))
+	    continue
+	var tname = y[i]['Decision']+":"+x.map(t => y[i][t]).join(":")
+	//console.log(tname)
+	for( var j=0; j< x.length; j++) {
+	    //var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
+	    var tparent = x[x.length-1-j]+":"+x.slice(0,x.length-1-j).map(q => y[i][q]).join(":")
+	    //console.log(tparent)
+	    if(!(tname in thash))
+		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]}
+	    else
+		continue
+	    thash[yt.name] = 1
+	    tname = tparent
+	    yraw[j].push(yt)	    
+	}
+    }
+    for(var j=yraw.length; j> -1; j--)  {
+	if(yraw.length > 0)
+	    zraw = zraw.concat(yraw[j])
+    }
+
+    /* Next part of the tree data  */
+    zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
+    /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
+    raw = zraw
+    topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
+	     y.length+" possible decisions, You can use it now!","success")
+    dt_clear()	
+       
+}
 function parse_file(xraw) {
     //var xraw = 'TSV data'
     var zraw=[]
@@ -236,14 +304,16 @@ function parse_file(xraw) {
     */
 
     var xarray = xraw.split('\n')
-    var xr = xarray.map(x=>x.split(/[\s,]+/))
+    var xr = xarray.map(x=>x.split(/[\t,]+/))
     /* Remove first row has the headers */
     var y = xr.splice(1)
     /* Remove ID column in the first row to create x*/
     var x = xr[0].splice(1)
     /* Now xr looks like */
     /* (6)["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"] */
-    var yraw=[[],[],[],[],[]]
+    //var yraw = [[],[],[],[],[]]
+    /* Initialize Empty arrray */
+    var yraw = [...Array(x.length)].map(u => []);
     var id=1;
     /* This will create just the last branches of the tree */
     var thash = {}
@@ -252,10 +322,12 @@ function parse_file(xraw) {
 	if(y[i].length < 1) continue
 	y[i].shift();
 	var tname = y[i].pop()+":"+y[i].join(":")
+	//console.log(tname)
 	if(tname == "undefined") continue;
 	for( var j=0; j< x.length-1; j++) {
 	    /*y[i] look like 0,none,laborious,partial,none,defer */
 	    var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
+	    //console.log(tparent)
 	    if(!(tname in thash))
 		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]}
 	    else
@@ -275,7 +347,8 @@ function parse_file(xraw) {
     zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
     /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
     raw = zraw
-    topalert("Decision tree has been updated with "+raw.length+" nodes, You can use it now!","success")
+    topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
+	     y.length+" possible decisions, You can use it now!","success")
     dt_clear()
 }
 
@@ -397,10 +470,16 @@ function update(source) {
     nodeEnter.append("circle")
 	.attr("r", 1e-6)
 	.attr("class","junction")
-	.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+	.style("fill", function(d) {
+	    if(d._children) return "lightsteelblue"
+	    if(!('children' in d)) {
+		var dname = d.name.split(":").shift()
+		if(dname in lcolors) 
+		    return lcolors[dname]
+	    }
+	    return "#fff"
+	}  );
     
-    var lcolors = {"Track":"#28a745","Track*":"#ffc107","High":"#EE8733","Critical":"#dc3545"}
-    lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
     /*
       nodeEnter.append("text")
       .attr("x", function(d) { return check_children(d,"-13","-60")})
@@ -443,7 +522,24 @@ function update(source) {
 	.attr("nameid",function(d) { if(!d) return "1";
 				     if(d.name) return d.name.split(":").pop();
 				   })
-	.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+	.style("fill", function(d) {
+	    if(d._children) return "lightsteelblue"
+	    if(!('children' in d)) {
+		var dname = d.name.split(":").shift()
+		if(dname in lcolors) 
+		    return lcolors[dname]
+	    }
+	    return "#fff"
+	})
+	.style("stroke",function(d) {
+	    if(!('children' in d)) {
+		var dname = d.name.split(":").shift()
+		if(dname in lcolors) 
+		    return "white"
+	    }	    
+	    return "steelblue";
+	})
+
 
     nodeUpdate.select("text")
 	.style("fill-opacity", 1);
