@@ -6,8 +6,6 @@ pandoc --standalone --from=markdown_github+citations  --to=html \
   -T "SSVC" \
   -M author="Jonathan M. Spring; Eric Hatleback; Allen Householder; Art Manion; Deana Shick" \
   -M date="Published 2020-06-25; compiled `date -u`" \
-  -M reference-section-title="References" \
-  -M link-citations="true" \
   -o ssvc_v1-1.html \
    version_1/*md
 
