@@ -52,11 +52,18 @@ Obviously don't put sensitive information in the comments.
 Comments should be used to note where editorial decisions have been made to about style. For example, though *Exposure* is the decision point, we may still want to talk about exposure generally, and it might be helpful to note in a comment that the word exposure is not emphasized on purpose. 
 
 =================================================
-=================================================
-=================================================
-=================================================
-=================================================
-=================================================
+
+Do not use footnotes. 
+There is a markdown style for footnotes (https://pandoc.org/MANUAL.html#footnote)
+But right now GFM doesn't support that.
+Footnotes and asides that were not references in v1 have been written in to the flow of the text. 
+
+If there is some lengthy aside that is helpful, but is too long to be written into the flow of the text, it should be set off with a **** (horizontal rule) and marked as an aside and ended with another hrule. This style can only be used for asides that are at least a full paragraph.
+To mark it as an aside, give it a title in block quote format
+ > aside title
+Don't use Headings (#, ##, etc.) because this will interfere with section numbering. 
+It would be good practice to provide an HTML anchor with the same name as the aside title, so we can cross reference the box elsewhere. 
+
 =================================================
 =================================================
 =================================================

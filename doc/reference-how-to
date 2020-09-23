@@ -1,21 +1,25 @@
-Would most prefer using pandoc-citeproc. Still need to figure out how this would work.
-If it will work, prefer converting references to a .bib file for compatibility with latex. 
+Would most prefer using pandoc-citeproc. 
+GFM does not natively support bibtex citations. However, the pandoc markdown syntax is to use @referencetag. 
+Documentation for citation processing:
+# https://pandoc.org/MANUAL.html#citations
 
-If pandoc-citeproc won't work, we can define our own method of doing citations using link definitions. 
-https://stackoverflow.com/questions/4779582/markdown-and-including-multiple-files
-We could define the references as a link, and then that would stay consistent
-There could be a separate file of link definitions. 
-This file could also have the text references, I suppose. And then at least all the definitions would be in the same place. 
-Note link reference definitions can contain a title
-https://github.github.com/gfm/#link-reference-definitions
-This title will be the HTML mouse-over text, and should contain the full reference data.
-In this way, we can eliminate the need for a formal references section.  
+The @ citation syntax shouldn't interfere with @ mentions. GFM only allows @ mentions in issues and pull request.
+# https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
+
+So the preferred citation method is two steps:
+(1) Search sources_ssvc.bib for the desired reference
+(2a) if it's there, use [@referencetag] in the markdown text. For example, the tag in the entry beginning with 
+    @book{simon1996sciences,
+is simon1996sciences 
+(2b) If it's not there, add it to the correct subpart of the bibtex file. (books are together, articles are together, CVSS publications are together, etc.) Use authorYYYYword style for the tags (this is the default Google Scholar naming style, which is a good place to get decently formatted bibtex that you can tidy up). Then use the [@referencetag] in the markdown text. 
 
 
-It would be nice if footnotes which are a comment and not a reference could use the md footnote syntax 
-https://pandoc.org/MANUAL.html#footnote
+Though the [@tag] command won't reference on github, the compile-citeproc.sh script has the right pandoc commands to create a pretty HTML file with a proper references section. 
+
+Do not use footnotes. 
+There is a markdown style for footnotes (https://pandoc.org/MANUAL.html#footnote)
 But right now GFM doesn't support that. 
-Footnotes and asides should be either: written in to the flow of the text OR set off with a **** (horizontal rule) and marked as an aside and ended with another hrule. The second option is not preferred, but can be used for asides that are at least a full paragraph. 
+Footnotes and asides that were not references in v1 have been written in to the flow of the text.
 
  
 
