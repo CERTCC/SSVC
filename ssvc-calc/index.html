@@ -23,7 +23,7 @@
 	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
 	    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1599963556">
+    <link rel="stylesheet" href="css.css?v=1600999351">
   </head>
   <body class="text-center blackbody">
     <img src="../cert_tweet_logo.jpg" class="cert-tweet" alt="CERT Logo"
@@ -99,7 +99,7 @@
 	    <tbody><tr></tr></tbody>
 	  </table>
 	</p>
-	<div id="graph">
+	<div id="graph" class="position-relative">
 	</div>
       </main>
 
@@ -352,7 +352,42 @@
     </div>
     <div id="biscuit" class="top_fixed tescape tloader">
     </div>
-    <script src="ssvc.js?v=1599963556"></script>
+    <div id="exporter" class="d-none">
+      <div class="row justify-content-center position-absolute"
+	   style="top:180px;left:40%">
+	  <div class="col-auto">
+	    <table class="table table-borderless w-auto">
+	      <tbody>
+		<tr>
+		  <td>
+		    <input type="text" placeholder="ID CVE/VU#"
+			   class="form-control exportId">
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <select  class="form-control exportRole">
+		      <option value="" disabled selected>Select Role</option>
+		      <option>Coordinator</option>
+		      <option>Patch Applier</option>
+		      <option>Developer</option>
+		      <option>Other</option>
+		    </select>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <button class="btn btn-primary exportButton" onclick="export_vul()">
+		      Export
+		    </button>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+    </div>
+    <script src="ssvc.js?v=1600999351"></script>
   </body>
 </html>
 

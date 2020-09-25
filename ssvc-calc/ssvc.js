@@ -126,9 +126,37 @@ function calculate_mwb() {
 	    ptranslate = "translate(30,-90) scale(0.4,0.4)"
 	d3.select("#pgroup").transition()
 	    .duration(600).attr("transform", ptranslate)
+	export_show()
     }, 900)
     
 }
+function export_show() {
+    var q = $('#exporter').html()
+    $('#graph').append(q)
+    if($('#cve_samples').val().match(/^(cve|vu)/i))
+	$('.exportId').val($('#cve_samples').val())
+    
+}
+function export_vul() {
+    var tstamp = new Date()
+    var oexport = { timestamp: tstamp.toLocaleString(),
+		    timestamp_epoch_ms: tstamp.getTime(),
+		    role: $('#graph .exportRole').val() || "Unknown",
+		    id: $('#graph .exportId').val() || "Unspecified",
+		    version: "2.0"
+		  }
+    var labels = $('#graph svg g.node text').map((i,w) => $(w).html()).toArray()
+    var vals = $('#graph svg g.pathlink textPath.chosen').map((i,w) => $(w).html()).toArray()
+    var ochoice = {}
+    labels.forEach((k, i) => ochoice[k] = vals[i])
+    oexport['choices'] = ochoice
+    var a = document.createElement("a")
+    a.href = "data:text/plain;charset=utf-8,"+encodeURIComponent(JSON.stringify(oexport))
+    a.setAttribute("download", oexport.id+"_"+oexport.role+"_json.txt")
+    a.click()
+    a.remove()
+}
+
 function readFile(input) {
     var file = input.files[0];
     var reader = new FileReader();
@@ -786,8 +814,10 @@ function dt_start() {
 }
 function dt_clear() {
     showFullTree = false
-    raw.map(x => {  x.children=[]; delete x._children;})    
+    raw.map(x => {  x.children=[]; delete x._children;})
+    /* Clear all graph to start */
     $('svg.mgraph').remove()
+    $('#graph').html('')
 }
 
 function show_full_tree() {
