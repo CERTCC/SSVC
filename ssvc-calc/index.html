@@ -23,7 +23,7 @@
 	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
 	    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1600999351">
+    <link rel="stylesheet" href="css.css?v=1601051642">
   </head>
   <body class="text-center blackbody">
     <img src="../cert_tweet_logo.jpg" class="cert-tweet" alt="CERT Logo"
@@ -67,7 +67,10 @@
       </header>
 
       <main class="inner cover">
-	<h4 class="cover-heading">SSVC Calc App</h4>
+	<h4 class="cover-heading">
+	  SSVC Calc App 
+	  <div class="cover_heading_append d-inline">(Coordinator v2)</div>
+	</h4>
 	<div class="alert" id="topalert" role="alert">
 	  This is an alert!
 	</div>
@@ -87,9 +90,6 @@
 		  title="Explore the full decision tree of this SSVC Instance"
 		  onclick="show_full_tree()">
 	    Show Full Tree</button>
-	  <select id="cve_samples" class="d-none" onchange="process(this)">
-	    <option>Choose sample CVE</option>
-	  </select>
 	  <a href="javascript:void(0)" title="View previous score"
 	     alt="View previous score" id="table_toggle" style="display:none"
 	     onclick="cve_table_toggle()">
@@ -112,12 +112,25 @@
 		  <a href="https://www.cisa.gov/cybersecurity"
 		     target="_blank" rel="noopener">CISA.</a> </p>
 	      </div>
-	      <a href="javascript:void(0)" onclick="$('#cvetsvload').click()">
-		Import CVE</a>
+	      <button class="btn btn-dark btn-bordered d-none"
+		      onclick="$('#cvetsvload').click()">
+		Import CVE</button>
+	      <select id="cve_samples" class="d-none" onchange="process(this)">
+		<option>Choose CVE</option>
+		<option value="import">Import CVE</option>		
+	      </select>
 	      <input type="file" onchange="readFile(this)" style="display:none"
 		     id="dtreecsvload">	      
-	      <a href="javascript:void(0)" onclick="$('#dtreecsvload').click()">
-		Import Decision Tree</a>
+	      <button class="btn btn-dark btn-bordered d-none"
+		      onclick="$('#dtreecsvload').click()">
+		Import Decisions</button>
+	      <select id="tree_samples" class="form-control impselector"
+		      onchange="tree_process(this)">
+		<option>Choose Tree</option>
+		<option value="import">Import Tree</option>
+		<option value="ssvc_1_applier.csv">Applier v1</option>
+		<option value="ssvc_1_developer.csv">Developer v1</option>		
+	      </select>	      
 	      <input type="file" onchange="readFile(this)" style="display:none"
 		     id="dtreecsvload">
 	      <input type="file" onchange="readFile(this)" style="display:none"
@@ -387,7 +400,7 @@
 	  </div>
 	</div>
     </div>
-    <script src="ssvc.js?v=1600999351"></script>
+    <script src="ssvc.js?v=1601051642"></script>
   </body>
 </html>
 

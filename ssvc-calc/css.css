@@ -29,7 +29,8 @@
     position: absolute;
     top: 30%;
 }
-.cve_samples{
+.cve_samples,
+.impselector {
     width: auto;
     display:inline;
 }
@@ -278,4 +279,10 @@ pre {
 }
 #spdx,#swid,#cyclonedx,#privacy {
     display:none;
+}
+.btn-dark.btn-bordered {
+    border: 2px solid silver;
+}
+.btn-dark.btn-bordered:hover {
+    border: 2px solid white;
 }

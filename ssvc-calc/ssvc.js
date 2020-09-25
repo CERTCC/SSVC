@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = 2.8
+const _version = 2.9
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
@@ -192,8 +192,26 @@ function topalert(msg,level) {
     $('#topalert').html(msg).removeClass().addClass("alert alert-"+level,msg).fadeIn("fast",function() {
 	$(this).delay(2000).fadeOut("slow"); })
 }
+function tree_process(w) {
+    var ptree = $(w).val()
+    if(ptree == "import")
+	return $('#dtreecsvload').click()
+    $.get(ptree, function(idata) {
+        if(ptree.match(/\.json$/i))
+	    parse_json(idata)
+	else
+	    parse_file(idata)
+	var ptree_name = ptree.replace(/\.[^\.]+$/,'')
+	$('.cover_heading_append').remove()
+	$('.cover-heading').append(' <div class="cover_heading_append d-inline">('+
+				   ptree_name+')</div>')
+	
+    })
+}
 function process(w) {
     var cve = $(w).val()
+    if(cve == "import")
+	return $('#cvetsvload').click()
     var cve_data = $('#'+cve).data()
     if(!cve_data) {
 	alert("Some error in loading this CVE data check the template and try again")
@@ -237,7 +255,7 @@ function load_tsv_score() {
     $.get("sample-ssvc.txt",tsv_load);
 }
 function tsv_load(data) {
-    var rmv = $('#cve_samples option:nth-child(n+2)').remove().length
+    var rmv = $('#cve_samples option:nth-child(n+3)').remove().length
     $('#cve_table thead tr th').remove()
     var y = data.split("\n")
     var heads = y.shift().split("\t")
@@ -421,12 +439,13 @@ function generate_uuid() {
 function draw_graph() {
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
 	width = 1000 - margin.right - margin.left,
-	height = 800 - margin.top - margin.bottom;
+	height = 800 - margin.top - margin.bottom
     if(showFullTree) {
 	var add_offset = 0
 	if(raw.length > 60 )
 	    add_offset = (raw.length - 60)*5
-	width = 1200 - margin.right - margin.left + add_offset
+	//margin.left = margin.left + (raw.length - 60)*2
+	//width = 1200 - margin.right - margin.left + add_offset*0.5
 	height = 1300 - margin.top - margin.bottom + add_offset
     }
     duration = 750
@@ -824,8 +843,8 @@ function show_full_tree() {
     showFullTree = true
     $('svg.mgraph').remove()
     var xraw = JSON.parse(JSON.stringify(raw))
-    treeData=grapharray_open(xraw);
-    draw_graph();
+    treeData=grapharray_open(xraw)
+    draw_graph()
 }
 
 
