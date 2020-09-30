@@ -1,0 +1,34 @@
+CERTCC/SSVC Issue#5
+
+Meeting: 09-29-2020; 9-10 am
+
+Attendees: Allen Householder; Jonathan Spring; Charles Yarbrough & Laurie Tyzenhaus
+------------
+Art Manion provided notes:
+"patch" should go away
+supplier, user
+vendor, user
+------------
+
+Discussion and review of ISO and (some) DoD guidance to include or exclude names for the two roles currently identified as “Patch Applier” and “Patch Developer”. 
+
+Supply Chain 
+Depending on their position in the supply chain, many vendors can describe themselves as both a patch developer and applier.  A vendor could be unable to determine if their product is vulnerable without knowing the determination another vendor has made.  Multiple levels can be involved. (For example, a laptop vendor is waiting on a response from operating system vendor. Meanwhile this operating system vendor is waiting on a reply from their primary hard drive vendor.  The hard drive vendor is busy testing their drives for the vulnerability.  Everyone is waiting for a response before they can make a determination on their vulnerability status and necessary actions.) 
+
+The general patch applier/developer discussion included; vendor, system owner, mitigator, supplier, consumer, etc. Discussion notes are included. The consensus is replace “patch applier” with remediator, and replace “patch developer” with supplier. 
+
+
+----------
+Issue #5 Action Items:
+
+s/patch applier/remediator/g
+s/patch developer/supplier/g
+review  document for “patch” 
+review document for “work item”
+
+Draft definition for 
+1. remediator to include: system owner, library consumer/integrator, mitigator, patch applier.
+2. supplier to include: mitigation developer, patch developer.
+
+Review the “Future Work” and “Limitations” sections to ensure earlier mentions of ‘future work’ are included. 
+
