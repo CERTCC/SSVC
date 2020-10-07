@@ -137,9 +137,9 @@ Roughly, *utility* is a combination of two things: (1) the value of each exploit
 
 *Virulence* is described as slow or rapid:
 
-  - **Slow**. Steps 1-4 of the kill chain [@hutchins2011intelligence] cannot be reliably
-    automated for this vulnerability for some reason. These steps are
-    reconnaissance, weaponization, delivery, and exploitation. Example
+  - **Slow**. Attackers cannot reliably automate steps 1-4 of the kill chain
+    [@hutchins2011intelligence] for this vulnerability for some reason. These
+    steps are reconnaissance, weaponization, delivery, and exploitation. Example
     reasons for why a step may not be reliably automatable include (1)
     the vulnerable component is not searchable or enumerable on the
     network, (2) weaponization may require human direction for each
@@ -148,9 +148,9 @@ Roughly, *utility* is a combination of two things: (1) the value of each exploit
     frustrated by adequate exploit-prevention techniques enabled by
     default; ASLR is an example of an exploit-prevention tool.
 
-  - **Rapid**. Steps 1-4 of the of the kill chain can be reliably
-    automated. If the vulnerability allows remote code execution or
-    command injection, the default response should be rapid.
+  - **Rapid**. Attackers can reliably automate steps 1-4 of the of the kill
+    chain. If the vulnerability allows remote code execution or command
+    injection, the default response should be rapid.
 
 #### Value Density
 
