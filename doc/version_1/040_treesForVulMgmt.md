@@ -32,7 +32,7 @@ Table 2: Proposed Meaning for Supplier Priority Outcomes
 | Supplier Priority | Description |
 | ------------------ | ----------- |
 | Defer              | Do not work on the remediation at present.    |
-| Scheduled          | Develop a fix within regularly scheduled maintenance using developer resources as normal.  |
+| Scheduled          | Develop a fix within regularly scheduled maintenance using remediator resources as normal.  |
 | Out-of-Cycle       | Develop a fix out-of-cycle, taking resources away from other projects and releasing the fix as a security remediation when it is ready. |
 | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
@@ -108,7 +108,7 @@ The intent of this measure is the present state of exploitation of the vulnerabi
 | PoC <br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
 | Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
 
-### Technical Impact (Developer)
+### Technical Impact (Remediator)
 > Technical Impact of Exploiting the Vulnerability
 
 When evaluating *technical impact*, recall the scope definition above. Total control is relative to the affected component where the vulnerability resides. If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
