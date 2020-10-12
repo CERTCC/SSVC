@@ -123,23 +123,24 @@ When evaluating *technical impact*, recall the scope definition above. Total con
 ### Utility (Supplier, Deployer)
 > The Usefulness of the Exploit to the Adversary
 
-Heuristically, we base *utility* on a combination of value density of vulnerable components and virulence of potential exploitation. This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component. Virulence (slow or rapid) and value density (diffuse or concentrated) are defined in Sections 4.4.3.1 and 4.4.3.2. Deployers currently use this feature only as a suggested constraint on the values for *Mission Impact*.
+Heuristically, we base *utility* on a combination of value density of vulnerable components and automatability of potential exploitation. This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component. Automatability (slow or rapid) and value density (diffuse or concentrated) are defined in Sections 4.4.3.1 and 4.4.3.2. Deployers currently use this feature only as a suggested constraint on the values for *Mission Impact*.
+main
 
 Roughly, *utility* is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define *utility* as laborious, efficient, or super effective, as described in Table 6.
 
 |  | Table 6: Utility Decision Values |
 | --------------- | ------------------------------------------------------------------------------ |
-| Laborious       | Slow virulence and diffuse value                                               |
-| Efficient       | {Rapid virulence and diffuse value} OR {Slow virulence and concentrated value} |
-| Super Effective | Rapid virulence and concentrated value                                         |
+| Laborious       | Slow automatability and diffuse value                                               |
+| Efficient       | {Rapid automatability and diffuse value} OR {Slow automatability and concentrated value} |
+| Super Effective | Rapid automatability and concentrated value                                         |
 
-#### Virulence
+#### Automatability
 
-*Virulence* is described as slow or rapid:
+*Automatability* is described as slow or rapid:
 
-  - **Slow**. Steps 1-4 of the kill chain [@hutchins2011intelligence] cannot be reliably
-    automated for this vulnerability for some reason. These steps are
-    reconnaissance, weaponization, delivery, and exploitation. Example
+  - **Slow**. Attackers cannot reliably automate steps 1-4 of the kill chain
+    [@hutchins2011intelligence] for this vulnerability for some reason. These
+    steps are reconnaissance, weaponization, delivery, and exploitation. Example
     reasons for why a step may not be reliably automatable include (1)
     the vulnerable component is not searchable or enumerable on the
     network, (2) weaponization may require human direction for each
@@ -148,9 +149,9 @@ Roughly, *utility* is a combination of two things: (1) the value of each exploit
     frustrated by adequate exploit-prevention techniques enabled by
     default; ASLR is an example of an exploit-prevention tool.
 
-  - **Rapid**. Steps 1-4 of the of the kill chain can be reliably
-    automated. If the vulnerability allows remote code execution or
-    command injection, the default response should be rapid.
+  - **Rapid**. Attackers can reliably automate steps 1-4 of the of the kill
+    chain. If the vulnerability allows remote code execution or command
+    injection, the default response should be rapid.
 
 #### Value Density
 
@@ -181,9 +182,9 @@ Roughly, *utility* is a combination of two things: (1) the value of each exploit
 
 The output for the *Utility* decision point is visualized in Table 7.
 
-Table 7: Utility to the Adversary, as a Combination of Virulence and Value Density
+Table 7: Utility to the Adversary, as a Combination of Automatability and Value Density
 
-| *Virulence* | *Value Density* | *Utility* |
+| *Automatability* | *Value Density* | *Utility* |
 | ----------- | --------------- |       --: |
 | **slow**  | **diffuse**   | laborious |
 | **slow**  | **concentrated** | efficient |
@@ -191,7 +192,7 @@ Table 7: Utility to the Adversary, as a Combination of Virulence and Value Densi
 | **rapid** | **concentrated** | super effective |
 
 
-Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as [Zerodium](https://zerodium.com/program.html), make such pricing structures public. The valuable exploits track the virulence and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors. However, future work should look for and prevent large mismatches between the outputs of the *utility* decision point and the exploit markets.
+Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as [Zerodium](https://zerodium.com/program.html), make such pricing structures public. The valuable exploits track the automatability and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors. However, future work should look for and prevent large mismatches between the outputs of the *utility* decision point and the exploit markets.
 
 ### Safety Impact (Supplier, Deployer)
 > Safety Impacts of Affected System Compromise
