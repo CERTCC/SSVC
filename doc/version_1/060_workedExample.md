@@ -1,13 +1,13 @@
 
 # Worked Example
 
-As an example, we will evaluate CVE-2018-14781 step by step from the patch applier point of view. The scenario here is that used for the pilot study. This example uses the decision tree in Section 4.7. The pilot used slightly different trees, as noted in Section 5.3.
+As an example, we will evaluate CVE-2018-14781 step by step from the deployer point of view. The scenario here is that used for the pilot study. This example uses the decision tree in Section 4.7. The pilot used slightly different trees, as noted in Section 5.3.
 
 The analyst’s first question is related to exploitation. Technically, one could answer the questions in any order; however, exploitation is a good starting point because given an adequately defined search procedure, one can always answer whether it finds an available exploit or proof of concept. The scenario description for the pilot study reads as follows:
 
   - **State of exploitation**: Metasploit and ExploitDB do not return results for this vulnerability. The NVD does not report any active exploitation of this vulnerability.
 
-This information rules out “active” given the (perhaps limited) search procedure. While the search did not produce a precise PoC, based on the description of the vulnerability, it is a fairly standard traffic capture and replay attack that, given access to the transmission medium, should be straightforward to conduct with Wireshark. Therefore, we select the “PoC” branch and then ask about exposure. This considers the (fictional) applier scenario blurb and the notional deployment of the affected system, as follows.
+This information rules out “active” given the (perhaps limited) search procedure. While the search did not produce a precise PoC, based on the description of the vulnerability, it is a fairly standard traffic capture and replay attack that, given access to the transmission medium, should be straightforward to conduct with Wireshark. Therefore, we select the “PoC” branch and then ask about exposure. This considers the (fictional) deployer scenario blurb and the notional deployment of the affected system, as follows.
 
   - **Scenario blurb** - We are a hospital that uses Medtronic devices frequently because of their quality and popularity in the market. We give these devices out to clients who need to monitor and track their insulin intake. If clients need to access data on their device, they can physically connect it to their computer or connect via Bluetooth to an app on their phone for monitoring capabilities. Occasionally, clients who use this device will have a doctor’s appointment in which the doctors have machines that can access the device as well to monitor or change settings. It is unknown how secure the doctor’s computer that interfaces directly with this insulin pump is. If the doctor’s computer is compromised, it potentially means that every device that connects to it is compromised as well. If an update to the insulin pump is required, a client can do this on their own through their computer or app or through a doctor while they are on-site at the hospital.
 
