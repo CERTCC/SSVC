@@ -378,7 +378,12 @@ resiliency</td>
 ### System Exposure (Applier)
 > The Accessible Attack Surface of the Affected System or Service
 
-Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access. If a vulnerability cannot be patched, other mitigations may be used. Usually, the effect of these mitigations is to reduce exposure of the vulnerable component. Therefore, an applier’s response to Exposure may change if such mitigations are put in place. If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success. Whether that mitigation allows the applier to defer further action varies according to each case.
+Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
+If a vulnerability cannot be patched, other mitigations may be used.
+Usually, the effect of these mitigations is to reduce exposure of the vulnerable component.
+Therefore, an applier’s response to Exposure may change if such mitigations are put in place.
+If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success.
+Whether that mitigation allows the applier to defer further action varies according to each case.
 
 
 
