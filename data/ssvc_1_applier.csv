@@ -49,31 +49,31 @@
 47,none,controlled,mission fail,major,out-of-band
 48,none,controlled,mission fail,hazardous,out-of-band
 49,none,controlled,mission fail,catastrophic,out-of-band
-50,none,unavoidable,none,none,defer
-51,none,unavoidable,none,minor,scheduled
-52,none,unavoidable,none,major,scheduled
-53,none,unavoidable,none,hazardous,out-of-band
-54,none,unavoidable,none,catastrophic,immediate
-55,none,unavoidable,degraded,none,defer
-56,none,unavoidable,degraded,minor,scheduled
-57,none,unavoidable,degraded,major,scheduled
-58,none,unavoidable,degraded,hazardous,out-of-band
-59,none,unavoidable,degraded,catastrophic,immediate
-60,none,unavoidable,MEF crippled,none,scheduled
-61,none,unavoidable,MEF crippled,minor,scheduled
-62,none,unavoidable,MEF crippled,major,scheduled
-63,none,unavoidable,MEF crippled,hazardous,out-of-band
-64,none,unavoidable,MEF crippled,catastrophic,immediate
-65,none,unavoidable,MEF fail,none,scheduled
-66,none,unavoidable,MEF fail,minor,scheduled
-67,none,unavoidable,MEF fail,major,out-of-band
-68,none,unavoidable,MEF fail,hazardous,out-of-band
-69,none,unavoidable,MEF fail,catastrophic,immediate
-70,none,unavoidable,mission fail,none,out-of-band
-71,none,unavoidable,mission fail,minor,out-of-band
-72,none,unavoidable,mission fail,major,out-of-band
-73,none,unavoidable,mission fail,hazardous,out-of-band
-74,none,unavoidable,mission fail,catastrophic,immediate
+50,none,open,none,none,defer
+51,none,open,none,minor,scheduled
+52,none,open,none,major,scheduled
+53,none,open,none,hazardous,out-of-band
+54,none,open,none,catastrophic,immediate
+55,none,open,degraded,none,defer
+56,none,open,degraded,minor,scheduled
+57,none,open,degraded,major,scheduled
+58,none,open,degraded,hazardous,out-of-band
+59,none,open,degraded,catastrophic,immediate
+60,none,open,MEF crippled,none,scheduled
+61,none,open,MEF crippled,minor,scheduled
+62,none,open,MEF crippled,major,scheduled
+63,none,open,MEF crippled,hazardous,out-of-band
+64,none,open,MEF crippled,catastrophic,immediate
+65,none,open,MEF fail,none,scheduled
+66,none,open,MEF fail,minor,scheduled
+67,none,open,MEF fail,major,out-of-band
+68,none,open,MEF fail,hazardous,out-of-band
+69,none,open,MEF fail,catastrophic,immediate
+70,none,open,mission fail,none,out-of-band
+71,none,open,mission fail,minor,out-of-band
+72,none,open,mission fail,major,out-of-band
+73,none,open,mission fail,hazardous,out-of-band
+74,none,open,mission fail,catastrophic,immediate
 75,poc,small,none,none,defer
 76,poc,small,none,minor,defer
 77,poc,small,none,major,scheduled
@@ -124,31 +124,31 @@
 122,poc,controlled,mission fail,major,immediate
 123,poc,controlled,mission fail,hazardous,immediate
 124,poc,controlled,mission fail,catastrophic,immediate
-125,poc,unavoidable,none,none,defer
-126,poc,unavoidable,none,minor,scheduled
-127,poc,unavoidable,none,major,scheduled
-128,poc,unavoidable,none,hazardous,out-of-band
-129,poc,unavoidable,none,catastrophic,immediate
-130,poc,unavoidable,degraded,none,scheduled
-131,poc,unavoidable,degraded,minor,scheduled
-132,poc,unavoidable,degraded,major,out-of-band
-133,poc,unavoidable,degraded,hazardous,out-of-band
-134,poc,unavoidable,degraded,catastrophic,immediate
-135,poc,unavoidable,MEF crippled,none,scheduled
-136,poc,unavoidable,MEF crippled,minor,scheduled
-137,poc,unavoidable,MEF crippled,major,out-of-band
-138,poc,unavoidable,MEF crippled,hazardous,out-of-band
-139,poc,unavoidable,MEF crippled,catastrophic,immediate
-140,poc,unavoidable,MEF fail,none,out-of-band
-141,poc,unavoidable,MEF fail,minor,out-of-band
-142,poc,unavoidable,MEF fail,major,out-of-band
-143,poc,unavoidable,MEF fail,hazardous,out-of-band
-144,poc,unavoidable,MEF fail,catastrophic,immediate
-145,poc,unavoidable,mission fail,none,immediate
-146,poc,unavoidable,mission fail,minor,immediate
-147,poc,unavoidable,mission fail,major,immediate
-148,poc,unavoidable,mission fail,hazardous,immediate
-149,poc,unavoidable,mission fail,catastrophic,immediate
+125,poc,open,none,none,defer
+126,poc,open,none,minor,scheduled
+127,poc,open,none,major,scheduled
+128,poc,open,none,hazardous,out-of-band
+129,poc,open,none,catastrophic,immediate
+130,poc,open,degraded,none,scheduled
+131,poc,open,degraded,minor,scheduled
+132,poc,open,degraded,major,out-of-band
+133,poc,open,degraded,hazardous,out-of-band
+134,poc,open,degraded,catastrophic,immediate
+135,poc,open,MEF crippled,none,scheduled
+136,poc,open,MEF crippled,minor,scheduled
+137,poc,open,MEF crippled,major,out-of-band
+138,poc,open,MEF crippled,hazardous,out-of-band
+139,poc,open,MEF crippled,catastrophic,immediate
+140,poc,open,MEF fail,none,out-of-band
+141,poc,open,MEF fail,minor,out-of-band
+142,poc,open,MEF fail,major,out-of-band
+143,poc,open,MEF fail,hazardous,out-of-band
+144,poc,open,MEF fail,catastrophic,immediate
+145,poc,open,mission fail,none,immediate
+146,poc,open,mission fail,minor,immediate
+147,poc,open,mission fail,major,immediate
+148,poc,open,mission fail,hazardous,immediate
+149,poc,open,mission fail,catastrophic,immediate
 150,active,small,none,none,defer
 151,active,small,none,minor,defer
 152,active,small,none,major,scheduled
@@ -199,28 +199,28 @@
 197,active,controlled,mission fail,major,immediate
 198,active,controlled,mission fail,hazardous,immediate
 199,active,controlled,mission fail,catastrophic,immediate
-200,active,unavoidable,none,none,defer
-201,active,unavoidable,none,minor,scheduled
-202,active,unavoidable,none,major,out-of-band
-203,active,unavoidable,none,hazardous,immediate
-204,active,unavoidable,none,catastrophic,immediate
-205,active,unavoidable,degraded,none,scheduled
-206,active,unavoidable,degraded,minor,out-of-band
-207,active,unavoidable,degraded,major,out-of-band
-208,active,unavoidable,degraded,hazardous,immediate
-209,active,unavoidable,degraded,catastrophic,immediate
-210,active,unavoidable,MEF crippled,none,out-of-band
-211,active,unavoidable,MEF crippled,minor,out-of-band
-212,active,unavoidable,MEF crippled,major,out-of-band
-213,active,unavoidable,MEF crippled,hazardous,immediate
-214,active,unavoidable,MEF crippled,catastrophic,immediate
-215,active,unavoidable,MEF fail,none,immediate
-216,active,unavoidable,MEF fail,minor,immediate
-217,active,unavoidable,MEF fail,major,immediate
-218,active,unavoidable,MEF fail,hazardous,immediate
-219,active,unavoidable,MEF fail,catastrophic,immediate
-220,active,unavoidable,mission fail,none,immediate
-221,active,unavoidable,mission fail,minor,immediate
-222,active,unavoidable,mission fail,major,immediate
-223,active,unavoidable,mission fail,hazardous,immediate
-224,active,unavoidable,mission fail,catastrophic,immediate
+200,active,open,none,none,defer
+201,active,open,none,minor,scheduled
+202,active,open,none,major,out-of-band
+203,active,open,none,hazardous,immediate
+204,active,open,none,catastrophic,immediate
+205,active,open,degraded,none,scheduled
+206,active,open,degraded,minor,out-of-band
+207,active,open,degraded,major,out-of-band
+208,active,open,degraded,hazardous,immediate
+209,active,open,degraded,catastrophic,immediate
+210,active,open,MEF crippled,none,out-of-band
+211,active,open,MEF crippled,minor,out-of-band
+212,active,open,MEF crippled,major,out-of-band
+213,active,open,MEF crippled,hazardous,immediate
+214,active,open,MEF crippled,catastrophic,immediate
+215,active,open,MEF fail,none,immediate
+216,active,open,MEF fail,minor,immediate
+217,active,open,MEF fail,major,immediate
+218,active,open,MEF fail,hazardous,immediate
+219,active,open,MEF fail,catastrophic,immediate
+220,active,open,mission fail,none,immediate
+221,active,open,mission fail,minor,immediate
+222,active,open,mission fail,major,immediate
+223,active,open,mission fail,hazardous,immediate
+224,active,open,mission fail,catastrophic,immediate
