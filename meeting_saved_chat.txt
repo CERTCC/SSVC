@@ -1,49 +1,0 @@
-09:03:42	 From  Laurie Tyzenhaus : is it only patch applier/patch developer? or are there more terms involved?02:11 PM"patch" should go awaysupplier, uservendor, user
-09:04:41	 From  Allen Householder : https://github.com/CERTCC/SSVC/pull/37
-09:09:05	 From  Jonathan Spring : SBOM supplier definition is section 5.8 here: https://www.ntia.doc.gov/files/ntia/publications/framingsbom_20191112.pdf
-09:11:16	 From  Jonathan Spring : Sorry chuck, we can’t hear you, too garbled
-09:11:36	 From  Allen Householder : Chuck: your audio is dropping out a lot. can you call in via phone?
-09:11:42	 From  Charles Yarbrough : Sorry. I was saying mitigator might be another term to consider
-09:12:25	 From  Jonathan Spring : https://github.com/CERTCC/SSVC/issues/12
-09:12:30	 From  Charles Yarbrough : Patch applier
-09:12:43	 From  Allen Householder : so far possible equivalencies: patch applier, mitigator, system owner
-09:13:59	 From  Jonathan Spring : https://github.com/CERTCC/SSVC/issues/12
-09:15:09	 From  Charles Yarbrough : System owner implies a policy angle (ownership) vs mitigator which would be the actual applier of the patch
-09:16:55	 From  Charles Yarbrough : Component supplier?
-09:17:31	 From  Charles Yarbrough : Sounds like it could be almost a ‘supply chain’ issue?
-09:17:37	 From  Allen Householder : originating vendor vs "downstream", "intermediate"
-09:22:41	 From  Allen Householder : so far possible equivalencies: patch applier, mitigator, system owner, operator
-09:24:19	 From  Allen Householder : mitigator = {system owners, library consumer/integrator}
-09:27:23	 From  Charles Yarbrough : I like it
-09:27:32	 From  Charles Yarbrough : How about Producer for the other side?
-09:28:02	 From  Charles Yarbrough : Producer = Vendor and Supplier
-09:28:16	 From  Charles Yarbrough : Going more general
-09:31:05	 From  Charles Yarbrough : Supplier is code owner?
-09:31:51	 From  Charles Yarbrough : Yes I can hear. Can’t speak
-09:32:05	 From  Charles Yarbrough : Producer = responsible party for the patch
-09:32:17	 From  Charles Yarbrough : Supplier could involve supply chain components
-09:33:30	 From  Charles Yarbrough : If the producer is providing to multiple suppliers?
-09:34:10	 From  Charles Yarbrough : I’m guess I’m looking at who is responsible for the patch
-09:39:45	 From  Charles Yarbrough : Should work items be linked to risk in some way?
-09:40:48	 From  Charles Yarbrough : Risk?
-09:41:05	 From  Charles Yarbrough : Fix vs not fix tied to risk?
-09:41:22	 From  Allen Householder : patch (verb) = work item, action item, response action,
-09:41:41	 From  Allen Householder : (ignore trailing comma, that was the end of the list)
-09:42:07	 From  Charles Yarbrough : You said ‘mitigaton’. Can that be applied?
-09:42:52	 From  Charles Yarbrough : Patch is treated as a noun
-09:45:08	 From  Charles Yarbrough : Could we use remediation?
-09:46:51	 From  Charles Yarbrough : Yes. More inclusive term
-09:49:03	 From  Charles Yarbrough : Remediation implies an action taken, mitigation may not.
-09:50:35	 From  Charles Yarbrough : Mitigation can be an action not taken intentionally
-09:51:19	 From  Charles Yarbrough : Or at all. They make a choice not to fis
-09:51:21	 From  Charles Yarbrough : fix
-09:51:41	 From  Charles Yarbrough : They have assumed the risk for the non-action.
-09:52:31	 From  Charles Yarbrough : Cost benefit analysis may mean not acting is the proper course of action.
-09:53:13	 From  Charles Yarbrough : right
-09:53:44	 From  Charles Yarbrough : I agree with Jono
-09:54:44	 From  Laurie Tyzenhaus : What's another word for remediation?Proper noun, singulardecontamination, sanitation, rehabilitation, restoration, remedial, reclamation, reorganisation, cleanup, clean-up, 'assainissement, regeneration, abatement, correction.
-09:55:46	 From  Charles Yarbrough : There is a negative connotation with remediation from a business owner standpoint. Mitigation carries less baggage since it is more general.
-09:59:32	 From  Allen Householder : So I think the abstraction stack we came up with basically goes: patch -> mitigation -> remediation so action = "remediate", role = "remediator", noun = "remediation", "remediation action" etc.
-10:02:23	 From  Charles Yarbrough : I agree with Allen since it follows existing docs
-10:03:24	 From  Charles Yarbrough : Not from me
-10:03:27	 From  Charles Yarbrough : Thanks

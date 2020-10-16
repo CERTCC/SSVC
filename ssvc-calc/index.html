@@ -128,8 +128,8 @@
 		      onchange="tree_process(this)">
 		<option>Choose Tree</option>
 		<option value="import">Import Tree</option>
-		<option value="ssvc_1_applier.csv">Applier v1</option>
-		<option value="ssvc_1_developer.csv">Developer v1</option>		
+		<option value="ssvc_1_applier.csv">Deployer v1</option>
+		<option value="ssvc_1_developer.csv">Supplier v1</option>		
 	      </select>	      
 	      <input type="file" onchange="readFile(this)" style="display:none"
 		     id="dtreecsvload">
@@ -283,7 +283,7 @@
       <div style="text-align:left">
 	<h4>Introduction:</h4>
 	<p>
-	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  patch developers and patch appliers.  In this instance of SSVC app, SSVC is being prototyped for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities. Note: the current actions defined as "Track", "Track*", "Critical" and "High" are likely to be updated.
+	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  suppliers and deployers.  In this instance of SSVC app, SSVC is being prototyped for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities. Note: the current actions defined as "Track", "Track*", "Critical" and "High" are likely to be updated.
 	</p>
       </div>
       <div style="text-align:left">
@@ -382,8 +382,8 @@
 		    <select  class="form-control exportRole">
 		      <option value="" disabled selected>Select Role</option>
 		      <option>Coordinator</option>
-		      <option>Patch Applier</option>
-		      <option>Developer</option>
+		      <option>Deployer</option>
+		      <option>Supplier</option>
 		      <option>Other</option>
 		    </select>
 		  </td>

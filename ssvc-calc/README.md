@@ -6,7 +6,7 @@ a vulnerability priority decision.  The result of applying SSVC is a priority de
 providing yuo with a recommended action. See the demo in our [SSVC calc website](https://democert.org/ssvc/)
 
 Some examples of actions are 
-defer, scheduled, out-of-band, and immediate.
+defer, scheduled, out-of-cycle, and immediate.
 
 * To explore the decision tree, use the button "Show Full Tree" This will show all the branches, nodes and edges that make up the decision tree.
 * There are also a number of sample CVE in a dropdown that will auto-select a number of steps in the decision tree

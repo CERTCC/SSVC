@@ -35,5 +35,5 @@ Pull requests on code should be clear about what they've changed and what you've
  
 # Questions
 
-If you have any questions, a message to j--- should work, or tweet @zmanion or @__adh__ 
+If you have any questions, a message to j--- should work, or tweet @zmanion or @\_\_adh\_\_.
 
