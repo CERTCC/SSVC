@@ -2,7 +2,7 @@
 
 # Future Work
 
-We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology. While the method herein should be functional, we do not claim it is ready for use as is. Therefore, we lay out some aspects of future work that would help make it ready to use. We focus on further requirements gathering, further testing of the reliability of the decision process, and expanding to additional types of stakeholders beyond patch appliers and patch developers.
+We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology. While the method herein should be functional, we do not claim it is ready for use as is. Therefore, we lay out some aspects of future work that would help make it ready to use. We focus on further requirements gathering, further testing of the reliability of the decision process, and expanding to additional types of stakeholders beyond deployers and suppliers.
 
 ## Requirements Gathering via Sociological Research
 
@@ -16,4 +16,4 @@ The pilot study provides a methodology for measuring and evaluating reliability 
 
 ## Decision Tree for Vulnerability Coordination
 
-Currently, only two stakeholders are addressed: patch appliers and patch developers. Expanding the work to include more types of stakeholders would be beneficial. We propose that the next stakeholder group could be vulnerability coordinators, as described in Section 4.1. The development and testing methodology for any new stakeholder group should be roughly the same as that used to draft the applier and developer decision trees.
+Currently, only two stakeholders are addressed: deployers and suppliers. Expanding the work to include more types of stakeholders would be beneficial. We propose that the next stakeholder group could be vulnerability coordinators, as described in Section 4.1. The development and testing methodology for any new stakeholder group should be roughly the same as that used to draft the deployer and supplier decision trees.
