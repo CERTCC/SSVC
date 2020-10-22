@@ -1,10 +1,8 @@
 Exploitation,Exposure,MissionImpact,SafetyImpact,Outcome
 none,small,none/degraded,none/minor,defer
-none,small,none/degraded,major,defer
+none,small,none/degraded,major,scheduled
 none,small,none/degraded,hazardous,scheduled
 none,small,none/degraded,catastrophic,out-of-cycle
-none,small,none/degraded,major,scheduled
-none,small,MEF crippled,none/minor,defer
 none,small,MEF crippled,none/minor,scheduled
 none,small,MEF crippled,major,scheduled
 none,small,MEF crippled,hazardous,scheduled
@@ -21,7 +19,6 @@ none,controlled,none/degraded,none/minor,defer
 none,controlled,none/degraded,major,scheduled
 none,controlled,none/degraded,hazardous,out-of-cycle
 none,controlled,none/degraded,catastrophic,out-of-cycle
-none,controlled,MEF crippled,none/minor,defer
 none,controlled,MEF crippled,none/minor,scheduled
 none,controlled,MEF crippled,major,scheduled
 none,controlled,MEF crippled,hazardous,out-of-cycle
@@ -34,7 +31,6 @@ none,controlled,mission fail,none/minor,out-of-cycle
 none,controlled,mission fail,major,out-of-cycle
 none,controlled,mission fail,hazardous,out-of-cycle
 none,controlled,mission fail,catastrophic,out-of-cycle
-none,open,none/degraded,none/minor,defer
 none,open,none/degraded,none/minor,scheduled
 none,open,none/degraded,major,scheduled
 none,open,none/degraded,hazardous,out-of-cycle
@@ -67,11 +63,10 @@ poc,small,mission fail,none/minor,scheduled
 poc,small,mission fail,major,out-of-cycle
 poc,small,mission fail,hazardous,out-of-cycle
 poc,small,mission fail,catastrophic,immediate
-poc,controlled,none/degraded,none/minor,defer
+poc,controlled,none/degraded,none/minor,scheduled
 poc,controlled,none/degraded,major,scheduled
 poc,controlled,none/degraded,hazardous,out-of-cycle
 poc,controlled,none/degraded,catastrophic,immediate
-poc,controlled,none/degraded,none/minor,scheduled
 poc,controlled,MEF crippled,none/minor,scheduled
 poc,controlled,MEF crippled,major,scheduled
 poc,controlled,MEF crippled,hazardous,out-of-cycle
@@ -84,12 +79,10 @@ poc,controlled,mission fail,none/minor,immediate
 poc,controlled,mission fail,major,immediate
 poc,controlled,mission fail,hazardous,immediate
 poc,controlled,mission fail,catastrophic,immediate
-poc,open,none/degraded,none/minor,defer
 poc,open,none/degraded,none/minor,scheduled
-poc,open,none/degraded,major,scheduled
+poc,open,none/degraded,major,out-of-cycle
 poc,open,none/degraded,hazardous,out-of-cycle
 poc,open,none/degraded,catastrophic,immediate
-poc,open,none/degraded,major,out-of-cycle
 poc,open,MEF crippled,none/minor,scheduled
 poc,open,MEF crippled,major,out-of-cycle
 poc,open,MEF crippled,hazardous,out-of-cycle
@@ -102,11 +95,10 @@ poc,open,mission fail,none/minor,immediate
 poc,open,mission fail,major,immediate
 poc,open,mission fail,hazardous,immediate
 poc,open,mission fail,catastrophic,immediate
-active,small,none/degraded,none/minor,defer
+active,small,none/degraded,none/minor,scheduled
 active,small,none/degraded,major,scheduled
 active,small,none/degraded,hazardous,out-of-cycle
 active,small,none/degraded,catastrophic,immediate
-active,small,none/degraded,none/minor,scheduled
 active,small,MEF crippled,none/minor,scheduled
 active,small,MEF crippled,major,scheduled
 active,small,MEF crippled,hazardous,out-of-cycle
@@ -119,12 +111,10 @@ active,small,mission fail,none/minor,out-of-cycle
 active,small,mission fail,major,out-of-cycle
 active,small,mission fail,hazardous,immediate
 active,small,mission fail,catastrophic,immediate
-active,controlled,none/degraded,none/minor,defer
 active,controlled,none/degraded,none/minor,scheduled
-active,controlled,none/degraded,major,scheduled
+active,controlled,none/degraded,major,out-of-cycle
 active,controlled,none/degraded,hazardous,out-of-cycle
 active,controlled,none/degraded,catastrophic,immediate
-active,controlled,none/degraded,major,out-of-cycle
 active,controlled,MEF crippled,none/minor,scheduled
 active,controlled,MEF crippled,major,out-of-cycle
 active,controlled,MEF crippled,hazardous,out-of-cycle
@@ -137,12 +127,10 @@ active,controlled,mission fail,none/minor,immediate
 active,controlled,mission fail,major,immediate
 active,controlled,mission fail,hazardous,immediate
 active,controlled,mission fail,catastrophic,immediate
-active,open,none/degraded,none/minor,defer
-active,open,none/degraded,none/minor,scheduled
+active,open,none/degraded,none/minor,out-of-cycle
 active,open,none/degraded,major,out-of-cycle
 active,open,none/degraded,hazardous,immediate
 active,open,none/degraded,catastrophic,immediate
-active,open,none/degraded,none/minor,out-of-cycle
 active,open,MEF crippled,none/minor,out-of-cycle
 active,open,MEF crippled,major,out-of-cycle
 active,open,MEF crippled,hazardous,immediate
