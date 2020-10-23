@@ -1,0 +1,37 @@
+Exploitation,Exposure,SafetyMissionImpact,Outcome
+none,small,low,scheduled
+none,small,medium,scheduled
+none,small,high,scheduled
+none,small,very high,out-of-cycle
+none,controlled,low,scheduled
+none,controlled,medium,scheduled
+none,controlled,high,out-of-cycle
+none,controlled,very high,out-of-cycle
+none,open,low,scheduled
+none,open,medium,scheduled
+none,open,high,out-of-cycle
+none,open,very high,immediate
+poc,small,low,scheduled
+poc,small,medium,scheduled
+poc,small,high,out-of-cycle
+poc,small,very high,immediate
+poc,controlled,low,scheduled
+poc,controlled,medium,scheduled
+poc,controlled,high,out-of-cycle
+poc,controlled,very high,immediate
+poc,open,low,scheduled
+poc,open,medium,out-of-cycle
+poc,open,high,out-of-cycle
+poc,open,very high,immediate
+active,small,low,scheduled
+active,small,medium,scheduled
+active,small,high,out-of-cycle
+active,small,very high,immediate
+active,controlled,low,scheduled
+active,controlled,medium,out-of-cycle
+active,controlled,high,immediate
+active,controlled,very high,immediate
+active,open,low,out-of-cycle
+active,open,medium,immediate
+active,open,high,immediate
+active,open,very high,immediate
