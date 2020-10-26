@@ -1,104 +1,104 @@
-Exploitation,Automatability,Value,Utility,TechnicalImpact,SafetyImpact,Outcome
-none,slow,diffuse,laborious,partial,none/minor,defer
-none,slow,diffuse,laborious,partial,major,scheduled
-none,slow,diffuse,laborious,partial,hazardous,scheduled
-none,slow,diffuse,laborious,partial,catastrophic,scheduled
-none,slow,diffuse,laborious,total,none/minor,defer
-none,slow,diffuse,laborious,total,major,scheduled
-none,slow,diffuse,laborious,total,hazardous,scheduled
-none,slow,diffuse,laborious,total,catastrophic,out-of-cycle
-none,slow,concentrated,efficient,partial,none/minor,defer
-none,rapid,diffuse,efficient,partial,none/minor,defer
-none,slow,concentrated,efficient,partial,none/minor,scheduled
-none,rapid,diffuse,efficient,partial,none/minor,scheduled
-none,slow,concentrated,efficient,partial,major,scheduled
-none,rapid,diffuse,efficient,partial,major,scheduled
-none,slow,concentrated,efficient,partial,hazardous,scheduled
-none,rapid,diffuse,efficient,partial,hazardous,scheduled
-none,slow,concentrated,efficient,partial,catastrophic,out-of-cycle
-none,rapid,diffuse,efficient,partial,catastrophic,out-of-cycle
-none,slow,concentrated,efficient,total,none/minor,scheduled
-none,rapid,diffuse,efficient,total,none/minor,scheduled
-none,slow,concentrated,efficient,total,major,scheduled
-none,rapid,diffuse,efficient,total,major,scheduled
-none,slow,concentrated,efficient,total,hazardous,out-of-cycle
-none,rapid,diffuse,efficient,total,hazardous,out-of-cycle
-none,slow,concentrated,efficient,total,catastrophic,out-of-cycle
-none,rapid,diffuse,efficient,total,catastrophic,out-of-cycle
-none,rapid,concentrated,super effective,partial,none/minor,scheduled
-none,rapid,concentrated,super effective,partial,major,scheduled
-none,rapid,concentrated,super effective,partial,hazardous,out-of-cycle
-none,rapid,concentrated,super effective,partial,catastrophic,out-of-cycle
-none,rapid,concentrated,super effective,total,none/minor,scheduled
-none,rapid,concentrated,super effective,total,major,scheduled
-none,rapid,concentrated,super effective,total,hazardous,out-of-cycle
-none,rapid,concentrated,super effective,total,catastrophic,out-of-cycle
-poc,slow,diffuse,laborious,partial,none/minor,scheduled
-poc,slow,diffuse,laborious,partial,major,out-of-cycle
-poc,slow,diffuse,laborious,partial,hazardous,out-of-cycle
-poc,slow,diffuse,laborious,partial,catastrophic,out-of-cycle
-poc,slow,diffuse,laborious,total,none/minor,scheduled
-poc,slow,diffuse,laborious,total,major,out-of-cycle
-poc,slow,diffuse,laborious,total,hazardous,out-of-cycle
-poc,slow,diffuse,laborious,total,catastrophic,immediate
-poc,slow,concentrated,efficient,partial,none/minor,scheduled
-poc,rapid,diffuse,efficient,partial,none/minor,scheduled
-poc,slow,concentrated,efficient,partial,major,out-of-cycle
-poc,rapid,diffuse,efficient,partial,major,out-of-cycle
-poc,slow,concentrated,efficient,partial,hazardous,immediate
-poc,rapid,diffuse,efficient,partial,hazardous,immediate
-poc,slow,concentrated,efficient,partial,catastrophic,immediate
-poc,rapid,diffuse,efficient,partial,catastrophic,immediate
-poc,slow,concentrated,efficient,total,none/minor,scheduled
-poc,rapid,diffuse,efficient,total,none/minor,scheduled
-poc,slow,concentrated,efficient,total,none/minor,out-of-cycle
-poc,rapid,diffuse,efficient,total,none/minor,out-of-cycle
-poc,slow,concentrated,efficient,total,major,out-of-cycle
-poc,rapid,diffuse,efficient,total,major,out-of-cycle
-poc,slow,concentrated,efficient,total,hazardous,immediate
-poc,rapid,diffuse,efficient,total,hazardous,immediate
-poc,slow,concentrated,efficient,total,catastrophic,immediate
-poc,rapid,diffuse,efficient,total,catastrophic,immediate
-poc,rapid,concentrated,super effective,partial,none/minor,scheduled
-poc,rapid,concentrated,super effective,partial,none/minor,out-of-cycle
-poc,rapid,concentrated,super effective,partial,major,out-of-cycle
-poc,rapid,concentrated,super effective,partial,hazardous,immediate
-poc,rapid,concentrated,super effective,partial,catastrophic,immediate
-poc,rapid,concentrated,super effective,total,none/minor,out-of-cycle
-poc,rapid,concentrated,super effective,total,major,out-of-cycle
-poc,rapid,concentrated,super effective,total,hazardous,immediate
-poc,rapid,concentrated,super effective,total,catastrophic,immediate
-active,slow,diffuse,laborious,partial,none/minor,scheduled
-active,slow,diffuse,laborious,partial,none/minor,out-of-cycle
-active,slow,diffuse,laborious,partial,major,out-of-cycle
-active,slow,diffuse,laborious,partial,hazardous,immediate
-active,slow,diffuse,laborious,partial,catastrophic,immediate
-active,slow,diffuse,laborious,total,none/minor,out-of-cycle
-active,slow,diffuse,laborious,total,major,out-of-cycle
-active,slow,diffuse,laborious,total,hazardous,immediate
-active,slow,diffuse,laborious,total,catastrophic,immediate
-active,slow,concentrated,efficient,partial,none/minor,out-of-cycle
-active,rapid,diffuse,efficient,partial,none/minor,out-of-cycle
-active,slow,concentrated,efficient,partial,major,immediate
-active,rapid,diffuse,efficient,partial,major,immediate
-active,slow,concentrated,efficient,partial,hazardous,immediate
-active,rapid,diffuse,efficient,partial,hazardous,immediate
-active,slow,concentrated,efficient,partial,catastrophic,immediate
-active,rapid,diffuse,efficient,partial,catastrophic,immediate
-active,slow,concentrated,efficient,total,none/minor,out-of-cycle
-active,rapid,diffuse,efficient,total,none/minor,out-of-cycle
-active,slow,concentrated,efficient,total,major,immediate
-active,rapid,diffuse,efficient,total,major,immediate
-active,slow,concentrated,efficient,total,hazardous,immediate
-active,rapid,diffuse,efficient,total,hazardous,immediate
-active,slow,concentrated,efficient,total,catastrophic,immediate
-active,rapid,diffuse,efficient,total,catastrophic,immediate
-active,rapid,concentrated,super effective,partial,none/minor,out-of-cycle
-active,rapid,concentrated,super effective,partial,none/minor,immediate
-active,rapid,concentrated,super effective,partial,major,immediate
-active,rapid,concentrated,super effective,partial,hazardous,immediate
-active,rapid,concentrated,super effective,partial,catastrophic,immediate
-active,rapid,concentrated,super effective,total,none/minor,immediate
-active,rapid,concentrated,super effective,total,major,immediate
-active,rapid,concentrated,super effective,total,hazardous,immediate
-active,rapid,concentrated,super effective,total,catastrophic,immediate
+Exploitation,Automatability,Value,Utility,TechnicalImpact,SafetyImpact,PublicSafetyImpact,Outcome
+none,slow,diffuse,laborious,partial,none/minor,minimal,defer
+none,slow,diffuse,laborious,partial,major,significant,scheduled
+none,slow,diffuse,laborious,partial,hazardous,significant,scheduled
+none,slow,diffuse,laborious,partial,catastrophic,significant,scheduled
+none,slow,diffuse,laborious,total,none/minor,minimal,defer
+none,slow,diffuse,laborious,total,major,significant,scheduled
+none,slow,diffuse,laborious,total,hazardous,significant,scheduled
+none,slow,diffuse,laborious,total,catastrophic,significant,out-of-cycle
+none,slow,concentrated,efficient,partial,none/minor,minimal,defer
+none,rapid,diffuse,efficient,partial,none/minor,minimal,defer
+none,slow,concentrated,efficient,partial,none/minor,minimal,scheduled
+none,rapid,diffuse,efficient,partial,none/minor,minimal,scheduled
+none,slow,concentrated,efficient,partial,major,significant,scheduled
+none,rapid,diffuse,efficient,partial,major,significant,scheduled
+none,slow,concentrated,efficient,partial,hazardous,significant,scheduled
+none,rapid,diffuse,efficient,partial,hazardous,significant,scheduled
+none,slow,concentrated,efficient,partial,catastrophic,significant,out-of-cycle
+none,rapid,diffuse,efficient,partial,catastrophic,significant,out-of-cycle
+none,slow,concentrated,efficient,total,none/minor,minimal,scheduled
+none,rapid,diffuse,efficient,total,none/minor,minimal,scheduled
+none,slow,concentrated,efficient,total,major,significant,scheduled
+none,rapid,diffuse,efficient,total,major,significant,scheduled
+none,slow,concentrated,efficient,total,hazardous,significant,out-of-cycle
+none,rapid,diffuse,efficient,total,hazardous,significant,out-of-cycle
+none,slow,concentrated,efficient,total,catastrophic,significant,out-of-cycle
+none,rapid,diffuse,efficient,total,catastrophic,significant,out-of-cycle
+none,rapid,concentrated,super effective,partial,none/minor,minimal,scheduled
+none,rapid,concentrated,super effective,partial,major,significant,scheduled
+none,rapid,concentrated,super effective,partial,hazardous,significant,out-of-cycle
+none,rapid,concentrated,super effective,partial,catastrophic,significant,out-of-cycle
+none,rapid,concentrated,super effective,total,none/minor,minimal,scheduled
+none,rapid,concentrated,super effective,total,major,significant,scheduled
+none,rapid,concentrated,super effective,total,hazardous,significant,out-of-cycle
+none,rapid,concentrated,super effective,total,catastrophic,significant,out-of-cycle
+poc,slow,diffuse,laborious,partial,none/minor,minimal,scheduled
+poc,slow,diffuse,laborious,partial,major,significant,out-of-cycle
+poc,slow,diffuse,laborious,partial,hazardous,significant,out-of-cycle
+poc,slow,diffuse,laborious,partial,catastrophic,significant,out-of-cycle
+poc,slow,diffuse,laborious,total,none/minor,minimal,scheduled
+poc,slow,diffuse,laborious,total,major,significant,out-of-cycle
+poc,slow,diffuse,laborious,total,hazardous,significant,out-of-cycle
+poc,slow,diffuse,laborious,total,catastrophic,significant,immediate
+poc,slow,concentrated,efficient,partial,none/minor,minimal,scheduled
+poc,rapid,diffuse,efficient,partial,none/minor,minimal,scheduled
+poc,slow,concentrated,efficient,partial,major,significant,out-of-cycle
+poc,rapid,diffuse,efficient,partial,major,significant,out-of-cycle
+poc,slow,concentrated,efficient,partial,hazardous,significant,immediate
+poc,rapid,diffuse,efficient,partial,hazardous,significant,immediate
+poc,slow,concentrated,efficient,partial,catastrophic,significant,immediate
+poc,rapid,diffuse,efficient,partial,catastrophic,significant,immediate
+poc,slow,concentrated,efficient,total,none/minor,minimal,scheduled
+poc,rapid,diffuse,efficient,total,none/minor,minimal,scheduled
+poc,slow,concentrated,efficient,total,none/minor,minimal,out-of-cycle
+poc,rapid,diffuse,efficient,total,none/minor,minimal,out-of-cycle
+poc,slow,concentrated,efficient,total,major,significant,out-of-cycle
+poc,rapid,diffuse,efficient,total,major,significant,out-of-cycle
+poc,slow,concentrated,efficient,total,hazardous,significant,immediate
+poc,rapid,diffuse,efficient,total,hazardous,significant,immediate
+poc,slow,concentrated,efficient,total,catastrophic,significant,immediate
+poc,rapid,diffuse,efficient,total,catastrophic,significant,immediate
+poc,rapid,concentrated,super effective,partial,none/minor,minimal,scheduled
+poc,rapid,concentrated,super effective,partial,none/minor,minimal,out-of-cycle
+poc,rapid,concentrated,super effective,partial,major,significant,out-of-cycle
+poc,rapid,concentrated,super effective,partial,hazardous,significant,immediate
+poc,rapid,concentrated,super effective,partial,catastrophic,significant,immediate
+poc,rapid,concentrated,super effective,total,none/minor,minimal,out-of-cycle
+poc,rapid,concentrated,super effective,total,major,significant,out-of-cycle
+poc,rapid,concentrated,super effective,total,hazardous,significant,immediate
+poc,rapid,concentrated,super effective,total,catastrophic,significant,immediate
+active,slow,diffuse,laborious,partial,none/minor,minimal,scheduled
+active,slow,diffuse,laborious,partial,none/minor,minimal,out-of-cycle
+active,slow,diffuse,laborious,partial,major,significant,out-of-cycle
+active,slow,diffuse,laborious,partial,hazardous,significant,immediate
+active,slow,diffuse,laborious,partial,catastrophic,significant,immediate
+active,slow,diffuse,laborious,total,none/minor,minimal,out-of-cycle
+active,slow,diffuse,laborious,total,major,significant,out-of-cycle
+active,slow,diffuse,laborious,total,hazardous,significant,immediate
+active,slow,diffuse,laborious,total,catastrophic,significant,immediate
+active,slow,concentrated,efficient,partial,none/minor,minimal,out-of-cycle
+active,rapid,diffuse,efficient,partial,none/minor,minimal,out-of-cycle
+active,slow,concentrated,efficient,partial,major,significant,immediate
+active,rapid,diffuse,efficient,partial,major,significant,immediate
+active,slow,concentrated,efficient,partial,hazardous,significant,immediate
+active,rapid,diffuse,efficient,partial,hazardous,significant,immediate
+active,slow,concentrated,efficient,partial,catastrophic,significant,immediate
+active,rapid,diffuse,efficient,partial,catastrophic,significant,immediate
+active,slow,concentrated,efficient,total,none/minor,minimal,out-of-cycle
+active,rapid,diffuse,efficient,total,none/minor,minimal,out-of-cycle
+active,slow,concentrated,efficient,total,major,significant,immediate
+active,rapid,diffuse,efficient,total,major,significant,immediate
+active,slow,concentrated,efficient,total,hazardous,significant,immediate
+active,rapid,diffuse,efficient,total,hazardous,significant,immediate
+active,slow,concentrated,efficient,total,catastrophic,significant,immediate
+active,rapid,diffuse,efficient,total,catastrophic,significant,immediate
+active,rapid,concentrated,super effective,partial,none/minor,minimal,out-of-cycle
+active,rapid,concentrated,super effective,partial,none/minor,minimal,immediate
+active,rapid,concentrated,super effective,partial,major,significant,immediate
+active,rapid,concentrated,super effective,partial,hazardous,significant,immediate
+active,rapid,concentrated,super effective,partial,catastrophic,significant,immediate
+active,rapid,concentrated,super effective,total,none/minor,minimal,immediate
+active,rapid,concentrated,super effective,total,major,significant,immediate
+active,rapid,concentrated,super effective,total,hazardous,significant,immediate
+active,rapid,concentrated,super effective,total,catastrophic,significant,immediate
