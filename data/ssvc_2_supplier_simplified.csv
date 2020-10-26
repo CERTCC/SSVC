@@ -1,78 +1,37 @@
-Exploitation,Utility,TechnicalImpact,SafetyImpact,Outcome
-none,laborious,partial,none/minor,defer
-none,laborious,partial,major,scheduled
-none,laborious,partial,hazardous,scheduled
-none,laborious,partial,catastrophic,scheduled
-none,laborious,total,none/minor,defer
-none,laborious,total,major,scheduled
-none,laborious,total,hazardous,scheduled
-none,laborious,total,catastrophic,out-of-cycle
-none,efficient,partial,none/minor,defer
-none,efficient,partial,none/minor,scheduled
-none,efficient,partial,major,scheduled
-none,efficient,partial,hazardous,scheduled
-none,efficient,partial,catastrophic,out-of-cycle
-none,efficient,total,none/minor,scheduled
-none,efficient,total,major,scheduled
-none,efficient,total,hazardous,out-of-cycle
-none,efficient,total,catastrophic,out-of-cycle
-none,super effective,partial,none/minor,scheduled
-none,super effective,partial,major,scheduled
-none,super effective,partial,hazardous,out-of-cycle
-none,super effective,partial,catastrophic,out-of-cycle
-none,super effective,total,none/minor,scheduled
-none,super effective,total,major,scheduled
-none,super effective,total,hazardous,out-of-cycle
-none,super effective,total,catastrophic,out-of-cycle
-poc,laborious,partial,none/minor,scheduled
-poc,laborious,partial,major,out-of-cycle
-poc,laborious,partial,hazardous,out-of-cycle
-poc,laborious,partial,catastrophic,out-of-cycle
-poc,laborious,total,none/minor,scheduled
-poc,laborious,total,major,out-of-cycle
-poc,laborious,total,hazardous,out-of-cycle
-poc,laborious,total,catastrophic,immediate
-poc,efficient,partial,none/minor,scheduled
-poc,efficient,partial,major,out-of-cycle
-poc,efficient,partial,hazardous,immediate
-poc,efficient,partial,catastrophic,immediate
-poc,efficient,total,none/minor,scheduled
-poc,efficient,total,none/minor,out-of-cycle
-poc,efficient,total,major,out-of-cycle
-poc,efficient,total,hazardous,immediate
-poc,efficient,total,catastrophic,immediate
-poc,super effective,partial,none/minor,scheduled
-poc,super effective,partial,none/minor,out-of-cycle
-poc,super effective,partial,major,out-of-cycle
-poc,super effective,partial,hazardous,immediate
-poc,super effective,partial,catastrophic,immediate
-poc,super effective,total,none/minor,out-of-cycle
-poc,super effective,total,major,out-of-cycle
-poc,super effective,total,hazardous,immediate
-poc,super effective,total,catastrophic,immediate
-active,laborious,partial,none/minor,scheduled
-active,laborious,partial,none/minor,out-of-cycle
-active,laborious,partial,major,out-of-cycle
-active,laborious,partial,hazardous,immediate
-active,laborious,partial,catastrophic,immediate
-active,laborious,total,none/minor,out-of-cycle
-active,laborious,total,major,out-of-cycle
-active,laborious,total,hazardous,immediate
-active,laborious,total,catastrophic,immediate
-active,efficient,partial,none/minor,out-of-cycle
-active,efficient,partial,major,immediate
-active,efficient,partial,hazardous,immediate
-active,efficient,partial,catastrophic,immediate
-active,efficient,total,none/minor,out-of-cycle
-active,efficient,total,major,immediate
-active,efficient,total,hazardous,immediate
-active,efficient,total,catastrophic,immediate
-active,super effective,partial,none/minor,out-of-cycle
-active,super effective,partial,none/minor,immediate
-active,super effective,partial,major,immediate
-active,super effective,partial,hazardous,immediate
-active,super effective,partial,catastrophic,immediate
-active,super effective,total,none/minor,immediate
-active,super effective,total,major,immediate
-active,super effective,total,hazardous,immediate
-active,super effective,total,catastrophic,immediate
+Exploitation,Utility,TechnicalImpact,PublicSafetyImpact,Outcome
+none,laborious,partial,minimal,defer
+none,laborious,partial,significant,scheduled
+none,laborious,total,minimal,defer
+none,laborious,total,significant,out-of-cycle
+none,efficient,partial,minimal,scheduled
+none,efficient,partial,significant,out-of-cycle
+none,efficient,total,minimal,scheduled
+none,efficient,total,significant,out-of-cycle
+none,super effective,partial,minimal,scheduled
+none,super effective,partial,significant,out-of-cycle
+none,super effective,total,minimal,scheduled
+none,super effective,total,significant,out-of-cycle
+poc,laborious,partial,minimal,scheduled
+poc,laborious,partial,significant,out-of-cycle
+poc,laborious,total,minimal,scheduled
+poc,laborious,total,significant,immediate
+poc,efficient,partial,minimal,scheduled
+poc,efficient,partial,significant,immediate
+poc,efficient,total,minimal,out-of-cycle
+poc,efficient,total,significant,immediate
+poc,super effective,partial,minimal,out-of-cycle
+poc,super effective,partial,significant,immediate
+poc,super effective,total,minimal,out-of-cycle
+poc,super effective,total,significant,immediate
+active,laborious,partial,minimal,out-of-cycle
+active,laborious,partial,significant,immediate
+active,laborious,total,minimal,out-of-cycle
+active,laborious,total,significant,immediate
+active,efficient,partial,minimal,out-of-cycle
+active,efficient,partial,significant,immediate
+active,efficient,total,minimal,out-of-cycle
+active,efficient,total,significant,immediate
+active,super effective,partial,minimal,immediate
+active,super effective,partial,significant,immediate
+active,super effective,total,minimal,immediate
+active,super effective,total,significant,immediate
