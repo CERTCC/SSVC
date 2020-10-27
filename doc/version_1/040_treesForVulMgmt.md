@@ -152,6 +152,8 @@ Roughly, *utility* is a combination of two things: (1) the value of each exploit
     chain. If the vulnerability allows remote code execution or command
     injection, the default response should be rapid.
 
+Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated. For example, consider a vulnerability A. If the systems vulnerable to A are usually not openly connected to incoming traffic ([*Exposure*](#exposure) is [small](#exposure) or [controlled](#exposure)), reconnaissance probably cannot be automated (as scans should be blocked, etc.). This fact would make automatability [slow](#automatability). However, if another vulnerability B with [rapid](#automatiability) automatability can be reliably used to chain to vulnerability A, then that automates reconnaissance of vulnerable systems. In such a situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.
+
 #### Value Density
 
 *Value density* is described as diffuse or concentrated:
