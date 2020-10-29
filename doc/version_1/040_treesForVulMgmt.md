@@ -72,10 +72,9 @@ For any vulnerability management practice to succeed it must balance at least tw
 
 To place these risks in context, we follow the SEI's Taxonomy of Operational Cyber Security Risks [@cebula2010taxonomy]. Change risk can be characterized as a combination of Class 2 and/or Class 3 risks. Class 2: Systems and Technology Failures includes hardware, software, and systems risks. Class 3: Failed Internal Processes can arise from process design, process execution, process controls, or supporting processes. Meanwhile, vulnerability risk falls into Subclass 1.2: Actions of People: Deliberate.
 
-In developing the decision trees in this document, we had in mind stakeholders with a moderate tolerance for risk.The resulting trees reflect that assumption. Organizations may of course be more or less conservative in their own vulnerability management practices, and we cannot presume to determine how an organization should balance their risk.
+In developing the decision trees in this document, we had in mind stakeholders with a moderate tolerance for risk. The resulting trees reflect that assumption. Organizations may of course be more or less conservative in their own vulnerability management practices, and we cannot presume to determine how an organization should balance their risk.
 
-We therefore remind our readers that the labels on the trees (defer, immediate, etc.) can and should be customized to suit the needs of individual stakeholders wherever necessary and appropriate.
-For example, an organization with a high aversion to change risk might choose to accept more vulnerability risk by lowering the overall response labels for many branches in the trees, resulting in fewer vulnerabilities attaining the most urgent response. On the other hand, an organization with a high aversion to vulnerabilty risk could elevate the priority of many branches to ensure fixes are deployed quickly.
+We therefore remind our readers that the labels on the trees (defer, immediate, etc.) can and should be customized to suit the needs of individual stakeholders wherever necessary and appropriate. For example, an organization with a high aversion to change risk might choose to accept more vulnerability risk by lowering the overall response labels for many branches in the trees, resulting in fewer vulnerabilities attaining the most urgent response. On the other hand, an organization with a high aversion to vulnerability risk could elevate the priority of many branches to ensure fixes are deployed quickly.
 
 ## Scope
 
@@ -125,6 +124,27 @@ The intent of this measure is the present state of exploitation of the vulnerabi
 | None | There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability. |
 | PoC <br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
 | Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
+
+### System Exposure (Deployer)
+> The Accessible Attack Surface of the Affected System or Service
+
+Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
+Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
+For example, the exposure of a device on a vehicle's CAN bus will vary depending on the presence of a cellular telemetry device on the same bus.
+
+If a vulnerability cannot be patched, other mitigations may be used.
+Usually, the effect of these mitigations is to reduce exposure of the vulnerable component.
+Therefore, a deployer’s response to Exposure may change if such mitigations are put in place.
+If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success.
+Whether that mitigation allows the deployer to defer further action varies according to each case.
+
+
+
+|  | Table 9: Exposure Decision Values |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Small       | Local service or program; highly controlled network       |
+| Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
+| Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
 
 ### Technical Impact (Supplier)
 > Technical Impact of Exploiting the Vulnerability
@@ -396,38 +416,27 @@ resiliency</td>
 </tbody>
 </table>
 
-### System Exposure (Deployer)
-> The Accessible Attack Surface of the Affected System or Service
+#### Public Safety Impact (Supplier)
 
+Suppliers necessarily have a rather coarse-grained perspective on the broadly defined safety impacts described above. Therefore we simplify the above into a binary categorization: _Significant_ is when any impact meets the criteria for an impact of Major, Hazardous, or Catastrophic in the above table. _Minimal_ is when none do.
 
-Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
-Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
-For example, the exposure of a device on a vehicle's CAN bus will vary depending on the presence of a cellular telemetry device on the same bus.
+|             | Table X: Public Safety Impact                      |
+| ----------- | ---------------------------------------------------|
+| Minimal     | Safety Impact of None or Minor                     |
+| Significant | Safety Impact of Major, Hazardous, or Catastrophic |
 
-If a vulnerability cannot be patched, other mitigations may be used.
-Usually, the effect of these mitigations is to reduce exposure of the vulnerable component.
-Therefore, a deployer’s response to Exposure may change if such mitigations are put in place.
-If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success.
-Whether that mitigation allows the deployer to defer further action varies according to each case.
+#### Situated Safety Impact (Deployer)
 
+Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in Table 8. However, in order to simplify implementation for deployers we intend to combine this with Mission Impact below, so we defer the topic for now.
 
-
-
-|  | Table 9: Exposure Decision Values |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Small       | Local service or program; highly controlled network       |
-| Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
-| Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
-
-### Mission Impact (Deplyer)
+### Mission Impact (Deployer)
 > Impact on Mission Essential Functions of the Organization
 
 A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a\[n MEF\] during a disruption to normal operations” [@FCD2_2017, page B-2]. The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.
 
 |  | Table 10: Mission Impact Decision Values |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| None                   | Little to no impact                                                                                                                                                       |
-| Non-Essential Degraded | Degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
+| None / Non-Essential Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
 | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
 | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
 | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
@@ -437,6 +446,26 @@ A **mission essential function (MEF)** is a function “directly related to acco
 The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 [@FCD2_2017] or OCTAVE FORTE [@tucker2018octave]. This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
 As a heuristic, we suggest using the question described in Section 4.4.3, *Utility*, to constrain *Mission Impact*. If *Utility* is **super effective**, then *Mission Impact* is at least **MEF support crippled**. If *Utility* is **efficient**, then *Mission Impact* is at least **non-essential degraded**.
+
+### Situated Safety / Mission Impact (Deployer)
+
+In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows. 
+We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale. 
+Therefore we combine the three lesser mission impacts of none, non-essential degraded, and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme. 
+This gives us 3 levels of mission impact to work with.
+
+On the other hand, most organizations' tolerance for variance in safety tends to be be lower, meaning that even small deviations in safety are unlikely to go unnoticed or unaddressed.
+We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior.
+Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension. We then combine Mission Impact with Situated Safety impact and map these onto a 4-tiered scale (Low, Medium, High, Very High). The mapping is shown in Table X.
+
+|    | Table X: Situated Safety / Mission Impact Decision Values | |||
+|----|------------|--|--|--|
+| Mission Impact  | None/Degraded/Crippled    | MEF Failure | Mission Failure |
+| Safety Impact   | | | | 
+| None/Minor      | Low                       | Medium      | Very High |
+| Major           | Medium                    | High        | Very High |
+| Hazardous       | High                      | High        | Very High |
+| Catastrophic    | Very High                 | Very High   | Very High |
 
 ## Relationship to asset management
 
@@ -485,7 +514,7 @@ For example, whether exploitation modules are available in ExploitDB, Metasploit
 
 Some of the decision points require some substantial upfront analysis effort to gather risk assessment or organizational data. However, once gathered, this information can be efficiently reused across many vulnerabilities and only refreshed occasionally. An obvious example of this is the mission impact decision point. To answer this, a deployer must analyze their essential functions, how they interrelate, and how they are supported. Exposure is similar; answering that decision point requires an asset inventory, adequate understanding of the network topology, and a view of the enforced security controls. Independently operated scans, such as Shodan or Shadowserver, may play a role in evaluating exposure, but the entire exposure question cannot be reduced to a binary question of whether an organization’s assets appear in such databases. Once the deployer has the situational awareness to understand MEFs or exposure, selecting the answer for each individual vulnerability is usually straightforward.
 
-Stakeholders who use the prioritization method should consider releasing the priority with which they handled the vulnerability. This disclosure has various benefits. For example, if the supplier publishes a priority ranking, then deployers could consider that in their decision-making process. One reasonable way to include it is to break ties for the deployer. If an deployer has three “scheduled” vulnerabilities to patch, they may address them in any order. If two vulnerabilities were produced by the supplier as “scheduled” patches, and one was “out-of-cycle,” then the deployer may want to use that information to favor the latter.
+Stakeholders who use the prioritization method should consider releasing the priority with which they handled the vulnerability. This disclosure has various benefits. For example, if the supplier publishes a priority ranking, then deployers could consider that in their decision-making process. One reasonable way to include it is to break ties for the deployer. If a deployer has three “scheduled” vulnerabilities to patch, they may address them in any order. If two vulnerabilities were produced by the supplier as “scheduled” patches, and one was “out-of-cycle,” then the deployer may want to use that information to favor the latter.
 
 In the case where no information is available or the organization has not yet matured its initial situational analysis, we can suggest something like defaults for some decision points. If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that means they do not know where the devices are or how they are controlled, so they should assume *Exposure* is **open**. If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a **major** *Safety Impact*. This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision maker provide evidence that no one’s well-being will suffer. The reach of software exploits is no longer limited to a research network. Similarly, with *Mission Impact*, the deployer should assume that the software is in use at the organization for a reason, and that it supports essential functions unless they have evidence otherwise. With a total lack of information, assume **MEF support crippled** as a default. *Exploitation* needs no special default; if adequate searches are made for exploit code and none is found, the answer is **none**. The decision set {**none**, **open**, **MEF crippled**, **major**} results in a scheduled patch application.
 
