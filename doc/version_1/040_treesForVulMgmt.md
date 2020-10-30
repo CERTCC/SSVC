@@ -31,7 +31,7 @@ Table 2: Proposed Meaning for Supplier Priority Outcomes
 
 | Supplier Priority | Description |
 | ------------------ | ----------- |
-| Defer              | Do not work on the patch at present.    |
+| Defer              | Do not work on the patch at present.  (This decision should be revisied in the future.)  |
 | Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal.  |
 | Out-of-Cycle       | Develop a fix out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
 | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
@@ -39,18 +39,19 @@ Table 2: Proposed Meaning for Supplier Priority Outcomes
 ### Deploying Patches
  Whether or not to deploy an available patch is a binary decision. However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied. We recognize that vulnerability management actions are different when a patch is available and when it is not available.
 
-When a patch is available, usually the action is to apply it. When a patch it not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability.
+When a patch is available, usually the action is to apply it. When a patch is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability.
 
-In this paper, we model the decision of “With what priority should the organization take action on a given vulnerability management work unit?” to be agnostic to whether or not a patch is available. A unit of work means either applying a patch or deploying a mitigation. Both patches and mitigations often remediate multiple identified vulnerabilities. The deployer should answer the suggested questions for whatever unit of work they are considering as a whole, single unit. There is not necessarily a reliable function to aggregate a recommendation about a patch out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat a patch as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
+In this paper, we model the decision of “With what priority should the organization take action on a given vulnerability management work unit?” to be agnostic to whether or not a patch is available. A unit of work means either remediating the vulnerability, such as, applying a patch or deploying a mitigation. Both remediation  and mitigations often address multiple identified vulnerabilities. The deployer should answer the suggested questions for whatever unit of work they are considering as a whole, single unit. There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
 
 <!--**Talk about applying other mitigations here** TODO
 -->
+To further clairify terms, "Remediaton occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability." (DoD Instruction 8531.01, DoD Vulnerability Management) Examples of remediation includes, applying patches, fixes and upgrades; or removing the vulnerabil software or system from operation. Mitigating acions may include, software configuration changes, adding firewall ACLs or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability.
 
 Table 3: Proposed Meaning for Deployer Priority Outcomes
 
 | Deployer Priority | Description                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Defer            | Do not act at present.                                                                                                                             |
+| Defer            | Do not act at present. (This decision should be revisied in the future.)                                                                                                                              |
 | Scheduled        | Act during regularly scheduled maintenance time.                                                                                                   |
 | Out-of-cycle     | Act more quickly than usual to apply the fix out-of-cycle, during the next available opportunity, working overtime if necessary.                    |
 | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
