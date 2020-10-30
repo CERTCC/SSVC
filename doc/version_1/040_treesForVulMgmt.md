@@ -45,7 +45,7 @@ In this paper, we model the decision of “With what priority should the organiz
 
 <!--**Talk about applying other mitigations here** TODO
 -->
-To further clairify terms, "Remediaton occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability." (DoD Instruction 8531.01, section 3.5) Examples of remediation includes, applying patches, fixes and upgrades; or removing the vulnerabil software or system from operation. Mitigating acions may include, software configuration changes, adding firewall ACLs or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability.
+To further clairify terms, "Remediaton occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability." (DoD Instruction 8531.01, section 3.5) Examples of remediation includes, applying patches, fixes and upgrades; or removing the vulnerabil software or system from operation. Mitigating acions may include, software configuration changes, adding firewall ACLs or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
 
 Table 3: Proposed Meaning for Deployer Priority Outcomes
 
