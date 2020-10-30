@@ -233,9 +233,11 @@ Because of this higher sensitivity to safety concerns, we chose to retain a four
 
 #### Adapting Situated Safety / Mission Impact for Sector-Specific Scenarios
 
-We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. 
-
-In particular, different industry sectors may have different use cases for the same software, and therefore it may be appropriate for vulnerability information providers, i.e., Information Sharing and Analysis Organizations (ISAOs) to provide SSVC information tailored as appropriate to their constituency's safety and mission concerns. 
+We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts across organizations that are from the same industry sector. 
+For example, different industry sectors may have different use cases for the same software. 
+Therefore, vulnerability information providers -- that is, Information Sharing and Analysis Organizations (ISAOs) and Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns. 
+For considerations on how organizations might communicate SSVC information to their constituents, see [#pilot-results]. 
+<!-- The xref to where information communication is discussed will need to be updated later, but this is the correct v1 xref-->
 
 
 
