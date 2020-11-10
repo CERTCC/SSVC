@@ -64,7 +64,7 @@ The added details also make it harder for the decision process to accurately man
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
 
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
-Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big. 
+Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
 
 ## Evidence Gathering Guidance
 
@@ -78,6 +78,60 @@ Stakeholders who use the prioritization method should consider releasing the pri
 
 In the case where no information is available or the organization has not yet matured its initial situational analysis, we can suggest something like defaults for some decision points. If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that means they do not know where the devices are or how they are controlled, so they should assume *Exposure* is **open**. If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a **major** *Safety Impact*. This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision maker provide evidence that no one’s well-being will suffer. The reach of software exploits is no longer limited to a research network. Similarly, with *Mission Impact*, the deployer should assume that the software is in use at the organization for a reason, and that it supports essential functions unless they have evidence otherwise. With a total lack of information, assume **MEF support crippled** as a default. *Exploitation* needs no special default; if adequate searches are made for exploit code and none is found, the answer is **none**. The decision set {**none**, **open**, **MEF crippled**, **major**} results in a scheduled patch application.
 
+## Guidance on Communicating Results
+
+There are many aspects of SSVC that two parties might want to communicate.
+Not every stakeholder will use the decision points to make comparable decisions.
+Suppliers and deployers make interdependent decisions, but the actions of one group are not strictly dependent on the other.
+Recall that one reason for this is that SSVC is about prioritizing a vulnerability response action in general, not specifically applying a patch that a supplier produced.
+Coordinators are particularly interested in facilitating communication because that is their core function.
+This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.
+
+This section is about communicating SSVC information about a specific vulnerability.
+A supplier making a decision on allocating effort or a deployer should have a decision tree and it's decision points and possible values specified already.
+[Representation choices](#representation-choices) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+A supplier communicating with constituents or a coordinator may communicate partial information about a specific vulnerability to help other stakeholders.
+
+We recommend two structured communication formats, abbreviated and full.
+The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone.
+The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.  
+
+SSVC abbreviated form borrows directly from the CVSS "vector string" notation.  
+The basic format for SSVC is:
+```
+(version)/(decision point):(value)[/decision point:value[/decision point:value[...]]][/time]/
+```
+Where `version` is `SSVCv2`, updated with more options in the future as needed.
+The term `decision point` is one or two letters derived from the name of the decision point as follows:
+ - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+ - Remove any text in parentheses (and the parentheses themselves).
+ - Remove the word "Impact" if it's part of the name.
+ - Create an initialism from remaining title-case words (ignore "of," etc.), taking only the first two words.
+ - The first letter of the initialism is upper case; if there is a second letter, then it is lower case.
+
+For example, [*Technical Impact*](#technical-impact) becomes `T` and [*Public Safety Impact*](#public-safety-impact) becomes `Ps`.
+
+The term `value` is a statement of the value or possible values of the decision point that precedes it and to which it is connected by a `:`.
+Similar to `decision point`, `value` should be made up of one or two letters derived from the name of the decision value in the section for its associated decision point.
+For example [MEF support crippled](#mission-impact) becomes `Ms` and [efficient](#utility) becomes `E`.
+Labels on values do not need to be globally unique, just unique to the associated decision point.
+
+The character `/` separates decision-point:value pairs.
+As many pairs should be provided in the abbreviated form as are required to communicate the desired information about the vulnerability or work item.
+The ordering of the pairs should be sorted alphabetically from A to Z by the ASCII characters representing the decision points.
+A trailing `/` is used to close the string.
+
+The optional parameter `time` is the time in seconds since the UNIX epoch that the SSVC information was collected or last checked for freshness and accuracy.
+
+Based on this, an example string could be:
+```
+SSVCv2/Ps:Nm/T:T/U:E/1605040000/
+```
+For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
+
+    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.     
+    - TODO fix #26 here (partial information)
+    - TODO fix #29 here (changing information)
 
 ## Development Methodology
 
