@@ -37,6 +37,35 @@ Deployers (Continued from Figure 2 and in Figure 4).
 Figure 4: Proposed Vulnerability Prioritization Decision Tree for Patch
 Deployers (Continued from Figure 2 and Figure 3)
 
+## Tree Construction and Customization Guidance
+
+Stakeholders are encouraged to customize the SSVC decision process to their needs.
+Indeed, the first part of SSVC stands for "stakeholder-specific."
+However, certain parts of SSVC are more amenable to customization than others.
+In this section, we'll cover what a stakeholder should leave fixed, what we imagine customization looks like, and some advice on building a usable and manageable decision tree based on our experience so far.
+
+    - TODO what parts of a tree should not be customized
+    - TODO what parts of a tree can be customized (These two items will fix https://github.com/CERTCC/SSVC/issues/28)
+
+When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
+For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.
+
+
+Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
+Making the decision process accessible has a lot of benefits.
+Unfortunately, it also makes it a bit too easy to overcomplicate the decision.
+
+The SSVC version 1 ~applier~ deployer tree had 225 rows when we wrote it out in long text form.
+It only has four outcomes to differentiate between.
+Thus on average that decision process treats one situation (combination of decision values) as equivalent to 65 other situations.
+If nothing else, this means analysts are spending time gathering evidence to make fine distinctions that are not used in the final decision.
+The added details also make it harder for the decision process to accurately manage the risks in question.
+This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
+
+While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
+Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big. 
+
 ## Evidence Gathering Guidance
 
 To answer each of these decision points, a supplier or deployer should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
