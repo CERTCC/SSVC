@@ -129,8 +129,32 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
-    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.     
-    - TODO fix #26 here (partial information)
+    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.
+
+What an analyst knows about a vulnerability may not be complete. 
+However, the vulnerability management community may still benefit from partial information.
+Particularly suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
+Our other goal in providing methods to communicate partial information is to reduce bottlenecks or barriers to information exchange.
+A partial warning on time is better than a complete warning too late.
+
+The basic guidance is to communicate all the states that the analyst believes the vulnerability may be in.
+If the analyst knows nothing, all states are possible.
+For example, [*Utility*](#utility) may be [laborious](#utility), [efficient](#utility), or [super effective](#utility).
+In abbreviated form, write this as `U:LESe`.
+Since a capital letter always indicates a new value, this is unambiguous.
+
+The reason a stakeholder might publish something like `U:LESe` is that it expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
+A stakeholder might have information to communicate about some decision points but not others.
+If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special "I don't know" marker.
+
+The merit in this "list all values" approach is when the stakeholder knows that the value for a decision point may be A or B, but not C.
+For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [*Automatability](#automatability).
+Then the analyst can usefully restrict [*Utility*](#utility) to one of [laborious](#utility) or [efficient](#utility).
+In abbreviated form, write this as `U:LE`.
+As discussed below, information can change over time.
+Partial information may, but is not required to, be sharpened over time into a precise value for the decision point.
+
+
     - TODO fix #29 here (changing information)
 
 ## Development Methodology
