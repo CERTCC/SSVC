@@ -66,6 +66,8 @@ Returning to the example of an organization with three vulnerabilities to patch 
 
 ### Risk Tolerance and Response Priority
 
+SSVC enables stakeholders to balance and manage their risks themselves.
+We follow [@ISO73] and define risk as "effect of uncertainty on objectives;" see [@ISO73] for notes on the terms in the definition.
 For any vulnerability management practice to succeed it must balance at least two risks:
 
 1. Change risk: the potential costs of deploying fixes, which include testing and deployment in addition to any problems that could arise from making changes to production systems.
@@ -79,9 +81,9 @@ We therefore remind our readers that the labels on the trees (defer, immediate, 
 
 ## Scope
 
-One important variable in the answers to all the below decision points is scope. There are at least two aspects to scope. One is how the boundaries of the affected system are set. A second is how far forward in time or causal steps one reasons about effects and harms. We put forward recommendations for both of these. 
+One important variable in the answers to all the below decision points is scope. There are at least two aspects to scope. One is how the boundaries of the affected system are set. A second is how far forward in time or causal steps one reasons about effects and harms. We put forward recommendations for both of these.
 
-However, users of the decision process may want to define different scopes. Users may define a different scope as long as the scope is consistent across decisions, and are credible, explicit, and accessible to all relevant decision makers. 
+However, users of the decision process may want to define different scopes. Users may define a different scope as long as the scope is consistent across decisions, and are credible, explicit, and accessible to all relevant decision makers.
 
 For example, suppliers often decline to support products beyond a declared end-of-life (EOL) date. In those cases, a supplier could reasonably consider vulnerabilities in those products to be out of scope. However, a deployer may still have active instances of EOL products in their infrastructure. It remains appropriate for a deployer to use SSVC to prioritize their response to such situations, since even if there is no fix forthcoming from the supplier it may be possible for the deployer to mitigate or remediate the vulnerability in other ways, up to and including decommissioning the affected system(s).
 
