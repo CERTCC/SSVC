@@ -11,3 +11,7 @@ The file `compile.sh` contains the pandoc command line for creating a single HTM
 The `*how-to` files contain discussion on document composition and style. Please align any commits with the existing how-to guidance. At present (Aug 2020), the how-to guidance is not yet fixed, but it should only change with community discussion.
 
 The `pdfs` folder contains static documents of prior versions.
+
+# Thank you
+The authors thank the following people for helpful comments on prior drafts: Michel van Eeten as shepherd and the anonymous WEIS reviewers; attendees at A Conference on Defense (ACoD), Austin TX 2020; Dale Peterson, Ralph Langer, and attendees at S4, Miami FL 2020; Muhammad Akbar and Manish Gaur (VMWare); David Oxley (McAfee).
+
