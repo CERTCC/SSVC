@@ -44,8 +44,23 @@ Indeed, the first part of SSVC stands for "stakeholder-specific."
 However, certain parts of SSVC are more amenable to customization than others.
 In this section, we'll cover what a stakeholder should leave fixed, what we imagine customization looks like, and some advice on building a usable and manageable decision tree based on our experience so far.
 
-    - TODO what parts of a tree should not be customized
-    - TODO what parts of a tree can be customized (These two items will fix https://github.com/CERTCC/SSVC/issues/28)
+We suggest that the decision points, their definitions, and the decision values should not be customized.
+Different vulnerability management teams inevitably think of topics such as [*Utility*](#utility) to the adversary in slightly different ways.
+However, a key contribution of SSVC is enabling different teams to communicate about their decision process.
+In order to clearly communicate differences in the process, the decision points that factor into the process need to be the same between different teams.
+A stakeholder community may come together and, if there is broad consensus, add or change decision points.
+
+Which decision points are involved in a vulnerability management team's decision and the priority label for each resulting situation are, for all intents and purposes, totally at the discretion of the team.
+We have provided some examples for different stakeholder communities here.
+What decision points a team considers reflects what it cares about and the risks prioritizes.
+Different teams may legitimately prioritize different objectives.
+It should be easier for teams to discuss and communicate such differences if the definitions of the decision points remain fixed.
+The other aspect of risk management that SSVC allows a team to customize is its risk appetite or risk tolerance.
+
+A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
+For example, a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility) might be handled with [*scheduled*](#supplier-decisions) priority by one team and [*out-of-cycle*](#supplier-decisions) priority by another.
+As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk.
+SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.  
 
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
@@ -129,8 +144,32 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
-    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.     
-    - TODO fix #26 here (partial information)
+    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.
+
+What an analyst knows about a vulnerability may not be complete. 
+However, the vulnerability management community may still benefit from partial information.
+Particularly, suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
+A second benefit to providing methods for communicating partial information is the reduction of bottlenecks or barriers to information exchange.
+A timely partial warning is better than a complete warning that is too late.
+
+The basic guidance is that the analyst should communicate all of the vulnerability's possible states, to the best of the analyst's knowledge.
+If the analyst knows nothing, all states are possible.
+For example, [*Utility*](#utility) may be [laborious](#utility), [efficient](#utility), or [super effective](#utility).
+In abbreviated form, write this as `U:LESe`.
+Since a capital letter always indicates a new value, this is unambiguous.
+
+The reason a stakeholder might publish something like `U:LESe` is that it expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
+A stakeholder might have information to communicate about some decision points but not others.
+If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special "I don't know" marker.
+
+The merit in this "list all values" approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
+For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [*Automatability](#automatability).
+Then the analyst can usefully restrict [*Utility*](#utility) to one of [laborious](#utility) or [efficient](#utility).
+In abbreviated form, write this as `U:LE`.
+As discussed below, information can change over time.
+Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
+
+
     - TODO fix #29 here (changing information)
 
 ## Development Methodology

@@ -213,29 +213,75 @@ As a heuristic, we suggest using the question described in Section 4.4.3, *Utili
 
 ### Situated Safety / Mission Impact (Deployer)
 
-In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows. 
-We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale. 
-Therefore we combine the three lesser mission impacts of none, non-essential degraded, and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme. 
+In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows.
+We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
+Therefore we combine the three lesser mission impacts of none, non-essential degraded, and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
 This gives us 3 levels of mission impact to work with.
 
 On the other hand, most organizations' tolerance for variance in safety tends to be be lower, meaning that even small deviations in safety are unlikely to go unnoticed or unaddressed.
 We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior.
 Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension. We then combine Mission Impact with Situated Safety impact and map these onto a 4-tiered scale (Low, Medium, High, Very High). The mapping is shown in Table X.
 
-|    | Table X: Situated Safety / Mission Impact Decision Values | |||
+<table>
+<thead>
+<tr class="header">
+<th colspan=5><strong>Table X: Combining Mission Impact and Situated Safety Impact into one result.</strong></th>
+</tr>
+</thead>
+  <tr>
+  <td> </td>
+  <td> </td>
+  <td colspan=3 style="text-align:center"> <b>Mission Impact</b> </td>
+  </tr>
+  <tr>
+  <td> </td>
+  <td> </td>
+  <td> <em> None/ Degraded/ Crippled </td>
+  <td> <em> MEF Failure</td>
+  <td> <em> Mission Failure</td>
+  </tr>
+  <tr>
+  <td rowspan=4> <b>Situated Safety Impact </b></td>
+  <td> <em> None/Minor</td>
+  <td> Low </td>
+  <td> Medium </td>
+  <td> Very High </td>
+  </tr>
+  <tr>
+  <td> <em> Major</td>
+  <td> Medium </td>
+  <td> High </td>
+  <td> Very High </td>
+  </tr>
+  <tr>
+  <td> <em> Hazardous</td>
+  <td> High </td>
+  <td> High </td>
+  <td> Very High </td>
+  </tr>
+  <tr>
+  <td> <em> Catastrophic</td>
+  <td> Very High </td>
+  <td> Very High </td>
+  <td> Very High </td>
+  </tr>
+</table>
+<!--
+|  |Table X: Situated Safety / Mission Impact Decision Values ||||
 |----|------------|--|--|--|
 | Mission Impact  | None/Degraded/Crippled    | MEF Failure | Mission Failure |
-| Safety Impact   | | | | 
+| Safety Impact |
 | None/Minor      | Low                       | Medium      | Very High |
 | Major           | Medium                    | High        | Very High |
 | Hazardous       | High                      | High        | Very High |
 | Catastrophic    | Very High                 | Very High   | Very High |
+-->
 
 #### Adapting Situated Safety / Mission Impact for Sector-Specific Scenarios
 
-We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software. 
-Therefore, vulnerability information providers -- that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns. 
-For considerations on how organizations might communicate SSVC information to their constituents, see [#pilot-results]. 
+We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software.
+Therefore, vulnerability information providers -- that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
+For considerations on how organizations might communicate SSVC information to their constituents, see [#pilot-results].
 <!-- The xref to where information communication is discussed will need to be updated later, but this is the correct v1 xref-->
 <!-- Are vul threat intel feed providers ISAOs? If not, they are also in the "vul info providers" being referred to here -->
 
@@ -260,4 +306,3 @@ Whether that mitigation allows the deployer to defer further action varies accor
 | Small       | Local service or program; highly controlled network       |
 | Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
 | Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
-
