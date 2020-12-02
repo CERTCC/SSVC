@@ -44,8 +44,23 @@ Indeed, the first part of SSVC stands for "stakeholder-specific."
 However, certain parts of SSVC are more amenable to customization than others.
 In this section, we'll cover what a stakeholder should leave fixed, what we imagine customization looks like, and some advice on building a usable and manageable decision tree based on our experience so far.
 
-    - TODO what parts of a tree should not be customized
-    - TODO what parts of a tree can be customized (These two items will fix https://github.com/CERTCC/SSVC/issues/28)
+We suggest that the decision points, their definitions, and the decision values should not be customized.
+Different vulnerability management teams inevitably think of topics such as [*Utility*](#utility) to the adversary in slightly different ways.
+However, a key contribution of SSVC is enabling different teams to communicate about their decision process.
+In order to clearly communicate differences in the process, the decision points that factor into the process need to be the same between different teams.
+A stakeholder community may come together and, if there is broad consensus, add or change decision points.
+
+Which decision points are involved in a vulnerability management team's decision and the priority label for each resulting situation are, for all intents and purposes, totally at the discretion of the team.
+We have provided some examples for different stakeholder communities here.
+What decision points a team considers reflects what it cares about and the risks prioritizes.
+Different teams may legitimately prioritize different objectives.
+It should be easier for teams to discuss and communicate such differences if the definitions of the decision points remain fixed.
+The other aspect of risk management that SSVC allows a team to customize is its risk appetite or risk tolerance.
+
+A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
+For example, a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility) might be handled with [*scheduled*](#supplier-decisions) priority by one team and [*out-of-cycle*](#supplier-decisions) priority by another.
+As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk.
+SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.  
 
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
