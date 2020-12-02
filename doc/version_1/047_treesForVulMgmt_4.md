@@ -133,11 +133,11 @@ For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Im
 
 What an analyst knows about a vulnerability may not be complete. 
 However, the vulnerability management community may still benefit from partial information.
-Particularly suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
-Our other goal in providing methods to communicate partial information is to reduce bottlenecks or barriers to information exchange.
-A partial warning on time is better than a complete warning too late.
+Particularly, suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
+A second benefit to providing methods for communicating partial information is the reduction of bottlenecks or barriers to information exchange.
+A timely partial warning is better than a complete warning that is too late.
 
-The basic guidance is to communicate all the states that the analyst believes the vulnerability may be in.
+The basic guidance is that the analyst should communicate all of the vulnerability's possible states, to the best of the analyst's knowledge.
 If the analyst knows nothing, all states are possible.
 For example, [*Utility*](#utility) may be [laborious](#utility), [efficient](#utility), or [super effective](#utility).
 In abbreviated form, write this as `U:LESe`.
@@ -147,12 +147,12 @@ The reason a stakeholder might publish something like `U:LESe` is that it expres
 A stakeholder might have information to communicate about some decision points but not others.
 If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special "I don't know" marker.
 
-The merit in this "list all values" approach is when the stakeholder knows that the value for a decision point may be A or B, but not C.
+The merit in this "list all values" approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
 For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [*Automatability](#automatability).
 Then the analyst can usefully restrict [*Utility*](#utility) to one of [laborious](#utility) or [efficient](#utility).
 In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.
-Partial information may, but is not required to, be sharpened over time into a precise value for the decision point.
+Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
 
 
     - TODO fix #29 here (changing information)
