@@ -66,6 +66,8 @@ Returning to the example of an organization with three vulnerabilities to patch 
 
 ### Risk Tolerance and Response Priority
 
+SSVC enables stakeholders to balance and manage their risks themselves.
+We follow [@ISO73] and define risk as "effect of uncertainty on objectives;" see [@ISO73] for notes on the terms in the definition.
 For any vulnerability management practice to succeed it must balance at least two risks:
 
 1. Change risk: the potential costs of deploying fixes, which include testing and deployment in addition to any problems that could arise from making changes to production systems.
@@ -79,9 +81,15 @@ We therefore remind our readers that the labels on the trees (defer, immediate, 
 
 ## Scope
 
-One important variable in the answers to all the below decision points is scope. There are at least two aspects to scope. One is how the boundaries of the affected system are set. A second is how far forward in time or causal steps one reasons about effects and harms. We put forward recommendations for both of these. 
+One important variable in the answers to all the below decision points is scope. 
+There are at least three aspects to scope.
+One is how the boundaries of the affected system are set.
+A second is whose security policy is relevant.
+Thirdly, how far forward in time or causal steps one reasons about effects and harms.
+We put forward recommendations for each of these.
 
-However, users of the decision process may want to define different scopes. Users may define a different scope as long as the scope is consistent across decisions, and are credible, explicit, and accessible to all relevant decision makers. 
+However, users of the decision process may want to define different scopes. 
+Users may define a different scope as long as the scope is consistent across decisions, and are credible, explicit, and accessible to all relevant decision makers.
 
 For example, suppliers often decline to support products beyond a declared end-of-life (EOL) date. In those cases, a supplier could reasonably consider vulnerabilities in those products to be out of scope. However, a deployer may still have active instances of EOL products in their infrastructure. It remains appropriate for a deployer to use SSVC to prioritize their response to such situations, since even if there is no fix forthcoming from the supplier it may be possible for the deployer to mitigate or remediate the vulnerability in other ways, up to and including decommissioning the affected system(s).
 
@@ -102,6 +110,16 @@ When reasoning about a vulnerability, we assign the vulnerability to the nearest
   - **Discrete** means there is an identifiable thing that can be fixed (e.g., the unit of patching).
 
 Products, libraries, and applications tend to be appropriate objects of focus when seeking the right level to analyze the impact of a vulnerability. Hence, when reasoning about the technical impact of a vulnerability localized to a function in a module in an open source library, the nearest relevant discrete abstraction is the library because the patches are made available at the library level. Similarly, analysis of a vulnerability in closed source database software that supports an enterprise resource management (ERM) system would consider the technical impact to the database, not to the ERM system.
+
+### Relevant Security Policy
+
+Our definition of a vulnerability includes a security policy violation, but it does not clarify whose security policies are relevant [@householder2020cvd].
+For an organizational PSIRT or CSIRT, the organization's security policy is most relevant.
+The answer is less clear for coordinators or ISACs.
+An example scenario that brings the question into focus is phone OS jailbreak methods.
+The owner of the phone may elect to jailbreak it; there is at least an implicit security policy from the owner that allows this method.
+However, from the perspective of the explicit phone OS security policy embedded in the access controls and separation of privileges, the jailbreak is exploiting a vulnerability.
+If a security policy is embedded in technical controls, such as OS access controls on a phone, then anything that violates that security policy is a vulnerability. 
 
 ### Reasoning Steps Forward
 

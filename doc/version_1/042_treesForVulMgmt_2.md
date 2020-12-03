@@ -20,14 +20,20 @@ The intent of this measure is the present state of exploitation of the vulnerabi
 ### Technical Impact (Supplier)
 > Technical Impact of Exploiting the Vulnerability
 
-When evaluating *technical impact*, recall the scope definition above. Total control is relative to the affected component where the vulnerability resides. If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
+When evaluating *Technical Impact*, recall the scope definition above.
+Total control is relative to the affected component where the vulnerability resides.
+If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 
+As mentioned in [Section 2](#current-state-of-practice), the scope of SSVC is just those situations in which there is a vulnerability.
+The definition of **vulnerability** we go by is based on the determination that some security policy is violated.
+We consider a security policy violation to be a technical impact -- or at least, a security policy violation must have some technical instantiation.
+Therefore, if there is a vulnerability then there must be some technical impact.
 
 
 |  |  Table 5: Technical Impact Decision Values |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------- | -------------- |
 | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
-| Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability                                                                                                                                                                                                                                                                                                                 |
+| Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
 
 ### Utility (Supplier, Deployer)
 > The Usefulness of the Exploit to the Adversary

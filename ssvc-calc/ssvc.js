@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = 2.91
+const _version = 2.9
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
@@ -147,11 +147,13 @@ function export_vul() {
 		  }
     var labels = $('#graph svg g.node text').map((i,w) => $(w).html()).toArray()
     var vals = $('#graph svg g.pathlink textPath.chosen').map((i,w) => $(w).html()).toArray()
+    vals.push(labels[labels.length-1])
+    labels[labels.length-1] = "Decision"
     var ochoice = {}
     labels.forEach((k, i) => ochoice[k] = vals[i])
     oexport['choices'] = ochoice
     var a = document.createElement("a")
-    a.href = "data:text/plain;charset=utf-8,"+encodeURIComponent(JSON.stringify(oexport))
+    a.href = "data:text/plain;charset=utf-8,"+encodeURIComponent(JSON.stringify(oexport,null,2))
     a.setAttribute("download", oexport.id+"_"+oexport.role+"_json.txt")
     a.click()
     a.remove()
