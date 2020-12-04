@@ -27,6 +27,10 @@ In this paper, we model the decision of “With what priority should the organiz
 
 To further clairify terms, "Remediaton occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability." [@dodi_8531_2020, section 3.5] Examples of remediation includes, applying patches, fixes and upgrades; or removing the vulnerable software or system from operation. Mitigating acions may include, software configuration changes, adding firewall ACLs or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
 
+## Enumerating Vulnerability Management Actions
+
+
+
 ### Supplying Patches
 
 
