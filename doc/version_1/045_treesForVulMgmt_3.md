@@ -293,7 +293,7 @@ Measuring attack surface precisely is difficult, and we do not propose to perfec
 Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
 For example, the exposure of a device on a vehicle's CAN bus will vary depending on the presence of a cellular telemetry device on the same bus.
 
-If a vulnerability cannot be patched, other mitigations may be used.
+If a vulnerability cannot be remediated, other mitigations may be used.
 Usually, the effect of these mitigations is to reduce exposure of the vulnerable component.
 Therefore, a deployer’s response to Exposure may change if such mitigations are put in place.
 If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success.
