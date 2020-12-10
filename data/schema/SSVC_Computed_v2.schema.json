@@ -25,10 +25,6 @@
 	    "type": "string",
 	    "format": "date-time"
 	},
-	"timestamp_epoch_ms" : {
-	    "description": "Date and time in epocj utc millisec",
-	    "type": "integer"
-	},
 	"role": {
 	    "type": "string",
 	    "description": "Roles are defined in SSVC spec and optional in SSVC provision schema"
@@ -46,7 +42,6 @@
 	"choices",
 	"computed",
 	"timestamp",
-	"timestamp_epoch_ms",
 	"role",
 	"id",
 	"version"
