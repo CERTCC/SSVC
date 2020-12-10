@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = 2.9
+const _version = 4.1
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
@@ -8,8 +8,8 @@ var acolors = ["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0
 var lcolors = {"Track":"#28a745","Track*":"#ffc107","High":"#EE8733","Critical":"#dc3545"}
 lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
 /* These variables are for decision tree schema JSON aka SSVC Provision Schema */
-var export_schema = {decision_points: [],decision_table: [], decisions: [],
-		     lang: "en", version: "2.0", title: "SSVC Provision table"}
+var export_schema = {decision_points: [],decisions_table: [], lang: "en",
+		     version: "2.0", title: "SSVC Provision table"}
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
     this.each(function (i, e) {
@@ -26,6 +26,7 @@ $(function () {
 	localStorage.setItem("beenhere",1)
     }
     load_tsv_score()
+    export_tree()
 })
 var raw = [
     {name:"Exploitation",id:254,children:[],parent:null,props:"{}"},
@@ -139,12 +140,13 @@ function export_show() {
     $('#graph').append(q)
     if($('#cve_samples').val().match(/^(cve|vu)/i))
 	$('.exportId').val($('#cve_samples').val())
-    
 }
 function export_tree() {
-    var yhead = []
+    /* First column is the decision in this tree */
+    var tchoices = []
+    var yhead = ["Decision"]
     var yprops = {}
-    var allrows = raw.filter(x => {
+    export_schema.decisions_table = raw.filter(x => {
 	if (x.name.split(":").length > 4)
 	    return true
 	else {
@@ -155,19 +157,37 @@ function export_tree() {
 	    }
 	    return false
 	}
-    }).map(x => x.name.split(":").reverse().
-	   map((y,i) => {
-	       z={}
-	       z[yhead[i] ? yhead[i] : "Decision" ] = y
+    }).map(x => x.name.split(":").
+	   reduce((z,y,i) => {
+	       z[yhead[i]] = y
+	       if(!tchoices[i]) {
+		   tchoices[i] = [{label: y, description: y}]
+	       }
+	       else if (!tchoices[i].find(t => t.label == y))
+		   tchoices[i].push({label: y, description:y})
 	       return z
-	   }))
+	   },{}))
+    /* Now the decision points should be moved to the end of the array */
+    yhead.push(yhead.shift())
+    tchoices.push(tchoices.shift())
+    export_schema.decision_points = yhead.map((a,i) => {
+	var ax = {label: a, decision_type: "simple", choices: tchoices[i]}
+	return ax
+    })
+    //console.log(tchoices)
+    //export_schema.decisions = tdecisions.map((x,i) => Object.assign(x,{color: acolors[i]}))
+    /*
+    export_schema.decisions = Object.keys(tdecisions).map((n,i) => {
+	return {label: n, description: n, color:acolors[i]}})
+	*/
+    //return allrows;
 /* "[{"Exploitation":"none"},{"Utility":"partial"},
    {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
    {"Decision":"defer"}]" */
 }
-function export_vul() {
+function export_vul(includetree) {
     var tstamp = new Date()
-    var oexport = { timestamp: tstamp.toLocaleString(),
+    var oexport = { timestamp: tstamp.toISOString(),
 		    timestamp_epoch_ms: tstamp.getTime(),
 		    role: $('#graph .exportRole').val() || "Unknown",
 		    id: $('#graph .exportId').val() || "Unspecified",
@@ -177,12 +197,29 @@ function export_vul() {
     var vals = $('#graph svg g.pathlink textPath.chosen').map((i,w) => $(w).html()).toArray()
     vals.push(labels[labels.length-1])
     labels[labels.length-1] = "Decision"
-    var ochoice = {}
-    labels.forEach((k, i) => ochoice[k] = vals[i])
+    /* SSVCv2/Ps:Nm/T:T/U:E/1605040000/
+       For a vulnerability with no or minor Public Safety Impact, 
+       total Technical Impact, and efficient Utility, 
+       which was evaluated on Nov 10, 2020. */
+    var computed = "SSVCv2/"
+    var ochoice =  labels.map((k, i) => {
+	var ox = {}
+	ox[k] = vals[i]
+	computed = computed + k[0].toUpperCase()+":"+vals[i][0].toUpperCase()+"/"
+	return ox
+    })
+    computed = computed + String(parseInt(tstamp.getTime()/1000))+"/"
+    oexport['computed'] = computed
     oexport['choices'] = ochoice
     var a = document.createElement("a")
-    a.href = "data:text/plain;charset=utf-8,"+encodeURIComponent(JSON.stringify(oexport,null,2))
-    a.setAttribute("download", oexport.id+"_"+oexport.role+"_json.txt")
+    var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
+    if (includetree) {
+	oexport['decision_tree'] = export_schema
+	download_filename = "tree_and_path-"+oexport.id+"_"+oexport.role+"_json.txt"	
+    } 
+    a.href = "data:text/plain;charset=utf-8,"+
+	encodeURIComponent(JSON.stringify(oexport,null,2))
+    a.setAttribute("download", download_filename)
     a.click()
     a.remove()
 }
@@ -205,7 +242,8 @@ function readFile(input) {
 	    else
 		tsv_load(reader.result)
 	}catch(err) {
-	    topalert("Reading data in file as text failed, Sorry check format and try again!","danger")
+	    topalert("Reading data in file as text failed, Sorry check format "+
+		     "and try again!","danger")
 	    console.log(err)
 	}
     };
@@ -319,38 +357,41 @@ function parse_json(xraw) {
 	topalert("JSON schema has no decision_points","danger")
 	return
     }
-    if(!('decision_table' in tm)) {
+    if(!('decisions_table' in tm)) {
 	topalert("JSON schema has no decision table, we can't help you with that","danger")
 	return
     }
-    if(!('decisions' in tm)) {
-	topalert("JSON schema has no decisions, we can't help you with that","danger")
-	return
-    }
-    /* Map colors if present */
-    tm.decisions.map(d => 'color' in d ? lcolors[d.label] = d.color : d.color = "white")
-
     /* Save JSON for export*/
     export_schema = tm
     
     /* decisions_points have a label field which we care about with type != child */    
     var x = tm.decision_points.filter(q => q["decision_type"] != "child").map(r => r.label)
     //console.log(x)
-    var y = tm.decision_table
+    var y = tm.decisions_table
     //console.log(y)
     var yraw = [...Array(x.length)].map(u => [])
     var id = 1
     var thash = {}
+    var decisions = tm.decision_points.filter(x => x.decision_type == "final")
+    if(decisions.length != 1) {
+	topalert("JSON schema has no decisions marked as final, this is required!","danger")
+	return
+    }    
+    var decision_keyword = decisions[0].label
+    //console.log(decisions)
+    //console.log(decision_keyword)
     for(var i=0; i<y.length; i++) {
 	//var tname = y[i].pop()+":"+y[i].join(":")
-	if(!('Decision' in y[i]))
+	//console.log(y[i])
+	/* Decision table should have the "outcome" or "decision" fiel if not skip 
+	 this entry */
+	if(!(decision_keyword in y[i]))
 	    continue
-	var tname = y[i]['Decision']+":"+x.map(t => y[i][t]).join(":")
-	//console.log(tname)
-	for( var j=0; j< x.length; j++) {
+	var tname = y[i][decision_keyword]+":"+x.map(t => y[i][t]).slice(0,-1).join(":")
+	for( var j=0; j< x.length-1; j++) {
 	    //var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
-	    var tparent = x[x.length-1-j]+":"+x.slice(0,x.length-1-j).map(q => y[i][q]).join(":")
-	    //console.log(tparent)
+	    var tparent = x[x.length-2-j]+":"+x.slice(0,x.length-2-j).map(q => y[i][q]).join(":")	    
+	    //var tparent = x[x.length-1-j]+":"+x.slice(0,x.length-1-j).map(q => y[i][q]).join(":")
 	    if(!(tname in thash))
 		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]}
 	    else
@@ -360,22 +401,59 @@ function parse_json(xraw) {
 	    yraw[j].push(yt)	    
 	}
     }
+		
     for(var j=yraw.length; j> -1; j--)  {
 	if(yraw.length > 0)
 	    zraw = zraw.concat(yraw[j])
     }
 
-    /* Next part of the tree data  */
+    /* Top or the first part of the tree data  */
     zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
     /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
     raw = zraw
     topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
 	     y.length+" possible decisions, You can use it now!","success")
-    dt_clear()	
-       
+    dt_clear()
+    /* Create label fields if they exists*/
+    tm.decision_points.map(x => {
+	var choices_html = x.choices.reduce((h,r) => {
+	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1)
+	    return  h + "<b>"+rlabel+"</b>&nbsp;"+r.description+"<hr>"
+	},"<h5>"+x.label+"</h5>")
+	var hdiv = safedivname(x.label)
+	if($("."+hdiv).length != 1) {
+	    $("."+hdiv).remove()
+	    $('body').append($('<div/>').addClass("d-none "+hdiv))
+	}
+	$("."+hdiv).html(choices_html)
+    })
+    var classes = []
+    var decision_div = decisions[0].choices.reduce((h,r) => {
+	classes.push(safedivname(r.label))
+	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
+				     css({color:r.color}).html(r.label))
+	    .append("&nbsp"+r.description+"<hr>").html()
+    },"<h5>"+decision_keyword+"</h5>")
+    if($("."+classes[0]).length != 1) {
+	$("."+classes[0]).remove()
+	$('body').append($('<div/>').addClass("d-none "+classes[0]))
+    }
+    //console.log(classes)
+    //console.log(decision_div)
+    $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
 }
+
+function safedivname(instr) {
+    var uri_esc = encodeURIComponent(instr)
+    var safestr = btoa(uri_esc.replace(/%([0-9A-F]{2})/g,
+				       (m, p)  => String.fromCharCode('0x' + p)))
+    var fstr = "d-"+safestr.replace(/[\+\/\=]/gi,(m,p) => { return m.charCodeAt(0) })
+    return fstr.substr(0,14)
+}
+
+
 function create_export_schema_dtable(yi,x) {
-    export_schema.decision_table.push(yi.reduce((a,b,c) => {
+    export_schema.decisions_table.push(yi.reduce((a,b,c) => {
 	/* Add labels that do not exist */
 	if(export_schema.decision_points[c]['choices']
 	   .filter(d => ('label' in d) && (d.label == b)).length != 1)
@@ -384,11 +462,11 @@ function create_export_schema_dtable(yi,x) {
 	return a; },{}))
 }
 function parse_file(xraw) {
+    /* This is really parse csv instead of parse file*/
     //var xraw = 'TSV data'
     var zraw=[]
     export_schema.decision_points =  []
-    export_schema.decision_table =  []
-    export_schema.decisions =  []
+    export_schema.decisions_table =  []
     /* CSV or TSV looks like 
        ID,Exploitation,Utility,TechnicalImpact,SafetyImpact,Outcome
     */
@@ -409,12 +487,14 @@ function parse_file(xraw) {
 					      ix.label =  dc
 					      return ix
 					  })
+    /* make the last column final decision/outcome/action */
+    export_schema.decision_points[export_schema.decision_points.length-1].decision_type="final"
     /* Initialize Empty arrray */
     var yraw = [...Array(x.length)].map(u => []);
     var id=1;
     /* This will create just the last branches of the tree */
     var thash = {}
-    for(var i=0; i< y.length; i++) {
+    for(var i=0; i< y.length - 1; i++) {
 	if(y[i].length < 1) continue
 	/* Remove ID column */
 	y[i].shift()
@@ -452,12 +532,9 @@ function parse_file(xraw) {
     topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
 	     y.length+" possible decisions, You can use it now!","success")
     dt_clear()
-    var edp = export_schema.decision_points
-    export_schema.decisions = edp[edp.length-1]['choices'].map(
-	(echoice,i) => {
-	    lcolors[echoice.label] = acolors[i];
-	    return Object.assign(echoice,{color:acolors[i]})
-	})
+    export_schema.decision_points[export_schema.decision_points.length-1].
+	choices.map((x,i) => lcolors[x.label] = acolors[i])
+										      
 }
 
 function add_invalid_feedback(xel,msg) {
@@ -763,12 +840,14 @@ function showdiv(d) {
 	name = $(this).find("text").text()
     else 
 	name = $(this).parent().find("text").text()
-    name=name.replace(/\W/g,'_')
+    //name=name.replace(/\W/g,'_')
     //console.log(name)
     //console.log(vul_data)
     var addons = ''
-    if($('.'+name).length == 1) {
-	$('#mpopup').html($('.'+name).html())
+    var safename = safedivname(name)
+    //console.log(name,safename)
+    if($('.'+safename).length == 1) {
+	$('#mpopup').html($('.'+safename).html())
 	$('#mpopup').css({left:(iconPos.right + 10) + "px",
 			  top:(window.scrollY + iconPos.top - 20) + "px",
 			  display:"block"})

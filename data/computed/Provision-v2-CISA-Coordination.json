@@ -1,0 +1,351 @@
+{
+    "decision_points": [
+	{
+	    "label": "Exploitation",
+	    "decision_type": "simple",
+	    "choices": [
+		{
+		    "label": "none",
+		    "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+		},
+		{
+		    "label": "poc",
+		    "description": "One of the following cases is true: (1) private evidence of exploitation is attested but not shared; (2) widespread hearsay attests to exploitation; (3) typical public PoC in places such as Metasploit or ExploitDB; or (4) the vulnerability has a well-known method of exploitation. Some examples of condition (4) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks."
+		},
+		{
+		    "label": "active",
+		    "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+		}
+	    ]
+	},
+	{
+	    "label": "Virulence",
+	    "decision_type": "simple",
+	    "choices": [
+		{
+		    "label": "slow",
+		    "description": "Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool."
+		},
+		{
+		    "label": "rapid",
+		    "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely rapid."
+		}
+	    ]
+	},
+	{
+	    "label": "Technical Impact",
+	    "decision_type": "simple",
+	    "choices": [
+		{
+		    "label": "partial",
+		    "description": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component."
+		},
+		{
+		    "label": "total",
+		    "description": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+		}
+	    ]
+	},
+	{
+	    "label": "Mission & Well-being",
+	    "decision_type": "simple",
+	    "choices": [
+		{
+		    "label": "low",
+		    "description": "Mission Prevelance is Low and Public well-being impact is Minimal"
+		},
+		{
+		    "label": "medium",
+		    "description": "Mission Prevelance is Medium and Public well-being impact is in Material"
+		},
+		{
+		    "label": "high",
+		    "description": "Mission Prevelance is Essential and Public well-being impact is Irreversible"
+		}
+	    ]
+	},
+	{
+	    "label": "Decision",
+	    "decision_type": "final",
+	    "choices": [
+		{
+		    "label": "Track",
+		    "description": "The vulnerability does not require attention outside of Vulnerability Management (VM) at this time.  Continue to track the situation and reassess the severity of vulnerability if necessary.",
+		    "color": "#28a745"
+		},
+		{
+		    "label": "Track*",
+		    "description": "Track these closely, especially if mitigation is unavailable or difficult. Recommended that analyst discuss with other ana-lysts and get a second opinion.",
+		    "color": "#ffc107"
+		},
+		{
+		    "label": "Attend",
+		    "description": "The vulnerability requires to be attended to by stakeholders outside VM. The action is a request to others for assistance / information / details, as well as a potential publication about the issue.",
+		    "color": "#EE8733"
+		},
+		{
+		    "label": "Act",
+		    "description": "The vulnerability requires immediate action by the relevant leadership. The action is a high-priority meeting among the relevant supervisors to decide how to respond.",
+		    "color": "#dc3545"
+		}
+	    ]
+	}
+    ],
+    "decisions_table": [
+	{
+	    "Exploitation": "none",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "low",
+	    "Decision": "Track"	
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Track*",
+	    "Exploitation": "none",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "none",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "none",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "none",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "poc",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "poc",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Track*",
+	    "Exploitation": "poc",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "poc",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track*",
+	    "Exploitation": "poc",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "poc",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "poc",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "poc",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "poc",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "poc",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track*",
+	    "Exploitation": "poc",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "poc",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "active",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "active",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "active",
+	    "Virulence": "slow",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Track",
+	    "Exploitation": "active",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "active",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Act",
+	    "Exploitation": "active",
+	    "Virulence": "slow",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "active",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "active",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Act",
+	    "Exploitation": "active",
+	    "Virulence": "rapid",
+	    "Technical Impact": "partial",
+	    "Mission & Well-being": "high"
+	},
+	{
+	    "Decision": "Attend",
+	    "Exploitation": "active",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "low"
+	},
+	{
+	    "Decision": "Act",
+	    "Exploitation": "active",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "medium"
+	},
+	{
+	    "Decision": "Act",
+	    "Exploitation": "active",
+	    "Virulence": "rapid",
+	    "Technical Impact": "total",
+	    "Mission & Well-being": "high"
+	}
+    ],
+    "lang": "en",
+    "version": "2.0",
+    "title": "SSVC Provision table"
+}

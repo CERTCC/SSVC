@@ -23,7 +23,7 @@
 	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
 	    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1607056943">
+    <link rel="stylesheet" href="css.css?v=1607626315">
   </head>
   <body class="text-center blackbody">
     <img src="../cert_tweet_logo.jpg" class="cert-tweet" alt="CERT Logo"
@@ -203,7 +203,7 @@
     </div>
     <div id="mpopup">
     </div>
-    <div class="Exploitation d-none">
+    <div class="Exploitation d-RXhwbG9pdGF0 d-none">
       <h5>Exploitation choices</h5>
       <b>None: </b> &nbsp; There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability.
       <hr/>
@@ -212,13 +212,13 @@
       <hr />
       <b>Active:</b> &nbsp;  Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting.
     </div>
-    <div class="Virulence d-none">
+    <div class="Virulence d-VmlydWxlbmNl d-none">
       <h5>Virulence choices</h5>
       <b>Slow:</b> &nbsp; Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool.
       <hr/>
       <b>Rapid: </b> &nbsp; Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely rapid.
     </div>
-    <div class="Technical_Impact d-none">
+    <div class="Technical_Impact d-VGVjaG5pY2Fs d-none">
       <h5>Technical Impact</h5>
       <b>Partial: </b> &nbsp; The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component.
       <hr/>
@@ -234,7 +234,7 @@
       <b>Support: </b> &nbsp; The operation of the vulnerable component merely supports mission essential functions for two or more entities.
       EssentialThe vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity, and failure may (but need not) lead to overall mission failure.
     </div>
-    <div class="Track Track_ Attend Act d-none">
+    <div class="Track Track_ Attend Act d-VHJhY2s61 d-VHJhY2sq d-QXR0ZW5k d-QWN0 d-none">
       <h5> Vulnerability Scoring Decisions</h5>
       <b>Track </b> &nbsp; The vulnerability does not require attention outside of Vulnerability Management (VM) at this time.  Continue to track the situation and reassess the severity of vulnerability if necessary.
       <hr />
@@ -245,7 +245,7 @@
       <b>Act </b> &nbsp; The vulnerability requires immediate action by the relevant leadership. The action is a high-priority meeting among the relevant supervisors to decide how to respond.
     </div>
     
-    <div class="Mission___Well_being d-none">
+    <div class="Mission___Well_being d-TWlzc2lvbiAm d-none">
       <table class="table table-striped table-dark table-bordered table-well-being">
 	<thead>
 	  <tr>
@@ -390,7 +390,13 @@
 		</tr>
 		<tr>
 		  <td>
-		    <button class="btn btn-primary exportButton" onclick="export_vul()">
+		    <input type="checkbox" id="includetree" unchecked>
+		    <span class="text-muted">
+		      Include decision tree in export
+		    </span>
+		    <br/>		    
+		    <button class="btn btn-primary exportButton"
+			    onclick="export_vul($('#includetree').is(':checked'))">
 		      Export
 		    </button>
 		  </td>
@@ -400,7 +406,7 @@
 	  </div>
 	</div>
     </div>
-    <script src="ssvc.js?v=1607056943"></script>
+    <script src="ssvc.js?v=1607626315"></script>
   </body>
 </html>
 
