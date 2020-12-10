@@ -3,9 +3,13 @@ const _version = 2.9
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
+/* Deefault color array of possible color choices */
+var acolors = ["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
 var lcolors = {"Track":"#28a745","Track*":"#ffc107","High":"#EE8733","Critical":"#dc3545"}
 lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
-
+/* These variables are for decision tree schema JSON aka SSVC Provision Schema */
+var export_schema = {decision_points: [],decision_table: [], decisions: [],
+		     lang: "en", version: "2.0", title: "SSVC Provision table"}
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
     this.each(function (i, e) {
@@ -136,6 +140,30 @@ function export_show() {
     if($('#cve_samples').val().match(/^(cve|vu)/i))
 	$('.exportId').val($('#cve_samples').val())
     
+}
+function export_tree() {
+    var yhead = []
+    var yprops = {}
+    var allrows = raw.filter(x => {
+	if (x.name.split(":").length > 4)
+	    return true
+	else {
+	    var t = x.name.split(":")[0]
+	    if(!(t in yprops)) {
+		yprops[t] = 1
+		yhead.push(t)
+	    }
+	    return false
+	}
+    }).map(x => x.name.split(":").reverse().
+	   map((y,i) => {
+	       z={}
+	       z[yhead[i] ? yhead[i] : "Decision" ] = y
+	       return z
+	   }))
+/* "[{"Exploitation":"none"},{"Utility":"partial"},
+   {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
+   {"Decision":"defer"}]" */
 }
 function export_vul() {
     var tstamp = new Date()
@@ -301,6 +329,9 @@ function parse_json(xraw) {
     }
     /* Map colors if present */
     tm.decisions.map(d => 'color' in d ? lcolors[d.label] = d.color : d.color = "white")
+
+    /* Save JSON for export*/
+    export_schema = tm
     
     /* decisions_points have a label field which we care about with type != child */    
     var x = tm.decision_points.filter(q => q["decision_type"] != "child").map(r => r.label)
@@ -343,14 +374,25 @@ function parse_json(xraw) {
     dt_clear()	
        
 }
+function create_export_schema_dtable(yi,x) {
+    export_schema.decision_table.push(yi.reduce((a,b,c) => {
+	/* Add labels that do not exist */
+	if(export_schema.decision_points[c]['choices']
+	   .filter(d => ('label' in d) && (d.label == b)).length != 1)
+	    export_schema.decision_points[c]['choices'].push({label: b, description:b})
+	a[x[c]] = b
+	return a; },{}))
+}
 function parse_file(xraw) {
     //var xraw = 'TSV data'
     var zraw=[]
-
+    export_schema.decision_points =  []
+    export_schema.decision_table =  []
+    export_schema.decisions =  []
     /* CSV or TSV looks like 
        ID,Exploitation,Utility,TechnicalImpact,SafetyImpact,Outcome
     */
-
+    
     var xarray = xraw.split('\n')
     var xr = xarray.map(x=>x.split(/[\t,]+/))
     /* Remove first row has the headers */
@@ -360,15 +402,24 @@ function parse_file(xraw) {
     /* Now xr looks like */
     /* (6)["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"] */
     //var yraw = [[],[],[],[],[]]
+    /* Register the export schema decision points, assume all decisions are simple */
+    export_schema.decision_points = x.map(dc =>
+					  {
+					      var ix = {decision_type:"simple", choices:[]}
+					      ix.label =  dc
+					      return ix
+					  })
     /* Initialize Empty arrray */
     var yraw = [...Array(x.length)].map(u => []);
     var id=1;
     /* This will create just the last branches of the tree */
     var thash = {}
-    for(var i=0; i< y.length-1; i++) {
-	/* Remove ID column */
+    for(var i=0; i< y.length; i++) {
 	if(y[i].length < 1) continue
-	y[i].shift();
+	/* Remove ID column */
+	y[i].shift()
+	/* Add lame CSV/TSV data to export schema */
+	create_export_schema_dtable(y[i],x)
 	var tname = y[i].pop()+":"+y[i].join(":")
 	//console.log(tname)
 	if(tname == "undefined") continue;
@@ -384,13 +435,16 @@ function parse_file(xraw) {
 	    tname = tparent
 	    yraw[j].push(yt)
 	}
-	
     }
+    /* This step below is not necessary now as the above routine goes from 
+       0 -> y.length, instead  of 0 to y.length -1. 
+       Remove ID column and Add the last row into export schema */
+    //y[y.length-1].shift()
+    //create_export_schema(y[y.length-1],x)
     for(var j=yraw.length; j> -1; j--)  {
 	if(yraw.length > 0)
 	    zraw = zraw.concat(yraw[j])
     }
-
     /* Next part of the tree data  */
     zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
     /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
@@ -398,6 +452,12 @@ function parse_file(xraw) {
     topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
 	     y.length+" possible decisions, You can use it now!","success")
     dt_clear()
+    var edp = export_schema.decision_points
+    export_schema.decisions = edp[edp.length-1]['choices'].map(
+	(echoice,i) => {
+	    lcolors[echoice.label] = acolors[i];
+	    return Object.assign(echoice,{color:acolors[i]})
+	})
 }
 
 function add_invalid_feedback(xel,msg) {
