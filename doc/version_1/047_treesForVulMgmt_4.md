@@ -71,7 +71,7 @@ Once the decision points are selected and the prioritization labels agreed upon,
 Making the decision process accessible has a lot of benefits.
 Unfortunately, it also makes it a bit too easy to overcomplicate the decision.
 
-The SSVC version 1 deployer tree had 225 rows when we wrote it out in long text form.
+The SSVC version 1  ~applier~ deployer tree had 225 rows when we wrote it out in long text form.
 It only has four outcomes to differentiate between.
 Thus on average that decision process treats one situation (combination of decision values) as equivalent to 65 other situations.
 If nothing else, this means analysts are spending time gathering evidence to make fine distinctions that are not used in the final decision.
