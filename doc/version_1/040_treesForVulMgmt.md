@@ -38,7 +38,7 @@ Table 2: Proposed Meaning for Supplier Priority Outcomes
 | ------------------ | ----------- |
 | Defer              | Do not work on the patch at present.   |
 | Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal.  |
-| Out-of-Cycle       | Develop remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
+| Out-of-Cycle       | Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
 | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
 ### Deploying Patches
@@ -56,7 +56,7 @@ Table 3: Proposed Meaning for Deployer Priority Outcomes
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Defer            | Do not act at present.                                                                                                                          |
 | Scheduled        | Act during regularly scheduled maintenance time.                                                                                                   |
-| Out-of-cycle     | Act more quickly than usual to apply the remediation out-of-cycle, during the next available opportunity, working overtime if necessary.                    |
+| Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary.                    |
 | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
 ### Coordinating Patches
