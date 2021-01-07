@@ -146,9 +146,9 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
-    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.
+    - TODO fix #65 (JSON format description) here.
 
-What an analyst knows about a vulnerability may not be complete. 
+What an analyst knows about a vulnerability may not be complete.
 However, the vulnerability management community may still benefit from partial information.
 Particularly, suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
 A second benefit to providing methods for communicating partial information is the reduction of bottlenecks or barriers to information exchange.
@@ -171,8 +171,38 @@ In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.
 Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
 
+Vulnerability management decisions are dynamic, and may change over time as the available information changes.
+Information changes are one reason why SSVC decisions should always be timestamped.
+SSVC decision points have different temporal properties.
+Some, such as [*Utility*](#utility), are mostly static.
+For [*Utility*](#utility) to change, the market penetration or deployment norms of a vulnerable component would have to meaningfully change.
+Some, such as [*State of Exploitation*](#state-of-exploitation), may change quickly but only in one direction.
 
-    - TODO fix #29 here (changing information)
+Both of these examples are out of the direct control of the vulnerability manager.
+Some, such as [*Exposure*](#exposure), change mostly due to actions taken by the organization managing the vulnerable component.
+If the actor who can usually trigger a relevant change is the organization using SSVC, then it is relatively straightforward to know when to update the SSVC decision.
+That is, the organization should reevaluate the decision when they make a relevant change.
+For those decision points that are about topics outside the control of the organization using SSVC, then the organization will have to occasionally poll their information sources for changes.
+The cadence or rate of polls is different for each decision point, based on the expected rate of change.
+
+The following decision points are usually out of the control of the organization running SSVC.
+As an initial heuristic, we suggest the associated polling frequency for each.
+ - [*State of Exploitation*](#state-of-exploitation): every 1 day
+ - [*Technical Impact*](#technical-impact): never (should be static per vulnerability)
+ - [*Utility*](#utility): every 6 months
+ - [*Public Safety Impact*](#public-safety-impact): every 1 year
+
+The following decision points are usually in the control of the organization running SSVC and should be reevaluated when a relevant change is made or during annual reviews of assets.
+
+ - [*Situated Safety Impact*](#situated-safety-impact)
+ - [*Mission Impact*](#mission-impact)
+ - [*System Exposure*](#system-exposure)
+
+If SSVC information is all timestamped appropriately, then an analyst can compare the timestamp to the current date and determine whether information is considered stale.
+The above rates are heuristic suggestions, and organizations may choose different ones.
+Any public repository of vulnerability information should keep a change log of when values change for each decision point, for each vulnerability.
+Vulnerability response analysts may or may not need to keep such change logs, but it would facilitate after-action reviews if responders keep such change logs. 
+
 
 ## Development Methodology
 
