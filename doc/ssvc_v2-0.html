@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Jonathan M. Spring; Eric Hatleback; Allen Householder; Art Manion; Laurie Tyzenhaus" />
+  <title>SSVC – Prioritizing vulnerability response: A stakeholder-specific vulnerability categorization (version 2.0)</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Prioritizing vulnerability response: A stakeholder-specific vulnerability categorization (version 2.0)</h1>
+<p class="author">Jonathan M. Spring; Eric Hatleback; Allen Householder; Art Manion; Laurie Tyzenhaus</p>
+<p class="date">Compiled Thu Jan 7 16:08:56 UTC 2021</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>Many organizations use the Common Vulnerability Scoring System (CVSS) to prioritize actions during vulnerability management. This paper builds on prior work about prioritizing actions during vulnerability management by presenting a testable Stakeholder-Specific Vulnerability Categorization (SSVC) that avoids some problems with CVSS. SSVC takes the form of decision trees for different vulnerability management communities. We welcome others to test and improve it.</p>
+<p>This paper proposes a functional system to make our proposal concrete as well as preliminary tests of its usefulness. However, our proposal is a detailed hypothesis to test or a conversation starter; it is not a final proposal. The stakeholders in vulnerability management are diverse, and that diversity must be accommodated in the main functionality, rather than squeezed into hard-to-use optional features. Given this, as much as it is practical, we aim to avoid one-size-fits-all solutions.</p>
+<p>We will improve vulnerability management by framing decisions better. The modeling framework determines what output types are possible, identifies the inputs, determines the aspects of vulnerability management that are in scope, defines the aspects of context that are incorporated, describes how the model handles context and different roles, and determines what those roles should be. As such, the modeling framework is important but difficult to pin down. We approach this problem as a satisficing process. We do not seek optimal formalisms, but an adequate formalism. Others may have different satisfactory models, and that is okay.</p>
+<p>The organizing concept of our decision-making procedure is decision trees. A decision tree represents important elements of a decision, possible decision values, and possible outcomes. We suggest decision trees as an adequate formalism for practical, widespread advice about vulnerability prioritization. We do not claim this approach is the only viable option. We also suggest that specific vulnerability management stakeholder communities use decision trees. These suggestions are hypotheses for viable replacements for CVSS in those communities, but the hypotheses require empirical testing before they can be justifiably considered fit for use. We propose a methodology for such testing.</p>
+<p>The rest of the paper is organized as follows. <a href="#current-state-of-practice">Section 2</a> summarizes the current state of vulnerability management. <a href="#representing-information-for-decisions-about-vulnerabilities">Section 3</a> describes our design goals for an improved prioritization method. <a href="#decision-trees-for-vulnerability-management">Section 4</a> proposes a definition of decision points and decision trees as a prioritization method. <a href="#evaluation-of-the-draft-trees">Section 5</a> describes an early test of this method against the design goals, as much to show an adequate usability test methodology as for the results. <a href="#worked-example">Section 6</a> provides examples of applying the methodology of Section 4 to sample vulnerabilities. <a href="#future-work">Section 7</a> identifies future work. <a href="#limitations">Section 8</a> identifies limitations in the design. <a href="#conclusion">Section 9</a> concludes with some final thoughts.</p>
+<h1 id="current-state-of-practice">Current state of practice</h1>
+<p><strong>Vulnerability management</strong> is a term of art for security practitioners, used to include “the discovery, analysis, and handling of new or reported security vulnerabilities in information systems [and] the detection of and response to known vulnerabilities in order to prevent them from being exploited” <span class="citation" data-cites="csirtservices_v2">(Benetis et al. 2019)</span>. Prioritization of organizational and analyst resources is an important precursor to vulnerability analysis, handling, and response. The general problem is: given limited resources, which vulnerabilities should be processed and which can be ignored for now. We approach this problem from a pragmatic, practitioner-centered angle.</p>
+<p>The de facto standard prioritization language is CVSS <span class="citation" data-cites="spring2018litrev">(Jonathan M. Spring and Illari 2019)</span>. CVSS avoids discussing decisions and, instead, takes <strong>technical severity</strong> as its fundamental concept. We understand severity’s role as informing decision making about vulnerability management. The CVSS standard indicates vulnerability management decisions, and only those decisions, as what they expect CVSS scores to inform -- “CVSS provides a way to capture the principal characteristics of a vulnerability … reflecting its severity … to help organizations properly assess and prioritize their vulnerability management processes” <span class="citation" data-cites="cvss_sig">(Wiles and Dugal 2019)</span>. However, the standard does not provide clear advice about how CVSS scores might inform decisions.</p>
+<p>How CVSS is used matters. Using just the base scores, which are “the intrinsic characteristics of a vulnerability that are constant over time and across user environments,” as a stand-alone prioritization method is not recommended <span class="citation" data-cites="cvss_v3-1">(CVSS SIG 2019)</span>. However, as two examples, the U.S. government <span class="citation" data-cites="nist800-115 nist800-40r3 bod15-01">(see Scarfone et al. 2008, 7–4; Souppaya and Scarfone 2013, 4; and Cybersecurity and Infrastructure Security Agency 2015)</span> and the global payment card industry <span class="citation" data-cites="pcidss_v3">(PCI Security Standards Council 2017)</span> both have defined such misuse as expected practice in their vulnerability management requirements. CVSS has struggled to adapt to other stakeholder contexts; various stakeholder groups have expressed dissatisfaction by making new versions of CVSS, such as medical devices <span class="citation" data-cites="mitre2019medical">(Chase and Coley 2019)</span>, robotics <span class="citation" data-cites="vilches2018towards">(Vilches et al. 2018)</span>, and industrial systems <span class="citation" data-cites="figueroa2020survey">(Figueroa-Lorenzo, Añorga, and Arrizabalaga 2020)</span>. In these three examples, the modifications tend to add complexity to CVSS by adding metrics. Product vendors have varying degrees of adaptation of CVSS for development prioritization, including but not limited to <a href="https://access.redhat.com/security/updates/classification">Red Hat</a>, <a href="https://www.microsoft.com/en-us/msrc/security-update-severity-rating-system">Microsoft</a>, and <a href="https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#asr">Cisco</a>. The vendors codify CVSS’s recommended qualitative severity rankings in different ways, and Red Hat and Microsoft make the user interaction base metric more important. The various stakeholder re-adaptations of CVSS suggest a stakeholder-specific prioritization is important.</p>
+<p>Unfortunately, all such re-adaptation of the basic CVSS mindset inherit its deeper issues. For example, the CVSS scoring algorithm has not been argued for transparently, and the standardization group has not justified the use of the formula either formally or empirically <span class="citation" data-cites="spring2018cvss">(Jonathan M. Spring et al. 2018)</span>. In addition, severity should only be a part of vulnerability response prioritization <span class="citation" data-cites="farris2018vulcon">(See, e.g., Farris et al. 2018)</span>. One complaint is that a high CVSS score is not predictive of which vulnerabilities will be commonly exploited or have exploits publicly released <span class="citation" data-cites="allodi2012preliminary">(Allodi and Massacci 2012)</span>. Studies of CVSS scoring consistency indicate that analysts do not consistently interpret the elements of a CVSSv3.0 score <span class="citation" data-cites="allodi2018effect">(Allodi et al. 2018)</span>, and as many adaptations of CVSS simply add additional metrics we expect they inherit such inconsistency. Analyst usability has so far been an afterthought, but we know from other areas of information security that usability is not well-served as an afterthought <span class="citation" data-cites="garfinkel2014usable">(Garfinkel and Lipford 2014)</span>.</p>
+<p>Surveys of security metrics <span class="citation" data-cites="pendleton2016survey">(Pendleton et al. 2016)</span> and information sharing in cybersecurity <span class="citation" data-cites="laube2017survey">(Laube and Böhme 2017)</span> do not indicate any major efforts to conduct a wholesale rethinking of vulnerability prioritization. The surveys indicate some options for available measurements a prioritization method might consider, such as exploit availability or system attack surface. Section 3 describes our design goals for a pragmatic prioritization methodology that can improve and build on the state of current practice.</p>
+<p>The target audience for SSVC is vulnerability managers of any kind. SSVC assumes that the vulnerability manager has identified that there is a vulnerability.<br />
+We take our definition of <strong>vulnerability</strong> from <span class="citation" data-cites="householder2020cvd">(Allen D. Householder et al. 2020)</span>: "a set of conditions or behaviors that allows the violation of an explicit or implicit security policy." There are a variety of problems or issues with computer systems that are important that are not vulnerabilities. SSVC presents a risk prioritization method that might be useful or at least allied to other risk management methods for these other kinds of issues. However, for this work we focus on decisions in the situation where there is a vulnerability and the vulnerability management team wants to decide what to do about it.</p>
+<h1 id="representing-information-for-decisions-about-vulnerabilities">Representing Information for Decisions About Vulnerabilities</h1>
+<p>We chose to build our model with decisions as the central concept. We propose that decisions—rather than severity—are a more useful output. Our design requirements for an adequate decision-making process is that it clearly define whose decisions are involved, properly use evidentiary categories, be based on reliably available evidence, be transparent, and be explainable. Our inspiration and justification for these design goals is that they are the features of a satisfactory scientific enterprise <span class="citation" data-cites="spring2017why">(Jonathan M. Spring, Moore, and Pym 2017)</span> adapted to this vulnerability management problem.</p>
+<p>To consider decisions about managing the vulnerability rather than just technical severity, one must be clear about whose decisions are involved. Organizations that produce patches and fix software clearly have different decisions to make than those that deploy patches or other security mitigations. Furthermore, organizations in the aviation industry have different priorities than organizations that make word processors. These differences indicate a requirement: any formalism must be able to capture adequately the different decisions and priorities exhibited by different stakeholder groups. And as a usability requirement, the number of stakeholder groups needs to be small enough to be manageable, both by those issuing scores and those seeking them.</p>
+<p>The goal of adequacy is more appropriate than optimality. Our search process need not be exhaustive; we are satisficing rather than optimizing <span class="citation" data-cites="simon1996sciences">(Simon 1996)</span>. Satisficing is more appropriate to qualitative criteria; we do not need to order different methods as to which are more transparent than others, for example. Finding any system that meets all of desired criteria is enough.</p>
+<p>Decisions are not numbers. Decisions are qualitative actions that an organization can take. In many cases, numerical values can be directly converted to qualitative decisions. For example, if your child’s temperature is 105°F (40.5°C), you decide to go to the hospital. Conversion from numerical to qualitative values can be complicated by measurement uncertainty and the design of the metrics. For example, CVSS scores were designed to be accurate with +/- 0.5 points of the given score <span class="citation" data-cites="cvss_v3-1">(CVSS SIG 2019, sec. 7.5)</span>. If we take the recommended dividing line between high and critical—9.0—then it is unclear how to convert a CVSSv3.0 score of 8.9.</p>
+<p>For example, under a Gaussian error distribution, 8.9 is really 60% high and 40% critical. We want decisions to be distinct and crisp; statistical overlaps of scores within 1.0 unit, for example, would muddy decision recommendations.</p>
+<p>We avoid numerical representations and consider only qualitative data as inputs and outputs for any vulnerability management decision process. Quantified metrics are more useful when (1) data for decision making is available, and (2) the stakeholders agree on how to measure. Vulnerability management does not yet meet either criterion. Furthermore, it is not clear to what extent measurements about a vulnerability can be informative about other vulnerabilities. Each vulnerability has a potentially unique relationship to the socio-technical system in which it exists, including the internet. The context of the vulnerability, and the systems it impacts, are inextricably linked to managing it. Temporal and environmental considerations should be primary, not optional as they are in CVSS.</p>
+<p>We make the deliberation process as clear as practical; therefore, we risk belaboring some points to ensure our assumptions and reasoning are explicit. Transparency should improve trust in the results.</p>
+<p>Finally, any result of a decision-making process should be <strong>explainable</strong>. (Explainable is defined and used with its common meaning. This meaning is not the same as “explainable,” as used in the research area of explainable artificial intelligence.) An explanation should make the process intelligible to an interested, competent, non-expert person. There are at least two reasons common explainability is important: (1) for troubleshooting and error correction and (2) for justifying proposed decisions.</p>
+<p>To summarize, the following are our design goals for a vulnerability management process:</p>
+<ul>
+<li><p>Outputs are decisions.</p></li>
+<li><p>Pluralistic recommendations are made among a manageable number of stakeholder groups.</p></li>
+<li><p>Inputs are qualitative.</p></li>
+<li><p>Outputs are qualitative, and there are no (unjustified) shifts to quantitative calculations.</p></li>
+<li><p>Process justification is transparent.</p></li>
+<li><p>The results are explainable.</p></li>
+</ul>
+<h2 id="formalization-options">Formalization Options</h2>
+<p>This section briefly surveys the available formalization options against the six requirements described above. Table 1 summarizes the results. This survey is opportunistic, and is based on conversations with several experts and our professional experience. The search process leaves open the possibility of missing a better option. However, at the moment, we are searching for a satisfactory formalism, rather than an optimal one. We need to search only until a satisfactory option is found. Thus, we focus on highlighting why some common options or suggestions do not meet the above criteria. We argue that decision trees are a satisfactory formalism.</p>
+<p>We rule out many quantitative options, such as anything involving statistical regression techniques or Bayesian belief propagation. Most machine learning (ML) algorithms are also not suitable because they are both unexplainable (in our sense) and quantitative. Random forest algorithms may appear in scope since each individual decision tree can be traced and the decisions explained <span class="citation" data-cites="russell2011artificial">(Russell and Norvig 2011)</span>. However, it’s not transparent enough to simply know how the available decision trees are created or mutated and why a certain set of them works better. In any case, random forests are necessary only when decision trees get too complicated for humans to manage. We demonstrate below that in vulnerability management, useful decision trees are small enough for humans to manage.</p>
+<p>Logics are generally better suited for capturing qualitative decisions. Boolean first-order logic is the “usual” logic—with material implication (if/then), negation, existential quantification, and predicates. For example, in program verification, satisfiability problem (SAT) and satisfiability modulo theories (SMT) solvers are used to automate decisions about when some condition holds or whether software contains a certain kind of flaw. However, while the explanations provided by logical tools are accessible to experts, non-experts may struggle. However, under special conditions, logical formulae representing decisions about categorization based on exclusive-or conditions can be more compactly and intelligibly represented as a decision tree.</p>
+<p>Decision trees are used differently in operations research than in ML. In ML, decision trees are used as a predictive model to classify a target variable based on dependent variables. In operations research and decision analysis, a decision tree is a tool used to document a human process. In decision analysis “decision analysts frequently use specialized tools, such as decision tree techniques, to evaluate uncertain situations. Unfortunately, many people, some of them educators, have confused decision analysis with decision trees. This is like confusing surgery with the scalpel” <span class="citation" data-cites="howard1983readings">(Howard and Matheson 1983, viii)</span>. We use decision trees in the tradition of decision analysis, not ML.</p>
+<p>Table 1: Comparison of Formalization Options for Vulnerability Prioritization Decisions</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Outputs Designed to be Decisions</strong></th>
+<th style="text-align: center;"><strong>Pluralistic Recommendations</strong></th>
+<th style="text-align: center;"><strong>Qualitative Inputs</strong></th>
+<th style="text-align: center;"><strong>Qualitative Outputs</strong></th>
+<th style="text-align: center;"><strong>Transparent</strong></th>
+<th style="text-align: center;"><strong>Explainable</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Parametric Regression</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>CVSS v3.0</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Bayesian Belief Networks</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;">Maybe</td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Neural Networks</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Random Forest</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;">Maybe</td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;">Maybe</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Other Machine Learning</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;">Maybe</td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="x">❌</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Boolean First Order Logics</strong></td>
+<td style="text-align: center;">Maybe</td>
+<td style="text-align: center;">Maybe</td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;">Maybe</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Decision Trees (as in decision analysis)</strong></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+<td style="text-align: center;"><span class="emoji" data-emoji="white_check_mark">✅</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="decision-trees">Decision Trees</h2>
+<p>A decision tree is an acyclic, flowchart-like structure where nodes represent aspects of the decision or relevant properties, and branches represent possible options for each aspect or property. Each decision point can have more than two options and may have different options from other decision points.</p>
+<p>Decision trees can be used to meet all of the desired criteria described above. The two less-obvious criteria met by decision trees are plural recommendations and transparent tree-construction processes. Decision trees support plural recommendations simply because a separate tree can represent each stakeholder group. The opportunity for transparency surfaces immediately: any deviation among the decision trees for different stakeholder groups should have a documented reason—supported by public evidence when possible—for the deviation. Transparency may be difficult to achieve, since each node in the tree and each of the values need to be explained and justified, but this cost is paid infrequently.</p>
+<p>There has been limited but positive use of decision trees in vulnerability management. For example, Vulnerability Response Decision Assistance (VRDA) studies how to make decisions about how to respond to vulnerability reports <span class="citation" data-cites="manion2009vrda">(Manion et al. 2009)</span>. This paper continues roughly in the vein of such work to construct multiple decision trees for prioritization within the vulnerability management process.</p>
+<h2 id="representation-choices">Representation choices</h2>
+<p>A decision tree can represent the same content in different ways. Since a decision tree is a representation of logical relationships between qualitative variables, the equivalent content can be represented in other formats as well. The R package <a href="https://cran.r-project.org/web/packages/data.tree/data.tree.pdf">data.tree</a> has a variety of both internal representations and visualizations.</p>
+<p>For data input, we have elected to keep SSVC simpler than R, and just use a CSV (or other fixed-delimiter separated file) as canonical data input. All visualizations of a tree should be built from a canonical CSV that defines the decisions for that stakeholder. Examples are located in <a href="https://github.com/CERTCC/SSVC/tree/main/data">SSVC/data</a>. An interoperable CSV format is also flexible enough to support a variety of uses. Every situation in SSVC is defined by the values for each decision point and the priority label (outcome) for that situation (as defined in <a href="#likely-decision-points-and-relevant-data">Likely Decision Points and Relevant Data</a>). A CSV will typically be 30-100 rows that each look something like:</p>
+<pre><code>2,none,slow,diffuse,laborious,partial,minor,defer</code></pre>
+<p>Where "2" is the row number, <a href="#exploitation"><em>none</em></a> through <a href="#public-safety-impact"><em>minor</em></a> are values for decision points, and <em>defer</em> is a priority label or outcome. Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions.</p>
+<p>The tree visualization options are more diverse. We have provided an example format, and codified it in <a href="https://github.com/CERTCC/SSVC/tree/main/src">src/SSVC_csv-to-latex.py</a>. The reader might ask why we have gone to this trouble when, for example, the data.tree package has a handy print-to-ASCII function. It produces output like the following:</p>
+<pre><code>1    start                                        
+2     ¦--AV:N                                     
+3     ¦   ¦--AC:L                                 
+4     ¦   ¦   ¦--PR:N
+...
+31    ¦   ¦   ¦   ¦   ¦   ¦       ¦--A:L    Medium
+32    ¦   ¦   ¦   ¦   ¦   ¦       °--A:N    Medium
+33    ¦   ¦   ¦   ¦   ¦   °--C:N                  
+34    ¦   ¦   ¦   ¦   ¦       ¦--I:H              
+35    ¦   ¦   ¦   ¦   ¦       ¦   ¦--A:H  Critical</code></pre>
+<p>That sample is a snippet of the CVSSv3.0 base scoring algorithm represented as a decision tree. The full tree can be found in <a href="https://github.com/CERTCC/SSVC/tree/main/doc/version_1/gfx">doc/version/gfx/cvss_tree_severity-score.txt</a>. This tree representation is functional, but not as flexible or aesthetic as might be hoped. The visualizations provided by R are geared towards analysis of decision trees in a random forest ML model, rather than operations-research type trees.</p>
+<h1 id="decision-trees-for-vulnerability-management">Decision Trees for Vulnerability Management</h1>
+<p>Viable decision guidance for vulnerability management should, at a minimum, consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points. The following sections address each of these parts, in turn, and should be taken as instructive examples. While we strive to make the examples realistic, we invite the community to engage and conduct empirical assessments to test examples. The following construction should be treated as an informed hypothesis rather than a conclusion.</p>
+<h2 id="enumerating-stakeholders">Enumerating Stakeholders</h2>
+<p>Stakeholders in vulnerability management can be identified within multiple independent axes. For example, they can be identified by their responsibility: whether the organization <em>supplies</em>, <em>deploys</em>, or <em>coordinates</em> remediation actions. Organizations may also be distinguished by type of industry sector. While it might be useful to enumerate all the sectors of the economy, we propose to draft decision points that include those from multiple important sectors. For example, we have safety-related questions in the decision path for all suppliers and deployers, so whether or not the stakeholder is in a safety-critical sector, the decision will be addressed.</p>
+<p>The choice not to segregate the decisions by sector is reinforced by the fact that any given software system might be used by different sectors. It is less likely that one organization has multiple responsibilities within the vulnerability management process. Even if there is overlap within an organization, the two responsibilities are often located in distinct business units with distinct decision-making processes. We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision trees—one for each of the “patch supplier” and “patch deployer” responsibilities in the vulnerability management process. We leave “coordinating patches” as future work. Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work. <!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using "patch" here. --></p>
+<p>The next two sections describe the decision space and the relevant decision points that we propose for these two responsibilities within the vulnerability management process.</p>
+<p>The paper’s target audience is professional staff responsible for making decisions about information systems. This audience includes a broad class of professionals, and includes suppliers, system maintainers, and administrators of many types. It also includes other roles, such as risk managers, technical managers, and incident responders. Although every layperson who owns a computing device makes decisions about managing it, this is not the target audience. The following decision system may help such laypeople, but we do not intend it to be used by that audience.</p>
+<p>Relatedly, C-level executives and public policy professionals often make, shape, or incentivize decisions about managing information systems; however, this is not the target audience either. To the extent that decision trees for vulnerability management help higher level policy decisions, we believe the best way to help policy makers is by making the technical decisions more transparent and explainable to policy makers. While policy makers may see indirect benefit, they are not the primary target, and we are not designing an approach for them directly.</p>
+<h2 id="enumerating-decisions">Enumerating Decisions</h2>
+<p>Stakeholders with different responsibilities in vulnerability management have largely different decisions to make. This section focuses on the differences among organizations based on their vulnerability management responsibilities. Some decision makers may have different responsibilities in relation to different software. For example, an Android app developer is a developer of the app, but is a deployer for any changes to the Android OS API. This situation is true for libraries in general. A web browser developer makes decisions about applying patches to DNS lookup libraries and transport layer security (TLS) libraries. A video game developer makes decisions about applying patches released to the Unreal Engine. A medical device developer makes decisions about applying patches to the Linux kernel. The list goes on. Alternatively, one might view applying patches as, de facto, including some development and distribution of the updated product. Or one might take the converse view, that development, de facto, includes updating libraries. Either way, in each of these examples (mobile device apps, web browsers, video games, medical devices), we recommend that the professionals making genuine decisions do three things: (1) identify the decisions explicitly, (2) describe how they view their role(s), and (3) identify which software projects their decision relates to. If their decisions are explicit, then the decision makers can use the recommendations from this document that are relevant to them.</p>
+<h2 id="enumerating-vulnerability-management-actions">Enumerating Vulnerability Management Actions</h2>
+<p>In this paper, we model the decision of “With what priority should the organization take action on a given vulnerability management work unit?” to be agnostic to whether or not a patch is available. A unit of work means either remediating the vulnerability, such as, applying a patch or deploying a mitigation. Both remediation and mitigations often address multiple identified vulnerabilities. The deployer should answer the suggested questions for whatever unit of work they are considering as a whole, single unit. There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate.</p>
+<p>To further clairify terms, "Remediaton occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability." <span class="citation" data-cites="dodi_8531_2020">(Office of the DoD Chief Information Officer 2020, sec. 3.5)</span> Examples of remediation includes, applying patches, fixes and upgrades; or removing the vulnerable software or system from operation. Mitigating acions may include, software configuration changes, adding firewall ACLs or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.</p>
+<h3 id="supplying-patches">Supplying Patches</h3>
+<p>At a basic level, the decision at a software development organization is whether to issue a work order and what resources to expend to remediate a vulnerability in the organization’s software. Prioritization is required because, at least in the current history of software engineering, the effort to patch all known vulnerabilities will exceed available resources. The organization considers several other factors to build the patch; refactoring a large portion of the code base may be necessary for some patches, while others require relatively small changes. We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in Table 2.</p>
+<p>Table 2: Proposed Meaning for Supplier Priority Outcomes</p>
+<table>
+<colgroup>
+<col style="width: 62%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Supplier Priority</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Defer</td>
+<td>Do not work on the patch at present.</td>
+</tr>
+<tr class="even">
+<td>Scheduled</td>
+<td>Develop a fix within regularly scheduled maintenance using supplier resources as normal.</td>
+</tr>
+<tr class="odd">
+<td>Out-of-Cycle</td>
+<td>Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready.</td>
+</tr>
+<tr class="even">
+<td>Immediate</td>
+<td>Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deploying-patches">Deploying Patches</h3>
+<p>Whether or not to deploy available remediation is a binary decision. However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied. We recognize that vulnerability management actions are different when a patch is available and when it is not available.</p>
+<p>When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.</p>
+<!--**Talk about applying other mitigations here** TODO
+-->
+<p>Table 3: Proposed Meaning for Deployer Priority Outcomes</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Deployer Priority</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Defer</td>
+<td>Do not act at present.</td>
+</tr>
+<tr class="even">
+<td>Scheduled</td>
+<td>Act during regularly scheduled maintenance time.</td>
+</tr>
+<tr class="odd">
+<td>Out-of-cycle</td>
+<td>Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary.</td>
+</tr>
+<tr class="even">
+<td>Immediate</td>
+<td>Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="coordinating-patches">Coordinating Patches</h3>
+<p>In coordinated vulnerability disclosure (CVD), the available decision is whether or not to coordinate a vulnerability report. Vulnerability Response Decision Assistance (VRDA) provides a starting point for a decision tree for this situation.<sup>23</sup> VRDA is likely adequate for national-level CSIRTs that do general CVD, but other CSIRT types may have different needs. Future work may elicit those types and make a few different decision options. Specialized coordination organizations exist (e.g., ICS-CERT, which conducts CVD for safety-critical systems). We have not developed a coordination tree in this work, but future work could use our principles and design techniques to refine and evaluate VRDA or some other decision tree for coordinated vulnerability disclosure. The CERT guide to CVD provides something similar for those deciding how to report and disclose vulnerabilities they have discovered <span class="citation" data-cites="householder2020cvd">(Allen D. Householder et al. 2020, sec. 6.10)</span>.</p>
+<p>Within each setting, the decisions are a kind of equivalence class for priority. That is, if an organization must deploy patches for three vulnerabilities, and if these vulnerabilities are all assigned the <em>scheduled</em> priority, then the organization can decide which to deploy first. The priority is equivalent. This approach may feel uncomfortable since CVSS gives the appearance of a finer grained priority. CVSS appears to say, “Not just 4.0 to 6.9 is ‘medium’ severity, but 4.6 is more severe than 4.5.” However, as discussed previously (see page 4), CVSS is designed to be accurate only within +/- 0.5, and, in practice, is scored with errors of around +/- 1.5 to 2.5 <span class="citation" data-cites="allodi2018effect">(Allodi et al. 2018, see Figure 1)</span>. An error of this magnitude is enough to make all of the “normal” range from 4.0 to 6.9 equivalent, because 5.5 +/- 1.5 is the range 4.0 to 7.0. Our proposal is an improvement over this approach. CVSS errors often cross decision boundaries; in other words, the error range often includes the transition between “high” and “critical” or “medium.” Since our approach keeps the decisions qualitatively defined, this fuzziness does not affect the results.</p>
+<p>Returning to the example of an organization with three vulnerabilities to remediate that were assigned <em>scheduled</em> priority, in SSVC, they can be patched in any order. This is an improvement over CVSS, since based on the scoring errors, CVSS was essentially just giving random fine-grained priorities within qualitative categories anyway. With our system, organizations can be more deliberate about conveniently organizing work that is of equivalent priority.</p>
+<h3 id="risk-tolerance-and-response-priority">Risk Tolerance and Response Priority</h3>
+<p>SSVC enables stakeholders to balance and manage their risks themselves. We follow <span class="citation" data-cites="ISO73">(ISO 2009)</span> and define risk as "effect of uncertainty on objectives;" see <span class="citation" data-cites="ISO73">(ISO 2009)</span> for notes on the terms in the definition. For any vulnerability management practice to succeed it must balance at least two risks:</p>
+<ol>
+<li>Change risk: the potential costs of deploying remediation, which include testing and deployment in addition to any problems that could arise from making changes to production systems.</li>
+<li>Vulnerability risk: the potential costs of incidents resulting from exploitation of vulnerable systems</li>
+</ol>
+<p>To place these risks in context, we follow the SEI's Taxonomy of Operational Cyber Security Risks <span class="citation" data-cites="cebula2010taxonomy">(Cebula and Young 2010)</span>. Change risk can be characterized as a combination of Class 2 and/or Class 3 risks. Class 2: Systems and Technology Failures includes hardware, software, and systems risks. Class 3: Failed Internal Processes can arise from process design, process execution, process controls, or supporting processes. Meanwhile, vulnerability risk falls into Subclass 1.2: Actions of People: Deliberate.</p>
+<p>In developing the decision trees in this document, we had in mind stakeholders with a moderate tolerance for risk. The resulting trees reflect that assumption. Organizations may of course be more or less conservative in their own vulnerability management practices, and we cannot presume to determine how an organization should balance their risk.</p>
+<p>We therefore remind our readers that the labels on the trees (defer, immediate, etc.) can and should be customized to suit the needs of individual stakeholders wherever necessary and appropriate. For example, an organization with a high aversion to change risk might choose to accept more vulnerability risk by lowering the overall response labels for many branches in the trees, resulting in fewer vulnerabilities attaining the most urgent response. On the other hand, an organization with a high aversion to vulnerability risk could elevate the priority of many branches to ensure fixes are deployed quickly.</p>
+<h2 id="scope">Scope</h2>
+<p>One important variable in the answers to all the below decision points is scope. There are at least three aspects to scope. One is how the boundaries of the affected system are set. A second is whose security policy is relevant. Thirdly, how far forward in time or causal steps one reasons about effects and harms. We put forward recommendations for each of these.</p>
+<p>However, users of the decision process may want to define different scopes. Users may define a different scope as long as the scope is consistent across decisions, and are credible, explicit, and accessible to all relevant decision makers.</p>
+<p>For example, suppliers often decline to support products beyond a declared end-of-life (EOL) date. In those cases, a supplier could reasonably consider vulnerabilities in those products to be out of scope. However, a deployer may still have active instances of EOL products in their infrastructure. It remains appropriate for a deployer to use SSVC to prioritize their response to such situations, since even if there is no remediation forthcoming from the supplier it may be possible for the deployer to mitigate or remediate the vulnerability in other ways, up to and including decommissioning the affected system(s).</p>
+<h3 id="boundaries-of-the-affected-system">Boundaries of the Affected System</h3>
+<p>One distinction is whether the system of interest is software per se or a cyber-physical system. One problem is that in every practical case, both are involved. Software is what has vulnerabilities and is what vulnerability management is focused on remediation. Multiple pieces of software run on any given computer system. To consider software vulnerabilities in a useful scope, we follow prior work and propose that a vulnerability affects “the set of software instructions that executes in an environment with a coherent function and set of permissions” <span class="citation" data-cites="spring2015global">(Jonathan M. Spring, Kern, and Summers 2015)</span>. This definition is useful because it lets us keep to common usage and intuition and call the Linux kernel—at least a specific version of it—“one piece” of software. But decision points about safety and mission impact are not about the software per se; they are about the cyber-physical system, of which the software is a part. The term "physical" in "cyber-physical system" should be interpreted broadly; selling stocks or manipulating press outlet content are both best understood as affecting human social institutions. These social institutions do not have much of a corporeal instantiation, but they are physical in the sense that they are not merely software, and so are parts of cyber-physical systems.</p>
+<p>The hard part of delineating the boundaries of the affected system is specifying what it means for one system to be a part of another. Just because a computer is bolted to a wall does not mean the computer is part of the wall’s purpose, which is separating physical space. At the same time, an off-premises DNS server may be part of the site security assurance system if the on-premises security cameras rely on the DNS server to connect to the displays at the guard’s desk. We define computer software as part of a cyber-physical system if the two systems are mutually manipulable; that is, changes in the part (the software) will (at least, often) make detectable and relevant changes to the whole (the cyber-physical system), and changes in the whole will (often) make relevant and detectable changes in the part <span class="citation" data-cites="spring2018generalization">(Jonathan M. Spring and Illari 2018)</span>.</p>
+<p>When reasoning about a vulnerability, we assign the vulnerability to the nearest, relevant—yet more abstract—discrete component. This assignment is particularly important when assessing technical impact on a component. This description bears some clarification, via each of the adjectives:</p>
+<ul>
+<li><p><strong>Nearest</strong> is relative to the abstraction at which the vulnerability exists.</p></li>
+<li><p><strong>Relevant</strong> implies that the impacted component must be in the chain of abstraction moving upward from the location of the flaw.</p></li>
+<li><p><strong>More abstract</strong> means it’s at least one level of abstraction above the specific location of the vulnerability. For example, if the vulnerability is localized to a single line of code in a function, then the function, the module, the library, the application, the product, and the system it belongs to are all "more abstract."</p></li>
+<li><p><strong>Discrete</strong> means there is an identifiable thing that can be remediated (e.g., the unit of patching).</p></li>
+</ul>
+<p>Products, libraries, and applications tend to be appropriate objects of focus when seeking the right level to analyze the impact of a vulnerability. Hence, when reasoning about the technical impact of a vulnerability localized to a function in a module in an open source library, the nearest relevant discrete abstraction is the library because the patches are made available at the library level. Similarly, analysis of a vulnerability in closed source database software that supports an enterprise resource management (ERM) system would consider the technical impact to the database, not to the ERM system.</p>
+<h3 id="relevant-security-policy">Relevant Security Policy</h3>
+<p>Our definition of a vulnerability includes a security policy violation, but it does not clarify whose security policies are relevant <span class="citation" data-cites="householder2020cvd">(Allen D. Householder et al. 2020)</span>. For an organizational PSIRT or CSIRT, the organization's security policy is most relevant. The answer is less clear for coordinators or ISACs. An example scenario that brings the question into focus is phone OS jailbreak methods. The owner of the phone may elect to jailbreak it; there is at least an implicit security policy from the owner that allows this method. However, from the perspective of the explicit phone OS security policy embedded in the access controls and separation of privileges, the jailbreak is exploiting a vulnerability. If a security policy is embedded in technical controls, such as OS access controls on a phone, then anything that violates that security policy is a vulnerability.</p>
+<h3 id="reasoning-steps-forward">Reasoning Steps Forward</h3>
+<p>This aspect of scope is about immediacy, prevalence, and causal importance. Immediacy is about how soon after the decision point adverse effects should occur to be considered relevant. Prevalence is about how common adverse effects should be to be considered relevant. Causal importance is about how much an exploitation of the software in the cyber-physical system contributes to adverse effects to be considered relevant. Our recommendation is to walk a pragmatic middle path on all three aspects. Effects are not relevant if they are merely possible, too infrequent, far distant, or unchanged by the vulnerability. But effects are relevant long before they are absolutely certain, ubiquitous, or occurring presently. Overall, we summarize this aspect of scope as <em>consider credible effects based on known use cases of the software system as a part of cyber-physical systems</em>.</p>
+<h2 id="likely-decision-points-and-relevant-data">Likely Decision Points and Relevant Data</h2>
+<p>We propose the following decision points and associated values should be a factor when making decisions about vulnerability prioritization. Each decision point is tagged with the stakeholder it is relevant to: deployers, suppliers, or both. We emphasize that these descriptions are hypotheses to be further tested and validated. We made every effort to put forward informed and useful decision frameworks with wide applicability, but the goal of this paper is more to solicit feedback than make a declaration. We welcome questions, constructive criticism, refuting evidence, or supporting evidence about any aspect of this proposal.</p>
+<p>One important omission from the values for each category is an “unknown” option. Instead, we recommend explicitly identifying an option that is a reasonable assumption based on prior events. Such an option requires reliable historical evidence for what tends to be the case; of course, future events may require changes to these assumptions over time. Therefore, our assumptions require evidence and are open to debate in light of new evidence. Different risk tolerance or risk discounting postures are not addressed in the current work; accommodating such tolerance or discounting explicitly is an area for future work. This flexibility fits into our overall goal of supplying a decision-making framework that is both transparent and fits the needs of different communities. Resisting an “unknown” option discourages the modeler from silently embedding these assumptions in their choices for how the decision tree flows below the selection of any “unknown” option.</p>
+<p>We propose satisfactory decision points for vulnerability management in the next sections, in no particular order.</p>
+<h3 id="exploitation-supplier-deployer">Exploitation (Supplier, Deployer)</h3>
+<blockquote>
+<p>Evidence of Active Exploitation of a Vulnerability</p>
+</blockquote>
+<p>The intent of this measure is the present state of exploitation of the vulnerability. The intent is not to predict future exploitation but only to acknowledge the current state of affairs. Predictive systems, such as EPSS, could be used to augment this decision or to notify stakeholders of likely changes <span class="citation" data-cites="jacobs2019exploit">(Jacobs et al. 2019)</span>.</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Table 4: Exploitation Decision Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>None</td>
+<td>There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability.</td>
+</tr>
+<tr class="even">
+<td>PoC <br /> (Proof of Concept)</td>
+<td>One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks.</td>
+</tr>
+<tr class="odd">
+<td>Active</td>
+<td>Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="technical-impact-supplier">Technical Impact (Supplier)</h3>
+<blockquote>
+<p>Technical Impact of Exploiting the Vulnerability</p>
+</blockquote>
+<p>When evaluating <em>Technical Impact</em>, recall the scope definition above. Total control is relative to the affected component where the vulnerability resides. If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.</p>
+<p>As mentioned in <a href="#current-state-of-practice">Section 2</a>, the scope of SSVC is just those situations in which there is a vulnerability. The definition of <strong>vulnerability</strong> we go by is based on the determination that some security policy is violated. We consider a security policy violation to be a technical impact -- or at least, a security policy violation must have some technical instantiation. Therefore, if there is a vulnerability then there must be some technical impact.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Table 5: Technical Impact Decision Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Partial</td>
+<td>The exploit gives the adversary <em>limited</em> control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component.</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td>The exploit gives the adversary <em>total</em> control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability</td>
+</tr>
+</tbody>
+</table>
+<h3 id="utility-supplier-deployer">Utility (Supplier, Deployer)</h3>
+<blockquote>
+<p>The Usefulness of the Exploit to the Adversary</p>
+</blockquote>
+<p><a href="#utility"><em>Utility</em></a> estimates an adversary's benefit compared to their effort based on the assumption that they can exploit the vulnerability. <a href="#utility"><em>Utility</em></a> is independent from the state of <a href="#exploitation"><em>Exploitation</em></a>, which measures whether a set of adversaries have ready access exploit code to or are in fact exploiting the vulnerability. In economics terms, <a href="#exploitation"><em>Exploitation</em></a> measures whether the <strong>capital cost</strong> of producing reliable exploit code has been paid or not. <a href="#utility"><em>Utility</em></a> estimates the <strong>marginal cost</strong> of each exploitation event. More plainly, <a href="#utility"><em>Utility</em></a> is about how much an adversary might benefit from a campaign using the vulnerability in question, whereas <a href="#exploitation"><em>Exploitation</em></a> is about how easy it would be to start such a campaign or if one is already underway.</p>
+<p>Heuristically, we base <a href="#utility"><em>Utility</em></a> on a combination of value density of vulnerable components and automatability of potential exploitation. This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component. <a href="#automatability"><em>Automatability</em></a> (<a href="#automatability"><em>slow</em></a> or <a href="#automatability"><em>rapid</em></a>) and <a href="#value-density"><em>Value Density</em></a> (<a href="#value-density"><em>diffuse</em></a> or <a href="#value-density"><em>concentrated</em></a>) are defined in Sections 4.4.3.1 and 4.4.3.2.</p>
+<p>Roughly, <a href="#utility"><em>Utility</em></a> is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define <a href="#utility"><em>Utility</em></a> as laborious, efficient, or super effective, as described in Table 6.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Table 6: Utility Decision Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Laborious</td>
+<td>Slow automatability and diffuse value</td>
+</tr>
+<tr class="even">
+<td>Efficient</td>
+<td>{Rapid automatability and diffuse value} OR {Slow automatability and concentrated value}</td>
+</tr>
+<tr class="odd">
+<td>Super Effective</td>
+<td>Rapid automatability and concentrated value</td>
+</tr>
+</tbody>
+</table>
+<h4 id="automatability">Automatability</h4>
+<p><a href="#automatability"><em>Automatability</em></a> is described as slow or rapid:</p>
+<ul>
+<li><p><a href="#automatability"><em>slow</em></a>: Attackers cannot reliably automate steps 1-4 of the kill chain <span class="citation" data-cites="hutchins2011intelligence">(Hutchins, Cloppert, and Amin 2011)</span> for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (3) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool.</p></li>
+<li><p><a href="#automatability"><em>rapid</em></a>: Attackers can reliably automate steps 1-4 of the of the kill chain. If the vulnerability allows remote code execution or command injection, the default response should be rapid.</p></li>
+</ul>
+<p>Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated. For example, consider a vulnerability A. If the systems vulnerable to A are usually not openly connected to incoming traffic (<a href="#exposure"><em>Exposure</em></a> is <a href="#exposure">small</a> or <a href="#exposure">controlled</a>), reconnaissance probably cannot be automated (as scans should be blocked, etc.). This fact would make automatability <a href="#automatability">slow</a>. However, if another vulnerability B with <a href="#automatiability">rapid</a> automatability can be reliably used to chain to vulnerability A, then that automates reconnaissance of vulnerable systems. In such a situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.</p>
+<h4 id="value-density">Value Density</h4>
+<p><a href="#value-density"><em>Value Density</em></a> is described as diffuse or concentrated:</p>
+<ul>
+<li><p><a href="#value-density"><em>diffuse</em></a>: The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small. Examples of systems with diffuse value are email accounts, most consumer online banking accounts, common cell phones, and most personal computing resources owned and maintained by users. (A “user” is anyone whose professional task is something other than the maintenance of the system or component. As with <a href="#safety-impact"><em>Safety Impact</em></a>, a “system operator” is anyone who is professionally responsible for the proper operation or maintenance of a system.)</p></li>
+<li><p><a href="#value-density"><em>concentrated</em></a>: The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users. Examples of concentrated value are database systems, Kerberos servers, web servers hosting login pages, and cloud service providers. However, usefulness and uniqueness of the resources on the vulnerable system also inform value density. For example, encrypted mobile messaging platforms may have concentrated value, not because each phone’s messaging history has a particularly large amount of data, but because it is uniquely valuable to law enforcement.</p></li>
+</ul>
+<p>The output for the <a href="#utility"><em>Utility</em></a> decision point is visualized in Table 7.</p>
+<p>Table 7: Utility to the Adversary, as a Combination of Automatability and Value Density</p>
+<table>
+<thead>
+<tr class="header">
+<th><em>Automatability</em></th>
+<th><em>Value Density</em></th>
+<th style="text-align: right;"><em>Utility</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>slow</em></td>
+<td><em>diffuse</em></td>
+<td style="text-align: right;">laborious</td>
+</tr>
+<tr class="even">
+<td><em>slow</em></td>
+<td><em>concentrated</em></td>
+<td style="text-align: right;">efficient</td>
+</tr>
+<tr class="odd">
+<td><em>rapid</em></td>
+<td><em>diffuse</em></td>
+<td style="text-align: right;">efficient</td>
+</tr>
+<tr class="even">
+<td><em>rapid</em></td>
+<td><em>concentrated</em></td>
+<td style="text-align: right;">super effective</td>
+</tr>
+</tbody>
+</table>
+<p>Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as <a href="https://zerodium.com/program.html">Zerodium</a>, make such pricing structures public. The valuable exploits track the automatability and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors. However, future work should look for and prevent large mismatches between the outputs of the <a href="#utility"><em>Utility</em></a> decision point and the exploit markets.</p>
+<h3 id="safety-impact-supplier-deployer">Safety Impact (Supplier, Deployer)</h3>
+<blockquote>
+<p>Safety Impacts of Affected System Compromise</p>
+</blockquote>
+<p>We take an expansive view of safety, in which a safety violation is a violation of what the <a href="https://www.cdc.gov/hrqol/wellbeing.htm#three">Centers for Disease Control (CDC)</a> calls <strong>well-being</strong>. Physical well-being violations are common safety violations, but we also include economic, social, emotional, and psychological well-being as important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive. <!--The CDC webpage is better called a lit review. It has 74 citations on well-being across various fields. The following citations could reasonably be cited directly, rather than just referencing the CDC page:
+Frey BS, Stutzer A. Happiness and economics. Princeton, N.J.: Princeton University Press; 2002.
+Andrews FM, Withey SB. Social indicators of well-being. NewYork: Plenum Press; 1976:63–106.
+Diener E. Subjective well being: the science of happiness and a proposal for a national index. American Psychologist 2000;55(1):34–43.
+Ryff CD, Keyes CLM. The structure of psychological well-being revisited. Journal of Personality and Social Psychology 1995;69(4):719–727.
+Diener E, Suh E, Oishi S. Recent findings on subjective well-being. Indian Journal of Clinical Psychology 1997;24:25–41.
+Veenhoven R. Sociological theories of subjective well-being. In: M Eid , RJ Larsen (eds). The science of subjective well-being. New York: Guilford Press; 2008:44–61.
+Csikszentmihalyi M. Flow: The Psychology of Optimal Experience. New York, NY: Harper Perennial; 1991.
+Diener E, Suh EM, Lucas R, Smith H. Subjective well-being: Three decades of progress. Psychological Bulletin 1999;125:276–302.
+Larsen RJ, Eid M. Ed Diener and The Science of Subjective Well-Being. In: RJ Larsen and M Eid, (Eds.) The Science of Subjective Well-Being. New York: Guildford Press, 2008:1–12.
+Kahneman D, Krueger AB, Schkade DA, Schwarz N, Stone AA. A survey method for characterizing daily life: the day reconstruction method. Science 2004;306:1776–1780.
+Eid M. Measuring the Immeasurable: Psychometric modeling of subjective well-being data. In: Eid M, Larsen RJ (eds.) The science of subjective well-being. New York: Guilford Press; 2008:141–167.
+Dupuy HJ (1978). Self-representations of general psychological well-being of American adults. Paper presented at the American Public Health Association Meeting, Los Angeles, October, 1978.
+Fazio, A.F. (1977). A concurrent validational study of the NCHS General Well-Being Schedule. Hyattsville, MD: U.S. Department of Health, Education and Welfare, national Center for Health Statistics, 1977. Vital and Health Statistics Series 2, No. 73. DHEW Publication No. (HRA) 78-1347.
+Kaplan RM, Anderson JP. The quality of well-being scale: Rationale for a single quality of life index. In: SR Walker, R Rosser (Eds.) Quality of Life: Assessment and Application. London: MTP Press; 1988:51–77.
+Keyes CLM. The mental health continuum: from languishing to flourishing in life. J Health Soc Res 2002;43(6):207-222.
+ --></p>
+<p>The stakeholder should consider the safety impact on the operators (heuristically, by “system operator” we mean those who are professionally responsible for the proper operation of the cyber-physical system, as the term is used in the safety analysis literature) and users of the software they provide. If software is repackaged and resold by a stakeholder to further downstream entities who will then sell a product, the initial stakeholder can only reasonably consider so many links in that supply chain. But a stakeholder should know its immediate consumers one step away in the supply chain. Those consumers may repackage or build on the software and then provide that product further on.</p>
+<p>We expect that a stakeholder should be aware of common usage of their software about two steps in the supply chain away. This expectation holds in both open source and proprietary contexts. Further steps along the supply chain are probably not reasonable for the stakeholder to consider consistently; however, this is not license to willfully ignore common downstream uses of the stakeholder’s software. If the stakeholder is contractually or legally responsible for safe operation of the software or cyber-physical system of which it is part, that also supersedes our rough supply-chain depth considerations. For software used in a wide variety of sectors and deployments, the stakeholder may need to estimate an aggregate safety impact. Aggregation suggests that the stakeholder’s response to this decision point cannot be less than the most severe credible safety impact, but we leave the specific aggregation method or function as a domain-specific extension for future work.</p>
+<h4 id="advice-for-gathering-information-to-answer-the-safety-impact-question">Advice for Gathering Information to Answer the Safety Impact Question</h4>
+<p>The factors that influence the safety impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding safety impact should include gathering information about survivability of the vulnerable component, determining available operator actions to compensate for the vulnerable component, understanding relevant insurance, and determining the viability of existing backup measures. Each of these information items depends heavily on domain-specific knowledge, and so it is out of the scope of this paper to give a general-purpose strategy for how they should be included. For example, viable manual backup mechanisms are likely important in assessing the safety impact of an industrial control system in a sewage plant, but in banking the insurance structures that prevent bankruptcies are more important.</p>
+<p>The safety impact categories in Table 8 are based on hazard categories for aircraft software <span class="citation" data-cites="DO-178C faa2000safety">(RTCA, Inc. 2012; FAA 2000, Section 3.3.2)</span>.</p>
+<p>Table 8: Safety Impact Decision Values</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Safety Impact</strong></th>
+<th><strong>Type of Harm</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>None</td>
+<td>All</td>
+<td>Does not mean <em>no impact</em> literally; it just means that the effect is below the threshold for all aspects described in Minor</td>
+</tr>
+<tr class="even">
+<td>Minor<br />
+(Any one or more of these conditions hold.)</td>
+<td>Physical harm</td>
+<td>Physical discomfort for users (not operators) of the system</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Operator<br />
+resiliency</td>
+<td>Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>System<br />
+resiliency</td>
+<td>Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Environment</td>
+<td>Minor externalities (property damage, environmental damage, etc.) imposed on other parties</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Financial</td>
+<td>Financial losses, which are not readily absorbable, to multiple persons</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Psychological</td>
+<td>Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons</td>
+</tr>
+<tr class="even">
+<td>Major<br />
+(Any one or more of these conditions hold.)</td>
+<td>Physical harm</td>
+<td>Physical distress and injuries for users (not operators) of the system</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Operator<br />
+resiliency</td>
+<td>Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>System<br />
+resiliency</td>
+<td>System safety margin effectively eliminated but no actual harm; OR failure of system functional capabilities that support safe operation</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Environment</td>
+<td>Major externalities (property damage, environmental damage, etc.) imposed on other parties</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Financial</td>
+<td>Financial losses that likely lead to bankruptcy of multiple persons</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Psychological</td>
+<td>Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people</td>
+</tr>
+<tr class="even">
+<td>Hazardous<br />
+(Any one or more of these conditions hold.)</td>
+<td>Physical harm</td>
+<td>Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Operator<br />
+resiliency</td>
+<td>Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>System<br />
+resiliency</td>
+<td>Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Environment</td>
+<td>Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Financial</td>
+<td>Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Psychological</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>Catastrophic (Any one or more of these conditions hold.)</td>
+<td>Physical harm</td>
+<td>Multiple immediate fatalities (Emergency response probably cannot save the victims.)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Operator<br />
+resiliency</td>
+<td>Operator incapacitated (includes fatality or otherwise incapacitated)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>System resiliency</td>
+<td>Total loss of whole cyber-physical system, of which the software is a part</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Environment</td>
+<td>Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Financial</td>
+<td>Social systems (elections, financial grid, etc.) supported by the software collapse</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Psychological</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="public-safety-impact-supplier">Public Safety Impact (Supplier)</h4>
+<p>Suppliers necessarily have a rather coarse-grained perspective on the broadly defined safety impacts described above. Therefore we simplify the above into a binary categorization: <em>Significant</em> is when any impact meets the criteria for an impact of Major, Hazardous, or Catastrophic in the above table. <em>Minimal</em> is when none do.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Table X: Public Safety Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Minimal</td>
+<td>Safety Impact of None or Minor</td>
+</tr>
+<tr class="even">
+<td>Significant</td>
+<td>Safety Impact of Major, Hazardous, or Catastrophic</td>
+</tr>
+</tbody>
+</table>
+<h4 id="situated-safety-impact-deployer">Situated Safety Impact (Deployer)</h4>
+<p>Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in Table 8. However, in order to simplify implementation for deployers we intend to combine this with Mission Impact below, so we defer the topic for now.</p>
+<h3 id="mission-impact-deployer">Mission Impact (Deployer)</h3>
+<blockquote>
+<p>Impact on Mission Essential Functions of the Organization</p>
+</blockquote>
+<p>A <strong>mission essential function (MEF)</strong> is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” <span class="citation" data-cites="FCD2_2017">(Fenton 2017, A–1)</span>. Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a[n MEF] during a disruption to normal operations” <span class="citation" data-cites="FCD2_2017">(Fenton 2017, B–2)</span>. The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Table 10: Mission Impact Decision Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>None / Non-Essential Degraded</td>
+<td>Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions</td>
+</tr>
+<tr class="even">
+<td>MEF Support Crippled</td>
+<td>Activities that directly support essential functions are crippled; essential functions continue for a time</td>
+</tr>
+<tr class="odd">
+<td>MEF Failure</td>
+<td>Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time</td>
+</tr>
+<tr class="even">
+<td>Mission Failure</td>
+<td>Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails</td>
+</tr>
+</tbody>
+</table>
+<h4 id="advice-for-gathering-information-to-answer-the-mission-impact-question">Advice for Gathering Information to Answer the Mission Impact Question</h4>
+<p>The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 <span class="citation" data-cites="FCD2_2017">(Fenton 2017)</span> or OCTAVE FORTE <span class="citation" data-cites="tucker2018octave">(Tucker 2018)</span>. This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.</p>
+<p>As a heuristic, we suggest using the question described in Section 4.4.3, <em>Utility</em>, to constrain <em>Mission Impact</em>. If <em>Utility</em> is <strong>super effective</strong>, then <em>Mission Impact</em> is at least <strong>MEF support crippled</strong>. If <em>Utility</em> is <strong>efficient</strong>, then <em>Mission Impact</em> is at least <strong>non-essential degraded</strong>.</p>
+<h3 id="situated-safety--mission-impact-deployer">Situated Safety / Mission Impact (Deployer)</h3>
+<p>In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows. We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale. Therefore we combine the three lesser mission impacts of none, non-essential degraded, and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme. This gives us 3 levels of mission impact to work with.</p>
+<p>On the other hand, most organizations' tolerance for variance in safety tends to be be lower, meaning that even small deviations in safety are unlikely to go unnoticed or unaddressed. We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior. Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension. We then combine Mission Impact with Situated Safety impact and map these onto a 4-tiered scale (Low, Medium, High, Very High). The mapping is shown in Table X.</p>
+<table>
+<thead>
+<tr class="header">
+<th colspan=5><strong>Table X: Combining Mission Impact and Situated Safety Impact into one result.</strong></th>
+</tr>
+</thead>
+  <tr>
+  <td> </td>
+  <td> </td>
+  <td colspan=3 style="text-align:center"> <b>Mission Impact</b> </td>
+  </tr>
+  <tr>
+  <td> </td>
+  <td> </td>
+  <td> <em> None/ Degraded/ Crippled </td>
+  <td> <em> MEF Failure</td>
+  <td> <em> Mission Failure</td>
+  </tr>
+  <tr>
+  <td rowspan=4> <b>Situated Safety Impact </b></td>
+  <td> <em> None/Minor</td>
+  <td> Low </td>
+  <td> Medium </td>
+  <td> Very High </td>
+  </tr>
+  <tr>
+  <td> <em> Major</td>
+  <td> Medium </td>
+  <td> High </td>
+  <td> Very High </td>
+  </tr>
+  <tr>
+  <td> <em> Hazardous</td>
+  <td> High </td>
+  <td> High </td>
+  <td> Very High </td>
+  </tr>
+  <tr>
+  <td> <em> Catastrophic</td>
+  <td> Very High </td>
+  <td> Very High </td>
+  <td> Very High </td>
+  </tr>
+</table>
+<!--
+|  |Table X: Situated Safety / Mission Impact Decision Values ||||
+|----|------------|--|--|--|
+| Mission Impact  | None/Degraded/Crippled    | MEF Failure | Mission Failure |
+| Safety Impact |
+| None/Minor      | Low                       | Medium      | Very High |
+| Major           | Medium                    | High        | Very High |
+| Hazardous       | High                      | High        | Very High |
+| Catastrophic    | Very High                 | Very High   | Very High |
+-->
+<h4 id="adapting-situated-safety--mission-impact-for-sector-specific-scenarios">Adapting Situated Safety / Mission Impact for Sector-Specific Scenarios</h4>
+<p>We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software. Therefore, vulnerability information providers -- that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns. For considerations on how organizations might communicate SSVC information to their constituents, see [#pilot-results]. <!-- The xref to where information communication is discussed will need to be updated later, but this is the correct v1 xref--> <!-- Are vul threat intel feed providers ISAOs? If not, they are also in the "vul info providers" being referred to here --></p>
+<h3 id="system-exposure-deployer">System Exposure (Deployer)</h3>
+<blockquote>
+<p>The Accessible Attack Surface of the Affected System or Service</p>
+</blockquote>
+<p>Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access. Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed. For example, the exposure of a device on a vehicle's CAN bus will vary depending on the presence of a cellular telemetry device on the same bus.</p>
+<p>If a vulnerability cannot be remediated, other mitigations may be used. Usually, the effect of these mitigations is to reduce exposure of the vulnerable component. Therefore, a deployer’s response to Exposure may change if such mitigations are put in place. If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success. Whether that mitigation allows the deployer to defer further action varies according to each case.</p>
+<table>
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 98%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Table 9: Exposure Decision Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Small</td>
+<td>Local service or program; highly controlled network</td>
+</tr>
+<tr class="even">
+<td>Controlled</td>
+<td>Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. <em>Controlled</em> covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then <em>exposure</em> should be <em>small</em>.</td>
+</tr>
+<tr class="odd">
+<td>Open</td>
+<td>Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relationship-to-asset-management">Relationship to asset management</h2>
+<p>Our method is for prioritizing vulnerabilities based on the risk stemming from exploitation. There are other reasonable asset management considerations that may influence remediation timelines. There are at least three aspects of asset management that may be important but are out of scope for SSVC. First and most obvious is the transaction cost of conducting the mitigation or remediation. System administrators are paid to develop or apply any remediations or mitigations, and there may be other transactional costs such as downtime for updates. Second is the risk of the remediation or mitigation introducing a new error or vulnerability. Regression testing is part of managing this type of risk. Finally, there may be an operational cost of applying a remediation or mitigation, representing an ongoing change of functionality or increased overhead. A decision maker could order work within one SSVC priority class (scheduled, out-of-cycle, etc.) based on these asset management considerations, for example. Once the organization remediates or mitigates all the high-priority vulnerabilities, they can then focus on the medium-level vulnerabilities with the same effort spent on the high-priority ones.</p>
+<p>Asset management and risk management also drive some of the up-front work an organization would need to do to gather some of the necessary information. This situation is not new; an asset owner cannot prioritize which fixes to deploy to its assets if it does not know what assets it owns and their locations. The organization can pick its choice of tools for these things; there are about 200 asset management tools on the market <span class="citation" data-cites="captera">(Captera 2019)</span>. Standards like the Software Bill of Materials (SBOM) <span class="citation" data-cites="manion2019sbom">(Jump and Manion 2019)</span> would likely reduce the burden on asset management, but these are still maturing. If an organization does not have an asset management or risk management (see Section 4.4.6.1) plan and process in place, then it will have a non-trivial amount of work to do to establish these processes before it can take full advantage of SSVC.</p>
+<h2 id="supplier-tree">Supplier Tree</h2>
+<p>Figure 1 shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:</p>
+<ul>
+<li>Defer = gray with green outline</li>
+<li>Scheduled = yellow</li>
+<li>Out-of-Cycle = orange</li>
+<li>Immediate = red with black outline</li>
+</ul>
+<p><img src="version_1/gfx/vul-management_v1-6-page2.png" alt="Figure 1: Suggested supplier tree" style="width: 90%;" /></p>
+<p>Figure 1: Proposed Vulnerability Prioritization Decision Tree for Patch Supplier</p>
+<h2 id="deployer-tree">Deployer Tree</h2>
+<p>The proposed deployer tree is depicted in Figure 3, Figure 4, and Figure 5. The state of <em>Exploitation</em> is the first decision point, but in an effort to make the tree legible, we split the tree into three sub-trees over three pages. We suggest making the decision about <em>Exploitation</em> as usual, and then going to the correct subtree.</p>
+<p><img src="version_1/gfx/vul-management_v1-6-page3.png" alt="Figure 2" style="width: 90%;" /></p>
+<p>Figure 2: Proposed Vulnerability Prioritization Decision Tree for Patch Deployers (Continued in Figure 3 and Figure 4)</p>
+<p><img src="version_1/gfx/vul-management_v1-6-page4.png" alt="Figure 3" style="width: 90%;" /></p>
+<p>Figure 3: Proposed Vulnerability Prioritization Decision Tree for Patch Deployers (Continued from Figure 2 and in Figure 4).</p>
+<p><img src="version_1/gfx/vul-management_v1-6-page5.png" alt="Figure 4" style="width: 90%;" /></p>
+<p>Figure 4: Proposed Vulnerability Prioritization Decision Tree for Patch Deployers (Continued from Figure 2 and Figure 3)</p>
+<h2 id="tree-construction-and-customization-guidance">Tree Construction and Customization Guidance</h2>
+<p>Stakeholders are encouraged to customize the SSVC decision process to their needs. Indeed, the first part of SSVC stands for "stakeholder-specific." However, certain parts of SSVC are more amenable to customization than others. In this section, we'll cover what a stakeholder should leave static, what we imagine customization looks like, and some advice on building a usable and manageable decision tree based on our experience so far.</p>
+<p>We suggest that the decision points, their definitions, and the decision values should not be customized. Different vulnerability management teams inevitably think of topics such as <a href="#utility"><em>Utility</em></a> to the adversary in slightly different ways. However, a key contribution of SSVC is enabling different teams to communicate about their decision process. In order to clearly communicate differences in the process, the decision points that factor into the process need to be the same between different teams. A stakeholder community may come together and, if there is broad consensus, add or change decision points.</p>
+<p>Which decision points are involved in a vulnerability management team's decision and the priority label for each resulting situation are, for all intents and purposes, totally at the discretion of the team. We have provided some examples for different stakeholder communities here. What decision points a team considers reflects what it cares about and the risks prioritizes. Different teams may legitimately prioritize different objectives. It should be easier for teams to discuss and communicate such differences if the definitions of the decision points remain static. The other aspect of risk management that SSVC allows a team to customize is its risk appetite or risk tolerance.</p>
+<p>A team's risk appetite is reflected directly by the priority labels for each combination of decision values. For example, a vulnerability with <a href="#public-safety-impact">no or minor</a> <a href="#public-safety-impact"><em>Public Safety Impact</em></a>, <a href="#technical-impact">total</a> <a href="#technical-impact"><em>Technical Impact</em></a>, and <a href="#utility">efficient</a> <a href="#utility"><em>Utility</em></a> might be handled with <a href="#supplier-decisions"><em>scheduled</em></a> priority by one team and <a href="#supplier-decisions"><em>out-of-cycle</em></a> priority by another. As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk. SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.</p>
+<p>When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values. For examples, see <a href="https://github.com/CERTCC/SSVC/tree/main/data">SSVC/data</a>. An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.</p>
+<p>Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree. Making the decision process accessible has a lot of benefits. Unfortunately, it also makes it a bit too easy to overcomplicate the decision.</p>
+<p>The SSVC version 1 ~applier~ deployer tree had 225 rows when we wrote it out in long text form. It only has four outcomes to differentiate between. Thus on average that decision process treats one situation (combination of decision values) as equivalent to 65 other situations. If nothing else, this means analysts are spending time gathering evidence to make fine distinctions that are not used in the final decision. The added details also make it harder for the decision process to accurately manage the risks in question. This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.</p>
+<p>While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering. Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.</p>
+<h2 id="evidence-gathering-guidance">Evidence Gathering Guidance</h2>
+<p>To answer each of these decision points, a supplier or deployer should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.</p>
+<p>For example, whether exploitation modules are available in ExploitDB, Metasploit, or other sources is straightforward. We hypothesize that searching Github and Pastebin for exploit code should be automatable. A supplier or deployer could then define <em>Exploitation</em> <strong>PoC available</strong> to be positive search results for a set of inputs derived from the CVE entry in at least one of these venues. At least, for those vulnerabilities that are not “automatically” PoC-ready, such as on-path attackers for TLS or network replays.</p>
+<p>Some of the decision points require some substantial upfront analysis effort to gather risk assessment or organizational data. However, once gathered, this information can be efficiently reused across many vulnerabilities and only refreshed occasionally. An obvious example of this is the mission impact decision point. To answer this, a deployer must analyze their essential functions, how they interrelate, and how they are supported. Exposure is similar; answering that decision point requires an asset inventory, adequate understanding of the network topology, and a view of the enforced security controls. Independently operated scans, such as Shodan or Shadowserver, may play a role in evaluating exposure, but the entire exposure question cannot be reduced to a binary question of whether an organization’s assets appear in such databases. Once the deployer has the situational awareness to understand MEFs or exposure, selecting the answer for each individual vulnerability is usually straightforward.</p>
+<p>Stakeholders who use the prioritization method should consider releasing the priority with which they handled the vulnerability. This disclosure has various benefits. For example, if the supplier publishes a priority ranking, then deployers could consider that in their decision-making process. One reasonable way to include it is to break ties for the deployer. If a deployer has three “scheduled” vulnerabilities to remediate, they may address them in any order. If two vulnerabilities were produced by the supplier as “scheduled” patches, and one was “out-of-cycle,” then the deployer may want to use that information to favor the latter.</p>
+<p>In the case where no information is available or the organization has not yet matured its initial situational analysis, we can suggest something like defaults for some decision points. If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that means they do not know where the devices are or how they are controlled, so they should assume <em>Exposure</em> is <strong>open</strong>. If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a <strong>major</strong> <em>Safety Impact</em>. This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision maker provide evidence that no one’s well-being will suffer. The reach of software exploits is no longer limited to a research network. Similarly, with <em>Mission Impact</em>, the deployer should assume that the software is in use at the organization for a reason, and that it supports essential functions unless they have evidence otherwise. With a total lack of information, assume **</p>
+<p>support crippled** as a default. <em>Exploitation</em> needs no special default; if adequate searches are made for exploit code and none is found, the answer is <strong>none</strong>. The decision set {<strong>none</strong>, <strong>open</strong>, <strong>MEF crippled</strong>, <strong>major</strong>} results in a scheduled patch application.</p>
+<h2 id="guidance-on-communicating-results">Guidance on Communicating Results</h2>
+<p>There are many aspects of SSVC that two parties might want to communicate. Not every stakeholder will use the decision points to make comparable decisions. Suppliers and deployers make interdependent decisions, but the actions of one group are not strictly dependent on the other. Recall that one reason for this is that SSVC is about prioritizing a vulnerability response action in general, not specifically applying a patch that a supplier produced. Coordinators are particularly interested in facilitating communication because that is their core function. This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.</p>
+<p>This section is about communicating SSVC information about a specific vulnerability. A supplier making a decision on allocating effort or a deployer should have a decision tree and it's decision points and possible values specified already. <a href="#representation-choices">Representation choices</a> discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in <a href="https://github.com/CERTCC/SSVC/tree/main/data">SSVC/data</a>. A supplier communicating with constituents or a coordinator may communicate partial information about a specific vulnerability to help other stakeholders.</p>
+<p>We recommend two structured communication formats, abbreviated and full. The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone. The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.</p>
+<p>SSVC abbreviated form borrows directly from the CVSS "vector string" notation.<br />
+The basic format for SSVC is:</p>
+<pre><code>(version)/(decision point):(value)[/decision point:value[/decision point:value[...]]][/time]/</code></pre>
+<p>Where <code>version</code> is <code>SSVCv2</code>, updated with more options in the future as needed. The term <code>decision point</code> is one or two letters derived from the name of the decision point as follows:</p>
+<ul>
+<li>Start with the decision point name as given in <a href="#likely-decision-points-and-relevant-data">Likely Decision Points and Relevant Data</a>.</li>
+<li>Remove any text in parentheses (and the parentheses themselves).</li>
+<li>Remove the word "Impact" if it's part of the name.</li>
+<li>Create an initialism from remaining title-case words (ignore "of," etc.), taking only the first two words.</li>
+<li>The first letter of the initialism is upper case; if there is a second letter, then it is lower case.</li>
+</ul>
+<p>For example, <a href="#technical-impact"><em>Technical Impact</em></a> becomes <code>T</code> and <a href="#public-safety-impact"><em>Public Safety Impact</em></a> becomes <code>Ps</code>.</p>
+<p>The term <code>value</code> is a statement of the value or possible values of the decision point that precedes it and to which it is connected by a <code>:</code>. Similar to <code>decision point</code>, <code>value</code> should be made up of one or two letters derived from the name of the decision value in the section for its associated decision point. For example <a href="#mission-impact">MEF support crippled</a> becomes <code>Ms</code> and <a href="#utility">efficient</a> becomes <code>E</code>. Labels on values do not need to be globally unique, just unique to the associated decision point.</p>
+<p>The character <code>/</code> separates decision-point:value pairs. As many pairs should be provided in the abbreviated form as are required to communicate the desired information about the vulnerability or work item. The ordering of the pairs should be sorted alphabetically from A to Z by the ASCII characters representing the decision points. A trailing <code>/</code> is used to close the string.</p>
+<p>The optional parameter <code>time</code> is the time in seconds since the UNIX epoch that the SSVC information was collected or last checked for freshness and accuracy.</p>
+<p>Based on this, an example string could be:</p>
+<pre><code>SSVCv2/Ps:Nm/T:T/U:E/1605040000/</code></pre>
+<p>For a vulnerability with <a href="#public-safety-impact">no or minor</a> <a href="#public-safety-impact"><em>Public Safety Impact</em></a>, <a href="#technical-impact">total</a> <a href="#technical-impact"><em>Technical Impact</em></a>, and <a href="#utility">efficient</a> <a href="#utility"><em>Utility</em></a>, which was evaluated on Nov 10, 2020.</p>
+<pre><code>- TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.</code></pre>
+<p>What an analyst knows about a vulnerability may not be complete. However, the vulnerability management community may still benefit from partial information. Particularly, suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know. A second benefit to providing methods for communicating partial information is the reduction of bottlenecks or barriers to information exchange. A timely partial warning is better than a complete warning that is too late.</p>
+<p>The basic guidance is that the analyst should communicate all of the vulnerability's possible states, to the best of the analyst's knowledge. If the analyst knows nothing, all states are possible. For example, <a href="#utility"><em>Utility</em></a> may be <a href="#utility">laborious</a>, <a href="#utility">efficient</a>, or <a href="#utility">super effective</a>. In abbreviated form, write this as <code>U:LESe</code>. Since a capital letter always indicates a new value, this is unambiguous.</p>
+<p>The reason a stakeholder might publish something like <code>U:LESe</code> is that it expresses that the analyst thought about <a href="#utility"><em>Utility</em></a> but does not have anything to communicate. A stakeholder might have information to communicate about some decision points but not others. If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special "I don't know" marker.</p>
+<p>The merit in this "list all values" approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C. For example, say the analyst knows that <a href="#value-density"><em>Value Density</em></a> is <a href="#value-density">diffuse</a> but does not know the value for <a href="#automatability">*Automatability</a>. Then the analyst can usefully restrict <a href="#utility"><em>Utility</em></a> to one of <a href="#utility">laborious</a> or <a href="#utility">efficient</a>. In abbreviated form, write this as <code>U:LE</code>. As discussed below, information can change over time. Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.</p>
+<pre><code>- TODO fix #29 here (changing information)</code></pre>
+<h2 id="development-methodology">Development Methodology</h2>
+<p>For this tabletop refinement, we could not select a mathematically representative set of CVEs. The goal was to select a handful of CVEs that would cover diverse types of vulnerabilities. The CVEs that we used for our tabletop exercises are CVE-2017-8083, CVE-2019-2712, CVE-2014-5570, and CVE-2017-5753. We discussed each one from the perspective of supplier and deployer. We evaluated CVE-2017-8083 twice because our understanding and descriptions had changed materially after the first three CVEs (six evaluation exercises). After we were satisfied that the decision trees were clearly defined and captured our intentions, we began the formal evaluation of the draft trees, which we describe in the next section.</p>
+<h1 id="evaluation-of-the-draft-trees">Evaluation of the Draft Trees</h1>
+<p>We conducted a pilot test on the adequacy of the hypothesized decision trees. The method of the pilot test is described in Section 5.1. The study resulted in several changes to the hypothesized trees; we capture those changes and the reason for each of them in Section 5.2. The trees in Sections 4.6 and 4.7 include the improvements reported in Section 5.3.</p>
+<h2 id="pilot-methodology">Pilot Methodology</h2>
+<p>The pilot study tested inter-rater agreement of decisions reached. Each author played the role of an analyst in both stakeholder groups (supplying and deploying) for nine vulnerabilities. We selected these nine vulnerabilities based on expert analysis, with the goal that the nine cases cover a useful series of vulnerabilities of interest. Specifically, we selected three vulnerabilities to represent safety-critical cases, three to represent regulated-systems cases, and three to represent general computing cases.</p>
+<p>During the pilot, we did not form guidance on how to assess the values of the decision points. However, we did standardize the set of evidence that was taken to be true for the point in time representing the evaluation. Given this static information sheet, we did not synchronize an evaluation process for how to decide whether <em>Exploitation</em>, for example, should take the value of <strong>none</strong>, <strong>PoC</strong>, or <strong>active</strong>. We agreed on the descriptions of the decision points and the descriptions of their values in (a prior version of) Section 4.4. The goal of the pilot was to test the adequacy of those descriptions by evaluating whether the analysts agreed. We improved the decision point descriptions based on the results of the pilot; our changes are documented in Section 5.3.</p>
+<p>In the design of the pilot, we held constant the information available about the vulnerability. This strategy restricted the analyst to decisions based on the framework given that information. That is, it controlled for differences in information search procedure among the analysts. The information search procedure should be controlled because this pilot was about the framework content, not how people answer questions based on that content. After the framework is more stable, a separate study should be devised that shows how analysts should answer the questions in the framework. The basis for the assessment that information search will be an important aspect in using the evaluation framework is based on our experience while developing the framework. During informal testing, often disagreements about a result involved a disagreement about what the scenario actually was; different information search methods and prior experiences led to different understandings of the scenario. This pilot methodology holds the information and scenario constant to test agreement about the descriptions themselves. This strategy makes constructing a prioritization system more tractable by separating problems in how people search for information from problems in how people make decisions. This paper focuses only on the structure of decision making. Advice about how to search for information about a vulnerability is a separate project that will be part of future work. In some domains, namely exploit availability, we have started that work in parallel.</p>
+<p>The structure of the pilot test is as follows. Table 11 provides an example of the information provided to each analyst. The supplier portfolio details use <del>strikeout font</del> because this decision item was removed after the pilot. The decision procedure for each case is as follows: for each analyst, for each vulnerability, for each stakeholder group, do the following.</p>
+<ol>
+<li><p>Start at the root note of the relevant decision tree (deployer or supplier).</p></li>
+<li><p>Document the decision branch that matches the vulnerability for this stakeholder context.</p></li>
+<li><p>Document the evidence that supports that decision.</p></li>
+<li><p>Repeat this decision-and-evidence process until the analyst reaches a leaf node in the tree.</p></li>
+</ol>
+<p>Table 11: Example of Scenario Information Provided to Analysts (Using CVE-2019-9042 as the Example)</p>
+<table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 94%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Information Item</th>
+<th>Description Provided to Analysts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Use of Cyber-Physical System</td>
+<td>Sitemagic’s content management system (CMS) seems to be fairly popular among smaller businesses because it starts out with a free plan to use it. Then it gradually has small increments in payment for additional features. It’s ease-of-use, good designs, and one-stop-shopping for businesses attracts a fair number of clients. Like any CMS, it “manages the creation and modification of digital content. These systems typically support multiple users in a collaborative environment, allowing document management with different styles of governance and workflows. Usually the content is a website” (<a href="https://en.wikipedia.org/w/index.php?title=Content_management_system&amp;oldid=913022120">Wikipedia</a>, 2019)</td>
+</tr>
+<tr class="even">
+<td>State of Exploitation</td>
+<td>Appears to be active exploitation of this vulnerability according to NVD. They have linked to the exploit: <u><a href="http://www.iwantacve.cn/index.php/archives/116/" class="uri">http://www.iwantacve.cn/index.php/archives/116/</a></u>.</td>
+</tr>
+<tr class="odd">
+<td><del>Developer Portfolio Details</del></td>
+<td><del>Sitemagic is an open-source project. The only thing the brand name applies to is the CMS, and it does not appear to be part of another open-source umbrella. The project is under active maintenance (i.e., it's not a dead project).</del></td>
+</tr>
+<tr class="even">
+<td>Technical Impact of Exploit</td>
+<td>An authenticated user can upload a .php file to execute arbitrary code with system privileges.</td>
+</tr>
+<tr class="odd">
+<td>Scenario Blurb</td>
+<td>We are a small business that uses Sitemagic to help run business. Sitemagic handles everything from digital marketing and site design to facilitating the e-commerce transactions of the website. We rely on this website heavily, even though we do have a brick-and-mortar store. Many times, products are not available in-store, but are available online, so we point many customers to our online store.</td>
+</tr>
+<tr class="even">
+<td>Deployer Mission</td>
+<td>We are a private company that must turn a profit to remain competitive. We have a desire to provide customers with a valuable product at a reasonable price, while still turning a profit to run the business. As we are privately held (and not public), we are free to choose the best growth strategy (we do not legally bound to demonstrate quarterly earnings for shareholders, we can take a longer-term view if it makes us competitive).</td>
+</tr>
+<tr class="odd">
+<td>Deployment of Affected System</td>
+<td>We have deployed this system in such that only the web designer Cheryl and the IT admin Sally are allowed to access the CMS as users. They login through a password-protected portal that can be accessed anywhere in the world for remote administration. The CMS publishes content to the web, and that web server and site are publicly available.</td>
+</tr>
+</tbody>
+</table>
+<p>This test structure produced a series of lists similar in form to the contents of Table 12. Analysts also noted how much time they spent on each vulnerability in each stakeholder group.</p>
+<p>Table 12: Example Documentation of a Single Decision Point</p>
+<table>
+<thead>
+<tr class="header">
+<th>Decision Point</th>
+<th>Branch Selected</th>
+<th>Supporting Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deployer tree;<br />
+exploitation=active</td>
+<td>Controlled</td>
+<td>The CMS has a limited number of authorized users, and the vulnerability is exploitable only by an authenticated user.</td>
+</tr>
+</tbody>
+</table>
+<p>We evaluated inter-rater agreement in two stages. In the first stage, each analyst independently documented their decisions. This stage produced 18 sets of decisions (nine vulnerabilities across each of two stakeholder groups) per analyst. In the second stage, we met to discuss decision points where at least one analyst differed from the others. If any analyst changed their decision, they appended the information and evidence they gained during this meeting in the “supporting evidence” value in their documentation. No changes to decisions were forced, and prior decisions were not erased, just amended. After the second stage, we calculated some statistical measures of inter-rater agreement to help guide the analysis of problem areas.</p>
+<p>To assess agreement, we calculate Fleiss’ kappa, both for the value in the leaf node reached for each case and every decision in a case <span class="citation" data-cites="fleiss1973equivalence">(Fleiss and Cohen 1973)</span>. Evaluating individual decisions is complicated slightly because the different paths through the tree mean that a different number of analysts may have evaluated certain items, and Fleiss’ kappa requires a static number of raters. “Leaf node reached” is described to pick out the specific path through the tree the analyst selected and to treat that as a label holistically. Measuring agreement based on the path has the drawback that ostensibly similar paths, which agree on 3 of 4 decisions for example, are treated as no more similar than paths that agree on 0 of 4 decisions. So the two measures of agreement (per decision and per path) are complementary, and we report both.</p>
+<h3 id="pilot-participant-details">Pilot participant details</h3>
+<p>The pilot participants are the five authors plus one analyst who had not seen the draft system before participating. Five of the six participants had spent at least one year as professional vulnerability analysts prior to the pilot (Spring was the exception). Three of the participants had at least ten years of experience each. The participants experience is primarily as coordinators at the CERT® Coordination Center. On the one hand, this is a different perspective than either suppliers or deployers; on the other, the coordinator role is an information broker that often interacts with these perspectives <span class="citation" data-cites="householder2020cvd">(Allen D. Householder et al. 2020, sec. 3)</span>.</p>
+<p>These participant demographics limit the generalizability of the results of the pilot. Even though the results cannot be systematically generalized to other analysts, there are at least three benefits to conducting the pilot among this limited demographic. First, it should surface any material tacit disagreements about term usage among the authors. Tacit agreements that are not explained in the text likely survive the pilot study without being acknowledged, but places where the authors tacitly disagreed should be surfaced. We found this to be the case; Section 5.3 documents these results. Second, the pilot provides a case study that demonstrate SSVC is at least possible for some small group of analysts to use. This achievement is not large, but it is a first step. Thirdly, the pilot provides a proof of concept method and metric that any vulnerability prioritization method could use to examine usability for analysts more generally. While the effect of education on vulnerability assessment with CVSS has been tested <span class="citation" data-cites="allodi2018effect">(Allodi et al. 2018)</span>, we are not aware of any current vulnerability prioritization method that tests usability or agreement among analysts as part of the development process. Future work on SSVC as well as further development of other prioritization methods can benefit from using the method described in the pilot. Future instances should use more representative participant demographics.</p>
+<h3 id="vulnerabilities-used-as-examples">Vulnerabilities used as examples</h3>
+<p>The vulnerabilities used as case studies are as follows. All quotes are from the <a href="https://nvd.nist.gov/">National Vulnerability Database (NVD)</a> and are illustrative of the vulnerability; however, during the study each vulnerability was evaluated according to information analogous to that in Table 11.</p>
+<h3 id="safety-critical-cases">Safety-Critical Cases</h3>
+<ul>
+<li><p>CVE-2015-5374: “Vulnerability … in [Siemens] Firmware variant PROFINET IO for EN100 Ethernet module… Specially crafted packets sent to port 50000/UDP could cause a denial-of-service of the affected device…”</p></li>
+<li><p>CVE-2014-0751: “Directory traversal vulnerability in … GE Intelligent Platforms Proficy HMI/SCADA - CIMPLICITY before 8.2 SIM 24, and Proficy Process Systems with CIMPLICITY, allows remote attackers to execute arbitrary code via a crafted message to TCP port 10212, aka ZDI-CAN-1623.”</p></li>
+<li><p>CVE-2015-1014: “A successful exploit of these vulnerabilities requires the local user to load a crafted DLL file in the system directory on servers running Schneider Electric OFS v3.5 with version v7.40 of SCADA Expert Vijeo Citect/CitectSCADA, OFS v3.5 with version v7.30 of Vijeo Citect/CitectSCADA, and OFS v3.5 with version v7.20 of Vijeo Citect/CitectSCADA. If the application attempts to open that file, the application could crash or allow the attacker to execute arbitrary code.”</p></li>
+</ul>
+<h3 id="regulated-systems-cases">Regulated Systems Cases</h3>
+<ul>
+<li><p>CVE-2018-14781: “Medtronic insulin pump [specific versions] when paired with a remote controller and having the “easy bolus” and “remote bolus” options enabled (non-default), are vulnerable to a capture-replay attack. An attacker can … cause an insulin (bolus) delivery.”</p></li>
+<li><p>CVE-2017-9590: “The State Bank of Waterloo Mobile … app 3.0.2 … for iOS does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.”</p></li>
+<li><p>CVE-2017-3183: “Sage XRT Treasury, version 3, fails to properly restrict database access to authorized users, which may enable any authenticated user to gain full access to privileged database functions. Sage XRT Treasury is a business finance management application. …”</p></li>
+</ul>
+<h3 id="general-computing-cases">General Computing Cases</h3>
+<ul>
+<li><p>CVE-2019-2691: “Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Roles). Supported versions that are affected are 8.0.15 and prior. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to … complete DoS of MySQL Server.”</p></li>
+<li><p>CVE-2019-9042: “[I]n Sitemagic CMS v4.4… the user can upload a .php file to execute arbitrary code, as demonstrated by 404.php. This can only occur if the administrator neglects to set FileExtensionFilter and there are untrusted user accounts. …”</p></li>
+<li><p>CVE-2017-5638: “The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via crafted [specific headers], as exploited in the wild in March 2017…”</p></li>
+</ul>
+<h2 id="pilot-results">Pilot Results</h2>
+<p>For each of the nine CVEs, six analysts rated the priority of the vulnerability as both a supplier and deployer. Table 13 summarizes the results by reporting the inter-rater agreement for each decision point. For all measures, agreement (κ) is above zero, which is generally interpreted as some agreement among analysts. Below zero is interpreted as noise or discord. Closer to 1 indicates more or stronger agreement.</p>
+<p>How close κ should be to 1 before agreement can be considered strong enough or reliable enough is a matter of some debate. The value certainly depends on the number of options among which analysts select. For those decision points with five options (mission and safety impact), agreement is lowest. Although portfolio value has a higher κ than mission or safety impact, it may not actually have higher agreement because portfolio value only has two options. The results for portfolio value are nearly indistinguishable as far as level of statistical agreement from mission impact and safety impact. The statistical community does not have hard and fast rules for cut lines on adequate agreement. We treat κ as a descriptive statistic rather than a test statistic.</p>
+<p>Table 13 is encouraging, though not conclusive. κ&lt;0 is a strong sign of discordance. Although it is unclear how close to 1 is success, κ&lt;0 would be clear sign of failure. In some ways, these results may be undercounting the agreement for SSVC as presented. These results are for SSVC prior to the improvements documented in Section 5.3, which are implemented in SSVC as presented in Section 4. On the other hand, the participant demographics may inflate the inter-rater agreement based on shared tacit understanding through the process of authorship. The one participant who was not an author surfaced two places where this was the case, but we expect the organizational homogeneity of the participants has inflated the agreement somewhat. The anecdotal feedback from vulnerability managers at several organizations (including VMware <span class="citation" data-cites="akbar2020ssvc">(Akbar 2020)</span> and McAfee) is about refinement and tweaks, not gross disagreement. Therefore, while further refinement is necessary, this evidence suggests the results have some transferability to other organizations and are not a total artifact of the participant organization demographics.</p>
+<p>Table 13: Inter-Rater Agreement for Decision Points</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Safety Impact</th>
+<th>Exploitation</th>
+<th>Technical Impact</th>
+<th>Portfolio Value</th>
+<th>Mission Impact</th>
+<th>Exposure</th>
+<th>Dev<br />
+Result</th>
+<th>Deployer Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fleiss’ κ</td>
+<td>0.122</td>
+<td>0.807</td>
+<td>0.679</td>
+<td>0.257</td>
+<td>0.146</td>
+<td>0.480</td>
+<td>0.226</td>
+<td>0.295</td>
+</tr>
+<tr class="even">
+<td>Disagreement range</td>
+<td>2<br />
+max 4</td>
+<td>1<br />
+max 2</td>
+<td>1<br />
+max 1</td>
+<td>1<br />
+max 1</td>
+<td>2<br />
+max 4</td>
+<td>1<br />
+max 2</td>
+<td>1<br />
+max 3</td>
+<td>2<br />
+max 3</td>
+</tr>
+</tbody>
+</table>
+<p>For all decision points, the presumed goal is for κ to be close or equal to 1. The statistics literature has identified some limited cases in which Fleiss’ k behaves strangely – for example it is lower than expected when raters are split between 2 of q ratings when q&gt;2 <span class="citation" data-cites="falotico2015fleiss">(Falotico and Quatto 2015)</span>. This paradox may apply to the safety and mission impact values, in particular. The paradox would bite hardest if the rating for each vulnerability was clustered on the same two values, for example, minor and major. Falotico and Quatto’s proposed solution is to permute the columns, which is safe with unordered categorical data. Since the nine vulnerabilities do not have the same answers as each other (that is, the answers are not clustered on the same two values), we happen to avoid the worst of this paradox, but the results for safety impact and mission impact should be interpreted with some care.</p>
+<p>This solution identifies another difficulty of Fleiss’ kappa, namely that it does not preserve any order; none and catastrophic are considered the same level of disagreement as none and minor. Table 13 displays a sense of the range of disagreement to complement this weakness. This value is the largest distance between rater selections on a single vulnerability out of the maximum possible distance. So, for safety impact, the most two raters disagreed was by two steps (none to major, minor to hazardous, or major to catastrophic) out of the four possible steps (none to catastrophic). The only values of κ that are reliably comparable are those with the same number of options (that is, the same maximum distance). In other cases, closer to 1 is better, but how close is close enough to be considered “good” changes. In all but one case, if raters differed by two steps then there were raters who selected the central option between them. The exception was mission impact for CVE-201814781; it is unclear whether this discrepancy should be localized to a poor test scenario description, or to SSVC’s mission impact definition. Given it is an isolated occurrence, we expect the scenario description at least partly.</p>
+<p>Nonetheless, κ provides some way to measure improvement on this a conceptual engineering task. The pilot evaluation can be repeated, with more diverse groups of stakeholders after the descriptions have been refined by stakeholder input, to measure fit to this goal. For a standard to be reliably applied across different analyst backgrounds, skill sets, and cultures, a set of decision point descriptions should ideally achieve κ of 1 for each item in multiple studies with diverse participants. Such a high level of agreement would be difficult to achieve, but it would ensure that when two analysts assign a priority with the system that they get the same answer. Such agreement is not the norm with CVSS currently <span class="citation" data-cites="allodi2018effect">(Allodi et al. 2018)</span>.</p>
+<p>We have not discussed a convenient compressed expression of a set of SSVC decision points. Table 14 uses initialisms similar to a CVSS vector string; Exploitation (E), Technical impact (T), Utility (U), Safety Impact (S), Exposure (X), and Mission impact (M). S:M is minor, S:J is major; M:F is MEF failure, M:M is mission failure. However, since we created Utility in response to the System Value metric’s shortcomings, the pilot results do not include systematic consensus on Utility values.</p>
+<p>Table 14: SSVC pilot scores compared with the CVSS base scores for the vulnerabilities provided by NVD.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 36%" />
+<col style="width: 30%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>CVE-ID</th>
+<th>Representative SSVC decision values</th>
+<th>SSVC recommendation (supplier, deployer)</th>
+<th>NVD’s CVSS base score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CVE-2014-0751</td>
+<td>E:N/T:T/U:L/S:H/X:C/M:C</td>
+<td>(Sched, OOC)</td>
+<td>7.5 (High) (v2)</td>
+</tr>
+<tr class="even">
+<td>CVE-2015-1014</td>
+<td>E:N/T:T/U:L/S:J/X:S/M:F</td>
+<td>(Sched, Sched)</td>
+<td>7.3 (High) (v3.0)</td>
+</tr>
+<tr class="odd">
+<td>CVE-2015-5374</td>
+<td>E:A/T:P/U:L/S:H/X:C/M:F</td>
+<td>(Immed, Immed)</td>
+<td>7.8 (High) (v2)</td>
+</tr>
+<tr class="even">
+<td>CVE-2017-3183</td>
+<td>E:N/T:T/U:E/S:M/X:C/M:C</td>
+<td>(Sched, Sched)</td>
+<td>8.8 (High) (v3.0)</td>
+</tr>
+<tr class="odd">
+<td>CVE-2017-5638</td>
+<td>E:A/T:T/U:S/S:M/X:U/M:C</td>
+<td>(Immed, OOC)</td>
+<td>10.0 (Critical) (v3.0)</td>
+</tr>
+<tr class="even">
+<td>CVE-2017-9590</td>
+<td>E:P/T:T/U:E/S:M/X:U/M:D</td>
+<td>(OOC, Sched)</td>
+<td>5.9 (Medium) (v3.0)</td>
+</tr>
+<tr class="odd">
+<td>CVE-2018-14781</td>
+<td>E:P/T:P/U:L/S:H/X:C/M:F</td>
+<td>(OOC, OOC)</td>
+<td>5.3 (Medium) (v3.0)</td>
+</tr>
+<tr class="even">
+<td>CVE-2019-2691</td>
+<td>E:N/T:P/U:E/S:M/X:C/M:C</td>
+<td>(Sched, Sched)</td>
+<td>4.9 (Medium) (v3.0)</td>
+</tr>
+<tr class="odd">
+<td>CVE-2019-9042</td>
+<td>E:A/T:T/U:L/S:N/X:C/M:C</td>
+<td>(OOC, Sched)</td>
+<td>7.2 (High) (v3.0)</td>
+</tr>
+</tbody>
+</table>
+<p>Table 14 presents the mode decision point value for each vulnerability tested, as well as the recommendation that would result from that set based on the trees in Sections 4.6 and 4.7. The comparison with the NVD’s CVSS base scores mostly confirms that SSVC is prioritizing based on different criteria, as designed. In particular, differences in the state of exploitation and safety impact are suggestive.</p>
+<p>Based on these results, we made about ten changes, some bigger than others. We did not execute a new rater agreement experiment with the updated descriptions. The pilot results are encouraging, and we believe it is time to open up a wider community discussion.</p>
+<h2 id="improvements-instigated-by-the-pilot">Improvements Instigated by the Pilot</h2>
+<p>The following changes are reflected in Section 4, Decision Trees for Vulnerability Management.</p>
+<ul>
+<li><p>Technical impact: We clarified that partial/total is decided regarding the system scope definition, which considers a database or a web server program as the “whole” system. Furthermore, “total” also includes any technical impact that exposes authentication credentials to the adversary, if those credentials are to the whole system.</p></li>
+<li><p>We added advice for information gathering to answer safety impact and mission impact questions. This change is needed because of the particularly wide variety of background assumptions analysts made that influenced results and agreement.</p></li>
+<li><p>We clarified that “MEF failure” refers to any <strong>one</strong> essential function failing, not failure of all of them. We changed most severe mission impact to “mission failure” to better reflect the relationship between MEFs and the organization’s mission.</p></li>
+<li><p>We removed the “supplier portfolio value” question since it had poor agreement, and there is no clear way to correct it. We replaced this question with <em>Utility</em>, which better captures the relevant kinds of value (namely, to the adversary) of the affected component while remaining amenable to pragmatic analysis.</p></li>
+<li><p>We clarified that “proof of concept” (see <em>Exploitation</em>) includes cases in which existing tooling counts as a PoC. The examples listed are suggestive, not exhaustive.</p></li>
+<li><p>We reorganized the decision trees based on which items are easier to gather information for or which ones have a widely verifiable state. This change moved <em>exploitation</em> to the first question.</p></li>
+<li><p>We changed the decision tree results such that if exposure is “small,” then the resulting priority is lower than before the pilot study. That is, “small” exposure has a stronger effect on reducing urgency.</p></li>
+</ul>
+<h3 id="questions-removed-as-ineffective">Questions Removed as Ineffective</h3>
+<p>In this section, we present ideas we tried but rejected for various reasons. We are not presenting this section as the final word on excluding these ideas, but we hope the reasons for excluding them are instructive, will help prevent others from re-inventing the proverbial wheel, and can guide thinking on future work.</p>
+<p>Initially, we brainstormed approximately 12 potential decision points, most of which we removed early in our development process through informal testing. These decision points included adversary’s strategic benefit of exploiting the vulnerability, state of legal or regulatory obligations, cost of developing remediation, patch distribution readiness, financial losses to customers due to potential exploitation, and business losses to the deployer.</p>
+<p>Some of these points left marks on other decision points. The decision point “financial losses of customers” led to an amendment of the definition of <em>Safety</em> to include “well-being,” such that, for example, bankruptcies of third parties are now a major safety impact. The “business losses to the deployer” decision point is covered as a mission impact insofar as profit is a mission of publicly traded corporations.</p>
+<p>Three of the above decision points left no trace on the current system. “State of legal or regulatory obligations,” “cost of developing remediation,” and “patch distribution readiness” were dropped as either being too vaguely defined, too high level, or otherwise not within the scope of decisions by the defined stakeholders. The remaining decision point, “adversary’s strategic benefit of exploiting the vulnerability,” transmuted to a different sense of system value. In an attempt to be more concrete and not speculate about adversary motives, we considered a different sense of value: supplier portfolio value.</p>
+<p>The only decision point that we have removed following the pilot is developer portfolio value. This notion of value was essentially an over-correction to the flaws identified in the “adversary’s strategic benefit of exploiting the vulnerability” decision point. “Supplier portfolio value” was defined as “the value of the affected component as a part of the developer’s product portfolio. Value is some combination of importance of a given piece of software, number of deployed instances of the software, and how many people rely on each. The developer may also include lifecycle stage (early development, stable release, decommissioning, etc.) as an aspect of value.” It had two possible values: low and high. As Table 13 demonstrates, there was relatively little agreement among the six analysts about how to evaluate this decision point. We replaced this sense of portfolio value with <em>Utility</em>, which combines <em>Value Density</em> and <em>Automatability</em>.</p>
+<h1 id="worked-example">Worked Example</h1>
+<p>As an example, we will evaluate CVE-2018-14781 step by step from the deployer point of view. The scenario here is that used for the pilot study. This example uses the decision tree in Section 4.7. The pilot used slightly different trees, as noted in Section 5.3.</p>
+<p>The analyst’s first question is related to exploitation. Technically, one could answer the questions in any order; however, exploitation is a good starting point because given an adequately defined search procedure, one can always answer whether it finds an available exploit or proof of concept. The scenario description for the pilot study reads as follows:</p>
+<ul>
+<li><strong>State of exploitation</strong>: Metasploit and ExploitDB do not return results for this vulnerability. The NVD does not report any active exploitation of this vulnerability.</li>
+</ul>
+<p>This information rules out “active” given the (perhaps limited) search procedure. While the search did not produce a precise PoC, based on the description of the vulnerability, it is a fairly standard traffic capture and replay attack that, given access to the transmission medium, should be straightforward to conduct with Wireshark. Therefore, we select the “PoC” branch and then ask about exposure. This considers the (fictional) deployer scenario blurb and the notional deployment of the affected system, as follows.</p>
+<ul>
+<li><p><strong>Scenario blurb</strong> - We are a hospital that uses Medtronic devices frequently because of their quality and popularity in the market. We give these devices out to clients who need to monitor and track their insulin intake. If clients need to access data on their device, they can physically connect it to their computer or connect via Bluetooth to an app on their phone for monitoring capabilities. Occasionally, clients who use this device will have a doctor’s appointment in which the doctors have machines that can access the device as well to monitor or change settings. It is unknown how secure the doctor’s computer that interfaces directly with this insulin pump is. If the doctor’s computer is compromised, it potentially means that every device that connects to it is compromised as well. If an update to the insulin pump is required, a client can do this on their own through their computer or app or through a doctor while they are on-site at the hospital.</p></li>
+<li><p><strong>Deployment of affected system</strong> - These pumps are attached directly to the client. If an update is required, the client is permitted to do that through their own computer or app. However, we have not provided them with documentation on properly using their computer or app to securely access their device. This is done for convenience so that if the user needs to change something quickly, they can. They also can also come to us (hospital) for a change in their device’s settings for dosage etc. The doctor’s computer that directly handles interfacing with these devices is only connected to the intranet for the purpose of updating the client’s settings on the device. Doctors authenticate with ID badge and password.</p></li>
+</ul>
+<p><em>Exposure</em> is less straightforward than <em>Exploitation</em>. The option <strong>open</strong> is clearly ruled out. However, it is not clear whether the optional Bluetooth connection between the medical device and a phone app represents <strong>controlled</strong> or <strong>small</strong> exposure. The description does not explicitly handle the capture/replay aspect of the vulnerability. If the only way to exploit the vulnerability is to be within physical transmission range of the device, then that physical constraint argues for exposure being <strong>small</strong>. However, if the client’s phone app could be used to capture and replay attack packets, then unless that app is particularly well secured, the answer should be <strong>controlled</strong>. Regardless, the answer is not clear from the supplied information. Furthermore, if this fictional app is specific to the insulin pump, then even if it is not compromised, the attack might use its installation to remotely identify targets. However, since most of the hospital’s clients have not installed the app, and for nearly all cases, physical proximity to the device is necessary; therefore, we select <strong>small</strong> and move on to ask about mission impact.</p>
+<p>According to the fictional pilot scenario, “Our mission dictates that the first and foremost priority is to contribute to human welfare and to uphold the Hippocratic oath (do no harm).” The continuity of operations planning for a hospital is complex, with many MEFs. However, even from this abstract, it seems clear that “do no harm” is at risk due to this vulnerability. A mission essential function to that mission is each of the various medical devices works as expected, or at least if a device fails, it cannot actively be used to inflict harm. Unsolicited insulin delivery would mean that MEF “fails for a period of time longer than acceptable,” matching the description of MEF failure. The question is then whether the whole mission fails, which does not seem to be the case. The recovery of MEF functioning is not affected, and most MEFs (the emergency services, surgery, oncology, administration, etc.) would be unaffected. Therefore, we select <strong>MEF failure</strong> and move on to ask about safety impact.</p>
+<p>Given the prior three answers (<strong>PoC</strong>, <strong>small</strong>, <strong>MEF failure</strong>), the safety analysis is somewhat constrained. If the result is <strong>none</strong>, <strong>minor</strong>, or <strong>major</strong>, the priority is <em>scheduled</em>. Hazardous will lead to <em>out-of-cycle</em>, and catastrophic to <em>immediate</em> action. In the pilot study, this information is conveyed as follows:</p>
+<ul>
+<li><strong>Use of the cyber-physical system</strong> - Insulin pumps are used to regulate blood glucose levels in diabetics. Diabetes is extremely common in the US. Misregulation of glucose can cause a variety of problems. Minor misregulation causes confusion or difficulty concentrating. Long-term minor mismanagement causes weigh management issues and blindness. Severe acute mismanagement can lead unconsciousness in a matter of minutes and death in a matter of hours. The impacted insulin pumps have a local (on-patient) wireless control, so wires to the pump do not have to be connected to the patient's control of the system, making the system lighter and less prone to be ripped out.</li>
+</ul>
+<p>The closest match to “death in a matter of hours” would be <strong>hazardous</strong> because that description reads “serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures.” Depending on the details of the hospital’s contingency plans and its monitoring of their patients, the <em>Safety Impact</em> could be <strong>catastrophic</strong>. If there is no way to tell whether the insulin pumps are misbehaving, for example, then exploitation could go on for some time, leading to a <strong>catastrophic</strong> <em>Safety Impact</em>. The pilot information is inadequate in this regard, which is the likely source of disagreement about <em>Safety Impact</em> in Table 13. For the purposes of this example, imagine that after gathering that information, the monitoring situation is adequate, and select <strong>hazardous.</strong> Therefore, mitigate this vulnerability <em>out-of-cycle</em>, meaning that it should be addressed quickly, ahead of the usual update and patch cycle.</p>
+<h2 id="related-vulnerability-management-systems">Related Vulnerability Management Systems</h2>
+<p>There are several other bodies of work that are used in practice to assist vulnerability managers in making decisions. Three relevant systems are CVSS <span class="citation" data-cites="cvss_v3-1">(CVSS SIG 2019)</span>, EPSS <span class="citation" data-cites="jacobs2019exploit">(Jacobs et al. 2019)</span>, and Tenable's Vulnerability Priority Rating (<a href="https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss">VPR</a>). There are other systems derived from CVSS, such as RVSS for robots <span class="citation" data-cites="vilches2018towards">(Vilches et al. 2018)</span> and MITRE's effort to adapt CVSS to medical devices <span class="citation" data-cites="mitre2019medical">(Chase and Coley 2019)</span>. There are also other nascent efforts to automate aspects of the decision making process, such as <a href="https://github.com/varchashva/vPrioritizer">vPrioritizer</a>. This section discusses the relationship between these various systems and SSVC.</p>
+<h3 id="cvss">CVSS</h3>
+<p>CVSS v3.1 has three metric groups: base, environmental, and temporal. The metrics in the base group are all required, and are the only required metrics. In connection with this design, CVSS base scores and base metrics are far and away the most commonly used and communicated. A CVSS base score has two parts: the exploitability metrics and the impact metrics. Each of these are echoed or reflected in aspects of SSVC, though the breadth of topics considered by SSVC is wider than CVSS v3.1.</p>
+<blockquote>
+<p>Exploitability metrics (Base metric group)</p>
+</blockquote>
+<p>The four metrics in this group are Attack Vector, Attack Complexity, Privileges Required, and User Interaction. This considerations may likely be involved in the <a href="#automatability"><em>Automatability</em></a> decision point. If Attack Vector = Network and Privileges Required = None, then the delivery phase of the kill chain is likely automatable. Attack Vector may also be correlated with the <a href="#exposure"><em>Exposure</em></a> decision point. Attack Complexity may influence how long it may take an adversary to craft an automated exploit, but <a href="#automatability"><em>Automatability</em></a> only asks whether exploitation can be automated, not how difficult it was. However, Attack Complexity may influence the weaponization phase of the kill chain. User Interaction does not cleanly map to a decision point. In general, SSVC does not care whether a human is involved in exploitation of the vulnerability or not. Some human interaction is for all intents and purposes automatable by attackers -- most people click on links in emails as part of their normal processes. In most such situations, user interaction does not present a firm barrier to automatability; it presents a stochastic barrier. <a href="#automatability"><em>Automatability</em></a> is written to just consider firm barriers to automation.</p>
+<p><a href="#automatability"><em>Automatability</em></a> includes considerations that are not included in the exploitability metrics. Most notably the concept of vulnerability chaining is addressed in <a href="#automatability"><em>Automatability</em></a> but not addressed anywhere in CVSS. <a href="#automatability"><em>Automatability</em></a> is also outcomes focused. A vulnerability is evaluated based on an observable outcome of whether the first four steps of the kill chain can be automated for it. A proof of automation in a relevant environment is an objective evaluation of the score in a way that cannot be provided for some CVSS elements, such as Attack Complexity.</p>
+<blockquote>
+<p>Impact metrics (Base metric group)</p>
+</blockquote>
+<p>The metrics in this group are Confidentiality, Integrity, and Availability. There is also a loosely associated Scope metric. The CIA impact metrics are directly handled by <a href="#technical-impact"><em>Technical Impact</em></a>.</p>
+<p>Scope is a difficult CVSS metric to categorize. The specification describes it as "whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope" <span class="citation" data-cites="cvss_v3-1">(CVSS SIG 2019)</span>. This is a fuzzy concept. SSVC better describes this concept by breaking it down into component parts. The impact of exploitation of the vulnerable component on other components is covered under <a href="#mission-impact"><em>Mission Impact</em></a>, public and situated <a href="#well-being-impact"><em>Well-being Impact</em></a>, and the stakeholder-specific nature where SSVC is tailored to stakeholder concerns. CVSS addresses some definitions of the scope of CVSS as a whole under the Scope metric definition. In SSVC, these definitions are in the <a href="#scope">Scope</a> section.</p>
+<blockquote>
+<p>Temporal metric groups</p>
+</blockquote>
+<p>The temporal metric group primarily contains the Exploit Code Maturity metric. This metric expresses a concept similar to <a href="#exploitation"><em>Exploitation</em></a>. The main difference is that <a href="#exploitation"><em>Exploitation</em></a> is not optional in SSVC and that SSVC accounts for the observation that most vulnerabilities with CVE-IDs do not have public exploit code <span class="citation" data-cites="householder2020historical">(Allen D. Householder et al. 2020)</span> and are not actively exploited <span class="citation" data-cites="guido2011exploit">Jacobs et al. (2019)</span>.</p>
+<blockquote>
+<p>Environmental metric group</p>
+</blockquote>
+<p>The environmental metric group allows a consumer of a CVSS base score to change it based on their environment. CVSS needs this functionality because the organizations that produce CVSS scores tend to be what SSVC calls <strong>suppliers</strong> and consumers of CVSS scores are what SSVC calls <strong>deployers</strong>. These two stakeholder groups have a variety of natural differences, which is why SSVC treats them separately. SSVC does not have such customization as a bolt-on optional metric group because SSVC is stakeholder-specific by design.</p>
+<h3 id="epss">EPSS</h3>
+<p><a href="https://www.first.org/epss/">EPSS</a> is an "effort for predicting when software vulnerabilities will be exploited." EPSS is currently based on a machine-learning classifier and proprietary IDS alert data from Kenna Security. While the group has made an effort to make the ML classifier transparent, ML classifiers are not able to provide an intelligible, human-accessible explanation for their behavior <span class="citation" data-cites="spring2019ml">(Jonathan M. Spring et al. 2019)</span>. The use of proprietary training data makes the system less transparent.</p>
+<p>EPSS could be used to inform the <a href="#exploitation"><em>Exploitation</em></a> decision point. Currently, <a href="#exploitation"><em>Exploitation</em></a> focuses on the observable state of the world at the time of the SSVC decision. EPSS is about predicting if a transition will occur from the SSVC state of <a href="#xploitation"><em>none</em></a> to <a href="#exploitation"><em>active</em></a>. A sufficiently high EPSS score could therefore be used as an additional criterion for scoring a vulnerability as <a href="#exploitation"><em>active</em></a> even when there is no observed active exploitation.</p>
+<h3 id="vpr">VPR</h3>
+<p>VPR is a prioritization product sold by Tenable. VPR determines the severity level of a vulnerability based on "<a href="https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss">technical impact and threat</a>." Just as <a href="#technical-impact"><em>Technical Impact</em></a> in SSVC, technical impact in VPR tracks the CVSSv3 impact metrics in the base metric group. The VPR threat component is about recent and future threat activity; it is comparable to <a href="#exploitation"><em>Exploitation</em></a> if EPSS were added to <a href="#exploitation"><em>Exploitation</em></a>.</p>
+<p>VPR is therefore essentially a subset of SSVC. VPR is stylistically methodologically quite different from SSVC. VPR is based on machine learning models and proprietary data, so the results are totally opaque. There is no ability to coherently and transparently customize the VPR system. Such customization is a central feature of SSVC, as described in <a href="#tree-construction-and-customization-guidance">Tree Construction and Customization Guidance</a>.</p>
+<h3 id="cvss-spin-offs">CVSS spin offs</h3>
+<p>Attempts to tailor CVSS to specific stakeholder groups, such as robotics or medical devices, are are perhaps the biggest single reason we created SSVC. CVSS is one-size-fits-all by design. These customization efforts struggle with adapting CVSS because it was not designed to be adaptable to different stakeholder considerations. The SSVC section <a href="#tree-construction-and-customization-guidance">Tree Construction and Customization Guidance</a> explains how stakeholders or stakeholder communities can adapt SSVC in a reliable way that still promotes repeatability and communication.</p>
+<h3 id="vprioritizer">vPrioritizer</h3>
+<p>vPrioritizer is an open-source project that attempts to integrate asset management and vulnerablity prioritization. The software is mostly the asset management aspects. It currently includes CVSS base scores as the de facto vulnerability prioritization method; however, fundamentally the system is agnostic to prioritization method. vPrioritizer is an example of a product that is closely associated with vulnerability prioritization, but is not directly about the prioritization method. In that sense, it is compatible with any of methods mentioned above or SSVC. However, SSVC would be better suited to address vPrioritizer's broad spectrum asset management data. For example, vPrioritizer aims to collect data points on topics such as asset significance. Asset significance could be expressed through the SSVC decision points of <a href="#mission-impact"><em>Mission Impact</em></a> and situated <a href="#well-being-impact"><em>Well-being Impact</em></a>, but it does not have a ready expression in CVSS, EPSS, or VPR.</p>
+<h1 id="future-work">Future Work</h1>
+<p>We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology. While the method herein should be functional, we do not claim it is ready for use as is. Therefore, we lay out some aspects of future work that would help make it ready to use. We focus on further requirements gathering, further testing of the reliability of the decision process, and expanding to additional types of stakeholders beyond deployers and suppliers.</p>
+<h2 id="requirements-gathering-via-sociological-research">Requirements Gathering via Sociological Research</h2>
+<p>The community should know what users of a vulnerability prioritization system want. To explore their needs, it’s important to understand how people actually use CVSS and what they think it tells them. In general, such empirical, grounded evidence about what practitioners and decision makers want from vulnerability scoring is lacking. We have based this paper’s methodology on multiple decades of professional experience and myriad informal conversations with practitioners. Such evidence is not a bad place to start, but it does not lend itself to examination and validation by others. The purpose of understanding practitioner expectations is to inform what a vulnerability-prioritization methodology should actually provide by matching it to what people want or expect. The method this future work should take is long-form, structured interviews. We do not expect anyone to have access to enough consumers of CVSS to get statistically valid results out of a short survey, nor to pilot a long survey.</p>
+<h2 id="further-decision-tree-testing">Further Decision Tree Testing</h2>
+<p>More testing with diverse analysts is necessary before the decision trees are reliable. In this context, <strong>reliable</strong> means that two analysts, given the same vulnerability description and decision process description, will reach the same decision. Such reliability is important if scores and priorities are going to be useful. If they are not reliable, they will vary widely over time and among analysts. Such variability makes it impossible to tell whether a difference in scores is really due to one vulnerability being higher priority than other.</p>
+<p>The pilot study provides a methodology for measuring and evaluating reliability of the decision process description based on the agreement measure κ. This study methodology should be repeated with different analyst groups, from different sectors and with different experience, feeding the results into changes in the decision process description until the agreement measure is adequately close to 1.</p>
+<h2 id="decision-tree-for-vulnerability-coordination">Decision Tree for Vulnerability Coordination</h2>
+<p>Currently, only two stakeholders are addressed: deployers and suppliers. Expanding the work to include more types of stakeholders would be beneficial. We propose that the next stakeholder group could be vulnerability coordinators, as described in Section 4.1. The development and testing methodology for any new stakeholder group should be roughly the same as that used to draft the deployer and supplier decision trees.</p>
+<h1 id="limitations">Limitations</h1>
+<p>Even as a working proposal, SSVC has some limitations. These are inherent limits of the approach, which should be understood as tradeoffs. There are other limiting aspects of our implementation, but those have been covered as topics that need improvement and are described in Section 7.</p>
+<p>We made two important tradeoffs compared to the current state of the practice with CVSS:</p>
+<ol>
+<li><p>We eliminated numerical scores; this may make some practitioners uncomfortable. We explained the reasons for this in depth, but even though CVSS contains false precision, we still must contend with the fact that, psychologically, users find that comforting. As this comfort gap may negatively impact adoption, this fact is a limitation. Although it is ungainly, it would be sound to convert the priority outcomes to numbers at the end of the process, if existing processes require it. Which numbers we choose to convert to is immaterial, as long as the ordering is preserved. CVSS has set a precedent that higher numbers are worse, so a scale [1, 2, 3, 4] would work, with defer = 1 and immediate = 4. However, if it were important to maintain backwards compatibility to the CVSS range zero to ten, we could just as well relabel outcomes as [2, 5.5, 8, 9.5] for the midpoints of the current CVSS severity ranges.</p></li>
+<li><p>We incorporated a wider variety of inputs from contexts beyond the affected component. Some organizations are not prepared or configured to reliably produce such data (e.g., around mission impact or safety impact). There is adequate guidance for how to elicit and curate this type information from various risk management frameworks, including OCTAVE <span class="citation" data-cites="caralli2007octave">(Caralli et al. 2007)</span>. Not every organization is going to have sufficiently mature risk management functions to apply SSVC.</p></li>
+</ol>
+<p>This limitation should be approached with two strategies: (1) organizations should be encouraged and enabled to mature their risk management capabilities and, in the meantime, (2) organizations such as NIST could consider developing default advice. The most practical framing of this approach might be for the NIST NVD to produce scores from the perspective of a new stakeholder—something like “national security” or “public well-being” that is explicitly a sort of default advice for otherwise uninformed organizations that can then explicitly account for national priorities, such as critical infrastructure.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>We presented a working hypothesis for how patch developers and patch appliers should prioritize their effort to mitigate different vulnerabilities. We have performed an initial pilot evaluation of the proposal and improved it, but the process we developed for evaluation is more important than the results. We invite further refinement of the prioritization mechanism. Further testing will be required before SSVC is ready for operational use. We endeavored to be transparent about our process and provide justification for design decisions.</p>
+<p>We invite questions, comments, and further community refinement in moving forward with a transparent and justified vulnerability prioritization methodology that is inclusive for the various stakeholders and industries that develop and use information and computer technology.</p>
+<h1 id="contact-us">Contact Us</h1>
+<p>Software Engineering Institute<br />
+4500 Fifth Avenue, Pittsburgh, PA 15213-2612</p>
+<p><strong>Phone</strong>: 412/268.5800 | 888.201.4479<br />
+<strong>Web</strong>: <a href="http://www.sei.cmu.edu">www.sei.cmu.edu</a><br />
+<strong>Email</strong>: <a href="mailto:info@sei.cmu.edu" class="email">info@sei.cmu.edu</a></p>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<p>Copyright 2019-2020 Carnegie Mellon University.</p>
+<p>This material is based upon work funded and supported by the Department of Defense under Contract No. FA8702-15-D-0002 with Carnegie Mellon University for the operation of the Software Engineering Institute, a federally funded research and development center.</p>
+<p>The view, opinions, and/or findings contained in this material are those of the author(s) and should not be construed as an official Government position, policy, or decision, unless designated by other documentation.</p>
+<p>References herein to any specific commercial product, process, or service by trade name, trade mark, manufacturer, or otherwise, does not necessarily constitute or imply its endorsement, recommendation, or favoring by Carnegie Mellon University or its Software Engineering Institute.</p>
+<p>NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS. CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND, EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.</p>
+<p>[DISTRIBUTION STATEMENT A] This material has been approved for public release and unlimited distribution. Please see Copyright notice for non-US Government use and distribution.</p>
+<p>Internal use:* Permission to reproduce this material and to prepare derivative works from this material for internal use is granted, provided the copyright and “No Warranty” statements are included with all reproductions and derivative works.</p>
+<p>External use:* This material may be reproduced in its entirety, without modification, and freely distributed in written or electronic form without requesting formal permission. Permission is required for any other external and/or commercial use. Requests for permission should be directed to the Software Engineering Institute at <a href="mailto:permission@sei.cmu.edu" class="email">permission@sei.cmu.edu</a>.</p>
+<p>* These restrictions do not apply to U.S. government entities.</p>
+<p>Carnegie Mellon®, CERT Coordination Center® and OCTAVE® are registered in the U.S. Patent and Trademark Office by Carnegie Mellon University.</p>
+<p>DM19-1222</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-akbar2020ssvc" class="csl-entry" role="doc-biblioentry">
+Akbar, Muhammad. 2020. <span>“A Critical First Look at Stakeholder Specific Vulnerability Categorization (SSVC).”</span> March 6, 2020. <a href="https://blog.secursive.com/posts/critical-look-stakeholder-specific-vulnerability-categorization-ssvc/">https://blog.secursive.com/posts/critical-look-stakeholder-specific-vulnerability-categorization-ssvc/</a>.
+</div>
+<div id="ref-allodi2018effect" class="csl-entry" role="doc-biblioentry">
+Allodi, Luca, Marco Cremonini, Fabio Massacci, and Woohyun Shim. 2018. <span>“The Effect of Security Education and Expertise on Security Assessments: The Case of Software Vulnerabilities.”</span> In <em>Workshop on Economics of Information Security</em>. Innsbruck, Austria.
+</div>
+<div id="ref-allodi2012preliminary" class="csl-entry" role="doc-biblioentry">
+Allodi, Luca, and Fabio Massacci. 2012. <span>“A Preliminary Analysis of Vulnerability Scores for Attacks in Wild: The EKITS and SYM Datasets.”</span> In <em>Workshop on Building Analysis Datasets and Gathering Experience Returns for Security</em>, 17–24. ACM.
+</div>
+<div id="ref-csirtservices_v2" class="csl-entry" role="doc-biblioentry">
+Benetis, Vilius, Olivier Caleff, Cristine Hoepers, Angela Horneman, Allen Householder, Klaus-Peter Kossakowski, Art Manion, et al. 2019. <span>“Computer Security Incident Response Team <span>(CSIRT)</span> Services Framework.”</span> ver. 2. Cary, NC, USA: FIRST.
+</div>
+<div id="ref-captera" class="csl-entry" role="doc-biblioentry">
+Captera. 2019. <span>“IT Asset Management Software.”</span> 2019. <a href="https://www.capterra.com/it-asset-management-software/">https://www.capterra.com/it-asset-management-software/</a>.
+</div>
+<div id="ref-caralli2007octave" class="csl-entry" role="doc-biblioentry">
+Caralli, Richard, James Stevens, Lisa Young, and William Wilson. 2007. <span>“Introducing <span>OCTAVE</span> Allegro: Improving the Information Security Risk Assessment Process.”</span> CMU/SEI-2007-TR-012. Pittsburgh, PA: Software Engineering Institute, Carnegie Mellon University. <a href="https://resources.sei.cmu.edu/library/asset-view.cfm?AssetID=8419">https://resources.sei.cmu.edu/library/asset-view.cfm?AssetID=8419</a>.
+</div>
+<div id="ref-cebula2010taxonomy" class="csl-entry" role="doc-biblioentry">
+Cebula, James L, and Lisa R Young. 2010. <span>“A Taxonomy of Operational Cyber Security Risks.”</span> CMU/SEI-2010-TN-028. Pittsburgh, PA: Software Engineering Institute, Carnegie Mellon University. <a href="https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=9395">https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=9395</a>.
+</div>
+<div id="ref-mitre2019medical" class="csl-entry" role="doc-biblioentry">
+Chase, Melissa P, and Steven M Cristey Coley. 2019. <span>“Rubric for Applying CVSS to Medical Devices.”</span> 18-2208. McLean, VA, USA: MITRE Corporation.
+</div>
+<div id="ref-cvss_v3-1" class="csl-entry" role="doc-biblioentry">
+CVSS SIG. 2019. <span>“Common Vulnerability Scoring System.”</span> version 3.1 r1. Cary, NC, USA: Forum of Incident Response; Security Teams. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a>.
+</div>
+<div id="ref-bod15-01" class="csl-entry" role="doc-biblioentry">
+Cybersecurity and Infrastructure Security Agency. 2015. <span>“Critical Vulnerability Mitigation.”</span> May 21, 2015. <a href="https://cyber.dhs.gov/bod/15-01/">https://cyber.dhs.gov/bod/15-01/</a>.
+</div>
+<div id="ref-faa2000safety" class="csl-entry" role="doc-biblioentry">
+FAA. 2000. <span>“System Safety Handbook.”</span> Washington, DC: US Dept. of Transportation, Federal Aviation Administration. <a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/risk_management/ss_handbook/">https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/risk_management/ss_handbook/</a>.
+</div>
+<div id="ref-falotico2015fleiss" class="csl-entry" role="doc-biblioentry">
+Falotico, Rosa, and Piero Quatto. 2015. <span>“Fleiss’ Kappa Statistic Without Paradoxes.”</span> <em>Quality &amp; Quantity</em> 49 (2): 463–70.
+</div>
+<div id="ref-farris2018vulcon" class="csl-entry" role="doc-biblioentry">
+Farris, Katheryn A, Ankit Shah, George Cybenko, Rajesh Ganesan, and Sushil Jajodia. 2018. <span>“VULCON: A System for Vulnerability Prioritization, Mitigation, and Management.”</span> <em>Transactions on Privacy and Security</em> 21 (4): 16.
+</div>
+<div id="ref-FCD2_2017" class="csl-entry" role="doc-biblioentry">
+Fenton, Robert J., ed. 2017. <span>“Federal Continuity Directive 2: Federal Executive Branch Mission Essential Functions and Candidate Primary Mission Essential Functions Identification and Submission Process.”</span> US Department of Homeland Security, Federal Emergency Management Agency. <a href="https://www.fema.gov/media-library-data/1499702987348-c8eb5e5746bfc5a7a3cb954039df7fc2/FCD-2June132017.pdf">https://www.fema.gov/media-library-data/1499702987348-c8eb5e5746bfc5a7a3cb954039df7fc2/FCD-2June132017.pdf</a>.
+</div>
+<div id="ref-figueroa2020survey" class="csl-entry" role="doc-biblioentry">
+Figueroa-Lorenzo, Santiago, Javier Añorga, and Saioa Arrizabalaga. 2020. <span>“A Survey of <span>IIoT</span> Protocols: A Measure of Vulnerability Risk Analysis Based on CVSS.”</span> <em>ACM Comput. Surv.</em> 53 (2). <a href="https://doi.org/10.1145/3381038">https://doi.org/10.1145/3381038</a>.
+</div>
+<div id="ref-fleiss1973equivalence" class="csl-entry" role="doc-biblioentry">
+Fleiss, Joseph L, and Jacob Cohen. 1973. <span>“The Equivalence of Weighted Kappa and the Intraclass Correlation Coefficient as Measures of Reliability.”</span> <em>Educational and Psychological Measurement</em> 33 (3): 613–19.
+</div>
+<div id="ref-garfinkel2014usable" class="csl-entry" role="doc-biblioentry">
+Garfinkel, Simson, and Heather Richter Lipford. 2014. <span>“Usable Security: History, Themes, and Challenges.”</span> <em>Synthesis Lectures on Information Security, Privacy, and Trust</em> 5 (2): 1–124.
+</div>
+<div id="ref-guido2011exploit" class="csl-entry" role="doc-biblioentry">
+Guido, Dan. 2011. <span>“The Exploit Intelligence Project.”</span> iSEC Partners. <a href="http://www.trailofbits.com/resources/exploit_intelligence_project_2_slides.pdf">http://www.trailofbits.com/resources/exploit_intelligence_project_2_slides.pdf</a>.
+</div>
+<div id="ref-householder2020cvd" class="csl-entry" role="doc-biblioentry">
+Householder, Allen D., Garret Wassermann, Art Manion, and Christopher King. 2020. <span>“The <span>CERT</span><span></span> Guide to Coordinated Vulnerability Disclosure.”</span> CMU/SEI-2017-TR-022. Pittsburgh, PA: Software Engineering Institute, Carnegie Mellon University. <a href="https://vuls.cert.org/confluence/display/CVD/Executive+Summary">https://vuls.cert.org/confluence/display/CVD/Executive+Summary</a>.
+</div>
+<div id="ref-householder2020historical" class="csl-entry" role="doc-biblioentry">
+Householder, Allen D, Jeff Chrabaszcz, Trent Novelly, David Warren, and Jonathan M Spring. 2020. <span>“Historical Analysis of Exploit Availability Timelines.”</span> In <em>Workshop on Cyber Security Experimentation and Test</em>. Virtual conference: USENIX.
+</div>
+<div id="ref-howard1983readings" class="csl-entry" role="doc-biblioentry">
+Howard, Ronald A, and James E Matheson, eds. 1983. <em>Readings on the Principles and Applications of Decision Analysis: General Collection</em>. Vol. 1. Strategic Decisions Group.
+</div>
+<div id="ref-hutchins2011intelligence" class="csl-entry" role="doc-biblioentry">
+Hutchins, Eric M, Michael J Cloppert, and Rohan M Amin. 2011. <span>“Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains.”</span> <em>Leading Issues in Information Warfare &amp; Security Research</em> 1: 80.
+</div>
+<div id="ref-ISO73" class="csl-entry" role="doc-biblioentry">
+ISO. 2009. <span>“Risk Management – Vocabulary.”</span> 73:2009(en). Geneva, CH: International Organization for Standardization. <a href="https://www.iso.org/obp/ui/#iso:std:iso:guide:73:ed-1:v1:en">https://www.iso.org/obp/ui/#iso:std:iso:guide:73:ed-1:v1:en</a>.
+</div>
+<div id="ref-jacobs2019exploit" class="csl-entry" role="doc-biblioentry">
+Jacobs, Jay, Sasha Romanosky, Benjamin Edwards, Michael Roytman, and Idris Adjerid. 2019. <span>“Exploit Prediction Scoring System (<span>EPSS</span>).”</span> In <em>Workshop on the Economics of Information Security</em>. Boston, MA. <a href="https://arxiv.org/abs/1908.04856">https://arxiv.org/abs/1908.04856</a>.
+</div>
+<div id="ref-manion2019sbom" class="csl-entry" role="doc-biblioentry">
+Jump, Michelle, and Art Manion. 2019. <span>“Framing Software Component Transparency: <span>E</span>stablishing a Common Software Bill of Material (<span>SBOM</span>).”</span> Washington, DC: National Telecommunications; Information Administration.
+</div>
+<div id="ref-laube2017survey" class="csl-entry" role="doc-biblioentry">
+Laube, Stefan, and Rainer Böhme. 2017. <span>“Strategic Aspects of Cyber Risk Information Sharing.”</span> <em>ACM Comput. Surv.</em> 50 (5). <a href="https://doi.org/10.1145/3124398">https://doi.org/10.1145/3124398</a>.
+</div>
+<div id="ref-manion2009vrda" class="csl-entry" role="doc-biblioentry">
+Manion, Art, Kazuya Togashi, Joseph B. Kadane, Fumihiko Kousaka, Shawn McCaffrey, Christopher King, Masanori Yamaguchi, and Robert Weiland. 2009. <span>“Effectiveness of the Vulnerability Response Decision Assistance <span>(VRDA)</span> Framework.”</span> Pittsburgh, PA: Software Engineering Institute, Carnegie Mellon University. <a href="https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=50301">https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=50301</a>.
+</div>
+<div id="ref-dodi_8531_2020" class="csl-entry" role="doc-biblioentry">
+Office of the DoD Chief Information Officer. 2020. <span>“DoD Instruction 8531.01 DoD Vulnerability Management.”</span> Washington, DC: Department of Defense. <a href="https://fas.org/irp/doddir/dod/i8531_01.pdf">https://fas.org/irp/doddir/dod/i8531_01.pdf</a>.
+</div>
+<div id="ref-pcidss_v3" class="csl-entry" role="doc-biblioentry">
+PCI Security Standards Council. 2017. <span>“Payment Card Industry (PCI) Data Security Standard: Approved Scanning Vendors.”</span> ver 3.0. Wakefield, MA, USA. <a href="https://www.pcisecuritystandards.org/documents/ASV_Program_Guide_v3.0.pdf">https://www.pcisecuritystandards.org/documents/ASV_Program_Guide_v3.0.pdf</a>.
+</div>
+<div id="ref-pendleton2016survey" class="csl-entry" role="doc-biblioentry">
+Pendleton, Marcus, Richard Garcia-Lebron, Jin-Hee Cho, and Shouhuai Xu. 2016. <span>“A Survey on Systems Security Metrics.”</span> <em>ACM Comput. Surv.</em> 49 (4): 62:1–35.
+</div>
+<div id="ref-DO-178C" class="csl-entry" role="doc-biblioentry">
+RTCA, Inc. 2012. <span>“Software Considerations in Airborne Systems and Equipment Certification.”</span> DO-178C. Washington, DC: EUROCAE WG-12.
+</div>
+<div id="ref-russell2011artificial" class="csl-entry" role="doc-biblioentry">
+Russell, Stuart J, and Peter Norvig. 2011. <em>Artificial Intelligence: A Modern Approach</em>. 3rd ed. Upper Saddle River, NJ: Pearson Education.
+</div>
+<div id="ref-nist800-115" class="csl-entry" role="doc-biblioentry">
+Scarfone, Karen, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. 2008. <span>“Technical Guide to Information Security Testing and Assessment.”</span> SP 800-115. Gaithersburg, MD: US Dept of Commerce, National Institute of Standards; Technology.
+</div>
+<div id="ref-simon1996sciences" class="csl-entry" role="doc-biblioentry">
+Simon, Herbert A. 1996. <em>The Sciences of the Artificial</em>. 3rd ed. Cambridge, MA: MIT press.
+</div>
+<div id="ref-nist800-40r3" class="csl-entry" role="doc-biblioentry">
+Souppaya, Muragiah, and Karen Scarfone. 2013. <span>“Guide to Enterprise Patch Management Technologies.”</span> SP 800-40r3. Gaithersburg, MD: US Dept of Commerce, National Institute of Standards; Technology.
+</div>
+<div id="ref-spring2019ml" class="csl-entry" role="doc-biblioentry">
+Spring, Jonathan M., Joshua Fallon, April Galyardt, Angela Horneman, Leigh Metcalf, and Ed Stoner. 2019. <span>“Machine Learning in Cybersecurity: A Guide.”</span> CMU/SEI-2019-TR-005. Pittsburgh, PA: Software Engineering Institute, Carnegie Mellon University. <a href="http://resources.sei.cmu.edu/library/asset-view.cfm?AssetID=633583">http://resources.sei.cmu.edu/library/asset-view.cfm?AssetID=633583</a>.
+</div>
+<div id="ref-spring2018cvss" class="csl-entry" role="doc-biblioentry">
+Spring, Jonathan M, Eric Hatleback, Allen D. Householder, Art Manion, and Deana Shick. 2018. <span>“Towards Improving <span>CVSS</span>.”</span> Pittsburgh, PA: Software Engineering Institute, Carnegie Mellon University.
+</div>
+<div id="ref-spring2018generalization" class="csl-entry" role="doc-biblioentry">
+Spring, Jonathan M, and Phyllis Illari. 2018. <span>“Building General Knowledge of Mechanisms in Information Security.”</span> <em>Philosophy &amp; Technology</em> 32 (September): 627–59. <a href="https://doi.org/10.1007/s13347-018-0329-z">https://doi.org/10.1007/s13347-018-0329-z</a>.
+</div>
+<div id="ref-spring2018litrev" class="csl-entry" role="doc-biblioentry">
+———. 2019. <span>“Review of Human Decision-Making During Incident Analysis.”</span> <em>CoRR</em> abs/1903.10080 (April). <a href="http://arxiv.org/abs/1903.10080">http://arxiv.org/abs/1903.10080</a>.
+</div>
+<div id="ref-spring2015global" class="csl-entry" role="doc-biblioentry">
+Spring, Jonathan M, Sarah Kern, and Alec Summers. 2015. <span>“Global Adversarial Capability Modeling.”</span> In <em>APWG Symposium on Electronic Crime Research (eCrime)</em>. Barcelona: IEEE.
+</div>
+<div id="ref-spring2017why" class="csl-entry" role="doc-biblioentry">
+Spring, Jonathan M, Tyler Moore, and David Pym. 2017. <span>“Practicing a Science of Security: A Philosophy of Science Perspective.”</span> In <em>New Security Paradigms Workshop</em>. Santa Cruz, CA, USA. <a href="https://tylermoore.utulsa.edu/nspw17.pdf">https://tylermoore.utulsa.edu/nspw17.pdf</a>.
+</div>
+<div id="ref-tucker2018octave" class="csl-entry" role="doc-biblioentry">
+Tucker, Brett. 2018. <span>“OCTAVE<span></span> FORTE and FAIR Connect Cyber Risk Practitioners with the Boardroom.”</span> June 2018. <a href="https://insights.sei.cmu.edu/insider-threat/2018/06/octave-forte-and-fair-connect-cyber-risk-practitioners-with-the-boardroom.html">https://insights.sei.cmu.edu/insider-threat/2018/06/octave-forte-and-fair-connect-cyber-risk-practitioners-with-the-boardroom.html</a>.
+</div>
+<div id="ref-vilches2018towards" class="csl-entry" role="doc-biblioentry">
+Vilches, Vı́ctor Mayoral, Endika Gil-Uriarte, Irati Zamalloa Ugarte, Gorka Olalde Mendia, Rodrigo Izquierdo Pisón, Laura Alzola Kirschgens, Asier Bilbao Calvo, Alejandro Hernández Cordero, Lucas Apa, and César Cerrudo. 2018. <span>“Towards an Open Standard for Assessing the Severity of Robot Security Vulnerabilities, the Robot Vulnerability Scoring System (<span>RVSS</span>).”</span> <em>arXiv Preprint arXiv:1807.10357</em>.
+</div>
+<div id="ref-cvss_sig" class="csl-entry" role="doc-biblioentry">
+Wiles, Darius, and Dave Dugal, eds. 2019. <span>“Common Vulnerability Scoring System <span>SIG</span>.”</span> FIRST. 2019. <a href="https://www.first.org/cvss/">https://www.first.org/cvss/</a>.
+</div>
+</div>
+</body>
+</html>
