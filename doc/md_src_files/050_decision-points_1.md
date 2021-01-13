@@ -45,39 +45,42 @@ In economics terms, [*Exploitation*](#exploitation) measures whether the **capit
 More plainly, [*Utility*](#utility) is about how much an adversary might benefit from a campaign using the vulnerability in question, whereas [*Exploitation*](#exploitation) is about how easy it would be to start such a campaign or if one is already underway.
 
 
-Heuristically, we base [*Utility*](#utility) on a combination of value density of vulnerable components and automatability of potential exploitation.
+Heuristically, we base [*Utility*](#utility) on a combination of value density of vulnerable components and automatable of potential exploitation.
 This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component.
-[*Automatability*](#automatability) ([*slow*](#automatability) or [*rapid*](#automatability)) and [*Value Density*](#value-density) ([*diffuse*](#value-density) or [*concentrated*](#value-density)) are defined in Sections 4.4.3.1 and 4.4.3.2.
+[*Automatable*](#automatable) ([*no*](#automatable) or [*yes*](#automatable)) and [*Value Density*](#value-density) ([*diffuse*](#value-density) or [*concentrated*](#value-density)) are defined in Sections 4.4.3.1 and 4.4.3.2.
 
 
 Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in Table 6.
 
 |  | Table 6: Utility Decision Values |
 | --------------- | ------------------------------------------------------------------------------ |
-| Laborious       | Slow automatability and diffuse value                                               |
-| Efficient       | {Rapid automatability and diffuse value} OR {Slow automatability and concentrated value} |
-| Super Effective | Rapid automatability and concentrated value                                         |
+| Laborious       | *No* to automatable and diffuse value                                               |
+| Efficient       | {*Yes* to automatable and diffuse value} OR {*No* to automatable and concentrated value} |
+| Super Effective | *Yes* to automatable and concentrated value                                         |
 
-#### Automatability
+#### Automatable
 
-[*Automatability*](#automatability) is described as slow or rapid:
+[*Automatable*](#automatable) captures the answer to the question "Can an attacker reliably automate creating exploitation events for this vulnerability?" The metric can take the values *no* or *yes*:
 
-  - [*slow*](#automatability): Attackers cannot reliably automate steps 1-4 of the kill chain
+  - [*no*](#automatable): Attackers cannot reliably automate steps 1-4 of the kill chain
     [@hutchins2011intelligence] for this vulnerability for some reason. These
     steps are reconnaissance, weaponization, delivery, and exploitation. Example
-    reasons for why a step may not be reliably automatable include (1)
-    the vulnerable component is not searchable or enumerable on the
-    network, (2) weaponization may require human direction for each
-    target, (3) delivery may require channels that widely deployed
-    network security configurations block, and (3) exploitation may be
-    frustrated by adequate exploit-prevention techniques enabled by
-    default; ASLR is an example of an exploit-prevention tool.
+    reasons for why a step may not be reliably automatable include
+    - (1) the vulnerable component is not searchable or enumerable on the network,
+    - (2) weaponization may require human direction for each target,
+    - (3) delivery may require channels that widely deployed network security configurations block, and
+    - (4) exploitation is not reliable, due to exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool.
 
-  - [*rapid*](#automatability): Attackers can reliably automate steps 1-4 of the of the kill
-    chain. If the vulnerability allows remote code execution or command
-    injection, the default response should be rapid.
+  - [*yes*](#automatable): Attackers can reliably automate steps 1-4 of the of the kill chain.
+    If the vulnerability allows remote code execution or command injection, the expected response should be yes.
 
-Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated. For example, consider a vulnerability A. If the systems vulnerable to A are usually not openly connected to incoming traffic ([*Exposure*](#exposure) is [small](#exposure) or [controlled](#exposure)), reconnaissance probably cannot be automated (as scans should be blocked, etc.). This fact would make automatability [slow](#automatability). However, if another vulnerability B with [rapid](#automatiability) automatability can be reliably used to chain to vulnerability A, then that automates reconnaissance of vulnerable systems. In such a situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.
+Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated. For example, consider a vulnerability A. If the systems vulnerable to A are usually not openly connected to incoming traffic ([*Exposure*](#exposure) is [small](#exposure) or [controlled](#exposure)), reconnaissance probably cannot be automated (as scans should be blocked, etc.). This fact would make automatable [no](#automatable). However, if another vulnerability B with a [yes](#automatiability) to automatable can be reliably used to chain to vulnerability A, then that automates reconnaissance of vulnerable systems. In such a situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.
+
+Like all SSVC decision points, [*Automatable*](#automatable) should capture the analyst's best understanding of plausible scenarios at the time of the analysis.
+An answer of *no* does not mean that it is absolutely inconceivable to automate exploitation in any scenario.
+It means the analyst is not able to sketch a plausible path through all four kill chain steps.  
+Code that demonstrably automates all four kill chain steps certainly satisfies as a sketch.
+We say sketch to indicate that plausible arguments, such as convincing psuedocode of an automation pathway for each step, are also adequate evidence in favor of a *yes* to  [*Automatable*](#automatable).
 
 #### Value Density
 
@@ -108,14 +111,14 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 
 The output for the [*Utility*](#utility) decision point is visualized in Table 7.
 
-Table 7: Utility to the Adversary, as a Combination of Automatability and Value Density
+Table 7: Utility to the Adversary, as a Combination of automatable and Value Density
 
-| *Automatability* | *Value Density* | *Utility* |
+| *automatable* | *Value Density* | *Utility* |
 | ----------- | --------------- |       --: |
-| *slow*  | *diffuse*   | laborious |
-| *slow*  | *concentrated* | efficient |
-| *rapid* | *diffuse*   | efficient |
-| *rapid* | *concentrated* | super effective |
+| *no*  | *diffuse*   | laborious |
+| *no*  | *concentrated* | efficient |
+| *yes* | *diffuse*   | efficient |
+| *yes* | *concentrated* | super effective |
 
 
-Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as [Zerodium](https://zerodium.com/program.html), make such pricing structures public. The valuable exploits track the automatability and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors. However, future work should look for and prevent large mismatches between the outputs of the [*Utility*](#utility) decision point and the exploit markets.
+Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as [Zerodium](https://zerodium.com/program.html), make such pricing structures public. The valuable exploits track the automatable and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors. However, future work should look for and prevent large mismatches between the outputs of the [*Utility*](#utility) decision point and the exploit markets.
