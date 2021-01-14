@@ -1,4 +1,4 @@
-## Likely Decision Points and Relevant Data
+# Likely Decision Points and Relevant Data
 
 We propose the following decision points and associated values should be a factor when making decisions about vulnerability prioritization. Each decision point is tagged with the stakeholder it is relevant to: deployers, suppliers, or both. We emphasize that these descriptions are hypotheses to be further tested and validated. We made every effort to put forward informed and useful decision frameworks with wide applicability, but the goal of this paper is more to solicit feedback than make a declaration. We welcome questions, constructive criticism, refuting evidence, or supporting evidence about any aspect of this proposal.
 
@@ -6,7 +6,7 @@ One important omission from the values for each category is an “unknown” opt
 
 We propose satisfactory decision points for vulnerability management in the next sections, in no particular order.
 
-### Exploitation (Supplier, Deployer)
+## Exploitation
 > Evidence of Active Exploitation of a Vulnerability
 
 The intent of this measure is the present state of exploitation of the vulnerability. The intent is not to predict future exploitation but only to acknowledge the current state of affairs. Predictive systems, such as EPSS, could be used to augment this decision or to notify stakeholders of likely changes [@jacobs2019exploit].
@@ -17,7 +17,7 @@ The intent of this measure is the present state of exploitation of the vulnerabi
 | PoC <br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
 | Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
 
-### Technical Impact (Supplier)
+## Technical Impact
 > Technical Impact of Exploiting the Vulnerability
 
 When evaluating *Technical Impact*, recall the scope definition above.
@@ -35,7 +35,7 @@ Therefore, if there is a vulnerability then there must be some technical impact.
 | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
 | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
 
-### Utility (Supplier, Deployer)
+## Utility 
 > The Usefulness of the Exploit to the Adversary
 
 [*Utility*](#utility) estimates an adversary's benefit compared to their effort based on the assumption that they can exploit the vulnerability.
@@ -58,7 +58,7 @@ Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of 
 | Efficient       | {Rapid automatability and diffuse value} OR {Slow automatability and concentrated value} |
 | Super Effective | Rapid automatability and concentrated value                                         |
 
-#### Automatability
+### Automatability
 
 [*Automatability*](#automatability) is described as slow or rapid:
 
@@ -79,7 +79,7 @@ Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of 
 
 Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated. For example, consider a vulnerability A. If the systems vulnerable to A are usually not openly connected to incoming traffic ([*Exposure*](#exposure) is [small](#exposure) or [controlled](#exposure)), reconnaissance probably cannot be automated (as scans should be blocked, etc.). This fact would make automatability [slow](#automatability). However, if another vulnerability B with [rapid](#automatiability) automatability can be reliably used to chain to vulnerability A, then that automates reconnaissance of vulnerable systems. In such a situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.
 
-#### Value Density
+### Value Density
 
 [*Value Density*](#value-density) is described as diffuse or concentrated:
 

@@ -1,8 +1,15 @@
 
 
-# Decision Trees for Vulnerability Management
+# Decision by Whom about What 
 
-Viable decision guidance for vulnerability management should, at a minimum, consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points. The following sections address each of these parts, in turn, and should be taken as instructive examples. While we strive to make the examples realistic, we invite the community to engage and conduct empirical assessments to test examples. The following construction should be treated as an informed hypothesis rather than a conclusion.
+This section will define who we are trying to give decision advice to, and how we are scoping our advice on vulnerability management decisions. 
+Viable decision guidance for vulnerability management should, at a minimum, consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points. 
+This section covers the first of these three, and the following sections address the other parts in turn.
+The "who" is primarily about categories of stakeholders -- suppliers, deployers, and coordinators -- as well as their individual risk tolerances.
+The "what" is about the scope, both in how the affected system is defined and how much of the world an analyst should consider when estimating effects of a vulnerability. 
+
+While we strive to make the examples realistic, we invite the community to engage and conduct empirical assessments to test examples. 
+The following construction should be treated as an informed hypothesis rather than a conclusion.
 
 ## Enumerating Stakeholders
 
@@ -67,7 +74,7 @@ affect the results.
 
 Returning to the example of an organization with three vulnerabilities to remediate that were assigned *scheduled* priority, in SSVC, they can be patched in any order. This is an improvement over CVSS, since based on the scoring errors, CVSS was essentially just giving random fine-grained priorities within qualitative categories anyway. With our system, organizations can be more deliberate about conveniently organizing work that is of equivalent priority.
 
-### Risk Tolerance and Response Priority
+## Risk Tolerance and Response Priority
 
 SSVC enables stakeholders to balance and manage their risks themselves.
 We follow [@ISO73] and define risk as "effect of uncertainty on objectives;" see [@ISO73] for notes on the terms in the definition.
@@ -124,6 +131,6 @@ The owner of the phone may elect to jailbreak it; there is at least an implicit 
 However, from the perspective of the explicit phone OS security policy embedded in the access controls and separation of privileges, the jailbreak is exploiting a vulnerability.
 If a security policy is embedded in technical controls, such as OS access controls on a phone, then anything that violates that security policy is a vulnerability. 
 
-### Reasoning Steps Forward
+## Reasoning Steps Forward
 
 This aspect of scope is about immediacy, prevalence, and causal importance. Immediacy is about how soon after the decision point adverse effects should occur to be considered relevant. Prevalence is about how common adverse effects should be to be considered relevant. Causal importance is about how much an exploitation of the software in the cyber-physical system contributes to adverse effects to be considered relevant. Our recommendation is to walk a pragmatic middle path on all three aspects. Effects are not relevant if they are merely possible, too infrequent, far distant, or unchanged by the vulnerability. But effects are relevant long before they are absolutely certain, ubiquitous, or occurring presently. Overall, we summarize this aspect of scope as *consider credible effects based on known use cases of the software system as a part of cyber-physical systems*.
