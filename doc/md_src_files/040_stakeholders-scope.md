@@ -30,16 +30,16 @@ The unit of work may be different for different stakeholders.
 The units of work can also change as the vulnerability response progresses through a stakeholder's process.
 We elucidate these ideas with the following examples.
 
-### Vendor Units of Work
+### Supplier Units of Work
 
-On the input side of the vendor process, vendors typically receive reports of vulnerabilities in one or more versions of their product. 
-Part of the vendor's task on initial report intake is to resolve the initial report into a set of products and versions that are affected by the reported vulnerability. 
-On the output side, vendors provide fix bundles for affected products.
+On the input side of the Supplier process, Suppliers typically receive reports of vulnerabilities in one or more versions of their product. 
+Part of the Supplier's task on initial report intake is to resolve the initial report into a set of products and versions that are affected by the reported vulnerability. 
+On the output side, Suppliers provide fix bundles for affected products.
 
-Our working assumption is that for SSVC purposes, the vendor's unit of work is the tuple of (vulnerability, affected product). 
-This implies the need for vendors to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC.
+Our working assumption is that for SSVC purposes, the Supplier's unit of work is the tuple of (vulnerability, affected product). 
+This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC.
 
-There are a variety of ways a vendor might need to resolve the set of affected products. For example they might
+There are a variety of ways a Supplier might need to resolve the set of affected products. For example they might
 
 * recognize, on further investigation of the initial report, that additional versions of the product are affected
 * discover that other products are affected due to code sharing or even consistent programmer error across products
@@ -51,16 +51,16 @@ We note that SBOM seems well-placed to aid in that resolution process for the th
 
 ### Deployer Units of Work ###
 
-Deployers are usually in the position of receiving fix bundles from their vendors for products they have deployed. 
+Deployers are usually in the position of receiving fix bundles from their Suppliers for products they have deployed. 
 They are then faced with the decision to deploy the fix bundle to a particular instance or not. 
-Whether or not they have the option of deploying only part of a fix bundle depends on whether the vendor has engineered their release process to permit that degree of flexibility. 
-For example, if service packs are fix bundles, the vendor might choose to release individually deployable fixes as well.
+Whether or not they have the option of deploying only part of a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility. 
+For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
 The vulnerability management process for deployers has at its core the collation of data including
 * an inventory of deployed instances of product versions
 * a mapping of vulnerabilities to fix bundles
 * a mapping of fix bundles to product versions
-The first of these must be collected by the deployer, while the latter two most often originate from the product vendor.
+The first of these must be collected by the deployer, while the latter two most often originate from the product Supplier.
 
 In turn, deployers must resolve this information into specific actions in which a fix bundle is slated for deployment to replace or modify a particular instance of the product.
 The deployer tree in SSVC takes into account the mission and safety risks inherent to the category of systems to which those deployed instances belong.
@@ -68,7 +68,7 @@ For this reason we recommend that the (fix bundle, product version instance) pai
 
 ### Coordinator Units of Work ###
 
-Coordinator units of work tend to coincide with whatever arrives in a single report, which spans the range from a single vulnerability affecting a specific version of an individual product from one vendor all the way to fundamental design flaws in system specifications that could affect every vendor and product that uses or implements the flawed specification. 
+Coordinator units of work tend to coincide with whatever arrives in a single report, which spans the range from a single vulnerability affecting a specific version of an individual product from one Supplier all the way to fundamental design flaws in system specifications that could affect every Supplier and product that uses or implements the flawed specification. 
 Coordinators may need to reorganize reports (e.g., merge, split, expand, or contract) according to their workflow demands. SSVC can be applied to either the initial report or to the results of such refinement.
 
 ### Aggregation of SSVC across units of work
