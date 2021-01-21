@@ -33,9 +33,8 @@ We elucidate these ideas with the following examples.
 ### Supplier Units of Work
 
 On the input side of the Supplier process, Suppliers typically receive reports of vulnerabilities in one or more versions of their product. 
-Part of the Supplier's task on initial report intake is to resolve the initial report into a set of products and versions that are affected by the reported vulnerability. 
-On the output side, Suppliers provide fix bundles for affected products.
-
+Part of the Supplier's task on initial report intake is to resolve the initial report into a set of products and versions that are affected by the reported vulnerability.
+ 
 Our working assumption is that for SSVC purposes, the supplier's unit of work is the combination of the vulnerability with each affected product.
 This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC. 
 
@@ -50,12 +49,18 @@ There are a variety of ways a Supplier might need to resolve the set of affected
 Without belaboring the point, the above methods are similar to how CVE Numbering Authorities discern "independently fixable vulnerabilities" [@mitre2020cna].
 We also note that SBOM[@manion2019sbom] seems well-placed to aid in that resolution process for the third party library scenarios.
 
+In the end, Suppliers provide remediations and/or mitigations for affected products.
+A supplier-provided remediation is usually a software update which contains fixes for multiple vulnerabilities and, often, new or improved features.
+Supplier output is relevant because it will become Deployers' input.
+SSVC focuses just on the remediation in this case; a set of remediations for multiple vulnerabilities is a fix bundle.
+Suppliers may also produce mitigations, such as recommended configuration changes, to limit the impact of a vulnerability.
+
 
 ### Deployer Units of Work ###
 
-Deployers are usually in the position of receiving remediations (such as fix bundles) or mitigations from their Suppliers for products they have deployed. 
+Deployers are usually in the position of receiving remediations or mitigations from their Suppliers for products they have deployed. 
 They are then faced with the decision to deploy the remediation or mitigation to a particular instance or not. 
-Whether or not they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility. 
+Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility. 
 For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
 The vulnerability management process for deployers has at its core the collation of data including
