@@ -47,7 +47,7 @@ There are a variety of ways a Supplier might need to resolve the set of affected
 * receive reports of vulnerabilities in third party libraries they include in one or more of their products
 * receive fix bundles for third party libraries used in one or more of their products (where a fix bundle might resolve multiple vulnerabilities or add new features)
 
-We note that SBOM seems well-placed to aid in that resolution process for the third party library scenarios.
+We note that SBOM[@manion2019sbom] seems well-placed to aid in that resolution process for the third party library scenarios.
 
 
 ### Deployer Units of Work ###
