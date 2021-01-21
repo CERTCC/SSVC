@@ -53,20 +53,20 @@ We also note that SBOM[@manion2019sbom] seems well-placed to aid in that resolut
 
 ### Deployer Units of Work ###
 
-Deployers are usually in the position of receiving fix bundles from their Suppliers for products they have deployed. 
-They are then faced with the decision to deploy the fix bundle to a particular instance or not. 
-Whether or not they have the option of deploying only part of a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility. 
+Deployers are usually in the position of receiving remediations (such as fix bundles) or mitigations from their Suppliers for products they have deployed. 
+They are then faced with the decision to deploy the remediation or mitigation to a particular instance or not. 
+Whether or not they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility. 
 For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
 The vulnerability management process for deployers has at its core the collation of data including
 * an inventory of deployed instances of product versions
-* a mapping of vulnerabilities to fix bundles
-* a mapping of fix bundles to product versions
+* a mapping of vulnerabilities to remediations or mitigations
+* a mapping of remediations and/or mitigations to product versions
 The first of these must be collected by the deployer, while the latter two most often originate from the product Supplier.
 
-In turn, deployers must resolve this information into specific actions in which a fix bundle is slated for deployment to replace or modify a particular instance of the product.
+In turn, deployers must resolve this information into specific actions in which a remediation or mitigation is slated for deployment to replace or modify a particular instance of the product.
 The deployer tree in SSVC takes into account the mission and safety risks inherent to the category of systems to which those deployed instances belong.
-For this reason we recommend that the (fix bundle, product version instance) pairing constitutes the unit of work most appropriate for the SSVC.
+For this reason we recommend that the pairing of remediation or mitigation to  a product version instance constitutes the unit of work most appropriate for the SSVC.
 
 ### Coordinator Units of Work ###
 
