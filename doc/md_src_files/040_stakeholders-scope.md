@@ -24,7 +24,7 @@ Stakeholders with different responsibilities in vulnerability management have la
 
 ## Enumerating Vulnerability Management Actions
 SSVC models the decision of “With what priority should the organization take action on a given vulnerability management work unit?” to be agnostic to whether or not a patch is available. 
-A unit of work means either remediating the vulnerability, such as applying a patch or deploying a mitigation. Both remediation and mitigations often address multiple identified vulnerabilities. 
+A unit of work means either remediating the vulnerability---such as applying a patch---or deploying a mitigation. Both remediation and mitigations often address multiple identified vulnerabilities. 
 
 The unit of work may be different for different stakeholders.
 The units of work can also change as the vulnerability response progresses through a stakeholder's process.
