@@ -36,9 +36,10 @@ On the input side of the Supplier process, Suppliers typically receive reports o
 Part of the Supplier's task on initial report intake is to resolve the initial report into a set of products and versions that are affected by the reported vulnerability. 
 On the output side, Suppliers provide fix bundles for affected products.
 
-Our working assumption is that for SSVC purposes, the Supplier's unit of work is the tuple of (vulnerability, affected product). 
-This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC.
+Our working assumption is that for SSVC purposes, the supplier's unit of work is the combination of the vulnerability with each affected product.
+This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC. 
 
+Products will often need to be addressed individually because they may have diverse development processes or usage scenarios.
 There are a variety of ways a Supplier might need to resolve the set of affected products. For example they might
 
 * recognize, on further investigation of the initial report, that additional versions of the product are affected
