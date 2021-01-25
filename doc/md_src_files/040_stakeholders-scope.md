@@ -70,7 +70,7 @@ The vulnerability management process for deployers has at its core the collation
 
 The first of these must be collected by the deployer, while the latter two most often originate from the product Supplier.
 Managing this information is generally called asset management.
-The relationship between SSVC and asset management is discussed further in Relationship to asset management.
+The relationship between SSVC and asset management is discussed further in (Relationship to asset management)[#Relationship to asset management].
 
 In turn, deployers must resolve this information into specific actions in which a remediation or mitigation is slated for deployment to replace or modify a particular instance of the product.
 The deployer tree in SSVC takes into account the mission and safety risks inherent to the category of systems to which those deployed instances belong.
