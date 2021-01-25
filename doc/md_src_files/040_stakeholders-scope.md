@@ -1,6 +1,6 @@
 
 
-# Decision by Whom about What 
+# Vulnerability Management Decisions
 
 This section will define who we are trying to give decision advice to, and how we are scoping our advice on vulnerability management decisions. 
 Viable decision guidance for vulnerability management should, at a minimum, consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points. 
