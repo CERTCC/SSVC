@@ -277,7 +277,7 @@ Because of this higher sensitivity to safety concerns, we chose to retain a four
 | Catastrophic    | Very High                 | Very High   | Very High |
 -->
 
-### Adapting Situated Safety / Mission Impact for Sector-Specific Scenarios
+### Safety and Mission Impact Decision Points for Industry Sectors
 
 We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software.
 Therefore, vulnerability information providers -- that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
