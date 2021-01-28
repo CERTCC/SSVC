@@ -17,6 +17,26 @@ The intent of this measure is the present state of exploitation of the vulnerabi
 | PoC <br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
 | Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
 
+
+### Gathering Information About Exploitation
+[@householder2020historical] presents a method for searching the GitHub repositories of open-source exploit databases.
+This method could be leveraged to provide some information about whether [PoC](#exploitation) is true.
+However, part (3) of [PoC](#exploitation) would not be represented in such a search, so more information gathering would be needed.
+For part (3), perhaps we could construct a mapping of CWE-IDs which always represent vulnerabilities with well-known methods of exploitation.
+For example, CWE-295, [Improper Certificate Validation
+](https://cwe.mitre.org/data/definitions/295.html), and its child CWEs, describe improper validation of TLS certificates.
+These CWE-IDs could always be marked as [PoC](#exploitation) since that meets condition (3) in the definition.
+A comprehensive set of suggested CWE-IDs for this purpose is future work.
+
+Gathering information for [active](#exploitation) is a bit harder.
+If the vulnerability has a name or public identifier such as a CVE-ID, a search of news websites, twitter, the vendor's vulnerability description, and public vulnerability databases for mentions of exploitation is generally adequate.
+However, if the organization has the ability to detect exploitation attempts -- say through reliable and precise IDS signatures based on a public PoC -- then detection of exploitation attempts also signals that [active](#exploitation) is the right choice.
+
+The description for [none](#exploitation) says there is no **evidence** of exploitation.
+This framing admits that an analyst may not be able to detect or know about every attack.
+An analyst should feel comfortable selecting [none](#exploitation) if they (or their search scripts) have performed searches in the appropriate places for public PoCs and active exploitation (as described above) and found none.
+Acknowledging that [*Exploitation*](#exploitation) values can change relatively quickly, we recommend conducting these searches frequently -- if they can be automated to the organization's satisfaction, perhaps once a day (see also [Guidance on Communicating Results](#guidance-on-communicating-results)).  
+
 ## Technical Impact
 > Technical Impact of Exploiting the Vulnerability
 
@@ -35,7 +55,10 @@ Therefore, if there is a vulnerability then there must be some technical impact.
 | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
 | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
 
-## Utility 
+
+### Gathering Information About Technical Impact
+
+## Utility
 > The Usefulness of the Exploit to the Adversary
 
 [*Utility*](#utility) estimates an adversary's benefit compared to their effort based on the assumption that they can exploit the vulnerability.
@@ -49,13 +72,23 @@ Heuristically, we base [*Utility*](#utility) on a combination of value density o
 This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component.
 [*Automatable*](#automatable) as ([*no*](#automatable) or [*yes*](#automatable)) and [*Value Density*](#value-density) as ([*diffuse*](#value-density) or [*concentrated*](#value-density)) are defined in Sections 4.4.3.1 and 4.4.3.2.
 
-Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in Table 6.
+Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in Table 6. Table 7 is an equivalent expression of [*Utility*](#utility) more like a lookup table a program might use.
 
 |  | Table 6: Utility Decision Values |
 | --------------- | ------------------------------------------------------------------------------ |
 | Laborious       | *No* to automatable and diffuse value                                               |
 | Efficient       | {*Yes* to automatable and diffuse value} OR {*No* to automatable and concentrated value} |
 | Super Effective | *Yes* to automatable and concentrated value                                         |
+
+Table 7: Utility to the Adversary, as a Combination of automatable and Value Density
+
+| *Automatable* | *Value Density* | *Utility* |
+| ----------- | --------------- |       --: |
+| *no*  | *diffuse*   | laborious |
+| *no*  | *concentrated* | efficient |
+| *yes* | *diffuse*   | efficient |
+| *yes* | *concentrated* | super effective |
+
 
 
 ### Automatable
@@ -76,11 +109,15 @@ Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of 
 
 Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated. For example, consider a vulnerability A. If the systems vulnerable to A are usually not openly connected to incoming traffic ([*Exposure*](#exposure) is [small](#exposure) or [controlled](#exposure)), reconnaissance probably cannot be automated (as scans should be blocked, etc.). This fact would make automatable [no](#automatable). However, if another vulnerability B with a [yes](#automatiability) to automatable can be reliably used to chain to vulnerability A, then that automates reconnaissance of vulnerable systems. In such a situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.
 
+#### Gathering Information About Automatable
+
+
 Like all SSVC decision points, [*Automatable*](#automatable) should capture the analyst's best understanding of plausible scenarios at the time of the analysis.
 An answer of *no* does not mean that it is absolutely inconceivable to automate exploitation in any scenario.
 It means the analyst is not able to sketch a plausible path through all four kill chain steps.  
 Code that demonstrably automates all four kill chain steps certainly satisfies as a sketch.
 We say sketch to indicate that plausible arguments, such as convincing psuedocode of an automation pathway for each step, are also adequate evidence in favor of a *yes* to  [*Automatable*](#automatable).
+
 
 ### Value Density
 
@@ -109,17 +146,9 @@ We say sketch to indicate that plausible arguments, such as convincing psuedocod
     amount of data, but because it is uniquely valuable to law
     enforcement.
 
-The output for the [*Utility*](#utility) decision point is visualized in Table 7.
+#### Gathering Information About Value Density
 
-Table 7: Utility to the Adversary, as a Combination of automatable and Value Density
-
-| *automatable* | *Value Density* | *Utility* |
-| ----------- | --------------- |       --: |
-| *no*  | *diffuse*   | laborious |
-| *no*  | *concentrated* | efficient |
-| *yes* | *diffuse*   | efficient |
-| *yes* | *concentrated* | super effective |
-
+### Alternative Utility Outputs
 
 Alternative heuristics for proxying adversary utility are plausible. One such example is the value the vulnerability would have were it sold on the open market. Some firms, such as [Zerodium](https://zerodium.com/program.html), make such pricing structures public. The valuable exploits track the automatable and value density heuristics for the most part. Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more automated kill chain steps successfully leads to higher exploit value. Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and those features describe automation of the relevant kill chain steps. How equivalently virulent exploits for different systems are priced relative to each other is more idiosyncratic. Price does not only track value density of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. Currently, we simplify the analysis and ignore these factors.
 However, future work should look for and prevent large mismatches between the outputs of the [*Utility*](#utility) decision point and the exploit markets.
