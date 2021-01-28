@@ -40,7 +40,7 @@ Acknowledging that [*Exploitation*](#exploitation) values can change relatively 
 ## Technical Impact
 > Technical Impact of Exploiting the Vulnerability
 
-When evaluating *Technical Impact*, recall the scope definition above.
+When evaluating [*Technical Impact*](#technical-impact), recall the scope definition in the [Scope Section](#scope).
 Total control is relative to the affected component where the vulnerability resides.
 If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 
@@ -57,6 +57,17 @@ Therefore, if there is a vulnerability then there must be some technical impact.
 
 
 ### Gathering Information About Technical Impact
+
+Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degree of control the vulnerability gives an attacker over the vulnerable component.
+One way to approach this analyiss is to ask whether the control gained is *total* or not.
+If it is not total, it is *partial*.
+If an answer to one of the following questions is yes, then control is *total*:
+ - Can the attacker install and run arbitrary software?
+ - Can the attacker trigger all the actions that the vulnerable component can perform?
+ - Does the attacker get an account with full privileges to the vulnerable component (administrator or root user accounts, for example)?
+
+This list is an evolving set of heuristics.
+If you find a vulnerability that should have [*total*](#technical-impact)  [*Technical Impact*](#technical-impact) but that does not answer yes to any of these questions, please describe the example and what question we might add to this list in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues). 
 
 ## Utility
 > The Usefulness of the Exploit to the Adversary
