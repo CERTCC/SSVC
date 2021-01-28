@@ -67,7 +67,7 @@ If an answer to one of the following questions is yes, then control is *total*:
  - Does the attacker get an account with full privileges to the vulnerable component (administrator or root user accounts, for example)?
 
 This list is an evolving set of heuristics.
-If you find a vulnerability that should have [*total*](#technical-impact)  [*Technical Impact*](#technical-impact) but that does not answer yes to any of these questions, please describe the example and what question we might add to this list in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues). 
+If you find a vulnerability that should have [*total*](#technical-impact)  [*Technical Impact*](#technical-impact) but that does not answer yes to any of these questions, please describe the example and what question we might add to this list in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
 
 ## Utility
 > The Usefulness of the Exploit to the Adversary
@@ -122,13 +122,18 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 
 #### Gathering Information About Automatable
 
-
-Like all SSVC decision points, [*Automatable*](#automatable) should capture the analyst's best understanding of plausible scenarios at the time of the analysis.
-An answer of *no* does not mean that it is absolutely inconceivable to automate exploitation in any scenario.
-It means the analyst is not able to sketch a plausible path through all four kill chain steps.  
+An analyst should be able to sketch the automation scenario and how it either does or does not satisfy each of the four kill chain steps.
+Once one step is not satisfied, the analyst can stop and select [*no](#automatable).
 Code that demonstrably automates all four kill chain steps certainly satisfies as a sketch.
 We say sketch to indicate that plausible arguments, such as convincing psuedocode of an automation pathway for each step, are also adequate evidence in favor of a *yes* to  [*Automatable*](#automatable).
 
+Like all SSVC decision points, [*Automatable*](#automatable) should capture the analyst's best understanding of plausible scenarios at the time of the analysis.
+An answer of *no* does not mean that it is absolutely inconceivable to automate exploitation in any scenario.
+It means the analyst is not able to sketch a plausible path through all four kill chain steps.
+"Plausible" sketches should account for widely deployed network and host-based defenses.
+Liveness of Internet-connected services means quite a few overlapping things [@bano2018scanning], and for most vulnerabilities just because a port is open does not automatically mean that reconnaissance, weaponization, and delivery are automatable.
+Furthermore, just because two hosts are misconfigured to have expose a vulnerable service while 2 million are properly configured does not make discovery of the service automatable.
+Recall, as discussed in in [Reasoning Steps Forward](#reasoning-steps-forward), the analyst should consider *credible* effects based on *known* use cases of the software system in order to be pragmatic about scope and providing values to decision points. 
 
 ### Value Density
 
