@@ -133,11 +133,11 @@ It means the analyst is not able to sketch a plausible path through all four kil
 "Plausible" sketches should account for widely deployed network and host-based defenses.
 Liveness of Internet-connected services means quite a few overlapping things [@bano2018scanning], and for most vulnerabilities just because a port is open does not automatically mean that reconnaissance, weaponization, and delivery are automatable.
 Furthermore, just because two hosts are misconfigured to have expose a vulnerable service while 2 million are properly configured does not make discovery of the service automatable.
-Recall, as discussed in in [Reasoning Steps Forward](#reasoning-steps-forward), the analyst should consider *credible* effects based on *known* use cases of the software system in order to be pragmatic about scope and providing values to decision points. 
+Recall, as discussed in in [Reasoning Steps Forward](#reasoning-steps-forward), the analyst should consider *credible* effects based on *known* use cases of the software system in order to be pragmatic about scope and providing values to decision points.
 
 ### Value Density
 
-[*Value Density*](#value-density) is described as diffuse or concentrated:
+[*Value Density*](#value-density) is described as *diffuse* or *concentrated* based on the resources that the adversary will gain control over with a single exploitation event:
 
   - [*diffuse*](#value-density): The system that contains the vulnerable component has
     limited resources. That is, the resources that the adversary will
@@ -163,6 +163,20 @@ Recall, as discussed in in [Reasoning Steps Forward](#reasoning-steps-forward), 
     enforcement.
 
 #### Gathering Information About Value Density
+
+The heuristics presented in the [*Value Density*](#value-density) definitions involve whether the system is usually maintained by a dedicated professional or not, though we have noted some exceptions to this, such as encrypted mobile messaging apps.
+If there are additional counterexamples to this heuristic, please describe the example and the reasoning why the system should have the alternative decision value in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
+
+An analyst might use market research reports or Internet telemetry data to assess an unfamiliar product.
+Organizations such as Gartner produce research on the market position and product comparisons for a large variety of systems.
+These generally identify how a product is deployed, used, and maintained.
+An organization's own marketing materials are a less reliable indicator of how a product is used, or at least how the organization expects it to be used.
+
+Network telemetry can inform how many instances of a software system are connected to a network.
+Such telemetry is most reliable for the supplier of the software, especially if software licenses are purchased and checked.
+Measuring how many instances of a system are in operation is useful, but more does not mean the software is a densely valuable target.
+Though, at some point, market penetration for some purpose of, say, greater than 75% or so starts to mean the product uniquely provides for a particular market segment or purpose.
+This line or reasoning is what supports a determination that a ubiquitous encrypted mobile messaging app should be considered [*concentrated*](#value-density).
 
 ### Alternative Utility Outputs
 
