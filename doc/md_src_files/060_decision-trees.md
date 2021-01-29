@@ -205,7 +205,7 @@ The following decision points are usually in the control of the organization run
  - [*Mission Impact*](#mission-impact)
  - [*System Exposure*](#system-exposure)
 
-If SSVC information is all timestamped appropriately, then an analyst can compare the timestamp to the current date and determine whether information is considered stale.
+If SSVC information is all timestamped appropriately (as discussed earlier in this section), then an analyst can compare the timestamp to the current date and determine whether information is considered stale.
 The above rates are heuristic suggestions, and organizations may choose different ones.
 Any public repository of vulnerability information should keep a change log of when values change for each decision point, for each vulnerability.
 Vulnerability response analysts should keep such change logs as well.
