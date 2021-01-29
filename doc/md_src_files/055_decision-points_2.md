@@ -308,3 +308,19 @@ Whether that mitigation allows the deployer to defer further action varies accor
 | Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
 
 ### Gathering Information About System Exposure
+
+[*System Exposure*](#system-exposure) is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
+Therefore, it generally has a concrete answer, even though it may vary from vulnerable component to vulnerable component, based on their respective configurations.
+
+[*System Exposure*](#system-exposure) can be readily informed by network scanning techniques.
+For example, if the vulnerable component is visible on [Shodan](www.shodan.io) or by some other external scanning service, then it is [*open*](#system-exposure).
+Network policy or diagrams are also useful information sources, especially for services intentionally open to the Internet such as public web servers.
+An analyst should also choose [*open*](#system-exposure) for a phone or PC that connects to the web or email without the usual protections (for example, IP and URL blocking, updated firewalls, etc.).
+
+Distinguishing between [*small*](#system-exposure) and [*controlled*](#system-exposure) is more nuanced.
+If [*open*](#system-exposure) has been ruled out, some suggested heuristics for differentiating the other two are as follows.
+ - If the system's networking and communication interfaces have been physically removed or disabled, choose [*small*](#system-exposure).
+ - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure).
+ - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).
+
+If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
