@@ -31,6 +31,11 @@ A comprehensive set of suggested CWE-IDs for this purpose is future work.
 Gathering information for [active](#exploitation) is a bit harder.
 If the vulnerability has a name or public identifier such as a CVE-ID, a search of news websites, twitter, the vendor's vulnerability description, and public vulnerability databases for mentions of exploitation is generally adequate.
 However, if the organization has the ability to detect exploitation attempts -- say through reliable and precise IDS signatures based on a public PoC -- then detection of exploitation attempts also signals that [active](#exploitation) is the right choice.
+Determining what vulnerability a novel piece of malware uses may be time consuming, requiring reverse engineering and a lot of trial and error. 
+Getting to the reverse engineering requires a capable incident detection and analysis capability as well. 
+Most organizations do not conduct these processes fully for most incidents, so in general information about what vulnerabilities are being actively exploited comes from public reporting by those who do conduct these processes.
+As long as those organizations also share detection methods and signatures, the results are usually quickly corroborated by the community. 
+For these reasons, we assess public reporting by established security community members to be a good information source for [active](#exploitation); however, one should not assume it is complete. 
 
 The description for [none](#exploitation) says there is no **evidence** of exploitation.
 This framing admits that an analyst may not be able to detect or know about every attack.
@@ -58,13 +63,14 @@ Therefore, if there is a vulnerability then there must be some technical impact.
 
 ### Gathering Information About Technical Impact
 
-Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degree of control the vulnerability gives an attacker over the vulnerable component.
+Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degree of control over the vulnerable component the attacker stands to gain by exploiting the vulnerability. 
 One way to approach this analyiss is to ask whether the control gained is *total* or not.
 If it is not total, it is *partial*.
-If an answer to one of the following questions is yes, then control is *total*:
- - Can the attacker install and run arbitrary software?
- - Can the attacker trigger all the actions that the vulnerable component can perform?
- - Does the attacker get an account with full privileges to the vulnerable component (administrator or root user accounts, for example)?
+If an answer to one of the following questions is yes, then control is *total*.
+After exploiting the vulnerablily,
+ - can the attacker install and run arbitrary software?
+ - can the attacker trigger all the actions that the vulnerable component can perform?
+ - does the attacker get an account with full privileges to the vulnerable component (administrator or root user accounts, for example)?
 
 This list is an evolving set of heuristics.
 If you find a vulnerability that should have [*total*](#technical-impact)  [*Technical Impact*](#technical-impact) but that does not answer yes to any of these questions, please describe the example and what question we might add to this list in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
