@@ -1,4 +1,4 @@
-### Safety Impact (Supplier, Deployer)
+## Safety Impact
 > Safety Impacts of Affected System Compromise
 
 We take an expansive view of safety, in which a safety violation is a violation of what the [Centers for Disease Control (CDC)](https://www.cdc.gov/hrqol/wellbeing.htm#three) calls **well-being**. Physical well-being violations are common safety violations, but we also include economic, social, emotional, and psychological well-being as important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
@@ -25,7 +25,7 @@ responsible for the proper operation of the cyber-physical system, as the term i
 
 We expect that a stakeholder should be aware of common usage of their software about two steps in the supply chain away. This expectation holds in both open source and proprietary contexts. Further steps along the supply chain are probably not reasonable for the stakeholder to consider consistently; however, this is not license to willfully ignore common downstream uses of the stakeholder’s software. If the stakeholder is contractually or legally responsible for safe operation of the software or cyber-physical system of which it is part, that also supersedes our rough supply-chain depth considerations. For software used in a wide variety of sectors and deployments, the stakeholder may need to estimate an aggregate safety impact. Aggregation suggests that the stakeholder’s response to this decision point cannot be less than the most severe credible safety impact, but we leave the specific aggregation method or function as a domain-specific extension for future work.
 
-#### Advice for Gathering Information to Answer the Safety Impact Question
+### Gathering Information About Safety Impact
 
 The factors that influence the safety impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding safety impact should include gathering information about survivability of the vulnerable component, determining available operator actions to compensate for the vulnerable component, understanding relevant insurance, and determining the viability of existing backup measures. Each of these information items depends heavily on domain-specific knowledge, and so it is out of the scope of this paper to give a general-purpose strategy for how they should be included. For example, viable manual backup mechanisms are likely important in assessing the safety impact of an industrial control system in a sewage plant, but in banking the insurance structures that prevent bankruptcies are more important.
 
@@ -180,7 +180,7 @@ resiliency</td>
 </tbody>
 </table>
 
-#### Public Safety Impact (Supplier)
+### Public Safety Impact
 
 Suppliers necessarily have a rather coarse-grained perspective on the broadly defined safety impacts described above. Therefore we simplify the above into a binary categorization: _Significant_ is when any impact meets the criteria for an impact of Major, Hazardous, or Catastrophic in the above table. _Minimal_ is when none do.
 
@@ -189,11 +189,11 @@ Suppliers necessarily have a rather coarse-grained perspective on the broadly de
 | Minimal     | Safety Impact of None or Minor                     |
 | Significant | Safety Impact of Major, Hazardous, or Catastrophic |
 
-#### Situated Safety Impact (Deployer)
+### Situated Safety Impact
 
 Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in Table 8. However, in order to simplify implementation for deployers we intend to combine this with Mission Impact below, so we defer the topic for now.
 
-### Mission Impact (Deployer)
+## Mission Impact
 > Impact on Mission Essential Functions of the Organization
 
 A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a\[n MEF\] during a disruption to normal operations” [@FCD2_2017, page B-2]. The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.
@@ -205,13 +205,13 @@ A **mission essential function (MEF)** is a function “directly related to acco
 | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
 | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
 
-#### Advice for Gathering Information to Answer the Mission Impact Question
+### Gathering Information About Mission Impact
 
 The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 [@FCD2_2017] or OCTAVE FORTE [@tucker2018octave]. This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
 As a heuristic, we suggest using the question described in Section 4.4.3, *Utility*, to constrain *Mission Impact*. If *Utility* is **super effective**, then *Mission Impact* is at least **MEF support crippled**. If *Utility* is **efficient**, then *Mission Impact* is at least **non-essential degraded**.
 
-### Situated Safety / Mission Impact (Deployer)
+## Situated Safety / Mission Impact
 
 In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
@@ -277,7 +277,7 @@ Because of this higher sensitivity to safety concerns, we chose to retain a four
 | Catastrophic    | Very High                 | Very High   | Very High |
 -->
 
-#### Adapting Situated Safety / Mission Impact for Sector-Specific Scenarios
+### Safety and Mission Impact Decision Points for Industry Sectors
 
 We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software.
 Therefore, vulnerability information providers -- that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
@@ -286,7 +286,7 @@ For considerations on how organizations might communicate SSVC information to th
 <!-- Are vul threat intel feed providers ISAOs? If not, they are also in the "vul info providers" being referred to here -->
 
 
-### System Exposure (Deployer)
+## System Exposure
 > The Accessible Attack Surface of the Affected System or Service
 
 Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.

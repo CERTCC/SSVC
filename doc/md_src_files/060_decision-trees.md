@@ -1,8 +1,25 @@
-## Relationship to asset management
+# Prioritization
 
-Our method is for prioritizing vulnerabilities based on the risk stemming from exploitation. There are other reasonable asset management considerations that may influence remediation timelines. There are at least three aspects of asset management that may be important but are out of scope for SSVC. First and most obvious is the transaction cost of conducting the mitigation or remediation. System administrators are paid to develop or apply any remediations or mitigations, and there may be other transactional costs such as downtime for updates. Second is the risk of the remediation or mitigation introducing a new error or vulnerability. Regression testing is part of managing this type of risk. Finally, there may be an operational cost of applying a remediation or mitigation, representing an ongoing change of functionality or increased overhead. A decision maker could order work within one SSVC priority class (scheduled, out-of-cycle, etc.) based on these asset management considerations, for example. Once the organization remediates or mitigates all the high-priority vulnerabilities, they can then focus on the medium-level vulnerabilities with the same effort spent on the high-priority ones.
+Given a specific stakeholder decision and set of useful decision points, we are now in a position to combine them into a comprehensive set of decisions about the priority with which to act.
+The defintiion of choices can take a logical form, such as:
+ - IF
+ - ([*Explpoitation*](#exploitation) IS [PoC](#exploitation)) AND
+ - ([*Exposure*](#exposure) IS [controlled](#exploitation)) AND
+ - ([*Utility*](#utility) IS [laborious](#utility)) AND
+ - ([*Well-being and Mission Impact*](#situated-safety---mission-impact) IS [medium](#situated-safety---mission-impact))
+ - THEN priority is *scheduled*.
 
-Asset management and risk management also drive some of the up-front work an organization would need to do to gather some of the necessary information. This situation is not new; an asset owner cannot prioritize which fixes to deploy to its assets if it does not know what assets it owns and their locations. The organization can pick its choice of tools for these things; there are about 200 asset management tools on the market [@captera]. Standards like the Software Bill of Materials (SBOM) [@manion2019sbom] would likely reduce the burden on asset management, but these are still maturing. If an organization does not have an asset management or risk management (see Section 4.4.6.1) plan and process in place, then it will have a non-trivial amount of work to do to establish these processes before it can take full advantage of SSVC.
+This logical statement is captured in line 50 of the deployer .csv file.
+
+There are different formats for capturing these prioritization decisions depending on how and where they are going to be used.
+In this paper, we primarily represent a full set of guidance on how one stakeholder will make a decision as a **decision tree**.
+This section presents example trees for each stakeholder -- supplier, deployer, and coordinator.
+This section also provides some guidance on how to [construct and customize a decision tree](#tree-construction-and-customization-guidance) and [gather evidence](#evidence-gathering-guidance) to make decisions.
+How this decision information might be stored or communicated is the topic of subsections on [Asset Management](#relationship-to-asset-management) and [Communication](#guidance-on-communicating-results).
+
+
+
+
 
 ## Supplier Tree
 
@@ -66,7 +83,6 @@ When doing the detailed risk management work of creating or modifying a tree, we
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.
 
-
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
 Making the decision process accessible has a lot of benefits.
 Unfortunately, it also makes it a bit too easy to overcomplicate the decision.
@@ -94,6 +110,13 @@ Stakeholders who use the prioritization method should consider releasing the pri
 In the case where no information is available or the organization has not yet matured its initial situational analysis, we can suggest something like defaults for some decision points. If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that means they do not know where the devices are or how they are controlled, so they should assume *Exposure* is **open**. If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a **major** *Safety Impact*. This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision maker provide evidence that no one’s well-being will suffer. The reach of software exploits is no longer limited to a research network. Similarly, with *Mission Impact*, the deployer should assume that the software is in use at the organization for a reason, and that it supports essential functions unless they have evidence otherwise. With a total lack of information, assume **
 
 support crippled** as a default. *Exploitation* needs no special default; if adequate searches are made for exploit code and none is found, the answer is **none**. The decision set {**none**, **open**, **MEF crippled**, **major**} results in a scheduled patch application.
+
+## Relationship to asset management
+
+Our method is for prioritizing vulnerabilities based on the risk stemming from exploitation. There are other reasonable asset management considerations that may influence remediation timelines. There are at least three aspects of asset management that may be important but are out of scope for SSVC. First and most obvious is the transaction cost of conducting the mitigation or remediation. System administrators are paid to develop or apply any remediations or mitigations, and there may be other transactional costs such as downtime for updates. Second is the risk of the remediation or mitigation introducing a new error or vulnerability. Regression testing is part of managing this type of risk. Finally, there may be an operational cost of applying a remediation or mitigation, representing an ongoing change of functionality or increased overhead. A decision maker could order work within one SSVC priority class (scheduled, out-of-cycle, etc.) based on these asset management considerations, for example. Once the organization remediates or mitigates all the high-priority vulnerabilities, they can then focus on the medium-level vulnerabilities with the same effort spent on the high-priority ones.
+
+Asset management and risk management also drive some of the up-front work an organization would need to do to gather some of the necessary information. This situation is not new; an asset owner cannot prioritize which fixes to deploy to its assets if it does not know what assets it owns and their locations. The organization can pick its choice of tools for these things; there are about 200 asset management tools on the market [@captera]. Standards like the Software Bill of Materials (SBOM) [@manion2019sbom] would likely reduce the burden on asset management, but these are still maturing. If an organization does not have an asset management or risk management (see Section 4.4.6.1) plan and process in place, then it will have a non-trivial amount of work to do to establish these processes before it can take full advantage of SSVC.
+
 
 ## Guidance on Communicating Results
 
@@ -146,9 +169,9 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
-    - TODO if we are going to talk about JSON or other structured data formats for decisions, do so here.
+    - TODO fix #65 (JSON format description) here.
 
-What an analyst knows about a vulnerability may not be complete. 
+What an analyst knows about a vulnerability may not be complete.
 However, the vulnerability management community may still benefit from partial information.
 Particularly, suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
 A second benefit to providing methods for communicating partial information is the reduction of bottlenecks or barriers to information exchange.
@@ -171,8 +194,46 @@ In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.
 Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
 
+Vulnerability management decisions are dynamic, and may change over time as the available information changes.
+Information changes are one reason why SSVC decisions should always be timestamped.
+SSVC decision points have different temporal properties.
+Some, such as [*Utility*](#utility), are mostly static.
+For [*Utility*](#utility) to change, the market penetration or deployment norms of a vulnerable component would have to meaningfully change.
+Some, such as [*State of Exploitation*](#state-of-exploitation), may change quickly but only in one direction.
 
-    - TODO fix #29 here (changing information)
+Both of these examples are out of the direct control of the vulnerability manager.
+Some, such as [*Exposure*](#exposure), change mostly due to actions taken by the organization managing the vulnerable component.
+If the actor who can usually trigger a relevant change is the organization using SSVC, then it is relatively straightforward to know when to update the SSVC decision.
+That is, the organization should reevaluate the decision when they make a relevant change.
+For those decision points that are about topics outside the control of the organization using SSVC, then the organization should occasionally poll their information sources for changes.
+The cadence or rate of polls is different for each decision point, based on the expected rate of change.
+
+We expect that updating information over time will be most useful where the evidence-gathering process can be automated.
+Organizations that have mature asset management systems will also find this update process more efficient than those that do not.
+For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points.   
+
+The following decision points are usually out of the control of the organization running SSVC.
+As an initial heuristic, we suggest the associated polling frequency for each.
+These frequencies can be customized, as the update frequency is directly related to the organization's tolerance for the risk that the information is out of date.
+As discussed in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance), risk tolerance is unique to each organization.
+Risk tolerance and risk appetite are primarily reflected in the priority labels (that is, decisions) encoded in the SSVC decision tree, but information polling frequency is also a risk tolerance decision and each organization may choose different time values. 
+ - [*State of Exploitation*](#state-of-exploitation): every 1 day
+ - [*Technical Impact*](#technical-impact): never (should be static per vulnerability)
+ - [*Utility*](#utility): every 6 months
+ - [*Public Safety Impact*](#public-safety-impact): every 1 year
+
+The following decision points are usually in the control of the organization running SSVC and should be reevaluated when a relevant change is made or during annual reviews of assets.
+
+ - [*Situated Safety Impact*](#situated-safety-impact)
+ - [*Mission Impact*](#mission-impact)
+ - [*System Exposure*](#system-exposure)
+
+If SSVC information is all timestamped appropriately (as discussed earlier in this section), then an analyst can compare the timestamp to the current date and determine whether information is considered stale.
+The above rates are heuristic suggestions, and organizations may choose different ones.
+Any public repository of vulnerability information should keep a change log of when values change for each decision point, for each vulnerability.
+Vulnerability response analysts should keep such change logs as well.
+Similar to logging practices recommended for incident response [@nist800-61r2], such practices make the process less error-prone and facilitate after-action reviews.
+
 
 ## Development Methodology
 
