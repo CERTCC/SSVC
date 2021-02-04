@@ -123,9 +123,9 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 #### Gathering Information About Automatable
 
 An analyst should be able to sketch the automation scenario and how it either does or does not satisfy each of the four kill chain steps.
-Once one step is not satisfied, the analyst can stop and select [*no](#automatable).
+Once one step is not satisfied, the analyst can stop and select [*no*](#automatable).
 Code that demonstrably automates all four kill chain steps certainly satisfies as a sketch.
-We say sketch to indicate that plausible arguments, such as convincing psuedocode of an automation pathway for each step, are also adequate evidence in favor of a *yes* to  [*Automatable*](#automatable).
+We say sketch to indicate that plausible arguments, such as convincing psuedocode of an automation pathway for each step, are also adequate evidence in favor of a [*yes*](#automatable) to [*Automatable*](#automatable).
 
 Like all SSVC decision points, [*Automatable*](#automatable) should capture the analyst's best understanding of plausible scenarios at the time of the analysis.
 An answer of *no* does not mean that it is absolutely inconceivable to automate exploitation in any scenario.
