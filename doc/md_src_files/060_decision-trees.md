@@ -128,9 +128,11 @@ Coordinators are particularly interested in facilitating communication because t
 This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.
 
 This section is about communicating SSVC information about a specific vulnerability.
-A supplier making a decision on allocating effort or a deployer should have a decision tree and it's decision points and possible values specified already.
-[Representation choices](#representation-choices) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
-A supplier communicating with constituents or a coordinator may communicate partial information about a specific vulnerability to help other stakeholders.
+Any stakeholder making a decision on allocating effort should have a decision tree with it's decision points and possible values specified already.
+[Representation choices](#representation-choices) and [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+This section discusses the situation where one stakeholder, usually a supplier or coordinator, wants to communicate some information about a specific vulnerability to other stakeholders or constituents.
+
+### Communication Formats
 
 We recommend two structured communication formats, abbreviated and full.
 The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone.
@@ -171,6 +173,8 @@ For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Im
 
     - TODO fix #65 (JSON format description) here.
 
+### Partial or Incomplete Information    
+
 What an analyst knows about a vulnerability may not be complete.
 However, the vulnerability management community may still benefit from partial information.
 Particularly, suppliers and coordinators, who may not know everything a deployer knows, may still provide benefit to deployers by sharing what partial information they do know.
@@ -193,6 +197,8 @@ Then the analyst can usefully restrict [*Utility*](#utility) to one of [laboriou
 In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.
 Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
+
+### Information Changes Over Time
 
 Vulnerability management decisions are dynamic, and may change over time as the available information changes.
 Information changes are one reason why SSVC decisions should always be timestamped.
