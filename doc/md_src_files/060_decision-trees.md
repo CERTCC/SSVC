@@ -82,6 +82,7 @@ SSVC enables teams with such different risk appetites to discuss and communicate
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.
+Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
 Making the decision process accessible has a lot of benefits.
@@ -138,6 +139,8 @@ We recommend two structured communication formats, abbreviated and full.
 The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone.
 The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.  
 
+#### Abbreviated Format
+
 SSVC abbreviated form borrows directly from the CVSS "vector string" notation.  
 The basic format for SSVC is:
 ```
@@ -171,7 +174,20 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
-    - TODO fix #65 (JSON format description) here.
+#### Full JSON format
+
+For a more robust, self-contained, machine-readable, we provide JSON schemas.
+The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
+The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
+A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
+
+Each element of `choices` should be a string with the format `decision point:value`, where the term `decision point` is a string derived from the name of the decision point as follows:
+ - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+ - Remove any text in parentheses (and the parentheses themselves).
+ - Remove colon characters, if any (`:`).
+ - Convert the string to [lower camel case](https://en.wikipedia.org/wiki/Camel_case) by lowercasing the string, capitalizing any letter after a space, and removing all spaces.
+
+The `value` term is derived the same way as `decision point` except start with the value name as given in the relevant decision point subsection of [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
 
 ### Partial or Incomplete Information    
 
