@@ -181,7 +181,7 @@ The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC
 The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
 
-Each element of `choices` should be a string with the format `decision point:value`, where the term `decision point` is a string derived from the name of the decision point as follows:
+Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
  - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
  - Remove any text in parentheses (and the parentheses themselves).
  - Remove colon characters, if any (`:`).
