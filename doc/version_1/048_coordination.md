@@ -16,9 +16,16 @@ The initial coordination decision is a prioritization decision, but it does not 
 The publication decision for us is a binary yes/no.
 These two decisions are not the entirety of vulnerability coordination, but we leave further details of the process for future work.
 
+Different coordinators have different scopes and constituencies.
+See [@householder2020cvd, 3.5] for a listing of different coordinator types.
+If a coordinator receives a report that is outside its own work scope or constituency, it should make an effort to route the report to a more suitable coordinator.
+The decisions in this section assume the report or vulnerability in question is in the work scope or constituency for the coordinator.
+
+
+
 ## Coordination Triage Decisions
 
-We take three priority levels in our decision about whether and how to coordinate a vulnerability based on an incoming report:
+We take three priority levels in our decision about whether and how to coordinate a vulnerability [@householder2020cvd, 1.1] based on an incoming report:
 
  - Decline - Do not act on the report. May take different forms, including ignoring the report as well as an acknowledgement to the reporter that we will not act and suggest the reporter to go to vendor or publish if unresponsive.
  - Track - Receive information about the vulnerability and monitor for status changes but do not take any overt actions.
@@ -60,7 +67,7 @@ How many suppliers are responsible for the vulnerable component and its remediat
  - One
  - Multiple
 
-### Supplier Cooperation
+### Supplier Engagement
 
 Is the supplier responding to the reporter's contact effort and actively participating in the coordination effort?
 
@@ -79,7 +86,7 @@ The reason for this is that, as a coordinator, occasionally doing a bit of extra
 This is essentially stating a preference for false positives over false negatives with respect to credibility determination.
 
 The following subsections provide suggestive guidance on assessing credibility.
-There are not ironclad rules for this assessment, and other coordinators may find other guidance works for them.
+There are no ironclad rules for this assessment, and other coordinators may find other guidance works for them.
 Credibility assessment topics include indicators for and against credibility, perspective, topic, and relationship to report scope.
 
 #### Credibility Indicators
@@ -92,7 +99,7 @@ If neither of these confirmations are available, then the value of the [*Report 
 
 **Indicators *for* Credibility** include:
  - The report is specific about what is affected
-The report provides sufficient detail to reproduce the vulnerability.
+ - The report provides sufficient detail to reproduce the vulnerability.
  - The report describes an attack scenario.
  - The report suggests mitigations.
  - The report includes proof-of-concept exploit code or steps to reproduce.
