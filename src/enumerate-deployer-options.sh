@@ -17,7 +17,7 @@ echo "row,Exploitation,Exposure,Utility,Well-being and Mission Impact,Priority(T
 
 for Exploitation in none PoC active
   do for Exposure in small controlled open
-    do for Utility in laborious effecient "super effective"
+    do for Utility in laborious efficient "super effective"
       do for WellnessMissionImpact in low medium high "very high"
           do echo $i,$Exploitation,$Exposure,$Utility,$WellnessMissionImpact,>>$out 
              i=$(($i+1))
