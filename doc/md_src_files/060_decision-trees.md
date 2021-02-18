@@ -82,6 +82,7 @@ SSVC enables teams with such different risk appetites to discuss and communicate
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.
+Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
 Making the decision process accessible has a lot of benefits.
@@ -107,9 +108,9 @@ Some of the decision points require some substantial upfront analysis effort to 
 
 Stakeholders who use the prioritization method should consider releasing the priority with which they handled the vulnerability. This disclosure has various benefits. For example, if the supplier publishes a priority ranking, then deployers could consider that in their decision-making process. One reasonable way to include it is to break ties for the deployer. If a deployer has three “scheduled” vulnerabilities to remediate, they may address them in any order. If two vulnerabilities were produced by the supplier as “scheduled” patches, and one was “out-of-cycle,” then the deployer may want to use that information to favor the latter.
 
-In the case where no information is available or the organization has not yet matured its initial situational analysis, we can suggest something like defaults for some decision points. If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that means they do not know where the devices are or how they are controlled, so they should assume *Exposure* is **open**. If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a **major** *Safety Impact*. This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision maker provide evidence that no one’s well-being will suffer. The reach of software exploits is no longer limited to a research network. Similarly, with *Mission Impact*, the deployer should assume that the software is in use at the organization for a reason, and that it supports essential functions unless they have evidence otherwise. With a total lack of information, assume **
-
-support crippled** as a default. *Exploitation* needs no special default; if adequate searches are made for exploit code and none is found, the answer is **none**. The decision set {**none**, **open**, **MEF crippled**, **major**} results in a scheduled patch application.
+In the case where no information is available or the organization has not yet matured its initial situational analysis, we can suggest something like defaults for some decision points. If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that means they do not know where the devices are or how they are controlled, so they should assume *Exposure* is **open**. If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a **major** *Safety Impact*. This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision maker provide evidence that no one’s well-being will suffer. The reach of software exploits is no longer limited to a research network.
+Similarly, with *Mission Impact*, the deployer should assume that the software is in use at the organization for a reason, and that it supports essential functions unless they have evidence otherwise. With a total lack of information, assume **support crippled** as a default.
+*Exploitation* needs no special default; if adequate searches are made for exploit code and none is found, the answer is **none**. The decision set {**none**, **open**, **MEF crippled**, **major**} results in a scheduled patch application.
 
 ## Relationship to asset management
 
@@ -128,13 +129,17 @@ Coordinators are particularly interested in facilitating communication because t
 This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.
 
 This section is about communicating SSVC information about a specific vulnerability.
-A supplier making a decision on allocating effort or a deployer should have a decision tree and it's decision points and possible values specified already.
-[Representation choices](#representation-choices) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
-A supplier communicating with constituents or a coordinator may communicate partial information about a specific vulnerability to help other stakeholders.
+Any stakeholder making a decision on allocating effort should have a decision tree with it's decision points and possible values specified already.
+[Representation choices](#representation-choices) and [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+This section discusses the situation where one stakeholder, usually a supplier or coordinator, wants to communicate some information about a specific vulnerability to other stakeholders or constituents.
+
+### Communication Formats
 
 We recommend two structured communication formats, abbreviated and full.
 The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone.
 The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.  
+
+#### Abbreviated Format
 
 SSVC abbreviated form borrows directly from the CVSS "vector string" notation.  
 The basic format for SSVC is:
@@ -169,7 +174,22 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
-    - TODO fix #65 (JSON format description) here.
+#### Full JSON format
+
+For a more robust, self-contained, machine-readable, we provide JSON schemas.
+The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
+The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
+A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
+
+Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
+ - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+ - Remove any text in parentheses (and the parentheses themselves).
+ - Remove colon characters, if any (`:`).
+ - Convert the string to [lower camel case](https://en.wikipedia.org/wiki/Camel_case) by lowercasing the string, capitalizing any letter after a space, and removing all spaces.
+
+The `value` term is derived the same way as `decision point` except start with the value name as given in the relevant decision point subsection of [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+
+### Partial or Incomplete Information    
 
 What an analyst knows about a vulnerability may not be complete.
 However, the vulnerability management community may still benefit from partial information.
@@ -194,6 +214,8 @@ In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.
 Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
 
+### Information Changes Over Time
+
 Vulnerability management decisions are dynamic, and may change over time as the available information changes.
 Information changes are one reason why SSVC decisions should always be timestamped.
 SSVC decision points have different temporal properties.
@@ -216,7 +238,7 @@ The following decision points are usually out of the control of the organization
 As an initial heuristic, we suggest the associated polling frequency for each.
 These frequencies can be customized, as the update frequency is directly related to the organization's tolerance for the risk that the information is out of date.
 As discussed in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance), risk tolerance is unique to each organization.
-Risk tolerance and risk appetite are primarily reflected in the priority labels (that is, decisions) encoded in the SSVC decision tree, but information polling frequency is also a risk tolerance decision and each organization may choose different time values. 
+Risk tolerance and risk appetite are primarily reflected in the priority labels (that is, decisions) encoded in the SSVC decision tree, but information polling frequency is also a risk tolerance decision and each organization may choose different time values.
  - [*State of Exploitation*](#state-of-exploitation): every 1 day
  - [*Technical Impact*](#technical-impact): never (should be static per vulnerability)
  - [*Utility*](#utility): every 6 months
