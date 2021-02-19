@@ -15,7 +15,7 @@ One benefit of encoding the decision process in SSVC is the analysts can all agr
 This section is based on CERT/CC policy choices.
 Two points where this clearly influences the publication decision are embargo periods and scope.
 As a matter of policy, CERT/CC will support an embargo from the public of information about a vulnerability through its choice not to publish that information while a number of conditions hold:
-  -  A negotiated embargo timer has not expired. The default embargo period is [45 days](https://vuls.cert.org/confluence/display/Wiki/Vulnerability+Disclosure+Policy).
+  -  A negotiated embargo timer has not expired. The CERT/CC default embargo period is [45 days](https://vuls.cert.org/confluence/display/Wiki/Vulnerability+Disclosure+Policy).
   -  Other exceptions have not been met, including active exploitation of the vulnerability in the wild or other public discussion of the vulnerability details.
 Regardless, the decision described in this section assumes the embargo period is over, one way or another.
 The second point is related to the [Coordination Triage Decisions](#coordination-triage-decisions) and the status of the vulnerability.
