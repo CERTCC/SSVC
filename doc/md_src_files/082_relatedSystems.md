@@ -112,6 +112,8 @@ Asset significance could be expressed through the SSVC decision points of  [*Mis
 Some SSVC decision points can be informed or answered by currently available information feeds or sources.
 These include two aspects of [*Exploitation*](#exploitation), [*System Exposure*](#system-exposure), [*Technical Impact*](#technical-impact), and [*Public Safety Impact*](#public-safety-impact).
 This section provides an overview of some options; we cannot claim it is exhaustive.
+Each decision point has a subsection for `Gathering Information About` it.
+These sections provide suggestions that would also contribute to creating or honing information feeds. 
 However, if there is a viable information source we have not captured, please create an [issue on the SSVC GitHub page](https://github.com/CERTCC/SSVC/issues) explaining the information source and what decision point it informs.  
 
 Various vendors provide paid feeds of vulnerabilities that are currently exploited by attacker groups.
