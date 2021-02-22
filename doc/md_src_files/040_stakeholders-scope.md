@@ -52,15 +52,15 @@ Our working assumption is that for SSVC purposes, the supplier's unit of work is
 This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC. 
 
 Products will often need to be addressed individually because they may have diverse development processes or usage scenarios.
-There are a variety of ways a Supplier might need to resolve the set of affected products. For example they might
+There are a variety of ways a Supplier might need to resolve the set of affected products. For example, they might
 
 * recognize, on further investigation of the initial report, that additional versions of the product are affected
-* discover that other products are affected due to code sharing or even consistent programmer error across products
-* receive reports of vulnerabilities in third party libraries they include in one or more of their products
+* discover that other products are affected due to code sharing or programmer error consistent across products
+* receive reports of vulnerabilities in third party libraries they utilize in one or more of their products
 * receive fix bundles for third party libraries used in one or more of their products (where a fix bundle might resolve multiple vulnerabilities or add new features)
 
 Without belaboring the point, the above methods are similar to how CVE Numbering Authorities discern "independently fixable vulnerabilities" [@mitre2020cna].
-We also note that SBOM[@manion2019sbom] seems well-placed to aid in that resolution process for the third party library scenarios.
+We also note that SBOM[@manion2019sbom] seems well-placed to aid in that resolution process for the third-party library scenarios.
 
 In the end, Suppliers provide remediations and/or mitigations for affected products.
 A supplier-provided remediation is usually a software update which contains fixes for multiple vulnerabilities and, often, new or improved features.
@@ -83,11 +83,11 @@ The vulnerability management process for deployers has at its core the collation
 
 The first of these must be collected by the deployer, while the latter two most often originate from the product Supplier.
 Managing this information is generally called asset management.
-The relationship between SSVC and asset management is discussed further in (Relationship to asset management)[#relationship-to-asset-management].
+The relationship between SSVC and asset management is discussed further in (Relationship to asset management) [#relationship-to-asset-management].
 
 In turn, deployers must resolve this information into specific actions in which a remediation or mitigation is slated for deployment to replace or modify a particular instance of the product.
-The deployer tree in SSVC takes into account the mission and safety risks inherent to the category of systems to which those deployed instances belong.
-For this reason we recommend that the pairing of remediation or mitigation to  a product version instance constitutes the unit of work most appropriate for the SSVC.
+The deployer tree in SSVC considers the mission and safety risks inherent to the category of systems to which those deployed instances belong.
+For this reason, we recommend that the pairing of remediation or mitigation to  a product version instance constitutes the unit of work most appropriate for the SSVC.
 
 ### Coordinator Units of Work ###
 
