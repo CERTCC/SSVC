@@ -153,3 +153,24 @@ If paired with active exploitation feeds discussed above, then the value of  [*E
 The [*Situated Safety Impact*](#situated-safety-impact) would be too specific for a classification as broad as CPE.
 But it might work for [*Public Safety Impact*](#public-safety-impact), since it is concerned with a more general assessment of usual use of a component.
 Creatinga mapping between CPE and [*Public Safety Impact*](#public-safety-impact) could be a community effort to associate a value with each CPE entry, or an organization might label a fragment of the CPE data with [*Public Safety Impact*](#public-safety-impact) based on the platforms that the supplier needs information about most often.
+
+## Potential Future Information Feeds
+
+So far, we have identified information sources that can support scalable decision making for most decision points.
+Some sources, such as CWE or existing asset management solutions, would require a little bit of connective glue to support SSVC, but not too much.
+The SSVC decision point that we have not identified an information source for is [*Utility*](#utility).
+[*Utility*](#utility) is composed of [*Automatable*](#automatable) and [*Value Density*](#value-density), so the question is what a sort of feed could support each of those decision points.
+
+These are both decision points where a feed is plausible.
+The values for [*Automatable*](#automatable) and [*Value Density*](#value-density) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
+While that is broad analysis frame, it means that any community that shares a similar set of adversaries and a similar region of the Internet can share the same response to both decision points.
+An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](#automatable) and [*Value Density*](#value-density).
+These factors suggest there would be a viable market for an information feed about these decision points.
+
+At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](#automatable) and [*Value Density*](#value-density).
+It would be a complex natural language processing task.
+Perhaps a machine learning system could be designed to suggest values.
+But more likely, if there is a market for this information, a few analysts could be paid to score vulnerabilities on these values for the community.
+Supporting such analysts with further automation could proceed by small incremental improvements.
+For example, perhaps information about whether the Reconnaissance step in the kill chain is [*Automatable*](#automatable) or not could be automatically gathered from Internet scanning firms such as Shodan or Shadowserver.
+This wouldn't make a determination for an analyst, but would be a step towards automatic assessment of the decision point.  
