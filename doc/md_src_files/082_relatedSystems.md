@@ -105,3 +105,51 @@ In that sense, it is compatible with any of methods mentioned above or SSVC.
 However, SSVC would be better suited to address vPrioritizer's broad spectrum asset management data.
 For example, vPrioritizer aims to collect data points on topics such as asset significance.
 Asset significance could be expressed through the SSVC decision points of  [*Mission Impact*](#mission-impact) and situated [*Well-being Impact*](#well-being-impact), but it does not have a ready expression in CVSS, EPSS, or VPR.
+
+
+## SSVC using Current Information Sources
+
+Some SSVC decision points can be informed or answered by currently available information feeds or sources.
+These include two aspects of [*Exploitation*](#exploitation), [*System Exposure*](#system-exposure), [*Technical Impact*](#technical-impact), and [*Public Safety Impact*](#public-safety-impact).
+This section provides an overview of some options; we cannot claim it is exhaustive.
+However, if there is a viable information source we have not captured, please create an [issue on the SSVC GitHub page](https://github.com/CERTCC/SSVC/issues) explaining the information source and what decision point it informs.  
+
+Various vendors provide paid feeds of vulnerabilities that are currently exploited by attacker groups.
+Any of these could be used to indicate that [*active*](#exploitation) is true for a vulnerability.
+Although the lists are all different, we expect they are all valid information sources to be used for this purpose.
+Although we are not aware of a comparative study of the different lists of active exploits, we expect they have similar properties to block lists of network touchpoints [@metcalf2015blocklist] and malware [@kuhrer2014paint].
+Namely, each list has a different view and vantage on the problem, which makes them appear to be different, but each list does a good job at accurately representing its particular vantage at a point in time.
+
+
+[*System Exposure*](#system-exposure) should be informed by the various scanning platforms such as and Shodan and Shadowserver.
+A service on a device should be scored as [*open*](#system-exposure) if such a general purpose Internet scan finds that the service responds.
+Such scans do not find all [*open*](#system-exposure) systems, but any system they find should be considered [*open*](#system-exposure).
+Scanning software, such as the open-source Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](#system-exposure) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.  
+
+
+There are some information sources that are not exactly suited to make SSVC decisions, but with a bit of work could be used directly.
+Three prominent examples of this are CVSS impact base metrics, CWE, and CPE.
+
+[*Technical Impact*](#technical-impact) is directly related to the CVSS impact metric group.
+However, this metric group cannot be directly mapped to [*Technical Impact*](#technical-impact) in CVSSv3  because of the Scope metric.
+[*Technical Impact*](#technical-impact) is only about adversary control of the vulnerable component.
+If the value of Scope is Changed in CVSSv3, then the impact metrics are the maximum of the impact on the vulnerable component and other components in the environment.
+As long as the impact metrics in CVSS are clearly about just the vulnerable component, if confidentiality, integrity, and availability metrics are all "high" then [*Technical Impact*](#technical-impact) is [*total*](#technical-impact).
+However, the other values of the CVSSv3 impact metrics cannot be mapped directly to [*partial*](#technical-impact) because of CVSSv3.1 scoring guidance.
+Namely, "only the increase in access, privileges gained, or other negative outcome as a result of successful exploitation should be considered" [@cvss_v3-1].
+The example given is that if an attacker already has read access, but gains all other access through the exploit, then read access didn't change and the confidentiality metric score should be "None".
+However, in this case, SSVC would expect the decision point to be evaluated as [*total*](#technical-impact) because as a result of the exploit the attacker gains total control of the device, even though they started with partial control.
+
+As mentioned in the discussion of [*Exploitation*](#exploitation), [CWE](https://cwe.mitre.org/) could be used to inform one of the conditions that satisfy [*proof of concept*](#exploitation).
+For some classes of vulnerabilities, the proof of concept on how to exploit them is well known and already part of open-source tools.
+For example, on-path attacker scenarios for intercepting TLS certificates.
+These scenarios are a cluster of related vulnerabilities.
+Since CWE classifies clusters of related vulnerabilities, the community could likely curate a list of CWE-IDs for which this condition of well known exploit technique is satisfied.
+Once that list were curated, it could be used to automatically populate a CVE-ID as [*proof of concept*](#exploitation) if the CWE-ID of which it is an instance is on the list.
+Such a check could not be exhaustive, since there are other conditions that satisfy [*proof of concept*](#exploitation), but if paired with automatic searches for exploit code in public repositories, it would cover many scenarios.
+If paired with active exploitation feeds discussed above, then the value of  [*Exploitation*](#exploitation) could be determined almost entirely from available information without direct analyst involvement at each organization.  
+
+[CPE](https://cpe.mitre.org/specification/) could possibly be curated into a list of representative [*Public Safety Impact*](#public-safety-impact) values for each platform or product.
+The [*Situated Safety Impact*](#situated-safety-impact) would be too specific for a classification as broad as CPE.
+But it might work for [*Public Safety Impact*](#public-safety-impact), since it is concerned with a more general assessment of usual use of a component.
+Creatinga mapping between CPE and [*Public Safety Impact*](#public-safety-impact) could be a community effort to associate a value with each CPE entry, or an organization might label a fragment of the CPE data with [*Public Safety Impact*](#public-safety-impact) based on the platforms that the supplier needs information about most often.
