@@ -1,9 +1,9 @@
 # Prioritization
 
 Given a specific stakeholder decision and set of useful decision points, we are now in a position to combine them into a comprehensive set of decisions about the priority with which to act.
-The defintiion of choices can take a logical form, such as:
+The definition of choices can take a logical form, such as:
  - IF
- - ([*Explpoitation*](#exploitation) IS [PoC](#exploitation)) AND
+ - ([*Exploitation*](#exploitation) IS [PoC](#exploitation)) AND
  - ([*Exposure*](#exposure) IS [controlled](#exploitation)) AND
  - ([*Utility*](#utility) IS [laborious](#utility)) AND
  - ([*Well-being and Mission Impact*](#situated-safety---mission-impact) IS [medium](#situated-safety---mission-impact))
@@ -89,7 +89,7 @@ Unfortunately, it also makes it a bit too easy to overcomplicate the decision.
 
 The SSVC version 1  ~applier~ deployer tree had 225 rows when we wrote it out in long text form.
 It only has four outcomes to differentiate between.
-Thus on average that decision process treats one situation (combination of decision values) as equivalent to 65 other situations.
+Thus, on average that decision process treats one situation (combination of decision values) as equivalent to 65 other situations.
 If nothing else, this means analysts are spending time gathering evidence to make fine distinctions that are not used in the final decision.
 The added details also make it harder for the decision process to accurately manage the risks in question.
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
@@ -128,7 +128,7 @@ Coordinators are particularly interested in facilitating communication because t
 This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.
 
 This section is about communicating SSVC information about a specific vulnerability.
-A supplier making a decision on allocating effort or a deployer should have a decision tree and it's decision points and possible values specified already.
+A supplier deciding on allocating effort or a deployer should have a decision tree and its decision points and possible values specified already.
 [Representation choices](#representation-choices) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 A supplier communicating with constituents or a coordinator may communicate partial information about a specific vulnerability to help other stakeholders.
 
