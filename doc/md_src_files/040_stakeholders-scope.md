@@ -114,7 +114,7 @@ Table 2: Proposed Meaning for Supplier Priority Outcomes
 | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
 ### Deploying Patches
-Whether or not to deploy available remediation is a binary decision. However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied. We recognize that vulnerability management actions are different when a patch is available and when it is not available.
+Whether or not to deploy available remediation is a binary decision. However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied. Applying mitigations will change the decision point for [*System Exposure*](#exposure) and possibly ([*Well-being and Mission Impact*](#situated-safety---mission-impact), shifting the priority to *defer*. Later, if the supplier provides a patch, the deployer may continue to *defer*, as the risk has been mitigated. We recognize that vulnerability management actions are different when a patch is available and when it is not available.
 
 When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
 
