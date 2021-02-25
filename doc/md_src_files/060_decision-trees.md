@@ -128,13 +128,23 @@ Coordinators are particularly interested in facilitating communication because t
 This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.
 
 This section is about communicating SSVC information about a specific vulnerability.
+<<<<<<< main
+Any stakeholder making a decision on allocating effort should have a decision tree with it's decision points and possible values specified already.
+[Representation choices](#representation-choices) and [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+This section discusses the situation where one stakeholder, usually a supplier or coordinator, wants to communicate some information about a specific vulnerability to other stakeholders or constituents.
+
+### Communication Formats
+=======
 A supplier deciding on allocating effort or a deployer should have a decision tree and its decision points and possible values specified already.
 [Representation choices](#representation-choices) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 A supplier communicating with constituents or a coordinator may communicate partial information about a specific vulnerability to help other stakeholders.
+>>>>>>> main
 
 We recommend two structured communication formats, abbreviated and full.
 The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone.
 The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.  
+
+#### Abbreviated Format
 
 SSVC abbreviated form borrows directly from the CVSS "vector string" notation.  
 The basic format for SSVC is:
