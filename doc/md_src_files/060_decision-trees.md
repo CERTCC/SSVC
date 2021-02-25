@@ -117,7 +117,7 @@ Vulnerability management is a part of asset management.
 SSVC can benefit from asset management practices and systems, particularly in regard to automating data collection and answers for some decision points.
 SSVC depends on asset management to some extent, particularly for context on the cost and risk associated with changing or updating the asset.
 
-Asset management can help automate the collection of the [*Mission Impact*](#mission-impact), [*Situated Safety Impact](#situated-safety-impact), and [*System Exposure*](#system-exposure) decision points.
+Asset management can help automate the collection of the [*Mission Impact*](#mission-impact), [*Situated Safety Impact*](#situated-safety-impact), and [*System Exposure*](#system-exposure) decision points.
 These decision points tend to apply per asset rather than per vulnerability.
 Therefore, once each is assessed for each asset, it can be applied to each vulnerability that applies to that asset.
 While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management system should enable automated scoring of new vulnerabilities on these decision points for those assets. 
@@ -135,7 +135,7 @@ Once the organization remediates or mitigates all the high-priority vulnerabilit
 Asset management and risk management also drive some of the up-front work an organization would need to do to gather some of the necessary information.
 This situation is not new; an asset owner cannot prioritize which fixes to deploy to its assets if it does not know what assets it owns and their locations.
 The organization can pick its choice of tools for these things; there are about 200 asset management tools on the market [@captera].
-Standards like the Software Bill of Materials (SBOM) [@manion2019sbom] would likely reduce the burden on asset management, and organizations should prefer systems which make such information available.
+Emerging standards like the Software Bill of Materials (SBOM) [@manion2019sbom] would likely reduce the burden on asset management, and organizations should prefer systems which make such information available.
 If an organization does not have an asset management or risk management (see Section 4.4.6.1) plan and process in place, then SSVC provides some guidance as to what information is important to vulnerability management decisions and the organization should start capturing, storing, and managing.
 
 
