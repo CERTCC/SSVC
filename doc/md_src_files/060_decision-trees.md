@@ -98,6 +98,8 @@ This difficulty arises because more variance and complexity there is in the deci
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
 
+SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: "Applier Tree v1.1.0" would be the identity of the version of the Applier Tree as published in v1.1 of SSVC. "Coordinator Publish Tree v2.0.3" would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms "major", "minor", and "patch" with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+
 ## Evidence Gathering Guidance
 
 To answer each of these decision points, a supplier or deployer should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
