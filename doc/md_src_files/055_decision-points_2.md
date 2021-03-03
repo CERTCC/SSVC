@@ -306,3 +306,22 @@ Whether that mitigation allows the deployer to defer further action varies accor
 | Small       | Local service or program; highly controlled network       |
 | Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
 | Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
+
+### Gathering Information About System Exposure
+
+[*System Exposure*](#system-exposure) is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
+Therefore, it generally has a concrete answer, even though it may vary from vulnerable component to vulnerable component, based on their respective configurations.
+
+[*System Exposure*](#system-exposure) can be readily informed by network scanning techniques.
+For example, if the vulnerable component is visible on [Shodan](www.shodan.io) or by some other external scanning service, then it is [*open*](#system-exposure).
+Network policy or diagrams are also useful information sources, especially for services intentionally open to the Internet such as public web servers.
+An analyst should also choose [*open*](#system-exposure) for a phone or PC that connects to the web or email without the usual protections (for example, IP and URL blocking, updated firewalls, etc.).
+
+Distinguishing between [*small*](#system-exposure) and [*controlled*](#system-exposure) is more nuanced.
+If [*open*](#system-exposure) has been ruled out, some suggested heuristics for differentiating the other two are as follows. 
+Apply these heuristics in order, and stop once one applies. 
+ - If the system's networking and communication interfaces have been physically removed or disabled, choose [*small*](#system-exposure).
+ - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure). The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of [*small*](#system-exposure).
+ - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).
+
+If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).

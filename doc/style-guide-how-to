@@ -65,5 +65,8 @@ Don't use Headings (#, ##, etc.) because this will interfere with section number
 It would be good practice to provide an HTML anchor with the same name as the aside title, so we can cross reference the box elsewhere. 
 
 =================================================
+JSON
+When describing JSON literals in the .md documents, they should be marked up as `code literals` using backticks (`). 
+
 =================================================
 =================================================
