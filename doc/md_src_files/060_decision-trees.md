@@ -23,36 +23,49 @@ How this decision information might be stored or communicated is the topic of su
 
 ## Supplier Tree
 
-Figure 1 shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
+The example supplier tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_supplier.pdf) shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
 
   - Defer = gray with green outline
   - Scheduled = yellow
   - Out-of-Cycle = orange
   - Immediate = red with black outline
 
-<img src="version_1/gfx/vul-management_v1-6-page2.png" alt="Figure 1: Suggested supplier tree" style="width: 90%;" />
+<embed src="graphics/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
+style="width: 100%;"
+height = "600" />
 
-Figure 1: Proposed Vulnerability Prioritization Decision Tree for Patch
-Supplier
 
 ## Deployer Tree
 
-The proposed deployer tree is depicted in Figure 3, Figure 4, and Figure 5. The state of *Exploitation* is the first decision point, but in an effort to make the tree legible, we split the tree into three sub-trees over three pages. We suggest making the decision about *Exploitation* as usual, and then going to the correct subtree.
+The example deployer tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_deployer_SeEUMss.pdf) is depicted below.
 
-<img src="version_1/gfx/vul-management_v1-6-page3.png" alt="Figure 2" style="width: 90%;" />
+<embed src="graphics/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
+ type="application/pdf"
+ style="width: 100%;"
+ height = "1000"/>
 
-Figure 2: Proposed Vulnerability Prioritization Decision Tree for Patch
-Deployers (Continued in Figure 3 and Figure 4)
+## Coordinator trees
 
-<img src="version_1/gfx/vul-management_v1-6-page4.png" alt="Figure 3" style="width: 90%;" />
+As described in [Decisions During Vulnerability Coordination](#decisions-during-vulnerability-coordination), a coordination stakeholder usually makes separate triage and publication decisions. Each have trees presented below.
 
-Figure 3: Proposed Vulnerability Prioritization Decision Tree for Patch
-Deployers (Continued from Figure 2 and in Figure 4).
+### Triage decision tree
 
-<img src="version_1/gfx/vul-management_v1-6-page5.png" alt="Figure 4" style="width: 90%;" />
+<embed src="graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
+style="width: 100%;"
+height = "600" />
 
-Figure 4: Proposed Vulnerability Prioritization Decision Tree for Patch
-Deployers (Continued from Figure 2 and Figure 3)
+This tree is a suggestion in that CERT/CC believes it works for us.
+Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance).
+
+### Publication decision tree
+
+Suggested decision values for this decision are available in [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-publish.csv) and [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-publish.pdf) formats.
+
+<embed src="graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
+style="width: 100%;"
+height = "500" />
+
+
 
 ## Tree Construction and Customization Guidance
 
@@ -121,7 +134,7 @@ SSVC depends on asset management to some extent, particularly for context on the
 Asset management can help automate the collection of the [*Mission Impact*](#mission-impact), [*Situated Safety Impact*](#situated-safety-impact), and [*System Exposure*](#system-exposure) decision points.
 These decision points tend to apply per asset rather than per vulnerability.
 Therefore, once each is assessed for each asset, it can be applied to each vulnerability that applies to that asset.
-While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management system should enable automated scoring of new vulnerabilities on these decision points for those assets. 
+While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management system should enable automated scoring of new vulnerabilities on these decision points for those assets.
 
 Our method is for prioritizing vulnerabilities based on the risk stemming from exploitation.
 There are other reasonable asset management considerations that may influence remediation timelines.
