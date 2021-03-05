@@ -7,7 +7,7 @@ However, that is not the intended use case; this section describes how a coordin
 
 The publication decision is always a decision at a point in time.
 As discussed in [Guidance on Communicating Results](#guidance-on-communicating-results), a SSVC decision may change over time as the inputs to that decision change.
-A decision to publish cannot be revoked, since the publication is likely to be archived or at least remembered. 
+A decision to publish cannot be revoked, since the publication is likely to be archived or at least remembered.
 However, a decision to not publish is a decision not to publish at the time the decision was made.
 It is not a decision never to publish in the future.
 One benefit of encoding the decision process in SSVC is the analysts can all agree on what new information would change the decision and prioritize maintaining awarenss of just those decision points.  
@@ -38,18 +38,13 @@ The intent of the definition is that one rarely if ever transitions from limited
 A vulnerability could transition from precedence to ampliative and ampliative to limited.
 That is, [*Public Value Added*](#public-value-added) should only be downgraded through future iterations or re-evaluations.
 This directionality is because once other organizations make something public, they cannot effectively un-publish it (it'll be recorded and people will know about it, even if they take down a webpage).
-The rare case where [*Public Value Added*](#public-value-added) increases would be if an organization published viable information, but then published additional misleading or obscuring information at a later time. 
-Then one might go from [*limited*](#public-value-added) to [*ampliative*](#public-alue-added) in the interest of pointing to the better information. 
+The rare case where [*Public Value Added*](#public-value-added) increases would be if an organization published viable information, but then published additional misleading or obscuring information at a later time.
+Then one might go from [*limited*](#public-value-added) to [*ampliative*](#public-alue-added) in the interest of pointing to the better information.
 
 ### Supplier Involvement
 
 This decision point accounts for the state of the supplier's work on addressing the vulnerability.
 
  - Fix Ready - the supplier has provided a patch or fix
- - Cooperative - the supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time. 
+ - Cooperative - the supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.
  - Uncooperative/Unresponsive - the supplier has not responded, declined to generate a remediation, or no longer exists.
-
-
-### Publication decision tree
-
-Suggested decision values for this decision are available in [CSV](/data/ssvc_2_coord-publish.csv) and [PDF](gfx/ssvc_2_coord-publish.pdf) formats.

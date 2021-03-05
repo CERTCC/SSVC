@@ -2,7 +2,9 @@
 
 # Evaluation of the Draft Trees
 
-We conducted a pilot test on the adequacy of the hypothesized decision trees. The method of the pilot test is described in Section 5.1. The study resulted in several changes to the hypothesized trees; we capture those changes and the reason for each of them in Section 5.2. The trees in Sections 4.6 and 4.7 include the improvements reported in Section 5.3.
+We conducted a pilot test on the adequacy of the hypothesized decision trees.
+This section reports results for SSVC version 1. 
+ The method of the pilot test is described in Section 5.1. The study resulted in several changes to the hypothesized trees; we capture those changes and the reason for each of them in Section 5.2. The trees in Sections 4.6 and 4.7 include the improvements reported in Section 5.3.
 
 ## Pilot Methodology
 
