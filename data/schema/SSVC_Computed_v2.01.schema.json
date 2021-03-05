@@ -21,10 +21,6 @@
 	    "minItems": 1,
 	    "uniqueItems": true		
 	},
-	"computed": {
-	    "description": "Computed score short representation such as SSVC/v:2/R:C/E:[P,A]/V:R/T:P/M:H/D:[T,R,A,E]/1607626684/ for a vulnerability with no or minor Public Safety Impact,  total Technical Impact, and efficient Utility, which was evaluated on Nov 10, 2020.",
-	    "type": "string"
-	},
 	"timestamp" : {
 	    "description": "Date and time in ISO format  ISO 8601 format",
 	    "type": "string",
@@ -45,7 +41,6 @@
     },
     "required": [
 	"choices",
-	"computed",
 	"timestamp",
 	"role",
 	"id",
