@@ -175,30 +175,38 @@ The goal of the full format is to capture all the context and details about a de
 
 #### Abbreviated Format
 
-SSVC abbreviated form borrows directly from the CVSS "vector string" notation.  
+SSVC abbreviated form borrows directly from the CVSS "vector string" notation.
+Since the purpose of the abbreviated form is to provide labels for charts and graphics, it does not stand alone.
 The basic format for SSVC is:
 ```
-(version)/(decision point):(value)[/decision point:value[/decision point:value[...]]][/time]/
+SSVC/(version)/(decision point):(value)[/decision point:value[/decision point:value[...]]][/time]/
 ```
-Where `version` is `SSVCv2`, updated with more options in the future as needed.
+Where `version` is `v2` if it is based on this current version of the SSVC.
 The term `decision point` is one or two letters derived from the name of the decision point as follows:
  - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
  - Remove any text in parentheses (and the parentheses themselves).
  - Remove the word "Impact" if it's part of the name.
  - Create an initialism from remaining title-case words (ignore "of," etc.), taking only the first two words.
  - The first letter of the initialism is upper case; if there is a second letter, then it is lower case.
+ - Verify that the initialism is unique among decision points in the version of SSVC. If two initialisms collide, sort their source names equivalent to `LC_ALL=C sort`. The name that sorts first keeps the initialism for which there is a collision. Set the second letter of the initialism to the first character in the name that resolves the collision. If the names were `Threat` and `Threshold`, `T` would be `Threat` and `Ts` would be `Threshold`. We make an effort to design SSVC without such collisions.   
 
 For example, [*Technical Impact*](#technical-impact) becomes `T` and [*Public Safety Impact*](#public-safety-impact) becomes `Ps`.
 
 The term `value` is a statement of the value or possible values of the decision point that precedes it and to which it is connected by a `:`.
 Similar to `decision point`, `value` should be made up of one or two letters derived from the name of the decision value in the section for its associated decision point.
 For example [MEF support crippled](#mission-impact) becomes `Ms` and [efficient](#utility) becomes `E`.
-Labels on values do not need to be globally unique, just unique to the associated decision point.
+The process is the same as above except that labels for a `value` do not need to be unique to the SSVC version, just unique to the associated `decision point`.
 
 The character `/` separates decision-point:value pairs.
 As many pairs should be provided in the abbreviated form as are required to communicate the desired information about the vulnerability or work item.
+A vector must contain at least one decision-point:value pair.
 The ordering of the pairs should be sorted alphabetically from A to Z by the ASCII characters representing the decision points.
 A trailing `/` is used to close the string.
+
+The vector is not tied to a specific decision tree.
+It is meant to communicate information in a condensed form.
+If priority labels (**defer**, etc.) are connected to a vector, then the decision tree used to reach those decisions should generally be noted.
+However, for complex communication, machine-to-machine communication, or long-term storage of SSVC data, the JSON format and schema should be used.
 
 The optional parameter `time` is the time in seconds since the UNIX epoch that the SSVC information was collected or last checked for freshness and accuracy.
 
@@ -207,6 +215,9 @@ Based on this, an example string could be:
 SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
+
+While these abbreviated format vectors can be uniquely produced based on a properly formatted JSON object, going from abbreviated form to JSON is not supported.
+Therefore, JSON is the preferred storage and transmission method.  
 
 #### Full JSON format
 
