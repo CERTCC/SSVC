@@ -51,7 +51,7 @@ When evaluating [*Technical Impact*](#technical-impact), recall the scope defini
 Total control is relative to the affected component where the vulnerability resides.
 If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 
-As mentioned in [Section 2](#current-state-of-practice), the scope of SSVC is just those situations in which there is a vulnerability.
+As mentioned in [Current State of Practice](#current-state-of-practice), the scope of SSVC is just those situations in which there is a vulnerability.
 The definition of **vulnerability** we go by is based on the determination that some security policy is violated.
 We consider a security policy violation to be a technical impact -- or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
@@ -89,7 +89,7 @@ More plainly, [*Utility*](#utility) is about how much an adversary might benefit
 
 Heuristically, we base [*Utility*](#utility) on a combination of value density of vulnerable components and whether potential exploitation is automatable.
 This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component.
-[*Automatable*](#automatable) as ([*no*](#automatable) or [*yes*](#automatable)) and [*Value Density*](#value-density) as ([*diffuse*](#value-density) or [*concentrated*](#value-density)) are defined in Sections 4.4.3.1 and 4.4.3.2.
+Subsections for [*Automatable*](#automatable) as ([*no*](#automatable) or [*yes*](#automatable)) and [*Value Density*](#value-density) as ([*diffuse*](#value-density) or [*concentrated*](#value-density)) define those decision points.
 
 Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in Table 6. Table 7 is an equivalent expression of [*Utility*](#utility) more like a lookup table a program might use.
 
