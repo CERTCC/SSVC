@@ -102,9 +102,10 @@ To further clarify terms, "Remediation occurs when the vulnerability is eliminat
 
 ### Supplying Patches
 
-At a basic level, the decision at a software development organization is whether to issue a work order and what resources to expend to remediate a vulnerability in the organization’s software. Prioritization is required because, at least in the current history of software engineering, the effort to patch all known vulnerabilities will exceed available resources. The organization considers several other factors to build the patch; refactoring a large portion of the code base may be necessary for some patches, while others require relatively small changes. We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in Table 2.
+At a basic level, the decision at a software development organization is whether to issue a work order and what resources to expend to remediate a vulnerability in the organization’s software. Prioritization is required because, at least in the current history of software engineering, the effort to patch all known vulnerabilities will exceed available resources. The organization considers several other factors to build the patch; refactoring a large portion of the code base may be necessary for some patches, while others require relatively small changes.
+We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in [Table 2](#table-supplier-outcomes).
 
-Table 2: Proposed Meaning for Supplier Priority Outcomes
+Table 2:<a name="table-supplier-outcomes"></a> Proposed Meaning for Supplier Priority Outcomes
 
 | Supplier Priority | Description |
 | ------------------ | ----------- |
@@ -121,13 +122,13 @@ When remediation is available, usually the action is to apply it. When remediati
 
 Mitigation techniques may not affect the SSVC decision. The mitigating action may not be permanent or work as designed. For example, the implementation of a firewall or IDS rule to mitigate [*System Exposure*](#system-exposure) from open to controlled is only valid until someone changes the rule. In the area of Financial impacts, the caps on the insurance may be too low to act as a mitigation. The Physical impact may be increased by incorrect installation of the physical barriers designed to restrict a robot’s ability to interact with humans. The Mission impact could be increased when a disaster recovery test-run identifies problems with an alternate business flow. 
 
-A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. An effective firewall or IDS rule coupled with an adequate change control process for rules may be enough to reduce the priority where no further action is necessary. In the area of Financial impacts, a better insurance policy may be purchased, providing necessary fraud insurance. Physicial well-being impact may be reduced by testing the physicial barriers designed to restrict a robot's ability to interact with humans. Mission impact could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow. If applying a mitigation reduces the priority to **defer**, the deployer may not need to apply a remediation if it later becomes available. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
+A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. An effective firewall or IDS rule coupled with an adequate change control process for rules may be enough to reduce the priority where no further action is necessary. In the area of Financial impacts, a better insurance policy may be purchased, providing necessary fraud insurance. Physicial well-being impact may be reduced by testing the physicial barriers designed to restrict a robot's ability to interact with humans. Mission impact could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow. If applying a mitigation reduces the priority to **defer**, the deployer may not need to apply a remediation if it later becomes available. [Table 3](#table-deployer-outcomes) displays the action priorities for the deployer, which are similar to the supplier case.
 
 <!--**Talk about applying other mitigations here** TODO
 -->
 
 
-Table 3: Proposed Meaning for Deployer Priority Outcomes
+Table 3:<a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Priority Outcomes
 
 | Deployer Priority | Description                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
