@@ -2,19 +2,19 @@
 
 # Vulnerability Management Decisions
 
-This section will define who we are trying to give decision advice to, and how we are scoping our advice on vulnerability management decisions. 
-Viable decision guidance for vulnerability management should, at a minimum, consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points. 
+This section will define who we are trying to give decision advice to, and how we are scoping our advice on vulnerability management decisions.
+Viable decision guidance for vulnerability management should, at a minimum, consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points.
 This section covers the first of these three, and the following sections address the other parts in turn.
 The "who" is primarily about categories of stakeholders -- suppliers, deployers, and coordinators -- as well as their individual risk tolerances.
-The "what" is about the scope, both in how the affected system is defined and how much of the world an analyst should consider when estimating effects of a vulnerability. 
+The "what" is about the scope, both in how the affected system is defined and how much of the world an analyst should consider when estimating effects of a vulnerability.
 
-While we strive to make the examples realistic, we invite the community to engage and conduct empirical assessments to test examples. 
+While we strive to make the examples realistic, we invite the community to engage and conduct empirical assessments to test examples.
 The following construction should be treated as an informed hypothesis rather than a conclusion.
 
 ## Enumerating Stakeholders
 
-Stakeholders in vulnerability management can be identified within multiple independent axes. 
-For example, they can be identified by their responsibility: whether the group *supplies*, *deploys*, or *coordinates* remediation actions. 
+Stakeholders in vulnerability management can be identified within multiple independent axes.
+For example, they can be identified by their responsibility: whether the group *supplies*, *deploys*, or *coordinates* remediation actions.
 Depending what task a team is performing in a supply chain, the team may be considered a supplier, deployer, or a coordinator.
 Therefore, one organization may have teams that take on different roles.
 For example, an organization that develops and uses its own software might delegate the supplier role to its development team and the deployer role to its IT operations team.
@@ -36,8 +36,8 @@ Relatedly, C-level executives and public policy professionals often make, shape,
 Stakeholders with different responsibilities in vulnerability management have largely different decisions to make. This section focuses on the differences among organizations based on their vulnerability management responsibilities. Some decision makers may have different responsibilities in relation to different software. For example, an Android app developer is a developer of the app, but is a deployer for any changes to the Android OS API. This situation is true for libraries in general. A web browser developer makes decisions about applying patches to DNS lookup libraries and transport layer security (TLS) libraries. A video game developer makes decisions about applying patches released to the Unreal Engine. A medical device developer makes decisions about applying patches to the Linux kernel. The list goes on.  Alternatively, one might view applying patches as, de facto, including some development and distribution of the updated product. Or one might take the converse view, that development, de facto, includes updating libraries. Either way, in each of these examples (mobile device apps, web browsers, video games, medical devices), we recommend that the professionals making genuine decisions do three things: (1) identify the decisions explicitly, (2) describe how they view their role(s), and (3) identify which software projects their decision relates to. If their decisions are explicit, then the decision makers can use the recommendations from this document that are relevant to them.
 
 ## Enumerating Vulnerability Management Actions
-SSVC models the decision of “With what priority should the organization take action on a given vulnerability management work unit?” to be agnostic to whether or not a patch is available. 
-A unit of work means either remediating the vulnerability---such as applying a patch---or deploying a mitigation. Both remediation and mitigations often address multiple identified vulnerabilities. 
+SSVC models the decision of “With what priority should the organization take action on a given vulnerability management work unit?” to be agnostic to whether or not a patch is available.
+A unit of work means either remediating the vulnerability---such as applying a patch---or deploying a mitigation. Both remediation and mitigations often address multiple identified vulnerabilities.
 
 The unit of work may be different for different stakeholders.
 The units of work can also change as the vulnerability response progresses through a stakeholder's process.
@@ -45,11 +45,11 @@ We elucidate these ideas with the following examples.
 
 ### Supplier Units of Work
 
-On the input side of the Supplier process, Suppliers typically receive reports of vulnerabilities in one or more versions of their product. 
+On the input side of the Supplier process, Suppliers typically receive reports of vulnerabilities in one or more versions of their product.
 Part of the Supplier's task on initial report intake is to resolve the initial report into a set of products and versions that are affected by the reported vulnerability.
- 
+
 Our working assumption is that for SSVC purposes, the supplier's unit of work is the combination of the vulnerability with each affected product.
-This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC. 
+This implies the need for Suppliers to be able to resolve whatever they receive to that level of granularity in order to make best use of SSVC.
 
 Products will often need to be addressed individually because they may have diverse development processes or usage scenarios.
 There are a variety of ways a Supplier might need to resolve the set of affected products. For example, they might
@@ -71,9 +71,9 @@ Suppliers may also produce mitigations, such as recommended configuration change
 
 ### Deployer Units of Work ###
 
-Deployers are usually in the position of receiving remediations or mitigations from their Suppliers for products they have deployed. 
-They are then faced with the decision to deploy the remediation or mitigation to a particular instance or not. 
-Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility. 
+Deployers are usually in the position of receiving remediations or mitigations from their Suppliers for products they have deployed.
+They are then faced with the decision to deploy the remediation or mitigation to a particular instance or not.
+Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility.
 For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
 The vulnerability management process for deployers has at its core the collation of data including
@@ -91,12 +91,12 @@ For this reason, we recommend that the pairing of remediation or mitigation to  
 
 ### Coordinator Units of Work ###
 
-Coordinator units of work tend to coincide with whatever arrives in a single report, which spans the range from a single vulnerability affecting a specific version of an individual product from one Supplier all the way to fundamental design flaws in system specifications that could affect every Supplier and product that uses or implements the flawed specification. 
+Coordinator units of work tend to coincide with whatever arrives in a single report, which spans the range from a single vulnerability affecting a specific version of an individual product from one Supplier all the way to fundamental design flaws in system specifications that could affect every Supplier and product that uses or implements the flawed specification.
 Coordinators may need to reorganize reports (e.g., merge, split, expand, or contract) according to their workflow demands. SSVC can be applied to either the initial report or to the results of such refinement.
 
 ### Aggregation of SSVC across units of work
 
-SSVC users should answer the suggested questions for whatever discrete unit of work they are considering. There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate. 
+SSVC users should answer the suggested questions for whatever discrete unit of work they are considering. There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate.
 
 To further clarify terms, "Remediation occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability." [@dodi_8531_2020, section 3.5] Examples of remediation include: applying patches, fixes and upgrades; or removing the vulnerable software or system from operation. Mitigating actions may include software configuration changes, adding firewall ACLs, or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
 
@@ -116,16 +116,21 @@ Table 2:<a name="table-supplier-outcomes"></a> Proposed Meaning for Supplier Pri
 
 ### Deploying Patches
 
-Whether or not to deploy available remediation is a binary decision. However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied. We recognize that vulnerability management actions are different when a patch is available and when it is not available.
+Whether or not to deploy available remediation is a binary decision because remediation, when successful, eliminates a vulnerability in a specific system.
+However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied.
+Mitigation, from a tactical perspective, is an attempt to block or minimize risk to a vulnerable system without actually eliminating the vulnerability.
+We recognize that vulnerability management actions are different when a patch is available and when it is not available.
 
 When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](#system-exposure) from open to controlled. Financial well-being impact might be reduced with adequate fraud detection and insurance. Physical well-being impact might be reduced by physical barriers that restrict a robot's ability to interact with humans. Mission impact might be reduced by introducing back-up business flows that do not use the vulnerable component.
 
-Mitigation techniques may not affect the SSVC decision. The mitigating action may not be permanent or work as designed. For example, the implementation of a firewall or IDS rule to mitigate [*System Exposure*](#system-exposure) from open to controlled is only valid until someone changes the rule. In the area of Financial impacts, the caps on the insurance may be too low to act as a mitigation. The Physical impact may be increased by incorrect installation of the physical barriers designed to restrict a robot’s ability to interact with humans. The Mission impact could be increased when a disaster recovery test-run identifies problems with an alternate business flow. 
+Mitigation techniques may not affect the SSVC decision. The mitigating action may not be permanent or work as designed. For example, the implementation of a firewall or IDS rule to mitigate [*System Exposure*](#system-exposure) from open to controlled is only valid until someone changes the rule. In the area of Financial impacts, the caps on the insurance may be too low to act as a mitigation. The Physical impact may be increased by incorrect installation of the physical barriers designed to restrict a robot’s ability to interact with humans. The Mission impact could be increased when a disaster recovery test-run identifies problems with an alternate business flow.
 
 A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. An effective firewall or IDS rule coupled with an adequate change control process for rules may be enough to reduce the priority where no further action is necessary. In the area of Financial impacts, a better insurance policy may be purchased, providing necessary fraud insurance. Physicial well-being impact may be reduced by testing the physicial barriers designed to restrict a robot's ability to interact with humans. Mission impact could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow. If applying a mitigation reduces the priority to **defer**, the deployer may not need to apply a remediation if it later becomes available. [Table 3](#table-deployer-outcomes) displays the action priorities for the deployer, which are similar to the supplier case.
 
-<!--**Talk about applying other mitigations here** TODO
--->
+As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
+While specific vulnerabilities in specific systems can be remediated, the vulnerability cannot be 'disposed of' or eliminated from future consideration within an IT environment.
+Since software and systems are dynamic, a single vulnerability can be re-introduced after initial remediation through updates, software rollbacks, or other systemic actions that change the operating conditions within an environment.
+It is therefore important to continually monitor remediated systems for re-introduced vulnerabilities even after initial remediation.
 
 
 Table 3:<a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Priority Outcomes
@@ -162,14 +167,14 @@ We therefore remind our readers that the labels on the trees (defer, immediate, 
 
 ## Scope
 
-One important variable in the answers to all the below decision points is scope. 
+One important variable in the answers to all the below decision points is scope.
 There are at least three aspects to scope.
 One is how the boundaries of the affected system are set.
 A second is whose security policy is relevant.
 Thirdly, how far forward in time or causal steps one reasons about effects and harms.
 We put forward recommendations for each of these.
 
-However, users of the decision process may want to define different scopes. 
+However, users of the decision process may want to define different scopes.
 Users may define a different scope as long as the scope is consistent across decisions, and are credible, explicit, and accessible to all relevant decision makers.
 
 For example, suppliers often decline to support products beyond a declared end-of-life (EOL) date. In those cases, a supplier could reasonably consider vulnerabilities in those products to be out of scope. However, a deployer may still have active instances of EOL products in their infrastructure. It remains appropriate for a deployer to use SSVC to prioritize their response to such situations, since even if there is no remediation forthcoming from the supplier it may be possible for the deployer to mitigate or remediate the vulnerability in other ways, up to and including decommissioning the affected system(s).
@@ -200,7 +205,7 @@ The answer is less clear for coordinators or ISACs.
 An example scenario that brings the question into focus is phone OS jailbreak methods.
 The owner of the phone may elect to jailbreak it; there is at least an implicit security policy from the owner that allows this method.
 However, from the perspective of the explicit phone OS security policy embedded in the access controls and separation of privileges, the jailbreak is exploiting a vulnerability.
-If a security policy is embedded in technical controls, such as OS access controls on a phone, then anything that violates that security policy is a vulnerability. 
+If a security policy is embedded in technical controls, such as OS access controls on a phone, then anything that violates that security policy is a vulnerability.
 
 ## Reasoning Steps Forward
 
