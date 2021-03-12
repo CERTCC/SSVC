@@ -116,10 +116,10 @@ Table 2:<a name="table-supplier-outcomes"></a> Proposed Meaning for Supplier Pri
 
 ### Deploying Patches
 
-Whether or not to deploy available remediation is a binary decision because remediation, when successful, eliminates a vulnerability in a specific system.
+Whether or not to deploy an available remediation is a binary decision because remediation, when successful, eliminates a vulnerability in a specific system.
 However, additional defensive mitigations may be necessary sooner than patches are available and may be advisable after patches are applied.
 Mitigation, from a tactical perspective, is an attempt to block or minimize risk to a vulnerable system without actually eliminating the vulnerability.
-We recognize that vulnerability management actions are different when a patch is available and when it is not available.
+We recognize that vulnerability management actions are different when a remediation is available and when it is not available.
 
 When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](#system-exposure) from open to controlled. Financial well-being impact might be reduced with adequate fraud detection and insurance. Physical well-being impact might be reduced by physical barriers that restrict a robot's ability to interact with humans. Mission impact might be reduced by introducing back-up business flows that do not use the vulnerable component.
 
@@ -130,7 +130,7 @@ A mitigation that successfully changes the value of a decision point may shift t
 As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
 While specific vulnerabilities in specific systems can be remediated, the vulnerability cannot be 'disposed of' or eliminated from future consideration within an IT environment.
 Since software and systems are dynamic, a single vulnerability can be re-introduced after initial remediation through updates, software rollbacks, or other systemic actions that change the operating conditions within an environment.
-It is therefore important to continually monitor remediated systems for re-introduced vulnerabilities even after initial remediation.
+It is therefore important to continually monitor remediated environments for vulnerabilities reintroduced by either rollbacks or new deployments of outdated software.
 
 
 Table 3:<a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Priority Outcomes
