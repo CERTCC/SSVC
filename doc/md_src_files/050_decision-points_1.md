@@ -13,7 +13,7 @@ Each section has a subsection with advice on gathering information about the dec
 
 The intent of this measure is the present state of exploitation of the vulnerability. The intent is not to predict future exploitation but only to acknowledge the current state of affairs. Predictive systems, such as EPSS, could be used to augment this decision or to notify stakeholders of likely changes [@jacobs2019exploit].
 
-| | Table 4: Exploitation Decision Values |
+| | <a name="table-exploitation"></a> Exploitation Decision Values |
 | --- | --------------------------------- |
 | None | There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability. |
 | PoC <br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
@@ -51,13 +51,13 @@ When evaluating [*Technical Impact*](#technical-impact), recall the scope defini
 Total control is relative to the affected component where the vulnerability resides.
 If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 
-As mentioned in [Section 2](#current-state-of-practice), the scope of SSVC is just those situations in which there is a vulnerability.
+As mentioned in [Current State of Practice](#current-state-of-practice), the scope of SSVC is just those situations in which there is a vulnerability.
 The definition of **vulnerability** we go by is based on the determination that some security policy is violated.
 We consider a security policy violation to be a technical impact -- or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
 
 
-|  |  Table 5: Technical Impact Decision Values |
+|  |   <a name="table-technical-impact"></a>Technical Impact Decision Values |
 | ------- | -------------- |
 | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
 | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
@@ -89,17 +89,17 @@ More plainly, [*Utility*](#utility) is about how much an adversary might benefit
 
 Heuristically, we base [*Utility*](#utility) on a combination of value density of vulnerable components and whether potential exploitation is automatable.
 This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component.
-[*Automatable*](#automatable) as ([*no*](#automatable) or [*yes*](#automatable)) and [*Value Density*](#value-density) as ([*diffuse*](#value-density) or [*concentrated*](#value-density)) are defined in Sections 4.4.3.1 and 4.4.3.2.
+Subsections for [*Automatable*](#automatable) as ([*no*](#automatable) or [*yes*](#automatable)) and [*Value Density*](#value-density) as ([*diffuse*](#value-density) or [*concentrated*](#value-density)) define those decision points.
 
-Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in Table 6. Table 7 is an equivalent expression of [*Utility*](#utility) more like a lookup table a program might use.
+Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in [Utility Decision Values](#table-utility). [The next table](#table-utility-2) is an equivalent expression of [*Utility*](#utility) more like a lookup table a program might use.
 
-|  | Table 6: Utility Decision Values |
+|  | <a name="table-utility"></a> Utility Decision Values |
 | --------------- | ------------------------------------------------------------------------------ |
 | Laborious       | *No* to automatable and diffuse value                                               |
 | Efficient       | {*Yes* to automatable and diffuse value} OR {*No* to automatable and concentrated value} |
 | Super Effective | *Yes* to automatable and concentrated value                                         |
 
-Table 7: Utility to the Adversary, as a Combination of automatable and Value Density
+<a name="table-utility-2"></a> Utility to the Adversary, as a Combination of automatable and Value Density
 
 | *Automatable* | *Value Density* | *Utility* |
 | ----------- | --------------- |       --: |

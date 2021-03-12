@@ -2,7 +2,7 @@
 
 # Limitations
 
-Even as a working proposal, SSVC has some limitations. These are inherent limits of the approach, which should be understood as tradeoffs. There are other limiting aspects of our implementation, but those have been covered as topics that need improvement and are described in Section 7.
+Even as a working proposal, SSVC has some limitations. These are inherent limits of the approach, which should be understood as tradeoffs. There are other limiting aspects of our implementation, but those have been covered as topics that need improvement and are described in [Future Work](#future-work).
 
 We made two important tradeoffs compared to the current state of the practice with CVSS:
 

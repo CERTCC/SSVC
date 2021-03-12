@@ -14,6 +14,4 @@ More testing with diverse analysts is necessary before the decision trees are re
 
 The pilot study provides a methodology for measuring and evaluating reliability of the decision process description based on the agreement measure κ. This study methodology should be repeated with different analyst groups, from different sectors and with different experience, feeding the results into changes in the decision process description until the agreement measure is adequately close to 1.
 
-## Decision Tree for Vulnerability Coordination
 
-Currently, only two stakeholders are addressed: deployers and suppliers. Expanding the work to include more types of stakeholders would be beneficial. We propose that the next stakeholder group could be vulnerability coordinators, as described in Section 4.1. The development and testing methodology for any new stakeholder group should be roughly the same as that used to draft the deployer and supplier decision trees.

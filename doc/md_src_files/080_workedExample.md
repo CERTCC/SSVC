@@ -1,7 +1,7 @@
 
 # Worked Example
 
-As an example, we will evaluate CVE-2018-14781 step by step from the deployer point of view. The scenario here is that used for the pilot study. This example uses the decision tree in Section 4.7. The pilot used slightly different trees, as noted in Section 5.3.
+As an example, we will evaluate CVE-2018-14781 step by step from the deployer point of view. The scenario here is that used for the pilot study. This example uses the SSVC version 1 deployer decision tree.
 
 The analyst’s first question is related to exploitation. Technically, one could answer the questions in any order; however, exploitation is a good starting point because given an adequately defined search procedure, one can always answer whether it finds an available exploit or proof of concept. The scenario description for the pilot study reads as follows:
 
