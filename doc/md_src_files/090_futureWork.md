@@ -29,7 +29,7 @@ Future work should attempt to provide a method for [evaluating change risk or co
 [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.
 Specifically, these reflect vulnerability risk appetite.
 Appetite for vulnerability risk may be negatively correlated with change risk; future work could explore this relationship.
-Furthermore, future work could examine suggested practices for connecting tree customization to risk management. 
+Furthermore, future work could examine suggested practices for connecting tree customization to risk management.
 
 
 ## Further Decision Tree Testing
@@ -37,3 +37,8 @@ Furthermore, future work could examine suggested practices for connecting tree c
 More testing with diverse analysts is necessary before the decision trees are reliable. In this context, **reliable** means that two analysts, given the same vulnerability description and decision process description, will reach the same decision. Such reliability is important if scores and priorities are going to be useful. If they are not reliable, they will vary widely over time and among analysts. Such variability makes it impossible to tell whether a difference in scores is really due to one vulnerability being higher priority than other.
 
 The pilot study provides a methodology for measuring and evaluating reliability of the decision process description based on the agreement measure κ. This study methodology should be repeated with different analyst groups, from different sectors and with different experience, feeding the results into changes in the decision process description until the agreement measure is adequately close to 1.
+
+A different approach to testing the [*Utility*](#utility) decision point could be based on [Alternative Utility Outputs](#alternative-utility-outputs).
+Namely, future work could example exploit resale markets and compare the value of exploits to the [*Utility*](#utility) score of the exploited vulnerability.
+There are some limitations to this approach, since exploit markets target certain adversary groups (such as those with lots of resources) and may not be representative of all adversary types.
+However, such analysis would provide some information as to whether the definition of [*Utility*](#utility) is reasonable. 
