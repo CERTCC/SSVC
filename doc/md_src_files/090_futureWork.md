@@ -26,6 +26,12 @@ One way to view what SSVC currently provides is that it tells you how urgently a
 For all but the most dire vulnerabilities, what the stakeholder choses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
 Future work should attempt to provide a method for [evaluating change risk or cost](https://github.com/CERTCC/SSVC/issues/35) relative to vulnerability risk.
 
+[Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.
+Specifically, these reflect vulnerability risk appetite.
+Appetite for vulnerability risk may be negatively correlated with change risk; future work could explore this relationship.
+Furthermore, future work could examine suggested practices for connecting tree customization to risk management. 
+
+
 ## Further Decision Tree Testing
 
 More testing with diverse analysts is necessary before the decision trees are reliable. In this context, **reliable** means that two analysts, given the same vulnerability description and decision process description, will reach the same decision. Such reliability is important if scores and priorities are going to be useful. If they are not reliable, they will vary widely over time and among analysts. Such variability makes it impossible to tell whether a difference in scores is really due to one vulnerability being higher priority than other.
