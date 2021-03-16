@@ -15,6 +15,17 @@ In connection with this design, CVSS base scores and base metrics are far and aw
 A CVSS base score has two parts: the exploitability metrics and the impact metrics.
 Each of these are echoed or reflected in aspects of SSVC, though the breadth of topics considered by SSVC is wider than CVSS v3.1.
 
+How CVSS is used matters.
+Using just the base scores, which are “the intrinsic characteristics of a vulnerability that are constant over time and across user environments,” as a stand-alone prioritization method is not recommended [@cvss_v3-1].
+Two examples of this include the U.S. government [see @nist800-115, p. 7-4; @nist800-40r3, p. 4; and @bod15-01] and the global payment card industry [@pcidss_v3] where both have defined such misuse as expected practice in their vulnerability management requirements.
+CVSS scores have a complex relationship with patch deployment in situations where it is not mandated, at least in an ICS context [@wang2017characterizing].
+
+CVSS has struggled to adapt to other stakeholder contexts.
+Various stakeholder groups have expressed dissatisfaction by making new versions of CVSS, such as medical devices [@mitre2019medical], robotics [@vilches2018towards], and industrial systems [@figueroa2020survey].
+In these three examples, the modifications tend to add complexity to CVSS by adding metrics.
+Product vendors have varying degrees of adaptation of CVSS for development prioritization, including but not limited to [Red Hat](https://access.redhat.com/security/updates/classification), [Microsoft](https://www.microsoft.com/en-us/msrc/security-update-severity-rating-system), and [Cisco](https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#asr).
+The vendors codify CVSS’s recommended qualitative severity rankings in different ways, and Red Hat and Microsoft make the user interaction base metric more important.
+
 > Exploitability metrics (Base metric group)
 
 The four metrics in this group are Attack Vector, Attack Complexity, Privileges Required, and User Interaction.
