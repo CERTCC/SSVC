@@ -2,7 +2,10 @@
 
 # Future Work
 
-We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology. While the method herein should be functional, we do not claim it is ready for use as is. Therefore, we lay out some aspects of future work that would help make it ready to use. We focus on further requirements gathering, further testing of the reliability of the decision process, and expanding to additional types of stakeholders beyond deployers and suppliers.
+We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology.
+We are working to improve SSVC.
+Several of the future work items in this section have [issues associated with them on the SSVC GitHub page](https://github.com/CERTCC/SSVC/issues), which is a good place to go to check on progress or help.  
+Plans for future work focus on further requirements gathering, analysis of types of risk, and further testing of the reliability of the decision process.
 
 ## Requirements Gathering via Sociological Research
 
@@ -11,7 +14,17 @@ The community should know what users of a vulnerability prioritization system wa
 Coordinators in particular are likely to be heterogeneous.
 While the FIRST service frameworks for PSIRTs and CSIRTs differentiate two broad classes of coordinators, we have focused on CSIRTs here.
 PSIRTs may have somewhat different concerns.
-Investigating the extent to which SSVC should be customized for this group is future work as well. 
+Investigating the extent to which SSVC should be customized for this group is future work as well.
+
+## Types of Risks
+
+SSVC estimates the relative risk created by a vulnerability in an IT system.
+The priority of acting to mitigate or remediate a vulnerability goes up as this vulnerability risk goes up.
+SSVC does not currently take into account the change risk due to applying a mitigation or remediation.
+
+One way to view what SSVC currently provides is that it tells you how urgently a stakeholder should analyze overall risk due to a vulnerability risk.
+For all but the most dire vulnerabilities, what the stakeholder choses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
+Future work should attempt to provide a method for [evaluating change risk or cost](https://github.com/CERTCC/SSVC/issues/35) relative to vulnerability risk.
 
 ## Further Decision Tree Testing
 
