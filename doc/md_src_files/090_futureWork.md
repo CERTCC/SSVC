@@ -36,14 +36,20 @@ The unit of prioritization in SSVC should be work items.
 For deployers, a work item is often applying a patch that addresses multiple vulnerabilities.
 The "credible effects" to consider are those of all vulnerabilities remediated by the patch.
 How exactly to aggregate these different effects is not currently specified except to say that the unit of analysis is the whole work item.
-Future work should provide some examples of how this holistic analysis of multiple vulnerabilities remediated in one patch should be conducted. 
+Future work should provide some examples of how this holistic analysis of multiple vulnerabilities remediated in one patch should be conducted.
 
 
 ## Further Decision Tree Testing
 
 More testing with diverse analysts is necessary before the decision trees are reliable. In this context, **reliable** means that two analysts, given the same vulnerability description and decision process description, will reach the same decision. Such reliability is important if scores and priorities are going to be useful. If they are not reliable, they will vary widely over time and among analysts. Such variability makes it impossible to tell whether a difference in scores is really due to one vulnerability being higher priority than other.
 
-The pilot study provides a methodology for measuring and evaluating reliability of the decision process description based on the agreement measure κ. This study methodology should be repeated with different analyst groups, from different sectors and with different experience, feeding the results into changes in the decision process description until the agreement measure is adequately close to 1.
+The SSVC v1 pilot study provides a methodology for measuring and evaluating reliability of the decision process description based on the agreement measure κ.
+This study methodology should be repeated with different analyst groups, from different sectors and with different experience, feeding the results into changes in the decision process description until the agreement measure is adequately close to 1.
+
+Internationalization and localization of SSVC will also need to be considered and tested in future work.
+It's not clear how best to consider translating SSVC decision points, if at all.
+And at [a very practical level](https://github.com/CERTCC/SSVC/issues/123), the [Abbreviated Format](#abbreviated-format) would have to define a new algorithm for creating initialisms that is not dependent an an alphabet for languages based on syllabaries or ideograms. 
+But a more actionable item of future work would be to include non-native English speakers in future usability studies.
 
 A different approach to testing the [*Utility*](#utility) decision point could be based on [Alternative Utility Outputs](#alternative-utility-outputs).
 Namely, future work could example exploit resale markets and compare the value of exploits to the [*Utility*](#utility) score of the exploited vulnerability.
