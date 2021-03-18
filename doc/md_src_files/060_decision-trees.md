@@ -101,12 +101,53 @@ Once the decision points are selected and the prioritization labels agreed upon,
 Making the decision process accessible has a lot of benefits.
 Unfortunately, it also makes it a bit too easy to overcomplicate the decision.
 
+The academic literature surrounding decision tree quality measurement is primarily concerned with measuring classification errors given a particular tree and a labeled data set.
+In our case, we are not attempting to fit a tree to data.
+Rather, we are interested in producing usable trees that minimize extraneous effort.
+To that end, a brief examination of what qualities decision tree construction  methods optimize for is warranted.
+
+Decision tree construction methods must address four significant concerns: feature selection, feature type, overfitting, and parsimony.
+
+Feature selection is perhaps the most important consideration for SSVC, because it directly affects the information gathering requirements placed on the analyst attempting to use the tree.
+Each decision point in SSVC is a feature.
+
 The SSVC version 1  ~applier~ deployer tree had 225 rows when we wrote it out in long text form.
 It only has four outcomes to differentiate between.
 Thus, on average that decision process treats one situation (combination of decision values) as equivalent to 65 other situations.
 If nothing else, this means analysts are spending time gathering evidence to make fine distinctions that are not used in the final decision.
 The added details also make it harder for the decision process to accurately manage the risks in question.
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
+
+Different feature types (nominal, ordinal, interval, ratio) require slightly different approaches when building decision trees.
+Decision trees work best on features that can be ordered (i.e., where the greater-than or less-than operators make sense).
+Ordinal, interval, and ratio feature types can be ordered.
+All of the features included in SSVC v2 can be considered ordinal data. 
+That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
+
+Those wishing to customize SSVC should take care when adding a nominal type feature though.
+Nominal features cannot be sorted and might be better suited to being  converted to binary variables (i.e., one-hot encoding) before further analysis of the sort we are discussing here.
+
+Overfitting increases tree complexity by completely incorporating all the noise in the training data set into the decision points in a tree. 
+In our case, our "data" is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
+
+Parsimony is, in essence, Occam's Razor applied to tree selection: Given the choice between two trees that have identical outputs, choose the one with fewer decisions. 
+When applied to the induction algorithms used to fit a decision tree to a training data set, this often takes the form of ordering decision points in descending order based on the amount of information gained at each step.
+
+The concept of information gain leads to a measure of feature importance. 
+While there are a few ways to compute feature importance, the one we found most useful is permutation importance.
+Permutation importance can be calculated on a candidate tree to highlight potential issues.
+It works by randomly shuffling the values for each feature individually and comparing a fitness metric on the shuffled tree to the original.
+The change in fitness is taken to be the importance of the feature that was shuffled.
+Permutation importance is usually given as a number in the interval [0,1].
+Python's scikit-learn provides a permutation importance method, which we used to evaluate our trees.
+
+Interpreting the results of a permutation importance computation on a tree involves nuance, but one rule we can state is this: 
+Any feature with a computed permutation importance of zero can be eliminated from the tree without losing any relevant information. 
+When all the permutation importance scores for all features are relatively equal, that is an indication that each feature is approximately equally relevant to the decision.
+More likely, however, is that some subset of features will be of relatively equal importance, and one might be of considerably lower importance (yet not zero).
+In this case, the lowest importance feature should be considered for refinement or elimination.
+It is possible that adjusting the definition of a feature or its available values (whether redefining, adding, or removing options) could increase its importance.
+Reasons to retain a low-importance feature often come down to the feature being important to a small set of circumstances that a tree without the feature would otherwise be unable to discriminate.
 
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
