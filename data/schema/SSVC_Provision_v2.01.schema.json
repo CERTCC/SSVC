@@ -17,7 +17,7 @@
                         "maxLength": 255
                     },
                     "key": {
-			"description": "A unique short \"key\" that represent this \"descision_point\".  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
+			"description": "An optional short \"key\" that identified this \"descision_point\" in SSVC score vector form.  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
                         "maxLength": 2,
                         "type": "string"
                     },
@@ -38,7 +38,7 @@
                                     "type": "string"
                                 },
                                 "key": {
-				    "description": "A unique short \"key\" that represent this \"option\" or choice.  This is one or two letter(s) used in short-form vector representation of the SSVC score ",
+				    "description": "An optional short \"key\" that identified this \"descision_point\" in SSVC score vector form.  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
                                     "type": "string",
                                     "maxLength": 2
                                 },
@@ -51,7 +51,6 @@
                             "required": [
                                 "label",
                                 "description",
-				"key"
                             ]
                         },
                         "minItems": 1,
@@ -78,7 +77,6 @@
                         "required": [
                             "decision_type",
                             "label",
-			    "key",
                             "children"
                         ]
                     },
@@ -86,7 +84,6 @@
                         "required": [
                             "decision_type",
                             "label",
-			    "key",
                             "options"
                         ]
                     }

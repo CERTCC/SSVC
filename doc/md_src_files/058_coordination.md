@@ -31,18 +31,12 @@ We take three priority levels in our decision about whether and how to coordinat
  - Track - Receive information about the vulnerability and monitor for status changes but do not take any overt actions.
  - Coordinate - Take action on the report. "Action" may include any one or more of: technical analysis, reproduction, notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), advise only, secondary coordinator (assist another lead coordinator). See [@csirtservices_v2] for additional vulnerability management services a coordinator may provide.
 
-## Publication Decisions
-
-TODO
-
 ## Coordinator Decision Points
 
 Our goal with the coordination decision is to base it on information that is available to the analyst when CERT/CC receives a vulnerability report.
 In addition to using some of the decision points in [Likely Decision Points](#likely-decision-points-and-relevant-data); coordination makes use of [Utility](#utility) and [Public Safety Impact](#public-safety-impact) decision points.
 The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
-To assess this, the decision involves six new decision points.
-<!-- "six" previews adding some for publication, which is a TODO. Number may need to be adjusted once that is done !-->
-
+To assess this, the decision involves five new decision points.
 
 ### Report Public
 
@@ -159,8 +153,4 @@ The first two function as gating questions:
 In the second case, CERT/CC may encourage the reporter to contact the supplier and submit a new case request if the supplier is unresponsive.
 
 These two sets of exceptional circumstances mean that the seven decision points involved in the coordination triage tree can be compressed slightly, as the tree shows.
-
-<img src="gfx/coord_v2_ready.pdf" alt="Coordination Triage Tree" style="width: 90%;" />
-
-This tree is a suggestion in that CERT/CC believes it works for us.
-Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance).
+This tree's information is available as either a [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-triage.csv) or [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-triage.pdf)

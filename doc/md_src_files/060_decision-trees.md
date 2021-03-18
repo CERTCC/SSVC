@@ -23,36 +23,49 @@ How this decision information might be stored or communicated is the topic of su
 
 ## Supplier Tree
 
-Figure 1 shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
+The example supplier tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_supplier.pdf) shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
 
   - Defer = gray with green outline
   - Scheduled = yellow
   - Out-of-Cycle = orange
   - Immediate = red with black outline
 
-<img src="version_1/gfx/vul-management_v1-6-page2.png" alt="Figure 1: Suggested supplier tree" style="width: 90%;" />
+<embed src="graphics/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
+style="width: 100%;"
+height = "600" />
 
-Figure 1: Proposed Vulnerability Prioritization Decision Tree for Patch
-Supplier
 
 ## Deployer Tree
 
-The proposed deployer tree is depicted in Figure 3, Figure 4, and Figure 5. The state of *Exploitation* is the first decision point, but in an effort to make the tree legible, we split the tree into three sub-trees over three pages. We suggest making the decision about *Exploitation* as usual, and then going to the correct subtree.
+The example deployer tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_deployer_SeEUMss.pdf) is depicted below.
 
-<img src="version_1/gfx/vul-management_v1-6-page3.png" alt="Figure 2" style="width: 90%;" />
+<embed src="graphics/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
+ type="application/pdf"
+ style="width: 100%;"
+ height = "1000"/>
 
-Figure 2: Proposed Vulnerability Prioritization Decision Tree for Patch
-Deployers (Continued in Figure 3 and Figure 4)
+## Coordinator trees
 
-<img src="version_1/gfx/vul-management_v1-6-page4.png" alt="Figure 3" style="width: 90%;" />
+As described in [Decisions During Vulnerability Coordination](#decisions-during-vulnerability-coordination), a coordination stakeholder usually makes separate triage and publication decisions. Each have trees presented below.
 
-Figure 3: Proposed Vulnerability Prioritization Decision Tree for Patch
-Deployers (Continued from Figure 2 and in Figure 4).
+### Triage decision tree
 
-<img src="version_1/gfx/vul-management_v1-6-page5.png" alt="Figure 4" style="width: 90%;" />
+<embed src="graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
+style="width: 100%;"
+height = "600" />
 
-Figure 4: Proposed Vulnerability Prioritization Decision Tree for Patch
-Deployers (Continued from Figure 2 and Figure 3)
+This tree is a suggestion in that CERT/CC believes it works for us.
+Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance).
+
+### Publication decision tree
+
+Suggested decision values for this decision are available in [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-publish.csv) and [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-publish.pdf) formats.
+
+<embed src="graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
+style="width: 100%;"
+height = "500" />
+
+
 
 ## Tree Construction and Customization Guidance
 
@@ -82,7 +95,7 @@ SSVC enables teams with such different risk appetites to discuss and communicate
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.
-Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.schema.json).
+Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
 Making the decision process accessible has a lot of benefits.
@@ -97,6 +110,8 @@ This difficulty arises because more variance and complexity there is in the deci
 
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
+
+SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: "Applier Tree v1.1.0" would be the identity of the version of the Applier Tree as published in v1.1 of SSVC. "Coordinator Publish Tree v2.0.3" would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms "major", "minor", and "patch" with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
 ## Evidence Gathering Guidance
 
@@ -121,7 +136,7 @@ SSVC depends on asset management to some extent, particularly for context on the
 Asset management can help automate the collection of the [*Mission Impact*](#mission-impact), [*Situated Safety Impact*](#situated-safety-impact), and [*System Exposure*](#system-exposure) decision points.
 These decision points tend to apply per asset rather than per vulnerability.
 Therefore, once each is assessed for each asset, it can be applied to each vulnerability that applies to that asset.
-While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management system should enable automated scoring of new vulnerabilities on these decision points for those assets. 
+While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management system should enable automated scoring of new vulnerabilities on these decision points for those assets.
 
 Our method is for prioritizing vulnerabilities based on the risk stemming from exploitation.
 There are other reasonable asset management considerations that may influence remediation timelines.
@@ -137,7 +152,7 @@ Asset management and risk management also drive some of the up-front work an org
 This situation is not new; an asset owner cannot prioritize which fixes to deploy to its assets if it does not have an accurate inventory of its assets.
 The organization can pick its choice of tools for these things; there are about 200 asset management tools on the market [@captera].
 Emerging standards like the Software Bill of Materials (SBOM) [@manion2019sbom] would likely reduce the burden on asset management, and organizations should prefer systems which make such information available.
-If an organization does not have an asset management or risk management (see Section 4.4.6.1) plan and process in place, then SSVC provides some guidance as to what information is important to vulnerability management decisions and the organization should start capturing, storing, and managing.
+If an organization does not have an asset management or risk management (see also [Gathering Information About Mission Impact](#gathering-information-about-mission-impact)) plan and process in place, then SSVC provides some guidance as to what information is important to vulnerability management decisions and the organization should start capturing, storing, and managing.
 
 
 ## Guidance on Communicating Results
@@ -162,30 +177,38 @@ The goal of the full format is to capture all the context and details about a de
 
 #### Abbreviated Format
 
-SSVC abbreviated form borrows directly from the CVSS "vector string" notation.  
+SSVC abbreviated form borrows directly from the CVSS "vector string" notation.
+Since the purpose of the abbreviated form is to provide labels for charts and graphics, it does not stand alone.
 The basic format for SSVC is:
 ```
-(version)/(decision point):(value)[/decision point:value[/decision point:value[...]]][/time]/
+SSVC/(version)/(decision point):(value)[/decision point:value[/decision point:value[...]]][/time]/
 ```
-Where `version` is `SSVCv2`, updated with more options in the future as needed.
+Where `version` is `v2` if it is based on this current version of the SSVC.
 The term `decision point` is one or two letters derived from the name of the decision point as follows:
  - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
  - Remove any text in parentheses (and the parentheses themselves).
  - Remove the word "Impact" if it's part of the name.
  - Create an initialism from remaining title-case words (ignore "of," etc.), taking only the first two words.
  - The first letter of the initialism is upper case; if there is a second letter, then it is lower case.
+ - Verify that the initialism is unique among decision points in the version of SSVC. If two initialisms collide, sort their source names equivalent to `LC_ALL=C sort`. The name that sorts first keeps the initialism for which there is a collision. Set the second letter of the initialism to the first character in the name that resolves the collision. If the names were `Threat` and `Threshold`, `T` would be `Threat` and `Ts` would be `Threshold`. We make an effort to design SSVC without such collisions.   
 
 For example, [*Technical Impact*](#technical-impact) becomes `T` and [*Public Safety Impact*](#public-safety-impact) becomes `Ps`.
 
 The term `value` is a statement of the value or possible values of the decision point that precedes it and to which it is connected by a `:`.
 Similar to `decision point`, `value` should be made up of one or two letters derived from the name of the decision value in the section for its associated decision point.
 For example [MEF support crippled](#mission-impact) becomes `Ms` and [efficient](#utility) becomes `E`.
-Labels on values do not need to be globally unique, just unique to the associated decision point.
+The process is the same as above except that labels for a `value` do not need to be unique to the SSVC version, just unique to the associated `decision point`.
 
 The character `/` separates decision-point:value pairs.
 As many pairs should be provided in the abbreviated form as are required to communicate the desired information about the vulnerability or work item.
+A vector must contain at least one decision-point:value pair.
 The ordering of the pairs should be sorted alphabetically from A to Z by the ASCII characters representing the decision points.
 A trailing `/` is used to close the string.
+
+The vector is not tied to a specific decision tree.
+It is meant to communicate information in a condensed form.
+If priority labels (**defer**, etc.) are connected to a vector, then the decision tree used to reach those decisions should generally be noted.
+However, for complex communication, machine-to-machine communication, or long-term storage of SSVC data, the JSON format and schema should be used.
 
 The optional parameter `time` is the time in seconds since the UNIX epoch that the SSVC information was collected or last checked for freshness and accuracy.
 
@@ -195,11 +218,14 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 ```
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
+While these abbreviated format vectors can be uniquely produced based on a properly formatted JSON object, going from abbreviated form to JSON is not supported.
+Therefore, JSON is the preferred storage and transmission method.  
+
 #### Full JSON format
 
 For a more robust, self-contained, machine-readable, we provide JSON schemas.
-The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
-The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
+The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
+The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.01.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
 
 Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
