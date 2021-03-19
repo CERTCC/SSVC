@@ -5,13 +5,18 @@ author: adh
 created_at: 12/2/19 2:23 PM
 '''
 
+import os.path
 import pandas as pd
 
 _app_cols = ['Exploitation', 'Exposure', 'MissionImpact', 'SafetyImpact', 'Outcome']
 _dev_cols = ['Exploitation', 'Utility', 'TechnicalImpact', 'SafetyImpact', 'Outcome']
 
-_df_applier = pd.read_csv("../data/ssvc_1_applier.csv", usecols=_app_cols)
-_df_developer = pd.read_csv("../data/ssvc_1_developer.csv", usecols=_dev_cols)
+_csv_path = "../data/v1/csv"
+_applier_csv = os.path.join(_csv_path,"ssvc_1_applier.csv")
+_developer_csv = os.path.join(_csv_path,"ssvc_1_developer.csv")
+
+_df_applier = pd.read_csv(_applier_csv, usecols=_app_cols)
+_df_developer = pd.read_csv(_developer_csv, usecols=_dev_cols)
 
 _app_lookup = _df_applier.to_dict(orient="records")
 _dev_lookup = _df_developer.to_dict(orient="records")
