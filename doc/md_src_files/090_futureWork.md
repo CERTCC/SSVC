@@ -18,12 +18,12 @@ Investigating the extent to which SSVC should be customized for this group is fu
 
 ## Types of Risks
 
-SSVC estimates the relative risk created by a vulnerability in an IT system.
+SSVC estimates the relative risk created by a vulnerability in an information system.
 The priority of acting to mitigate or remediate a vulnerability goes up as this vulnerability risk goes up.
 SSVC does not currently take into account the change risk due to applying a mitigation or remediation.
 
 One way to view what SSVC currently provides is that it tells you how urgently a stakeholder should analyze overall risk due to a vulnerability risk.
-For all but the most dire vulnerabilities, what the stakeholder choses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
+For all but the most dire vulnerabilities, what the stakeholder chooses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
 Future work should attempt to provide a method for [evaluating change risk or cost](https://github.com/CERTCC/SSVC/issues/35) relative to vulnerability risk.
 
 [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.

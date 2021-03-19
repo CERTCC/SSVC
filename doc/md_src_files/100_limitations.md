@@ -2,7 +2,7 @@
 
 # Limitations
 
-SSVC has some inherent limits of the approach, which should be understood as tradeoffs.
+SSVC has some inherent limits in its approach, which should be understood as tradeoffs.
 There are other limiting aspects of our implementation, but those have been covered as topics that need improvement and are described in [Future Work](#future-work).
 
 We made two important tradeoffs compared to the current state of the practice.
