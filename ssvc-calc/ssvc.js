@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = 4.1
+const _version = 4.2
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
@@ -470,15 +470,22 @@ function parse_file(xraw) {
     /* CSV or TSV looks like 
        ID,Exploitation,Utility,TechnicalImpact,SafetyImpact,Outcome
     */
-    
+    console.log(xraw)
     var xarray = xraw.split('\n')
-    var xr = xarray.map(x=>x.split(/[\t,]+/))
-    /* Remove first row has the headers */
+    console.log(xarray)
+    var xr = xarray.map(x => x.split(/[\t,]+/))
+    /* Remove first row has the headers and pass the rest to variable y */
     var y = xr.splice(1)
+    /* Check if rowID first column of second row to match not number*/
+    console.log(xr)
+    var is_ssvc_v1 = y[0][0].match(/\D+/) ? false : true
     /* Remove ID column in the first row to create x*/
-    var x = xr[0].splice(1)
-    /* Now xr looks like */
-    /* (6)["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"] */
+    if (is_ssvc_v1) 
+	var x = xr[0].splice(1)
+    else
+	var x = xr[0]
+    /* Now xr looks like below for ssvc csv v1 */
+    /* (6)[["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"]] */
     //var yraw = [[],[],[],[],[]]
     /* Register the export schema decision points, assume all decisions are simple */
     export_schema.decision_points = x.map(dc =>
@@ -496,8 +503,9 @@ function parse_file(xraw) {
     var thash = {}
     for(var i=0; i< y.length - 1; i++) {
 	if(y[i].length < 1) continue
-	/* Remove ID column */
-	y[i].shift()
+	/* Remove ID column if it is SSVC v1*/
+	if(is_ssvc_v1)
+	    y[i].shift()
 	/* Add lame CSV/TSV data to export schema */
 	create_export_schema_dtable(y[i],x)
 	var tname = y[i].pop()+":"+y[i].join(":")
@@ -529,8 +537,11 @@ function parse_file(xraw) {
     zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
     /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
     raw = zraw
+    var detect_version = "v2"
+    if(is_ssvc_v1)
+	detect_version = "v1"
     topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
-	     y.length+" possible decisions, You can use it now!","success")
+	     y.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success")
     dt_clear()
     export_schema.decision_points[export_schema.decision_points.length-1].
 	choices.map((x,i) => lcolors[x.label] = acolors[i])
