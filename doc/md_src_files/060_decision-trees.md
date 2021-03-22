@@ -119,13 +119,8 @@ The added details also make it harder for the decision process to accurately man
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
 
 Regarding feature types, all of the features included in SSVC v2 can be considered ordinal data.
-The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
-
-By choosing to use only ordinal features in SSVC, 
-Different feature types (nominal, ordinal, interval, ratio) require slightly different approaches when building decision trees.
-Decision trees work best on features that can be ordered (i.e., where the greater-than or less-than operators make sense).
-Ordinal, interval, and ratio feature types can be ordered.
 That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
+The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
 When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree. 
 In our case, our "data" is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
