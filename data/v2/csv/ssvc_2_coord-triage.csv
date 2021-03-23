@@ -1,4 +1,4 @@
-Public?,Contacted?,Credible?,Cardinality,Engagement,Utility,PublicSafetyImpact,Outcome
+Public,Contacted,Credible,Cardinality,Engagement,Utility,PublicSafetyImpact,Outcome
 No,Yes,Yes,one,active,laborious,minor,decline
 No,Yes,Yes,one,active,laborious,significant,decline
 No,Yes,Yes,one,active,efficient,minor,decline
