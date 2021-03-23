@@ -4,7 +4,7 @@
 
 We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology.
 We are working to improve SSVC.
-Several of the future work items in this section have [issues associated with them on the SSVC GitHub page](https://github.com/CERTCC/SSVC/issues), which is a good place to go to check on progress or help.  
+Several of the future work items in this section have issues associated with them on the SSVC GitHub page (https://github.com/CERTCC/SSVC/issues), which is a good place to go to check on progress or help.  
 Plans for future work focus on further requirements gathering, analysis of types of risk, and further testing of the reliability of the decision process.
 
 ## Requirements Gathering via Sociological Research
@@ -22,7 +22,7 @@ SSVC estimates the relative risk created by a vulnerability in an information sy
 The priority of acting to mitigate or remediate a vulnerability goes up as this vulnerability risk goes up.
 SSVC does not currently take into account the change risk due to applying a mitigation or remediation.
 
-One way to view what SSVC currently provides is that it tells you how urgently a stakeholder should analyze overall risk due to a vulnerability risk.
+One way to view what SSVC currently provides is that it tells you how urgently a stakeholder should analyze overall risk due to a vulnerability.
 For all but the most dire vulnerabilities, what the stakeholder chooses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
 Future work should attempt to provide a method for [evaluating change risk or cost](https://github.com/CERTCC/SSVC/issues/35) relative to vulnerability risk.
 
@@ -48,7 +48,7 @@ This study methodology should be repeated with different analyst groups, from di
 
 Internationalization and localization of SSVC will also need to be considered and tested in future work.
 It's not clear how best to consider translating SSVC decision points, if at all.
-And at [a very practical level](https://github.com/CERTCC/SSVC/issues/123), the [Abbreviated Format](#abbreviated-format) would have to define a new algorithm for creating initialisms that is not dependent an an alphabet for languages based on syllabaries or ideograms. 
+And at [a very practical level](https://github.com/CERTCC/SSVC/issues/123), the [Abbreviated Format](#abbreviated-format) would have to define a new algorithm for creating initialisms that is not dependent an an alphabet for languages based on syllabaries or ideograms.
 But a more actionable item of future work would be to include non-native English speakers in future usability studies.
 
 A different approach to testing the [*Utility*](#utility) decision point could be based on [Alternative Utility Outputs](#alternative-utility-outputs).
