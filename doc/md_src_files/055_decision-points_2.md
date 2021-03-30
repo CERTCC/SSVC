@@ -29,8 +29,35 @@ We expect that a stakeholder should be aware of common usage of their software a
 
 The factors that influence the safety impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding safety impact should include gathering information about survivability of the vulnerable component, determining available operator actions to compensate for the vulnerable component, understanding relevant insurance, and determining the viability of existing backup measures. Each of these information items depends heavily on domain-specific knowledge, and so it is out of the scope of this paper to give a general-purpose strategy for how they should be included. For example, viable manual backup mechanisms are likely important in assessing the safety impact of an industrial control system in a sewage plant, but in banking the insurance structures that prevent bankruptcies are more important.
 
-The [safety impact categories](#table-safety-impact) are based on hazard categories for aircraft software [@DO-178C; @faa2000safety, Section 3.3.2].
+The safety impact decision values are based on hazard categories for aircraft software [@DO-178C; @faa2000safety, Section 3.3.2].
+For any value of [*Safety Impact*](#safety-impact) to obtain, say [*major*](#safety-impact), at least one type of harm must reach that level.
+All types of harm do not need to rise to the level of [*major*](#safety-impact), just one type of harm does.
 
+Table: Safety Impact Decision Values
+
+| Value | Type of Harm  | Definition |
+| --:          | :---          | :-----------   |
+| None          | All           | Does *not* mean no impact *literally*; the effect is below the threshold for all aspects described in Minor |
+| Minor         | Physical Harm | Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins |
+| Minor         | Environment   | Minor externalities (property damage, environmental damage, etc.) imposed on other parties |
+| Minor         | Financial     | Financial losses, which are not readily absorbable, to multiple persons |
+| Minor         | Psychological | Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons |
+| Major         | Physical Harm | Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation |
+| Major         | Environment   | Major externalities (property damage, environmental damage, etc.) imposed on other parties |
+| Major         | Financial     | Financial losses that likely lead to bankruptcy of multiple persons |
+| Major         | Psychological | Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people |
+| Hazardous     | Physical Harm | Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures OR parts of the cyber-physical system that support safe operation break |
+| Hazardous     | Environment   | Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties |
+| Hazardous     | Financial     | Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state |
+| Hazardous     | Psychological | N/A |
+| Catastrophic  | Physical Harm | Multiple immediate fatalities (emergency response probably cannot save the victims.) |
+| Catastrophic  | Environment   | Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties |
+| Catastrophic  | Financial     | Social systems (elections, financial grid, etc.) supported by the software collapse |
+| Catastrophic  | Psychological | N/A |
+
+
+<!-- Literal HTML is only included by pandoc etc in HTML output, so the below is correct but not portable -->
+<!--
 <a name="table-safety-impact"></a> Safety Impact Decision Values
 
 <table>
@@ -179,19 +206,23 @@ resiliency</td>
 </tr>
 </tbody>
 </table>
+-->
 
 ### Public Safety Impact
 
 Suppliers necessarily have a rather coarse-grained perspective on the broadly defined safety impacts described above. Therefore we simplify the above into a binary categorization: _Significant_ is when any impact meets the criteria for an impact of Major, Hazardous, or Catastrophic in the above table. _Minimal_ is when none do.
 
-|             | <a name="table-public-safety-impact"></a> Public Safety Impact |
-| ----------- | ---------------------------------------------------|
+Table: Public Safety Impact Decision Values
+
+|   Value     | Definition |
+| :--- | :--------- |
 | Minimal     | Safety Impact of None or Minor                     |
 | Significant | Safety Impact of Major, Hazardous, or Catastrophic |
 
+
 ### Situated Safety Impact
 
-Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in [Safety Impact](#table-safety-impact). 
+Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in [Safety Impact](#table-safety-impact).
 However, in order to simplify implementation for deployers we intend to combine this with Mission Impact below, so we defer the topic for now.
 
 ## Mission Impact
@@ -199,8 +230,10 @@ However, in order to simplify implementation for deployers we intend to combine 
 
 A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. Identifying MEFs is part of business continuity planning or crisis planning. The rough difference between MEFs and non-essential functions is that an organization “must perform a\[n MEF\] during a disruption to normal operations” [@FCD2_2017, page B-2]. The mission is the reason an organization exists, and MEFs are how that mission is affected. Non-essential functions do not directly support the mission per se; however, they support the smooth delivery or success of MEFs. Financial losses—especially to publicly traded for-profit corporations—are covered here as a (legally mandated) mission of such corporations is financial performance.
 
-|  | <a name="table-mission-impact"></a> Mission Impact Decision Values |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Table:  Mission Impact Decision Values
+
+| Value | Definition  |
+| :--- | :---------- |
 | None / Non-Essential Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
 | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
 | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
@@ -210,8 +243,8 @@ A **mission essential function (MEF)** is a function “directly related to acco
 
 The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 [@FCD2_2017] or OCTAVE FORTE [@tucker2018octave]. This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
-As a heuristic, [*Utility*](#utility) might constrain [*Mission Impact*](#mission-impact) if both are not used in the same decision tree. 
-For example, if it's [*super effective*](#utility) then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact). 
+As a heuristic, [*Utility*](#utility) might constrain [*Mission Impact*](#mission-impact) if both are not used in the same decision tree.
+For example, if it's [*super effective*](#utility) then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact).
 
 ## Situated Safety / Mission Impact
 
@@ -222,9 +255,28 @@ This gives us 3 levels of mission impact to work with.
 
 On the other hand, most organizations' tolerance for variance in safety tends to be be lower, meaning that even small deviations in safety are unlikely to go unnoticed or unaddressed.
 We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior.
-Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension. We then combine Mission Impact with Situated Safety impact and map these onto a 4-tiered scale (Low, Medium, High, Very High). 
-The mapping is shown in [Combining Mission and Situated Safety Impact](#table-mission-safety-combined).
+Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension. We then combine Mission Impact with Situated Safety impact and map these onto a 4-tiered scale (Low, Medium, High, Very High).
+The mapping is shown in the following table.
 
+Table: Combining Mission and Situated Safety Impact
+
+| Situated Safety Impact | Mission Impact | Combined Value |
+| -----:                 | :-----         | :---:          |
+|  None/Minor         | None/Degraded/Crippled | Low       |
+|  None/Minor         | MEF Failure       | Medium         |
+|  None/Minor         | Mission Failure   | Very High      |
+|  Major              | None/Degraded/Crippled | Medium    |
+|  Major              | MEF Failure       | High           |
+|  Major              | Mission Failure   | Very High      |
+|  Hazardous          | None/Degraded/Crippled | High      |
+|  Hazardous          | MEF Failure       | High           |
+|  Hazardous          | Mission Failure   | Very High      |
+|  Catastrophic       | None/Degraded/Crippled | Very High |
+|  Catastrophic       | MEF Failure       | Very High      |
+|  Catastrophic       | Mission Failure   | Very High      |
+
+<!-- Literal HTML is only included by pandoc etc in HTML output, so the below is correct but not portable -->
+<!--
 <table>
 <a name="table-mission-safety-combined"></a>
 <thead>
@@ -270,21 +322,12 @@ The mapping is shown in [Combining Mission and Situated Safety Impact](#table-mi
   <td> Very High </td>
   </tr>
 </table>
-<!--
-|  |Table X: Situated Safety / Mission Impact Decision Values ||||
-|----|------------|--|--|--|
-| Mission Impact  | None/Degraded/Crippled    | MEF Failure | Mission Failure |
-| Safety Impact |
-| None/Minor      | Low                       | Medium      | Very High |
-| Major           | Medium                    | High        | Very High |
-| Hazardous       | High                      | High        | Very High |
-| Catastrophic    | Very High                 | Very High   | Very High |
 -->
 
 ### Safety and Mission Impact Decision Points for Industry Sectors
 
 We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software.
-Therefore, vulnerability information providers -- that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) -- may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
+Therefore, vulnerability information providers - that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) - may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
 For considerations on how organizations might communicate SSVC information to their constituents, see [Guidance on Communicating Results](#guidance-on-communicating-results).
 
 
@@ -301,13 +344,13 @@ Therefore, a deployer’s response to Exposure may change if such mitigations ar
 If a mitigation changes exposure and thereby reduces the priority of a vulnerability, that mitigation can be considered a success.
 Whether that mitigation allows the deployer to defer further action varies according to each case.
 
+Table: System Exposure Decision Values
 
-
-|  | <a name="table-system-exposure"></a> System Exposure Decision Values |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Value       | Definition |
+| :---        | :------------ |
 | Small       | Local service or program; highly controlled network       |
 | Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
-| Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
+| Open        | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
 
 ### Gathering Information About System Exposure
 
@@ -320,8 +363,8 @@ Network policy or diagrams are also useful information sources, especially for s
 An analyst should also choose [*open*](#system-exposure) for a phone or PC that connects to the web or email without the usual protections (for example, IP and URL blocking, updated firewalls, etc.).
 
 Distinguishing between [*small*](#system-exposure) and [*controlled*](#system-exposure) is more nuanced.
-If [*open*](#system-exposure) has been ruled out, some suggested heuristics for differentiating the other two are as follows. 
-Apply these heuristics in order, and stop once one applies. 
+If [*open*](#system-exposure) has been ruled out, some suggested heuristics for differentiating the other two are as follows.
+Apply these heuristics in order, and stop once one applies.
  - If the system's networking and communication interfaces have been physically removed or disabled, choose [*small*](#system-exposure).
  - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure). The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of [*small*](#system-exposure).
  - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).

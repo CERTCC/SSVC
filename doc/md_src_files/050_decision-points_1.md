@@ -5,16 +5,18 @@ We propose the following decision points and associated values should be a facto
 One important omission from the values for each category is an “unknown” option. Instead, we recommend explicitly identifying an option that is a reasonable assumption based on prior events. Such an option requires reliable historical evidence for what tends to be the case; of course, future events may require changes to these assumptions over time.  Therefore, our assumptions require evidence and are open to debate in light of new evidence. Different risk tolerance or risk discounting postures are not addressed in the current work; accommodating such tolerance or discounting explicitly is an area for future work. This flexibility fits into our overall goal of supplying a decision-making framework that is both transparent and fits the needs of different communities. Resisting an “unknown” option discourages the modeler from silently embedding these assumptions in their choices for how the decision tree flows below the selection of any “unknown” option.
 
 We propose satisfactory decision points for vulnerability management in the next sections, in no particular order.
-Each section has a subsection with advice on gathering information about the decision point. 
-[SSVC using Current Information Sources](#ssvc-using-current-information-sources) will provide some suggestions about how existing sources of information about vulnerabilities can be used to collate responses to these decision points. 
+Each section has a subsection with advice on gathering information about the decision point.
+[SSVC using Current Information Sources](#ssvc-using-current-information-sources) will provide some suggestions about how existing sources of information about vulnerabilities can be used to collate responses to these decision points.
 
 ## Exploitation
 > Evidence of Active Exploitation of a Vulnerability
 
 The intent of this measure is the present state of exploitation of the vulnerability. The intent is not to predict future exploitation but only to acknowledge the current state of affairs. Predictive systems, such as EPSS, could be used to augment this decision or to notify stakeholders of likely changes [@jacobs2019exploit].
 
-| | <a name="table-exploitation"></a> Exploitation Decision Values |
-| --- | --------------------------------- |
+Table: Exploitation Decision Values
+
+| Value | Definition |
+| :--- | :------------  |
 | None | There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability. |
 | PoC <br /> (Proof of Concept) | One of the following cases is true: (1) exploit code sold or traded on underground or restricted fora; (2) typical public PoC in places such as Metasploit or ExploitDB; or (3) the vulnerability has a well-known method of exploitation. Some examples of condition (3) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks. |
 | Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
@@ -33,11 +35,11 @@ A comprehensive set of suggested CWE-IDs for this purpose is future work.
 Gathering information for [active](#exploitation) is a bit harder.
 If the vulnerability has a name or public identifier such as a CVE-ID, a search of news websites, twitter, the vendor's vulnerability description, and public vulnerability databases for mentions of exploitation is generally adequate.
 However, if the organization has the ability to detect exploitation attempts -- say through reliable and precise IDS signatures based on a public PoC -- then detection of exploitation attempts also signals that [active](#exploitation) is the right choice.
-Determining what vulnerability a novel piece of malware uses may be time consuming, requiring reverse engineering and a lot of trial and error. 
-Getting to the reverse engineering requires a capable incident detection and analysis capability as well. 
+Determining what vulnerability a novel piece of malware uses may be time consuming, requiring reverse engineering and a lot of trial and error.
+Getting to the reverse engineering requires a capable incident detection and analysis capability as well.
 Most organizations do not conduct these processes fully for most incidents, so in general information about what vulnerabilities are being actively exploited comes from public reporting by those who do conduct these processes.
-As long as those organizations also share detection methods and signatures, the results are usually quickly corroborated by the community. 
-For these reasons, we assess public reporting by established security community members to be a good information source for [active](#exploitation); however, one should not assume it is complete. 
+As long as those organizations also share detection methods and signatures, the results are usually quickly corroborated by the community.
+For these reasons, we assess public reporting by established security community members to be a good information source for [active](#exploitation); however, one should not assume it is complete.
 
 The description for [none](#exploitation) says there is no **evidence** of exploitation.
 This framing admits that an analyst may not be able to detect or know about every attack.
@@ -56,16 +58,17 @@ The definition of **vulnerability** we go by is based on the determination that 
 We consider a security policy violation to be a technical impact -- or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
 
+Table: Technical Impact Decision Values
 
-|  |   <a name="table-technical-impact"></a>Technical Impact Decision Values |
-| ------- | -------------- |
+| Value | Definition |
+| :--- | :------------  |
 | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
 | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
 
 
 ### Gathering Information About Technical Impact
 
-Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degree of control over the vulnerable component the attacker stands to gain by exploiting the vulnerability. 
+Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degree of control over the vulnerable component the attacker stands to gain by exploiting the vulnerability.
 One way to approach this analyiss is to ask whether the control gained is *total* or not.
 If it is not total, it is *partial*.
 If an answer to one of the following questions is yes, then control is *total*.
@@ -93,13 +96,15 @@ Subsections for [*Automatable*](#automatable) as ([*no*](#automatable) or [*yes*
 
 Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in [Utility Decision Values](#table-utility). [The next table](#table-utility-2) is an equivalent expression of [*Utility*](#utility) more like a lookup table a program might use.
 
-|  | <a name="table-utility"></a> Utility Decision Values |
-| --------------- | ------------------------------------------------------------------------------ |
+Table: Utility Decision Values
+
+| Value | Definition |
+| :--- | :----------  |
 | Laborious       | *No* to automatable and diffuse value                                               |
 | Efficient       | {*Yes* to automatable and diffuse value} OR {*No* to automatable and concentrated value} |
 | Super Effective | *Yes* to automatable and concentrated value                                         |
 
-<a name="table-utility-2"></a> Utility to the Adversary, as a Combination of automatable and Value Density
+Table: Utility to the Adversary, as a Combination of Automatable and Value Density
 
 | *Automatable* | *Value Density* | *Utility* |
 | ----------- | --------------- |       --: |

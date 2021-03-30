@@ -10,7 +10,6 @@ Headings that declare the decision point name or values should not be additional
   That is, if the name is the whole heading, don't use emphasis. If the name is part of another heading (which is not the case anywhere in v1.1), use emphasis. 
 
 Decision points, decision values, and stakeholder decisions should always be in a link cross-referenced to the table in which they are defined. 
-Definitional tables should have anchors to use. (see crossref-how-to)
 
 
 So we would have:
@@ -69,4 +68,24 @@ JSON
 When describing JSON literals in the .md documents, they should be marked up as `code literals` using backticks (`). 
 
 =================================================
+Tables
+
+GFM uses the pipe_tables markdown extension by default, so tables should use that format. 
+Tables should avoid HTML or LaTeX literal tables, as those aren't portable. If absolutely necessary, include both. 
+
+Note that when pandoc renders a pipe table into LaTeX if " the cell contents will wrap, with the relative cell widths determined by the number of dashes in the line separating the table header from the table body. (For example ---|- would make the first column 3/4 and the second column 1/4 of the full text width.) "
+https://pandoc.org/MANUAL.html#tables
+
+Use the table_captions extension
+In GFM this will render as text, but it will still be helpful.
+"A caption may optionally be provided with all 4 kinds of tables (as illustrated in the examples below). A caption is a paragraph beginning with the string Table: (or just :), which will be stripped off. It may appear either before or after the table."
+Put Table: marker above the table, not below it. 
+
 =================================================
+
+Embedding images
+
+Use the supported markdown for images where possible and support the link_attributes extension. 
+https://pandoc.org/MANUAL.html#images
+![Caption](foo.jpg){width=90%}
+This will render as a figure in latex as long as it is on a line all by itself and the implicit_figures extension to pandoc is used. It will render as a normal image in GFM. 
