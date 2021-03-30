@@ -27,7 +27,7 @@ The structure of the pilot test is as follows. Table 11 provides an example of t
 Table: Example of Scenario Information Provided to Analysts (Using
 CVE-2019-9042 as the Example)
 
-| Information Item                      | Description Provided to  |
+| Information Item                      | Description Provided to Analysts  |
 | :--- | :----------- |
 | Use of Cyber-Physical System          | Sitemagic’s content management system (CMS) seems to be fairly popular among smaller businesses because it starts out with a free plan to use it. Then it gradually has small increments in payment for additional features. It’s ease-of-use, good designs, and one-stop-shopping for businesses attracts a fair number of clients. Like any CMS, it “manages the creation and modification of digital content. These systems typically support multiple users in a collaborative environment, allowing document management with different styles of governance and workflows. Usually the content is a website” \([Wikipedia](https://en.wikipedia.org/w/index.php?title=Content_management_system&oldid=913022120), 2019\) |
 | State of Exploitation                 | Appears to be active exploitation of this vulnerability according to NVD. They have linked to the exploit: <u>http://www.iwantacve.cn/index.php/archives/116/</u>.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
