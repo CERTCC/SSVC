@@ -45,6 +45,7 @@ The example deployer tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/gra
 
 
 ![Suggested Deployer Tree](graphics/ssvc_2_deployer_SeEUMss.pdf){ width=100% }
+
 <!--
 <embed src="graphics/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
  type="application/pdf"
@@ -60,6 +61,7 @@ As described in [Decisions During Vulnerability Coordination](#decisions-during-
 
 
 ![Suggested Coordinator Triage Tree](graphics/ssvc_2_coord-triage.pdf){ width=100% }
+
 <!--
 <embed src="graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
 style="width: 100%;"
@@ -74,7 +76,8 @@ Other coordinators should consider customizing the tree to their needs, as descr
 Suggested decision values for this decision are available in [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-publish.csv) and [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-publish.pdf) formats.
 
 
-![Suggested Deployer Tree](graphics/ssvc_2_coord-publish.pdf){ width=100% }
+![Suggested Coordinator Publication Tree](graphics/ssvc_2_coord-publish.pdf){ width=100% }
+
 <!--
 <embed src="graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
 style="width: 100%;"
