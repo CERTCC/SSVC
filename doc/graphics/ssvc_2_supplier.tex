@@ -1,0 +1,146 @@
+
+\documentclass[10pt,preview]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,pdftex]{geometry}
+\usepackage{tikz}
+\usepackage[edges]{forest}
+\usetikzlibrary{arrows.meta}
+
+\author{Jonathan Spring}
+\title{Draft decision trees for vulnerability management}
+
+
+\begin{document}
+\pagestyle{empty}
+  
+\forestset{
+my label/.style={edge label={node [pos=0.75,above,font=\scriptsize] {#1}} },
+}
+%
+\tikzset{
+outcome/.style={shape=isosceles triangle,, shape border rotate=180, minimum height=0.4cm, minimum width=0.07cm}
+}
+\tikzset{
+defer/.style={outcome, fill=gray, thick, draw=green, label=right:{defer}}
+}
+\tikzset{
+scheduled/.style={outcome, fill=yellow, thick, dashed, draw=yellow, label=right:{scheduled}}
+}
+\tikzset{
+out-of-cycle/.style={outcome, fill=orange, thick, draw=orange, label=right:{out-of-cycle}}
+}
+\tikzset{
+immediate/.style={outcome, fill=red, thick, draw=black, label=right:{immediate}}
+}
+\tikzset{
+/.style={outcome, fill=black, thick, dashed, draw=gray, label=right:{}}
+}
+
+\footnotesize
+\noindent
+\begin{forest}
+for tree={s sep*=0.33, l sep=20mm, child anchor=west, anchor=west, grow=east, calign=center, tier/.pgfmath=level()}, forked edges,
+  [Exploitation, rectangle, draw,
+[Utility, rectangle, draw, my label={active},
+[TechnicalImpact, rectangle, draw, my label={super effective},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, immediate, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, immediate, my label={significant} ]
+[, immediate, my label={minimal} ]
+] 
+] 
+[TechnicalImpact, rectangle, draw, my label={efficient},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+] 
+[TechnicalImpact, rectangle, draw, my label={laborious},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+] 
+] 
+[Utility, rectangle, draw, my label={poc},
+[TechnicalImpact, rectangle, draw, my label={super effective},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+] 
+[TechnicalImpact, rectangle, draw, my label={efficient},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, immediate, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+] 
+[TechnicalImpact, rectangle, draw, my label={laborious},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+] 
+] 
+[Utility, rectangle, draw, my label={none},
+[TechnicalImpact, rectangle, draw, my label={super effective},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+] 
+[TechnicalImpact, rectangle, draw, my label={efficient},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+] 
+[TechnicalImpact, rectangle, draw, my label={laborious},
+[PublicSafetyImpact, rectangle, draw, my label={total},
+[, out-of-cycle, my label={significant} ]
+[, defer, my label={minimal} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={partial},
+[, scheduled, my label={significant} ]
+[, defer, my label={minimal} ]
+] 
+] 
+] 
+] 
+\end{forest}
+\end{document}

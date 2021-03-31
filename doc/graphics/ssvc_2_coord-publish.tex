@@ -1,0 +1,101 @@
+
+\documentclass[10pt,preview]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,pdftex]{geometry}
+\usepackage{tikz}
+\usepackage[edges]{forest}
+\usetikzlibrary{arrows.meta}
+
+\author{Jonathan Spring}
+\title{Draft decision trees for vulnerability management}
+
+
+\begin{document}
+\pagestyle{empty}
+  
+\forestset{
+my label/.style={edge label={node [pos=0.75,above,font=\scriptsize] {#1}} },
+}
+%
+\tikzset{
+outcome/.style={shape=isosceles triangle,, shape border rotate=180, minimum height=0.4cm, minimum width=0.07cm}
+}
+\tikzset{
+don't publish/.style={outcome, fill=gray, thick, draw=green, label=right:{don't publish}}
+}
+\tikzset{
+publish/.style={outcome, fill=yellow, thick, dashed, draw=yellow, label=right:{publish}}
+}
+\tikzset{
+/.style={outcome, fill=orange, thick, draw=orange, label=right:{}}
+}
+\tikzset{
+/.style={outcome, fill=red, thick, draw=black, label=right:{}}
+}
+\tikzset{
+/.style={outcome, fill=black, thick, dashed, draw=gray, label=right:{}}
+}
+
+\footnotesize
+\noindent
+\begin{forest}
+for tree={s sep*=0.33, l sep=27mm, child anchor=west, anchor=west, grow=east, calign=center, tier/.pgfmath=level()}, forked edges,
+  [Supplier involvement, rectangle, draw,
+[Exploitation, rectangle, draw, my label={un-coop/responsive},
+[Value added, rectangle, draw, my label={active},
+[, don't publish, my label={limited} ]
+[, publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+[Value added, rectangle, draw, my label={PoC},
+[, don't publish, my label={limited} ]
+[, publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+[Value added, rectangle, draw, my label={none},
+[, don't publish, my label={limited} ]
+[, don't publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+] 
+[Exploitation, rectangle, draw, my label={cooperative},
+[Value added, rectangle, draw, my label={active},
+[, don't publish, my label={limited} ]
+[, publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+[Value added, rectangle, draw, my label={PoC},
+[, don't publish, my label={limited} ]
+[, don't publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+[Value added, rectangle, draw, my label={none},
+[, don't publish, my label={limited} ]
+[, don't publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+] 
+[Exploitation, rectangle, draw, my label={fix ready},
+[Value added, rectangle, draw, my label={active},
+[, don't publish, my label={limited} ]
+[, publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+[Value added, rectangle, draw, my label={PoC},
+[, don't publish, my label={limited} ]
+[, don't publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+[Value added, rectangle, draw, my label={none},
+[, don't publish, my label={limited} ]
+[, don't publish, my label={ampliative} ]
+[, publish, my label={precedence} ]
+] 
+] 
+] 
+\end{forest}
+\end{document}
