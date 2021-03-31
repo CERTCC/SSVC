@@ -87,10 +87,10 @@ In operations research and decision analysis, a decision tree is a tool used to 
 In decision analysis, analysts “frequently use specialized tools, such as decision tree techniques, to evaluate uncertain situations” [@howard1983readings, viii].
 We use decision trees in the tradition of decision analysis, not ML.
 
-Table:<a name="table-form-options"></a> How Vulnerability Prioritization Options Meet the Design Goals
+Table: <a name="table-form-options"></a> How Vulnerability Prioritization Options Meet the Design Goals
 
 | | **Outputs Designed to be Decisions** | **Pluralistic Recommendations** | **Qualitative Inputs** | **Qualitative Outputs** | **Transparent** | **Explainable** |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-: |
+| :--- | :-: | :-: | :-: | :-: | :-: | :-: |
 | **Parametric Regression**  | :x: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
 | **CVSS v3.0**  | :x: | :x: | :white_check_mark: | :x: | :x: | :x: |
 | **Bayesian Belief Networks**                 | :x: | Maybe | :x: | :x: | :white_check_mark: | :white_check_mark: |

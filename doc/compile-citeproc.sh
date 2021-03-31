@@ -1,7 +1,9 @@
 #!/bin/sh
 src="./md_src_files"
 
-pandoc --self-contained --from=markdown_github+citations  --to=html \
+pandoc --self-contained \
+  --from=markdown_github+citations+table_captions+implicit_figures+link_attributes  \
+  --to=html \
   --citeproc \
   --bibliography="$src/sources_ssvc.bib" \
   -M title="Prioritizing vulnerability response: A stakeholder-specific vulnerability categorization (DRAFT version 2.0)" \

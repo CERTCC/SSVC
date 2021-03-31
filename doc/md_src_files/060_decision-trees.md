@@ -30,19 +30,27 @@ The example supplier tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/gra
   - Out-of-Cycle = orange
   - Immediate = red with black outline
 
+![Suggested Supplier Tree](graphics/ssvc_2_supplier.pdf){ width=100% }
+
+<!-- This isn't portable
 <embed src="graphics/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"
 height = "600" />
+-->
 
 
 ## Deployer Tree
 
 The example deployer tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_deployer_SeEUMss.pdf) is depicted below.
 
+
+![Suggested Deployer Tree](graphics/ssvc_2_deployer_SeEUMss.pdf){ width=100% }
+<!--
 <embed src="graphics/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
  type="application/pdf"
  style="width: 100%;"
  height = "1000"/>
+-->
 
 ## Coordinator trees
 
@@ -50,9 +58,13 @@ As described in [Decisions During Vulnerability Coordination](#decisions-during-
 
 ### Triage decision tree
 
+
+![Suggested Coordinator Triage Tree](graphics/ssvc_2_coord-triage.pdf){ width=100% }
+<!--
 <embed src="graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
 style="width: 100%;"
 height = "600" />
+-->
 
 This tree is a suggestion in that CERT/CC believes it works for us.
 Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance).
@@ -61,10 +73,13 @@ Other coordinators should consider customizing the tree to their needs, as descr
 
 Suggested decision values for this decision are available in [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-publish.csv) and [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-publish.pdf) formats.
 
+
+![Suggested Deployer Tree](graphics/ssvc_2_coord-publish.pdf){ width=100% }
+<!--
 <embed src="graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
 style="width: 100%;"
 height = "500" />
-
+-->
 
 
 ## Tree Construction and Customization Guidance
@@ -122,7 +137,7 @@ Regarding feature types, all of the features included in SSVC v2 can be consider
 That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
 The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
-When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree. 
+When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree.
 In our case, our "data" is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
 
 Parsimony is, in essence, Occam's Razor applied to tree selection: Given the choice between two trees that have identical outputs, one should choose the one with fewer decisions.
@@ -134,8 +149,8 @@ The change in fitness is taken to be the importance of the feature that was shuf
 Permutation importance is usually given as a number in the interval [0,1].
 Python's scikit-learn provides a permutation importance method, which we used to evaluate our trees.
 
-Interpreting the results of a permutation importance computation on a tree involves nuance, but one rule we can state is this: 
-Any feature with a computed permutation importance of zero can be eliminated from the tree without losing any relevant information. 
+Interpreting the results of a permutation importance computation on a tree involves nuance, but one rule we can state is this:
+Any feature with a computed permutation importance of zero can be eliminated from the tree without losing any relevant information.
 When all the permutation importance scores for all features are relatively equal, that is an indication that each feature is approximately equally relevant to the decision.
 
 More likely, however, is that some subset of features will be of relatively equal importance, and one might be of considerably lower importance (yet not zero).
@@ -148,7 +163,7 @@ Reasons to retain a low-importance feature include:
 Features that meet none of the above criteria may be good candidates for elimination.
 
 Customizing a tree by changing the outcome priority labels can also affect the importance of a feature.
-This sort of customization is often the simplest way to adjust the importance of a feature. 
+This sort of customization is often the simplest way to adjust the importance of a feature.
 
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.

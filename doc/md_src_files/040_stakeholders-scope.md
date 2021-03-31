@@ -105,10 +105,10 @@ To further clarify terms, "Remediation occurs when the vulnerability is eliminat
 At a basic level, the decision at a software development organization is whether to issue a work order and what resources to expend to remediate a vulnerability in the organization’s software. Prioritization is required because, at least in the current history of software engineering, the effort to patch all known vulnerabilities will exceed available resources. The organization considers several other factors to build the patch; refactoring a large portion of the code base may be necessary for some patches, while others require relatively small changes.
 We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in [Table 2](#table-supplier-outcomes).
 
-Table 2:<a name="table-supplier-outcomes"></a> Proposed Meaning for Supplier Priority Outcomes
+Table: <a name="table-supplier-outcomes"></a> Proposed Meaning for Supplier Priority Outcomes
 
 | Supplier Priority | Description |
-| ------------------ | ----------- |
+| :---              | :----------  |
 | Defer              | Do not work on the patch at present.   |
 | Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal.  |
 | Out-of-Cycle       | Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
@@ -124,7 +124,7 @@ However, these mitigation techniques won’t always work. For example, the imple
 
 A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. If applying a mitigation reduces the priority to **defer**, the deployer may not need to apply a remediation, if later, it becomes available. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
 
-In a later section, the different types of impacts are defined and then implemented in the decision trees as examples of how the various impacts affect the priority. For now, assume the decision points are ordered as: [*Exploitation*](#exploitation); [*Exposure*](#exposure); [*Utility*](#utility); and Well-being and Mission Impact. In this order, an _active_ state of [*Exploitation*](#exploitation) will never result in a **defer** priority. A _none_ state of [*Exploitation*](#exploitation) (no evidence of exploitation) will result in either **defer** or **scheduled** priority – unless the state of Well-being and Mission Impact is _very high_, resulting in an **out-of-cycle priority**. 
+In a later section, the different types of impacts are defined and then implemented in the decision trees as examples of how the various impacts affect the priority. For now, assume the decision points are ordered as: [*Exploitation*](#exploitation); [*Exposure*](#exposure); [*Utility*](#utility); and Well-being and Mission Impact. In this order, an _active_ state of [*Exploitation*](#exploitation) will never result in a **defer** priority. A _none_ state of [*Exploitation*](#exploitation) (no evidence of exploitation) will result in either **defer** or **scheduled** priority – unless the state of Well-being and Mission Impact is _very high_, resulting in an **out-of-cycle priority**.
 
 As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
 While specific vulnerabilities in specific systems can be remediated, the vulnerability cannot be 'disposed of' or eliminated from future consideration within an IT environment.
@@ -132,13 +132,13 @@ Since software and systems are dynamic, a single vulnerability can be re-introdu
 It is therefore important to continually monitor remediated environments for vulnerabilities reintroduced by either rollbacks or new deployments of outdated software.
 
 
-Table 3:<a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Priority Outcomes
+Table: <a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Priority Outcomes
 
-| Deployer Priority | Description                                                                                                                                        |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Defer            | Do not act at present.                                                                                                                          |
-| Scheduled        | Act during regularly scheduled maintenance time.                                                                                                   |
-| Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary.                    |
+| Deployer Priority | Description |
+| :---              | :----------  |
+| Defer            | Do not act at present.                                     |
+| Scheduled        | Act during regularly scheduled maintenance time.           |
+| Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
 | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
 ### Coordinating Patches

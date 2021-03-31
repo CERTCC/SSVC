@@ -1,0 +1,204 @@
+
+\documentclass[10pt,preview]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,pdftex]{geometry}
+\usepackage{tikz}
+\usepackage[edges]{forest}
+\usetikzlibrary{arrows.meta}
+
+\author{Jonathan Spring}
+\title{Draft decision trees for vulnerability management}
+
+
+\begin{document}
+\pagestyle{empty}
+  
+\forestset{
+my label/.style={edge label={node [pos=0.75,above,font=\scriptsize] {#1}} },
+}
+%
+\tikzset{
+outcome/.style={shape=isosceles triangle,, shape border rotate=180, minimum height=0.4cm, minimum width=0.07cm}
+}
+\tikzset{
+decline/.style={outcome, fill=gray, thick, draw=green, label=right:{decline}}
+}
+\tikzset{
+track/.style={outcome, fill=yellow, thick, dashed, draw=yellow, label=right:{track}}
+}
+\tikzset{
+coordinate/.style={outcome, fill=orange, thick, draw=orange, label=right:{coordinate}}
+}
+\tikzset{
+/.style={outcome, fill=red, thick, draw=black, label=right:{}}
+}
+\tikzset{
+/.style={outcome, fill=black, thick, dashed, draw=gray, label=right:{}}
+}
+
+\footnotesize
+\noindent
+\begin{forest}
+for tree={s sep*=0.33, l sep=20mm, child anchor=west, anchor=west, grow=east, calign=center, tier/.pgfmath=level()}, forked edges,
+  [Public?, rectangle, draw,
+[Contacted?, rectangle, draw, my label={No},
+[Credible?, rectangle, draw, my label={Yes},
+[Cardinality, rectangle, draw, my label={No},
+[Engagement, rectangle, draw, my label={multiple},
+[Utility, rectangle, draw, my label={unresponsive},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, coordinate, my label={huge} ]
+[, track, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+] 
+[Utility, rectangle, draw, my label={active},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, coordinate, my label={huge} ]
+[, track, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+] 
+] 
+[Engagement, rectangle, draw, my label={one},
+[Utility, rectangle, draw, my label={unresponsive},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, decline, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+] 
+[Utility, rectangle, draw, my label={active},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, decline, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+] 
+] 
+] 
+[Cardinality, rectangle, draw, my label={Yes},
+[Engagement, rectangle, draw, my label={multiple},
+[Utility, rectangle, draw, my label={unresponsive},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, coordinate, my label={huge} ]
+[, coordinate, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, coordinate, my label={huge} ]
+[, coordinate, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, coordinate, my label={huge} ]
+[, coordinate, my label={minor} ]
+] 
+] 
+[Utility, rectangle, draw, my label={active},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, coordinate, my label={huge} ]
+[, coordinate, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+] 
+] 
+[Engagement, rectangle, draw, my label={one},
+[Utility, rectangle, draw, my label={unresponsive},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, coordinate, my label={huge} ]
+[, coordinate, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, coordinate, my label={huge} ]
+[, coordinate, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, coordinate, my label={huge} ]
+[, track, my label={minor} ]
+] 
+] 
+[Utility, rectangle, draw, my label={active},
+[PublicSafetyImpact, rectangle, draw, my label={super-effective},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={efficient},
+[, track, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+[PublicSafetyImpact, rectangle, draw, my label={laborious},
+[, decline, my label={huge} ]
+[, decline, my label={minor} ]
+] 
+] 
+] 
+] 
+] 
+  [Validation, rectangle, draw, my label={No, but\dots},
+   [Cardinality, rectangle, draw, my label={*},
+    [Engagement, rectangle, draw, my label={multiple},
+     [Utility, rectangle, draw, my label={*},
+      [PublicSafetyImpact, rectangle, draw, my label={super-effective},
+       [, coordinate, my label={huge} ] 
+      ]
+     ]
+    ]
+   ]
+  ]
+  [, decline, my label={No}]
+] 
+ [Contacted?,rectangle,draw, my label={Yes, but\dots},
+  [Validation, rectangle, draw, my label={*},
+   [Cardinality, rectangle, draw, my label={*},
+    [Engagement, rectangle, draw, my label={multiple},
+     [Utility, rectangle, draw, my label={*},
+      [PublicSafetyImpact, rectangle, draw, my label={super-effective},
+       [, coordinate, my label={huge} ] 
+      ]
+     ]
+    ]
+   ]
+  ]
+ ]
+ [, decline, my label={Yes}]
+] 
+\end{forest}
+\end{document}

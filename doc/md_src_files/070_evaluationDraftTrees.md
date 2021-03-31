@@ -3,7 +3,7 @@
 # Evaluation of the Draft Trees
 
 We conducted a pilot test on the adequacy of the hypothesized decision trees.
-This section reports results for SSVC version 1. 
+This section reports results for SSVC version 1.
  The method of the pilot test is described in [Pilot Methodogy](#pilot-methodology). The study resulted in several changes to the hypothesized trees; we capture those changes and the reason for each of them in [Pilot Results](#pilot-results). The version 1 supplier and deployer trees included the improvements reported in [Improvement Instigated by the Pilot](#improvements-instigated-by-the-pilot).
 
 ## Pilot Methodology
@@ -24,11 +24,11 @@ The structure of the pilot test is as follows. Table 11 provides an example of t
 
 4.  Repeat this decision-and-evidence process until the analyst reaches a leaf node in the tree.
 
-Table 11: Example of Scenario Information Provided to Analysts (Using
+Table: Example of Scenario Information Provided to Analysts (Using
 CVE-2019-9042 as the Example)
 
-| Information Item                      | Description Provided to Analysts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Information Item                      | Description Provided to Analysts  |
+| :--- | :----------- |
 | Use of Cyber-Physical System          | Sitemagic’s content management system (CMS) seems to be fairly popular among smaller businesses because it starts out with a free plan to use it. Then it gradually has small increments in payment for additional features. It’s ease-of-use, good designs, and one-stop-shopping for businesses attracts a fair number of clients. Like any CMS, it “manages the creation and modification of digital content. These systems typically support multiple users in a collaborative environment, allowing document management with different styles of governance and workflows. Usually the content is a website” \([Wikipedia](https://en.wikipedia.org/w/index.php?title=Content_management_system&oldid=913022120), 2019\) |
 | State of Exploitation                 | Appears to be active exploitation of this vulnerability according to NVD. They have linked to the exploit: <u>http://www.iwantacve.cn/index.php/archives/116/</u>.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ~~Developer Portfolio Details~~       | ~~Sitemagic is an open-source project. The only thing the brand name applies to is the CMS, and it does not appear to be part of another open-source umbrella. The project is under active maintenance (i.e., it's not a dead project).~~                                                                                                                                                                                                                                                                                                                                                                                |
@@ -41,25 +41,11 @@ This test structure produced a series of lists similar in form to the
 contents of Table 12. Analysts also noted how much time they spent on
 each vulnerability in each stakeholder group.
 
-Table 12: Example Documentation of a Single Decision Point
+Table: Example Documentation of a Single Decision Point
 
-<table>
-<thead>
-<tr class="header">
-<th>Decision Point</th>
-<th>Branch Selected</th>
-<th>Supporting Evidence</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Deployer tree;<br />
-exploitation=active</td>
-<td>Controlled</td>
-<td>The CMS has a limited number of authorized users, and the vulnerability is exploitable only by an authenticated user.</td>
-</tr>
-</tbody>
-</table>
+| Decision Point | Branch Selected | Supporting Evidence |
+| :---           | :---            | :-------            |
+| Exploitation=active | Controlled | The CMS has a limited number of authorized users, and the vulnerability is exploitable only by an authenticated user |
 
 We evaluated inter-rater agreement in two stages. In the first stage, each analyst independently documented their decisions. This stage produced 18 sets of decisions (nine vulnerabilities across each of two stakeholder groups) per analyst. In the second stage, we met to discuss decision points where at least one analyst differed from the others. If any analyst changed their decision, they appended the information and evidence they gained during this meeting in the “supporting evidence” value in their documentation. No changes to decisions were forced, and prior decisions were not erased, just amended. After the second stage, we calculated some statistical measures of inter-rater agreement to help guide the analysis of problem areas.
 
@@ -107,56 +93,12 @@ How close κ should be to 1 before agreement can be considered strong enough or 
 
 Table 13 is encouraging, though not conclusive. κ\<0 is a strong sign of discordance. Although it is unclear how close to 1 is success, κ\<0 would be clear sign of failure. In some ways, these results may be undercounting the agreement for SSVC as presented. These results are for SSVC prior to the improvements documented in [Improvement Instigated by the Pilot](#improvements-instigated-by-the-pilot), which are implemented in SSVC version 1. On the other hand, the participant demographics may inflate the inter-rater agreement based on shared tacit understanding through the process of authorship. The one participant who was not an author surfaced two places where this was the case, but we expect the organizational homogeneity of the participants has inflated the agreement somewhat. The anecdotal feedback from vulnerability managers at several organizations (including VMware [@akbar2020ssvc] and McAfee) is about refinement and tweaks, not gross disagreement. Therefore, while further refinement is necessary, this evidence suggests the results have some transferability to other organizations and are not a total artifact of the participant organization demographics.
 
-Table 13: Inter-Rater Agreement for Decision Points
+Table: Inter-Rater Agreement for Decision Points
 
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th>Safety Impact</th>
-<th>Exploitation</th>
-<th>Technical Impact</th>
-<th>Portfolio Value</th>
-<th>Mission Impact</th>
-<th>Exposure</th>
-<th>Dev<br />
-Result</th>
-<th>Deployer Result</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Fleiss’ κ</td>
-<td>0.122</td>
-<td>0.807</td>
-<td>0.679</td>
-<td>0.257</td>
-<td>0.146</td>
-<td>0.480</td>
-<td>0.226</td>
-<td>0.295</td>
-</tr>
-<tr class="even">
-<td>Disagreement range</td>
-<td>2<br />
-max 4</td>
-<td>1<br />
-max 2</td>
-<td>1<br />
-max 1</td>
-<td>1<br />
-max 1</td>
-<td>2<br />
-max 4</td>
-<td>1<br />
-max 2</td>
-<td>1<br />
-max 3</td>
-<td>2<br />
-max 3</td>
-</tr>
-</tbody>
-</table>
+| | Safety Impact | Exploitation | Technical Impact | Portfolio Value | Mission Impact| Exposure | Dev Result | Deployer Result |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+Fleiss’ κ | 0.122 | 0.807        | 0.679            | 0.257           | 0.146         | 0.480    | 0.226      | 0.295           |
+|Disagreement range  | 2,4 | 1,2 | 1,1 | 1,1 | 2,4 | 1,2 | 1,3 | 2,3 |
 
 For all decision points, the presumed goal is for κ to be close or equal to 1. The statistics literature has identified some limited cases in which Fleiss’ k behaves strangely – for example it is lower than expected when raters are split between 2 of q ratings when q\>2 [@falotico2015fleiss]. This paradox may apply to the safety and mission impact values, in particular. The paradox would bite hardest if the rating for each vulnerability was clustered on the same two values, for example, minor and major. Falotico and Quatto’s proposed solution is to permute the columns, which is safe with unordered categorical data. Since the nine vulnerabilities do not have the same answers as each other (that is, the answers are not clustered on the same two values), we happen to avoid the worst of this paradox, but the results for safety impact and mission impact should be interpreted with some care.
 
@@ -165,10 +107,10 @@ This solution identifies another difficulty of Fleiss’ kappa, namely that it d
 Nonetheless, κ provides some way to measure improvement on this a conceptual engineering task. The pilot evaluation can be repeated, with more diverse groups of stakeholders after the descriptions have been refined by stakeholder input, to measure fit to this goal. For a standard to be reliably applied across different analyst backgrounds, skill sets, and cultures, a set of decision point descriptions should ideally achieve κ of 1 for each item in multiple studies with diverse participants. Such a high level of agreement would be difficult to achieve, but it would ensure that when two analysts assign a priority with the system that they get the same answer. Such agreement is not the norm with CVSS currently [@allodi2018effect].
 
 
-Table 14: SSVC pilot scores compared with the CVSS base scores for the vulnerabilities provided by NVD.
+Table: SSVC pilot scores compared with the CVSS base scores for the vulnerabilities provided by NVD.
 
 | CVE-ID         | Representative SSVC decision values | SSVC recommendation (supplier, deployer) | NVD’s CVSS base score  |
-| -------------- | ----------------------------------------- | ---------------------------------- | ---------------------- |
+| :---------------- | :--------------------------------: | :--------------------- | :---------------------- |
 | CVE-2014-0751  | E:N/T:T/U:L/S:H/X:C/M:C                   | (Sched, OOC)                       | 7.5 (High) (v2)        |
 | CVE-2015-1014  | E:N/T:T/U:L/S:J/X:S/M:F                   | (Sched, Sched)                     | 7.3 (High) (v3.0)      |
 | CVE-2015-5374  | E:A/T:P/U:L/S:H/X:C/M:F                   | (Immed, Immed)                     | 7.8 (High) (v2)        |
