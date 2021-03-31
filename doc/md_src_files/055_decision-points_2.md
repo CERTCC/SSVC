@@ -36,7 +36,7 @@ All types of harm do not need to rise to the level of [*major*](#safety-impact),
 Table: Safety Impact Decision Values
 
 | Value | Type of Harm  | Definition |
-| --:          | :---          | :-----------   |
+| --:          | :--            | :-----------   |
 | None          | All           | Does *not* mean no impact *literally*; the effect is below the threshold for all aspects described in Minor |
 | Minor         | Physical Harm | Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins |
 | Minor         | Environment   | Minor externalities (property damage, environmental damage, etc.) imposed on other parties |
