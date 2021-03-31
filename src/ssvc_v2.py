@@ -74,12 +74,13 @@ def lookup(key, query_dict,use_defaults=True):
         df = df.loc[df[k] == v]
     return df
 
-def outcome_dist(df):
+def outcome_dist(df,normalize=True):
     '''
     Given a dataframe representing an SSVC tree fragment,
     compute and return the distribution of outcomes
     '''
-    return df['Outcome'].value_counts(normalize=True).to_dict()
+    return df['Outcome'].value_counts(normalize=normalize)
+
 
 def main():
     for key,df in DATA.items():
@@ -93,21 +94,21 @@ def main():
     df = lookup('coord_triage',query)
     print(query)
     print(df)
-    print(outcome_dist(df))
+    print(outcome_dist(df).round(decimals=3).to_dict())
 
     print()
     query = {'Value added': "precedence"}
     df = lookup('coord_pub',query)
     print(query)
     print(df)
-    print(outcome_dist(df))
+    print(outcome_dist(df).round(decimals=3).to_dict())
 
     print()
     query = {"PublicSafetyImpact": "minimal"}
     df = lookup('supplier',query)
     print(query)
     print(df)
-    print(outcome_dist(df))
+    print(outcome_dist(df).round(decimals=3).to_dict())
 
 if __name__ == '__main__':
     main()
