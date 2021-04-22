@@ -246,7 +246,7 @@ The factors that influence the mission impact level are diverse. This paper does
 As a heuristic, [*Utility*](#utility) might constrain [*Mission Impact*](#mission-impact) if both are not used in the same decision tree.
 For example, if it's [*super effective*](#utility) then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact).
 
-## Situated Safety / Mission Impact
+## Combined Situated Safety and Mission Impact
 
 In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
