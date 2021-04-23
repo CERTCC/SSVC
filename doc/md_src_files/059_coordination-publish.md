@@ -1,7 +1,7 @@
 ## Publication Decision
 
 A coordinator often has to decide when or whether to publish information about a vulnerability.
-A supplier also makes a decision about publicity -- releasing information about a remediation or mitigation could be viewed as a kind of publication decision.
+A supplier also makes a decision about publicity—releasing information about a remediation or mitigation could be viewed as a kind of publication decision.
 While the context of publication is different for coordinators, a supplier may find some use in a publication decision if they need to decide whether to publish before a mitigation or remediation is available.
 However, that is not the intended use case; this section describes how a coordinator might decide to publish information about a vulnerability.
 
@@ -30,9 +30,9 @@ In addition to the two decision points defined in this section, the publication 
 This decision point asks how much value a publication from the coordinator would benefit the broader community.
 The value is based on the state of existing public information about the vulnerablity.
 
- - Precedence - the publication would be the first publicly available, or be coincident with the first publicly available.
- - Ampliative - amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.
- - Limited - minimal value added to the existing public information because existing information is already high quality and in multiple outlets.
+ - *Precedence*—the publication would be the first publicly available, or be coincident with the first publicly available.
+ - *Ampliative*—amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.
+ - *Limited*—minimal value added to the existing public information because existing information is already high quality and in multiple outlets.
 
 The intent of the definition is that one rarely if ever transitions from limited to ampliative or ampliative to precedence.
 A vulnerability could transition from precedence to ampliative and ampliative to limited.
@@ -45,6 +45,6 @@ Then one might go from [*limited*](#public-value-added) to [*ampliative*](#publi
 
 This decision point accounts for the state of the supplier's work on addressing the vulnerability.
 
- - Fix Ready - the supplier has provided a patch or fix
- - Cooperative - the supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.
- - Uncooperative/Unresponsive - the supplier has not responded, declined to generate a remediation, or no longer exists.
+ - *Fix Ready*—the supplier has provided a patch or fix
+ - *Cooperative*—the supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.
+ - *Uncooperative/Unresponsive*—the supplier has not responded, declined to generate a remediation, or no longer exists.
