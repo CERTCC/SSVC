@@ -138,7 +138,7 @@ Furthermore, a report may be factual but not identify any security implications;
 
 A coordinator also has a scope defined by their specific constituency and mission.
 A report can be entirely credible yet remain out of scope for your coordination practice.
-Decide what to do about out of scope reports separately, before the vulnerability coordination triage decision begins.  
+Decide what to do about out of scope reports separately, before the vulnerability coordination triage decision begins. 
 If a report arrives and would be out of scope even if true, there will be no need to proceed with judging its credibility.
 
 

@@ -10,7 +10,7 @@ As discussed in [Guidance on Communicating Results](#guidance-on-communicating-r
 A decision to publish cannot be revoked, since the publication is likely to be archived or at least remembered.
 However, a decision to not publish is a decision not to publish at the time the decision was made.
 It is not a decision never to publish in the future.
-One benefit of encoding the decision process in SSVC is the analysts can all agree on what new information would change the decision and prioritize maintaining awarenss of just those decision points.  
+One benefit of encoding the decision process in SSVC is the analysts can all agree on what new information would change the decision and prioritize maintaining awarenss of just those decision points. 
 
 This section is based on CERT/CC policy choices.
 Two points where this clearly influences the publication decision are embargo periods and scope.

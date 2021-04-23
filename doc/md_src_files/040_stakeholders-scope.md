@@ -23,7 +23,12 @@ Organizations may also be distinguished by the type of industry sector. While it
 For example, we have safety-related questions in the decision path for all suppliers and deployers.
 The decision will be assessed whether or not the stakeholder is in a safety-critical sector.
 
-The choice not to segregate the decisions by sector is reinforced by the fact that any given software system might be used by different sectors.  It is less likely that one organization has multiple responsibilities within the vulnerability management process. Even if there is overlap within an organization, the two responsibilities are often located in distinct business units with distinct decision-making processes. We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision trees—one for each of the “patch supplier” and “patch deployer” responsibilities in the vulnerability management process. We leave “coordinating patches” as future work. Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work.
+The choice not to segregate the decisions by sector is reinforced by the fact that any given software system might be used by different sectors.
+It is less likely that one organization has multiple responsibilities within the vulnerability management process.
+Even if there is overlap within an organization, the two responsibilities are often located in distinct business units with distinct decision-making processes.
+We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision trees—one for each of the “patch supplier” and “patch deployer” responsibilities in the vulnerability management process.
+We leave “coordinating patches” as future work.
+Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work.
 <!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using “patch” here. -->
 
 The next two sections describe the decision space and the relevant decision points that we propose for these two responsibilities within the vulnerability management process.
@@ -47,7 +52,7 @@ Some decision makers may have different responsibilities in relation to differen
 This situation is true for libraries in general.
 A web browser developer makes decisions about applying patches to DNS lookup libraries and transport layer security (TLS) libraries.
 A video game developer makes decisions about applying patches released to the Unreal Engine.
-A medical device developer makes decisions about applying patches to the Linux kernel. The list goes on.  
+A medical device developer makes decisions about applying patches to the Linux kernel. The list goes on.
 Alternatively, one might view applying patches as including some development and distribution of the updated product.
 Or one might take the converse view, that development includes updating libraries.
 Either way, in each of these examples (mobile device apps, web browsers, video games, medical devices), we recommend that the professionals making genuine decisions do three things: (1) identify the decisions explicitly, (2) describe how they view their role(s), and (3) identify which software projects their decision relates to.
@@ -127,8 +132,8 @@ Table: <a name="table-supplier-outcomes"></a> Proposed Meaning for Supplier Prio
 
 | Supplier Priority | Description |
 | :---              | :----------  |
-| Defer              | Do not work on the patch at present.   |
-| Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal.  |
+| Defer              | Do not work on the patch at present. |
+| Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal. |
 | Out-of-Cycle       | Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
 | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
@@ -138,7 +143,9 @@ A mitigation that successfully changes the value of a decision point may shift t
 
 When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](#system-exposure) from open to controlled. Financial well-being, a [*Saftey Impact*](#safety-impact) category, might be reduced with adequate fraud detection and insurance. Physical well-being, also a [*Saftey Impact*](#safety-impact) category, might be reduced by physical barriers that restrict a robot's ability to interact with humans. [*Mission Impact*](#mission-impact) might be reduced by introducing back-up business flows that do not use the vulnerable component. In a later section we combine [Mission and Situated Safety Impact](#table-mission-safety-combined) to reduce the complexity of the tree.
 
-However, these mitigation techniques will not always work. For example, the implementation of a firewall or IDS rule to mitigate [*System Exposure*](#system-exposure) from open to controlled is only valid until someone changes the rule. In the area of Financial impacts, the caps on the insurance may be too low to act as a mitigation. The Physical impact may be increased by incorrect installation of the physical barriers designed to restrict a robot’s ability to interact with humans.  The [*Mission Impact*](#mission-impact) could be increased when a disaster recovery test-run identifies problems with an alternate business flow. The mitigating action may not be permanent or work as designed.
+However, these mitigation techniques will not always work. For example, the implementation of a firewall or IDS rule to mitigate [*System Exposure*](#system-exposure) from open to controlled is only valid until someone changes the rule. In the area of Financial impacts, the caps on the insurance may be too low to act as a mitigation.
+The Physical impact may be increased by incorrect installation of the physical barriers designed to restrict a robot’s ability to interact with humans.
+The [*Mission Impact*](#mission-impact) could be increased when a disaster recovery test-run identifies problems with an alternate business flow. The mitigating action may not be permanent or work as designed.
 
 A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation, if later, it becomes available. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
 
@@ -157,15 +164,15 @@ Table: <a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Prio
 
 | Deployer Priority | Description |
 | :---              | :----------  |
-| Defer            | Do not act at present.                                     |
-| Scheduled        | Act during regularly scheduled maintenance time.           |
+| Defer            | Do not act at present. |
+| Scheduled        | Act during regularly scheduled maintenance time. |
 | Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
 | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
 ### Coordinating Patches
 In coordinated vulnerability disclosure (CVD), there are two available decisions modelled in SSVC v2.
 The first is whether or not to coordinate a vulnerability report.
-This decision is also known as triage.  
+This decision is also known as triage.
 Vulnerability Response Decision Assistance (VRDA) provides a starting point for a decision tree for this situation.
 VRDA is likely adequate for national-level CSIRTs that do general CVD, but other CSIRT types may have different needs.
 The CERT guide to CVD provides something similar for those deciding how to report and disclose vulnerabilities they have discovered [@householder2020cvd, section 6.10].

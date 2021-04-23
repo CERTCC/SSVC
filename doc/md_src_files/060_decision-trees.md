@@ -108,7 +108,7 @@ The other aspect of risk management that SSVC allows a team to customize is its 
 A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
 For example, a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility) might be handled with [*scheduled*](#supplier-decisions) priority by one team and [*out-of-cycle*](#supplier-decisions) priority by another.
 As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk.
-SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.  
+SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.
 
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
@@ -245,7 +245,7 @@ This section discusses the situation where one stakeholder, usually a supplier o
 
 We recommend two structured communication formats, abbreviated and full.
 The goal of the abbreviated format is to fill a need for providing identifying information about a vulnerability or decision in charts, graphs, and tables. Therefore, the abbreviated format is not designed to stand alone.
-The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.  
+The goal of the full format is to capture all the context and details about a decision or work item in a clear and machine-readable way.
 
 ### Abbreviated Format
 
@@ -262,7 +262,7 @@ The term `decision point` is one or two letters derived from the name of the dec
  - Remove the word “Impact” if it's part of the name.
  - Create an initialism from remaining title-case words (ignore “of,” etc.), taking only the first two words.
  - The first letter of the initialism is upper case; if there is a second letter, then it is lower case.
- - Verify that the initialism is unique among decision points in the version of SSVC. If two initialisms collide, sort their source names equivalent to `LC_ALL=C sort`. The name that sorts first keeps the initialism for which there is a collision. Set the second letter of the initialism to the first character in the name that resolves the collision. If the names were `Threat` and `Threshold`, `T` would be `Threat` and `Ts` would be `Threshold`. We make an effort to design SSVC without such collisions.   
+ - Verify that the initialism is unique among decision points in the version of SSVC. If two initialisms collide, sort their source names equivalent to `LC_ALL=C sort`. The name that sorts first keeps the initialism for which there is a collision. Set the second letter of the initialism to the first character in the name that resolves the collision. If the names were `Threat` and `Threshold`, `T` would be `Threat` and `Ts` would be `Threshold`. We make an effort to design SSVC without such collisions.
 
 For example, [*Technical Impact*](#technical-impact) becomes `T` and [*Public Safety Impact*](#public-safety-impact) becomes `Ps`.
 
@@ -291,7 +291,7 @@ SSVCv2/Ps:Nm/T:T/U:E/1605040000/
 For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
 
 While these abbreviated format vectors can be uniquely produced based on a properly formatted JSON object, going from abbreviated form to JSON is not supported.
-Therefore, JSON is the preferred storage and transmission method.  
+Therefore, JSON is the preferred storage and transmission method.
 
 ### Full JSON format
 
@@ -351,7 +351,7 @@ The cadence or rate of polls is different for each decision point, based on the 
 
 We expect that updating information over time will be most useful where the evidence-gathering process can be automated.
 Organizations that have mature asset management systems will also find this update process more efficient than those that do not.
-For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points.   
+For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points. 
 
 The following decision points are usually out of the control of the organization running SSVC.
 As an initial heuristic, we suggest the associated polling frequency for each.

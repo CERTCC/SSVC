@@ -125,7 +125,7 @@ These include [*Exploitation*](#exploitation), [*System Exposure*](#system-expos
 This section provides an overview of some options; we cannot claim it is exhaustive.
 Each decision point has a subsection for `Gathering Information About` it.
 These sections provide suggestions that would also contribute to creating or honing information feeds.
-However, if there is a category of information source we have not captured, please create an [issue on the SSVC GitHub page](https://github.com/CERTCC/SSVC/issues) explaining it and what decision point it informs.  
+However, if there is a category of information source we have not captured, please create an [issue on the SSVC GitHub page](https://github.com/CERTCC/SSVC/issues) explaining it and what decision point it informs.
 
 Various vendors provide paid feeds of vulnerabilities that are currently exploited by attacker groups.
 Any of these could be used to indicate that [*active*](#exploitation) is true for a vulnerability.
@@ -137,7 +137,7 @@ Namely, each list has a different view and vantage on the problem, which makes t
 [*System Exposure*](#system-exposure) could be informed by the various scanning platforms such as Shodan and Shadowserver.
 A service on a device should be scored as [*open*](#system-exposure) if such a general purpose Internet scan finds that the service responds.
 Such scans do not find all [*open*](#system-exposure) systems, but any system they find should be considered [*open*](#system-exposure).
-Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](#system-exposure) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.  
+Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](#system-exposure) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
 
 
 Some information sources that were not designed with SSVC in mind, but can be adapted to work with it.
@@ -161,7 +161,7 @@ Since CWE classifies clusters of related vulnerabilities, the community could li
 Once that list were curated, it could be used to automatically populate a CVE-ID as [*proof of concept*](#exploitation) if the CWE-ID of which it is an instance is on the list.
 Such a check could not be exhaustive, since there are other conditions that satisfy [*proof of concept*](#exploitation).
 If paired with automatic searches for exploit code in public repositories, these checks would cover many scenarios.
-If paired with active exploitation feeds discussed above, then the value of  [*Exploitation*](#exploitation) could be determined almost entirely from available information without direct analyst involvement at each organization.  
+If paired with active exploitation feeds discussed above, then the value of  [*Exploitation*](#exploitation) could be determined almost entirely from available information without direct analyst involvement at each organization.
 
 [CPE](https://cpe.mitre.org/specification/) could possibly be curated into a list of representative [*Public Safety Impact*](#public-safety-impact) values for each platform or product.
 The [*Situated Safety Impact*](#situated-safety-impact) would be too specific for a classification as broad as CPE.
@@ -187,4 +187,4 @@ Perhaps a machine learning system could be designed to suggest values.
 But more likely, if there is a market for this information, a few analysts could be paid to score vulnerabilities on these values for the community.
 Supporting such analysts with further automation could proceed by small incremental improvements.
 For example, perhaps information about whether the Reconnaissance step in the kill chain is [*Automatable*](#automatable) or not could be automatically gathered from Internet scanning firms such as Shodan or Shadowserver.
-This wouldn't make a determination for an analyst, but would be a step towards automatic assessment of the decision point.  
+This wouldn't make a determination for an analyst, but would be a step towards automatic assessment of the decision point. 

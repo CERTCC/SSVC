@@ -21,11 +21,11 @@ Analyst usability has so far been an afterthought, but we know from other areas 
 SSVC aims to learn from and improve upon these issues.
 
 Surveys of security metrics [@pendleton2016survey] and information sharing in cybersecurity [@laube2017survey] do not indicate any major efforts to conduct a wholesale rethinking of vulnerability prioritization.
-The surveys indicate some options a prioritization method might consider, such as exploit availability or system attack surface.  
-[Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities) describes our design goals for a pragmatic prioritization methodology that can improve and build on the state of current practice.  
+The surveys indicate some options a prioritization method might consider, such as exploit availability or system attack surface.
+[Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities) describes our design goals for a pragmatic prioritization methodology that can improve and build on the state of current practice. 
 
 The target audience for SSVC is vulnerability managers of any kind.
-SSVC assumes that the vulnerability manager has identified that there is a vulnerability.  
+SSVC assumes that the vulnerability manager has identified that there is a vulnerability.
 We take our definition of **vulnerability** from [@householder2020cvd]: “a set of conditions or behaviors that allows the violation of an explicit or implicit security policy.”
 A variety of problems or issues with computer systems are important but are not vulnerabilities.
 SSVC presents a risk prioritization method that might be useful or at least allied to other risk management methods for these other kinds of issues.

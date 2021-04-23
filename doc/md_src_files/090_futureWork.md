@@ -4,7 +4,7 @@
 
 We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology.
 We are working to improve SSVC.
-Several of the future work items in this section have issues associated with them on the SSVC GitHub page (https://github.com/CERTCC/SSVC/issues), which is a good place to go to check on progress or help.  
+Several of the future work items in this section have issues associated with them on the SSVC GitHub page (https://github.com/CERTCC/SSVC/issues), which is a good place to go to check on progress or help. 
 Plans for future work focus on further requirements gathering, analysis of types of risk, and further testing of the reliability of the decision process.
 
 ## Requirements Gathering via Sociological Research

@@ -89,16 +89,16 @@ We use decision trees in the tradition of decision analysis, not ML.
 
 Table: <a name="table-form-options"></a> How Vulnerability Prioritization Options Meet the Design Goals
 
-| | **Outputs Designed to be Decisions** | **Pluralistic Recommendations** | **Qualitative Inputs** | **Qualitative Outputs** | **Transparent** | **Explainable** |
-| :--- | :-: | :-: | :-: | :-: | :-: | :-: |
-| **Parametric Regression**  | :x: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
-| **CVSS v3.0**  | :x: | :x: | :white_check_mark: | :x: | :x: | :x: |
-| **Bayesian Belief Networks**                 | :x: | Maybe | :x: | :x: | :white_check_mark: | :white_check_mark: |
-| **Neural Networks**                          | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Random Forest**                            | :white_check_mark: | :white_check_mark:     | :white_check_mark: | Maybe | :x: | Maybe |
-| **Other Machine Learning**                   | :x: | Maybe | :x: | :x: | :x: | :x: |
-| **Boolean First Order Logics**               | Maybe | Maybe | :white_check_mark: | :white_check_mark: | :white_check_mark: | Maybe |
-| **Decision Trees (as in decision analysis)** | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| | **Outputs are Decisions** | **Pluralistic** | **Qualitative Inputs** | **Qualitative Outputs** | **Transparent** | **Explainable** |
+| :---                         | :-: | :-: | :-: | :-: | :-: | :-: |
+| *Parametric Regression*      | :x: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
+| *CVSS v3.0*                  | :x: | :x: | :white_check_mark: | :x: | :x: | :x: |
+| *Bayesian Belief Networks*   | :x: | Maybe | :x: | :x: | :white_check_mark: | :white_check_mark: |
+| *Neural Networks*            | :x: | :x: | :x: | :x: | :x: | :x: |
+| *Random Forest*              | :white_check_mark: | :white_check_mark:     | :white_check_mark: | Maybe | :x: | Maybe |
+| *Other ML*                   | :x: | Maybe | :x: | :x: | :x: | :x: |
+| *Boolean First Order Logics* | Maybe | Maybe | :white_check_mark: | :white_check_mark: | :white_check_mark: | Maybe |
+| *Decision Trees*             | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ## Decision Trees
 
@@ -130,7 +130,7 @@ A CSV will typically be 30-100 rows that each look something like:
 2,none,slow,diffuse,laborious,partial,minor,defer
 ```
 Where “2” is the row number, [*none*](#exploitation) through [*minor*](#public-safety-impact) are values for decision points, and *defer* is a priority label or outcome.
-Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions.  
+Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions. 
 
 The tree visualization options are more diverse.
 We provide an example format, and codified it in [src/SSVC_csv-to-latex.py](https://github.com/CERTCC/SSVC/tree/main/src).
