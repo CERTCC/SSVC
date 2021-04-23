@@ -117,7 +117,7 @@ Table: Utility to the Adversary, as a Combination of Automatable and Value Densi
 
 ## Automatable
 
-[*Automatable*](#automatable) captures the answer to the question "Can an attacker reliably automate creating exploitation events for this vulnerability?" This metric can take the values *no* or *yes*:
+[*Automatable*](#automatable) captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?” This metric can take the values *no* or *yes*:
 
   - [*no*](#automatable): Attackers cannot reliably automate steps 1-4 of the kill chain
     [@hutchins2011intelligence] for this vulnerability. These
@@ -147,7 +147,7 @@ We say sketch to indicate that plausible arguments, such as convincing psuedocod
 Like all SSVC decision points, [*Automatable*](#automatable) should capture the analyst's best understanding of plausible scenarios at the time of the analysis.
 An answer of *no* does not mean that it is absolutely inconceivable to automate exploitation in any scenario.
 It means the analyst is not able to sketch a plausible path through all four kill chain steps.
-"Plausible" sketches should account for widely deployed network and host-based defenses.
+“Plausible” sketches should account for widely deployed network and host-based defenses.
 Liveness of Internet-connected services means quite a few overlapping things [@bano2018scanning].
 For most vulnerabilities, an open port does not automatically mean that reconnaissance, weaponization, and delivery are automatable.
 Furthermore, discovery of a vulnerable service is not automatable in a situation where only two hosts are misconfigured to expose the service out of 2 million hosts that are properly configured.
@@ -206,6 +206,6 @@ Within a single system—whether it is Apache, Windows, iOS or WhatsApp—more s
 Remote code execution with sandbox escape and without user interaction are the most valuable exploits, and these features describe automation of the relevant kill chain steps.
 
 How equivalently [*Automatable*](#automatable) exploits for different systems are priced relative to each other is more idiosyncratic.
-Price does not only track the [*Value Density*](#value-density) of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers. 
+Price does not only track the [*Value Density*](#value-density) of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers.
 Currently, we simplify the analysis and ignore these factors.
 However, future work should look for and prevent large mismatches between the outputs of the [*Utility*](#utility) decision point and the exploit markets.

@@ -4,7 +4,7 @@
 This section summarizes the changes between SSVC version 2 and [SSVC version 1.1](https://weis2020.econinfosec.org/wp-content/uploads/sites/8/2020/06/weis20-final6.pdf) as published at the Workshop on the Ecnomics of Information Security (WEIS 2020).
 The details of what changes were made can be viewed on the SSVC GitHub [issues](https://github.com/CERTCC/SSVC/issues?q=is%3Aissue+is%3Aclosed+project%3ACERTCC%2FSSVC%2F1) closed under the SSVC v2 Development project.
 We addressed about 60 issues.
-About 10 issues identified "bugs" or errors in version 1.1.
+About 10 issues identified “bugs” or errors in version 1.1.
 About 20 issues improved documentation of tools or improved the clarity of document text.
 The remaining 30 issues were focused on enhancing SSVC based on feedback received on version 1, though several of the bug fixes and documentation improvements also provided improvements.
 This section focuses on changes that provided enhancements.
@@ -19,11 +19,11 @@ The coordinator stakeholder is based on CERT/CC's experience coordinating vulner
 ## Terminology changes
 
 Some terms have been adjusted to better align with other usage in the field or based on feedback.
-Therefore, "patch developer" became **supplier** and "patch applier" became **deployer**.
+Therefore, “patch developer” became **supplier** and “patch applier” became **deployer**.
 These terms in v2 better reflect the stakeholder's relationship to the vulnerable component and also help keep clear that SSVC is about prioritization of work items in vulnerability management, not just patches.
-We have also generally removed the word patch and instead use the more general "remediation" for a complete fix and "mitigation" for actions that reduce risk but do not remove a vulnerability from a system.
-"Virulence" was renamed [*Automatable*](#automatable) in a effort to be more direct and clear, rather than relying on an epidemiology metaphor.
-We changed "out-of-band" to [**out-of-cycle**](#enumerating-vulnerability-management-actions).
+We have also generally removed the word patch and instead use the more general “remediation” for a complete fix and “mitigation” for actions that reduce risk but do not remove a vulnerability from a system.
+“Virulence” was renamed [*Automatable*](#automatable) in a effort to be more direct and clear, rather than relying on an epidemiology metaphor.
+We changed “out-of-band” to [**out-of-cycle**](#enumerating-vulnerability-management-actions).
 
 Some concepts needed to be clarified or added.
 These changes are a bit more substantive than the above terminology changes, but are similar.

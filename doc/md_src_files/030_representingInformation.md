@@ -129,7 +129,7 @@ A CSV will typically be 30-100 rows that each look something like:
 ```
 2,none,slow,diffuse,laborious,partial,minor,defer
 ```
-Where "2" is the row number, [*none*](#exploitation) through [*minor*](#public-safety-impact) are values for decision points, and *defer* is a priority label or outcome.
+Where “2” is the row number, [*none*](#exploitation) through [*minor*](#public-safety-impact) are values for decision points, and *defer* is a priority label or outcome.
 Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions.  
 
 The tree visualization options are more diverse.

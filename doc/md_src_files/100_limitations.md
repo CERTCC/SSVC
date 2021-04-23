@@ -17,7 +17,8 @@ Although it is ungainly, it would be sound to convert the priority outcomes to n
 Which numbers we choose to convert to is immaterial, as long as the ordering is preserved. CVSS has set a precedent that higher numbers are worse, so a scale \[1, 2, 3, 4\] would work, with *defer* = 1 and *immediate* = 4.
 However, if it were important to maintain backwards compatibility to the CVSS range zero to ten, we could just as well relabel outcomes as \[2, 5.5, 8, 9.5\] for the midpoints of the current CVSS severity ranges.
 This is not a calculation of any kind, just an assignment of a label which may make adoption more conventient.
-Of course, these labels are dangerous, as they may be misused as numbers -- which is why we prefer the use *defer*, *scheduled*, etc., as listed in [Enumerating Vulnerability Management Actions](#enumerating-vulnerability-management-actions).
+Of course, these labels are dangerous, as they may be misused as numbers.
+Therefore, we prefer the use *defer*, *scheduled*, etc., as listed in [Enumerating Vulnerability Management Actions](#enumerating-vulnerability-management-actions).
 
 2.  We incorporated a wider variety of inputs from contexts beyond the affected component.
 Some organizations are not prepared or configured to reliably produce such data (e.g., around mission impact or safety impact). There is adequate guidance for how to elicit and curate this type information from various risk management frameworks, including OCTAVE [@caralli2007octave]. Not every organization is going to have sufficiently mature risk management functions to apply SSVC.\

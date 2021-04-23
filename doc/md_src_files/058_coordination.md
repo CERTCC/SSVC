@@ -29,7 +29,7 @@ We take three priority levels in our decision about whether and how to coordinat
 
  - *Decline*—Do not act on the report. May take different forms, including ignoring the report as well as an acknowledgement to the reporter that we will not act and suggest the reporter to go to vendor or publish if unresponsive.
  - *Track*—Receive information about the vulnerability and monitor for status changes but do not take any overt actions.
- - *Coordinate*—Take action on the report. "Action" may include any one or more of: technical analysis, reproduction, notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), advise only, secondary coordinator (assist another lead coordinator). See [@csirtservices_v2] for additional vulnerability management services a coordinator may provide.
+ - *Coordinate*—Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), advise only, secondary coordinator (assist another lead coordinator). See [@csirtservices_v2] for additional vulnerability management services a coordinator may provide.
 
 ## Coordinator Decision Points
 
@@ -101,8 +101,8 @@ If neither of these confirmations are available, then the value of the [*Report 
  - The report neither exaggerates nor understates the impact.
 
 **Indicators *against* Credibility** include:
- - The report is "spammy" or exploitative (for example, the report is an attempt to upsell the receiver on some product or service).
- - The report is vague or ambiguous about which vendors, products, or versions are affected (for example, the report claims that all "cell phones" or "wifi" or "routers" are affected).
+ - The report is “spammy” or exploitative (for example, the report is an attempt to upsell the receiver on some product or service).
+ - The report is vague or ambiguous about which vendors, products, or versions are affected (for example, the report claims that all “cell phones” or “wifi” or “routers” are affected).
  - The report is vague or ambiguous about the preconditions necessary to exploit the vulnerability.
  - The report is vague or ambiguous about the impact if exploited.
  - The report exaggerates the impact if exploited.
@@ -116,7 +116,7 @@ If neither of these confirmations are available, then the value of the [*Report 
  - The analyst's professional colleagues consider the report to be not credible.
  - The report consists of mostly raw tool output. Fuzz testing outputs are not vulnerability reports.
  - The report lacks sufficient detail for someone to reproduce the vulnerability.
- - The report is just a link to a video or set of images, or lacks written detail while claiming "it's all in the video". Imagery should support a written description, not replace it.
+ - The report is just a link to a video or set of images, or lacks written detail while claiming “it's all in the video”. Imagery should support a written description, not replace it.
  - The report describes a bug with no discernible security impact.
  - The report fails to describe an attack scenario, and none is obvious.
 
@@ -133,7 +133,7 @@ This is separate from the fact that a reporter probably reports something becaus
 The analyst should assess the credibility of the report of the vulnerability, not the claims of the impact of the vulnerability.
 A report may be credible in terms of the fact of the vulnerability's existence even if the stated impacts are inaccurate.
 However, the more extreme the stated impacts are, the more skepticism is necessary.
-For this reason, "exaggerating the impact if exploited" is an indicator *against* credibility.
+For this reason, “exaggerating the impact if exploited” is an indicator *against* credibility.
 Furthermore, a report may be factual but not identify any security implications; such reports are bug reports, not vulnerability reports, and are considered out of scope.
 
 A coordinator also has a scope defined by their specific constituency and mission.

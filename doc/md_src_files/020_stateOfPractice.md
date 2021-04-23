@@ -26,7 +26,7 @@ The surveys indicate some options a prioritization method might consider, such a
 
 The target audience for SSVC is vulnerability managers of any kind.
 SSVC assumes that the vulnerability manager has identified that there is a vulnerability.  
-We take our definition of **vulnerability** from [@householder2020cvd]: "a set of conditions or behaviors that allows the violation of an explicit or implicit security policy."
+We take our definition of **vulnerability** from [@householder2020cvd]: “a set of conditions or behaviors that allows the violation of an explicit or implicit security policy.”
 A variety of problems or issues with computer systems are important but are not vulnerabilities.
 SSVC presents a risk prioritization method that might be useful or at least allied to other risk management methods for these other kinds of issues.
 However, for this work we focus on decisions in the situation where there is a vulnerability and the vulnerability management team wants to decide what to do about it.

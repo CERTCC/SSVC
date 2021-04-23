@@ -31,10 +31,10 @@ Specifically, these reflect vulnerability risk appetite.
 Appetite for vulnerability risk may be negatively correlated with change risk; future work could explore this relationship.
 Furthermore, future work could examine suggested practices for connecting tree customization to risk management.
 
-[Reasoning Steps Forward](#reasoning-steps-forward) states the scope of SSVC analysis is "consider credible effects based on known use cases of the software system as a part of cyber-physical systems."
+[Reasoning Steps Forward](#reasoning-steps-forward) states the scope of SSVC analysis is “consider credible effects based on known use cases of the software system as a part of cyber-physical systems.”
 The unit of prioritization in SSVC should be work items.
 For deployers, a work item is often applying a patch that addresses multiple vulnerabilities.
-The "credible effects" to consider are those of all vulnerabilities remediated by the patch.
+The “credible effects” to consider are those of all vulnerabilities remediated by the patch.
 How exactly to aggregate these different effects is not currently specified except to say that the unit of analysis is the whole work item.
 Future work should provide some examples of how this holistic analysis of multiple vulnerabilities remediated in one patch should be conducted.
 

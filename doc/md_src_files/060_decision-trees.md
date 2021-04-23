@@ -88,7 +88,7 @@ height = "500" />
 ## Tree Construction and Customization Guidance
 
 Stakeholders are encouraged to customize the SSVC decision process to their needs.
-Indeed, the first part of SSVC stands for "stakeholder-specific."
+Indeed, the first part of SSVC stands for “stakeholder-specific."
 However, certain parts of SSVC are more amenable to customization than others.
 In this section, we'll cover what a stakeholder should leave static, what we imagine customization looks like, and some advice on building a usable and manageable decision tree based on our experience so far.
 
@@ -112,7 +112,7 @@ SSVC enables teams with such different risk appetites to discuss and communicate
 
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
-An important benefit, in our experience, is that it's easier to identify a question by saying "I'm unsure about row 16" than anything else we have thought of so far.
+An important benefit, in our experience, is that it's easier to identify a question by saying  “I'm unsure about row 16” than anything else we have thought of so far.
 Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
@@ -141,7 +141,7 @@ That is, while they can be ordered (e.g., for Exploitation, active is greater th
 The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
 When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree.
-In our case, our "data" is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
+In our case, our “data” is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
 
 Parsimony is, in essence, Occam's Razor applied to tree selection. Given the choice between two trees that have identical outputs, one should choose the tree with fewer decisions.
 One way to evaluate the parsimony of a tree is by applying the concept of feature importance to ensure that each feature is contributing adequately to the result.
@@ -171,7 +171,7 @@ This sort of customization is often the simplest way to adjust the importance of
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
 
-SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: "Applier Tree v1.1.0" would be the identity of the version of the Applier Tree as published in v1.1 of SSVC. "Coordinator Publish Tree v2.0.3" would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms "major", "minor", and "patch" with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in v1.1 of SSVC. “Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
 ## Guidance for Evidence Gathering
 
@@ -249,7 +249,7 @@ The goal of the full format is to capture all the context and details about a de
 
 ### Abbreviated Format
 
-SSVC abbreviated form borrows directly from the CVSS "vector string" notation.
+SSVC abbreviated form borrows directly from the CVSS “vector string” notation.
 Since the purpose of the abbreviated form is to provide labels for charts and graphics, it does not stand alone.
 The basic format for SSVC is:
 ```
@@ -259,8 +259,8 @@ Where `version` is `v2` if it is based on this current version of the SSVC.
 The term `decision point` is one or two letters derived from the name of the decision point as follows:
  - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
  - Remove any text in parentheses (and the parentheses themselves).
- - Remove the word "Impact" if it's part of the name.
- - Create an initialism from remaining title-case words (ignore "of," etc.), taking only the first two words.
+ - Remove the word “Impact” if it's part of the name.
+ - Create an initialism from remaining title-case words (ignore “of,” etc.), taking only the first two words.
  - The first letter of the initialism is upper case; if there is a second letter, then it is lower case.
  - Verify that the initialism is unique among decision points in the version of SSVC. If two initialisms collide, sort their source names equivalent to `LC_ALL=C sort`. The name that sorts first keeps the initialism for which there is a collision. Set the second letter of the initialism to the first character in the name that resolves the collision. If the names were `Threat` and `Threshold`, `T` would be `Threat` and `Ts` would be `Threshold`. We make an effort to design SSVC without such collisions.   
 
@@ -324,9 +324,9 @@ Since a capital letter always indicates a new value, this is unambiguous.
 
 The reason a stakeholder might publish something like `U:LESe` is that it expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
 A stakeholder might have information to communicate about some decision points but not others.
-If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special "I don't know" marker.
+If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special “I don't know” marker.
 
-The merit in this "list all values" approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
+The merit in this “list all values” approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
 For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [*Automatability](#automatability).
 Then the analyst can usefully restrict [*Utility*](#utility) to one of [laborious](#utility) or [efficient](#utility).
 In abbreviated form, write this as `U:LE`.

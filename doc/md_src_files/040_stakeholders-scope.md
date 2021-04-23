@@ -5,8 +5,8 @@
 This section will define our audience for decision advice and how we are scoping our advice on vulnerability management decisions.
 Viable decision guidance for vulnerability management should (at a minimum) consider the stakeholder groups, their potential decision outcomes, and the data needed for relevant decision points.
 This section covers the first of these three parts, and the following sections address the other parts in turn.
-The "who" is primarily about categories of stakeholders—suppliers, deployers, and coordinators—as well as their individual risk tolerances.
-The "what" is about the scope, both in how the affected system is defined and how much of the world an analyst should consider when estimating effects of a vulnerability.
+The “who” is primarily about categories of stakeholders—suppliers, deployers, and coordinators—as well as their individual risk tolerances.
+The “what” is about the scope, both in how the affected system is defined and how much of the world an analyst should consider when estimating effects of a vulnerability.
 
 While we strive to make our examples realistic, we invite the community to engage and conduct empirical assessments to test them.
 The following construction should be treated as an informed hypothesis rather than a conclusion.
@@ -24,7 +24,7 @@ For example, we have safety-related questions in the decision path for all suppl
 The decision will be assessed whether or not the stakeholder is in a safety-critical sector.
 
 The choice not to segregate the decisions by sector is reinforced by the fact that any given software system might be used by different sectors.  It is less likely that one organization has multiple responsibilities within the vulnerability management process. Even if there is overlap within an organization, the two responsibilities are often located in distinct business units with distinct decision-making processes. We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision trees—one for each of the “patch supplier” and “patch deployer” responsibilities in the vulnerability management process. We leave “coordinating patches” as future work. Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work.
-<!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using "patch" here. -->
+<!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using “patch” here. -->
 
 The next two sections describe the decision space and the relevant decision points that we propose for these two responsibilities within the vulnerability management process.
 
@@ -77,7 +77,7 @@ There are a variety of ways a Supplier might need to resolve the set of affected
 - receive reports of vulnerabilities in third party libraries they utilize in one or more of their products
 - receive fix bundles for third party libraries used in one or more of their products (where a fix bundle might resolve multiple vulnerabilities or add new features)
 
-Without belaboring the point, the above methods are similar to how CVE Numbering Authorities discern "independently fixable vulnerabilities" [@mitre2020cna].
+Without belaboring the point, the above methods are similar to how CVE Numbering Authorities discern “independently fixable vulnerabilities” [@mitre2020cna].
 We also note that SBOM[@manion2019sbom] seems well-placed to aid in that resolution process for the third-party library scenarios.
 
 In the end, Suppliers provide remediations and/or mitigations for affected products.
@@ -116,7 +116,7 @@ Coordinators may need to reorganize reports (e.g., merge, split, expand, or cont
 
 SSVC users should answer the suggested questions for whatever discrete unit of work they are considering. There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate.
 
-To further clarify terms, "Remediation occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability" [@dodi_8531_2020, section 3.5]. Examples of remediation include applying patches, fixes and upgrades; or removing the vulnerable software or system from operation. Mitigating actions may include software configuration changes, adding firewall ACLs, or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
+To further clarify terms, “Remediation occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability” [@dodi_8531_2020, section 3.5]. Examples of remediation include applying patches, fixes and upgrades; or removing the vulnerable software or system from operation. Mitigating actions may include software configuration changes, adding firewall ACLs, or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
 
 ### Supplying Patches
 
@@ -178,7 +178,7 @@ Table: <a name="table-triage-outcomes"></a> Proposed Coordinator Triage Priority
 | :---            | :----------  |
 | Decline         | Do not act on the report. |
 | Track           | Receive information about the vulnerability and monitor for status changes but do not take any overt actions. |
-| Coordinate      | Take action on the report. "Action" may include any one or more of: technical analysis, reproduction, notifying vendors, publication, and assist another party. |
+| Coordinate      | Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, publication, and assist another party. |
 
 ## Items With the Same Priority
 
@@ -190,7 +190,7 @@ Returning to the example of an organization with three vulnerabilities to remedi
 ## Risk Tolerance and Response Priority
 
 SSVC enables stakeholders to balance and manage their risks themselves.
-We follow the risk management vocabulary from [@ISO73] and define risk as "effect of uncertainty on objectives;" see [@ISO73] for notes on the terms in the definition.
+We follow the risk management vocabulary from [@ISO73] and define risk as “effect of uncertainty on objectives;” see [@ISO73] for notes on the terms in the definition.
 A successful vulnerability management practice must balance at least two risks:
 
 1. Change risk: the potential costs of deploying remediation, which include testing and deployment in addition to any problems that could arise from making changes to production systems.
@@ -226,7 +226,7 @@ To consider software vulnerabilities in a useful scope, we follow prior work and
 This definition is useful because it lets us keep to common usage and intuition and call the Linux kernel—at least a specific version of it—“one piece” of software.
 
 But decision points about safety and mission impact are not about the software in isolation; they are about the entire cyber-physical system, of which the software is a part.
-The term "physical" in "cyber-physical system" should be interpreted broadly; selling stocks or manipulating press outlet content are both best understood as affecting human social institutions.
+The term “physical” in “cyber-physical system” should be interpreted broadly; selling stocks or manipulating press outlet content are both best understood as affecting human social institutions.
 These social institutions do not have much of a corporeal instantiation, but they are physical in the sense that they are not merely software, and so are parts of cyber-physical systems.
 
 The hard part of delineating the boundaries of the affected system is specifying what it means for one system to be part of another system.
@@ -241,7 +241,7 @@ This assignment is particularly important when assessing technical impact on a c
 
   - **Relevant** implies that the impacted component must be in the chain of abstraction moving upward from the location of the flaw.
 
-  - **More abstract** means that the impacted component is at least one level of abstraction above the specific location of the vulnerability. For example, if the vulnerability is localized to a single line of code in a function, then the function, the module, the library, the application, the product, and the system it belongs to are all "more abstract."
+  - **More abstract** means that the impacted component is at least one level of abstraction above the specific location of the vulnerability. For example, if the vulnerability is localized to a single line of code in a function, then the function, the module, the library, the application, the product, and the system it belongs to are all “more abstract.”
 
   - **Discrete** means there is an identifiable thing that can be remediated (e.g., the unit of patching).
 
