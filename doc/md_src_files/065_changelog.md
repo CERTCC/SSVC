@@ -37,9 +37,9 @@ This stance was not explicit in SSVC version 1.
 ## Improvements to decision points
 
 Version 1 had a decision point for well-being impact that was shared between **supplier** and **deployer** stakeholders.
-Since these types of stakeholder have access to different information about safety and well-being, Version 2 splits this concept into [*Public Safety Impact](#public-safety-impact) and [*Situated Safety Impact*](#situated-safety-impact).
+Since these types of stakeholder have access to different information about safety and well-being, Version 2 splits this concept into [*Public Safety Impact*](#public-safety-impact) and [*Situated Safety Impact*](#situated-safety-impact).
 The underlying definition remains largely the same.
-However, [*Public Safety Impact](#public-safety-impact) has fewer output options (it is less granular) in recognition that a supplier or coordinator has less information about the context of deployment than a deployer does.
+However, [*Public Safety Impact*](#public-safety-impact) has fewer output options (it is less granular) in recognition that a supplier or coordinator has less information about the context of deployment than a deployer does.
 
 In addition, based on feedback from SSVC users, the SSVC version 2 recommended applier tree makes use of a combined value for [*Mission Impact*](#mission-impact) and [*Situated Safety Impact*](#situated-safety-impact).
 The intuition behind this change is that if a person is going to die OR the organization is going to fail (for example, go bankrupt), then the organization will likely want to act with highest priority.
