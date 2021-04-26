@@ -7,8 +7,8 @@ The stakeholders in vulnerability management are diverse.
 This diversity must be accommodated in the main functionality, rather than squeezed into hard-to-use optional features.
 Given this, we aim to avoid one-size-fits-all solutions as much as it is practical.
 
-We will improve vulnerability management by framing decisions better. 
-The modeling framework determines what output types are possible, identifies the inputs, determines the aspects of vulnerability management that are in scope, defines the aspects of context that are incorporated, describes how the model handles context and different roles, and determines what those roles should be.
+We will improve vulnerability management by framing decisions better.
+The modeling framework determines what output types are possible, identifies the inputs, determines the aspects of vulnerability management that are in scope, defines the aspects of context that are incorporated, identifies how to handle changes over time, describes how the model handles context and different roles, and determines what those roles should be.
 As such, the modeling framework is important but difficult to pin down.
 We approach this problem as a satisficing process.
 We do not seek optimal formalisms, but an adequate formalism.

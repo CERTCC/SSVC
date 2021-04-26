@@ -11,6 +11,8 @@ CVSS avoids discussing decisions and, instead, takes **technical severity** as i
 However, the standard does not provide clear advice about how CVSS scores might inform decisions [@cvss_sig].
 SSVC instead considers technical severity as one decision point in vulnerability management.
 Severity should only be a part of vulnerability response prioritization [See, e.g., @farris2018vulcon].
+Vulnerability managers make decisions at a particular time in a specific context.
+CVSS base scores are static; we will make SSVC from modular parts that are easier to compose in each manager's temporal and operational context. 
 
 Any re-adaptation of the basic CVSS mindset inherits its deeper issues.
 For example, arguments for the CVSS scoring algorithm have not been transparent and the standardization group has not justified the use of the formula either formally or empirically [@spring2018cvss].
@@ -22,7 +24,7 @@ SSVC aims to learn from and improve upon these issues.
 
 Surveys of security metrics [@pendleton2016survey] and information sharing in cybersecurity [@laube2017survey] do not indicate any major efforts to conduct a wholesale rethinking of vulnerability prioritization.
 The surveys indicate some options a prioritization method might consider, such as exploit availability or system attack surface.
-[Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities) describes our design goals for a pragmatic prioritization methodology that can improve and build on the state of current practice. 
+[Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities) describes our design goals for a pragmatic prioritization methodology that can improve and build on the state of current practice.
 
 The target audience for SSVC is vulnerability managers of any kind.
 SSVC assumes that the vulnerability manager has identified that there is a vulnerability.
