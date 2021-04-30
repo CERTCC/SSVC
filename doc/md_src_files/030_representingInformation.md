@@ -130,7 +130,7 @@ A CSV will typically be 30-100 rows that each look something like:
 2,none,slow,diffuse,laborious,partial,minor,defer
 ```
 Where “2” is the row number, [*none*](#exploitation) through [*minor*](#public-safety-impact) are values for decision points, and *defer* is a priority label or outcome.
-Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions. 
+Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions.
 
 The tree visualization options are more diverse.
 We provide an example format, and codified it in [src/SSVC_csv-to-latex.py](https://github.com/CERTCC/SSVC/tree/main/src).
@@ -149,7 +149,7 @@ Because this function produces output like the following:
 35    ¦   ¦   ¦   ¦   ¦       ¦   ¦--A:H  Critical
 ```
 
-This sample is a snippet of the CVSSv3.0 base scoring algorithm represented as a decision tree.
+This sample is a snippet of the CVSS version 3.0 base scoring algorithm represented as a decision tree.
 The full tree can be found in [doc/graphics/cvss_tree_severity-score.txt](https://github.com/CERTCC/SSVC/tree/main/doc/graphics).
 This tree representation is functional, but not as flexible or aesthetic as might be hoped.
 The visualizations provided by R are geared towards analysis of decision trees in a random forest ML model, rather than operations-research type trees.

@@ -9,11 +9,11 @@ This section discusses the relationship between these various systems and SSVC.
 
 ## CVSS
 
-CVSS v3.1 has three metric groups: base, environmental, and temporal.
+CVSS version 3.1 has three metric groups: base, environmental, and temporal.
 The metrics in the base group are all required, and are the only required metrics.
 In connection with this design, CVSS base scores and base metrics are far and away the most commonly used and communicated.
 A CVSS base score has two parts: the exploitability metrics and the impact metrics.
-Each of these are echoed or reflected in aspects of SSVC, though the breadth of topics considered by SSVC is wider than CVSS v3.1.
+Each of these are echoed or reflected in aspects of SSVC, though the breadth of topics considered by SSVC is wider than CVSS version 3.1.
 
 How CVSS is used matters.
 Using just the base scores, which are “the intrinsic characteristics of a vulnerability that are constant over time and across user environments,” as a stand-alone prioritization method is not recommended [@cvss_v3-1].
@@ -89,7 +89,7 @@ A sufficiently high EPSS score could therefore be used as an additional criterio
 
 VPR is a prioritization product sold by Tenable.
 VPR determines the severity level of a vulnerability based on “[technical impact and threat](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss).”
-Just as [*Technical Impact*](#technical-impact) in SSVC, technical impact in VPR tracks the CVSSv3 impact metrics in the base metric group.
+Just as [*Technical Impact*](#technical-impact) in SSVC, technical impact in VPR tracks the CVSS version 3 impact metrics in the base metric group.
 The VPR threat component is about recent and future threat activity; it is comparable to [*Exploitation*](#exploitation) if EPSS were added to [*Exploitation*](#exploitation).
 
 VPR is therefore essentially a subset of SSVC.
@@ -140,15 +140,15 @@ Such scans do not find all [*open*](#system-exposure) systems, but any system th
 Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](#system-exposure) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
 
 
-Some information sources that were not designed with SSVC in mind, but can be adapted to work with it.
+Some information sources that were not designed with SSVC in mind can be adapted to work with it.
 Three prominent examples are CVSS impact base metrics, CWE, and CPE.
 
 [*Technical Impact*](#technical-impact) is directly related to the CVSS impact metric group.
-However, this metric group cannot be directly mapped to [*Technical Impact*](#technical-impact) in CVSSv3  because of the Scope metric.
+However, this metric group cannot be directly mapped to [*Technical Impact*](#technical-impact) in CVSS version 3  because of the Scope metric.
 [*Technical Impact*](#technical-impact) is only about adversary control of the vulnerable component.
-If the CVSSv3 value of “Scope” is “Changed,” then the impact metrics are the maximum of the impact on the vulnerable component and other components in the environment.
+If the CVSS version 3 value of “Scope” is “Changed,” then the impact metrics are the maximum of the impact on the vulnerable component and other components in the environment.
 If confidentiality, integrity, and availability metrics are all “high” then [*Technical Impact*](#technical-impact) is [*total*](#technical-impact), as long as the impact metrics in CVSS are clearly about just the vulnerable component.
-However, the other values of the CVSSv3 impact metrics cannot be mapped directly to [*partial*](#technical-impact) because of CVSSv3.1 scoring guidance.
+However, the other values of the CVSS version 3 impact metrics cannot be mapped directly to [*partial*](#technical-impact) because of CVSS version 3.1 scoring guidance.
 Namely, “only the increase in access, privileges gained, or other negative outcome as a result of successful exploitation should be considered” [@cvss_v3-1].
 The example given is that if an attacker already has read access, but gains all other access through the exploit, then read access didn't change and the confidentiality metric score should be “None” .
 However, in this case, SSVC would expect the decision point to be evaluated as [*total*](#technical-impact) because as a result of the exploit the attacker gains total control of the device, even though they started with partial control.
@@ -187,4 +187,4 @@ Perhaps a machine learning system could be designed to suggest values.
 But more likely, if there is a market for this information, a few analysts could be paid to score vulnerabilities on these values for the community.
 Supporting such analysts with further automation could proceed by small incremental improvements.
 For example, perhaps information about whether the Reconnaissance step in the kill chain is [*Automatable*](#automatable) or not could be automatically gathered from Internet scanning firms such as Shodan or Shadowserver.
-This wouldn't make a determination for an analyst, but would be a step towards automatic assessment of the decision point. 
+This wouldn't make a determination for an analyst, but would be a step towards automatic assessment of the decision point.

@@ -53,11 +53,11 @@ The example deployer tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/gra
  height = "1000"/>
 -->
 
-## Coordinator trees
+## Coordinator Trees
 
 As described in [Decisions During Vulnerability Coordination](#decisions-during-vulnerability-coordination), a coordination stakeholder usually makes separate triage and publication decisions. Each have trees presented below.
 
-### Triage decision tree
+### Triage Decision Tree
 
 
 ![Suggested Coordinator Triage Tree](graphics/ssvc_2_coord-triage.pdf){ width=100% }
@@ -71,7 +71,7 @@ height = "600" />
 This tree is a suggestion in that CERT/CC believes it works for us.
 Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance).
 
-### Publication decision tree
+### Publication Decision Tree
 
 Suggested decision values for this decision are available in [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-publish.csv) and [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-publish.pdf) formats.
 
@@ -112,7 +112,7 @@ SSVC enables teams with such different risk appetites to discuss and communicate
 
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
-An important benefit, in our experience, is that it's easier to identify a question by saying  “I'm unsure about row 16” than anything else we have thought of so far.
+An important benefit, in our experience, is that it is easier to identify a question by saying  “I'm unsure about row 16” than anything else we have thought of so far.
 Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
@@ -136,7 +136,7 @@ If nothing else, this means analysts are spending time gathering evidence to mak
 The added details also make it harder for the decision process to accurately manage the risks in question.
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
 
-Regarding feature types, all of the features included in SSVC v2 can be considered ordinal data.
+Regarding feature types, all of the features included in SSVC version 2 can be considered ordinal data.
 That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
 The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
@@ -171,7 +171,8 @@ This sort of customization is often the simplest way to adjust the importance of
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
 
-SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in v1.1 of SSVC. “Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in version 1.1 of SSVC.
+“Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
 ## Guidance for Evidence Gathering
 
@@ -193,7 +194,7 @@ Similarly, with [*Mission Impact*](#mission-impact), the deployer should assume 
 With a total lack of information, assume [*support crippled*](#mission-impact) as a default.
 [*Exploitation*](#exploitation) needs no special default; if adequate searches are made for exploit code and none is found, the answer is [*none*](#exploitation).
 If nothing is known about [*Automatable*](#automatable), the safer answer to assume is [*yes*](#automatable).
-[*Value Density*](#value-density) should always be answerable; if the product is uncommon then it is probably [*diffuse*](#value-density).
+[*Value Density*](#value-density) should always be answerable; if the product is uncommon, it is probably [*diffuse*](#value-density).
 The resulting decision set {*none*, *open*, *efficient*, *medium*} results in a scheduled patch application in our recommended deployer tree.
 
 ## Relationship to asset management
@@ -237,7 +238,7 @@ Coordinators are particularly interested in facilitating communication because t
 This section handles three aspects of this challenge: formats for communicating SSVC, how to handle partial or incomplete information, and how to handle information that may change over time.
 
 This section is about communicating SSVC information about a specific vulnerability.
-Any stakeholder making a decision on allocating effort should have a decision tree with it's decision points and possible values specified already.
+Any stakeholder making a decision on allocating effort should have a decision tree with its decision points and possible values specified already.
 [Representation choices](#representation-choices) and [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 This section discusses the situation where one stakeholder, usually a supplier or coordinator, wants to communicate some information about a specific vulnerability to other stakeholders or constituents.
 
@@ -259,7 +260,7 @@ Where `version` is `v2` if it is based on this current version of the SSVC.
 The term `decision point` is one or two letters derived from the name of the decision point as follows:
  - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
  - Remove any text in parentheses (and the parentheses themselves).
- - Remove the word “Impact” if it's part of the name.
+ - Remove the word “Impact” if it is part of the name.
  - Create an initialism from remaining title-case words (ignore “of,” etc.), taking only the first two words.
  - The first letter of the initialism is upper case; if there is a second letter, then it is lower case.
  - Verify that the initialism is unique among decision points in the version of SSVC. If two initialisms collide, sort their source names equivalent to `LC_ALL=C sort`. The name that sorts first keeps the initialism for which there is a collision. Set the second letter of the initialism to the first character in the name that resolves the collision. If the names were `Threat` and `Threshold`, `T` would be `Threat` and `Ts` would be `Threshold`. We make an effort to design SSVC without such collisions.
@@ -351,7 +352,7 @@ The cadence or rate of polls is different for each decision point, based on the 
 
 We expect that updating information over time will be most useful where the evidence-gathering process can be automated.
 Organizations that have mature asset management systems will also find this update process more efficient than those that do not.
-For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points. 
+For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points.
 
 The following decision points are usually out of the control of the organization running SSVC.
 As an initial heuristic, we suggest the associated polling frequency for each.

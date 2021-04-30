@@ -170,13 +170,13 @@ Table: <a name="table-deployer-outcomes"></a> Proposed Meaning for Deployer Prio
 | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
 ### Coordinating Patches
-In coordinated vulnerability disclosure (CVD), there are two available decisions modelled in SSVC v2.
+In coordinated vulnerability disclosure (CVD), there are two available decisions modelled in version 2 of SSVC.
 The first is whether or not to coordinate a vulnerability report.
 This decision is also known as triage.
 Vulnerability Response Decision Assistance (VRDA) provides a starting point for a decision tree for this situation.
 VRDA is likely adequate for national-level CSIRTs that do general CVD, but other CSIRT types may have different needs.
-The CERT guide to CVD provides something similar for those deciding how to report and disclose vulnerabilities they have discovered [@householder2020cvd, section 6.10].
-The second is whether to publish information about a vulnerability.
+The *CERT guide to Coordinated Vulnerability Disclosure* provides something similar for those who are deciding how to report and disclose vulnerabilities they have discovered [@householder2020cvd, section 6.10].
+The second decision is whether to publish information about a vulnerability.
 We omit a table for this decision because the options are *do not publish* or *publish*.
 
 Table: <a name="table-triage-outcomes"></a> Proposed Coordinator Triage Priority Outcomes
