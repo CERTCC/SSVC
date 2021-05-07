@@ -3,9 +3,9 @@
 
 # Conclusion
 
-SSVC v2 presents a method for suppliers, deployers, and coordinators to use to prioritize their effort to mitigate vulnerabilities.
-We have built on SSVC v1 through public presentation and feedback, private consultation, and continued analyst testing.
-The evaluation process we developed in v1 remains an important part of continued improvement of SSVC, and will be used to continue refinements of SSVC v2.
+SSVC version 2 presents a method for suppliers, deployers, and coordinators to use to prioritize their effort to mitigate vulnerabilities.
+We have built on SSVC version 1 through public presentation and feedback, private consultation, and continued analyst testing.
+The evaluation process we developed in version 1 remains an important part of continued improvement of SSVC, and will be used to continue refinements of SSVC version 2.
 We invite participation and further refinement of the prioritization mechanism from the community as well, such as by [posting an issue](https://github.com/CERTCC/SSVC/issues).
 We endeavored to be transparent about our process and provide justification for design decisions.
 

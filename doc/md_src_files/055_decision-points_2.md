@@ -1,7 +1,7 @@
 ## Safety Impact
 > Safety Impacts of Affected System Compromise
 
-We take an expansive view of safety, in which a safety violation is a violation of what the [Centers for Disease Control (CDC)](https://www.cdc.gov/hrqol/wellbeing.htm#three) calls **well-being**. Physical well-being violations are common safety violations, but we also include economic, social, emotional, and psychological well-being as important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
+We take an expansive view of safety, in which a safety violation is a violation of what the United States [Centers for Disease Control (CDC)](https://www.cdc.gov/hrqol/wellbeing.htm#three) calls **well-being**. Physical well-being violations are common safety violations, but we also consider economic, social, emotional, and psychological well-being to be important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
 <!--The CDC webpage is better called a lit review. It has 74 citations on well-being across various fields. The following citations could reasonably be cited directly, rather than just referencing the CDC page:
 Frey BS, Stutzer A. Happiness and economics. Princeton, N.J.: Princeton University Press; 2002.
 Andrews FM, Withey SB. Social indicators of well-being. NewYork: Plenum Press; 1976:63–106.
@@ -20,17 +20,28 @@ Kaplan RM, Anderson JP. The quality of well-being scale: Rationale for a single 
 Keyes CLM. The mental health continuum: from languishing to flourishing in life. J Health Soc Res 2002;43(6):207-222.
  -->
 
-The stakeholder should consider the safety impact on the operators (heuristically, by “system operator” we mean those who are professionally
-responsible for the proper operation of the cyber-physical system, as the term is used in the safety analysis literature) and users of the software they provide. If software is repackaged and resold by a stakeholder to further downstream entities who will then sell a product, the initial stakeholder can only reasonably consider so many links in that supply chain. But a stakeholder should know its immediate consumers one step away in the supply chain. Those consumers may repackage or build on the software and then provide that product further on.
+The stakeholder should consider the safety impact on the system operators (by “system operator,” we mean those who are professionally responsible for the proper operation of the cyber-physical system, as the term is used in the safety analysis literature) and users of the software they provide.
+If software is repackaged and resold by a stakeholder to further downstream entities who will then sell a product, the initial stakeholder can only reasonably consider so many links in that supply chain.
+However, a stakeholder should know its immediate consumers who are one step away in the supply chain.
+Those consumers may repackage or build on the software and then provide that product further on.
 
-We expect that a stakeholder should be aware of common usage of their software about two steps in the supply chain away. This expectation holds in both open source and proprietary contexts. Further steps along the supply chain are probably not reasonable for the stakeholder to consider consistently; however, this is not license to willfully ignore common downstream uses of the stakeholder’s software. If the stakeholder is contractually or legally responsible for safe operation of the software or cyber-physical system of which it is part, that also supersedes our rough supply-chain depth considerations. For software used in a wide variety of sectors and deployments, the stakeholder may need to estimate an aggregate safety impact. Aggregation suggests that the stakeholder’s response to this decision point cannot be less than the most severe credible safety impact, but we leave the specific aggregation method or function as a domain-specific extension for future work.
+We expect that a stakeholder should be aware of common usage of their software about one step away in the supply chain.
+This expectation holds in both open source and proprietary contexts. Further steps along the supply chain are probably not reasonable for the stakeholder to consider consistently; however, this is not a license to willfully ignore common downstream uses of the stakeholder’s software.
+If the stakeholder is contractually or legally responsible for safe operation of the software or cyber-physical system of which it is part, that also supersedes our rough supply-chain depth considerations.
+
+For software used in a wide variety of sectors and deployments, the stakeholder may need to estimate an aggregate safety impact.
+Aggregation suggests that the stakeholder’s response to this decision point cannot be less than the most severe credible safety impact, but we leave the specific aggregation method or function as a domain-specific extension for future work.
 
 ### Gathering Information About Safety Impact
 
-The factors that influence the safety impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding safety impact should include gathering information about survivability of the vulnerable component, determining available operator actions to compensate for the vulnerable component, understanding relevant insurance, and determining the viability of existing backup measures. Each of these information items depends heavily on domain-specific knowledge, and so it is out of the scope of this paper to give a general-purpose strategy for how they should be included. For example, viable manual backup mechanisms are likely important in assessing the safety impact of an industrial control system in a sewage plant, but in banking the insurance structures that prevent bankruptcies are more important.
+The factors that influence the safety impact level are diverse.
+This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work.
+At a minimum, understanding safety impact should include gathering information about survivability of the vulnerable component, determining available operator actions to compensate for the vulnerable component, understanding relevant insurance, and determining the viability of existing backup measures.
+Because each of these information items depends heavily on domain-specific knowledge, it is out of the scope of this paper to give a general-purpose strategy for how they should be included.
+For example, viable manual backup mechanisms are likely to be important in assessing the safety impact of an industrial control system in a sewage plant, but in banking the insurance structures that prevent bankruptcies are more important.
 
-The safety impact decision values are based on hazard categories for aircraft software [@DO-178C; @faa2000safety, Section 3.3.2].
-For any value of [*Safety Impact*](#safety-impact) to obtain, say [*major*](#safety-impact), at least one type of harm must reach that level.
+The decision values for safety impact are based on the hazard categories for aircraft software [@DO-178C; @faa2000safety, Section 3.3.2].
+To assign a value to [*Safety Impact*](#safety-impact), at least one type of harm must reach that value. For example, for a [*Safety Impact*](#safety-impact) of [*major*](#safety-impact), at least one type of harm must reach [*major*](#safety-impact) level.
 All types of harm do not need to rise to the level of [*major*](#safety-impact), just one type of harm does.
 
 Table: Safety Impact Decision Values
@@ -223,7 +234,8 @@ Table: Public Safety Impact Decision Values
 ### Situated Safety Impact
 
 Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in [Safety Impact](#table-safety-impact).
-However, in order to simplify implementation for deployers we intend to combine this with Mission Impact below, so we defer the topic for now.
+We defer this topic for now because we combine it with [*Mission Impact*](#mission-impact) to simplify implementation for deployers.
+
 
 ## Mission Impact
 > Impact on Mission Essential Functions of the Organization
@@ -244,23 +256,28 @@ Table:  Mission Impact Decision Values
 The factors that influence the mission impact level are diverse. This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission. There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 [@FCD2_2017] or OCTAVE FORTE [@tucker2018octave]. This is part of risk management more broadly. It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
 As a heuristic, [*Utility*](#utility) might constrain [*Mission Impact*](#mission-impact) if both are not used in the same decision tree.
-For example, if it's [*super effective*](#utility) then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact).
+For example, if the [*Utility*](#utility) is [*super effective*](#utility), then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact).
 
-## Situated Safety / Mission Impact
+## Human Impact
+ > Combined Situated Safety and Mission Impact
 
-In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased. We therefore combine Situated Safety and Mission Impact for deployers into a single Potential Impact factor as a dimension reduction step as follows.
-We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts. Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
+In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
+We therefore combine Situated Safety and Mission Impact for deployers into a single _Human Impact_ factor as a dimension reduction step as follows.
+We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
+Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
 Therefore we combine the three lesser mission impacts of none, non-essential degraded, and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
-This gives us 3 levels of mission impact to work with.
+This gives us three levels of mission impact to work with.
 
-On the other hand, most organizations' tolerance for variance in safety tends to be be lower, meaning that even small deviations in safety are unlikely to go unnoticed or unaddressed.
+On the other hand, most organizations tend to have lower tolerance for variance in safety.
+Even small deviations in safety are unlikely to go unnoticed or unaddressed.
 We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior.
-Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension. We then combine Mission Impact with Situated Safety impact and map these onto a 4-tiered scale (Low, Medium, High, Very High).
+Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension.
+We then combine Mission Impact with Situated Safety impact and map them onto a 4-tiered scale (Low, Medium, High, Very High).
 The mapping is shown in the following table.
 
-Table: Combining Mission and Situated Safety Impact
+Table: Combining Mission and Situated Safety Impact into Human Impact
 
-| Situated Safety Impact | Mission Impact | Combined Value |
+| Situated Safety Impact | Mission Impact | Combined Value (Human Impact) |
 | -----:                 | :-----         | :---:          |
 |  None/Minor         | None/Degraded/Crippled | Low       |
 |  None/Minor         | MEF Failure       | Medium         |
@@ -327,14 +344,14 @@ Table: Combining Mission and Situated Safety Impact
 ### Safety and Mission Impact Decision Points for Industry Sectors
 
 We expect to encounter diversity in both safety and mission impacts across different organizations. However, we also anticipate a degree of commonality of impacts to arise across organizations within a given industry sector. For example, different industry sectors may have different use cases for the same software.
-Therefore, vulnerability information providers - that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs) - may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
+Therefore, vulnerability information providers—that is, vulnerability databases, Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs)—may provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
 For considerations on how organizations might communicate SSVC information to their constituents, see [Guidance on Communicating Results](#guidance-on-communicating-results).
 
 
 ## System Exposure
 > The Accessible Attack Surface of the Affected System or Service
 
-Measuring attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
+Measuring the attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
 Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
 For example, the exposure of a device on a vehicle's CAN bus will vary depending on the presence of a cellular telemetry device on the same bus.
 
@@ -360,11 +377,11 @@ Therefore, it generally has a concrete answer, even though it may vary from vuln
 [*System Exposure*](#system-exposure) can be readily informed by network scanning techniques.
 For example, if the vulnerable component is visible on [Shodan](www.shodan.io) or by some other external scanning service, then it is [*open*](#system-exposure).
 Network policy or diagrams are also useful information sources, especially for services intentionally open to the Internet such as public web servers.
-An analyst should also choose [*open*](#system-exposure) for a phone or PC that connects to the web or email without the usual protections (for example, IP and URL blocking, updated firewalls, etc.).
+An analyst should also choose [*open*](#system-exposure) for a phone or PC that connects to the web or email without the usual protections (IP and URL blocking, updated firewalls, etc.).
 
 Distinguishing between [*small*](#system-exposure) and [*controlled*](#system-exposure) is more nuanced.
 If [*open*](#system-exposure) has been ruled out, some suggested heuristics for differentiating the other two are as follows.
-Apply these heuristics in order, and stop once one applies.
+Apply these heuristics in order and stop when one of them applies.
  - If the system's networking and communication interfaces have been physically removed or disabled, choose [*small*](#system-exposure).
  - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure). The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of [*small*](#system-exposure).
  - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).

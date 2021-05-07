@@ -89,3 +89,10 @@ Use the supported markdown for images where possible and support the link_attrib
 https://pandoc.org/MANUAL.html#images
 ![Caption](foo.jpg){width=90%}
 This will render as a figure in latex as long as it is on a line all by itself and the implicit_figures extension to pandoc is used. It will render as a normal image in GFM. 
+
+================================================
+
+Pandoc Markdown will treat a period ('.') followed by two spaces (' ') at the end of a line as a request for a line break. 
+Always use only one space after a period, especially at the end of a line. 
+
+Use unicode characters for opening and closing double quote marks (“ and ”) rather than a straight dumb quote mark ("). Do not try to use LaTeX conventions of (``) and (''). 
