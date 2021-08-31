@@ -69,7 +69,7 @@ Table: Technical Impact Decision Values
 ### Gathering Information About Technical Impact
 
 Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degree of control over the vulnerable component the attacker stands to gain by exploiting the vulnerability.
-One way to approach this analyiss is to ask whether the control gained is *total* or not.
+One way to approach this analysis is to ask whether the control gained is *total* or not.
 If it is not total, it is *partial*.
 If an answer to one of the following questions is _yes_, then control is *total*.
 After exploiting the vulnerablily,
