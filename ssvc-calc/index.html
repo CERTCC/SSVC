@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title> CERT/CC Demo Server - SSVC Calc App</title>
+    <title> CERT/CC Demo Server - Dryad SSVC Calc App</title>
     <link rel="stylesheet"
 	  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -19,18 +19,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"  async defer
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"
+	    async defer
 	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
 	    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"
+	    async defer 
+	    integrity="sha384-/KtSGZ3Y6FUl+HbMMbSX94R0r8VGddnyrvYXTOQ9LuO3HxckA9kzrCQUafZZwJB3"
+	    crossorigin="anonymous"></script>
+    <link href="magicsuggest-min.css" rel="stylesheet">
+    <script src="magicsuggest-min.js" async defer></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1607626315">
+    <link rel="stylesheet" href="css.css?v=1633111244">
   </head>
   <body class="text-center blackbody">
     <img src="../cert_tweet_logo.jpg" class="cert-tweet" alt="CERT Logo"
 	 onclick="$('body').toggleClass('blackbody')"/>
     <div class="tright">
       <a href="javascript:void(0)" onclick="$('#helper').show()"
-	 title="SSVC Calc App">
+	 title="Dryad SSVC Calc App">
 	<svg height="24" width="24">
 	  <circle cx="12" cy="12" r="11" stroke="black" stroke-width="1" fill="black"></circle>
 	  <text x="50%" y="50%" text-anchor="middle" fill="#ffffff" stroke-width="0.05em" dy=".3em">i</text>
@@ -68,8 +75,10 @@
 
       <main class="inner cover">
 	<h4 class="cover-heading">
-	  SSVC Calc App 
-	  <div class="cover_heading_append d-inline">(Coordinator v2)</div>
+	  Dryad - SSVC Calc App 
+	  <div class="cover_heading_append d-inline">
+	    (CISA Coordinator v2)
+	  </div>
 	</h4>
 	<div class="alert" id="topalert" role="alert">
 	  This is an alert!
@@ -115,27 +124,28 @@
 	      <button class="btn btn-dark btn-bordered d-none"
 		      onclick="$('#cvetsvload').click()">
 		Import CVE</button>
-	      <select id="cve_samples" class="d-none" onchange="process(this)">
+	      <select id="cve_samples" class="form-control mauto d-none"
+		      onchange="process(this)">
 		<option>Choose CVE</option>
 		<option value="import">Import CVE</option>		
 	      </select>
 	      <input type="file" onchange="readFile(this)" style="display:none"
-		     id="dtreecsvload">	      
+		     id="cvetsvload">	      
 	      <button class="btn btn-dark btn-bordered d-none"
 		      onclick="$('#dtreecsvload').click()">
 		Import Decisions</button>
 	      <select id="tree_samples" class="form-control impselector"
 		      onchange="tree_process(this)">
-		<option>Choose Tree</option>
+		<option selected>Choose Tree</option>
 		<option value="import">Import Tree</option>
+		<option value="CISA-Coordinator-v2.02.json">
+		  CISA-Coordinator-v2.02
+		</option>
 		<option value="ssvc_1_applier.csv">Applier v1</option>
-		<option value="ssvc_1_developer.csv">Developer v1</option>		
+		<option value="ssvc_1_developer.csv">Developer v1</option>
 	      </select>	      
 	      <input type="file" onchange="readFile(this)" style="display:none"
-		     id="dtreecsvload">
-	      <input type="file" onchange="readFile(this)" style="display:none"
-		     id="cvetsvload">	      
-    
+		     id="dtreecsvload">    
 	      <div class="float-right" style="display:none">
 		Explore other &nbsp; 
 		<a href="https://www.ntia.gov/SBOM" target="_blank"
@@ -147,7 +157,9 @@
 	</div>
       </footer>
     </div>
-    <div class="modal fade" id="mwb" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="mwb" tabindex="-1" role="dialog"
+	 data-toggle="modal" data-backdrop="static" data-keyboard="false"
+	 aria-hidden="true">
       <div class="modal-dialog" role="document">
 	<div class="modal-content">
 	  <div class="modal-header">
@@ -194,14 +206,16 @@
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+	    <button type="button" class="btn btn-warning" data-dismiss="modal">
+	      Choose Manually
+	    </button>
 	    <button type="button" class="btn btn-primary" onclick="calculate_mwb()">
 	      Calculate</button>
 	  </div>
 	</div>
       </div>
     </div>
-    <div id="mpopup">
+    <div id="mpopup" onclick="checkclose()">
     </div>
     <div class="Exploitation d-RXhwbG9pdGF0 d-none">
       <h5>Exploitation choices</h5>
@@ -278,12 +292,12 @@
       <h5>
 	Stakeholder-Specific Vulnerability Categorization (SSVC)
       </h5>
-      <span class="text-muted">version 1 (December 2019) </span>
+      <span class="text-muted">version 2 (October 2020) </span>
       <hr style="background-color:#9f9f9f"/>
       <div style="text-align:left">
 	<h4>Introduction:</h4>
 	<p>
-	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  patch developers and patch appliers.  In this instance of SSVC app, SSVC is being prototyped for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities. Note: the current actions defined as "Track", "Track*", "Critical" and "High" are likely to be updated.
+	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  patch developers and patch appliers.  In this instance of Drayd - SSVC calculator app, SSVC is being prototyped for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities. 
 	</p>
       </div>
       <div style="text-align:left">
@@ -366,7 +380,7 @@
     <div id="biscuit" class="top_fixed tescape tloader">
     </div>
     <div id="exporter" class="d-none">
-      <div class="row justify-content-center position-absolute"
+      <div class="row justify-content-center position-absolute exportdiv"
 	   style="top:180px;left:40%">
 	  <div class="col-auto">
 	    <table class="table table-borderless w-auto">
@@ -390,15 +404,43 @@
 		</tr>
 		<tr>
 		  <td>
-		    <input type="checkbox" id="includetree" unchecked>
+		    <div>
+		      <span class="text text-warning ssvcvector d-inline">
+		      </span>
+		      <span onclick="copym('#graph .ssvcvector')">
+			<img src="icons8-copy-60.png"
+			     class="icon8"/>
+		      </span>
+		      <span onclick="create_permalink('copy')">
+			<img src="icons8-copy-link-48.png"
+			     class="icon8"/>
+		      </span>
+		      <br/>
+		      <span class="permalink d-none"
+			    style="font-size:1px; position:fixed">
+		      </span>
+		    </div>
+		    
+		    <input type="checkbox" class="includetree" unchecked>
 		    <span class="text-muted">
 		      Include decision tree in export
 		    </span>
-		    <br/>		    
-		    <button class="btn btn-primary exportButton"
-			    onclick="export_vul($('#includetree').is(':checked'))">
-		      Export
-		    </button>
+		    <br/>
+		    <div class="btn-group primary-button Exporter">
+		      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Export
+		      </button>
+		      <div class="dropdown-menu">
+			<a class="dropdown-item" href="javascript:void(0)"
+			   onclick="export_json()">JSON</a>
+			<a class="dropdown-item" href="javascript:void(0)"
+			   onclick="export_pdf()">PDF</a>
+			<!-- 
+			     <div class="dropdown-divider"></div>
+			     <a class="dropdown-item" href="#">Separated link</a>
+			     -->
+		      </div>
+		    </div>
 		  </td>
 		</tr>
 	      </tbody>
@@ -406,7 +448,13 @@
 	  </div>
 	</div>
     </div>
-    <script src="ssvc.js?v=1607626315"></script>
+    <div id="exportpng" style="display:none">
+      <form id="pngform">
+	<input type="hidden" id="pngblob" value=""/>
+      </form>
+      <canvas id="canvas" style="display:none">
+    </div>      
+    <script src="ssvc.js?v=1633111244"></script>
   </body>
 </html>
 

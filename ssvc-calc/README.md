@@ -12,7 +12,7 @@ defer, scheduled, out-of-cycle, and immediate.
 * There are also a number of sample CVE in a dropdown that will auto-select a number of steps in the decision tree
 * Use the "Start Decision" to navigate the tree for assesing your prioritization for a vulnerability.
 * You can also import custom decision trees and custom CVE samples for the current decision tree.
-* Custom decision trees can be from JSON see example [sample-ssvc.json](./sample-ssvc.json) and the JSON schema file [SSVC_JSON_2.0_min.schema.json](./SSVC_JSON_2.0_min.schema.json)
-* Customer decision tree can also be just a text file tab-delimited as in [ssvc.txt](./ssvc.txt) OR [ssvc.tsv](./ssvc.tsv)
-* CVE samples files [sample-ssvc-scores.txt](./sample-ssvc-scores.txt) shows a tab-delimited 
+* There is a [data](../data/) folder where there is a number of examples both of schema and examples of schema outputs.
+* You can install this directory as a folder in your public website directory. and expose it. All referenced url's are relative in the scripts and HTML files.
+
 

@@ -1,15 +1,24 @@
 /* SSVC code for graph building */
-const _version = 4.2
+const _version = "5.1.1"
+const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
 var diagonal,tree,svg,duration,root
 var treeData = []
-/* Deefault color array of possible color choices */
+/* Deefault color array of possible color options */
 var acolors = ["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
-var lcolors = {"Track":"#28a745","Track*":"#ffc107","High":"#EE8733","Critical":"#dc3545"}
-lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
+var lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
+var ssvc_short_keys = {};
 /* These variables are for decision tree schema JSON aka SSVC Provision Schema */
 var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 		     version: "2.0", title: "SSVC Provision table"}
+/* If a new analysis is being done use this for export */
+var current_score = [];
+var current_tree = "CISA-Coordinator-v2.02.json";
+var current_schema = "SSVC_Computed_v2.02.schema.json";
+/* A dictionary of elements that are children of a decision point*/
+var ischild = {};
+var isparent = {};
+
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
     this.each(function (i, e) {
@@ -17,67 +26,36 @@ jQuery.fn.simClick = function () {
 	e.dispatchEvent(evt);
     });
 };
+function reset_form() {
+    /* This is to clear stupid Firefox cached form values*/
+    $('select').prop('selectedIndex',0);	    
+    $('input[type="file"]').hide();
+    $('input').val('');
+    $('select').prop('selectedIndex',0);
+    $('input[type="file"]').hide();
+}    
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    reset_form();
+    $('#topalert').width($('main').width());
+    window.onresize = function() { $('#topalert').width($('main').width())}
+    $('[data-toggle="tooltip"]').tooltip();
     if(localStorage.getItem("beenhere")) {
-	tooltip_cycle_through()
+	tooltip_cycle_through();
     } else {
-	$('#helper').show()
-	localStorage.setItem("beenhere",1)
+	$('#helper').show();
+	localStorage.setItem("beenhere",1);
     }
-    load_tsv_score()
-    export_tree()
+    //load_tsv_score();
+    //tree_process("CISA-Coordinator-v2.01.json");
+    $.getJSON(current_tree).done(function(idata) {
+	parse_json(idata);
+    }).fail(function() {
+	console.log("Failed to Load CISA tree.  Loading default tree");
+    });
+    export_tree();
+    load_tsv_score();
 })
-var raw = [
-    {name:"Exploitation",id:254,children:[],parent:null,props:"{}"},
-    {name:"Virulence:none",id:1,children:[],parent:"Exploitation",props:"{}"},
-    {name:"Virulence:poc",id:2,children:[],parent:"Exploitation",props:"{}"},
-    {name:"Virulence:active",id:3,children:[],parent:"Exploitation",props:"{}"},
-    {name:"Technical Impact:none:slow",id:4,children:[],parent:"Virulence:none",props:"{}"},
-    {name:"Technical Impact:none:rapid",id:5,children:[],parent:"Virulence:none",props:"{}"},
-    {name:"Technical Impact:poc:slow",id:6,children:[],parent:"Virulence:poc",props:"{}"},
-    {name:"Technical Impact:poc:rapid",id:7,children:[],parent:"Virulence:poc",props:"{}"},
-    {name:"Technical Impact:active:slow",id:8,children:[],parent:"Virulence:active",props:"{}"},
-    {name:"Technical Impact:active:rapid",id:9,children:[],parent:"Virulence:active",props:"{}"},
-    {"name":"Mission & Well-being:none:slow:partial","id":11,"children":[],"parent":"Technical Impact:none:slow",props:"{}"},{"name":"Mission & Well-being:none:slow:total","id":12,"children":[],"parent":"Technical Impact:none:slow",props:"{}"},{"name":"Mission & Well-being:none:rapid:partial","id":13,"children":[],"parent":"Technical Impact:none:rapid",props:"{}"},{"name":"Mission & Well-being:none:rapid:total","id":14,"children":[],"parent":"Technical Impact:none:rapid",props:"{}"},{"name":"Mission & Well-being:poc:slow:partial","id":15,"children":[],"parent":"Technical Impact:poc:slow",props:"{}"},{"name":"Mission & Well-being:poc:slow:total","id":16,"children":[],"parent":"Technical Impact:poc:slow",props:"{}"},{"name":"Mission & Well-being:poc:rapid:partial","id":17,"children":[],"parent":"Technical Impact:poc:rapid",props:"{}"},{"name":"Mission & Well-being:poc:rapid:total","id":18,"children":[],"parent":"Technical Impact:poc:rapid",props:"{}"},{"name":"Mission & Well-being:active:slow:partial","id":19,"children":[],"parent":"Technical Impact:active:slow",props:"{}"},{"name":"Mission & Well-being:active:slow:total","id":20,"children":[],"parent":"Technical Impact:active:slow",props:"{}"},{"name":"Mission & Well-being:active:rapid:partial","id":21,"children":[],"parent":"Technical Impact:active:rapid",props:"{}"},{"name":"Mission & Well-being:active:rapid:total","id":22,"children":[],"parent":"Technical Impact:active:rapid",props:"{}"},
-    {"name":"Track:none:slow:partial:low","id":24,"children":[],"parent":"Mission & Well-being:none:slow:partial",props:"{}"},
-    {"name":"Track:none:slow:partial:medium","id":25,"children":[],"parent":"Mission & Well-being:none:slow:partial",props:"{}"},
-    {"name":"Track:none:slow:partial:high","id":26,"children":[],"parent":"Mission & Well-being:none:slow:partial",props:"{}"},
-    {"name":"Track:none:slow:total:low","id":27,"children":[],"parent":"Mission & Well-being:none:slow:total",props:"{}"},
-    {"name":"Track:none:slow:total:medium","id":28,"children":[],"parent":"Mission & Well-being:none:slow:total",props:"{}"},
-    {"name":"Track*:none:slow:total:high","id":29,"children":[],"parent":"Mission & Well-being:none:slow:total",props:"{}"},
-    {"name":"Track:none:rapid:partial:low","id":30,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
-    {"name":"Track:none:rapid:partial:medium","id":31,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
-    {"name":"Attend:none:rapid:partial:high","id":32,"children":[],"parent":"Mission & Well-being:none:rapid:partial",props:"{}"},
-    {"name":"Track:none:rapid:total:low","id":33,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
-    {"name":"Track:none:rapid:total:medium","id":34,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
-    {"name":"Attend:none:rapid:total:high","id":35,"children":[],"parent":"Mission & Well-being:none:rapid:total",props:"{}"},
-    {"name":"Track:poc:slow:partial:low","id":36,"children":[],"parent":"Mission & Well-being:poc:slow:partial",props:"{}"},
-    {"name":"Track:poc:slow:partial:medium","id":37,"children":[],"parent":"Mission & Well-being:poc:slow:partial",props:"{}"},
-    {"name":"Track*:poc:slow:partial:high","id":38,"children":[],"parent":"Mission & Well-being:poc:slow:partial",props:"{}"},
-    {"name":"Track:poc:slow:total:low","id":39,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
-    {"name":"Track*:poc:slow:total:medium","id":40,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
-    {"name":"Attend:poc:slow:total:high","id":41,"children":[],"parent":"Mission & Well-being:poc:slow:total",props:"{}"},
-    {"name":"Track:poc:rapid:partial:low","id":42,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
-    {"name":"Track:poc:rapid:partial:medium","id":43,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
-    {"name":"Attend:poc:rapid:partial:high","id":44,"children":[],"parent":"Mission & Well-being:poc:rapid:partial",props:"{}"},
-    {"name":"Track:poc:rapid:total:low","id":45,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
-    {"name":"Track*:poc:rapid:total:medium","id":46,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
-    {"name":"Attend:poc:rapid:total:high","id":47,"children":[],"parent":"Mission & Well-being:poc:rapid:total",props:"{}"},
-    {"name":"Track:active:slow:partial:low","id":48,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
-    {"name":"Track:active:slow:partial:medium","id":49,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
-    {"name":"Attend:active:slow:partial:high","id":50,"children":[],"parent":"Mission & Well-being:active:slow:partial",props:"{}"},
-    {"name":"Track:active:slow:total:low","id":51,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
-    {"name":"Attend:active:slow:total:medium","id":52,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
-    {"name":"Act:active:slow:total:high","id":53,"children":[],"parent":"Mission & Well-being:active:slow:total",props:"{}"},
-    {"name":"Attend:active:rapid:partial:low","id":54,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
-    {"name":"Attend:active:rapid:partial:medium","id":55,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
-    {"name":"Act:active:rapid:partial:high","id":56,"children":[],"parent":"Mission & Well-being:active:rapid:partial",props:"{}"},
-    {"name":"Attend:active:rapid:total:low","id":57,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
-    {"name":"Act:active:rapid:total:medium","id":58,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
-    {"name":"Act:active:rapid:total:high","id":59,"children":[],"parent":"Mission & Well-being:active:rapid:total",props:"{}"},
-
-]
+var raw = [];
 
 document.onkeyup = function(evt) {
     evt = evt || window.event;
@@ -114,12 +92,73 @@ function usage_privacy() {
     var title = 'Usage and Privacy'
     swal(title,msg)
 }
+
+function dynamic_mwb() {
+    var mpdata = $('#mwb').data('parent');
+    var mcdata = {}
+    $('#mwb select').each(
+	(i,k)  => {
+	    var opchoice = $(k).val();
+	    var cdata = $(k).data('moptions');
+	    if('label' in cdata) {
+		/* Global variable for export then local var*/
+		var tscore = {};
+		tscore[cdata['label']] = opchoice;
+		mcdata[cdata['label']] = opchoice;
+		current_score.push(tscore);
+	    } else {
+		console.log("Error cannot find relationship information with label");
+	    }
+	});
+    var keys_match = Object.keys(mcdata).length
+    var result = "Unknown/Error";
+    var soptions = mpdata.options
+    find_score:
+    for(var i=0; i<soptions.length; i++) {
+	var current_match = {};
+	if('child_combinations' in soptions[i]) {
+	    var spt = soptions[i]['child_combinations'];
+	    for(var j=0; j<spt.length; j++) {
+		for(var k=0; k < spt[j].length; k++) {
+		    if(('child_label' in spt[j][k]) && (spt[j][k].child_label in mcdata)) {
+			var spk = spt[j][k]
+			var myopt = mcdata[spt[j][k].child_label];
+			if(spk.child_option_labels.findIndex(
+			    x => x == myopt) > -1) {
+			    current_match[spt[j][k].child_label] = 1;
+			    if(Object.keys(current_match).length == keys_match) {
+				result = soptions[i].label;
+				break find_score;
+			    }
+			}
+		    }
+		}
+	    }
+	}
+    }
+    $('#wscore').html(result);
+    $('#wsdiv').show();
+    $('circle[nameid="'+result.toLowerCase()+'"]').parent().simClick();
+    $('#wsdiv').fadeOut('slow');
+    setTimeout(function() {
+	$('#mwb').modal('hide');
+	var ptranslate = "translate(120,-250)";
+	if(window.innerWidth <= 1000)
+	    ptranslate = "translate(30,-90) scale(0.4,0.4)";
+	d3.select("#pgroup").transition()
+	    .duration(600).attr("transform", ptranslate);
+	export_show();
+    }, 2000)    
+}
+
 function calculate_mwb() {
     var options = ["Low","Medium","High"]
     var mp = parseInt($('#mp').val())
     var wb = parseInt($('#wb').val())
     var result = options[Math.max(mp,wb)]
-    var xcolor={"Low":"text-success","Medium":"text-warning","High":"text-danger"}
+    var xcolor={"Low":"text-success",
+		"Medium":"text-warning",
+		"High":"text-danger"}
     $('#wscore').removeClass().addClass(xcolor[result]).html(result)
     $('#wsdiv').show()
     $('circle[nameid="'+result.toLowerCase()+'"]').parent().simClick()
@@ -133,17 +172,55 @@ function calculate_mwb() {
 	    .duration(600).attr("transform", ptranslate)
 	export_show()
     }, 900)
+
     
 }
-function export_show() {
+function export_show(novector) {
     var q = $('#exporter').html()
     $('#graph').append(q)
     if($('#cve_samples').val().match(/^(cve|vu)/i))
 	$('.exportId').val($('#cve_samples').val())
+    if(novector == true)
+	return
+    setTimeout(make_ssvc_vector,1000);
 }
+function make_ssvc_vector() {
+    var tstamp = new Date()
+    var labels = current_score.map(x => Object.keys(x)[0]);
+    var vals = current_score.map((x,i) => x[labels[i]]);
+    labels.push("Decision");
+    /* last node in graph */
+    var finals =  $('#graph svg g.node text:last').text();
+    vals.push(finals);
+    /* SSVCv2/Ps:Nm/T:T/U:E/1605040000/
+       For a vulnerability with no or minor Public Safety Impact, 
+       total Technical Impact, and efficient Utility, 
+       which was evaluated on Nov 10, 2020. */
+    var computed = "SSVCv2/"
+    var ochoice =  labels.map((k, i) => {
+	var ox = {}
+	ox[k] = vals[i]
+	var lhs = k[0].toUpperCase()
+	if (k in ssvc_short_keys)
+	    lhs = ssvc_short_keys[k]
+	var rhs = vals[i][0].toUpperCase()
+	if(vals[i] in ssvc_short_keys)
+	    rhs = ssvc_short_keys[vals[i]]
+	computed = computed + lhs+":"+rhs+"/"
+	return ox
+    })
+    /* Save the ochoice object for Export to JSON*/
+    $('#graph .Exporter').attr('data-ochoice',JSON.stringify(ochoice))
+    /* new Time string will be ISO 8601 "2021-09-28T21:46:38Z"
+       q=new Date().toISOString().replace(/\..*$/,'Z') */
+    //computed = computed + String(parseInt(tstamp.getTime()/1000))+"/"
+    var q = new Date().toISOString().replace(/\..*$/,'Z');
+    computed = computed+q+"/"
+    $('.ssvcvector').html(computed);
+}    
 function export_tree() {
     /* First column is the decision in this tree */
-    var tchoices = []
+    var toptions = []
     var yhead = ["Decision"]
     var yprops = {}
     export_schema.decisions_table = raw.filter(x => {
@@ -160,68 +237,63 @@ function export_tree() {
     }).map(x => x.name.split(":").
 	   reduce((z,y,i) => {
 	       z[yhead[i]] = y
-	       if(!tchoices[i]) {
-		   tchoices[i] = [{label: y, description: y}]
+	       if(!toptions[i]) {
+		   toptions[i] = [{label: y, description: y}]
 	       }
-	       else if (!tchoices[i].find(t => t.label == y))
-		   tchoices[i].push({label: y, description:y})
+	       else if (!toptions[i].find(t => t.label == y))
+		   toptions[i].push({label: y, description:y})
 	       return z
 	   },{}))
     /* Now the decision points should be moved to the end of the array */
     yhead.push(yhead.shift())
-    tchoices.push(tchoices.shift())
+    toptions.push(toptions.shift())
     export_schema.decision_points = yhead.map((a,i) => {
-	var ax = {label: a, decision_type: "simple", choices: tchoices[i]}
+	var ax = {label: a, decision_type: "simple", options: toptions[i]}
 	return ax
     })
-    //console.log(tchoices)
+    //console.log(toptions)
     //export_schema.decisions = tdecisions.map((x,i) => Object.assign(x,{color: acolors[i]}))
     /*
-    export_schema.decisions = Object.keys(tdecisions).map((n,i) => {
-	return {label: n, description: n, color:acolors[i]}})
-	*/
+      export_schema.decisions = Object.keys(tdecisions).map((n,i) => {
+      return {label: n, description: n, color:acolors[i]}})
+    */
     //return allrows;
-/* "[{"Exploitation":"none"},{"Utility":"partial"},
-   {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
-   {"Decision":"defer"}]" */
+    /* "[{"Exploitation":"none"},{"Utility":"partial"},
+       {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
+       {"Decision":"defer"}]" */
 }
-function export_vul(includetree) {
+function export_json() {
+    var includetree = $('#graph .includetree').is(':checked')
+    $('.Exporter').css({'pointer-events':'none'});
     var tstamp = new Date()
-    var oexport = { timestamp: tstamp.toISOString(),
-		    timestamp_epoch_ms: tstamp.getTime(),
-		    role: $('#graph .exportRole').val() || "Unknown",
+    var oexport = { role: $('#graph .exportRole').val() || "Unknown",
 		    id: $('#graph .exportId').val() || "Unspecified",
-		    version: "2.0"
+		    version: "2.0",
+		    generator: _tool
 		  }
-    var labels = $('#graph svg g.node text').map((i,w) => $(w).html()).toArray()
-    var vals = $('#graph svg g.pathlink textPath.chosen').map((i,w) => $(w).html()).toArray()
-    vals.push(labels[labels.length-1])
-    labels[labels.length-1] = "Decision"
-    /* SSVCv2/Ps:Nm/T:T/U:E/1605040000/
-       For a vulnerability with no or minor Public Safety Impact, 
-       total Technical Impact, and efficient Utility, 
-       which was evaluated on Nov 10, 2020. */
-    var computed = "SSVCv2/"
-    var ochoice =  labels.map((k, i) => {
-	var ox = {}
-	ox[k] = vals[i]
-	computed = computed + k[0].toUpperCase()+":"+vals[i][0].toUpperCase()+"/"
-	return ox
-    })
-    computed = computed + String(parseInt(tstamp.getTime()/1000))+"/"
-    oexport['computed'] = computed
-    oexport['choices'] = ochoice
+    oexport['computed'] = $('#graph .ssvcvector').html();
+    
+    oexport['timestamp'] =  $('#graph .ssvcvector').html().split('/').
+	slice(-2,-1)[0]
+
+    /* Copy current_score as is to options that were selected */
+    oexport['options'] = current_score;
+    oexport['$schema'] = location.origin + location.pathname + current_schema
+    oexport['decision_tree_url'] = location.origin + location.pathname +
+	current_tree;
     var a = document.createElement("a")
     var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
     if (includetree) {
 	oexport['decision_tree'] = export_schema
-	download_filename = "tree_and_path-"+oexport.id+"_"+oexport.role+"_json.txt"	
+	download_filename = "tree_and_path-"+ oexport.id + "_" + oexport.role +
+	    "_json.txt"	
     } 
     a.href = "data:text/plain;charset=utf-8,"+
 	encodeURIComponent(JSON.stringify(oexport,null,2))
     a.setAttribute("download", download_filename)
     a.click()
     a.remove()
+    $('.Exporter').css({'pointer-events':'all'});    
 }
 
 function readFile(input) {
@@ -242,8 +314,9 @@ function readFile(input) {
 	    else
 		tsv_load(reader.result)
 	}catch(err) {
-	    topalert("Reading data in file as text failed, Sorry check format "+
-		     "and try again!","danger")
+	    reset_form();
+	    topalert("Reading data in file as text failed, Sorry check format"+
+		     " and try again!","danger")
 	    console.log(err)
 	}
     };
@@ -257,37 +330,156 @@ function readFile(input) {
 function topalert(msg,level) {
     if(!level)
 	level = "info"
+    var mw = $('#topalert').parent().width()
+    $('#topalert').width(String(mw)+"px");
     $('#topalert').html(msg).removeClass().addClass("alert alert-"+level,msg).fadeIn("fast",function() {
 	$(this).delay(2000).fadeOut("slow"); })
 }
 function tree_process(w) {
     var ptree = $(w).val()
-    if(ptree == "import")
-	return $('#dtreecsvload').click()
+    if(ptree == "import") {
+	if(navigator.userAgent.indexOf("Chrome") < 0) {
+	    $('#dtreecsvload').show()
+	    $('#dtreecsvload').click()
+	    topalert("Choose the file to upload below")
+	} else 
+	    $('#dtreecsvload').click()
+	return
+    }
     $.get(ptree, function(idata) {
         if(ptree.match(/\.json$/i))
 	    parse_json(idata)
 	else
 	    parse_file(idata)
+	/* remove .json from the name. This method uses the file name */
 	var ptree_name = ptree.replace(/\.[^\.]+$/,'')
-	$('.cover_heading_append').remove()
-	$('.cover-heading').append(' <div class="cover_heading_append d-inline">('+
-				   ptree_name+')</div>')
-	
+	$('.cover_heading_append').html('('+ptree_name+')');
     })
+}
+function create_permalink(copyme){
+    $('.permalink').removeClass('d-none');
+    var purl = location.origin+location.pathname+"#"+
+	$("#graph .ssvcvector").html()
+    var uparts = [".ssvcvector",".exportId",".exportRole"]
+    for (var i=0; i<uparts.length; i++) {
+	if($("#graph "+uparts[i]).val()) {
+	    purl = purl +"&"+$("#graph "+uparts[i]).val()
+	}
+    }
+    $("#graph .permalink").html(purl);
+    if(copyme)
+	copym($("#graph .permalink")[0],true);
+    else
+	return purl;
+}
+function finish_permalink(plparts,pchildren) {
+    if(pchildren && pchildren.length > 0) {
+	var index = pchildren[0]['index']
+	current_score.splice(index,0,...pchildren.map(x => {
+	    var y = {};
+	    y[x.childlabel] = x.childval;
+	    return y;
+	}));
+    }
+    var ptranslate = "translate(120,-250)"
+    if(window.innerWidth <= 1000)
+	ptranslate = "translate(30,-90) scale(0.4,0.4)"
+    d3.select("#pgroup").transition()
+	.duration(600).attr("transform", ptranslate)
+    setTimeout(function() {
+	export_show(true)
+	if(plparts[0])
+	    $('#graph .ssvcvector').html(plparts[0]);
+	if(plparts[1])
+	    $('#graph .exportId').val(plparts[1])
+	if(plparts[2])
+	    $('#graph .exportRole').val(plparts[2]);
+	$('#biscuit').fadeOut()
+    }, 800)
+}
+function permalink() {
+    if(location.hash == "")
+	return;
+    topalert("Now loading permalink URL parameters","success");
+    dt_clear();
+    dt_start();
+    try {
+	$('#biscuit').fadeIn();
+	var plink = location.hash.substr(1);
+	var pchildren = [];
+	var plparts = plink.split("&");
+	var fm = plparts[0].split("/");
+	$("#mwb").attr("data-override",1);
+	/* "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator"
+	   OR 
+	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/2021-01-09/&CVE-2014-01-01&Coordinator" */	
+	var sI = {}
+	var last_precheck = ""
+	for(var i=1;i<fm.length-2;i++) {
+	    var dtup = fm[i].split(":");
+	    var fstep = export_schema.decision_points.filter(x => x.key == dtup[0]);
+	    if(fstep.length != 1) {
+		console.log("This decision point does not exist");
+		console.log(dtup);
+		continue;
+	    }
+	    var fopt = fstep[0].options.filter(x => x.key == dtup[1]);
+	    if(fstep[0].label in ischild) {
+		console.log("This is a child decision, do it later");
+		pchildren.push({
+		    index: i-1,
+		    childlabel: fstep[0].label,
+		    childval: fopt[0].label
+		});
+		continue;
+	    }
+	    var precheck = fopt[0].label.toLowerCase();
+	    sI[precheck] = setInterval(
+		function(u) {
+		    if($('.prechk-'+u).length == 1) {
+			$('.prechk-'+u).simClick();
+			clearInterval(sI[u]);
+			delete sI[u];
+			if(u == last_precheck)
+			    finish_permalink(plparts,pchildren);
+			return;
+		    }
+		},600*i,precheck);
+	    last_precheck = precheck;
+	}
+	setTimeout(function() {
+	    for (let k in sI) {
+		console.log("Pending jobs incomplete after 20 seconds");
+		clearInterval(sI[k]);
+		delete sI[k];
+	    }
+	},20000)
+	console.log(sI);
+    }catch(err) {
+	console.log(err);
+	topalert("Failed to parse Permalink URL!","error")
+    }
+
 }
 function process(w) {
     var cve = $(w).val()
-    if(cve == "import")
-	return $('#cvetsvload').click()
+    if(cve == "import") {
+	if(navigator.userAgent.indexOf("Chrome") < 0) {
+	    $('#cvetsvload').show()
+	    topalert("Choose the file to upload below")
+	} else 
+	    $('#cvetsvload').click()
+	return
+    }
     var cve_data = $('#'+cve).data()
     if(!cve_data) {
 	alert("Some error in loading this CVE data check the template and try again")
 	return
     }
-    dt_clear()
-    $('#biscuit').fadeIn()
-    dt_start()
+    dt_clear();
+    $('#biscuit').fadeIn();
+    dt_start();
+    
     $('#cve_table tbody tr td').remove()
     var steps = ['Exploit','Virulence','Technical']
     var stimes = [1600,3200,5100]
@@ -350,32 +542,90 @@ function tsv_load(data) {
     if(rmv) 
 	topalert("Loaded TSV CVE samples count of "+scores.length,"success")
 }
-function parse_json(xraw) {
-    var zraw = []
-    var tm = JSON.parse(xraw)
+function create_short_keys(x,uniq_keys) {
+    /* If a key is provided for short_key representation use it 
+       if not detect one using the last */
+    if("key" in x) {
+	ssvc_short_keys[x.label] = x.key
+	return true;
+    }
+    else {
+	var iuniq = 0
+	ssvc_short_keys[x.label] = x.label[0].toUpperCase()
+	while (x.label[iuniq] in uniq_keys) {
+	    iuniq = iuniq + 1;
+	    ssvc_short_keys[x.label] = x.label[iuniq].toUpperCase()
+	}
+	uniq_keys[x.label[iuniq]] = 1;
+	/* Create a key if one does not exist for reference in the full
+	   exported JSON */
+	x["key"] = ssvc_short_keys[x.label];
+    }
+}
+function parse_json(xraw,paused) {
+    var zraw = [];
+    var tm;
+    if(typeof(xraw) == "string") 
+	tm = JSON.parse(xraw)
+    else
+	tm = xraw
+    if('decision_tree' in tm) {
+	/* This has a decision_tree and a score - a computed and provision
+	   schemas together*/
+	tm = tm.decision_tree;
+    }
+    
     if(!('decision_points' in tm)) {
 	topalert("JSON schema has no decision_points","danger")
 	return
     }
     if(!('decisions_table' in tm)) {
-	topalert("JSON schema has no decision table, we can't help you with that","danger")
-	return
+	topalert("JSON schema has no decision table, we can't help you with that","danger");
+	console.log(tm);
+	return;
     }
     /* Save JSON for export*/
     export_schema = tm
-    
-    /* decisions_points have a label field which we care about with type != child */    
-    var x = tm.decision_points.filter(q => q["decision_type"] != "child").map(r => r.label)
-    //console.log(x)
+    /* This is temp key to find full child elements */
+    var xkeys = {};
+    /* Find array that are children as children will also have the decision 
+       type simple */
+    ischild = tm.decision_points.reduce(
+	(x,y) => {
+	    /* Use either key or label to create a hash of everyone */
+	    xkeys[y.label] = y;
+	    if("key" in y)
+		xkeys[y.key] = y.label
+	    /* Use either key or label to mark the xkeys to a child
+	       decision tree */	    
+	    if("children" in y) {
+		isparent[y.label] = [];
+		y.children.map(z => {
+		    var tx = z.label;
+		    if(("key" in z) && (z.key != "")) {
+			tx = xkeys[z.key];
+		    }
+		    isparent[y.label].push(xkeys[tx]);
+		    x[tx] = 1;
+		});
+	    }
+	    return x;
+	},{});
+    /* Check to make sure neither key nor label is in a ischild object */
+    var x = tm.decision_points.filter(
+	x => (!(x.label in ischild))).map(r => r.label)
     var y = tm.decisions_table
     //console.log(y)
     var yraw = [...Array(x.length)].map(u => [])
     var id = 1
     var thash = {}
     var decisions = tm.decision_points.filter(x => x.decision_type == "final")
+    if('title' in tm)
+	$('.cover_heading_append').html('('+tm.title+')');
     if(decisions.length != 1) {
-	topalert("JSON schema has no decisions marked as final, this is required!","danger")
-	return
+	topalert("JSON schema has no decisions marked as final, assuming the last element is the \"Final\" decision.","warning")
+	tm.decision_points[tm.decision_points.length - 1]['decision_type'] = "final"
+	decisions = [tm.decision_points[tm.decision_points.length - 1]]
     }    
     var decision_keyword = decisions[0].label
     //console.log(decisions)
@@ -384,13 +634,13 @@ function parse_json(xraw) {
 	//var tname = y[i].pop()+":"+y[i].join(":")
 	//console.log(y[i])
 	/* Decision table should have the "outcome" or "decision" fiel if not skip 
-	 this entry */
+	   this entry */
 	if(!(decision_keyword in y[i]))
 	    continue
 	var tname = y[i][decision_keyword]+":"+x.map(t => y[i][t]).slice(0,-1).join(":")
 	for( var j=0; j< x.length-1; j++) {
 	    //var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
-	    var tparent = x[x.length-2-j]+":"+x.slice(0,x.length-2-j).map(q => y[i][q]).join(":")	    
+	    var tparent = x[x.length-2-j]+":"+x.slice(0,x.length-2-j).map(q => y[i][q]).join(":")
 	    //var tparent = x[x.length-1-j]+":"+x.slice(0,x.length-1-j).map(q => y[i][q]).join(":")
 	    if(!(tname in thash))
 		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]}
@@ -401,7 +651,7 @@ function parse_json(xraw) {
 	    yraw[j].push(yt)	    
 	}
     }
-		
+    
     for(var j=yraw.length; j> -1; j--)  {
 	if(yraw.length > 0)
 	    zraw = zraw.concat(yraw[j])
@@ -411,12 +661,23 @@ function parse_json(xraw) {
     zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
     /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
     raw = zraw
-    topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
-	     y.length+" possible decisions, You can use it now!","success")
+    //console.log(raw)
+    topalert("Decision tree JSON has been updated with "+raw.length+
+	     " nodes, with "+y.length+" possible outcomes, You can "+
+	     "use it now!","success")
     dt_clear()
     /* Create label fields if they exists*/
+    var lastdiv = "";
+    /* Unique keys for decision points*/
+    var duniq_keys = {};
+    /* unique keys for choices under decision points*/
+    var ouniq_keys = {};
     tm.decision_points.map(x => {
-	var choices_html = x.choices.reduce((h,r) => {
+	create_short_keys(x,duniq_keys);
+	var options_data = {}
+	var options_html = x.options.reduce((h,r) => {
+	    create_short_keys(r,ouniq_keys);
+	    options_data[r.label] = r.description;
 	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1)
 	    return  h + "<b>"+rlabel+"</b>&nbsp;"+r.description+"<hr>"
 	},"<h5>"+x.label+"</h5>")
@@ -425,10 +686,47 @@ function parse_json(xraw) {
 	    $("."+hdiv).remove()
 	    $('body').append($('<div/>').addClass("d-none "+hdiv))
 	}
-	$("."+hdiv).html(choices_html)
-    })
+	$("."+hdiv).html(options_html)
+	if(x.label in isparent) {
+	    /* Save the entier decision object in data parent value*/
+	    $('#mwb').attr("data-parent",JSON.stringify(x));
+	    $("."+hdiv+" h5").after("<p>(Complex Decision)</p>");
+	    //console.log(isparent[x.label]);
+	    $("#mwb h5").html(x.label + " (Cummulative Score)");
+	    //('#wbtable tr')
+	    $("#wbtable tr").remove();
+	    isparent[x.label].forEach( (t,k) => {
+		var stdiv = safedivname(t.label);
+		var tselect = $("<select/>").addClass("form-control s-"+stdiv).
+		    attr("data-moptions",JSON.stringify(t));
+		t.options.forEach((v,l) => {
+		    tselect.append($("<option/>").attr({
+			"value":v.label}).text(v.label));
+		});
+		var tlabel = $("<span>").html(t.label+" ")
+		    .append($("<a/>").attr({
+			"class": "circletext",
+			"onclick": "shwhelp(this)",
+			"data-tdiv": stdiv,
+			"href": "javascript:void(0)"
+		    }).html("?"))
+		var tr = $("<tr/>").append($("<td/>").append(tlabel)).
+		    append($("<td/>").append(tselect));
+		$("#wbtable").append(tr);
+		var addcontent = "<blockquote>Depends on "+String(k+1)
+		addcontent += $("."+stdiv).html()+"</blockquote>";
+		$("."+hdiv).append(addcontent);
+		$('#mwb .btn-primary').removeAttr('onclick');
+		$('#mwb .btn-primary').attr({'onclick': 'dynamic_mwb()'});
+	    });
+	}
+	lastdiv = hdiv
+	//console.log(options_data);
+	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
+    });
+    $("."+lastdiv).addClass("Decision");
     var classes = []
-    var decision_div = decisions[0].choices.reduce((h,r) => {
+    var decision_div = decisions[0].options.reduce((h,r) => {
 	classes.push(safedivname(r.label))
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
 				     css({color:r.color}).html(r.label))
@@ -441,23 +739,47 @@ function parse_json(xraw) {
     //console.log(classes)
     //console.log(decision_div)
     $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
+    permalink();
+    $('#dtreecsvload').hide();
 }
+function shwhelp(w) {
+    var iconPos = w.getBoundingClientRect();
+    var tm = $(w).data('tdiv')
+    if(tm) {
+	$('#mpopup').css({left:(iconPos.right + 10) + "px",
+			  top:(window.scrollY + iconPos.top - 20) + "px",
+			  "max-width": "-moz-available",
+			  "max-width": "-webkit-fill-available",
+			  "max-width": "stretch",
+			  "overflow-y": "auto",
+			  "z-index":1050,
+			  display:"block"});
+	$('#mpopup').html($('.'+tm).html())
+	$('#mwb').on('hidden.bs.modal', function (e) {
+	    $('#mpopup').hide();
+	})
+    }
+    $('#mpopup').show()
+}
+
 
 function safedivname(instr) {
     var uri_esc = encodeURIComponent(instr)
     var safestr = btoa(uri_esc.replace(/%([0-9A-F]{2})/g,
-				       (m, p)  => String.fromCharCode('0x' + p)))
-    var fstr = "d-"+safestr.replace(/[\+\/\=]/gi,(m,p) => { return m.charCodeAt(0) })
-    return fstr.substr(0,14)
+				       (m, p)  =>
+				       String.fromCharCode('0x' + p)));
+    var fstr = "d-"+safestr.replace(/[\+\/\=]/gi,
+				    (m,p) => { return m.charCodeAt(0) });
+    return fstr.substr(0,14);
 }
 
 
 function create_export_schema_dtable(yi,x) {
     export_schema.decisions_table.push(yi.reduce((a,b,c) => {
 	/* Add labels that do not exist */
-	if(export_schema.decision_points[c]['choices']
+	if(export_schema.decision_points[c]['options']
 	   .filter(d => ('label' in d) && (d.label == b)).length != 1)
-	    export_schema.decision_points[c]['choices'].push({label: b, description:b})
+	    export_schema.decision_points[c]['options'].push({label: b, description:b})
 	a[x[c]] = b
 	return a; },{}))
 }
@@ -470,14 +792,11 @@ function parse_file(xraw) {
     /* CSV or TSV looks like 
        ID,Exploitation,Utility,TechnicalImpact,SafetyImpact,Outcome
     */
-    console.log(xraw)
     var xarray = xraw.split('\n')
-    console.log(xarray)
     var xr = xarray.map(x => x.split(/[\t,]+/))
     /* Remove first row has the headers and pass the rest to variable y */
     var y = xr.splice(1)
     /* Check if rowID first column of second row to match not number*/
-    console.log(xr)
     var is_ssvc_v1 = y[0][0].match(/\D+/) ? false : true
     /* Remove ID column in the first row to create x*/
     if (is_ssvc_v1) 
@@ -485,15 +804,15 @@ function parse_file(xraw) {
     else
 	var x = xr[0]
     /* Now xr looks like below for ssvc csv v1 */
-    /* (6)[["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"]] */
+    /* [["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"]] */
     //var yraw = [[],[],[],[],[]]
     /* Register the export schema decision points, assume all decisions are simple */
-    export_schema.decision_points = x.map(dc =>
-					  {
-					      var ix = {decision_type:"simple", choices:[]}
-					      ix.label =  dc
-					      return ix
-					  })
+    export_schema.decision_points = x.map(
+	dc => {
+	    var ix = {decision_type:"simple", options:[]}
+	    ix.label =  dc
+	    return ix
+	})
     /* make the last column final decision/outcome/action */
     export_schema.decision_points[export_schema.decision_points.length-1].decision_type="final"
     /* Initialize Empty arrray */
@@ -507,6 +826,7 @@ function parse_file(xraw) {
 	if(is_ssvc_v1)
 	    y[i].shift()
 	/* Add lame CSV/TSV data to export schema */
+	//console.log(y[i]);
 	create_export_schema_dtable(y[i],x)
 	var tname = y[i].pop()+":"+y[i].join(":")
 	//console.log(tname)
@@ -544,8 +864,7 @@ function parse_file(xraw) {
 	     y.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success")
     dt_clear()
     export_schema.decision_points[export_schema.decision_points.length-1].
-	choices.map((x,i) => lcolors[x.label] = acolors[i])
-										      
+	options.map((x,i) => lcolors[x.label] = acolors[i])
 }
 
 function add_invalid_feedback(xel,msg) {
@@ -699,7 +1018,9 @@ function update(source) {
 	.attr("x",function(d) { return check_children(d,"-55","+20") })
 	.attr("y",function(d) { return check_children(d,"-37","0") })
 	.attr("dy", ".35em")
-	.text(function(d) { return d.name.split(":")[0]; })
+	.attr("class",function(d) {
+	    return "prechk-"+d.name.split(":")[0].toLowerCase()
+	}).text(function(d) { return d.name.split(":")[0]; })
 	.style("font-size",font)
 	.style("fill", function(d) { var t = d.name.split(":")[0]
 				     var x = "white"
@@ -794,7 +1115,7 @@ function update(source) {
 	d.x0 = d.x;
 	d.y0 = d.y;
     });
-    setTimeout(update_links,1500)
+    setTimeout(update_links,1500);
 }
 function pathclick(w) {
     var sid = $(this).attr("csid")
@@ -836,7 +1157,7 @@ function update_links() {
 	    .attr("csid",csid)
 	    .text(text).attr("startOffset",doffset+"%")
 	    .on("click",pathclick)
-	    //.each(function() { console.log("Completed") })
+	//.each(function() { console.log("Completed") })
 	//$(this).remove() "fill","#17a2b8") "text-anchor","middle"
     })
 }
@@ -857,17 +1178,28 @@ function showdiv(d) {
     var addons = ''
     var safename = safedivname(name)
     //console.log(name,safename)
+    /* Default left position*/
+    var leftpos = String(iconPos.right + 10) + "px"
+    if(window.innerWidth - iconPos.right < iconPos.right) {
+	/* right half of screen, move left position */
+	leftpos = String(iconPos.left - $('#mpopup').width()) +"px"
+    }
+    
     if($('.'+safename).length == 1) {
 	$('#mpopup').html($('.'+safename).html())
-	$('#mpopup').css({left:(iconPos.right + 10) + "px",
+	$('#mpopup').css({left: leftpos,
 			  top:(window.scrollY + iconPos.top - 20) + "px",
-			  display:"block"})
-
+			  display:"block"});
     }
 }
 function hidediv(d) {
     $('#mpopup').hide()
 }
+function checkclose() {
+    /* */
+    $('#mpopup').hide();
+}
+
 function dorightclick(d) {
     return
 }
@@ -885,6 +1217,14 @@ function closeSiblings(d) {
 
 function doclick(d) {
     if(showFullTree === false) {
+	if(d.parent && d.parent.name) {
+	    /* Virulence:none means Exploitation(i.e., d.parent.name) => none*/
+	    var dparent = d.parent.name.split(":").shift();
+	    var thash = {};
+	    thash[dparent] = d.name.split(":").pop();
+	    current_score.push(thash);
+	}
+	
 	if(('clickkill' in d) &&
 	   (d.clickkill === true)) {
 	    console.log("We have reached this already "+d)
@@ -895,7 +1235,11 @@ function doclick(d) {
 	   (d.name.indexOf("Mission ") == 0) ) {
 	    $('#wb').val(0)
 	    $('#mp').val(0)
-	    $('#mwb').modal()
+	    /* If mwb is overriden by permalink or full score reset it and ignore it*/
+	    if($("#mwb").data("override") == 1) 
+		$("#mwb").attr("data-override",0)
+	    else
+		$('#mwb').modal()
 	}
 	if('id' in d) {
 	    var idl = $('[csid="'+d.id+'"]').attr("id")
@@ -906,7 +1250,6 @@ function doclick(d) {
 	if(d.parent) 
 	    closeSiblings(d)
     }
-	    
     $('.pathlink').remove()    
     if (d.children) {
 	d._children = d.children;
@@ -972,6 +1315,7 @@ function showme(divid,vul_flag) {
 }
 
 function dt_start() {
+    current_score = [];
     showFullTree = false
     $('svg.mgraph').remove()
     var xraw = JSON.parse(JSON.stringify(raw))
@@ -984,15 +1328,17 @@ function dt_start() {
     }, 900)
 }
 function dt_clear() {
-    showFullTree = false
-    raw.map(x => {  x.children=[]; delete x._children;})
+    showFullTree = false;
+    current_score = [];
+    raw.map(x => {  x.children=[]; delete x._children;});
     /* Clear all graph to start */
-    $('svg.mgraph').remove()
-    $('#graph').html('')
+    $('svg.mgraph').remove();
+    $('#graph').html('');
 }
 
 function show_full_tree() {
     showFullTree = true
+    $('#graph .exportdiv').remove()
     $('svg.mgraph').remove()
     var xraw = JSON.parse(JSON.stringify(raw))
     treeData=grapharray_open(xraw)
@@ -1022,6 +1368,7 @@ function add_text(links) {
 		((d.source.y + d.target.y)/2) + "," +
 		((d.source.x + d.target.x)/2) + ")";
 	})
+	.attr("class",function(d) { return d.target.name.toLowerCase(); })
 	.attr("dy", ".35em")
 	.attr("text-anchor", "middle")
 	.text(function(d) {
@@ -1029,3 +1376,680 @@ function add_text(links) {
 	    return d.target.name;
 	});
 }
+function createHeaders(keys) {
+    var result = [];
+    for (var i = 0; i < keys.length; i += 1) {
+	result.push({
+	    id: keys[i],
+	    name: keys[i],
+	    prompt: keys[i],
+	    width: 65,
+	    align: "center",
+	    padding: 0
+	});
+    }
+    return result;
+}
+function deepsearch(obj,dir) {
+    var xobj = obj
+    var path = dir.split(".")
+    for(var i=0; i<path.length; i++) {
+	if(path[i] in xobj)
+	    xobj = xobj[path[i]]
+	else
+	    return null
+    }
+    return xobj
+}
+
+function export_pdf() {
+    $('.Exporter').css({'pointer-events':'none'})
+    var vul = $('#graph .exportId').val().toUpperCase();
+    if((vul == "") || (vul.indexOf("CVE") < 0)) {
+	createPDF(vul,"No further information available");
+	console.log("No vul information such as CVE");
+	return;
+    }
+    var cve_json_url = "https://olbat.github.io/nvdcve/";
+    $.getJSON(cve_json_url+vul+".json").done(function(d) {
+	var f = deepsearch(d,"cve.description.description_data.0.value");
+	if((!f) || (f == ""))
+	    f = "No further information available"
+	createPDF(vul,f);
+    }).fail(function() {
+	console.log("No CVE information available");
+	console.log(arguments);
+	$('.Exporter').css({'pointer-events':'all'});
+    })
+
+
+}
+function createPDF(vulnerability,cveinfo) {
+    //    Requirements for new updates for the ssvc-calc tool.
+    var role = $('#graph .exportRole').val() || "Unknown";
+    var vulid = $('#graph .exportId').val() || "Unspecified";
+    var includetree = $('#graph .includetree').is(':checked');        
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({putOnlyUsedFonts:true});
+    var coord = $('.cover_heading_append').html().replace(/^\s+(.+)\s+/g,'$1')
+    var vulnerability = $('#graph .exportId').val();
+    if(vulnerability == "")
+	vulnerability = "ID-Pending"
+    var title = "SSVC score for "+vulnerability+" "+coord
+    doc.setFont("helvetica", "bold");
+    var q = doc.getStringUnitWidth(title)
+    doc.text(title, 100-q*2.5, 10);
+    var steps = current_score.map(x => Object.keys(x)[0]);
+    var decisions = current_score.map((x,i) => x[steps[i]]);
+    var final_decision =  $('#graph svg g.node text:last').text();
+    //steps.push
+    decisions.push(final_decision);
+    // Last element name is hard-coded key word "Decision"
+    steps.push("Decision");
+    //var steps=["Exploitation","Virulence","Technical Impact","Mission & Well-Being","Decision"]
+    //var decisions = ["Active","Slow","Partial","Low","Track"]
+    var actions = []
+    var xOffset = 20
+    var yOffset = 30
+    var cradius = 3
+    var ysteps = 40
+
+    //rgb(40, 167, 69)
+
+    /* fill: rgb(176, 196, 222);
+       stroke: rgb(70, 130, 180);*/ 
+    var ij = 0;
+    for (var i=0; i< steps.length; i++) {
+	if(steps[i] in ischild) {
+	    console.log("Skipping this one as it is a child decision");
+	    console.log(steps[i]);
+	    continue;
+	}
+	var x = xOffset+ysteps*ij;
+	doc.setLineWidth(1);
+	doc.setFont("helvetica",'bold');
+	doc.setDrawColor(70,130,180);
+	doc.setFillColor(176, 196, 222);
+	if(i == steps.length - 1) {
+	    /* Last circle change color */
+	    if(final_decision in lcolors) {
+		doc.setDrawColor(192,192,192);
+		doc.setFillColor(lcolors[final_decision]);
+	    }
+	    
+	}
+	doc.circle(x, yOffset, cradius, "FD");
+        q = doc.getStringUnitWidth(steps[i])
+	//#343a40
+	doc.setTextColor(0x11,0x3a,0x40);
+	doc.setFontSize(12);
+	//doc.setFont(undefined,'bold')
+	doc.text(steps[i],x-q*2,yOffset-5);
+	if (i < steps.length-1) {
+	    /* Not Final decision */
+	    doc.line(x+3,yOffset,x+3+34,yOffset)
+	    //#17a2b8 !important
+	    doc.setTextColor(0x17,0xa2,0xb8);
+	    doc.setFont("courier","bolditalic");
+            doc.text(decisions[i],x+q*2,yOffset+4)
+	}
+	ij++;
+    }
+
+    //    rgb(40, 167, 69);
+    doc.setFont("courier");
+    //doc.setFontType("bolditalic");
+    doc.setFont("courier",'bolditalic')
+    var lastx = xOffset+ysteps*(ij-1)+10
+    if(final_decision in lcolors)
+	doc.setTextColor(lcolors[final_decision])
+    else
+	doc.setTextColor(1,1,1)
+    console.log(lastx);
+    doc.text(final_decision,lastx,yOffset+1);
+    
+    doc.setFont("helvetica",'bold');
+    doc.setTextColor(0,0,0);
+    doc.setFontSize(14);
+    xOffset = 12;
+    doc.text("Summary",xOffset,yOffset+13);
+    doc.setFontSize(12);
+    var vector_string = $('#graph .ssvcvector').html()
+
+    doc.setFont("helvetica","normal");
+    doc.text("Recommendation:",xOffset,yOffset+20);    
+    doc.text("SSVC Vector   :",xOffset,yOffset+25);
+    doc.text("Timestamp:",xOffset,yOffset+30);
+    doc.text("SSVC Role:",xOffset,yOffset+35);
+    doc.text("Vulnerability Info:",xOffset,yOffset+40);
+
+    doc.setFont("courier",'italic');
+    var ycve = vulnerability.toUpperCase()
+    if(ycve.indexOf("CVE") == 0) {
+	var link = 'https://nvd.nist.gov/vuln/detail/'+ycve
+	doc.setTextColor(0,0,255);
+	doc.textWithLink(vulnerability, xOffset+40, yOffset+40, {url: link});
+	doc.setLineWidth(0.5);
+	doc.setDrawColor(0,0,255);
+	doc.line(xOffset+40,yOffset+41,xOffset+40+33,yOffset+41)
+	//doc.text(xOffset+40,yOffset+20,link);
+	doc.setTextColor(0,0,0);
+    } else {
+	doc.text(vulnerability, xOffset+40, yOffset+40);
+    }
+    doc.text(vector_string,xOffset+40,yOffset+25);
+    q = doc.getStringUnitWidth(vector_string)
+    doc.addImage("icons8-copy-link-48-blue.png","PNG",60+q*4,yOffset+20,6,6);
+    var purl = create_permalink(false);
+    doc.link(61+q*4,yOffset+21,12,12,{url: purl});
+    var timeprint = "";
+    doc.setFont("courier",'italic');        
+    if(vector_string.match(/\/[0-9]+\/$/)) {
+	var ts = new Date(parseInt(vector_string.split('/').slice(-2,-1)[0]*1000));
+	timeprint = ts.toGMTString().replace("GMT","UTC");
+    } else {
+	var tmsec = Date.parse(vector_string.split('/').slice(-2,-1)[0]);
+	var ts = new Date(tmsec);
+	timeprint = ts.toGMTString().replace("GMT","UTC");
+    }
+    doc.setFont("courier","bolditalic");    
+    if(final_decision in lcolors) {
+	doc.setTextColor(lcolors[final_decision]);
+    }
+    doc.text(final_decision,xOffset+40,yOffset+20);
+    doc.setTextColor(0,0,0);
+    doc.setFont("courier",'italic');
+    doc.text(timeprint,xOffset+40,yOffset+30);
+    var role = coord;
+    doc.text(role,xOffset+40,yOffset+35);
+    var ynow = yOffset + 40
+    if(cveinfo.length > 28) {
+	/* Treat first line in a different way*/
+	var ft = cveinfo.match(/.{1,27}(\s|$)/g);
+	q = doc.getStringUnitWidth(vulnerability);	
+	doc.text(ft[0],xOffset+40+q*4.4,ynow);
+	ynow = ynow+5
+	cveinfo = cveinfo.substr(ft[0].length);
+	var f = cveinfo.match(/.{1,45}(\s|$)/g);
+	for (var j = 0; j<f.length; j++) {
+	    doc.text(f[j],xOffset+40,ynow);
+	    ynow = ynow + 5
+	}
+    } else {
+	ynow = ynow + 5
+    }
+    //doc.text(cveinfo,xOffset+40,yOffset+45);
+    doc.setFont("helvetica",'bold');
+    doc.setFontSize(14);
+    doc.text("Details",xOffset,ynow);
+    ynow = ynow + 7
+    var t = []
+    steps.forEach((x,i) => {
+	var ix = $('.'+safedivname(x)).data('options');
+	if(typeof(ix) != "object") return t.push("No information provided");
+	else if(decisions[i] in ix) return t.push($("<div>").html(ix[decisions[i]]).text());
+	return t.push("No information available")
+    })
+    doc.setFontSize(12);
+    for(var i = 0; i < t.length; i++) {
+	if(steps[i] in ischild) {
+	    continue;
+	}
+	if(steps[i] in isparent) {
+	    var q = isparent[steps[i]];
+	    var istring = "This is a cummulative score of \"";
+	    q.forEach(x => {
+		if('label' in x) {
+		    var t = current_score.forEach(
+			(b) => {
+			    if(x.label in b) {
+				istring += x.label +"\" => \""+b[x.label]+"\" and "
+			    }
+			},"");
+		    }
+	    })
+	    /* Replace the string with cummulative information */
+	    t[i] = istring.slice(0,-5) + ".  Review the full SSVC tree for details."
+	}
+	doc.setFont("helvetica",'bold');
+	doc.text(steps[i]+":",xOffset,ynow);
+	q = doc.getStringUnitWidth(steps[i])
+	
+	doc.setTextColor(0x17,0xa2,0xb8);
+	if(decisions[i] in lcolors)
+	    doc.setTextColor(lcolors[decisions[i]]);
+	doc.setFont("courier","bolditalic");
+	doc.text(decisions[i],xOffset+q*4.8,ynow);
+	doc.setTextColor(0,0,0);
+	doc.setFont("courier",'normal');
+	q = q + doc.getStringUnitWidth(decisions[i])
+
+	var f = t[i].match(/.{1,45}(\s|$)/g);	
+	doc.text("=> "+f[0],xOffset+q*5,ynow);
+	if(t[i].length<= f[0].length) {
+	    ynow = ynow +10
+            continue
+	}	
+	//console.log(t[i].substr(f[0].length));
+	f = t[i].substr(f[0].length).match(/.{1,65}(\s|$)/g);
+	for (var j = 0; j<f.length; j++) {
+	    doc.setFont("courier",'normal')
+	    ynow = ynow +5
+	    doc.text(f[j],xOffset,ynow);
+	}
+	ynow = ynow +10
+    }
+    doc.setFont("helvetica",'bold');
+    doc.text("Contact:",xOffset,ynow);
+    doc.setFont("courier",'normal');
+    doc.text("DHS CISA can be contacted at cisa@cisa.dhs.gov",xOffset+20,ynow);
+    var safetime = ts.toGMTString().replace(/[^a-z0-9]+/ig,'-');
+    var fulltree = includetree ? "-with-full-tree" : ""
+    var dfilename = "SSVC-"+role+"-"+vulid+"-"+safetime+fulltree+".pdf";
+    if(includetree)
+	appendtree(doc,dfilename)
+    else 
+	doc.save(dfilename);
+    $('.Exporter').css({'pointer-events':'all'});
+}
+function sigmoid(flen) {
+    var lasty = flen*(1/(1+Math.exp(0.5*8)));
+    var p =[]
+    for(var i=-8;i<8;i=i+0.3) {
+	y = flen*(1/(1+Math.exp(-0.5*i)))
+	//console.log(y,lasty,y-lasty);
+	p.push([0.8,y-lasty])
+	lasty = y;
+    }
+    return p;
+}
+function sigmoid_connect(flen,xstart,yc,sl,m,doc) {
+    /* sigmoid static set*/
+    //doc.text("a",xstart,150)
+    var ax = export_schema;    
+    var lasty = flen*(1/(1+Math.exp(0.5*8)));
+    var p = sigmoid(flen);
+    doc.setLineWidth(0.6);
+    doc.setDrawColor(70,130,180);
+    doc.setFillColor(176, 196, 222);
+
+    doc.lines(p,xstart,yc)
+    if(sl) {
+	doc.line(xstart,yc,xstart+40,yc);
+	doc.setFont("courier",'normal');
+	doc.setFontSize(10);
+	doc.text(ax.decisions_table[1][m],xstart+24,yc-1)
+    }
+    f = p.map(x=> [x[0],-1*x[1]])
+    doc.lines(f,xstart,yc)
+
+    //doc.circle(xstart,yc,3,"FD")
+    /*  Non edges nodes will use this color*/
+    d_fillColor = "#b0c4de";
+    d_drawColor = "#4682b4";
+    circles.push([xstart,yc,3,"FD",d_drawColor,d_fillColor])
+}
+function make_table(cdp,doc,ynow) {
+    /* Give it a complex decision point CDP */
+    var dims = [];
+    var x = [];
+    var y = [];
+    var xy = [];
+    xy.push([]);
+    var i = 0;
+    var j = 0;
+    cdp.options.forEach((d) => {
+	d.child_combinations.forEach((p) => {
+	    p.forEach((r) => {
+		var xory = dims.findIndex(q => q == r.child_label);
+		if(xory < 0) {
+		    dims.push(r.child_label)
+		    xory = dims.findIndex(q => q == r.child_label);
+		}
+		r.child_option_labels.forEach((s) => {
+		    if (xory == 0) {
+			i = x.findIndex(q => q == s);
+			if(i < 0) {
+			    x.push(s);
+			    i = x.findIndex(q => q == s);
+			}
+		    } else {
+			j = y.findIndex(q => q == s);
+			if(j < 0) {
+			    y.push(s);
+			    j = y.findIndex(q => q == s);
+			}
+		    }
+		    console.log(xory,i,j);
+		    if(!xy[i])
+			xy[i] = [];
+		    xy[i][j] = d.label;
+		})
+	    })
+	})
+    })
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(12);
+    y.splice(0,0," ")
+
+    var headers = [];
+    for (var i = 0; i < y.length; i += 1) {
+	var tf = {
+	    name: y[i],
+	    prompt: y[i],
+	    width: 40,
+	    align: "center",
+	    padding: 0
+	}
+        headers.push(tf);
+    }
+
+
+    var result = [y.reduce((a,f) =>{ a[f] = f; return a; },{})]
+    var data = {}
+    for (var i = 0; i < x.length; i += 1) {
+
+        data[y[0]] = x[i]
+
+        data[y[1]] = xy[i][0];
+        data[y[2]] = xy[i][1]
+        data[y[3]] = xy[i][2]
+
+        result.push(Object.assign({}, data));
+    }
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(14);
+    doc.setFillColor("#c7c7c7")
+    doc.rect(50,ynow,120,15,"FD")
+    doc.text("Public Well-being Impact",70,ynow+10)
+    doc.setFillColor("#c7c7c7")
+    doc.rect(20,ynow,30,63,"FD")
+    ynow = ynow +15;
+    doc.text("  Mission\nPrevelance",21,ynow+15,0)
+    doc.setFont("courier","italic");
+    doc.setFontSize(10);    
+    doc.table(50, ynow, result, headers, { autoSize: false,
+					   printHeaders:false });
+    //doc.text("FF",15,ynow+55)
+    console.log(ynow);
+    return ynow+55;
+}
+
+function appendtree(doc,dfilename) {
+    /* Add the full tree in colorful fashion to the current data*/
+    doc.addPage("a4");
+    window.circles = [];
+    var ax = export_schema;
+    //ax.decision_points[ax.decision_points.length-1].options.forEach(d => { if("color" in d) colors[d.label] = d.color})
+    doc.setFontSize(16);
+    doc.setFont("helvetica",'bold');
+    doc.setTextColor(0);
+    var coord = $('.cover_heading_append').html().replace(/^\s+(.+)\s+/g,'$1')
+    doc.text("Full SSVC Tree "+coord,10,10);
+    /* top left corner */
+    var tlc = 180;
+    var gap = 8;
+    /* Mark the children that should be ignored */
+    var mdecision_points = ax.decision_points.filter(
+	x => (!(x.label in ischild)))
+    
+    for(var index=0; index < ax.decisions_table.length; index++) {
+	var yc  = 10+gap*index ;
+	var fillColor = "#b0c4de";
+	var drawColor = "#4682b4";
+	/* Gloabl values to sigmoid_connect can also use it*/
+	var m = ax.decisions_table[index].Decision
+	doc.setFontSize(14)
+	doc.setFont("courier",'bold');
+	doc.setTextColor(0);
+	if(m in lcolors) {
+	    doc.setTextColor(lcolors[m]);
+	    fillColor = lcolors[m];
+	    // silver lining?
+	    drawColor = "#505050";
+	}
+
+	doc.text(m,tlc+5, yc)
+	if(index%3 == 1) {
+	    doc.setFont("helvetica",'bold');
+	    doc.setTextColor(0)
+	    doc.setFontSize(12)
+	    m = mdecision_points[mdecision_points.length-2]['label']
+	    doc.text(m,tlc-55, yc-5)
+	    yc = 10+gap*index ;
+	    sigmoid_connect(8,tlc-40,yc,1,m,doc)
+	    doc.setFont("courier",'normal');
+	    doc.setFontSize(10);
+	    doc.text(ax.decisions_table[0][m],tlc-10,yc-7,12)
+	    doc.text(ax.decisions_table[2][m],tlc-10,yc+5,-12)
+	}
+	if(index%6 == 3) {
+	    doc.setTextColor(0)
+	    /* (r,flen,xstart,yc) */
+	    doc.setFont("helvetica",'bold');
+	    doc.setFontSize(12)
+	    m = mdecision_points[mdecision_points.length-3]['label']
+	    doc.text(m,tlc-95, yc-8)
+	    yc = 6+gap*index
+	    sigmoid_connect(13,tlc-80,yc,0,m,doc)
+	    doc.setFont("courier",'normal');
+	    doc.setFontSize(10);
+	    doc.text(ax.decisions_table[0][m],tlc-60,yc-8,20)
+	    doc.text(ax.decisions_table[3][m],tlc-60,yc+10,-20)
+	}
+
+	if(index%12 == 6) {
+	    doc.setTextColor(0)
+	    doc.setFont("helvetica",'bold');
+	    /* (r,flen,xstart,yc) */
+	    doc.setFontSize(12)
+	    m = mdecision_points[mdecision_points.length-4]['label']
+	    doc.text(m,tlc-130, yc-8)
+	    yc = 6+gap*index
+	    sigmoid_connect(26,tlc-120,yc,0,m,doc)
+	    doc.setFont("courier",'normal');
+	    doc.setFontSize(10);
+	    doc.text(ax.decisions_table[0][m],tlc-103,yc-9,45)
+	    doc.text(ax.decisions_table[6][m],tlc-103,yc+5,-45)
+	}
+
+	if(index%36 == 18) {
+	    doc.setTextColor(0)
+	    /* (r,flen,xstart,yc) */
+	    doc.setFont("helvetica",'bold');
+	    doc.setFontSize(12)
+	    m = mdecision_points[mdecision_points.length-5]['label']
+	    doc.text(m,tlc-170, yc-5)
+	    yc = 10+gap*index ;
+	    sigmoid_connect(101,20,150,1,m,doc)
+	    doc.setFontSize(10);
+	    doc.text(ax.decisions_table[0][m],40,yc-50,75)
+	    doc.text(ax.decisions_table[12][m],40,yc+50,-75)
+	}
+	yc = 10+gap*index ;
+	doc.setLineWidth(0.6);
+	doc.setDrawColor(drawColor);
+	doc.setFillColor(fillColor);
+	circles.push([tlc,yc,3,"FD",drawColor,fillColor])
+	//doc.circle(tlc,yc,3,"FD");
+    }
+    //doc.circle(circles[0][0],circles[0][1],circles[0][2],circles[0][3])
+    circles.forEach((x) => {
+	doc.setDrawColor(x[4]);
+	doc.setFillColor(x[5]);
+	doc.circle(x[0],x[1],x[2],x[3])
+    });
+    //console.log(circles);
+    //console.log(typeof(doc.circle))
+    doc.addPage("a4");
+    var ynow = 10;
+    var q = 0;
+    doc.setFontSize(16);
+    doc.setFont("helvetica",'bold');
+    doc.setTextColor(0);
+    doc.text("Full SSVC Tree "+coord+" definitions",10,10);
+    export_schema.decision_points.forEach(function(x,ix) {
+	if(ynow > 230) {
+	    doc.addPage("a4");
+	    ynow = 20
+	}
+	//return 0;
+	doc.setFont("helvetica",'bold');
+	doc.setTextColor(0,0,0);
+	ynow = ynow + 10;
+	doc.setFontSize(14);
+	doc.text(x.label,20,ynow);
+	if(x.label in isparent) {
+	    /* Add a statement on cummulative score*/
+	    doc.setFont("courier","normal");
+	    doc.setFontSize(12);	    
+	    var p = isparent[x.label];
+	    var istring = "Note: This is a cummulative score of \"";
+	    p.forEach(x => {
+		if('label' in x) {
+		    var t = current_score.forEach(
+			(b) => {
+			    if(x.label in b) {
+				istring += x.label + "\" and \"";
+			    }
+			},"");
+		    }
+	    })
+	    /* Replace the string with cummulative information */
+	    istring = istring.slice(0,-6) +".";
+	    var f = istring.match(/.{1,65}(\s|$)/g);
+	    for (var j = 0; j<f.length; j++) {
+		doc.setFont("courier",'italic')
+		ynow = ynow +5
+		doc.text(f[j],20,ynow);
+	    }	    
+	    ynow = ynow + 5;
+	    console.log(ynow);
+	    ynow = make_table(x,doc,ynow);
+	}
+	console.log(ynow);
+	x.options.forEach(function(y) {
+	    if(ynow > 230) {
+		doc.addPage("a4");
+		ynow = 20
+	    }	    
+	    ynow = ynow + 5
+	    doc.setTextColor(0x17,0xa2,0xb8);
+	    doc.setFont("courier","bolditalic");
+	    doc.setFontSize(12);
+	    if(y.label in lcolors) 
+		doc.setTextColor(lcolors[y.label]);
+	    var clabel = y.label[0].toUpperCase()+y.label.substr(1);
+	    doc.text(clabel,20,ynow);
+	    doc.setTextColor(0,0,0);
+	    var tinfo = y.description;
+	    var f = tinfo.match(/.{1,45}(\s|$)/g);
+	    doc.setFont("courier",'normal');
+	    q = doc.getStringUnitWidth(clabel)
+	    doc.text("=> "+f[0],20+q*5,ynow);
+	    if(tinfo.length<= f[0].length) {
+		ynow = ynow + 6
+		return
+	    }
+	    //console.log(t[i].substr(f[0].length));
+	    f = tinfo.substr(f[0].length).match(/.{1,65}(\s|$)/g);
+	    for (var j = 0; j<f.length; j++) {
+		doc.setFont("courier",'normal')
+		ynow = ynow +5
+		doc.text(f[j],20,ynow);
+	    }
+	    ynow = ynow+6
+	});
+	ynow = ynow + 0
+
+	if(ix == export_schema.decision_points.length-1)
+	    doc.save(dfilename);
+    });
+    
+}
+function triggerDownload (dataURI,fname,el) {
+    var evt = new MouseEvent('click', {
+	view: window,
+	bubbles: false,
+	cancelable: true
+    })
+    var a = document.createElement('a');
+    a.setAttribute('download', fname)
+    a.setAttribute('href', dataURI)
+    a.setAttribute('target', '_blank')
+    a.dispatchEvent(evt);
+    $(el).attr('href',dataURI)
+    $(el).attr('download',fname)
+    $(el).attr('onclick',null)
+}
+function make_png(nodownload,nextfun) {
+    var linecolor = 'white'
+    var fillcolor = 'black'
+    $('.link').css({'fill-opacity': 0.01,stroke: fillcolor,'stroke-width':'6px'})
+    $('circle').css({fill: '#B0C4DE',stroke: fillcolor,'stroke-width':'6px'})
+    $('svg.mgraph').height('200px')
+    $('#graph text').css({fill: "#6d426d","font-weight":"bold"});
+    $('#graph textPath').css({fill: "black",
+			      stroke:"#007bff",
+			      "font-weight":"normal"});
+    var svg = document.querySelector('svg.mgraph')
+    var canvas = document.getElementById('canvas')
+    $('svg.mgraph').css({background: '#f5f5f5'})
+    var width = $('svg.mgraph').width()*2
+    var height = $('svg.mgraph').height()*2
+    canvas.width = width
+    canvas.height = height
+    var ctx = canvas.getContext('2d');
+    var data = (new XMLSerializer()).serializeToString(svg);
+    var DOMURL = window.URL || window.webkitURL || window;
+    var img = new Image()
+    var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'})
+    var url = DOMURL.createObjectURL(svgBlob)
+    var dfname = "exporter.png"
+    img.onload = function () {
+	ctx.clearRect ( 0, 0, width, height );
+	ctx.drawImage(img, 0, 0,width,height);
+	DOMURL.revokeObjectURL(url);
+	var imgURI = canvas
+	    .toDataURL('image/png')
+	    .replace('image/png', 'image/octet-stream')
+	if(nodownload)
+	    $('#pngblob').val(imgURI.split(";")[1].replace("base64,",""))
+	else
+	    triggerDownload(imgURI,dfname,'#dlsvg')
+	if(typeof(nextfun) == "function")
+	    nextfun()
+    }
+    img.src = url
+    return url
+}
+
+function copym(containerid,ispurl) {
+    var container = $(containerid)[0];
+    if(!container)
+	return 
+    if (document.selection) {
+	var range = document.body.createTextRange();
+	range.moveToElementText(container);
+	range.select().createTextRange();
+	document.execCommand("copy");
+    } else if (window.getSelection) {
+	var range = document.createRange();
+	range.selectNode(container);
+	window.getSelection().addRange(range);
+	document.execCommand("copy");
+    }
+    if(ispurl)
+	topalert("SSVC permalink copied to clipboard","success")
+    else
+	topalert("SSVC vector copied to clipboard","success")
+    if (window.getSelection)
+	window.getSelection().removeAllRanges();
+    else if (document.selection)
+	document.selection.empty();
+    else
+	console.log("What kind of machine are you?");
+    $('.permalink').addClass('d-none');    
+}
+
