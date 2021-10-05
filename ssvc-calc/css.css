@@ -1,4 +1,19 @@
-/* css version 2.1 */
+/* css version 2.2 */
+.icon8 {
+    width:14px;
+    filter:invert(1);
+}
+.btn-group.show.primary-button .dropdown-menu,
+.btn-group.show.primary-button a.dropdown-item {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+.btn-group.show a.dropdown-item:hover {
+    color: #eee;
+    background-color: #0062ff;
+    border-color: #005cff;
+}
 @media screen and (max-width: 1000px) {
     .cert-tweet { display: none; }
     .tright a:nth-child(n+2) { display: none;}
@@ -6,9 +21,27 @@
 	position: absolute;
 	left: 0px;
     }
-    .mastfoot { display:none; }
     #mwb,.tescape { max-width: 450px; }
     .nomobile { display: none; }
+}
+@media screen and (max-width: 601px) {
+    .mastfoot { display:none; }
+    .form-control {
+	font-size: 12px;
+	padding: 3px 0px 3px 0px;
+	font-weight: normal;
+	height: 20px;
+    }
+    .btn {
+	padding: 2px;
+    }
+    #mpopup {
+	font-size: smaller;
+	max-width: 400px;
+    }
+    #mgraph {
+	margin-left: 600px;
+    }
 }
 .decisiontab {
     background: #222;
@@ -41,6 +74,8 @@
 }
 #topalert {
     display: none;
+    position: fixed;
+    opacity: 0.9;
 }
 span.bold {
     font-weight: bold;
@@ -83,6 +118,8 @@ span.bold {
     width:75%;
     padding:12px;
     border-radius:10px;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
 .top_blue {
     width: 50%;
@@ -99,6 +136,21 @@ span.bold {
 .top_blue h5 {
     text-align: center;
     text-decoration: underline;
+}
+#mpopup h5 {
+    padding: 0px;
+    margin: 0px;
+}
+#mpopup p {
+    text-align: center;
+    font-style: italic;
+    margin: 0px;
+    padding: 0px;
+}
+#mpopup blockquote {
+    border-left: 1px dashed white;
+    margin-left: 12px;
+    font-size: 85%;
 }
 #mpopup hr {
     margin: 2px;
@@ -196,9 +248,8 @@ html,.blackbody {
     border-radius: 5px;
     padding: 4px;
     text-align: left;
-    max-width: 400px;
+    max-width: 600px;
 }
-
 .node {
     cursor: pointer;
 }
