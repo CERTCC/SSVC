@@ -1,0 +1,143 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://democert.org/ssvc/SSVC_Provision_v2.02.schema.json",
+    "title": "Decision tree schema definition for SSVC",
+    "description": "This provides a schema for a decision tree used to compute SSVC score for a vulnerability",
+    "type": "object",    
+    "definitions": {
+        "decision_points": {
+	    "description": "Decision points are represented an an array of Nodes (in the decision tree language) in the decision tree, including the Root Node. Each decision point has a \"label\" with two or more \"options\" for each decision point",
+            "type": "array",
+            "items": {
+		"type": "object",
+                "properties": {
+                    "label": {
+			"description": "A short label that captures a short name of this Node",
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "key": {
+			"description": "An optional short \"key\" that identified this \"descision_point\" in SSVC score vector form.  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
+                        "maxLength": 2,
+                        "type": "string"
+                    },
+                    "options": {
+			"description": "This provides an array of choices that are relevant for leaving a Node in the decision tree to proceed to the next Node. ",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+				    "description": "This should provide full information about this \"option\" ",
+                                    "maxLength": 65535,
+                                    "type": "string"
+                                },
+                                "label": {
+				    "description": "A short label of this \"option\" or choice.",
+                                    "maxLength": 255,
+                                    "type": "string"
+                                },
+                                "key": {
+				    "description": "An optional short \"key\" that identified this \"descision_point\" in SSVC score vector form.  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
+                                    "type": "string",
+                                    "maxLength": 2
+                                },
+				"color": {
+				    "description": "This is an optional color to represent the final edge node or final recommended action provided by the SSVC tree.  This is preferably predefined color names, or with RGB, HEX, HSL, RGBA, or HSLA values.",
+				    "type": "string",
+				    "maxLength": 127
+				}
+                            },
+                            "required": [
+                                "label",
+                                "description"
+                            ]
+                        },
+                        "minItems": 1,
+			"uniqueItems": true
+                    },
+                    "decision_type": {
+			"type": "string",
+                        "enum": [
+                            "complex",
+                            "simple",
+			    "final"
+                        ],
+			"description": "Decision Type is used to identify if this is a \"simple\" decision or a \"complex\" decision. The \"complex\" decisions can have \"child\" decisions under them. The \"final\" decision basically is the last node on the decision tree"
+                    },
+                    "children": {
+                        "type": "array",			
+			"description": "The children property is used to identify decision_points that are children of a parent decision_point. The child decision_point(s) should be declared BEFORE the parent decision_point is declared in the array of decision_points.  The children property should NOT be present if the decision_point is not a parent decision_point that is dependant on the the other (child)  decisions.",
+			"items": {
+			    "type": "object",
+			    "properties": {
+				"label": {
+				    "type": "string",
+				    "label": "The \"label\" property of a decision_point that identifies the child decision_point.  The identified decision_point should be declared with its label as provided here",
+				    "maxLength": 255
+				},
+				"key": {
+				    "type": "string",
+				    "label": "The \"key\" property of a decision_point that identifies the child decision_point.  The identified decision_point should be declared with its label as provided here.  This is optional for identifying a decision_point using a one-or-two alphabetic characters to identify the child decision_point",
+				    "maxLength": 2
+				}
+			    },
+			    "required": [
+				"label"
+			    ],
+			    "additionalProperties": false
+			}
+                    }
+                },
+		"required":[
+		    "label",
+		    "decision_type",
+		    "options"
+		]
+            },
+            "minItems": 1	    
+        }
+    },
+    "properties": {
+	"decision_points": { "$ref": "#/definitions/decision_points" },
+        "decisions_table": {
+            "type": "array",		
+            "items": {
+                "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+        },	
+        "lang": {
+            "maxLength": 7,
+            "type": "string"
+        },
+	"roles": {
+	    "description": "Roles as described in SSVC as distinct array elements",
+	    "type": "array",
+	    "items": {
+		"type": "string"
+	    },
+	    "minItems": 1,
+	    "uniqueItems": true
+	},
+        "title": {
+            "maxLength": 255,
+            "type": "string"
+        },
+        "version": {
+            "enum": [
+                "1.0",
+                "2.0"
+            ]
+        }
+    },
+    "required": [
+        "lang",
+        "version",
+        "decision_points",
+        "decisions_table"
+    ],
+    "additionalProperties": false
+}
+
