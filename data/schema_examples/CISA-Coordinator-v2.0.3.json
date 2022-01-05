@@ -23,19 +23,19 @@
 	    ]
 	},
 	{
-	    "label": "Virulence",
-	    "key": "V",
+	    "label": "Automatable",
+	    "key": "A",
 	    "decision_type": "simple",
 	    "options": [
 		{
-		    "label": "slow",
-		    "key": "S",
+		    "label": "no",
+		    "key": "N",
 		    "description": "Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool."
 		},
 		{
-		    "label": "rapid",
-		    "key": "R",
-		    "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely rapid."
+		    "label": "yes",
+		    "key": "Y",
+		    "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely yes."
 		}
 	    ]
 	},
@@ -232,7 +232,7 @@
     "decisions_table": [
 	{
 	    "Exploitation": "none",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "low",
 	    "Decision": "Track"	
@@ -240,250 +240,250 @@
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Track*",
 	    "Exploitation": "none",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "none",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "none",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "none",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "poc",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "poc",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Track*",
 	    "Exploitation": "poc",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "poc",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track*",
 	    "Exploitation": "poc",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "poc",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "poc",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "poc",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "poc",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "poc",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track*",
 	    "Exploitation": "poc",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "poc",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "active",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "active",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "active",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Track",
 	    "Exploitation": "active",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "active",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Act",
 	    "Exploitation": "active",
-	    "Virulence": "slow",
+	    "Automatable": "no",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "active",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "active",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Act",
 	    "Exploitation": "active",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "partial",
 	    "Mission & Well-being": "high"
 	},
 	{
 	    "Decision": "Attend",
 	    "Exploitation": "active",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "low"
 	},
 	{
 	    "Decision": "Act",
 	    "Exploitation": "active",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "medium"
 	},
 	{
 	    "Decision": "Act",
 	    "Exploitation": "active",
-	    "Virulence": "rapid",
+	    "Automatable": "yes",
 	    "Technical Impact": "total",
 	    "Mission & Well-being": "high"
 	}
     ],
     "lang": "en",
     "version": "2.0",
-    "title": "CISA Coordinator v2.02"
+    "title": "CISA Coordinator v2.0.3"
 }
