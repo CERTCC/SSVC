@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = "5.1.1"
+const _version = "5.1.2"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
 var diagonal,tree,svg,duration,root
@@ -13,11 +13,15 @@ var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 		     version: "2.0", title: "SSVC Provision table"}
 /* If a new analysis is being done use this for export */
 var current_score = [];
-var current_tree = "CISA-Coordinator-v2.02.json";
+var current_tree = "CISA-Coordinator-v2.0.3.json";
 var current_schema = "SSVC_Computed_v2.02.schema.json";
 /* A dictionary of elements that are children of a decision point*/
 var ischild = {};
 var isparent = {};
+
+/* Default keyword for final step in the tree will be Decision with 
+   class .Decision for rendering */
+var final_keyword = "Decision";
 
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
@@ -188,10 +192,10 @@ function make_ssvc_vector() {
     var tstamp = new Date()
     var labels = current_score.map(x => Object.keys(x)[0]);
     var vals = current_score.map((x,i) => x[labels[i]]);
-    labels.push("Decision");
+    labels.push(final_keyword);
     /* last node in graph */
-    var finals =  $('#graph svg g.node text:last').text();
-    vals.push(finals);
+    var final_outcome =  $('#graph svg g.node text:last').text();
+    vals.push(final_outcome);
     /* SSVCv2/Ps:Nm/T:T/U:E/1605040000/
        For a vulnerability with no or minor Public Safety Impact, 
        total Technical Impact, and efficient Utility, 
@@ -221,7 +225,7 @@ function make_ssvc_vector() {
 function export_tree() {
     /* First column is the decision in this tree */
     var toptions = []
-    var yhead = ["Decision"]
+    var yhead = [final_keyword]
     var yprops = {}
     export_schema.decisions_table = raw.filter(x => {
 	if (x.name.split(":").length > 4)
@@ -275,9 +279,12 @@ function export_json() {
     
     oexport['timestamp'] =  $('#graph .ssvcvector').html().split('/').
 	slice(-2,-1)[0]
-
+    var final_outcome = $('#graph svg g.node text:last').text();
     /* Copy current_score as is to options that were selected */
     oexport['options'] = current_score;
+    var last_option = {};
+    last_option[final_keyword] = final_outcome;
+    oexport['options'].push(last_option);
     oexport['$schema'] = location.origin + location.pathname + current_schema
     oexport['decision_tree_url'] = location.origin + location.pathname +
 	current_tree;
@@ -627,7 +634,7 @@ function parse_json(xraw,paused) {
 	tm.decision_points[tm.decision_points.length - 1]['decision_type'] = "final"
 	decisions = [tm.decision_points[tm.decision_points.length - 1]]
     }    
-    var decision_keyword = decisions[0].label
+    decision_keyword = decisions[0].label
     //console.log(decisions)
     //console.log(decision_keyword)
     for(var i=0; i<y.length; i++) {
@@ -683,8 +690,9 @@ function parse_json(xraw,paused) {
 	},"<h5>"+x.label+"</h5>")
 	var hdiv = safedivname(x.label)
 	if($("."+hdiv).length != 1) {
-	    $("."+hdiv).remove()
-	    $('body').append($('<div/>').addClass("d-none "+hdiv))
+	    console.log(hdiv,"new");	    
+	    $("."+hdiv).remove();
+	    $('body').append($('<div/>').addClass("d-none "+hdiv));
 	}
 	$("."+hdiv).html(options_html)
 	if(x.label in isparent) {
@@ -1441,20 +1449,17 @@ function createPDF(vulnerability,cveinfo) {
     doc.text(title, 100-q*2.5, 10);
     var steps = current_score.map(x => Object.keys(x)[0]);
     var decisions = current_score.map((x,i) => x[steps[i]]);
-    var final_decision =  $('#graph svg g.node text:last').text();
-    //steps.push
-    decisions.push(final_decision);
-    // Last element name is hard-coded key word "Decision"
-    steps.push("Decision");
-    //var steps=["Exploitation","Virulence","Technical Impact","Mission & Well-Being","Decision"]
-    //var decisions = ["Active","Slow","Partial","Low","Track"]
+    var final_keyword =  $('#graph svg g.node text:last').text();
+    decisions.push(final_keyword);
+    /* Removing hard-coded "Decision" field so it is flexible*/
+    steps.push(final_keyword);
+    /* var steps=["Exploitation","Virulence","Technical Impact","Mission & Well-Being","Decision"] */
+    /* var decisions = ["Active","Slow","Partial","Low","Track"] */
     var actions = []
     var xOffset = 20
     var yOffset = 30
     var cradius = 3
     var ysteps = 40
-
-    //rgb(40, 167, 69)
 
     /* fill: rgb(176, 196, 222);
        stroke: rgb(70, 130, 180);*/ 
@@ -1472,9 +1477,9 @@ function createPDF(vulnerability,cveinfo) {
 	doc.setFillColor(176, 196, 222);
 	if(i == steps.length - 1) {
 	    /* Last circle change color */
-	    if(final_decision in lcolors) {
+	    if(final_keyword in lcolors) {
 		doc.setDrawColor(192,192,192);
-		doc.setFillColor(lcolors[final_decision]);
+		doc.setFillColor(lcolors[final_keyword]);
 	    }
 	    
 	}
@@ -1501,12 +1506,11 @@ function createPDF(vulnerability,cveinfo) {
     //doc.setFontType("bolditalic");
     doc.setFont("courier",'bolditalic')
     var lastx = xOffset+ysteps*(ij-1)+10
-    if(final_decision in lcolors)
-	doc.setTextColor(lcolors[final_decision])
+    if(final_keyword in lcolors)
+	doc.setTextColor(lcolors[final_keyword])
     else
 	doc.setTextColor(1,1,1)
-    console.log(lastx);
-    doc.text(final_decision,lastx,yOffset+1);
+    doc.text(final_keyword,lastx,yOffset+1);
     
     doc.setFont("helvetica",'bold');
     doc.setTextColor(0,0,0);
@@ -1553,10 +1557,10 @@ function createPDF(vulnerability,cveinfo) {
 	timeprint = ts.toGMTString().replace("GMT","UTC");
     }
     doc.setFont("courier","bolditalic");    
-    if(final_decision in lcolors) {
-	doc.setTextColor(lcolors[final_decision]);
+    if(final_keyword in lcolors) {
+	doc.setTextColor(lcolors[final_keyword]);
     }
-    doc.text(final_decision,xOffset+40,yOffset+20);
+    doc.text(final_keyword,xOffset+40,yOffset+20);
     doc.setTextColor(0,0,0);
     doc.setFont("courier",'italic');
     doc.text(timeprint,xOffset+40,yOffset+30);
