@@ -4,7 +4,7 @@
 i=1
 
 # default output file in the SSVC Github file structure
-out="../data/deployer-options_v2.csv"
+out="../data/csvs/deployer-options_v2.csv"
 
 # refuse to clobber existing file
 if [ -e "$out" ] 
