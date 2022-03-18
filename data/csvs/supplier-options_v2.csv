@@ -1,0 +1,37 @@
+row,Exploitation,Utility,Technical Impact,Public-Safety Impact,Priority
+1,none,laborious,partial,minimal,defer
+2,none,laborious,partial,significant,scheduled
+3,none,laborious,total,minimal,defer
+4,none,laborious,total,significant,out-of-cycle
+5,none,efficient,partial,minimal,scheduled
+6,none,efficient,partial,significant,out-of-cycle
+7,none,efficient,total,minimal,scheduled
+8,none,efficient,total,significant,out-of-cycle
+9,none,super effective,partial,minimal,scheduled
+10,none,super effective,partial,significant,out-of-cycle
+11,none,super effective,total,minimal,scheduled
+12,none,super effective,total,significant,out-of-cycle
+13,PoC,laborious,partial,minimal,scheduled
+14,PoC,laborious,partial,significant,out-of-cycle
+15,PoC,laborious,total,minimal,scheduled
+16,PoC,laborious,total,significant,immediate
+17,PoC,efficient,partial,minimal,scheduled
+18,PoC,efficient,partial,significant,immediate
+19,PoC,efficient,total,minimal,out-of-cycle
+20,PoC,efficient,total,significant,immediate
+21,PoC,super effective,partial,minimal,out-of-cycle
+22,PoC,super effective,partial,significant,immediate
+23,PoC,super effective,total,minimal,out-of-cycle
+24,PoC,super effective,total,significant,immediate
+25,active,laborious,partial,minimal,out-of-cycle
+26,active,laborious,partial,significant,immediate
+27,active,laborious,total,minimal,out-of-cycle
+28,active,laborious,total,significant,immediate
+29,active,efficient,partial,minimal,out-of-cycle
+30,active,efficient,partial,significant,immediate
+31,active,efficient,total,minimal,out-of-cycle
+32,active,efficient,total,significant,immediate
+33,active,super effective,partial,minimal,immediate
+34,active,super effective,partial,significant,immediate
+35,active,super effective,total,minimal,immediate
+36,active,super effective,total,significant,immediate
