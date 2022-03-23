@@ -72,7 +72,7 @@ Assessing [*Technical Impact*](#technical-impact) amounts to assessing the degre
 One way to approach this analysis is to ask whether the control gained is *total* or not.
 If it is not total, it is *partial*.
 If an answer to one of the following questions is _yes_, then control is *total*.
-After exploiting the vulnerablily,
+After exploiting the vulnerability,
  - can the attacker install and run arbitrary software?
  - can the attacker trigger all the actions that the vulnerable component can perform?
  - does the attacker get an account with full privileges to the vulnerable component (administrator or root user accounts, for example)?
