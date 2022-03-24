@@ -1,0 +1,8 @@
+CVE	Vulnerability	CVSS (v3.x Base Score)	SSVC (Decision)	Exploit	Virulence	Technical	Mission/Well-Being (Impact)
+CVE-2020-7961	Liferay Portal JSON web services (JSONWS) deserialization	9.8	Track	PoC	Yes	Total	Low (Minimal/Minimal)
+CVE-2020-5847	Unraid 6.8.0 PHP RCE	9.8	Track	PoC	Yes	Total	Low (Minimal/Minimal)
+CVE-2019-0708	Microsoft Windows Remote Desktop RCE (BlueKeep)	9.8	Track*	PoC	Yes	Total	Medium (Support/Material)
+CVE-2019-13918	Rockwell Automation MicroLogix Controller open redirect	6.1	Track*	PoC	No	Partial	High (Essential/Material)
+CVE-2019-19781	Citrix directory traversal and Perl RCE	9.8	Critical	Active	Yes	Total	Medium (Support/Minimal)
+CVE-2014-0751	GE CIMPLICITY HMI/SCADA directory traversal RCE (Black Energy)	9.8	Critical	Active	No	Total	High (Essential/Material)
+CVE-2018-5734	BIND 9 SERVFAIL assertion failure in badcache.c	7.5	Track	None	Yes	Partial	Medium (Support/Minimal)

@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = "5.1.2"
+const _version = "5.1.4"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
 var diagonal,tree,svg,duration,root
@@ -14,7 +14,7 @@ var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 /* If a new analysis is being done use this for export */
 var current_score = [];
 var current_tree = "CISA-Coordinator-v2.0.3.json";
-var current_schema = "SSVC_Computed_v2.02.schema.json";
+var current_schema = "SSVC_Computed_v2.03.schema.json";
 /* A dictionary of elements that are children of a decision point*/
 var ischild = {};
 var isparent = {};
@@ -22,6 +22,8 @@ var isparent = {};
 /* Default keyword for final step in the tree will be Decision with 
    class .Decision for rendering */
 var final_keyword = "Decision";
+/* Outcome of the final decision when a SSVC value has been calculated*/
+var final_outcome = "Unknown";
 
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
@@ -90,13 +92,6 @@ function tooltip_cycle_through() {
     },1300)
 
 }
-
-function usage_privacy() {
-    var msg = $('#privacy').html()
-    var title = 'Usage and Privacy'
-    swal(title,msg)
-}
-
 function dynamic_mwb() {
     var mpdata = $('#mwb').data('parent');
     var mcdata = {}
@@ -119,10 +114,10 @@ function dynamic_mwb() {
     var soptions = mpdata.options
     find_score:
     for(var i=0; i<soptions.length; i++) {
-	var current_match = {};
 	if('child_combinations' in soptions[i]) {
 	    var spt = soptions[i]['child_combinations'];
 	    for(var j=0; j<spt.length; j++) {
+		var current_match = {};
 		for(var k=0; k < spt[j].length; k++) {
 		    if(('child_label' in spt[j][k]) && (spt[j][k].child_label in mcdata)) {
 			var spk = spt[j][k]
@@ -146,40 +141,14 @@ function dynamic_mwb() {
     $('#wsdiv').fadeOut('slow');
     setTimeout(function() {
 	$('#mwb').modal('hide');
-	var ptranslate = "translate(120,-250)";
-	if(window.innerWidth <= 1000)
-	    ptranslate = "translate(30,-90) scale(0.4,0.4)";
-	d3.select("#pgroup").transition()
-	    .duration(600).attr("transform", ptranslate);
-	export_show();
-    }, 2000)    
-}
-
-function calculate_mwb() {
-    var options = ["Low","Medium","High"]
-    var mp = parseInt($('#mp').val())
-    var wb = parseInt($('#wb').val())
-    var result = options[Math.max(mp,wb)]
-    var xcolor={"Low":"text-success",
-		"Medium":"text-warning",
-		"High":"text-danger"}
-    $('#wscore').removeClass().addClass(xcolor[result]).html(result)
-    $('#wsdiv').show()
-    $('circle[nameid="'+result.toLowerCase()+'"]').parent().simClick()
-    $('#wsdiv').fadeOut('slow')
-    setTimeout(function() {
-	$('#mwb').modal('hide')
-	var ptranslate = "translate(120,-250)"
-	if(window.innerWidth <= 1000)
-	    ptranslate = "translate(30,-90) scale(0.4,0.4)"
-	d3.select("#pgroup").transition()
-	    .duration(600).attr("transform", ptranslate)
-	export_show()
-    }, 900)
-
-    
+    }, 400)    
 }
 function export_show(novector) {
+    var ptranslate = "translate(120,-250)";
+    if(window.innerWidth <= 1000)
+	ptranslate = "translate(30,-90) scale(0.4,0.4)";
+    d3.select("#pgroup").transition()
+	.duration(600).attr("transform", ptranslate);
     var q = $('#exporter').html()
     $('#graph').append(q)
     if($('#cve_samples').val().match(/^(cve|vu)/i))
@@ -279,7 +248,7 @@ function export_json() {
     
     oexport['timestamp'] =  $('#graph .ssvcvector').html().split('/').
 	slice(-2,-1)[0]
-    var final_outcome = $('#graph svg g.node text:last').text();
+    final_outcome = $('#graph svg g.node text:last').text();
     /* Copy current_score as is to options that were selected */
     oexport['options'] = current_score;
     var last_option = {};
@@ -571,6 +540,7 @@ function create_short_keys(x,uniq_keys) {
 }
 function parse_json(xraw,paused) {
     var zraw = [];
+    isparent = {};
     var tm;
     if(typeof(xraw) == "string") 
 	tm = JSON.parse(xraw)
@@ -606,6 +576,7 @@ function parse_json(xraw,paused) {
 	    /* Use either key or label to mark the xkeys to a child
 	       decision tree */	    
 	    if("children" in y) {
+		console.log("Children for "+y.label);
 		isparent[y.label] = [];
 		y.children.map(z => {
 		    var tx = z.label;
@@ -634,17 +605,17 @@ function parse_json(xraw,paused) {
 	tm.decision_points[tm.decision_points.length - 1]['decision_type'] = "final"
 	decisions = [tm.decision_points[tm.decision_points.length - 1]]
     }    
-    decision_keyword = decisions[0].label
+    final_keyword = decisions[0].label
     //console.log(decisions)
-    //console.log(decision_keyword)
+    //console.log(final_keyword)
     for(var i=0; i<y.length; i++) {
 	//var tname = y[i].pop()+":"+y[i].join(":")
 	//console.log(y[i])
 	/* Decision table should have the "outcome" or "decision" fiel if not skip 
 	   this entry */
-	if(!(decision_keyword in y[i]))
+	if(!(final_keyword in y[i]))
 	    continue
-	var tname = y[i][decision_keyword]+":"+x.map(t => y[i][t]).slice(0,-1).join(":")
+	var tname = y[i][final_keyword]+":"+x.map(t => y[i][t]).slice(0,-1).join(":")
 	for( var j=0; j< x.length-1; j++) {
 	    //var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
 	    var tparent = x[x.length-2-j]+":"+x.slice(0,x.length-2-j).map(q => y[i][q]).join(":")
@@ -685,12 +656,14 @@ function parse_json(xraw,paused) {
 	var options_html = x.options.reduce((h,r) => {
 	    create_short_keys(r,ouniq_keys);
 	    options_data[r.label] = r.description;
-	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1)
-	    return  h + "<b>"+rlabel+"</b>&nbsp;"+r.description+"<hr>"
+	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1);
+	    var spclass = 'popup-'+safedivname(r.label);
+	    var div_add = "<div class='popupidiv "+spclass+"'><b>"+rlabel+"</b>&nbsp;"+r.description+"<hr /></div>";
+	    return  h + div_add;
 	},"<h5>"+x.label+"</h5>")
 	var hdiv = safedivname(x.label)
 	if($("."+hdiv).length != 1) {
-	    console.log(hdiv,"new");	    
+	    //console.log(hdiv,"new");	    
 	    $("."+hdiv).remove();
 	    $('body').append($('<div/>').addClass("d-none "+hdiv));
 	}
@@ -714,7 +687,8 @@ function parse_json(xraw,paused) {
 		var tlabel = $("<span>").html(t.label+" ")
 		    .append($("<a/>").attr({
 			"class": "circletext",
-			"onclick": "shwhelp(this)",
+			"onmouseover": "shwhelp(this)",
+			"onmouseout": "hidediv(this)",
 			"data-tdiv": stdiv,
 			"href": "javascript:void(0)"
 		    }).html("?"))
@@ -734,12 +708,17 @@ function parse_json(xraw,paused) {
     });
     $("."+lastdiv).addClass("Decision");
     var classes = []
-    var decision_div = decisions[0].options.reduce((h,r) => {
-	classes.push(safedivname(r.label))
+    var decision_div = decisions[0].options.reduce((h,r,ir) => {
+	classes.push(safedivname(r.label));
+	if(("color" in r) && (r.color)) {
+	    lcolors[r.label] = r.color;
+	} else if(acolors[i]) {
+	    r.color = acolors[i];
+	}
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
 				     css({color:r.color}).html(r.label))
-	    .append("&nbsp"+r.description+"<hr>").html()
-    },"<h5>"+decision_keyword+"</h5>")
+	    .append("&nbsp"+r.description+"<hr>").html();
+    },"<h5>"+final_keyword+"</h5>")
     if($("."+classes[0]).length != 1) {
 	$("."+classes[0]).remove()
 	$('body').append($('<div/>').addClass("d-none "+classes[0]))
@@ -792,7 +771,7 @@ function create_export_schema_dtable(yi,x) {
 	return a; },{}))
 }
 function parse_file(xraw) {
-    /* This is really parse csv instead of parse file*/
+    /* This is really parse csv instead of parse JSON */
     //var xraw = 'TSV data'
     var zraw=[]
     export_schema.decision_points =  []
@@ -872,7 +851,7 @@ function parse_file(xraw) {
 	     y.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success")
     dt_clear()
     export_schema.decision_points[export_schema.decision_points.length-1].
-	options.map((x,i) => lcolors[x.label] = acolors[i])
+	options.map((x,i) => lcolors[x.label] = acolors[i] )
 }
 
 function add_invalid_feedback(xel,msg) {
@@ -915,7 +894,7 @@ function generate_uuid() {
 
 function draw_graph() {
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
-	width = 1000 - margin.right - margin.left,
+	width = 1060 - margin.right - margin.left,
 	height = 800 - margin.top - margin.bottom
     if(showFullTree) {
 	var add_offset = 0
@@ -984,22 +963,30 @@ function update(source) {
 
     // Enter any new nodes at the parent's previous position.
     var nodeEnter = node.enter().append("g")
-	.attr("class", "node")
-	.attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+	.attr("class", "node bof")
+	.attr("transform", function(d) {
+	    return "translate(" + source.y0 + "," + source.x0 + ")";	    
+	})
+	.attr("class", function(d) {
+	    if('depth' in d)
+		return "node depth-"+String(d.depth);
+	    return "node depth-none";})
 	.on("click", doclick)
 	.on("contextmenu",dorightclick)
 	.on("mouseover",showdiv)
-	.on("mouseout",hidediv)
+	.on("mouseout",hidediv);
 
     nodeEnter.append("circle")
 	.attr("r", 1e-6)
-	.attr("class","junction")
+	.attr("class","junction gvisible")
 	.style("fill", function(d) {
 	    if(d._children) return "lightsteelblue"
 	    if(!('children' in d)) {
-		var dname = d.name.split(":").shift()
+		/* Last node no children */
+		var dname = d.name.split(":").shift();
 		if(dname in lcolors) 
-		    return lcolors[dname]
+		    return lcolors[dname];
+
 	    }
 	    return "#fff"
 	}  );
@@ -1027,14 +1014,22 @@ function update(source) {
 	.attr("y",function(d) { return check_children(d,"-37","0") })
 	.attr("dy", ".35em")
 	.attr("class",function(d) {
-	    return "prechk-"+d.name.split(":")[0].toLowerCase()
+	    return "gvisible prechk-"+d.name.split(":").shift().toLowerCase()
 	}).text(function(d) { return d.name.split(":")[0]; })
 	.style("font-size",font)
-	.style("fill", function(d) { var t = d.name.split(":")[0]
-				     var x = "white"
-				     if(t in lcolors) x = lcolors[t]
-				     return x
-				   })
+	.style("fill", function(d) {
+	    var t = d.name.split(":").shift();
+	    var x = "white";
+	    if(t in lcolors)
+		x = lcolors[t];
+	    return x;
+	})
+
+    /* hidden circle */
+    nodeEnter.append("circle")
+	.attr("r","10")
+	.attr("class","ghidden d-none")
+	.style("fill","steelblue");
 
 
     // Transition nodes to their new position.
@@ -1096,6 +1091,7 @@ function update(source) {
     link.enter().insert("path","g")
 	.attr("class", "link")
 	.attr("id", function(d) { return 'l'+Math.random().toString(36).substr(3); })
+	.attr("kdata", function(d) { return d.source.name.split(":").shift(); })
 	.attr("ldata", function(d) { return d.target.name.split(":").pop(); })
 	.attr("ldeep", function (d) { return d.target.name.split(":").length })
 	.attr("csid",function(d) { return d.target.id;})    
@@ -1123,6 +1119,20 @@ function update(source) {
 	d.x0 = d.x;
 	d.y0 = d.y;
     });
+    if(showFullTree === false) {
+	var d = source;
+	if(('depth' in d) && (!isNaN(parseInt(d.depth)))) {
+	    $('g.depth-'+String(d.depth)+' .ghidden').addClass('d-none');
+	    $('g.depth-'+String(d.depth)+' .gvisible').show();
+	    $('g.depth-'+String(d.depth)).removeClass('opthide');
+	    var idepth = String(parseInt(d.depth) + 1)
+	    if($('g.depth-'+idepth).length > 0) {
+		$('g.depth-'+idepth+' .ghidden').removeClass('d-none');
+		$('g.depth-'+idepth+' .gvisible').hide();
+		$('g.depth-'+idepth).addClass('opthide');
+	    }
+	}
+    }
     setTimeout(update_links,1500);
 }
 function pathclick(w) {
@@ -1144,6 +1154,7 @@ function update_links() {
 	var csid = t.attr("csid")
 	var depth = parseInt(t.attr("ldeep")) || 0
 	var text = t.attr("ldata")
+	var pname = t.attr("kdata")
 	var xclass = "btext prechk-"+text
 	var mclass = $(this).attr("class")
 	if((mclass) && mclass.indexOf("chosen") > -1) {
@@ -1152,7 +1163,7 @@ function update_links() {
 	if(showFullTree)
 	    xclass += " fullTree"
 	d3.select("g")
-	    .insert("g","path.link").attr("class","pathlink").attr("id","x"+id)
+	    .insert("g","path.link").attr("class","pathlink cdepth-"+String(depth)).attr("id","x"+id)
 	    .append("path").attr("d",xd).attr("id","f"+id).attr("class","xlink")
 	// depth 4 => 70 , depth 0 => 40%
 	var doffset = parseInt(70 - (4-depth)*5.5)
@@ -1163,8 +1174,11 @@ function update_links() {
 	    .append("textPath").attr("href","#f"+id).attr("class",xclass)
 	    .attr("id","t"+id)
 	    .attr("csid",csid)
+	    .attr("parentname",pname)
 	    .text(text).attr("startOffset",doffset+"%")
 	    .on("click",pathclick)
+	    .on("mouseover",showdiv)
+	    .on("mouseout",hidediv);
 	//.each(function() { console.log("Completed") })
 	//$(this).remove() "fill","#17a2b8") "text-anchor","middle"
     })
@@ -1172,20 +1186,43 @@ function update_links() {
 function showdiv(d) {
     var iconPos = this.getBoundingClientRect();
     //console.log(JSON.parse(d.props))
-    var props = JSON.parse(d.props)
-    //console.log(this)
-    var bgcolor = 'rgba(70, 130, 180, 1)'
-    var name = ""
+    var bgcolor = 'rgba(70, 130, 180, 1)';
+    var name = "";
+    var highlighter = "";
     if($(this).is('g'))
-	name = $(this).find("text").text()
-    else 
-	name = $(this).parent().find("text").text()
+	name = $(this).find("text").text();
+    else if($(this).is('circle')) 
+	name = $(this).parent().find("text").text();
+    else if($(this).is('textPath')) {
+	name = $(this).attr("parentname");
+	highlighter = $(this).text();
+    }
+    if($(this).hasClass('opthide')) {
+	/* find depth-n*/
+	var idepth = Array.from(this.classList).find(a => a.indexOf("depth") == 0).replace("depth-","");
+	console.log(idepth);
+	var intdepth = parseInt(idepth);
+	if(intdepth > 0) {
+	    var pdepth = intdepth - 1;
+	    var pgitem = $('g.depth-'+String(pdepth));
+	    if(pgitem.length > 0) {
+		name = pgitem.find("text").text()
+		var csid = $(this).find("circle.junction").attr("sid");
+		var gtext = $('textPath[csid="'+csid+'"]')
+		if(gtext.length > 0) {
+		    highlighter = gtext.text();
+		}
+		
+	    }
+	}
+	
+    }
     //name=name.replace(/\W/g,'_')
     //console.log(name)
     //console.log(vul_data)
     var addons = ''
     var safename = safedivname(name)
-    //console.log(name,safename)
+    console.log(name,safename)
     /* Default left position*/
     var leftpos = String(iconPos.right + 10) + "px"
     if(window.innerWidth - iconPos.right < iconPos.right) {
@@ -1198,6 +1235,13 @@ function showdiv(d) {
 	$('#mpopup').css({left: leftpos,
 			  top:(window.scrollY + iconPos.top - 20) + "px",
 			  display:"block"});
+    }
+    if(highlighter != "") {
+	$('#mpopup .popupidiv').addClass('not-highlighted').removeClass('highlighted');
+	var spclass = 'popup-'+safedivname(highlighter);
+	$('#mpopup .'+spclass).addClass('highlighted');
+    } else {
+	$('#mpopup .popupidiv').removeClass('not-highlighted highlighted');
     }
 }
 function hidediv(d) {
@@ -1222,9 +1266,51 @@ function closeSiblings(d) {
     d.parent.children = [d]
     //console.log(d.parent)
 }
-
+function revert(d) {
+    var save_score = current_score.splice(0,d.depth);
+    dt_clear();
+    dt_start();
+    var sI = {};
+    for(var i=0; i< save_score.length; i++) {
+	var nodename = Object.keys(save_score[i]).shift()
+	var nodevalue = save_score[i][nodename];
+	sI[nodename] = setInterval(
+	    function(n,v) {
+		/* $('[parentname="Exploitation"].prechk-none').simClick() */
+		var selector = '[parentname="'+n+'"].prechk-'+v
+		if($(selector).length == 1) {
+		    $(selector).simClick();
+		    clearInterval(sI[n]);
+		    delete sI[n];
+		    console.log("Cleared");
+		    console.log(n,v);
+		    console.log(sI);
+		    return;
+		} else {
+		    console.log("Waiting");
+		    console.log(n,v);
+		}
+	    },600*i,nodename,nodevalue);
+    }
+    console.log(d);
+}
 function doclick(d) {
     if(showFullTree === false) {
+	hidediv();
+	if(('clickkill' in d) &&
+	   (d.clickkill === true)) {
+	    if(('depth' in d) && (d.depth < current_score.length)) {
+		var nodename = d.name.split(":").shift();
+		if(confirm("Are you sure you want to revert the decision to Node: "+nodename+"?")) {
+		    revert(d);
+		    return;
+		}
+	    }
+	    
+	    console.log("We have reached this already ");
+	    console.log(d);
+	    return;
+	} 
 	if(d.parent && d.parent.name) {
 	    /* Virulence:none means Exploitation(i.e., d.parent.name) => none*/
 	    var dparent = d.parent.name.split(":").shift();
@@ -1232,22 +1318,25 @@ function doclick(d) {
 	    thash[dparent] = d.name.split(":").pop();
 	    current_score.push(thash);
 	}
-	
-	if(('clickkill' in d) &&
-	   (d.clickkill === true)) {
-	    console.log("We have reached this already "+d)
-	    return;
-	}
-	$('.pathlink').remove()
-	if(('name' in d) &&
-	   (d.name.indexOf("Mission ") == 0) ) {
-	    $('#wb').val(0)
-	    $('#mp').val(0)
-	    /* If mwb is overriden by permalink or full score reset it and ignore it*/
-	    if($("#mwb").data("override") == 1) 
-		$("#mwb").attr("data-override",0)
-	    else
-		$('#mwb').modal()
+	$('.pathlink').remove();
+	if('name' in d) {
+	    var dnames = d.name.split(":");
+	    var leftname = dnames.shift();
+	    var rightname = dnames.pop();
+	    if($('circle[nameid="'+rightname+'"]').length == 1) {
+		if($('circle[nameid="'+rightname+'"]').attr("isfinal") == "1")
+		    export_show();
+	    }
+	    if(leftname in isparent) {
+		$('#wb').val(0);
+		$('#mp').val(0);
+		/* If mwb is overriden by permalink or full score reset 
+		   it and ignore it*/
+		if($("#mwb").data("override") == 1) 
+		    $("#mwb").attr("data-override",0)
+		else
+		    $('#mwb').modal()
+	    }
 	}
 	if('id' in d) {
 	    var idl = $('[csid="'+d.id+'"]').attr("id")
@@ -1256,15 +1345,17 @@ function doclick(d) {
 	    d3.select('#'+idl).attr('class','chosen link')
 	}
 	if(d.parent) 
-	    closeSiblings(d)
+	    closeSiblings(d);
+	if(('_children' in d) && (d._children.length == 0))
+	    export_show();
     }
     $('.pathlink').remove()    
     if (d.children) {
 	d._children = d.children;
 	d.children = null;
     } else {
-	d.children = d._children
-	d._children = null
+	d.children = d._children;
+	d._children = null;
     }
     update(d);
 }
@@ -1325,7 +1416,8 @@ function showme(divid,vul_flag) {
 function dt_start() {
     current_score = [];
     showFullTree = false
-    $('svg.mgraph').remove()
+    $('svg.mgraph').remove();
+    $('#graph .exportdiv').remove();
     var xraw = JSON.parse(JSON.stringify(raw))
     treeData=grapharray(xraw)
     draw_graph()
@@ -1449,8 +1541,8 @@ function createPDF(vulnerability,cveinfo) {
     doc.text(title, 100-q*2.5, 10);
     var steps = current_score.map(x => Object.keys(x)[0]);
     var decisions = current_score.map((x,i) => x[steps[i]]);
-    var final_keyword =  $('#graph svg g.node text:last').text();
-    decisions.push(final_keyword);
+    final_outcome =  $('#graph svg g.node text:last').text();
+    decisions.push(final_outcome);
     /* Removing hard-coded "Decision" field so it is flexible*/
     steps.push(final_keyword);
     /* var steps=["Exploitation","Virulence","Technical Impact","Mission & Well-Being","Decision"] */
@@ -1477,9 +1569,9 @@ function createPDF(vulnerability,cveinfo) {
 	doc.setFillColor(176, 196, 222);
 	if(i == steps.length - 1) {
 	    /* Last circle change color */
-	    if(final_keyword in lcolors) {
+	    if(final_outcome in lcolors) {
 		doc.setDrawColor(192,192,192);
-		doc.setFillColor(lcolors[final_keyword]);
+		doc.setFillColor(lcolors[final_outcome]);
 	    }
 	    
 	}
@@ -1506,11 +1598,11 @@ function createPDF(vulnerability,cveinfo) {
     //doc.setFontType("bolditalic");
     doc.setFont("courier",'bolditalic')
     var lastx = xOffset+ysteps*(ij-1)+10
-    if(final_keyword in lcolors)
-	doc.setTextColor(lcolors[final_keyword])
+    if(final_outcome in lcolors)
+	doc.setTextColor(lcolors[final_outcome])
     else
 	doc.setTextColor(1,1,1)
-    doc.text(final_keyword,lastx,yOffset+1);
+    doc.text(final_outcome,lastx,yOffset+1);
     
     doc.setFont("helvetica",'bold');
     doc.setTextColor(0,0,0);
@@ -1557,10 +1649,10 @@ function createPDF(vulnerability,cveinfo) {
 	timeprint = ts.toGMTString().replace("GMT","UTC");
     }
     doc.setFont("courier","bolditalic");    
-    if(final_keyword in lcolors) {
-	doc.setTextColor(lcolors[final_keyword]);
+    if(final_outcome in lcolors) {
+	doc.setTextColor(lcolors[final_outcome]);
     }
-    doc.text(final_keyword,xOffset+40,yOffset+20);
+    doc.text(final_outcome,xOffset+40,yOffset+20);
     doc.setTextColor(0,0,0);
     doc.setFont("courier",'italic');
     doc.text(timeprint,xOffset+40,yOffset+30);
@@ -1646,7 +1738,7 @@ function createPDF(vulnerability,cveinfo) {
     doc.setFont("helvetica",'bold');
     doc.text("Contact:",xOffset,ynow);
     doc.setFont("courier",'normal');
-    doc.text("DHS CISA can be contacted at cisa@cisa.dhs.gov",xOffset+20,ynow);
+    doc.text($('#contact').val(),xOffset+20,ynow);
     var safetime = ts.toGMTString().replace(/[^a-z0-9]+/ig,'-');
     var fulltree = includetree ? "-with-full-tree" : ""
     var dfilename = "SSVC-"+role+"-"+vulid+"-"+safetime+fulltree+".pdf";
@@ -1693,55 +1785,97 @@ function sigmoid_connect(flen,xstart,yc,sl,m,doc) {
     d_drawColor = "#4682b4";
     circles.push([xstart,yc,3,"FD",d_drawColor,d_fillColor])
 }
-function make_table(cdp,doc,ynow) {
-    /* Give it a complex decision point CDP */
-    var dims = [];
-    var x = [];
-    var y = [];
-    var xy = [];
-    xy.push([]);
-    var i = 0;
-    var j = 0;
+function find_nemos(cdp) {
+    var xy = [[]];
+    var clabels = cdp.children
+    
+    var [x,y] = export_schema.decision_points.reduce( (g,h) => {
+	var m = clabels.findIndex((p) => h.label == p.label);
+	if( m > -1) {
+	    h.options.forEach((u) => {
+		if(!g[m]) g[m] = [];
+		g[m].push(u.label)
+	    });
+	}
+	return g;
+    }, [])
     cdp.options.forEach((d) => {
 	d.child_combinations.forEach((p) => {
+	    var j = -1,i = -1,is = [], js = [];
 	    p.forEach((r) => {
-		var xory = dims.findIndex(q => q == r.child_label);
-		if(xory < 0) {
-		    dims.push(r.child_label)
-		    xory = dims.findIndex(q => q == r.child_label);
-		}
 		r.child_option_labels.forEach((s) => {
-		    if (xory == 0) {
-			i = x.findIndex(q => q == s);
-			if(i < 0) {
-			    x.push(s);
-			    i = x.findIndex(q => q == s);
-			}
-		    } else {
-			j = y.findIndex(q => q == s);
-			if(j < 0) {
-			    y.push(s);
-			    j = y.findIndex(q => q == s);
-			}
-		    }
-		    console.log(xory,i,j);
-		    if(!xy[i])
-			xy[i] = [];
-		    xy[i][j] = d.label;
+		    if(r.child_label == clabels[0].label)
+			i = x.findIndex(m => m == s)
+		    else
+			j = y.findIndex(m => m == s)
+		    if(i > -1)
+			is.push(i)			
+		    if(j > -1)
+			js.push(j)
+		})
+		is.forEach((it)  => {
+		    js.forEach((jt) => {
+			if(!xy[it])
+			    xy[it] = [];
+			xy[it][jt] = d.label;
+		    })
 		})
 	    })
 	})
     })
+    console.log(xy);
+}    
+function make_complex_table(cdp,doc,ynow,clabels) {
+    /* Give it a complex decision point CDP */
+    var xy = [[]];
+    
+    var [x,y] = export_schema.decision_points.reduce( (g,h) => {
+	var m = clabels.findIndex((p) => h.label == p);
+	if( m > -1) {
+	    h.options.forEach((u) => {
+		if(!g[m]) g[m] = [];
+		g[m].push(u.label)
+	    });
+	}
+	return g;
+    }, [])
+    cdp.options.forEach((d) => {
+	d.child_combinations.forEach((p) => {
+	    var j = -1,i = -1,is = [], js = [];
+	    p.forEach((r) => {
+		r.child_option_labels.forEach((s) => {
+		    if(r.child_label == clabels[0])
+			i = x.findIndex(m => m == s)
+		    else
+			j = y.findIndex(m => m == s)
+		    if(i > -1)
+			is.push(i)			
+		    if(j > -1)
+			js.push(j)
+		})
+		is.forEach((it)  => {
+		    js.forEach((jt) => {
+			if(!xy[it])
+			    xy[it] = [];
+			xy[it][jt] = d.label;
+		    })
+		})
+	    })
+	})
+    })
+    console.log(xy);    
     doc.setFont("helvetica","bold");
     doc.setFontSize(12);
-    y.splice(0,0," ")
-
+    y.splice(0,0,"X")
+    
     var headers = [];
+    var cellwidth = parseInt(160/y.length);
+    var fullwidth = cellwidth*y.length;
     for (var i = 0; i < y.length; i += 1) {
 	var tf = {
 	    name: y[i],
 	    prompt: y[i],
-	    width: 40,
+	    width: cellwidth,
 	    align: "center",
 	    padding: 0
 	}
@@ -1752,31 +1886,32 @@ function make_table(cdp,doc,ynow) {
     var result = [y.reduce((a,f) =>{ a[f] = f; return a; },{})]
     var data = {}
     for (var i = 0; i < x.length; i += 1) {
-
-        data[y[0]] = x[i]
-
-        data[y[1]] = xy[i][0];
-        data[y[2]] = xy[i][1]
-        data[y[3]] = xy[i][2]
-
+	data[y[0]] = x[i];
+	for(var j = 0; j < xy[i].length; j++) {
+	    data[y[j+1]] = xy[i][j];
+	}
         result.push(Object.assign({}, data));
     }
-
     doc.setFont("helvetica","bold");
     doc.setFontSize(14);
     doc.setFillColor("#c7c7c7")
+    /* Horizontal title */
     doc.rect(50,ynow,120,15,"FD")
-    doc.text("Public Well-being Impact",70,ynow+10)
+    
+    doc.text(clabels[1],70,ynow+10)
     doc.setFillColor("#c7c7c7")
-    doc.rect(20,ynow,30,63,"FD")
+    /* verticular title */
+    doc.rect(20,ynow,30,17.5*y.length,"FD")
     ynow = ynow +15;
-    doc.text("  Mission\nPrevelance",21,ynow+15,0)
+    if(clabels[0].length > 8) {
+	clabels[0] = clabels[0].replace(" ","\n");
+    }
+    doc.text(clabels[0],21,ynow+15,0)
     doc.setFont("courier","italic");
-    doc.setFontSize(10);    
+    doc.setFontSize(10);
     doc.table(50, ynow, result, headers, { autoSize: false,
 					   printHeaders:false });
     //doc.text("FF",15,ynow+55)
-    console.log(ynow);
     return ynow+55;
 }
 
@@ -1803,7 +1938,7 @@ function appendtree(doc,dfilename) {
 	var fillColor = "#b0c4de";
 	var drawColor = "#4682b4";
 	/* Gloabl values to sigmoid_connect can also use it*/
-	var m = ax.decisions_table[index].Decision
+	var m = ax.decisions_table[index][final_keyword];
 	doc.setFontSize(14)
 	doc.setFont("courier",'bold');
 	doc.setTextColor(0);
@@ -1813,7 +1948,6 @@ function appendtree(doc,dfilename) {
 	    // silver lining?
 	    drawColor = "#505050";
 	}
-
 	doc.text(m,tlc+5, yc)
 	if(index%3 == 1) {
 	    doc.setFont("helvetica",'bold');
@@ -1893,6 +2027,7 @@ function appendtree(doc,dfilename) {
     doc.setFont("helvetica",'bold');
     doc.setTextColor(0);
     doc.text("Full SSVC Tree "+coord+" definitions",10,10);
+    var childlabels = ["",""]; 
     export_schema.decision_points.forEach(function(x,ix) {
 	if(ynow > 230) {
 	    doc.addPage("a4");
@@ -1910,8 +2045,9 @@ function appendtree(doc,dfilename) {
 	    doc.setFontSize(12);	    
 	    var p = isparent[x.label];
 	    var istring = "Note: This is a cummulative score of \"";
-	    p.forEach(x => {
+	    p.forEach((x,ik) => {
 		if('label' in x) {
+		    childlabels[ik] = x.label
 		    var t = current_score.forEach(
 			(b) => {
 			    if(x.label in b) {
@@ -1929,10 +2065,8 @@ function appendtree(doc,dfilename) {
 		doc.text(f[j],20,ynow);
 	    }	    
 	    ynow = ynow + 5;
-	    console.log(ynow);
-	    ynow = make_table(x,doc,ynow);
+	    ynow = make_complex_table(x,doc,ynow,childlabels);
 	}
-	console.log(ynow);
 	x.options.forEach(function(y) {
 	    if(ynow > 230) {
 		doc.addPage("a4");

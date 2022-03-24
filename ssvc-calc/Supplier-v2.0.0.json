@@ -1,0 +1,500 @@
+{
+    "decision_points": [
+        {
+          "label": "Exploitation",
+          "decision_type": "simple",
+          "key": "E",
+          "options": [
+            {
+              "label": "none",
+              "key": "N",
+              "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+            },
+            {
+              "label": "poc",
+              "key": "P",
+              "description": "One of the following cases is true: (1) private evidence of exploitation is attested but not shared; (2) widespread hearsay attests to exploitation; (3) typical public PoC in places such as Metasploit or ExploitDB; or (4) the vulnerability has a well-known method of exploitation. Some examples of condition (4) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks."
+            },
+            {
+              "label": "active",
+              "key": "A",
+              "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+            }
+          ]
+        },
+        {
+          "label": "Automatable",
+          "key": "A",
+          "decision_type": "simple",
+          "options": [
+            {
+              "label": "no",
+              "key": "N",
+              "description": "Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool."
+            },
+            {
+              "label": "yes",
+              "key": "Y",
+              "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely yes."
+            }
+          ]
+        },
+        {
+          "label": "Value Density",
+          "key": "V",
+          "decision_type": "simple",
+          "options": [
+            {
+              "label": "diffuse",
+              "key": "D",
+              "description": "The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small. Examples of systems with diffuse value are email accounts, most consumer online banking accounts, common cell phones, and most personal computing resources owned and maintained by users. (A “user” is anyone whose professional task is something other than the maintenance of the system or component. As with Safety Impact, a “system operator” is anyone who is professionally responsible for the proper operation or maintenance of a system.)"
+            },
+            {
+              "label": "concentrated",
+              "key": "C",
+              "description": "The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users. Examples of concentrated value are database systems, Kerberos servers, web servers hosting login pages, and cloud service providers. However, usefulness and uniqueness of the resources on the vulnerable system also inform value density. For example, encrypted mobile messaging platforms may have concentrated value, not because each phone’s messaging history has a particularly large amount of data, but because it is uniquely valuable to law enforcement."
+            }
+          ]
+        },
+        {
+            "decision_type": "complex",
+            "label": "Utility",
+            "key": "U",
+            "children": [
+              {
+                "label": "Automatable"
+              },
+              {
+                "label": "Value Density"
+              }
+            ],
+            "options": [
+                {
+                    "label": "laborious",
+                    "description": "No to automatable and diffuse value",
+                    "child_combinations": [
+                      [
+                        {
+                          "child_label": "Automatable",
+                          "child_key": "A",
+                          "child_option_labels": [
+                            "no"
+                          ],
+                          "child_option_keys": [
+                            "N"
+                          ]
+                        },
+                        {
+                          "child_label": "Value Density",
+                          "child_key": "V",
+                          "child_option_labels": [
+                            "diffuse"
+                          ],
+                          "child_option_keys": [
+                            "D"
+                          ]
+                        }
+                      ]
+                    ]
+                },
+                {
+                    "label": "efficient",
+                    "description": "{Yes to automatable and diffuse value} OR {No to automatable and concentrated value}",
+                    "child_combinations": [
+                      [
+                        {
+                          "child_label": "Automatable",
+                          "child_key": "A",
+                          "child_option_labels": [
+                            "no"
+                          ],
+                          "child_option_keys": [
+                            "N"
+                          ]
+                        },
+                        {
+                          "child_label": "Value Density",
+                          "child_key": "V",
+                          "child_option_labels": [
+                            "concentrated"
+                          ],
+                          "child_option_keys": [
+                            "C"
+                          ]
+                        }
+                      ],
+                      [
+                        {
+                          "child_label": "Automatable",
+                          "child_key": "A",
+                          "child_option_labels": [
+                            "yes"
+                          ],
+                          "child_option_keys": [
+                            "Y"
+                          ]
+                        },
+                        {
+                          "child_label": "Value Density",
+                          "child_key": "V",
+                          "child_option_labels": [
+                            "diffuse"
+                          ],
+                          "child_option_keys": [
+                            "D"
+                          ]
+                        }
+                      ]
+                      
+                    ]
+                },
+                {
+                    "label": "super effective",
+                    "description": "Yes to automatable and concentrated value",
+                    "child_combinations": [
+                      [
+                        {
+                          "child_label": "Automatable",
+                          "child_key": "A",
+                          "child_option_labels": [
+                            "yes"
+                          ],
+                          "child_option_keys": [
+                            "Y"
+                          ]
+                        },
+                        {
+                          "child_label": "Value Density",
+                          "child_key": "V",
+                          "child_option_labels": [
+                            "concentrated"
+                          ],
+                          "child_option_keys": [
+                            "C"
+                          ]
+                        }
+                      ]
+                    ]
+                }
+            ]
+            
+        },
+        {
+          "label": "Technical Impact",
+          "key": "T",
+          "decision_type": "simple",
+          "options": [
+            {
+              "label": "partial",
+              "key": "P",
+              "description": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, \"low\" means that the attacker cannot reasona-bly make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component."
+            },
+            {
+              "label": "total",
+              "key": "T",
+              "description": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+            }
+          ]
+        },
+        {
+            "label": "Public-Safety Impact",
+            "key": "P",
+            "decision_type": "simple",
+            "options": [
+                {
+                    "label": "minimal",
+                    "description": "Safety Impact of None or Minor"
+                },
+                {
+                    "label": "significant",
+                    "description": "Safety Impact of Major, Hazardous, or Catastrophic"
+                }
+            ]
+        },
+        {
+            "decision_type": "final",
+            "label": "Priority",
+            "key": "R",
+            "options": [
+                {
+                    "label": "defer",
+                    "description": "Do not work on the patch at present.",
+                    "color": "#28a745"
+                },
+                {
+                    "label": "scheduled",
+                    "description": "Develop a fix within regularly scheduled maintenance using supplier resources as normal.",
+                    "color": "#ffc107"
+                },
+                {
+                    "label": "out-of-cycle",
+                    "description": "Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready.",
+                    "color": "#EE8733"
+                },
+                {
+                    "label": "immediate",
+                    "description": "Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization.",
+                    "color": "#dc3545"
+                }
+            ]
+            
+        }
+    ],
+    "decisions_table": [
+        {
+            "Exploitation": "none",
+            "Utility": "laborious",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "defer"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "laborious",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "laborious",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "defer"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "laborious",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "efficient",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "efficient",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "efficient",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "efficient",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "super effective",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "super effective",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "super effective",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "none",
+            "Utility": "super effective",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "laborious",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "laborious",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "laborious",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "laborious",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "efficient",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "scheduled"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "efficient",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "efficient",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "efficient",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "super effective",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "super effective",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "super effective",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "PoC",
+            "Utility": "super effective",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "laborious",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "laborious",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "laborious",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "laborious",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "efficient",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "efficient",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "efficient",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "out-of-cycle"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "efficient",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "super effective",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "minimal",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "super effective",
+            "Technical Impact": "partial",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "super effective",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "minimal",
+            "Priority": "immediate"
+        },
+        {
+            "Exploitation": "active",
+            "Utility": "super effective",
+            "Technical Impact": "total",
+            "Public-Safety Impact": "significant",
+            "Priority": "immediate"
+        }
+    ],
+    "lang": "en",
+    "version": "2.0",
+    "title": "Supplier v2.0.0"
+}

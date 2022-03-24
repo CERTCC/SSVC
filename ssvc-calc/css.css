@@ -1,4 +1,16 @@
-/* css version 2.2 */
+/* css version 2.2.3 */
+.not-highlighted {
+    opacity: 0.5;
+    border: 0;
+}
+.highlighted {
+    opacity: 1;
+    border: 1px solid red;
+}
+
+#contacts {
+    display: inline-block;
+}
 .icon8 {
     width:14px;
     filter:invert(1);

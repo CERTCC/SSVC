@@ -23,17 +23,17 @@
 	    async defer
 	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
 	    crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"
+    <script src="https://unpkg.com/jspdf@2.5.0/dist/jspdf.umd.min.js"
 	    async defer 
-	    integrity="sha384-/KtSGZ3Y6FUl+HbMMbSX94R0r8VGddnyrvYXTOQ9LuO3HxckA9kzrCQUafZZwJB3"
+	    integrity="sha384-Nv+hqH4nwlvCyvxoqPdrn3BtB2QwToN5tP4+ETu8HJC5oihLaEXHr3+Fa7Ob6VGf"
 	    crossorigin="anonymous"></script>
     <link href="magicsuggest-min.css" rel="stylesheet">
     <script src="magicsuggest-min.js" async defer></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1633111244">
+    <link rel="stylesheet" href="css.css?v=1648156288">
   </head>
   <body class="text-center blackbody">
-    <img src="../cert_tweet_logo.jpg" class="cert-tweet" alt="CERT Logo"
+    <img src="../moon_icon.png" class="cert-tweet" alt="CERT Logo"
 	 onclick="$('body').toggleClass('blackbody')"/>
     <div class="tright">
       <a href="javascript:void(0)" onclick="$('#helper').show()"
@@ -52,11 +52,12 @@
       </a>
     </div>
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-      <header class="top-container" style="margin-bottom: 10px">
+      <header class="top-container" style="margin-bottom: 10px; visibility:hidden">
 	<div class="inner">
 	  <h3 class="brand">
 	    <a class="wordmark" href="https://www.cmu.edu">
-	      <img src="../cmu-logo.png" alt="CMU Logo"/>
+	      <img src="../cmu-logo.png" alt="CMU Logo"
+		   style="visibility:hidden"/>
 	    </a>
 	  </h3>
 	  <nav class="nav nav-head justify-content-center nomobile">
@@ -116,7 +117,7 @@
 	<div class="inner shift-top">
 	  <div id="sponsorbar">
 	    <div class="row bottom-space justify-content-between">
-	      <div class="large-12 medium-12 columns">
+	      <div class="large-12 medium-12 columns" style="visibility:hidden">
 		<p>Sponsored by
 		  <a href="https://www.cisa.gov/cybersecurity"
 		     target="_blank" rel="noopener">CISA.</a> </p>
@@ -138,11 +139,10 @@
 		      onchange="tree_process(this)">
 		<option selected>Choose Tree</option>
 		<option value="import">Import Tree</option>
-		<option value="CISA-Coordinator-v2.02.json">
-		  CISA-Coordinator-v2.02
+		<option value="CISA-Coordinator-v2.0.3.json">
+		  CISA-Coordinator-v2.0.3
 		</option>
-		<option value="ssvc_1_applier.csv">Applier v1</option>
-		<option value="ssvc_1_developer.csv">Developer v1</option>
+		<option value="Supplier-v2.0.0.json">Supplier-v2.0.0</option>
 	      </select>	      
 	      <input type="file" onchange="readFile(this)" style="display:none"
 		     id="dtreecsvload">    
@@ -165,7 +165,7 @@
 	  <div class="modal-header">
 	    <h5 class="modal-title" id="exampleModalLabel">Mission & Well-Being impact value
 	    </h5>    
-	    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
 	      <span aria-hidden="true">&times;</span>
 	    </button>
 	  </div>
@@ -381,7 +381,7 @@
     </div>
     <div id="exporter" class="d-none">
       <div class="row justify-content-center position-absolute exportdiv"
-	   style="top:180px;left:40%">
+	   style="top:180px;left:30%">
 	  <div class="col-auto">
 	    <table class="table table-borderless w-auto">
 	      <tbody>
@@ -396,8 +396,8 @@
 		    <select  class="form-control exportRole">
 		      <option value="" disabled selected>Select Role</option>
 		      <option>Coordinator</option>
-		      <option>Patch Applier</option>
-		      <option>Developer</option>
+		      <option>Supplier</option>
+		      <option>Deployer</option>
 		      <option>Other</option>
 		    </select>
 		  </td>
@@ -425,6 +425,11 @@
 		    <span class="text-muted">
 		      Include decision tree in export
 		    </span>
+		    <div>
+		      Contact: 
+		      <input type="text" id="contact" class="form-control"
+			     value="DHS CISA can be contacted at cisa@cisa.dhs.gov"/>
+		    </div>
 		    <br/>
 		    <div class="btn-group primary-button Exporter">
 		      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -454,7 +459,7 @@
       </form>
       <canvas id="canvas" style="display:none">
     </div>      
-    <script src="ssvc.js?v=1633111244"></script>
+    <script src="ssvc.js?v=1648156288"></script>
   </body>
 </html>
 
