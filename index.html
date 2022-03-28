@@ -30,7 +30,7 @@
     <link href="magicsuggest-min.css" rel="stylesheet">
     <script src="magicsuggest-min.js" async defer></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1648156288">
+    <link rel="stylesheet" href="css.css?v=1648158389">
   </head>
   <body class="text-center blackbody">
     <img src="../moon_icon.png" class="cert-tweet" alt="CERT Logo"
@@ -104,6 +104,9 @@
 	     alt="View previous score" id="table_toggle" style="display:none"
 	     onclick="cve_table_toggle()">
 	    &#8853; </a>
+	  <button onclick="$('#mwb').modal()" id="tcummulative"
+		  class="btn btn-warning btn-sm d-none">
+	    Show Cummulative</button>
 	  <table id="cve_table" class="table table-dark d-none">
 	    <thead><tr></tr></thead>
 	    <tbody><tr></tr></tbody>
@@ -206,7 +209,8 @@
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-warning" data-dismiss="modal">
+	    <button type="button" class="btn btn-warning"
+		    onclick="tmp_dismiss_modal()">
 	      Choose Manually
 	    </button>
 	    <button type="button" class="btn btn-primary" onclick="calculate_mwb()">
@@ -459,7 +463,7 @@
       </form>
       <canvas id="canvas" style="display:none">
     </div>      
-    <script src="ssvc.js?v=1648156288"></script>
+    <script src="ssvc.js?v=1648158389"></script>
   </body>
 </html>
 

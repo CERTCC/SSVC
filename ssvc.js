@@ -1200,7 +1200,7 @@ function showdiv(d) {
     if($(this).hasClass('opthide')) {
 	/* find depth-n*/
 	var idepth = Array.from(this.classList).find(a => a.indexOf("depth") == 0).replace("depth-","");
-	console.log(idepth);
+	//console.log(idepth);
 	var intdepth = parseInt(idepth);
 	if(intdepth > 0) {
 	    var pdepth = intdepth - 1;
@@ -1222,7 +1222,7 @@ function showdiv(d) {
     //console.log(vul_data)
     var addons = ''
     var safename = safedivname(name)
-    console.log(name,safename)
+    //console.log(name,safename)
     /* Default left position*/
     var leftpos = String(iconPos.right + 10) + "px"
     if(window.innerWidth - iconPos.right < iconPos.right) {
@@ -1251,6 +1251,15 @@ function checkclose() {
     /* */
     $('#mpopup').hide();
 }
+function tmp_dismiss_modal() {
+    $('#mwb').modal('hide');
+    $('#tcummulative').removeClass('d-none');
+    setTimeout(function() {
+	$('#tcummulative').addClass('d-none');
+    },3000);
+    
+}
+
 
 function dorightclick(d) {
     return

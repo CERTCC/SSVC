@@ -1,6 +1,6 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "$id": "https://democert.org/ssvc/SVC_Computed_v2.02.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://democert.org/ssvc/SVC_Computed_v2.03.schema.json",
     "title": "Computed SSVC score representing the path in the decision tree",
     "description": "This schema represents the full path in the decision tree taken by an analyst with a specific role.  The representation of the full decision tree is optional",
     "type": "object",
