@@ -23,17 +23,17 @@ How this decision information might be stored or communicated is the topic of su
 
 ## Supplier Tree
 
-The example supplier tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_supplier.pdf) shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
+The example supplier tree [PDF](../graphics/ssvc_2_supplier.pdf) shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
 
   - Defer = gray with green outline
   - Scheduled = yellow
   - Out-of-Cycle = orange
   - Immediate = red with black outline
 
-![Suggested Supplier Tree](graphics/ssvc_2_supplier.pdf){ width=100% }
+![Suggested Supplier Tree](../graphics/ssvc_2_supplier.pdf){ width=100% }
 
 <!-- This isn't portable
-<embed src="graphics/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
+<embed src="../graphics/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"
 height = "600" />
 -->
@@ -41,13 +41,13 @@ height = "600" />
 
 ## Deployer Tree
 
-The example deployer tree [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_deployer_SeEUMss.pdf) is depicted below.
+The example deployer tree [PDF](../graphics/ssvc_2_deployer_SeEUMss.pdf) is depicted below.
 
 
-![Suggested Deployer Tree](graphics/ssvc_2_deployer_SeEUMss.pdf){ width=100% }
+![Suggested Deployer Tree](../graphics/ssvc_2_deployer_SeEUMss.pdf){ width=100% }
 
 <!--
-<embed src="graphics/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
+<embed src="../graphics/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
  type="application/pdf"
  style="width: 100%;"
  height = "1000"/>
@@ -60,10 +60,10 @@ As described in [Decisions During Vulnerability Coordination](#decisions-during-
 ### Triage Decision Tree
 
 
-![Suggested Coordinator Triage Tree](graphics/ssvc_2_coord-triage.pdf){ width=100% }
+![Suggested Coordinator Triage Tree](../graphics/ssvc_2_coord-triage.pdf){ width=100% }
 
 <!--
-<embed src="graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
+<embed src="../graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
 style="width: 100%;"
 height = "600" />
 -->
@@ -73,13 +73,13 @@ Other coordinators should consider customizing the tree to their needs, as descr
 
 ### Publication Decision Tree
 
-Suggested decision values for this decision are available in [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-publish.csv) and [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-publish.pdf) formats.
+Suggested decision values for this decision are available in [CSV](../../data/csvs/ssvc_2_coord-publish.csv) and [PDF](../graphics/ssvc_2_coord-publish.pdf) formats.
 
 
-![Suggested Coordinator Publication Tree](graphics/ssvc_2_coord-publish.pdf){ width=100% }
+![Suggested Coordinator Publication Tree](../graphics/ssvc_2_coord-publish.pdf){ width=100% }
 
 <!--
-<embed src="graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
+<embed src="../graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
 style="width: 100%;"
 height = "500" />
 -->
