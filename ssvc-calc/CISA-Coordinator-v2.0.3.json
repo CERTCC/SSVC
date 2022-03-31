@@ -64,7 +64,7 @@
 		{
 		    "label": "Minimal",
 		    "key": "M",
-		    "description": "Type of harm is \"All\" (Physical, Environmental,Financial,Psychological). The effect is below the threshold for all aspects described in material."
+		    "description": "Type of harm is \"All\" (Physical, Environmental,Financial,Psychological) and the associated Value is \"None\". The effect is below the threshold for all aspects described in material."
 		},
 		{
 		    "label": "Material",
