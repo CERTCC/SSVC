@@ -64,17 +64,17 @@
 		{
 		    "label": "Minimal",
 		    "key": "M",
-		    "description": "Type of harm is \"All\" (Physical, Environmental,Financial,Psychological) and the associated Value is \"None\". The effect is below the threshold for all aspects described in material."
+		    "description": "Type of harm is \"All\" (Physical, Environmental,Financial,Psychological) and the associated Safety Impact Value is \"None\". The effect is below the threshold for all aspects described in material."
 		},
 		{
 		    "label": "Material",
 		    "key": "A",
-		    "description": "Any one or more of the conditions (Physical, Environmental,Financial,Psychological) hold. \"Physical harm\" means \"Physical distress or injuries for users of the system OR introduces occupational safety hazards OR reduction and/or failure of cyber-physical system’s safety margins.\" \"Environment\" means \"Major externalities (property damage, environmental damage, etc.) imposed on other parties.\" \"Financial\" means \"Financial losses that likely lead to bankruptcy of multiple persons.\" \"Psychological\" means \"Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people.\""
+		    "description": "Any one or more of the conditions (Physical, Environmental,Financial,Psychological) hold and the associated Safety Impact Value is \"Major\". \"Physical harm\" means \"Physical distress or injuries for users of the system OR introduces occupational safety hazards OR reduction and/or failure of cyber-physical system’s safety margins.\" \"Environment\" means \"Major externalities (property damage, environmental damage, etc.) imposed on other parties.\" \"Financial\" means \"Financial losses that likely lead to bankruptcy of multiple persons.\" \"Psychological\" means \"Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people.\""
 		},
 		{
 		    "label": "Irreversible",
 		    "key": "I",
-		    "description": "Any one or more of the following conditions hold. \"Physical harm\" means \"Multiple fatalities likely OR loss or destruction of cyber-physical system of which the vulnerable component is a part.\" \"Environment\" means \"Extreme or serious externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.\"  \"Financial\" means \"Social systems (elections, financial grid, etc.) supported by the software are destabilized and potentially collapse.\""
+		    "description": "Any one or more of the following conditions hold and the associated Safety Impact Value is \"Catastrophic\". \"Physical harm\" means \"Multiple fatalities likely OR loss or destruction of cyber-physical system of which the vulnerable component is a part.\" \"Environment\" means \"Extreme or serious externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.\"  \"Financial\" means \"Social systems (elections, financial grid, etc.) supported by the software are destabilized and potentially collapse.\""
 		}
 	    ]
 	},	
