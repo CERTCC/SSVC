@@ -115,7 +115,7 @@
 		{
 		    "label": "low",
 		    "key": "L",
-		    "description": "Mission Prevalence is Low and Public well-being impact is Minimal",
+		    "description": "Mission Prevalence is Minimal and Public well-being impact is Minimal",
 		    "child_combinations": [
 			[
 			    {
@@ -134,7 +134,7 @@
 		{
 		    "label": "medium",
 		    "key": "M",
-		    "description": "Mission Prevalence is Medium and Public well-being impact is in Material",
+		    "description": "Mission Prevalence is Support and Public well-being impact is Material",
 		    "child_combinations":[
 			[
 			    {
