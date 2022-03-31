@@ -134,7 +134,7 @@
 		{
 		    "label": "medium",
 		    "key": "M",
-		    "description": "Mission Prevalence is Support and Public well-being impact is Material",
+		    "description": "{Mission Prevalence is Support and Public well-being is Minimal or Material} OR {Mission Prevalence is Minimal or Support and Public well-being is Material}",
 		    "child_combinations":[
 			[
 			    {
@@ -166,7 +166,7 @@
 		{
 		    "label": "high",
 		    "key": "H",
-		    "description": "Mission Prevalence is Essential and Public well-being impact is Irreversible",
+		    "description": "Mission Prevalence is Essential or Public well-being impact is Irreversible",
 		    "child_combinations":[
 			[
 			    {
