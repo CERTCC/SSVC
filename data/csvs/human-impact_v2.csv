@@ -1,0 +1,26 @@
+ Situated Safety Impact , Mission Impact , Human Impact 
+ None , None , Low 
+ None , Degraded , Low 
+ None , Crippled , Low 
+ None , MEF Failure , Medium 
+ None , Mission Failure , Very High 
+ Minor , None , Low 
+ Minor , Degraded , Low 
+ Minor , Crippled , Low 
+ Minor , MEF Failure , Medium 
+ Minor , Mission Failure , Very High 
+ Major , None , Medium 
+ Major , Degraded , Medium 
+ Major , Crippled , Medium 
+ Major , MEF Failure , High 
+ Major , Mission Failure , Very High 
+ Hazardous , None , High 
+ Hazardous , Degraded , High 
+ Hazardous , Crippled , High 
+ Hazardous , MEF Failure , High 
+ Hazardous , Mission Failure , Very High 
+ Catastrophic , None , Very High
+ Catastrophic , Degraded , Very High
+ Catastrophic , Crippled , Very High
+ Catastrophic , MEF Failure , Very High 
+ Catastrophic , Mission Failure , Very High 
