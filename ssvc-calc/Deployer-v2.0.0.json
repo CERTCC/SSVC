@@ -94,6 +94,7 @@
             "options": [
 		{
                     "label": "laborious",
+                    "key": "L",
                     "description": "No to automatable and diffuse value",
                     "child_combinations": [
 			[
@@ -122,6 +123,7 @@
 		},
 		{
                     "label": "efficient",
+                    "key": "E",
                     "description": "{Yes to automatable and diffuse value} OR {No to automatable and concentrated value}",
                     "child_combinations": [
 			[
@@ -173,6 +175,7 @@
 		},
 		{
                     "label": "super effective",
+                    "key": "S",
                     "description": "Yes to automatable and concentrated value",
                     "child_combinations": [
 			[
@@ -284,6 +287,7 @@
 	    "options": [
 		{
 		    "label": "low",
+		    "key": "L",
 		    "description": "The combined Situated Safety Impact and Mission Impact is \"low\" ",
 		    "child_combinations": [
 			[ {
@@ -310,6 +314,7 @@
 		},
 		{
 		    "label": "medium",
+		    "key": "M",
 		    "description": "The combined Situated Safety Impact and Mission Impact is \"medium\" ",
 		    "child_combinations": [
 			[ {
@@ -352,6 +357,7 @@
 		},
 		{
 		    "label": "high",
+		    "key": "H",
 		    "description": "The combined Situated Safety Impact and Mission Impact is \"high\" ",	    
 		    "child_combinations": [
 			[ {
@@ -396,6 +402,7 @@
 		},
 		{
 		    "label": "very high",
+		    "key": "V",
 		    "description": "The combined Situated Safety Impact and Mission Impact is \"very high\" ",
 		    "child_combinations": [
 			[ {
@@ -449,21 +456,25 @@
 	    "options": [
 		{
 		    "label": "defer",
+		    "key": "D",
 		    "description": "Do not act at present.",
 		    "color": "#75FC4C"
 		},
 		{
 		    "label": "scheduled",
+		    "key": "S",
 		    "description": "Act during regularly scheduled maintenance time.",
 		    "color": "#FBEB61"
 		},
 		{
 		    "label": "out-of-cycle",
+		    "key": "O",
 		    "description": "Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary.",
 		    "color": "#EE8733"
 		},
 		{
 		    "label": "immediate",
+		    "key": "I",
 		    "description": "Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations.",
 		    "color": "#EA3423"
 		}

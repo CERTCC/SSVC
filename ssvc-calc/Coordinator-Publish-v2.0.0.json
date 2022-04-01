@@ -1,33 +1,31 @@
 {
     "decision_points": [
 	{
-            "decision_type": "simple",
-            "label": "Supplier Involvement",
-            "key": "S",
-            "options": [
+	    "decision_type": "simple",
+	    "options": [
 		{
 		    "label": "fix ready",
 		    "key": "F",
-		    "description": "Supplier provided fix is ready"
+		    "description": "The supplier has provided a patch or fix."
 		},
 		{
 		    "label": "cooperative",
 		    "key": "C",
-		    "description": "Supplier is cooperative"
+		    "description": "The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time."
 		},
 		{
-		    "label": "uncooperative",
-		    "key": "u",
-		    "description": "Supplier is uncooperative or unresponsive"
+		    "label": "uncoop/unresponsive",
+		    "key": "U",
+		    "description": "The supplier has not responded, declined to generate a remediation, or no longer exists."
 		}
-            ]
-            
-	},	
+	    ],
+	    "label": "Supplier involvement"
+	},
 	{
-            "label": "Exploitation",
-            "decision_type": "simple",
-            "key": "E",
-            "options": [
+	    "label": "Exploitation",
+	    "decision_type": "simple",
+	    "key": "E",
+	    "options": [
 		{
 		    "label": "none",
 		    "key": "N",
@@ -43,69 +41,211 @@
 		    "key": "A",
 		    "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
 		}
-            ]
+	    ]
 	},
 	{
-            "label": "Automatable",
-            "key": "A",
-            "decision_type": "simple",
-            "options": [
-		{
-		    "label": "no",
-		    "key": "N",
-		    "description": "Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool."
-		},
-		{
-		    "label": "yes",
-		    "key": "Y",
-		    "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely yes."
-		}
-            ]
-	},
-	{
-	    "label": "Value Added",
-	    "key": "V",
 	    "decision_type": "simple",
 	    "options": [
 		{
 		    "label": "precedence",
 		    "key": "P",
-		    "description": "precedence"
+		    "description": "The publication would be the first publicly available, or be coincident with the first publicly available."
 		},
 		{
 		    "label": "ampliative",
 		    "key": "A",
-		    "description": "ampliative"
+		    "description": "The publication amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc."
 		},
-        {
-            "label": "limited",
-            "key": "L",
-            "description": "limited"
-        }
-	    ]
+		{
+		    "label": "limited",
+		    "key": "L",
+		    "description": "A minimal value added to the existing public information because existing information is already high quality and in multiple outlets"
+		}
+	    ],
+	    "label": "Value added"
 	},
 	{
 	    "decision_type": "final",
-        "label": "Decision",
 	    "options": [
 		{
 		    "label": "publish",
-            "key": "P",
-		    "description": "Publish this report.",
+		    "description": "Publish a report on this vulnerability.",
+		    "key": "P",
 		    "color": "#FBEB61"
 		},
 		{
 		    "label": "don't publish",
-            "key": "D",
-		    "description": "Do not publish this report.",
-		    "color": "#74F94C"
+		    "description": "Do not publish a report on this vulnerability",
+		    "key": "D",
+		    "color": "#03FD05"
 		}
-	    ]
-	    
+	    ],
+	    "label": "Priority"
 	}
     ],
     "decisions_table": [
-
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "none",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "none",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "none",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "poc",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "poc",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "poc",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "active",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "active",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "active",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "none",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "none",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "none",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "poc",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "poc",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "poc",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "active",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "active",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "active",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "none",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "none",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "none",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "poc",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "poc",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "poc",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "active",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "active",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "active",
+	    "Value added": "limited",
+	    "Priority": "publish"
+	}
     ],
     "lang": "en",
     "version": "2.0",
