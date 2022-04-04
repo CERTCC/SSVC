@@ -1,0 +1,1121 @@
+{
+    "decision_points": [
+	{
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "no",
+		    "key": "N",
+		    "description": "Is a viable report of the details of the vulnerability already publicly available?"
+		},
+		{
+		    "label": "yes",
+		    "key": "Y",
+		    "description": "Is a viable report of the details of the vulnerability already publicly available?"
+		}
+            ],
+            "label": "Public"
+	},
+	{
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "yes",
+		    "key": "Y",
+		    "description": "Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?"
+		},
+		{
+		    "label": "no",
+		    "key": "N",
+		    "description": "Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?"
+		}
+            ],
+            "label": "Contacted"
+	},
+	{
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "no",
+		    "key": "N",
+		    "description": "Not, the report is found to be NOT credible using the recommended Report Credibility in SSVC"		
+		},
+		{
+		    "label": "yes",
+		    "key": "Y",
+		    "description": "Yes, the report is found to be credible using the recommended Report Credibility in SSVC"
+		}
+            ],
+            "label": "Report_Credibility"
+	},
+	{
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "one",
+		    "key": "O",
+		    "description": "Only one supplier is found responsible for the vulnerable component and its remediation or mitigation plan."
+		},
+		{
+		    "label": "multiple",
+		    "key": "M",
+		    "description": "Multiple suppliers are found responsible for the vulnerable component and its remediation or mitigation plan."		
+		}
+            ],
+            "label": "Cardinality"
+	},
+	{
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "active",
+		    "description": "Is the supplier responding to the reporter's contact effort and actively participating in the coordination effort?"
+		},
+		{
+		    "label": "unresponsive",
+		    "description": "Is the supplier responding to the reporter's contact effort and actively participating in the coordination effort?"
+		}
+            ],
+            "label": "Engagement"
+	},
+	{
+            "label": "Automatable",
+            "key": "A",
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "no",
+		    "key": "N",
+		    "description": "Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool."
+		},
+		{
+		    "label": "yes",
+		    "key": "Y",
+		    "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely yes."
+		}
+            ]
+	},
+	{
+            "label": "Value Density",
+            "key": "V",
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "diffuse",
+		    "key": "D",
+		    "description": "The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small. Examples of systems with diffuse value are email accounts, most consumer online banking accounts, common cell phones, and most personal computing resources owned and maintained by users. (A “user” is anyone whose professional task is something other than the maintenance of the system or component. As with Safety Impact, a “system operator” is anyone who is professionally responsible for the proper operation or maintenance of a system.)"
+		},
+		{
+		    "label": "concentrated",
+		    "key": "C",
+		    "description": "The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users. Examples of concentrated value are database systems, Kerberos servers, web servers hosting login pages, and cloud service providers. However, usefulness and uniqueness of the resources on the vulnerable system also inform value density. For example, encrypted mobile messaging platforms may have concentrated value, not because each phone’s messaging history has a particularly large amount of data, but because it is uniquely valuable to law enforcement."
+		}
+            ]
+	},
+	{
+            "decision_type": "complex",
+            "label": "Utility",
+            "key": "U",
+            "children": [
+		{
+		    "label": "Automatable"
+		},
+		{
+		    "label": "Value Density"
+		}
+            ],
+            "options": [
+		{
+                    "label": "laborious",
+                    "description": "No to automatable and diffuse value",
+                    "child_combinations": [
+			[
+			    {
+				"child_label": "Automatable",
+				"child_key": "A",
+				"child_option_labels": [
+				    "no"
+				],
+				"child_option_keys": [
+				    "N"
+				]
+			    },
+			    {
+				"child_label": "Value Density",
+				"child_key": "V",
+				"child_option_labels": [
+				    "diffuse"
+				],
+				"child_option_keys": [
+				    "D"
+				]
+			    }
+			]
+                    ]
+		},
+		{
+                    "label": "efficient",
+                    "description": "{Yes to automatable and diffuse value} OR {No to automatable and concentrated value}",
+                    "child_combinations": [
+			[
+			    {
+				"child_label": "Automatable",
+				"child_key": "A",
+				"child_option_labels": [
+				    "no"
+				],
+				"child_option_keys": [
+				    "N"
+				]
+			    },
+			    {
+				"child_label": "Value Density",
+				"child_key": "V",
+				"child_option_labels": [
+				    "concentrated"
+				],
+				"child_option_keys": [
+				    "C"
+				]
+			    }
+			],
+			[
+			    {
+				"child_label": "Automatable",
+				"child_key": "A",
+				"child_option_labels": [
+				    "yes"
+				],
+				"child_option_keys": [
+				    "Y"
+				]
+			    },
+			    {
+				"child_label": "Value Density",
+				"child_key": "V",
+				"child_option_labels": [
+				    "diffuse"
+				],
+				"child_option_keys": [
+				    "D"
+				]
+			    }
+			]
+			
+                    ]
+		},
+		{
+                    "label": "super effective",
+                    "description": "Yes to automatable and concentrated value",
+                    "child_combinations": [
+			[
+			    {
+				"child_label": "Automatable",
+				"child_key": "A",
+				"child_option_labels": [
+				    "yes"
+				],
+				"child_option_keys": [
+				    "Y"
+				]
+			    },
+			    {
+				"child_label": "Value Density",
+				"child_key": "V",
+				"child_option_labels": [
+				    "concentrated"
+				],
+				"child_option_keys": [
+				    "C"
+				]
+			    }
+			]
+                    ]
+		}
+            ]
+            
+	},
+	{
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "minor",
+		    "key": "M",
+		    "description": "Any one of the following is observed \"Physical Harm\": Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins. \"Environment\": Minor externalities (property damage, environmental damage, etc.) imposed on other parties. \"Financial\": Financial losses, which are not readily absorbable, to multiple persons. \"Psychological\": Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons."
+		},
+		{
+		    "label": "huge",
+		    "key": "H",
+		    "description": "Any one of the following (or worse) is observed \"Physical Harm\": Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation. \"Environment\": Major externalities (property damage, environmental damage, etc.) imposed on other parties. \"Financial\": Financial losses that likely lead to bankruptcy of multiple persons. \"Psychological\": Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people."
+		}
+            ],
+            "label": "Public_Safety_Impact"
+	},
+	{
+            "decision_type": "final",
+            "options": [
+		{
+		    "label": "decline",
+		    "description": "Do not act on the report. May take different forms, including ignoring the report as well as an acknowledgement to the reporter that we will not act and suggest the reporter to go to vendor or publish if unresponsive.",
+		    "color": "#70EF4A"
+		},
+		{
+		    "label": "track",
+		    "description": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions.",
+		    "color": "#FBEB61"
+		},
+		{
+		    "label": "coordinate",
+		    "description": "Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), advise only, secondary coordinator (assist another lead coordinator). See FIRST's \"CSIRT Services Framework\" for additional vulnerability management services a coordinator may provide.",
+		    "color": "#EE8733"
+		}
+            ],
+            "label": "Priority"
+	}
+    ],
+    "decisions_table": [
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "track"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "minor",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "yes",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "yes",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "active",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "multiple",
+            "Engagement": "unresponsive",
+            "Utility": "super effective",
+            "Public_Safety_Impact": "huge",
+            "Priority": "coordinate"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "no",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "active",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "laborious",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	},
+	{
+            "Public": "no",
+            "Contacted": "no",
+            "Report_Credibility": "yes",
+            "Cardinality": "one",
+            "Engagement": "unresponsive",
+            "Utility": "efficient",
+            "Public_Safety_Impact": "minor",
+            "Priority": "decline"
+	}
+    ],
+    "lang": "en",
+    "version": "2.0",
+    "title": "Coordinator Triage v2.0.0"
+}

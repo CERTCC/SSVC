@@ -6,3 +6,5 @@ That is mostly useful if you want to customize your risk posture by changing the
 
 These CSV files are used as input to ../src/SSVC_csv-to-latex.py as part of the pipeline for creating the pretty static images of the trees used in the PDF document.
 
+The folder child_trees contain CSV files that contribute to a Combined Value of two child decision points for e.g., the Human Impact is a combination of Situated Safety Impact and Mission Impact. In the future these will be created a Child trees in SSVC schema.
+

@@ -14,6 +14,12 @@ var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 /* If a new analysis is being done use this for export */
 var current_score = [];
 var current_tree = "CISA-Coordinator-v2.0.3.json";
+var roll_tree_map = {"CISA-Coordinator" : "CISA-Coordinator-v2.0.3.json",
+		     "Supplier": "Supplier-v2.0.0.json",
+		     "Deployer": "Deployer-v2.0.0.json",
+		     "Coordinator-Publish": "Coordinator-Publish-v2.0.0.json",
+		     "Coordinator-Triage": "Coordinator-Triage-v2.0.0.json"
+		    };
 var current_schema = "SSVC_Computed_v2.03.schema.json";
 /* A dictionary of elements that are children of a decision point*/
 var ischild = {};
@@ -39,9 +45,27 @@ function reset_form() {
     $('input').val('');
     $('select').prop('selectedIndex',0);
     $('input[type="file"]').hide();
-}    
+}
+function select_add_option(s,opt) {
+    var q = s.find('option').toArray().findIndex(function(x) {
+	if(x.value == opt) {
+	    x.selected = true;
+	    return true; }
+    });
+    if(q < 0) {
+	s.append($('<option/>').
+		 attr({value: opt,selected: true})
+		 .html(opt));
+    };
+}
 $(function () {
     reset_form();
+    Object.keys(roll_tree_map).forEach(function(x) {
+	var display = roll_tree_map[x].replace(".json","");
+	$('#tree_samples').append($('<option>')
+				  .attr({value:roll_tree_map[x]})
+				  .html(display))
+    });
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
     $('[data-toggle="tooltip"]').tooltip();
@@ -53,6 +77,22 @@ $(function () {
     }
     //load_tsv_score();
     //tree_process("CISA-Coordinator-v2.01.json");
+    if(location.hash != "") {
+	/*  IF location specifies are tree and its valid, preload the right tree
+	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator" 
+	*/	
+	var lparts = location.hash.substr(1).split("&");
+	if((lparts.length > 1) && (lparts[1] in roll_tree_map)) {
+	    current_tree = roll_tree_map[lparts[1]];
+	    $('#tree_samples').val(current_tree);
+	    select_add_option($('.export'),lparts[1]);
+	}
+	/* For some reason when .val() is used the cloning of this export does not
+	 carry over the value .attr of "value" works right */
+	if((lparts.length > 2) && (lparts[2] != "")) 
+	    $('.exportId').attr("value",lparts[2]);
+    }
+    select_add_option($('#tree_samples'),current_tree);    
     $.getJSON(current_tree).done(function(idata) {
 	parse_json(idata);
     }).fail(function() {
@@ -92,10 +132,12 @@ function tooltip_cycle_through() {
     },1300)
 
 }
-function dynamic_mwb() {
-    var mpdata = $('#mwb').data('parent');
+function dynamic_mwb(w) {
+    var mwbid = $(w).data('tid');
+    var pmwbid = '#'+mwbid;
+    var mpdata = $(pmwbid).data('parent');
     var mcdata = {}
-    $('#mwb select').each(
+    $(pmwbid+' select').each(
 	(i,k)  => {
 	    var opchoice = $(k).val();
 	    var cdata = $(k).data('moptions');
@@ -135,13 +177,14 @@ function dynamic_mwb() {
 	    }
 	}
     }
-    $('#wscore').html(result);
-    $('#wsdiv').show();
+    $(pmwbid+' .wscore').html(result);
+    $(pmwbid+' .wsdiv').show();
     $('circle[nameid="'+result.toLowerCase()+'"]').parent().simClick();
-    $('#wsdiv').fadeOut('slow');
+    $(pmwbid+' .wsdiv').fadeOut('slow');
     setTimeout(function() {
-	$('#mwb').modal('hide');
-    }, 400)    
+	$('.complex').modal('hide');
+    }, 400);
+    return result;
 }
 function export_show(novector) {
     var ptranslate = "translate(120,-250)";
@@ -158,6 +201,7 @@ function export_show(novector) {
     setTimeout(make_ssvc_vector,1000);
 }
 function make_ssvc_vector() {
+    console.log($('.exportId').val());
     var tstamp = new Date()
     var labels = current_score.map(x => Object.keys(x)[0]);
     var vals = current_score.map((x,i) => x[labels[i]]);
@@ -282,6 +326,7 @@ function readFile(input) {
 	//console.log(reader.result);
 	try {
 	    if(input.id == "dtreecsvload") {
+		select_add_option($('#tree_samples'),file.name);
 		if(file.name.match(/\.json$/i))
 		    parse_json(reader.result)
 		else
@@ -376,16 +421,20 @@ function finish_permalink(plparts,pchildren) {
 function permalink() {
     if(location.hash == "")
 	return;
-    topalert("Now loading permalink URL parameters","success");
-    dt_clear();
-    dt_start();
     try {
-	$('#biscuit').fadeIn();
 	var plink = location.hash.substr(1);
 	var pchildren = [];
 	var plparts = plink.split("&");
 	var fm = plparts[0].split("/");
-	$("#mwb").attr("data-override",1);
+	if(fm.length < 3) {
+	    console.log("Location hash has no valid preload paramenters");
+	    return;
+	}
+	topalert("Now loading permalink URL parameters","success");
+	dt_clear();
+	dt_start();
+	$('#biscuit').fadeIn();	    
+	$(".complex").attr("data-override",1);
 	/* "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator"
 	   OR 
 	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/2021-01-09/&CVE-2014-01-01&Coordinator" */	
@@ -551,7 +600,10 @@ function parse_json(xraw,paused) {
 	   schemas together*/
 	tm = tm.decision_tree;
     }
-    
+    /* Clear also non grphic trees */
+    $('#ughtr').html('');
+    $('#ugbtr').html('');
+    $('.trcomplex').remove();
     if(!('decision_points' in tm)) {
 	topalert("JSON schema has no decision_points","danger")
 	return
@@ -650,6 +702,8 @@ function parse_json(xraw,paused) {
     var duniq_keys = {};
     /* unique keys for choices under decision points*/
     var ouniq_keys = {};
+    acolors = [];
+    lcolors = {};    
     tm.decision_points.map(x => {
 	create_short_keys(x,duniq_keys);
 	var options_data = {}
@@ -670,12 +724,15 @@ function parse_json(xraw,paused) {
 	$("."+hdiv).html(options_html)
 	if(x.label in isparent) {
 	    /* Save the entier decision object in data parent value*/
-	    $('#mwb').attr("data-parent",JSON.stringify(x));
+	    var mwbid = "mwb-"+hdiv;
+	    $('body').append($('#mwb').clone().attr('id',mwbid));
+	    var pmwbid = '#'+mwbid;
+	    $(pmwbid).attr("data-parent",JSON.stringify(x));
 	    $("."+hdiv+" h5").after("<p>(Complex Decision)</p>");
 	    //console.log(isparent[x.label]);
-	    $("#mwb h5").html(x.label + " (Cummulative Score)");
+	    $(pmwbid+" h5").html(x.label + " (Cummulative Score)");
 	    //('#wbtable tr')
-	    $("#wbtable tr").remove();
+	    $(pmwbid+" .wbtable tr").remove();
 	    isparent[x.label].forEach( (t,k) => {
 		var stdiv = safedivname(t.label);
 		var tselect = $("<select/>").addClass("form-control s-"+stdiv).
@@ -694,12 +751,12 @@ function parse_json(xraw,paused) {
 		    }).html("?"))
 		var tr = $("<tr/>").append($("<td/>").append(tlabel)).
 		    append($("<td/>").append(tselect));
-		$("#wbtable").append(tr);
+		$(pmwbid+' .wbtable').append(tr);
 		var addcontent = "<blockquote>Depends on "+String(k+1)
 		addcontent += $("."+stdiv).html()+"</blockquote>";
-		$("."+hdiv).append(addcontent);
-		$('#mwb .btn-primary').removeAttr('onclick');
-		$('#mwb .btn-primary').attr({'onclick': 'dynamic_mwb()'});
+		$('.'+hdiv).append(addcontent);
+		$(pmwbid+' .btn-primary').removeAttr('onclick')
+		    .attr({ 'data-tid': mwbid,'onclick': 'dynamic_mwb(this)'});
 	    });
 	}
 	lastdiv = hdiv
@@ -742,7 +799,7 @@ function shwhelp(w) {
 			  "z-index":1050,
 			  display:"block"});
 	$('#mpopup').html($('.'+tm).html())
-	$('#mwb').on('hidden.bs.modal', function (e) {
+	$('.complex').on('hidden.bs.modal', function (e) {
 	    $('#mpopup').hide();
 	})
     }
@@ -920,6 +977,8 @@ function draw_graph() {
 	if(window.innerWidth <= 750)
 	    default_translate =  "translate(30,0) scale(0.42)"
     }
+    $('#zoomcontrol').show();
+    $('#zoomcontrol input').val(100);
     svg = d3.select("#graph").append("svg")
 	.attr("xmlns","http://www.w3.org/2000/svg")
 	.attr("preserveAspectRatio","none")
@@ -985,10 +1044,10 @@ function update(source) {
 		/* Last node no children */
 		var dname = d.name.split(":").shift();
 		if(dname in lcolors) 
-		    return lcolors[dname];
+		    return undefined;
 
 	    }
-	    return "#fff"
+	    return undefined;
 	}  );
     
     /*
@@ -1019,7 +1078,7 @@ function update(source) {
 	.style("font-size",font)
 	.style("fill", function(d) {
 	    var t = d.name.split(":").shift();
-	    var x = "white";
+	    var x;
 	    if(t in lcolors)
 		x = lcolors[t];
 	    return x;
@@ -1048,15 +1107,15 @@ function update(source) {
 	    if(!('children' in d)) {
 		var dname = d.name.split(":").shift()
 		if(dname in lcolors) 
-		    return lcolors[dname]
+		    return lcolors[dname];
 	    }
-	    return "#fff"
+	    return undefined;
 	})
 	.style("stroke",function(d) {
 	    if(!('children' in d)) {
 		var dname = d.name.split(":").shift()
 		if(dname in lcolors) 
-		    return "white"
+		    return undefined;
 	    }	    
 	    return "steelblue";
 	})
@@ -1200,7 +1259,7 @@ function showdiv(d) {
     if($(this).hasClass('opthide')) {
 	/* find depth-n*/
 	var idepth = Array.from(this.classList).find(a => a.indexOf("depth") == 0).replace("depth-","");
-	console.log(idepth);
+	//console.log(idepth);
 	var intdepth = parseInt(idepth);
 	if(intdepth > 0) {
 	    var pdepth = intdepth - 1;
@@ -1222,7 +1281,7 @@ function showdiv(d) {
     //console.log(vul_data)
     var addons = ''
     var safename = safedivname(name)
-    console.log(name,safename)
+    //console.log(name,safename)
     /* Default left position*/
     var leftpos = String(iconPos.right + 10) + "px"
     if(window.innerWidth - iconPos.right < iconPos.right) {
@@ -1251,6 +1310,15 @@ function checkclose() {
     /* */
     $('#mpopup').hide();
 }
+function tmp_dismiss_modal() {
+    $('.complex').modal('hide');
+    $('#tcummulative').removeClass('d-none');
+    setTimeout(function() {
+	$('#tcummulative').addClass('d-none');
+    },3000);
+    
+}
+
 
 function dorightclick(d) {
     return
@@ -1328,14 +1396,13 @@ function doclick(d) {
 		    export_show();
 	    }
 	    if(leftname in isparent) {
-		$('#wb').val(0);
-		$('#mp').val(0);
 		/* If mwb is overriden by permalink or full score reset 
 		   it and ignore it*/
-		if($("#mwb").data("override") == 1) 
-		    $("#mwb").attr("data-override",0)
+		console.log(leftname);
+		if($(".complex").data("override") == 1) 
+		    $(".complex").attr("data-override",0)
 		else
-		    $('#mwb').modal()
+		    $('#mwb-'+safedivname(leftname)).modal()
 	    }
 	}
 	if('id' in d) {
@@ -1418,9 +1485,11 @@ function dt_start() {
     showFullTree = false
     $('svg.mgraph').remove();
     $('#graph .exportdiv').remove();
-    var xraw = JSON.parse(JSON.stringify(raw))
-    treeData=grapharray(xraw)
-    draw_graph()
+    var xraw = JSON.parse(JSON.stringify(raw));
+    treeData=grapharray(xraw);
+    draw_graph();
+    /* reset all Complex decision select boxes*/
+    $('.complex select').each(function(_,x) { console.log(x.selectedIndex = 0)});    
     setTimeout(function() {
 	$('circle.junction').parent().simClick()
 	/* Disable click on the first node */
@@ -2191,3 +2260,7 @@ function copym(containerid,ispurl) {
     $('.permalink').addClass('d-none');    
 }
 
+function svgzoom(w) {
+    var f = w.value/w.max;
+    $('svg.mgraph').css({transform: "scale("+String(f)+")"});
+}

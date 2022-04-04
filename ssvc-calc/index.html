@@ -30,11 +30,12 @@
     <link href="magicsuggest-min.css" rel="stylesheet">
     <script src="magicsuggest-min.js" async defer></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1648156288">
+    <link rel="stylesheet" href="css.css?v=1648836075">
+    <script src="ungraph.js?v=1648836075"></script>
   </head>
   <body class="text-center blackbody">
     <img src="../moon_icon.png" class="cert-tweet" alt="CERT Logo"
-	 onclick="$('body').toggleClass('blackbody')"/>
+	 onclick="$('body').toggleClass('blackbody').toggleClass('whitebody')"/>
     <div class="tright">
       <a href="javascript:void(0)" onclick="$('#helper').show()"
 	 title="Dryad SSVC Calc App">
@@ -76,15 +77,21 @@
 
       <main class="inner cover">
 	<h4 class="cover-heading">
-	  Dryad - SSVC Calc App 
-	  <div class="cover_heading_append d-inline">
+	  Dryad - SSVC Calc App
+	  (<select id="tree_samples" class="form-control impselector"
+		   onchange="tree_process(this)">
+	    <option value="">Select</option>
+	    <option value="import">Import Tree</option>
+	  </select>)
+	  
+	  <div class="cover_heading_append d-none">
 	    (CISA Coordinator v2)
 	  </div>
 	</h4>
 	<div class="alert" id="topalert" role="alert">
 	  This is an alert!
 	</div>
-	<p class="lead">
+	<p class="lead graphy">
 	  <button type="button" class="btn btn-primary" id="dt_start"
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Start walking the SSVC decision tree"
@@ -104,12 +111,27 @@
 	     alt="View previous score" id="table_toggle" style="display:none"
 	     onclick="cve_table_toggle()">
 	    &#8853; </a>
+	  <button onclick="$('#mwb').modal()" id="tcummulative"
+		  class="btn btn-warning btn-sm d-none">
+	    Show Cummulative</button>
 	  <table id="cve_table" class="table table-dark d-none">
 	    <thead><tr></tr></thead>
 	    <tbody><tr></tr></tbody>
 	  </table>
 	</p>
-	<div id="graph" class="position-relative">
+	<div id="zoomcontrol" class="graphy">
+	  <div class="d-none">&#128269;</div>
+	  <input type="range" orient="vertical" alt="Zoom Graph"
+		 max="100" min="0" value="100" title="Zoom Graph"
+		 onchange="svgzoom(this)">
+	  </div>
+	<div id="graph" class="position-relative graphy">
+	</div>
+	<div id="ungraph" class="position-relative d-none">
+	  <table class="table table-borderless">
+	    <thead><tr id="ughtr"></tr></thead>
+	    <tbody><tr id="ugbtr"></tr></tbody>
+	  </table>
 	</div>
       </main>
 
@@ -117,17 +139,22 @@
 	<div class="inner shift-top">
 	  <div id="sponsorbar">
 	    <div class="row bottom-space justify-content-between">
-	      <div class="large-12 medium-12 columns" style="visibility:hidden">
+	      <div class="large-12 medium-12 columns" style="display:none">
 		<p>Sponsored by
 		  <a href="https://www.cisa.gov/cybersecurity"
 		     target="_blank" rel="noopener">CISA.</a> </p>
 	      </div>
+	      <select id="graph-ungraph" class="form-control mauto"
+		      onchange="swapg(this)">
+		<option value="Graphic">Mode: Graphic</option>
+		<option>Mode: Simple</option>		
+	      </select>	      
 	      <button class="btn btn-dark btn-bordered d-none"
 		      onclick="$('#cvetsvload').click()">
 		Import CVE</button>
 	      <select id="cve_samples" class="form-control mauto d-none"
 		      onchange="process(this)">
-		<option>Choose CVE</option>
+		<option>Choose Sample CVE</option>
 		<option value="import">Import CVE</option>		
 	      </select>
 	      <input type="file" onchange="readFile(this)" style="display:none"
@@ -135,15 +162,6 @@
 	      <button class="btn btn-dark btn-bordered d-none"
 		      onclick="$('#dtreecsvload').click()">
 		Import Decisions</button>
-	      <select id="tree_samples" class="form-control impselector"
-		      onchange="tree_process(this)">
-		<option selected>Choose Tree</option>
-		<option value="import">Import Tree</option>
-		<option value="CISA-Coordinator-v2.0.3.json">
-		  CISA-Coordinator-v2.0.3
-		</option>
-		<option value="Supplier-v2.0.0.json">Supplier-v2.0.0</option>
-	      </select>	      
 	      <input type="file" onchange="readFile(this)" style="display:none"
 		     id="dtreecsvload">    
 	      <div class="float-right" style="display:none">
@@ -157,7 +175,7 @@
 	</div>
       </footer>
     </div>
-    <div class="modal fade" id="mwb" tabindex="-1" role="dialog"
+    <div class="modal fade complex" id="mwb" tabindex="-1" role="dialog"
 	 data-toggle="modal" data-backdrop="static" data-keyboard="false"
 	 aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -170,8 +188,8 @@
 	    </button>
 	  </div>
 	  <div class="modal-body">
-	    <form id="wbform">
-	      <table class="table table-dark table-stripped" id="wbtable">
+	    <form class="wbform">
+	      <table class="table table-dark table-stripped wbtable">
 		<tr><td>
 		    Mission Prevelance
 		    &nbsp; 
@@ -201,15 +219,16 @@
 		    </select>
 	      </td></tr></table>
 	    </form>
-	    <div id="wsdiv" style="display:none">
-	      Cumulative MWB rating is <strong id="wscore"></strong>
+	    <div class="wsdiv" style="display:none">
+	      Cumulative MWB rating is <strong class="wscore"></strong>
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-warning" data-dismiss="modal">
+	    <button type="button" class="btn btn-warning"
+		    onclick="tmp_dismiss_modal()">
 	      Choose Manually
 	    </button>
-	    <button type="button" class="btn btn-primary" onclick="calculate_mwb()">
+	    <button type="button" class="btn btn-primary">
 	      Calculate</button>
 	  </div>
 	</div>
@@ -459,7 +478,7 @@
       </form>
       <canvas id="canvas" style="display:none">
     </div>      
-    <script src="ssvc.js?v=1648156288"></script>
+    <script src="ssvc.js?v=1648836075"></script>
   </body>
 </html>
 

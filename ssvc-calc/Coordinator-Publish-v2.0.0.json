@@ -1,0 +1,253 @@
+{
+    "decision_points": [
+	{
+	    "decision_type": "simple",
+	    "options": [
+		{
+		    "label": "fix ready",
+		    "key": "F",
+		    "description": "The supplier has provided a patch or fix."
+		},
+		{
+		    "label": "cooperative",
+		    "key": "C",
+		    "description": "The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time."
+		},
+		{
+		    "label": "uncoop/unresponsive",
+		    "key": "U",
+		    "description": "The supplier has not responded, declined to generate a remediation, or no longer exists."
+		}
+	    ],
+	    "label": "Supplier involvement"
+	},
+	{
+	    "label": "Exploitation",
+	    "decision_type": "simple",
+	    "key": "E",
+	    "options": [
+		{
+		    "label": "none",
+		    "key": "N",
+		    "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+		},
+		{
+		    "label": "poc",
+		    "key": "P",
+		    "description": "One of the following cases is true: (1) private evidence of exploitation is attested but not shared; (2) widespread hearsay attests to exploitation; (3) typical public PoC in places such as Metasploit or ExploitDB; or (4) the vulnerability has a well-known method of exploitation. Some examples of condition (4) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks."
+		},
+		{
+		    "label": "active",
+		    "key": "A",
+		    "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+		}
+	    ]
+	},
+	{
+	    "decision_type": "simple",
+	    "options": [
+		{
+		    "label": "precedence",
+		    "key": "P",
+		    "description": "The publication would be the first publicly available, or be coincident with the first publicly available."
+		},
+		{
+		    "label": "ampliative",
+		    "key": "A",
+		    "description": "The publication amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc."
+		},
+		{
+		    "label": "limited",
+		    "key": "L",
+		    "description": "A minimal value added to the existing public information because existing information is already high quality and in multiple outlets"
+		}
+	    ],
+	    "label": "Value added"
+	},
+	{
+	    "decision_type": "final",
+	    "options": [
+		{
+		    "label": "publish",
+		    "description": "Publish a report on this vulnerability.",
+		    "key": "P",
+		    "color": "#FBEB61"
+		},
+		{
+		    "label": "don't publish",
+		    "description": "Do not publish a report on this vulnerability",
+		    "key": "D",
+		    "color": "#03FD05"
+		}
+	    ],
+	    "label": "Priority"
+	}
+    ],
+    "decisions_table": [
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "none",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "none",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "none",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "poc",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "poc",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "poc",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "active",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "active",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "fix ready",
+	    "Exploitation": "active",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "none",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "none",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "none",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "poc",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "poc",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "poc",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "active",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "active",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "cooperative",
+	    "Exploitation": "active",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "none",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "none",
+	    "Value added": "ampliative",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "none",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "poc",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "poc",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "poc",
+	    "Value added": "limited",
+	    "Priority": "don't publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "active",
+	    "Value added": "precedence",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "active",
+	    "Value added": "ampliative",
+	    "Priority": "publish"
+	},
+	{
+	    "Supplier involvement": "uncoop/unresponsive",
+	    "Exploitation": "active",
+	    "Value added": "limited",
+	    "Priority": "publish"
+	}
+    ],
+    "lang": "en",
+    "version": "2.0",
+    "title": "Coordinator Publish v2.0.0"
+}

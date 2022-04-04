@@ -1,4 +1,20 @@
-/* css version 2.2.3 */
+/* css version 2.2.4 */
+#zoomcontrol {
+    position: absolute;
+    left: 30px;
+    display:none;
+}
+#zoomcontrol input[type=range]
+{
+    writing-mode: bt-lr;
+    -webkit-appearance: slider-vertical;
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+}
+#tree_samples {
+    border: none;
+}
 .not-highlighted {
     opacity: 0.5;
     border: 0;
@@ -54,6 +70,9 @@
     #mgraph {
 	margin-left: 600px;
     }
+}
+.mgraph {
+    overflow: visible;
 }
 .decisiontab {
     background: #222;
@@ -192,13 +211,45 @@ span.bold {
     width: auto;
     display:inline;
 }
-html,.blackbody {
+html {
+    background-color: transparent;
+}
+.blackbody {
     background-color: #222;
     color: white;
     text-shadow: none;
     box-shadow:none;
 }
-    
+.blackbody h5,
+.blackbody h4,
+.blackbody u {
+    color: white;
+}
+.blackbody .trcomplex .tdcomplex {
+    border: 1px dashed white;
+}
+.whitebody .trcomplex .tdcomplex {
+    border: 1px dashed black;
+}
+body.whitebody
+{
+    background-color: #fefefe !important;
+    box-shadow: inset 0 0 5rem rgba(255, 255, 255, .5) !important;
+    color: #333 !important;
+}
+.whitebody .xlink,
+.whitebody .link {
+    stroke: #333;
+}
+.whitebody .node circle {
+    fill: #cacaca;
+    stroke: steelblue;
+    stroke-width: 3px;
+}
+.chosen {
+    stroke: #5C1FD0;
+    fill: #5C1FD0;
+}}
 .blackbody table {
     background-color: #222;
     color: white;
@@ -274,6 +325,10 @@ html,.blackbody {
 
 .node text {
     font: 12px sans-serif;
+    fill: #111
+}
+.blackbody .node text {
+    fill: white;
 }
 .link {
     fill: none;
@@ -292,10 +347,6 @@ html,.blackbody {
     text-anchor: middle;
     /* dynamic font-size later change to class  */
     font-size: 20px;
-}
-.chosen {
-    stroke: #C9BDDF;
-    fill: #C9BDDF;
 }
 .fullTree {
     font-size: 14px;
