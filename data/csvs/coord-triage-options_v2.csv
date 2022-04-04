@@ -1,0 +1,86 @@
+row,Public,Contacted,Report_Credibility,Cardinality,Engagement,Utility,Public_Safety_Impact,Priority
+1,no,yes,no,one,active,laborious,minor,decline
+2,no,yes,no,one,active,laborious,huge,decline
+3,no,yes,no,one,active,efficient,minor,decline
+4,no,yes,no,one,active,efficient,huge,track
+5,no,yes,no,one,active,super effective,minor,decline
+6,no,yes,no,one,active,super effective,huge,track
+7,no,yes,no,one,unresponsive,laborious,minor,decline
+8,no,yes,no,one,unresponsive,laborious,huge,decline
+9,no,yes,no,one,unresponsive,efficient,minor,decline
+10,no,yes,no,one,unresponsive,efficient,huge,track
+11,no,yes,no,one,unresponsive,super effective,minor,decline
+12,no,yes,no,one,unresponsive,super effective,huge,track
+13,no,yes,no,multiple,active,laborious,minor,decline
+14,no,yes,no,multiple,active,laborious,huge,track
+15,no,yes,no,multiple,active,efficient,minor,decline
+16,no,yes,no,multiple,active,efficient,huge,track
+17,no,yes,no,multiple,active,super effective,minor,track
+18,no,yes,no,multiple,active,super effective,huge,coordinate
+19,no,yes,no,multiple,unresponsive,laborious,minor,decline
+20,no,yes,no,multiple,unresponsive,laborious,huge,track
+21,no,yes,no,multiple,unresponsive,efficient,minor,decline
+22,no,yes,no,multiple,unresponsive,efficient,huge,track
+23,no,yes,no,multiple,unresponsive,super effective,minor,track
+24,no,yes,no,multiple,unresponsive,super effective,huge,coordinate
+25,no,yes,yes,one,active,laborious,minor,decline
+26,no,yes,yes,one,active,laborious,huge,decline
+27,no,yes,yes,one,active,efficient,minor,decline
+28,no,yes,yes,one,active,efficient,huge,track
+29,no,yes,yes,one,active,super effective,minor,decline
+30,no,yes,yes,one,active,super effective,huge,track
+31,no,yes,yes,one,unresponsive,laborious,minor,track
+32,no,yes,yes,one,unresponsive,laborious,huge,coordinate
+33,no,yes,yes,one,unresponsive,efficient,minor,coordinate
+34,no,yes,yes,one,unresponsive,efficient,huge,coordinate
+35,no,yes,yes,one,unresponsive,super effective,minor,coordinate
+36,no,yes,yes,one,unresponsive,super effective,huge,coordinate
+37,no,yes,yes,multiple,active,laborious,minor,decline
+38,no,yes,yes,multiple,active,laborious,huge,track
+39,no,yes,yes,multiple,active,efficient,minor,decline
+40,no,yes,yes,multiple,active,efficient,huge,track
+41,no,yes,yes,multiple,active,super effective,minor,coordinate
+42,no,yes,yes,multiple,active,super effective,huge,coordinate
+43,no,yes,yes,multiple,unresponsive,laborious,minor,coordinate
+44,no,yes,yes,multiple,unresponsive,laborious,huge,coordinate
+45,no,yes,yes,multiple,unresponsive,efficient,minor,coordinate
+46,no,yes,yes,multiple,unresponsive,efficient,huge,coordinate
+47,no,yes,yes,multiple,unresponsive,super effective,minor,coordinate
+48,no,yes,yes,multiple,unresponsive,super effective,huge,coordinate
+
+49,yes,yes,no,multiple,active,super effective,huge,coordinate
+50,yes,yes,no,multiple,unresponsive,super effective,huge,coordinate
+51,yes,yes,yes,multiple,active,super effective,huge,coordinate
+52,yes,yes,yes,multiple,unresponsive,super effective,huge,coordinate
+53,yes,no,no,multiple,active,super effective,huge,coordinate
+54,yes,no,no,multiple,unresponsive,super effective,huge,coordinate
+55,yes,no,yes,multiple,active,super effective,huge,coordinate
+56,yes,no,yes,multiple,unresponsive,super effective,huge,coordinate
+57,yes,yes,no,one,active,laborious,minor,decline
+58,yes,yes,no,one,active,efficient,minor,decline
+59,yes,yes,no,one,unresponsive,laborious,minor,decline
+60,yes,yes,no,one,unresponsive,efficient,minor,decline
+61,yes,yes,yes,one,active,laborious,minor,decline
+62,yes,yes,yes,one,active,efficient,minor,decline
+63,yes,yes,yes,one,unresponsive,laborious,minor,decline
+64,yes,yes,yes,one,unresponsive,efficient,minor,decline
+65,yes,no,no,one,active,laborious,minor,decline
+66,yes,no,no,one,active,efficient,minor,decline
+67,yes,no,no,one,unresponsive,laborious,minor,decline
+68,yes,no,no,one,unresponsive,efficient,minor,decline
+69,yes,no,yes,one,active,laborious,minor,decline
+70,yes,no,yes,one,active,efficient,minor,decline
+71,yes,no,yes,one,unresponsive,laborious,minor,decline
+72,yes,no,yes,one,unresponsive,efficient,minor,decline
+73,no,no,no,multiple,active,super effective,huge,coordinate
+74,no,no,no,multiple,unresponsive,super effective,huge,coordinate
+75,no,no,yes,multiple,active,super effective,huge,coordinate
+76,no,no,yes,multiple,unresponsive,super effective,huge,coordinate
+77,no,no,no,one,active,laborious,minor,decline
+78,no,no,no,one,active,efficient,minor,decline
+79,no,no,no,one,unresponsive,laborious,minor,decline
+80,no,no,no,one,unresponsive,efficient,minor,decline
+81,no,no,yes,one,active,laborious,minor,decline
+82,no,no,yes,one,active,efficient,minor,decline
+83,no,no,yes,one,unresponsive,laborious,minor,decline
+84,no,no,yes,one,unresponsive,efficient,minor,decline

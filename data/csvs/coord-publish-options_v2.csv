@@ -1,0 +1,28 @@
+row,Supplier involvement,Exploitation,Value added,Priority
+1,fix ready,none,precedence,publish
+2,fix ready,none,ampliative,don't publish
+3,fix ready,none,limited,don't publish
+4,fix ready,PoC,precedence,publish
+5,fix ready,PoC,ampliative,don't publish
+6,fix ready,PoC,limited,don't publish
+7,fix ready,active,precedence,publish
+8,fix ready,active,ampliative,publish
+9,fix ready,active,limited,don't publish
+10,cooperative,none,precedence,publish
+11,cooperative,none,ampliative,don't publish
+12,cooperative,none,limited,don't publish
+13,cooperative,PoC,precedence,publish
+14,cooperative,PoC,ampliative,don't publish
+15,cooperative,PoC,limited,don't publish
+16,cooperative,active,precedence,publish
+17,cooperative,active,ampliative,publish
+18,cooperative,active,limited,don't publish
+19,uncoop/unresponsive,none,precedence,publish
+20,uncoop/unresponsive,none,ampliative,don't publish
+21,uncoop/unresponsive,none,limited,don't publish
+22,uncoop/unresponsive,PoC,precedence,publish
+23,uncoop/unresponsive,PoC,ampliative,publish
+24,uncoop/unresponsive,PoC,limited,don't publish
+25,uncoop/unresponsive,active,precedence,publish
+26,uncoop/unresponsive,active,ampliative,publish
+27,uncoop/unresponsive,active,limited,publish
