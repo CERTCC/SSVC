@@ -297,8 +297,8 @@ Therefore, JSON is the preferred storage and transmission method.
 ### Full JSON format
 
 For a more robust, self-contained, machine-readable, we provide JSON schemas.
-The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
-The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.01.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
+The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.03.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
+The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.03.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
 
 Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
