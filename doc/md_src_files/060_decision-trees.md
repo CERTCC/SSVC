@@ -113,7 +113,7 @@ SSVC enables teams with such different risk appetites to discuss and communicate
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
 For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 An important benefit, in our experience, is that it is easier to identify a question by saying  “I'm unsure about row 16” than anything else we have thought of so far.
-Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json).
+Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.03.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
 Making the decision process accessible has a lot of benefits.
@@ -297,8 +297,8 @@ Therefore, JSON is the preferred storage and transmission method.
 ### Full JSON format
 
 For a more robust, self-contained, machine-readable, we provide JSON schemas.
-The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.01.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
-The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.01.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
+The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.03.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
+The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.03.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
 
 Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
