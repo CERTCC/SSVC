@@ -1,0 +1,24 @@
+---
+author:
+ - Jonathan M. Spring
+ - Eric Hatleback
+ - Allen D. Householder
+ - Art Manion
+ - Madison Oliver
+ - Vijay Sarvapalli
+ - Deana Shick
+ - Laurie Tyzenhaus
+documentclass: scrreprt
+classoption:
+ - 10pt
+ - letterpaper
+ - onecolumn
+ - notitlepage
+pagestyle: headings
+numbersections: true
+secnumdepth: 4
+geometry:
+ - top=1in
+ - bottom=1in
+mainfont: Times 
+...
