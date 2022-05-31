@@ -1,5 +1,5 @@
 /* SSVC code for no graphics implementation of SSVC calculator */
-const ungraph_libversion = "1.0.9"
+const ungraph_libversion = "1.1.3"
 function checkclose() {
     $('#mpopup').hide();
 }
@@ -38,6 +38,7 @@ function swapg(w) {
     if($(w).val() == "Graphic") {
 	$('.graphy').show();
 	$('#ungraph').addClass('d-none');
+	dt_start();
     } else {
 	ungraph();
     }
@@ -72,7 +73,6 @@ function ungraph() {
 		value:y.label}).text(y.label))
 	})
 	if(x.decision_type == "complex") {
-	    console.log(x);
 	    $('select#'+fsattr.id).attr('data-moptions',JSON.stringify(x));
 	    $('.t-'+fs).hide();
 	    if('children' in x) 
@@ -84,7 +84,8 @@ function ungraph() {
 	}
 	if(x.decision_type == "final") {
 	    $('select#'+fsattr.id).hide().addClass('final-select');
-
+	    if((plparts.length > 2) && (plparts[3] == "Simple")) 
+		permalink_ungraph();
 	}
     })
 }
@@ -98,7 +99,6 @@ function ugchoose(w,reset) {
     current_score[sid] = {};
     current_score[sid][nodename] = nodevalue;    
     if($(w).hasClass('isChild')) {
-	console.log(w);
 	var parent = $(w).data('parent');
 	var pselect = 'select[data-parent="'+parent+'"]';
 	var mcdata = {};
@@ -114,8 +114,6 @@ function ugchoose(w,reset) {
 		return;
 	    var sparent = $('.sl-'+safedivname(parent))
 	    var mpdata = sparent.data('moptions');
-	    console.log('Ready');
-	    console.log(mpdata);
 	    var keys_match = Object.keys(mcdata).length
 	    var result = "Unknown/Error";
 	    var soptions = mpdata.options
@@ -142,7 +140,6 @@ function ugchoose(w,reset) {
 		    }
 		}
 	    } 
-	    console.log(result);
 	    sparent.val(result);
 	    /* Update the sid to be cummulative one*/
 	    var tsid = parseInt(sparent.attr('id').replace('isl-',''));
@@ -246,4 +243,52 @@ function make_decision() {
 	}
 	return false;
     })
+}
+function permalink_ungraph() {
+    var fm=plparts[0].split("/");
+    /* Last two values in this vector is timestamp and an empty string for the last
+     delimiter */
+    for(var i=1;i<fm.length-2;i++) {
+	var dtup = fm[i].split(":");
+	var fstep = export_schema.decision_points.filter(x => x.key == dtup[0]);
+	if(fstep.length != 1) {
+	    console.log("This decision point does not exist");
+	    console.log(dtup);
+	    continue;
+	}
+	var sfname = safedivname(fstep[0].label);
+	var fopt = fstep[0].options.filter(x => x.key == dtup[1]);
+	if(fopt.length != 1) {
+	    console.log("This result value does not exist");
+	    console.log(dtup);
+	    continue;
+	}
+	if('children' in fstep[0]) {
+	    var tdcolspan = i - 1;
+	    $('#ungraph table').append($('<tr/>').addClass('trcomplex'));
+	    $('.trcomplex').append($('<td>').attr('colspan',tdcolspan)
+				   .html("&nbsp;"));
+	    fstep[0].children.forEach(function(u) {
+		/* Hide the children that we don't know the values for */
+		var usfname = safedivname(u.label);
+		$('.t-'+usfname).css({visibility:'visible'});
+		$('#ungraph select.sl-'+usfname).hide();
+		$('td.t-'+usfname).append("<p><u>Pre-select</u></p>");
+	    });
+	    var mbtn = $('<button>').addClass("btn btn-secondary")
+		.attr('onmouseover','shwhelp(this)')
+		.attr('onmouseout','hidediv(this)')
+		.attr('data-tdiv',safedivname(fstep[0].label))
+		.html(fstep[0].label);	    
+	    var h5_id = "h5-cum-"+String(tdcolspan);
+	    var msl = $('<h5>').attr("id",h5_id).html(fopt[0].label);
+	    $('.trcomplex').append($('<td>').attr('colspan',2)
+				   .addClass('tdcomplex tdc-'+sfname)
+				   .append("<p><u>Cummulative Value</u></p>")
+				   .append(mbtn).append(msl));	    
+	}
+	if($('#ungraph select.sl-'+sfname).val(fopt[0].label).trigger('change').length != 1) {
+	    console.log("Could not make this decision "+sfname );
+	}
+    }
 }
