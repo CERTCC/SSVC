@@ -6,7 +6,7 @@
     "type": "object",    
     "definitions": {
         "decision_points": {
-	    "description": "Decision points are represented an an array of Nodes (in the decision tree language) in the decision tree, including the Root Node. Each decision point has a \"label\" with two or more \"options\" for each decision point",
+	    "description": "Decision points are represented as an array of Nodes (in the decision tree language) in the decision tree, including the Root Node. Each decision point has a \"label\" with two or more \"options\" for each decision point",
             "type": "array",
             "items": {
 		"type": "object",
