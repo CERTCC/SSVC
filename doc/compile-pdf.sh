@@ -10,6 +10,21 @@ src="./md_src_files"
 # So the best available option is to temporarily replace them with LaTeX commands
 # Pandoc will read from stdin if no input files are provided, so sed works inline.
 
+# versioning
+# need a better way of automatically updating version numbers
+major="2"
+minor="0"
+# these have the common meanings from semantic versioning
+# major should be incremented with content changes that introduce incompatibilities
+# minor should be incremented for meaningful changes that do not break compatibility
+fix="5"
+# fix version needs to be incremented with every commit
+
+#versioning across different content is a bit complicated.
+# The PDF major.minor should match any schema, tree, or other supporting document version
+# This means if the major.minor version changes, the schemas need a numbering change
+# The fix version for the schema and the PDF document may mismatch
+
 sed -f emoji-replacements.sed $src/*md | \
 pandoc --standalone \
   --from=markdown_github+citations+yaml_metadata_block+tex_math_dollars \
@@ -22,7 +37,7 @@ pandoc --standalone \
   -T "SSVC" \
   -M date="Compiled `date -u`" \
   --metadata-file=pdf-styling.yaml \
-  -o "ssvc_v2-0_`date -u +"%Y-%m-%d"`.pdf" \
+  -o "ssvc_$major2-$minor-$fix.pdf" \
 
 # --from should use gfm, but gfm+citations is not supported
 # so this method should perhaps be considered slightly unstable. 
