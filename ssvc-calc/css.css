@@ -1,4 +1,4 @@
-/* css version 2.2.4 */
+/* css version 2.2.6 */
 #zoomcontrol {
     position: absolute;
     left: 30px;
@@ -107,6 +107,7 @@
     display: none;
     position: fixed;
     opacity: 0.9;
+    z-index: 100;
 }
 span.bold {
     font-weight: bold;
@@ -143,7 +144,7 @@ span.bold {
     display:none;
     position:fixed;
     top:10px;
-    z-index: 1050;
+    z-index: 1051;
     background-color: rgba(0,0,0,0.9);
     height: 100%;
     width:75%;
@@ -304,14 +305,16 @@ body.whitebody
     max-width:40%;
 }
 #mpopup {
+    max-width: 600px;
+    overflow-y: auto;
+    /* Just one greater than modal */
+    z-index: 1051;
     display: none;
     position: absolute;
-    z-index: 200;
     background: rgba(70, 130, 180, 1);    
     border-radius: 5px;
     padding: 4px;
     text-align: left;
-    max-width: 600px;
 }
 .node {
     cursor: pointer;

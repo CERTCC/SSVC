@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = "5.1.4"
+const _version = "5.1.5"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
 var diagonal,tree,svg,duration,root
@@ -30,6 +30,9 @@ var isparent = {};
 var final_keyword = "Decision";
 /* Outcome of the final decision when a SSVC value has been calculated*/
 var final_outcome = "Unknown";
+
+/* plparts is a permalink divided into its parts */
+var plparts = [];
 
 /* Extend jQuery to support simulate D3 click events */
 jQuery.fn.simClick = function () {
@@ -81,16 +84,15 @@ $(function () {
 	/*  IF location specifies are tree and its valid, preload the right tree
 	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator" 
 	*/	
-	var lparts = location.hash.substr(1).split("&");
-	if((lparts.length > 1) && (lparts[1] in roll_tree_map)) {
-	    current_tree = roll_tree_map[lparts[1]];
+	plparts = location.hash.substr(1).split("&");
+	if((plparts.length > 1) && (plparts[1] in roll_tree_map)) {
+	    current_tree = roll_tree_map[plparts[1]];
 	    $('#tree_samples').val(current_tree);
-	    select_add_option($('.export'),lparts[1]);
 	}
 	/* For some reason when .val() is used the cloning of this export does not
 	 carry over the value .attr of "value" works right */
-	if((lparts.length > 2) && (lparts[2] != "")) 
-	    $('.exportId').attr("value",lparts[2]);
+	if((plparts.length > 2) && (plparts[2] != "")) 
+	    $('.exportId').attr("value",plparts[2]);
     }
     select_add_option($('#tree_samples'),current_tree);    
     $.getJSON(current_tree).done(function(idata) {
@@ -111,28 +113,29 @@ document.onkeyup = function(evt) {
     }
 }
 function cve_table_toggle() {
-    $('#cve_table').toggleClass('d-none')
+    $('#cve_table').toggleClass('d-none');
     if($('#cve_table').hasClass('d-none'))
-	$('#table_toggle').html("&#8853;")
+	$('#table_toggle').html("&#8853;");
     else
-	$('#table_toggle').html("&#8854;")
+	$('#table_toggle').html("&#8854;");
 }
 function tooltip_cycle_through() {
-    var tips = ['#dt_start','#dt_full_tree','#dt_clear']
-    $(tips[0]).tooltip('show')
-    var itip =1
+    var tips = ['#dt_start','#dt_full_tree','#dt_clear'];
+    $(tips[0]).tooltip('show');
+    var itip = 1;
     var ix = setInterval(function() {
-	$('button').tooltip('hide')
-	$(tips[itip]).tooltip('show')
-	itip++
+	$('button').tooltip('hide');
+	$(tips[itip]).tooltip('show');
+	itip++;
 	if(itip > tips.length) {
-	    clearInterval(ix)
-	    $('button').tooltip('dispose')
+	    clearInterval(ix);
+	    $('button').tooltip('dispose');
 	}
-    },1300)
-
+    },1300);
 }
 function dynamic_mwb(w) {
+    /* Disable buttons temporarily */
+    $('.complex button').attr('disabled',1);
     var mwbid = $(w).data('tid');
     var pmwbid = '#'+mwbid;
     var mpdata = $(pmwbid).data('parent');
@@ -183,6 +186,7 @@ function dynamic_mwb(w) {
     $(pmwbid+' .wsdiv').fadeOut('slow');
     setTimeout(function() {
 	$('.complex').modal('hide');
+	$('.complex button').removeAttr('disabled');
     }, 400);
     return result;
 }
@@ -393,7 +397,7 @@ function create_permalink(copyme){
     else
 	return purl;
 }
-function finish_permalink(plparts,pchildren) {
+function finish_permalink(pchildren) {
     if(pchildren && pchildren.length > 0) {
 	var index = pchildren[0]['index']
 	current_score.splice(index,0,...pchildren.map(x => {
@@ -419,12 +423,19 @@ function finish_permalink(plparts,pchildren) {
     }, 800)
 }
 function permalink() {
-    if(location.hash == "")
+    if(plparts.length < 1) {
+	/* On a new tree being loaded without any permalinks just 
+	 start_decision to become default behavior */
+	dt_start();
 	return;
+    }
+    if((plparts.length > 2) && (plparts[3] == "Simple")) {
+	$('#graph-ungraph').val('Simple').trigger('change');	
+	return;
+    }
     try {
-	var plink = location.hash.substr(1);
+	//var plink = location.hash.substr(1);
 	var pchildren = [];
-	var plparts = plink.split("&");
 	var fm = plparts[0].split("/");
 	if(fm.length < 3) {
 	    console.log("Location hash has no valid preload paramenters");
@@ -461,12 +472,12 @@ function permalink() {
 	    var precheck = fopt[0].label.toLowerCase();
 	    sI[precheck] = setInterval(
 		function(u) {
-		    if($('.prechk-'+u).length == 1) {
-			$('.prechk-'+u).simClick();
+		    if($('.prechk-'+safedivname(u)).length == 1) {
+			$('.prechk-'+safedivname(u)).simClick();
 			clearInterval(sI[u]);
 			delete sI[u];
 			if(u == last_precheck)
-			    finish_permalink(plparts,pchildren);
+			    finish_permalink(pchildren);
 			return;
 		    }
 		},600*i,precheck);
@@ -478,13 +489,15 @@ function permalink() {
 		clearInterval(sI[k]);
 		delete sI[k];
 	    }
+	    $('#biscuit').fadeOut();
 	},20000)
 	console.log(sI);
-    }catch(err) {
+    } catch(err) {
 	console.log(err);
-	topalert("Failed to parse Permalink URL!","error")
+	topalert("Failed to parse Permalink URL!","error");
     }
-
+    /* Clear plparts so if the tree changes we are not relaoding it */
+    plparts = [];
 }
 function process(w) {
     var cve = $(w).val()
@@ -523,8 +536,8 @@ function clickprocess(tstep,cve_data,stime) {
 	//console.log(stime)
 	//console.log(new Date().getTime())
 	if(tstep in cve_data) {
-	    if($(".prechk-"+cve_data[tstep].toLowerCase()).length == 1) {
-		$(".prechk-"+cve_data[tstep].toLowerCase()).simClick()
+	    if($(".prechk-"+safedivname(cve_data[tstep].toLowerCase())).length == 1) {
+		$(".prechk-"+safedivname(cve_data[tstep].toLowerCase())).simClick()
 	    } else {
 		console.log("Try again in a few seconds "+tstep)
 		//clickprocess(tstep,cve_data,stime-1000)
@@ -588,6 +601,9 @@ function create_short_keys(x,uniq_keys) {
     }
 }
 function parse_json(xraw,paused) {
+    $('.bcomplex').remove();
+    $('.graphy').not('#zoomcontrol').show();
+    $('#ungraph').addClass('d-none');
     var zraw = [];
     isparent = {};
     var tm;
@@ -725,7 +741,7 @@ function parse_json(xraw,paused) {
 	if(x.label in isparent) {
 	    /* Save the entier decision object in data parent value*/
 	    var mwbid = "mwb-"+hdiv;
-	    $('body').append($('#mwb').clone().attr('id',mwbid));
+	    $('body').append($('#mwb').clone().attr('id',mwbid).addClass('bcomplex'));
 	    var pmwbid = '#'+mwbid;
 	    $(pmwbid).attr("data-parent",JSON.stringify(x));
 	    $("."+hdiv+" h5").after("<p>(Complex Decision)</p>");
@@ -766,7 +782,8 @@ function parse_json(xraw,paused) {
     $("."+lastdiv).addClass("Decision");
     var classes = []
     var decision_div = decisions[0].options.reduce((h,r,ir) => {
-	classes.push(safedivname(r.label));
+	var srlabel = safedivname(r.label);
+	classes.push(srlabel);
 	if(("color" in r) && (r.color)) {
 	    lcolors[r.label] = r.color;
 	} else if(acolors[i]) {
@@ -774,7 +791,8 @@ function parse_json(xraw,paused) {
 	}
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
 				     css({color:r.color}).html(r.label))
-	    .append("&nbsp"+r.description+"<hr>").html();
+	    .append("&nbsp"+r.description+"<hr>")
+	    .addClass("popupidiv popup-"+srlabel)[0].outerHTML;
     },"<h5>"+final_keyword+"</h5>")
     if($("."+classes[0]).length != 1) {
 	$("."+classes[0]).remove()
@@ -783,27 +801,36 @@ function parse_json(xraw,paused) {
     //console.log(classes)
     //console.log(decision_div)
     $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
-    permalink();
+    var currentRole = Object.keys(roll_tree_map)
+	.filter(x => roll_tree_map[x] == current_tree).shift()
+    if(currentRole)
+	select_add_option($('.exportRole'),currentRole);
+    /* If a new tree is loaded and the user is in Simple mode
+     just start simple mode decision */
+    if($('#graph-ungraph').val() == 'Simple')
+	$('#graph-ungraph').trigger('change');
+    else
+	permalink();
     $('#dtreecsvload').hide();
 }
 function shwhelp(w) {
     var iconPos = w.getBoundingClientRect();
-    var tm = $(w).data('tdiv')
+    var tm = $(w).data('tdiv');
+    var leftpos = String(iconPos.right + 10) + "px"
+    if(window.innerWidth - iconPos.right < iconPos.right) {
+	/* right half of screen, move left position */
+	leftpos = String(iconPos.left - $('#mpopup').width()) +"px"
+    }
     if(tm) {
-	$('#mpopup').css({left:(iconPos.right + 10) + "px",
-			  top:(window.scrollY + iconPos.top - 20) + "px",
-			  "max-width": "-moz-available",
-			  "max-width": "-webkit-fill-available",
-			  "max-width": "stretch",
-			  "overflow-y": "auto",
-			  "z-index":1050,
-			  display:"block"});
+	$('#mpopup').css({left: leftpos,
+			  top:(window.scrollY + iconPos.top - 20) + "px"});
+			  
 	$('#mpopup').html($('.'+tm).html())
 	$('.complex').on('hidden.bs.modal', function (e) {
 	    $('#mpopup').hide();
 	})
     }
-    $('#mpopup').show()
+    $('#mpopup').show();
 }
 
 
@@ -1027,8 +1054,11 @@ function update(source) {
 	    return "translate(" + source.y0 + "," + source.x0 + ")";	    
 	})
 	.attr("class", function(d) {
+	    var finale = "";
+	    if(!('children' in d)) 
+		finale = " finale";
 	    if('depth' in d)
-		return "node depth-"+String(d.depth);
+		return "node depth-"+String(d.depth)+finale;
 	    return "node depth-none";})
 	.on("click", doclick)
 	.on("contextmenu",dorightclick)
@@ -1037,7 +1067,11 @@ function update(source) {
 
     nodeEnter.append("circle")
 	.attr("r", 1e-6)
-	.attr("class","junction gvisible")
+	.attr("class",function(d) {
+	    if(!('children' in d))
+		return "junction gvisible finale";
+	    return "junction gvisible"
+	})
 	.style("fill", function(d) {
 	    if(d._children) return "lightsteelblue"
 	    if(!('children' in d)) {
@@ -1050,21 +1084,6 @@ function update(source) {
 	    return undefined;
 	}  );
     
-    /*
-      nodeEnter.append("text")
-      .attr("x", function(d) { return check_children(d,"-13","-60")})
-      .attr("y", "+10")
-      .attr("dy", ".35em")
-      .attr("class","dfork")
-      .attr("text-anchor", function(d) { return check_children(d,"end","start") })
-      .text( function(d) {
-      if(d.name.split(":").length > 1) return d.name.split(":").pop();
-      return "";
-      })
-      .style("fill-opacity", 1e-6)
-      .style("font-size","14px")
-      .style("fill","white")
-    */
     var font = "20px"
     if(showFullTree) 
 	font = "18px"
@@ -1073,8 +1092,11 @@ function update(source) {
 	.attr("y",function(d) { return check_children(d,"-37","0") })
 	.attr("dy", ".35em")
 	.attr("class",function(d) {
-	    return "gvisible prechk-"+d.name.split(":").shift().toLowerCase()
-	}).text(function(d) { return d.name.split(":")[0]; })
+	    var fclass = d.name.split(":").shift().toLowerCase();
+	    if(!('children' in d))	    
+		return "gvisible prechk-"+safedivname(fclass)+" finale";
+	    return "gvisible prechk-"+safedivname(fclass);})
+	.text(function(d) { return d.name.split(":")[0]; })
 	.style("font-size",font)
 	.style("fill", function(d) {
 	    var t = d.name.split(":").shift();
@@ -1214,7 +1236,7 @@ function update_links() {
 	var depth = parseInt(t.attr("ldeep")) || 0
 	var text = t.attr("ldata")
 	var pname = t.attr("kdata")
-	var xclass = "btext prechk-"+text
+	var xclass = "btext prechk-"+safedivname(text)
 	var mclass = $(this).attr("class")
 	if((mclass) && mclass.indexOf("chosen") > -1) {
 	    xclass += " chosen"
@@ -1244,18 +1266,25 @@ function update_links() {
 }
 function showdiv(d) {
     var iconPos = this.getBoundingClientRect();
-    //console.log(JSON.parse(d.props))
     var bgcolor = 'rgba(70, 130, 180, 1)';
     var name = "";
     var highlighter = "";
-    if($(this).is('g'))
+    var finale = false;
+    if($(this).is('g')) {
 	name = $(this).find("text").text();
-    else if($(this).is('circle')) 
+    } else if($(this).is('circle')) {
+	/* This should not happen.. */
 	name = $(this).parent().find("text").text();
-    else if($(this).is('textPath')) {
+    } else if($(this).is('textPath')) {
 	name = $(this).attr("parentname");
 	highlighter = $(this).text();
     }
+    if(showFullTree && $(this).hasClass('finale')) {
+	highlighter = name;
+	if($(this).is('text'))
+	    highlighter = $(this).text();
+    }
+    
     if($(this).hasClass('opthide')) {
 	/* find depth-n*/
 	var idepth = Array.from(this.classList).find(a => a.indexOf("depth") == 0).replace("depth-","");
@@ -1281,7 +1310,6 @@ function showdiv(d) {
     //console.log(vul_data)
     var addons = ''
     var safename = safedivname(name)
-    //console.log(name,safename)
     /* Default left position*/
     var leftpos = String(iconPos.right + 10) + "px"
     if(window.innerWidth - iconPos.right < iconPos.right) {
@@ -1299,7 +1327,9 @@ function showdiv(d) {
 	$('#mpopup .popupidiv').addClass('not-highlighted').removeClass('highlighted');
 	var spclass = 'popup-'+safedivname(highlighter);
 	$('#mpopup .'+spclass).addClass('highlighted');
+	$('#mpopup blockquote').hide();
     } else {
+	$('#mpopup blockquote').show();	
 	$('#mpopup .popupidiv').removeClass('not-highlighted highlighted');
     }
 }
@@ -1310,13 +1340,19 @@ function checkclose() {
     /* */
     $('#mpopup').hide();
 }
-function tmp_dismiss_modal() {
-    $('.complex').modal('hide');
+function tmp_dismiss_modal(w) {
+    var current_modal_id = $('.modal.show').attr('id');
+    $('.bcomplex').modal('hide');
+    $('#tcummulative').data('mwbid',current_modal_id);
     $('#tcummulative').removeClass('d-none');
     setTimeout(function() {
 	$('#tcummulative').addClass('d-none');
     },3000);
     
+}
+function show_complex() {
+    var mwbid = $('#tcummulative').data('mwbid');
+    $('#'+mwbid).modal();
 }
 
 
@@ -1345,7 +1381,7 @@ function revert(d) {
 	sI[nodename] = setInterval(
 	    function(n,v) {
 		/* $('[parentname="Exploitation"].prechk-none').simClick() */
-		var selector = '[parentname="'+n+'"].prechk-'+v
+		var selector = '[parentname="'+n+'"].prechk-'+safedivname(v)
 		if($(selector).length == 1) {
 		    $(selector).simClick();
 		    clearInterval(sI[n]);
@@ -1489,7 +1525,7 @@ function dt_start() {
     treeData=grapharray(xraw);
     draw_graph();
     /* reset all Complex decision select boxes*/
-    $('.complex select').each(function(_,x) { console.log(x.selectedIndex = 0)});    
+    $('.bcomplex select').each(function(_,x) { console.log(x.selectedIndex = 0)});    
     setTimeout(function() {
 	$('circle.junction').parent().simClick()
 	/* Disable click on the first node */
@@ -1501,6 +1537,7 @@ function dt_clear() {
     current_score = [];
     raw.map(x => {  x.children=[]; delete x._children;});
     /* Clear all graph to start */
+    $('#zoomcontrol').hide();
     $('svg.mgraph').remove();
     $('#graph').html('');
 }
@@ -2261,6 +2298,13 @@ function copym(containerid,ispurl) {
 }
 
 function svgzoom(w) {
-    var f = w.value/w.max;
-    $('svg.mgraph').css({transform: "scale("+String(f)+")"});
+    var zf = w.value/w.max;
+    if(zf > 0.95) {
+	$('svg.mgraph').attr('viewBox','');
+	return;
+    }
+    var fh = parseInt($('svg.mgraph').attr("height"));
+    var fw = parseInt($('svg.mgraph').attr("height"));
+    var vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
+    $('svg.mgraph').attr('viewBox',vbox);
 }
