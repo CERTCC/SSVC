@@ -100,7 +100,7 @@ Whether they have the option of deploying only part of a remediation such as a f
 For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
 The vulnerability management process for deployers has at its core the collation of data including
-- an inventory of deployed instances of product versionsWe invite further refinement
+- an inventory of deployed instances of product versions
 - a mapping of vulnerabilities to remediations or mitigations
 - a mapping of remediations and/or mitigations to product versions
 
