@@ -243,8 +243,8 @@
             "key": "M",
             "options": [
                 {
-                    "label": "none",
-                    "key": "N",
+                    "label": "degraded",
+                    "key": "D",
                     "description": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions. (aka Non-Essential Degraded)"
                 },		
                 {
@@ -297,7 +297,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
-				  "none",
+				  "degraded",
 				  "crippled"
 			      ]
 			      
@@ -339,7 +339,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
-				  "none",
+				  "degraded",
 				  "crippled"
 			      ]
 			      
@@ -380,7 +380,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
-				  "none",
+				  "degraded",
 				  "crippled",
 				  "mef failure"
 			      ]
@@ -428,7 +428,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
-				  "none",
+				  "degraded",
 				  "crippled",
 				  "mef failure",
 				  "mission failure"
