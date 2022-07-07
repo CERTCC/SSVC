@@ -246,7 +246,7 @@ Table:  Mission Impact Decision Values
 
 | Value | Definition  |
 | :--- | :---------- |
-| None / Non-Essential Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
+| Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
 | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
 | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
 | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
@@ -265,7 +265,7 @@ In pilot implementations of SSVC, we received feedback that organizations tend t
 We therefore combine Situated Safety and Mission Impact for deployers into a single _Human Impact_ factor as a dimension reduction step as follows.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
-Therefore we combine the three lesser mission impacts of none, non-essential degraded, and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
+Therefore we combine the two lesser mission impacts of degraded and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
 This gives us three levels of mission impact to work with.
 
 On the other hand, most organizations tend to have lower tolerance for variance in safety.
@@ -279,16 +279,16 @@ Table: Combining Mission and Situated Safety Impact into Human Impact
 
 | Situated Safety Impact | Mission Impact | Combined Value (Human Impact) |
 | -----:                 | :-----         | :---:          |
-|  None/Minor         | None/Degraded/Crippled | Low       |
+|  None/Minor         | Degraded/Crippled | Low       |
 |  None/Minor         | MEF Failure       | Medium         |
 |  None/Minor         | Mission Failure   | Very High      |
-|  Major              | None/Degraded/Crippled | Medium    |
+|  Major              | Degraded/Crippled | Medium    |
 |  Major              | MEF Failure       | High           |
 |  Major              | Mission Failure   | Very High      |
-|  Hazardous          | None/Degraded/Crippled | High      |
+|  Hazardous          | Degraded/Crippled | High      |
 |  Hazardous          | MEF Failure       | High           |
 |  Hazardous          | Mission Failure   | Very High      |
-|  Catastrophic       | None/Degraded/Crippled | Very High |
+|  Catastrophic       | Degraded/Crippled | Very High |
 |  Catastrophic       | MEF Failure       | Very High      |
 |  Catastrophic       | Mission Failure   | Very High      |
 
@@ -309,7 +309,7 @@ Table: Combining Mission and Situated Safety Impact into Human Impact
   <tr>
   <td> </td>
   <td> </td>
-  <td> <em> None/ Degraded/ Crippled </td>
+  <td> <em> Degraded/ Crippled </td>
   <td> <em> MEF Failure</td>
   <td> <em> Mission Failure</td>
   </tr>
