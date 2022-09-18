@@ -192,12 +192,14 @@ function dynamic_mwb(w) {
 }
 function export_show(novector) {
     console.log(novector);
+    $('#exportopen').show();
     var ptranslate = "translate(120,-250)";
     if(window.innerWidth <= 1000)
 	ptranslate = "translate(30,-90) scale(0.4,0.4)";
     d3.select("#pgroup").transition()
 	.duration(600).attr("transform", ptranslate);
     var q = $('#exporter').html();
+    $('.exportActive .exportdiv').remove();
     $('.exportActive').removeClass('exportActive');
     if($('#graph-ungraph').val() == "Analyst")
 	$('#ungraph').append(q).addClass('exportActive');
@@ -467,10 +469,17 @@ function permalink() {
 	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/2021-01-09/&CVE-2014-01-01&Coordinator" */	
 	var sI = {}
 	var last_precheck = false;
-	/* Last three elements are not needed Decision,Timestamp,Empty as 
-	 vector ends with a slash */
-	for(var i=1;i<fm.length-3;i++) {
-	    var dtup = fm[i].split(":");
+	/* Sort elements according to export_schema.decisions and run the simClicks */
+	let sfm = export_schema.decision_points.reduce(function(x,y) {
+	    let t = fm.filter(function(z) { return y.key == z[0] });
+	    if(t.length == 1) x.push(t[0]);
+	    else console.log("Error important decision is missing in vector "+y.key)
+	    return x;
+	},[]);
+	/* Remove the last element which is the Decision itself*/
+	sfm.pop();
+	for(var i=0;i<sfm.length;i++) {
+	    var dtup = sfm[i].split(":");
 	    var fstep = export_schema.decision_points.filter(x => x.key == dtup[0]);
 	    if(fstep.length != 1) {
 		console.log("This decision point does not exist");
@@ -478,8 +487,21 @@ function permalink() {
 		continue;
 	    }
 	    var fopt = fstep[0].options.filter(x => x.key == dtup[1]);
-	    if((fstep[0].label in ischild) && ($('#graph-ungraph').val() != "Analyst") ) {
-		console.log("This is a child decision, do it later");
+	    if($('#graph-ungraph').val() == "Analyst") {
+		if(fstep[0].decision_type == "complex") {
+		    console.log("Complex decision in Analyst mode skip "+fstep[0].label);
+		    /* If this is the last element then finish_permalink and add SSVC
+		       Vector creation for Analyst mode with appropriate delay*/
+		    if(i == sfm.length-1) {
+			setTimeout(function() {
+			    make_ssvc_vector();
+			    finish_permalink(pchildren);
+			},600*i);
+		    }
+		    continue;
+		}
+	    } else if(fstep[0].label in ischild) {
+		console.log("This is a child decision in Graph mode do it later "+fstep[0].label);
 		pchildren.push({
 		    index: i-1,
 		    childlabel: fstep[0].label,
@@ -488,21 +510,22 @@ function permalink() {
 		continue;
 	    }
 	    var precheck = fopt[0].label.toLowerCase();
-	    sI[precheck] = setInterval(
-		function(u,p,last_precheck) {
+	    var tag = fstep[0].label + ":" + precheck;
+	    sI[tag] = setInterval(
+		function(u,p,tag,last_precheck) {
 		    var ptype = 'textPath';
 		    if($('#graph-ungraph').val() == "Analyst")
 			ptype = 'input';
 		    var pselect = $(ptype+'.prechk-'+u+'[parentname="'+p+'"]');
 		    if(pselect.length == 1) {
 			pselect.simClick();
-			clearInterval(sI[u]);
-			delete sI[u];
+			clearInterval(sI[tag]);
+			delete sI[tag];
 			if(last_precheck)
 			    finish_permalink(pchildren);
 			return;
 		    }
-		},600*i,precheck,fstep[0].label,i == fm.length-4);
+		},600*i,precheck,fstep[0].label,tag,i == sfm.length-1);
 	}
 	setTimeout(function() {
 	    for (let k in sI) {
@@ -1541,6 +1564,7 @@ function dt_start() {
     showFullTree = false
     $('svg.mgraph').remove();
     $('.exportActive .exportdiv').remove();
+    $('#exportopen').hide();
     var xraw = JSON.parse(JSON.stringify(raw));
     treeData=grapharray(xraw);
     draw_graph();
@@ -1560,6 +1584,7 @@ function dt_clear() {
     $('#zoomcontrol').hide();
     $('svg.mgraph').remove();
     $('#graph').html('');
+    $('#exportopen').hide();
 }
 
 function show_full_tree() {

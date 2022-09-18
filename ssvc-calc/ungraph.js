@@ -73,7 +73,8 @@ function ungraph() {
 		"name": fsattr.id,
 		"data-label": x.label,
 		"onclick": "ugchoose(this,false)",
-		"class":"form-check-input margtop",
+		"parentname": x.label,
+		"class":"form-check-input margtop prechk-"+y.label.toLowerCase(),
 		"value": y.label})).append(
 		    $('<label>').addClass("h3").html(y.label).on("click",function() {
 			$(this).siblings().click();
@@ -229,8 +230,10 @@ function make_decision() {
     })
 
     var xfinal = export_schema.decisions_table.find( function(x) {
-	if(found)
+	if(found) {
+	    export_show();
 	    return;
+	}
 	var d = Object.keys(x);
 	var match = 0;
 	for(var j=0; j< d.length; j++) {
@@ -239,6 +242,7 @@ function make_decision() {
 	}
 	if(match == d.length - 1) {
 	    found = true;
+	    export_show();
 	    var fselect = $('div.final-select');
 	    var flabel =  fselect.data('label');
 	    var fvalue = x[flabel]
