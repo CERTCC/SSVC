@@ -299,9 +299,12 @@ function export_json() {
     final_outcome = $('#graph svg g.node text:last').text();
     /* Copy current_score as is to options that were selected */
     oexport['options'] = current_score;
-    var last_option = {};
-    last_option[final_keyword] = final_outcome;
-    oexport['options'].push(last_option);
+    if(current_score.findIndex(x => final_keyword in x) < 0) {
+	/* Add final_keywrod only if not exists see GitHub issue #190 */
+	var last_option = {};
+	last_option[final_keyword] = final_outcome;
+	oexport['options'].push(last_option);
+    }
     oexport['$schema'] = location.origin + location.pathname + current_schema
     oexport['decision_tree_url'] = location.origin + location.pathname +
 	current_tree;
