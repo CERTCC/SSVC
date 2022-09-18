@@ -1,5 +1,5 @@
 /* SSVC code for graph building */
-const _version = "5.1.5"
+const _version = "5.1.7"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
 var diagonal,tree,svg,duration,root
@@ -191,13 +191,18 @@ function dynamic_mwb(w) {
     return result;
 }
 function export_show(novector) {
+    console.log(novector);
     var ptranslate = "translate(120,-250)";
     if(window.innerWidth <= 1000)
 	ptranslate = "translate(30,-90) scale(0.4,0.4)";
     d3.select("#pgroup").transition()
 	.duration(600).attr("transform", ptranslate);
-    var q = $('#exporter').html()
-    $('#graph').append(q)
+    var q = $('#exporter').html();
+    $('.exportActive').removeClass('exportActive');
+    if($('#graph-ungraph').val() == "Analyst")
+	$('#ungraph').append(q).addClass('exportActive');
+    else
+	$('#graph').append(q).addClass('exportActive');
     if($('#cve_samples').val().match(/^(cve|vu)/i))
 	$('.exportId').val($('#cve_samples').val())
     if(novector == true)
@@ -212,6 +217,10 @@ function make_ssvc_vector() {
     labels.push(final_keyword);
     /* last node in graph */
     var final_outcome =  $('#graph svg g.node text:last').text();
+    /* If final_outcome is empty look for analyst mode value */
+    if($('#graph-ungraph').val() == "Analyst" || (!final_outcome)) {
+	final_outcome = $('h4.hfinal').html();
+    }
     vals.push(final_outcome);
     /* SSVCv2/Ps:Nm/T:T/U:E/1605040000/
        For a vulnerability with no or minor Public Safety Impact, 
@@ -231,13 +240,14 @@ function make_ssvc_vector() {
 	return ox
     })
     /* Save the ochoice object for Export to JSON*/
-    $('#graph .Exporter').attr('data-ochoice',JSON.stringify(ochoice))
+    $('.exportActive .Exporter').attr('data-ochoice',JSON.stringify(ochoice))
     /* new Time string will be ISO 8601 "2021-09-28T21:46:38Z"
        q=new Date().toISOString().replace(/\..*$/,'Z') */
     //computed = computed + String(parseInt(tstamp.getTime()/1000))+"/"
     var q = new Date().toISOString().replace(/\..*$/,'Z');
     computed = computed+q+"/"
     $('.ssvcvector').html(computed);
+    return computed;
 }    
 function export_tree() {
     /* First column is the decision in this tree */
@@ -284,19 +294,23 @@ function export_tree() {
        {"Decision":"defer"}]" */
 }
 function export_json() {
-    var includetree = $('#graph .includetree').is(':checked')
+    var includetree = $('.exportActive .includetree').is(':checked')
     $('.Exporter').css({'pointer-events':'none'});
     var tstamp = new Date()
-    var oexport = { role: $('#graph .exportRole').val() || "Unknown",
-		    id: $('#graph .exportId').val() || "Unspecified",
+    var oexport = { role: $('.exportActive .exportRole').val() || "Unknown",
+		    id: $('.exportActive .exportId').val() || "Unspecified",
 		    version: "2.0",
 		    generator: _tool
 		  }
-    oexport['computed'] = $('#graph .ssvcvector').html();
+    oexport['computed'] = $('.exportActive .ssvcvector').html();
     
-    oexport['timestamp'] =  $('#graph .ssvcvector').html().split('/').
+    oexport['timestamp'] =  $('.exportActive .ssvcvector').html().split('/').
 	slice(-2,-1)[0]
     final_outcome = $('#graph svg g.node text:last').text();
+    /* If final_outcome is empty look for analyst mode value */
+    if($('#graph-ungraph').val() == "Analyst" || (!final_outcome)) {
+	final_outcome = $('h4.hfinal').html();
+    }
     /* Copy current_score as is to options that were selected */
     oexport['options'] = current_score;
     if(current_score.findIndex(x => final_keyword in x) < 0) {
@@ -387,16 +401,16 @@ function tree_process(w) {
 function create_permalink(copyme){
     $('.permalink').removeClass('d-none');
     var purl = location.origin+location.pathname+"#"+
-	$("#graph .ssvcvector").html()
+	$(".exportActive .ssvcvector").html()
     var uparts = [".ssvcvector",".exportId",".exportRole"]
     for (var i=0; i<uparts.length; i++) {
-	if($("#graph "+uparts[i]).val()) {
-	    purl = purl +"&"+$("#graph "+uparts[i]).val()
+	if($(".exportActive "+uparts[i]).val()) {
+	    purl = purl +"&"+$(".exportActive "+uparts[i]).val()
 	}
     }
-    $("#graph .permalink").html(purl);
+    $(".exportActive .permalink").html(purl);
     if(copyme)
-	copym($("#graph .permalink")[0],true);
+	copym($(".exportActive .permalink")[0],true);
     else
 	return purl;
 }
@@ -415,13 +429,13 @@ function finish_permalink(pchildren) {
     d3.select("#pgroup").transition()
 	.duration(600).attr("transform", ptranslate)
     setTimeout(function() {
-	export_show(true)
+	export_show(true);
 	if(plparts[0])
-	    $('#graph .ssvcvector').html(plparts[0]);
+	    $('.exportActive .ssvcvector').html(plparts[0]);
 	if(plparts[1])
-	    $('#graph .exportId').val(plparts[1])
+	    $('.exportActive .exportId').val(plparts[1])
 	if(plparts[2])
-	    $('#graph .exportRole').val(plparts[2]);
+	    $('.exportActive .exportRole').val(plparts[2]);
 	$('#biscuit').fadeOut()
     }, 800)
 }
@@ -434,7 +448,6 @@ function permalink() {
     }
     if((plparts.length > 2) && (plparts[3] == "Analyst")) {
 	$('#graph-ungraph').val('Analyst').trigger('change');	
-	return;
     }
     try {
 	//var plink = location.hash.substr(1);
@@ -447,14 +460,16 @@ function permalink() {
 	topalert("Now loading permalink URL parameters","success");
 	dt_clear();
 	dt_start();
-	$('#biscuit').fadeIn();	    
+	$('#biscuit').fadeIn();
 	$(".complex").attr("data-override",1);
 	/* "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator"
 	   OR 
 	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/2021-01-09/&CVE-2014-01-01&Coordinator" */	
 	var sI = {}
-	var last_precheck = ""
-	for(var i=1;i<fm.length-2;i++) {
+	var last_precheck = false;
+	/* Last three elements are not needed Decision,Timestamp,Empty as 
+	 vector ends with a slash */
+	for(var i=1;i<fm.length-3;i++) {
 	    var dtup = fm[i].split(":");
 	    var fstep = export_schema.decision_points.filter(x => x.key == dtup[0]);
 	    if(fstep.length != 1) {
@@ -463,7 +478,7 @@ function permalink() {
 		continue;
 	    }
 	    var fopt = fstep[0].options.filter(x => x.key == dtup[1]);
-	    if(fstep[0].label in ischild) {
+	    if((fstep[0].label in ischild) && ($('#graph-ungraph').val() != "Analyst") ) {
 		console.log("This is a child decision, do it later");
 		pchildren.push({
 		    index: i-1,
@@ -474,23 +489,28 @@ function permalink() {
 	    }
 	    var precheck = fopt[0].label.toLowerCase();
 	    sI[precheck] = setInterval(
-		function(u) {
-		    if($('.prechk-'+u).length == 1) {
-			$('.prechk-'+u).simClick();
+		function(u,p,last_precheck) {
+		    var ptype = 'textPath';
+		    if($('#graph-ungraph').val() == "Analyst")
+			ptype = 'input';
+		    var pselect = $(ptype+'.prechk-'+u+'[parentname="'+p+'"]');
+		    if(pselect.length == 1) {
+			pselect.simClick();
 			clearInterval(sI[u]);
 			delete sI[u];
-			if(u == last_precheck)
+			if(last_precheck)
 			    finish_permalink(pchildren);
 			return;
 		    }
-		},600*i,precheck);
-	    last_precheck = precheck;
+		},600*i,precheck,fstep[0].label,i == fm.length-4);
 	}
 	setTimeout(function() {
 	    for (let k in sI) {
 		console.log("Pending jobs incomplete after 20 seconds");
+		console.log(k,sI[k]);
 		clearInterval(sI[k]);
 		delete sI[k];
+		$('#biscuit').fadeOut();
 	    }
 	},20000)
 	console.log(sI);
@@ -809,10 +829,7 @@ function parse_json(xraw,paused) {
 	select_add_option($('.exportRole'),currentRole);
     /* If a new tree is loaded and the user is in Simple mode
      just start simple mode decision */
-    if($('#graph-ungraph').val() == 'Simple')
-	$('#graph-ungraph').trigger('change');
-    else
-	permalink();
+    permalink();
     $('#dtreecsvload').hide();
 }
 function shwhelp(w) {
@@ -1431,7 +1448,7 @@ function doclick(d) {
 	    var rightname = dnames.pop();
 	    if($('circle[nameid="'+rightname+'"]').length == 1) {
 		if($('circle[nameid="'+rightname+'"]').attr("isfinal") == "1")
-		    export_show();
+		    export_show(false);
 	    }
 	    if(leftname in isparent) {
 		/* If mwb is overriden by permalink or full score reset 
@@ -1451,9 +1468,10 @@ function doclick(d) {
 	}
 	if(d.parent) 
 	    closeSiblings(d);
+	/* Detect if there is a permalink that triggered and do not run export show*/
 	if(('_children' in d) && (d._children.length == 0))
-	    export_show();
-    }
+	    export_show(0);
+    } 
     $('.pathlink').remove()    
     if (d.children) {
 	d._children = d.children;
@@ -1522,7 +1540,7 @@ function dt_start() {
     current_score = [];
     showFullTree = false
     $('svg.mgraph').remove();
-    $('#graph .exportdiv').remove();
+    $('.exportActive .exportdiv').remove();
     var xraw = JSON.parse(JSON.stringify(raw));
     treeData=grapharray(xraw);
     draw_graph();
@@ -1546,7 +1564,7 @@ function dt_clear() {
 
 function show_full_tree() {
     showFullTree = true
-    $('#graph .exportdiv').remove()
+    $('.exportActive .exportdiv').remove()
     $('svg.mgraph').remove()
     var xraw = JSON.parse(JSON.stringify(raw))
     treeData=grapharray_open(xraw)
@@ -1612,7 +1630,7 @@ function deepsearch(obj,dir) {
 
 function export_pdf() {
     $('.Exporter').css({'pointer-events':'none'})
-    var vul = $('#graph .exportId').val().toUpperCase();
+    var vul = $('.exportActive .exportId').val().toUpperCase();
     if((vul == "") || (vul.indexOf("CVE") < 0)) {
 	createPDF(vul,"No further information available");
 	console.log("No vul information such as CVE");
@@ -1634,13 +1652,13 @@ function export_pdf() {
 }
 function createPDF(vulnerability,cveinfo) {
     //    Requirements for new updates for the ssvc-calc tool.
-    var role = $('#graph .exportRole').val() || "Unknown";
-    var vulid = $('#graph .exportId').val() || "Unspecified";
-    var includetree = $('#graph .includetree').is(':checked');        
+    var role = $('.exportActive .exportRole').val() || "Unknown";
+    var vulid = $('.exportActive .exportId').val() || "Unspecified";
+    var includetree = $('.exportActive .includetree').is(':checked');        
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({putOnlyUsedFonts:true});
     var coord = $('.cover_heading_append').html().replace(/^\s+(.+)\s+/g,'$1')
-    var vulnerability = $('#graph .exportId').val();
+    var vulnerability = $('.exportActive .exportId').val();
     if(vulnerability == "")
 	vulnerability = "ID-Pending"
     var title = "SSVC score for "+vulnerability+" "+coord
@@ -1650,6 +1668,10 @@ function createPDF(vulnerability,cveinfo) {
     var steps = current_score.map(x => Object.keys(x)[0]);
     var decisions = current_score.map((x,i) => x[steps[i]]);
     final_outcome =  $('#graph svg g.node text:last').text();
+    /* If final_outcome is empty look for analyst mode value */
+    if($('#graph-ungraph').val() == "Analyst" || (!final_outcome)) {
+	final_outcome = $('h4.hfinal').html();
+    }    
     decisions.push(final_outcome);
     /* Removing hard-coded "Decision" field so it is flexible*/
     steps.push(final_keyword);
@@ -1718,7 +1740,7 @@ function createPDF(vulnerability,cveinfo) {
     xOffset = 12;
     doc.text("Summary",xOffset,yOffset+13);
     doc.setFontSize(12);
-    var vector_string = $('#graph .ssvcvector').html()
+    var vector_string = $('.exportActive .ssvcvector').html()
 
     doc.setFont("helvetica","normal");
     doc.text("Recommendation:",xOffset,yOffset+20);    
