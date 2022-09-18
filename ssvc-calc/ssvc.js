@@ -429,8 +429,8 @@ function permalink() {
 	dt_start();
 	return;
     }
-    if((plparts.length > 2) && (plparts[3] == "Simple")) {
-	$('#graph-ungraph').val('Simple').trigger('change');	
+    if((plparts.length > 2) && (plparts[3] == "Analyst")) {
+	$('#graph-ungraph').val('Analyst').trigger('change');	
 	return;
     }
     try {
@@ -472,8 +472,8 @@ function permalink() {
 	    var precheck = fopt[0].label.toLowerCase();
 	    sI[precheck] = setInterval(
 		function(u) {
-		    if($('.prechk-'+safedivname(u)).length == 1) {
-			$('.prechk-'+safedivname(u)).simClick();
+		    if($('.prechk-'+u).length == 1) {
+			$('.prechk-'+u).simClick();
 			clearInterval(sI[u]);
 			delete sI[u];
 			if(u == last_precheck)
@@ -489,7 +489,6 @@ function permalink() {
 		clearInterval(sI[k]);
 		delete sI[k];
 	    }
-	    $('#biscuit').fadeOut();
 	},20000)
 	console.log(sI);
     } catch(err) {
@@ -536,8 +535,8 @@ function clickprocess(tstep,cve_data,stime) {
 	//console.log(stime)
 	//console.log(new Date().getTime())
 	if(tstep in cve_data) {
-	    if($(".prechk-"+safedivname(cve_data[tstep].toLowerCase())).length == 1) {
-		$(".prechk-"+safedivname(cve_data[tstep].toLowerCase())).simClick()
+	    if($(".prechk-"+cve_data[tstep].toLowerCase()).length == 1) {
+		$(".prechk-"+cve_data[tstep].toLowerCase()).simClick()
 	    } else {
 		console.log("Try again in a few seconds "+tstep)
 		//clickprocess(tstep,cve_data,stime-1000)
@@ -1094,8 +1093,8 @@ function update(source) {
 	.attr("class",function(d) {
 	    var fclass = d.name.split(":").shift().toLowerCase();
 	    if(!('children' in d))	    
-		return "gvisible prechk-"+safedivname(fclass)+" finale";
-	    return "gvisible prechk-"+safedivname(fclass);})
+		return "gvisible prechk-"+fclass+" finale";
+	    return "gvisible prechk-"+fclass;})
 	.text(function(d) { return d.name.split(":")[0]; })
 	.style("font-size",font)
 	.style("fill", function(d) {
@@ -1236,7 +1235,7 @@ function update_links() {
 	var depth = parseInt(t.attr("ldeep")) || 0
 	var text = t.attr("ldata")
 	var pname = t.attr("kdata")
-	var xclass = "btext prechk-"+safedivname(text)
+	var xclass = "btext prechk-"+text
 	var mclass = $(this).attr("class")
 	if((mclass) && mclass.indexOf("chosen") > -1) {
 	    xclass += " chosen"
@@ -1381,7 +1380,7 @@ function revert(d) {
 	sI[nodename] = setInterval(
 	    function(n,v) {
 		/* $('[parentname="Exploitation"].prechk-none').simClick() */
-		var selector = '[parentname="'+n+'"].prechk-'+safedivname(v)
+		var selector = '[parentname="'+n+'"].prechk-'+v
 		if($(selector).length == 1) {
 		    $(selector).simClick();
 		    clearInterval(sI[n]);

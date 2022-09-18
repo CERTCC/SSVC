@@ -1,4 +1,15 @@
-/* css version 2.2.6 */
+/* css version 2.2.7 */
+.blackbody .radiogaga {
+    color: white;
+}
+.radiogaga > div.selected {
+    border: 1px solid white;
+    border-radius: 4px;
+    padding-left: 4px;
+}
+.margtop {
+    margin-top: 0.7em;
+}
 #zoomcontrol {
     position: absolute;
     left: 30px;
