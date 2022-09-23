@@ -1,5 +1,5 @@
 /* SSVC code for no graphics implementation of SSVC calculator */
-const ungraph_libversion = "1.1.3"
+const ungraph_libversion = "1.1.4"
 function checkclose() {
     $('#mpopup').hide();
 }
@@ -54,10 +54,9 @@ function ungraph() {
 	var fs = safedivname(x.label);
 	var fsattr = {'id':'isl-'+String(i),
 		      'data-label': x.label,
-		      'onchange': 'ugchoose(this,false)',
-		      'class': 'form-control sl-'+fs}
-	var fselect = $('<select>').attr(fsattr)
-	    .append('<option>Select</option>');
+		      'class': 'radiogaga sl-'+fs}
+	var fselect = $('<div>').attr(fsattr)
+	    .append('<!-- Select -->');
 	var mbtn = $('<button>').addClass("btn btn-secondary")
 	    .attr('onmouseover','shwhelp(this)')
 	    .attr('onmouseout','hidediv(this)')
@@ -69,29 +68,41 @@ function ungraph() {
 	    $('.t-'+fs).css('visibility','hidden');
 	}
 	x.options.forEach((y,j) => {
-	    $('select#'+fsattr.id).append($('<option/>').attr({
-		value:y.label}).text(y.label))
-	})
+	    $('div#'+fsattr.id).append($('<div/>').append($('<input/>').attr({
+		"type":"radio",
+		"name": fsattr.id,
+		"data-label": x.label,
+		"onclick": "ugchoose(this,false)",
+		"parentname": x.label,
+		"class":"form-check-input margtop prechk-"+y.label.toLowerCase(),
+		"value": y.label})).append(
+		    $('<label>').addClass("h3").html(y.label).on("click",function() {
+			$(this).siblings().click();
+		    })
+		)).addClass("text-left");
+	});
 	if(x.decision_type == "complex") {
-	    $('select#'+fsattr.id).attr('data-moptions',JSON.stringify(x));
+	    $('div#'+fsattr.id).attr('data-moptions',JSON.stringify(x));
 	    $('.t-'+fs).hide();
 	    if('children' in x) 
 		x.children.forEach(y => {
-		    $('.sl-'+safedivname(y.label)).addClass('isChild')
+		    $('.sl-'+safedivname(y.label)+" input.margtop").addClass('isChild')
 			.attr('data-parent',x.label);
 		    
 		})
 	}
 	if(x.decision_type == "final") {
-	    $('select#'+fsattr.id).hide().addClass('final-select');
+	    $('div#'+fsattr.id).hide().addClass('final-select');
 	    if((plparts.length > 2) && (plparts[3] == "Simple")) 
 		permalink_ungraph();
 	}
     })
 }
 function ugchoose(w,reset) {
-    var sid = parseInt(w.id.replace('isl-',''));
+    var sid = parseInt(w.name.replace('isl-',''));
     var nodename = $(w).data('label');
+    $(w).parent().siblings().removeClass("selected");
+    $(w).parent().addClass("selected");
     var nodevalue = $(w).val();
     if(nodevalue == "Select")
 	return;
@@ -100,14 +111,16 @@ function ugchoose(w,reset) {
     current_score[sid][nodename] = nodevalue;    
     if($(w).hasClass('isChild')) {
 	var parent = $(w).data('parent');
-	var pselect = 'select[data-parent="'+parent+'"]';
+	var pselect = '[data-parent="'+parent+'"]';
 	var mcdata = {};
 	var cells = [];
 	$(pselect).each(function(_,d) {
 	    if($(d).val() == "Select")
 		return;
-	    mcdata[$(d).data('label')]= $(d).val()
-	    cells.push($(d).parent().index());
+	    if($(d).is(":checked")) {
+		mcdata[$(d).data('label')]= $(d).val();
+		cells.push($(d).parent().index());
+	    }
 	});
 	$(pselect).each(function(_,x) {
 	    if(cells.length < 2) 
@@ -147,10 +160,11 @@ function ugchoose(w,reset) {
 		sid = tsid;
 	    current_score[tsid] = {};
 	    current_score[tsid][parent] = result;
-	    var findex = cells.sort().shift();
+	    /* Determine how many columns to the left */
+	    var findex = current_score.length - 1 - cells.length;
 	    var ugid = "ugftr-"+String(findex);
 	    /* remove earlier score if present */
-	    var tdcolspan = findex
+	    var tdcolspan = findex;
 	    if($('.trcomplex').length < 1) {
 		$('#ungraph table').append($('<tr/>').addClass('trcomplex'));
 		$('.trcomplex').append($('<td>').attr('colspan',tdcolspan)
@@ -216,8 +230,10 @@ function make_decision() {
     })
 
     var xfinal = export_schema.decisions_table.find( function(x) {
-	if(found)
+	if(found) {
+	    export_show();
 	    return;
+	}
 	var d = Object.keys(x);
 	var match = 0;
 	for(var j=0; j< d.length; j++) {
@@ -226,7 +242,8 @@ function make_decision() {
 	}
 	if(match == d.length - 1) {
 	    found = true;
-	    var fselect = $('select.final-select');
+	    export_show();
+	    var fselect = $('div.final-select');
 	    var flabel =  fselect.data('label');
 	    var fvalue = x[flabel]
 	    var tprops = { border: '1px solid #ffa700',padding: '3px',borderRadius:'2px'};

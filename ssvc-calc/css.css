@@ -1,4 +1,49 @@
-/* css version 2.2.6 */
+/* css version 2.2.7 */
+.ssvcvector {
+    color: #7d1d1d;
+}
+.blackbody .ssvcvector {
+    color: #ffc107;
+}
+.export-header {
+    width: 100%;
+}
+.export-header h3 {
+    display: inline;
+    text-decoration: underline;
+}
+.export-header span {
+    padding: 8px;
+}
+.exportdiv {
+    top: 0px;
+    left: 30%;
+    border-radius: 6px;
+    border: 1px solid #333;    
+}
+.blackbody .exportdiv {
+    border: 1px solid white;
+}    
+.blackbody .radiogaga {
+    color: white;
+}
+.radiogaga > div.selected {
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding-left: 4px;
+}
+.blackbody .radiogaga > div.selected {
+    border: 1px solid #eee;
+}
+.exportdiv {
+    background: rgba(255,255,255,0.95);
+}
+.blackbody .exportdiv {
+    background: rgba(32,32,32,0.9);
+}
+.margtop {
+    margin-top: 0.7em;
+}
 #zoomcontrol {
     position: absolute;
     left: 30px;

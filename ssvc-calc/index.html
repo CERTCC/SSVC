@@ -30,8 +30,8 @@
     <link href="magicsuggest-min.css" rel="stylesheet">
     <script src="magicsuggest-min.js" async defer></script>
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="css.css?v=1654014549">
-    <script src="ungraph.js?v=1654014549"></script>
+    <link rel="stylesheet" href="css.css?v=1663537129">
+    <script src="ungraph.js?v=1663537129"></script>
   </head>
   <body class="text-center blackbody">
     <img src="../moon_icon.png" class="cert-tweet" alt="CERT Logo"
@@ -87,6 +87,12 @@
 	  <div class="cover_heading_append d-none">
 	    (CISA Coordinator v2)
 	  </div>
+	  <button type="button" class="btn btn-secondary" id="exportopen"
+		  data-toggle="tooltip" data-placement="bottom"
+		  title="Show Export" style="display:none"
+		  onclick="export_show(false)">
+	    Export</button>
+	  
 	</h4>
 	<div class="alert" id="topalert" role="alert">
 	  This is an alert!
@@ -106,7 +112,8 @@
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Explore the full decision tree of this SSVC Instance"
 		  onclick="show_full_tree()">
-	    Show Full Tree</button>
+	    Show Full Tree
+	  </button>
 	  <a href="javascript:void(0)" title="View previous score"
 	     alt="View previous score" id="table_toggle" style="display:none"
 	     onclick="cve_table_toggle()">
@@ -147,7 +154,7 @@
 	      <select id="graph-ungraph" class="form-control mauto"
 		      onchange="swapg(this)">
 		<option value="Graphic">Mode: Graphic</option>
-		<option value="Simple">Mode: Simple</option>		
+		<option value="Analyst">Mode: Analyst</option>		
 	      </select>	      
 	      <button class="btn btn-dark btn-bordered d-none"
 		      onclick="$('#cvetsvload').click()">
@@ -399,8 +406,13 @@
     <div id="biscuit" class="top_fixed tescape tloader">
     </div>
     <div id="exporter" class="d-none">
-      <div class="row justify-content-center position-absolute exportdiv"
-	   style="top:180px;left:30%">
+      <div class="row justify-content-center position-absolute exportdiv">
+	<div class="export-header">
+	  <h3> Export Calculated Score</h3>
+	  <button type="button" aria-label="Close" class="close h3" onclick="$(this).parent().parent().remove()">
+	    <span aria-hidden="true">×</span>
+	  </button>
+	</div>
 	  <div class="col-auto">
 	    <table class="table table-borderless w-auto">
 	      <tbody>
@@ -424,7 +436,7 @@
 		<tr>
 		  <td>
 		    <div>
-		      <span class="text text-warning ssvcvector d-inline">
+		      <span class="text ssvcvector d-inline">
 		      </span>
 		      <span onclick="copym('#graph .ssvcvector')">
 			<img src="icons8-copy-60.png"
@@ -478,7 +490,7 @@
       </form>
       <canvas id="canvas" style="display:none">
     </div>      
-    <script src="ssvc.js?v=1654014549"></script>
+    <script src="ssvc.js?v=1663537129"></script>
   </body>
 </html>
 
