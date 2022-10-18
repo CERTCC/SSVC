@@ -2353,7 +2353,7 @@ function svgzoom(w) {
 	return;
     }
     var fh = parseInt($('svg.mgraph').attr("height"));
-    var fw = parseInt($('svg.mgraph').attr("height"));
+    var fw = parseInt($('svg.mgraph').attr("width"));
     var vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
     $('svg.mgraph').attr('viewBox',vbox);
 }
