@@ -2349,7 +2349,8 @@ function copym(containerid,ispurl) {
 function svgzoom(w) {
     var zf = w.value/w.max;
     if(zf > 0.95) {
-	$('svg.mgraph').attr('viewBox','');
+	var vbox = $('svg.mgraph').attr('viewBox');
+	console.log("The viewbox should be left as-is "+vbox);
 	return;
     }
     var fh = parseInt($('svg.mgraph').attr("height"));
