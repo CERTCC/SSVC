@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://democert.org/ssvc/SSVC_Provision_v2.02.schema.json",
+    "$id": "https://democert.org/ssvc/SSVC_Provision_v2.03.schema.json",
     "title": "Decision tree schema definition for SSVC",
     "description": "This provides a schema for a decision tree used to compute SSVC score for a vulnerability",
     "type": "object",    
