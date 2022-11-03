@@ -8,13 +8,13 @@ created_at: 3/23/21 3:23 PM
 import os
 import pandas as pd
 
-DATAPATH="../data/v2/csv"
+DATAPATH="../data/csvs"
 
 PATHS = {
-    'coord_pub': os.path.join(DATAPATH,"ssvc_2_coord-publish.csv"),
-    'coord_triage': os.path.join(DATAPATH,"ssvc_2_coord-triage.csv"),
-    'deployer': os.path.join(DATAPATH,"ssvc_2_deployer.csv"),
-    'supplier': os.path.join(DATAPATH,"ssvc_2_supplier.csv"),
+    'coord_pub': os.path.join(DATAPATH,"coord-publish-options_v2.csv"),
+    'coord_triage': os.path.join(DATAPATH,"coord-triage-options_v2.csv"),
+    'deployer': os.path.join(DATAPATH,"deployer-options_v2.csv"),
+    'supplier': os.path.join(DATAPATH,"supplier-options_v2.csv"),
 }
 
 DEFAULTS = {
@@ -79,7 +79,7 @@ def outcome_dist(df,normalize=True):
     Given a dataframe representing an SSVC tree fragment,
     compute and return the distribution of outcomes
     '''
-    return df['Outcome'].value_counts(normalize=normalize)
+    return df['Priority'].value_counts(normalize=normalize)
 
 
 def main():
@@ -89,7 +89,7 @@ def main():
     print()
     query = {
         "Utility": "laborious",
-        "PublicSafetyImpact": "minimal",
+        "Public_Safety_Impact": "minimal",
     }
     df = lookup('coord_triage',query)
     print(query)
@@ -104,7 +104,7 @@ def main():
     print(outcome_dist(df).round(decimals=3).to_dict())
 
     print()
-    query = {"PublicSafetyImpact": "minimal"}
+    query = {"Public-Safety Impact": "minimal"}
     df = lookup('supplier',query)
     print(query)
     print(df)
