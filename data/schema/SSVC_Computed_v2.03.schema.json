@@ -42,7 +42,7 @@
 	},
 	"decision_tree": {
 	    "description": "The full decision tree that was used for this SSVC computed score",
-	    "$ref": "https://democert.org/ssvc/SSVC_Provision_v2.02.schema.json"
+	    "$ref": "https://democert.org/ssvc/SSVC_Provision_v2.03.schema.json"
 	},
 	"id": {
 	    "type": "string",
