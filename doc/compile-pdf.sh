@@ -33,11 +33,11 @@ pandoc --standalone \
   --pdf-engine=xelatex \
   --bibliography="$src/sources_ssvc.bib" \
   --table-of-contents \
-  -M title="Prioritizing vulnerability response: A stakeholder-specific vulnerability categorization (Version 2.0)" \
+  -M title="Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC version $major.$minor.$fix)" \
   -T "SSVC" \
   -M date="Compiled `date -u`" \
   --metadata-file=pdf-styling.yaml \
-  -o "ssvc_$major2-$minor-$fix.pdf" \
+  -o "ssvc_$major-$minor-$fix.pdf" \
 
 # --from should use gfm, but gfm+citations is not supported
 # so this method should perhaps be considered slightly unstable. 
