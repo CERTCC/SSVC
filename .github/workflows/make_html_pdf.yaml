@@ -1,0 +1,43 @@
+# Github workflow to build the html and pdf versions from the markdown source files
+
+name: Make HTML and PDF
+
+on:
+  workflow_dispatch
+
+jobs:
+  # check out the repository
+    checkout:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+
+    # build the html and pdf versions
+    build:
+      needs: checkout
+      runs-on: ubuntu-latest
+      steps:
+        - name: Make html
+          run: |
+            cd docs
+            make html
+        - name: Make pdf
+          run: |
+            cd docs
+            make pdf
+
+    # upload the html and pdf versions as artifacts
+    upload:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Upload html
+          uses: actions/upload-artifact@v2
+          with:
+            name: html
+            path: doc/ssvc-v2-0.html
+        - name: Upload pdf
+          uses: actions/upload-artifact@v2
+          with:
+            name: pdf
+            path: doc/ssvc_v2-0.pdf
