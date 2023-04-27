@@ -8,7 +8,7 @@ author:
  - Vijay Sarvapalli
  - Deana Shick
  - Laurie Tyzenhaus
-documentclass: scrreprt
+documentclass: report
 classoption:
  - 10pt
  - letterpaper
@@ -20,5 +20,4 @@ secnumdepth: 4
 geometry:
  - top=1in
  - bottom=1in
-mainfont: Times 
 ...
