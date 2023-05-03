@@ -1,0 +1,113 @@
+name: pandoc_html
+
+on:
+  # manual trigger (for testing)
+  workflow_dispatch:
+  # trigger on push to doc folder on main or develop branches
+  push:
+    branches:
+      - develop
+      - main
+    paths:
+      - doc/**
+      - .github/workflows/pandoc_html_pdf.yaml
+
+# todo version numbers should be read from a file within the repository
+env:
+  MAJOR: 2
+  MINOR: 0
+  FIX: 5
+  TITLE_PREFIX: "SSVC"
+  COMPILE_DATE: "${{ github.event.head_commit.timestamp }}"
+  BIBLIOGRAPHY: "doc/md_src_files/sources_ssvc.bib"
+  PDF_STYLING: "doc/pdf-styling.yaml"
+  MD_IN: "doc/ssvc_tmp.md"
+  HTML_OUT: "ssvc_vMAJ-MIN.html"
+  EMOJI_REPLACEMENTS: "doc/emoji-replacements.sed"
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get short commit hash
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Concatenate markdown files and fix graphics links
+        run: cat doc/md_src_files/*.md | sed -e 's/\.\.\/graphics/doc\/graphics/g' > ${{ env.MD_IN }}
+
+      # we have to set these at runtime because they depend on the version number
+      - name: Set environment variables
+        run: |
+          echo "TITLE=\"Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC) version ${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.FIX}}-${{ steps.vars.outputs.sha_short }}\"" >> $GITHUB_ENV
+          echo "HTML_OUT=ssvc_v${{ env.MAJOR }}-${{ env.MINOR }}-${{ env.FIX}}-${{ steps.vars.outputs.sha_short }}.html" >> $GITHUB_ENV
+          echo "PDF_OUT=ssvc_v${{ env.MAJOR }}-${{ env.MINOR }}-${{ env.FIX}}-${{ steps.vars.outputs.sha_short }}.pdf" >> $GITHUB_ENV
+
+      - name: Convert markdown to html using pandoc
+        uses: docker://pandoc/latex:latest
+        with:
+          args: >-  # allows you to break string into multiple lines
+            --standalone
+            --embed-resources
+            --to html 
+            --from markdown_github+citations+table_captions+implicit_figures+link_attributes 
+            --citeproc 
+            --bibliography ${{ env.BIBLIOGRAPHY }}
+            --metadata title=${{ env.TITLE }}
+            --metadata date="${{ env.COMPILE_DATE }}"
+            --title-prefix ${{ env.TITLE_PREFIX }}
+            --metadata-file ${{ env.PDF_STYLING }}
+            --output ${{ env.HTML_OUT }}
+            ${{ env.MD_IN }}
+
+      - name: Upload markdown artifact if html failed
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+            name: markdown
+            path: ${{ env.MD_IN }}
+
+      - name: Upload html artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: output
+            path: ${{ env.HTML_OUT }}
+
+      - name: Replace Emojis in Markdown
+        run: |
+          sed -f ${{ env.EMOJI_REPLACEMENTS }} ${{ env.MD_IN }} > __tmp.md
+          mv __tmp.md ${{ env.MD_IN }}
+
+      - name: Convert markdown to pdf using pandoc
+        uses: docker://pandoc/latex:latest
+        with:
+          args: >- # allows you to break string into multiple lines
+            --standalone
+            --from markdown_github+citations+yaml_metadata_block+tex_math_dollars 
+            --to pdf
+            --citeproc
+            --pdf-engine=xelatex
+            --bibliography ${{ env.BIBLIOGRAPHY }}
+            --table-of-contents 
+            --metadata title=${{ env.TITLE }}
+            --metadata date="${{ env.COMPILE_DATE }}"
+            --title-prefix ${{ env.TITLE_PREFIX }}
+            --metadata-file ${{ env.PDF_STYLING }}
+            --output ${{ env.PDF_OUT }}
+            ${{ env.MD_IN }}
+
+      - name: Upload markdown artifact if pdf failed
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+            name: markdown
+            path: ${{ env.MD_IN }}
+
+      - name: Upload pdf artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: output
+            path: ${{ env.PDF_OUT }}
+
