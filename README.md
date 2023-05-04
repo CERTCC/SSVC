@@ -1,3 +1,5 @@
+[![pandoc_html_pdf](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml/badge.svg)](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
+
 # SSVC
 
 The Stakeholder-specific Vulnerability Categorization (SSVC) is a system for prioritizing actions during vulnerability management.
