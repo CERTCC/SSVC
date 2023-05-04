@@ -1,4 +1,4 @@
-name: pandoc_html
+name: pandoc_html_pdf
 
 on:
   # manual trigger (for testing)
