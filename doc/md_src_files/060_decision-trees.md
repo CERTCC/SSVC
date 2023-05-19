@@ -283,13 +283,13 @@ It is meant to communicate information in a condensed form.
 If priority labels (*defer*, etc.) are connected to a vector, then the decision tree used to reach those decisions should generally be noted.
 However, for complex communication, machine-to-machine communication, or long-term storage of SSVC data, the JSON format and schema should be used.
 
-The optional parameter `time` is the time in seconds since the UNIX epoch that the SSVC information was collected or last checked for freshness and accuracy.
+The optional parameter `time` is the date and time of the SSVCv2 record creation as represented in [RFC 3339, section 5.6](https://datatracker.ietf.org/doc/html/rfc3339). This is a subset of the date format also commonly known as ISO8601 format.
 
 Based on this, an example string could be:
 ```
-SSVCv2/Ps:Nm/T:T/U:E/1605040000/
+SSVCv2/Ps:Nm/T:T/U:E/2018-11-13T20:20:00Z/
 ```
-For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 10, 2020.
+For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 13,2018 at 8:20 PM UTC.
 
 While these abbreviated format vectors can be uniquely produced based on a properly formatted JSON object, going from abbreviated form to JSON is not supported.
 Therefore, JSON is the preferred storage and transmission method.
