@@ -46,60 +46,42 @@ immediate/.style={outcome, fill=red, thick, draw=black, label=right:{immediate}}
 for tree={s sep*=0.33, l sep=20mm, child anchor=west, anchor=west, grow=east, calign=center, tier/.pgfmath=level()}, forked edges,
   [Exploitation, rectangle, draw,
 [Exposure, rectangle, draw, my label={active},
-[Utility, rectangle, draw, my label={open},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={open},
+[Human Impact, rectangle, draw, my label={yes},
 [, immediate, my label={very high} ]
 [, immediate, my label={high} ]
 [, out-of-cycle, my label={medium} ]
 [, out-of-cycle, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, immediate, my label={very high} ]
-[, immediate, my label={high} ]
-[, out-of-cycle, my label={medium} ]
-[, scheduled, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, immediate, my label={very high} ]
 [, out-of-cycle, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
 ] 
-[Utility, rectangle, draw, my label={controlled},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={controlled},
+[Human Impact, rectangle, draw, my label={yes},
 [, out-of-cycle, my label={very high} ]
 [, out-of-cycle, my label={high} ]
 [, out-of-cycle, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, out-of-cycle, my label={very high} ]
-[, out-of-cycle, my label={high} ]
-[, scheduled, my label={medium} ]
-[, scheduled, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, out-of-cycle, my label={very high} ]
 [, out-of-cycle, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
 ] 
-[Utility, rectangle, draw, my label={small},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={small},
+[Human Impact, rectangle, draw, my label={yes},
 [, out-of-cycle, my label={very high} ]
 [, out-of-cycle, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, out-of-cycle, my label={very high} ]
-[, out-of-cycle, my label={high} ]
-[, scheduled, my label={medium} ]
-[, scheduled, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, out-of-cycle, my label={very high} ]
 [, out-of-cycle, my label={high} ]
 [, scheduled, my label={medium} ]
@@ -108,60 +90,42 @@ for tree={s sep*=0.33, l sep=20mm, child anchor=west, anchor=west, grow=east, ca
 ] 
 ] 
 [Exposure, rectangle, draw, my label={PoC},
-[Utility, rectangle, draw, my label={open},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={open},
+[Human Impact, rectangle, draw, my label={yes},
 [, out-of-cycle, my label={very high} ]
 [, out-of-cycle, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, out-of-cycle, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, scheduled, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, out-of-cycle, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, defer, my label={low} ]
 ] 
 ] 
-[Utility, rectangle, draw, my label={controlled},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={controlled},
+[Human Impact, rectangle, draw, my label={yes},
 [, out-of-cycle, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, scheduled, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, scheduled, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, defer, my label={low} ]
 ] 
 ] 
-[Utility, rectangle, draw, my label={small},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={small},
+[Human Impact, rectangle, draw, my label={yes},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, scheduled, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, defer, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
@@ -170,60 +134,42 @@ for tree={s sep*=0.33, l sep=20mm, child anchor=west, anchor=west, grow=east, ca
 ] 
 ] 
 [Exposure, rectangle, draw, my label={none},
-[Utility, rectangle, draw, my label={open},
-[Human Impact, rectangle, draw, my label={super effective},
+[Automatable, rectangle, draw, my label={open},
+[Human Impact, rectangle, draw, my label={yes},
 [, out-of-cycle, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={efficient},
+[Human Impact, rectangle, draw, my label={no},
+[, scheduled, my label={very high} ]
+[, scheduled, my label={high} ]
+[, scheduled, my label={medium} ]
+[, defer, my label={low} ]
+] 
+] 
+[Automatable, rectangle, draw, my label={controlled},
+[Human Impact, rectangle, draw, my label={yes},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, scheduled, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, defer, my label={low} ]
 ] 
 ] 
-[Utility, rectangle, draw, my label={controlled},
-[Human Impact, rectangle, draw, my label={super effective},
-[, scheduled, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, scheduled, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={efficient},
+[Automatable, rectangle, draw, my label={small},
+[Human Impact, rectangle, draw, my label={yes},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, scheduled, my label={medium} ]
 [, defer, my label={low} ]
 ] 
-[Human Impact, rectangle, draw, my label={laborious},
-[, scheduled, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, defer, my label={low} ]
-] 
-] 
-[Utility, rectangle, draw, my label={small},
-[Human Impact, rectangle, draw, my label={super effective},
-[, scheduled, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, defer, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={efficient},
-[, scheduled, my label={very high} ]
-[, scheduled, my label={high} ]
-[, scheduled, my label={medium} ]
-[, defer, my label={low} ]
-] 
-[Human Impact, rectangle, draw, my label={laborious},
+[Human Impact, rectangle, draw, my label={no},
 [, scheduled, my label={very high} ]
 [, scheduled, my label={high} ]
 [, defer, my label={medium} ]
