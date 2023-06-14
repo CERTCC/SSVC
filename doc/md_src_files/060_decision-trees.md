@@ -187,6 +187,50 @@ Thus, 60 unique combinations of decision values is the point at which a decision
 SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in version 1.1 of SSVC.
 “Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+### Sharing Trees With Others
+
+Communities of shared interest may desire to share information about decision points or even create custom trees to share within their community.
+Examples include:
+- an Information Sharing and Analysis Organization (ISAO) within a critical infrastructure sector might want to define a custom decision point relevant to their constituents' regulatory compliance.
+- a corporate Computer Security Incident Response Team (CSIRT) might choose to adjust decision priorities for an existing tree for use by its subsidiaries.
+- a government department might define a separate tree using existing decision points to address a particular governance process within their constituent agencies.
+- a regional coordinator might want to produce decision point information as a product of its threat analysis work and provide this information to its constituency in an advisory. 
+
+In these and other scenarios, there are two scopes to consider:
+1. Decision Point Scope
+2. Decision Tree Scope
+
+#### Decision Point Scope
+
+Each decision point defined in this document has a characteristic scope, either *global* or *local*.
+
+- *Globally scoped decision points* describe the state of the world outside the decision maker's environment. 
+They form the background context in which the stakeholder is making prioritization decisions. 
+Nearly all stakeholders should agree on the assignment of specific values to these decision points.
+- *Locally scoped decision points* are expected to be contextual to some decision makers.
+Mission Impact is one such example.
+Information about a locally scoped decision point can still be inherited by others using the same tree. 
+For example in the corporate CSIRT scenario above, the System Exposure value might be consistent across all subsidiaries for a centrally managed service.
+
+#### Decision Tree Scope
+
+Two kinds of modifications are possible at the decision tree level.
+
+- A *Risk Appetite Shift* retains the structure of an existing tree and all its decision points, and simply adjusts the decision outputs according to the stakeholder's risk appetite.
+For example, an organization with sufficient resources to efficiently deploy fixes might choose to defer fewer cases than the default tree would recommend.
+- *Tree Customization* can be done in one of three ways:
+  1. incorporating an already-defined decision point into an existing tree that does not already contain it.
+  2. defining a new decision point and adding it to an existing tree. 
+Note that adding or removing an option from an existing decision point should be treated as creating a new decision point.
+The new decision point should be given a distinct name as well.
+  3. defining a new tree entirely from existing or new decision points
+
+Because tree customization changes the tree structure and implies the addition or removal of leaf nodes, it will be necessary for the organization to review the decision outputs in light of its risk appetite as well.
+
+Risk-shifted or customized trees can be shared among a community of interest, of course.
+Further customization within each stakeholder remains an option as well, although there is likely a diminishing return on more than a few layers of customization for the same basic decision.
+Of course, SSVC users might choose to construct other trees to inform other decisions.
+
 ## Guidance for Evidence Gathering
 
 To answer each of these decision points, a stakeholder should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
