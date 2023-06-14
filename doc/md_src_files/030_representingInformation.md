@@ -3,7 +3,13 @@
 # Representing Information for Decisions About Vulnerabilities
 
 We propose that decisions about vulnerabilities—rather than their severity—are a more useful approach.
-Our design goals for the decision-making process are to clearly define whose decisions are involved; properly use evidentiary categories; be based on reliably available evidence; be transparent; and be explainable.
+Our design goals for the decision-making process are to 
+- clearly define whose decisions are involved
+- properly use evidentiary categories
+- be based on reliably available evidence
+- be transparent
+- be explainable
+
 Our inspiration and justification for these design goals are that they are the features of a satisfactory scientific enterprise [@spring2017why] adapted to the vulnerability management problem.
 
 To consider decisions about managing the vulnerability rather than just its technical severity, one must be clear about whose decisions are involved.
