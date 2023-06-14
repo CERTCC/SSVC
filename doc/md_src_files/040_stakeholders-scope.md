@@ -150,9 +150,9 @@ The [*Mission Impact*](#mission-impact) could be increased when a disaster recov
 A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation, if later, it becomes available. Table 3 displays the action priorities for the deployer, which are similar to the supplier case.
 
 In a later section, the different types of impacts are defined and then implemented in the decision trees as examples of how the various impacts affect the priority.
-For now, assume the decision points are ordered as: [*Exploitation*](#exploitation); [*Exposure*](#exposure); [*Utility*](#utility); and Well-being and Mission Impact.
+For now, assume the decision points are ordered as: [*Exploitation*](#exploitation); [*Exposure*](#exposure); [*Utility*](#utility); and *Human Impact*](#human-impact).
 In this order, an [_active_](#exploitation) state of [*Exploitation*](#exploitation) will never result in a *defer* priority.
-A [_none_](#exploitation) state of [*Exploitation*](#exploitation) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of Well-being and Mission Impact is [_very high_](#combined-situated-safety-and-mission-impact), resulting in an *out-of-cycle* priority.
+A [_none_](#exploitation) state of [*Exploitation*](#exploitation) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](#human-impact) is [_very high_](#human-impact), resulting in an *out-of-cycle* priority.
 
 As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
 While specific vulnerabilities in specific systems can be remediated, the vulnerability cannot be 'disposed of' or eliminated from future consideration within an IT environment.
