@@ -6,7 +6,7 @@ The definition of choices can take a logical form, such as:
  - ([*Exploitation*](#exploitation) IS [PoC](#exploitation)) AND
  - ([*Exposure*](#exposure) IS [controlled](#exploitation)) AND
  - ([*Utility*](#utility) IS [laborious](#utility)) AND
- - ([*Well-being and Mission Impact*](#situated-safety---mission-impact) IS [medium](#situated-safety---mission-impact))
+ - ([*Human Impact*](#human-impact) IS [medium](#human-impact))
  - THEN priority is *scheduled*.
 
 This logical statement is captured in line 50 of the deployer .csv file.
