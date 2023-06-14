@@ -124,7 +124,15 @@ In our case, we are not attempting to fit a tree to data.
 Rather, we are interested in producing usable trees that minimize extraneous effort.
 To that end, we briefly examine the qualities for which decision tree measurement is suitable.
 
-Decision tree construction methods must address four significant concerns: feature selection, feature type, overfitting, and parsimony.
+### Decision Tree Construction Concerns
+
+Decision tree construction methods must address four significant concerns: 
+- feature selection 
+- feature type 
+- overfitting 
+- parsimony
+
+#### Feature selection
 
 Feature selection is perhaps the most important consideration for SSVC, because it directly affects the information gathering requirements placed on the analyst attempting to use the tree.
 Each decision point in SSVC is a feature.
@@ -136,13 +144,18 @@ If nothing else, this means analysts are spending time gathering evidence to mak
 The added details also make it harder for the decision process to accurately manage the risks in question.
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
 
+#### Feature types
+
 Regarding feature types, all of the features included in SSVC version 2 can be considered ordinal data.
 That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
 The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
+#### Overfitting
+
 When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree.
 In our case, our “data” is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
 
+#### Parsimony 
 Parsimony is, in essence, Occam's Razor applied to tree selection. Given the choice between two trees that have identical outputs, one should choose the tree with fewer decisions.
 One way to evaluate the parsimony of a tree is by applying the concept of feature importance to ensure that each feature is contributing adequately to the result.
 While there are a few ways to compute feature importance, the one we found most useful is permutation importance.
