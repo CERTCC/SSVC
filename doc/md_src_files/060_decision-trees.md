@@ -189,7 +189,7 @@ SSVC trees should be identifiable by name and version. A tree name is simply a s
 
 ## Guidance for Evidence Gathering
 
-To answer each of these decision points, a supplier or deployer should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
+To answer each of these decision points, a stakeholder should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
 
 For example, whether exploitation modules are available in ExploitDB, Metasploit, or other sources is straightforward.
 We hypothesize that searching Github and Pastebin for exploit code can be captured in a script.
