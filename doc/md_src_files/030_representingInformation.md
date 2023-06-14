@@ -36,8 +36,14 @@ Quantified metrics are more useful when (1) data for decision making is availabl
 Vulnerability management does not yet meet either criterion.
 Furthermore, it is not clear to what extent measurements about a vulnerability can be informative about other vulnerabilities.
 Each vulnerability has a potentially unique relationship to the socio-technical system in which it exists, including the Internet.
+
+Vulnerability management decisions are often contextual: given what is known at the time, the decision is to do X.
+But what is known can change over time, which can and should influence the decision.
 The context of the vulnerability, and the systems it impacts, are inextricably linked to managing it.
+Some information about the context will be relatively static over time, such as the contribution of a system to an organization's mission.
+Other information can change rapidly as events occur, such as the public release of an exploit or observation of attacks. 
 Temporal and environmental considerations should be primary, not optional as they are in CVSS.
+We discuss the temporal aspects further in [Information Changes over Time](information-changes-over-time).
 
 We make the deliberation process as clear as is practical; therefore, we risk belaboring some points to ensure our assumptions and reasoning are explicit.
 Transparency should improve trust in the results.
