@@ -1,73 +1,73 @@
-row,Exploitation,Exposure,Automatable,HumanImpact,Priority(TODO)
-1,none,small,no,low,
-2,none,small,no,medium,
-3,none,small,no,high,
-4,none,small,no,very high,
-5,none,small,yes,low,
-6,none,small,yes,medium,
-7,none,small,yes,high,
-8,none,small,yes,very high,
-9,none,controlled,no,low,
-10,none,controlled,no,medium,
-11,none,controlled,no,high,
-12,none,controlled,no,very high,
-13,none,controlled,yes,low,
-14,none,controlled,yes,medium,
-15,none,controlled,yes,high,
-16,none,controlled,yes,very high,
-17,none,open,no,low,
-18,none,open,no,medium,
-19,none,open,no,high,
-20,none,open,no,very high,
-21,none,open,yes,low,
-22,none,open,yes,medium,
-23,none,open,yes,high,
-24,none,open,yes,very high,
-25,PoC,small,no,low,
-26,PoC,small,no,medium,
-27,PoC,small,no,high,
-28,PoC,small,no,very high,
-29,PoC,small,yes,low,
-30,PoC,small,yes,medium,
-31,PoC,small,yes,high,
-32,PoC,small,yes,very high,
-33,PoC,controlled,no,low,
-34,PoC,controlled,no,medium,
-35,PoC,controlled,no,high,
-36,PoC,controlled,no,very high,
-37,PoC,controlled,yes,low,
-38,PoC,controlled,yes,medium,
-39,PoC,controlled,yes,high,
-40,PoC,controlled,yes,very high,
-41,PoC,open,no,low,
-42,PoC,open,no,medium,
-43,PoC,open,no,high,
-44,PoC,open,no,very high,
-45,PoC,open,yes,low,
-46,PoC,open,yes,medium,
-47,PoC,open,yes,high,
-48,PoC,open,yes,very high,
-49,active,small,no,low,
-50,active,small,no,medium,
-51,active,small,no,high,
-52,active,small,no,very high,
-53,active,small,yes,low,
-54,active,small,yes,medium,
-55,active,small,yes,high,
-56,active,small,yes,very high,
-57,active,controlled,no,low,
-58,active,controlled,no,medium,
-59,active,controlled,no,high,
-60,active,controlled,no,very high,
-61,active,controlled,yes,low,
-62,active,controlled,yes,medium,
-63,active,controlled,yes,high,
-64,active,controlled,yes,very high,
-65,active,open,no,low,
-66,active,open,no,medium,
-67,active,open,no,high,
-68,active,open,no,very high,
-69,active,open,yes,low,
-70,active,open,yes,medium,
-71,active,open,yes,high,
-72,active,open,yes,very high,
+row,Exploitation,Exposure,Automatable,Human Impact,Priority
+1,none,small,no,low,defer
+2,none,small,no,medium,defer
+3,none,small,no,high,scheduled
+4,none,small,no,very high,scheduled
+5,none,small,yes,low,defer
+6,none,small,yes,medium,scheduled
+7,none,small,yes,high,scheduled
+8,none,small,yes,very high,scheduled
+9,none,controlled,no,low,defer
+10,none,controlled,no,medium,scheduled
+11,none,controlled,no,high,scheduled
+12,none,controlled,no,very high,scheduled
+13,none,controlled,yes,low,scheduled
+14,none,controlled,yes,medium,scheduled
+15,none,controlled,yes,high,scheduled
+16,none,controlled,yes,very high,scheduled
+17,none,open,no,low,defer
+18,none,open,no,medium,scheduled
+19,none,open,no,high,scheduled
+20,none,open,no,very high,scheduled
+21,none,open,yes,low,scheduled
+22,none,open,yes,medium,scheduled
+23,none,open,yes,high,scheduled
+24,none,open,yes,very high,out-of-cycle
+25,PoC,small,no,low,defer
+26,PoC,small,no,medium,scheduled
+27,PoC,small,no,high,scheduled
+28,PoC,small,no,very high,scheduled
+29,PoC,small,yes,low,scheduled
+30,PoC,small,yes,medium,scheduled
+31,PoC,small,yes,high,scheduled
+32,PoC,small,yes,very high,scheduled
+33,PoC,controlled,no,low,defer
+34,PoC,controlled,no,medium,scheduled
+35,PoC,controlled,no,high,scheduled
+36,PoC,controlled,no,very high,scheduled
+37,PoC,controlled,yes,low,scheduled
+38,PoC,controlled,yes,medium,scheduled
+39,PoC,controlled,yes,high,scheduled
+40,PoC,controlled,yes,very high,out-of-cycle
+41,PoC,open,no,low,defer
+42,PoC,open,no,medium,scheduled
+43,PoC,open,no,high,scheduled
+44,PoC,open,no,very high,out-of-cycle
+45,PoC,open,yes,low,scheduled
+46,PoC,open,yes,medium,scheduled
+47,PoC,open,yes,high,out-of-cycle
+48,PoC,open,yes,very high,out-of-cycle
+49,active,small,no,low,scheduled
+50,active,small,no,medium,scheduled
+51,active,small,no,high,out-of-cycle
+52,active,small,no,very high,out-of-cycle
+53,active,small,yes,low,scheduled
+54,active,small,yes,medium,scheduled
+55,active,small,yes,high,out-of-cycle
+56,active,small,yes,very high,out-of-cycle
+57,active,controlled,no,low,scheduled
+58,active,controlled,no,medium,scheduled
+59,active,controlled,no,high,out-of-cycle
+60,active,controlled,no,very high,out-of-cycle
+61,active,controlled,yes,low,scheduled
+62,active,controlled,yes,medium,out-of-cycle
+63,active,controlled,yes,high,out-of-cycle
+64,active,controlled,yes,very high,out-of-cycle
+65,active,open,no,low,scheduled
+66,active,open,no,medium,scheduled
+67,active,open,no,high,out-of-cycle
+68,active,open,no,very high,immediate
+69,active,open,yes,low,out-of-cycle
+70,active,open,yes,medium,out-of-cycle
+71,active,open,yes,high,immediate
+72,active,open,yes,very high,immediate
