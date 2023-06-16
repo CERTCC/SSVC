@@ -11,10 +11,10 @@ import pandas as pd
 DATAPATH="../data/csvs"
 
 PATHS = {
-    'coord_pub': os.path.join(DATAPATH,"coord-publish-options_v2.csv"),
-    'coord_triage': os.path.join(DATAPATH,"coord-triage-options_v2.csv"),
-    'deployer': os.path.join(DATAPATH,"deployer-options_v2.csv"),
-    'supplier': os.path.join(DATAPATH,"supplier-options_v2.csv"),
+    'coord_pub': os.path.join(DATAPATH,"coord-publish-options.csv"),
+    'coord_triage': os.path.join(DATAPATH,"coord-triage-options.csv"),
+    'deployer': os.path.join(DATAPATH,"deployer-options.csv"),
+    'supplier': os.path.join(DATAPATH,"supplier-options.csv"),
 }
 
 DEFAULTS = {
