@@ -5,11 +5,11 @@ The definition of choices can take a logical form, such as:
  - IF
  - ([*Exploitation*](#exploitation) IS [PoC](#exploitation)) AND
  - ([*Exposure*](#exposure) IS [controlled](#exploitation)) AND
- - ([*Utility*](#utility) IS [laborious](#utility)) AND
+ - ([*Automatable*](#automatable) IS [no](#automatable)) AND
  - ([*Well-being and Mission Impact*](#situated-safety---mission-impact) IS [medium](#situated-safety---mission-impact))
  - THEN priority is *scheduled*.
 
-This logical statement is captured in line 50 of the deployer .csv file.
+This logical statement is captured in line 35 of the deployer .csv file.
 
 There are different formats for capturing these prioritization decisions depending on how and where they are going to be used.
 In this paper, we primarily represent a full set of guidance on how one stakeholder will make a decision as a **decision tree**.
