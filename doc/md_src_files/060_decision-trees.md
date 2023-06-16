@@ -226,7 +226,15 @@ On the contrary, we consider the following decision points to be *stakeholder-sp
 - [*Human Impact*](#human-impact)
 - [*System Exposure*](#system-exposure)
 
-
+We anticipate that most custom decision points created by stakeholders for themselves or a constituency will be of the *stakeholder-specific* variety.
+Examples of these sorts of custom decision points include
+- A decision point indicating whether a system or mission context is affected by regulatory oversight that might alter the decision priority.
+E.g., a healthcare-focused ISAO might define a decision point about whether a vulnerability affects patient data privacy protection.
+- A decision point that incorporates the concept of change risk to a deployer.
+E.g., a financial institution might have a very low tolerance for changes to a transaction clearing system.
+- A decision point that indicates whether the affected software belongs to a list of critical software for a specific constituency.
+E.g., an open-source consortium might want to prioritize fix development for a set of key projects.
+ 
 #### Decision Tree Scope
 
 Two kinds of modifications are possible at the decision tree level.
