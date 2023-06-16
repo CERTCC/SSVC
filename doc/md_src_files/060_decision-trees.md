@@ -202,15 +202,30 @@ In these and other scenarios, there are two scopes to consider:
 
 #### Decision Point Scope
 
-Each decision point defined in this document has a characteristic scope, either *global* or *local*.
+Each decision point defined in this document has a characteristic scope, either *stakeholder-agnostic* or *stakeholder-specific*.
 
-- *Globally scoped decision points* describe the state of the world outside the decision maker's environment. 
-They form the background context in which the stakeholder is making prioritization decisions. 
-Nearly all stakeholders should agree on the assignment of specific values to these decision points.
-- *Locally scoped decision points* are expected to be contextual to some decision makers.
-Mission Impact is one such example.
-Information about a locally scoped decision point can still be inherited by others using the same tree. 
-For example in the corporate CSIRT scenario above, the System Exposure value might be consistent across all subsidiaries for a centrally managed service.
+- **Stakeholder-agnostic decision points** describe the state of the world outside the stakeholder's environment. 
+One might think of them as global facts that form the background context in which the stakeholder is making a prioritization decision.
+Nearly all stakeholders should agree on the assignment of specific values to these decision points. 
+- **Stakeholder-specific decision points** are expected to be contextual to some set of stakeholders.
+Information about a stakeholder-specific decision point can still be inherited by other stakeholders using the same tree.
+For example in the corporate CSIRT scenario above, the [*System Exposure*](#system-exposure) value might be consistent across all subsidiaries for a centrally managed service.
+
+We generally consider the following decision points to be *stakeholder-agnostic*:
+- [*Exploitation*](#exploitation)
+- [*Technical Impact*](#technical-impact)
+- [*Automatable*](#automatable)
+
+On the contrary, we consider the following decision points to be *stakeholder-specific*:
+- [*Value Density*](#value-density)
+- [*Utility*](#utility)
+- [*Safety Impact*](#safety-impact)
+- [*Public Safety Impact*](#public-safety-impact)
+- [*Situated Safety Impact*](#situated-safety-impact)
+- [*Mission Impact*](#mission-impact)
+- [*Human Impact*](#human-impact)
+- [*System Exposure*](#system-exposure)
+
 
 #### Decision Tree Scope
 
