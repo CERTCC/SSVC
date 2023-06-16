@@ -13,14 +13,14 @@ var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 		     version: "2.0", title: "SSVC Provision table"}
 /* If a new analysis is being done use this for export */
 var current_score = [];
-var current_tree = "CISA-Coordinator-v2.0.3.json";
-var roll_tree_map = {"CISA-Coordinator" : "CISA-Coordinator-v2.0.3.json",
-		     "Supplier": "Supplier-v2.0.0.json",
-		     "Deployer": "Deployer-v2.0.0.json",
-		     "Coordinator-Publish": "Coordinator-Publish-v2.0.0.json",
-		     "Coordinator-Triage": "Coordinator-Triage-v2.0.0.json"
+var current_tree = "CISA-Coordinator.json";
+var roll_tree_map = {"CISA-Coordinator" : "CISA-Coordinator.json",
+		     "Supplier": "Supplier.json",
+		     "Deployer": "Deployer.json",
+		     "Coordinator-Publish": "Coordinator-Publish.json",
+		     "Coordinator-Triage": "Coordinator-Triage.json"
 		    };
-var current_schema = "SSVC_Computed_v2.03.schema.json";
+var current_schema = "SSVC_Computed.schema.json";
 /* A dictionary of elements that are children of a decision point*/
 var ischild = {};
 var isparent = {};
