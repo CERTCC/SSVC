@@ -16,7 +16,7 @@ var current_score = [];
 var current_tree = "CISA-Coordinator-v2.0.3.json";
 var roll_tree_map = {"CISA-Coordinator" : "CISA-Coordinator-v2.0.3.json",
 		     "Supplier": "Supplier-v2.0.0.json",
-		     "Deployer": "Deployer-v2.0.0.json",
+		     "Deployer": "Deployer-v2.1.0.json",
 		     "Coordinator-Publish": "Coordinator-Publish-v2.0.0.json",
 		     "Coordinator-Triage": "Coordinator-Triage-v2.0.0.json"
 		    };
