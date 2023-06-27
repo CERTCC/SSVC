@@ -124,7 +124,15 @@ In our case, we are not attempting to fit a tree to data.
 Rather, we are interested in producing usable trees that minimize extraneous effort.
 To that end, we briefly examine the qualities for which decision tree measurement is suitable.
 
-Decision tree construction methods must address four significant concerns: feature selection, feature type, overfitting, and parsimony.
+### Decision Tree Construction Concerns
+
+Decision tree construction methods must address four significant concerns: 
+- feature selection 
+- feature type 
+- overfitting 
+- parsimony
+
+#### Feature selection
 
 Feature selection is perhaps the most important consideration for SSVC, because it directly affects the information gathering requirements placed on the analyst attempting to use the tree.
 Each decision point in SSVC is a feature.
@@ -136,13 +144,18 @@ If nothing else, this means analysts are spending time gathering evidence to mak
 The added details also make it harder for the decision process to accurately manage the risks in question.
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
 
+#### Feature types
+
 Regarding feature types, all of the features included in SSVC version 2 can be considered ordinal data.
 That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
 The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
+#### Overfitting
+
 When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree.
 In our case, our “data” is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
 
+#### Parsimony 
 Parsimony is, in essence, Occam's Razor applied to tree selection. Given the choice between two trees that have identical outputs, one should choose the tree with fewer decisions.
 One way to evaluate the parsimony of a tree is by applying the concept of feature importance to ensure that each feature is contributing adequately to the result.
 While there are a few ways to compute feature importance, the one we found most useful is permutation importance.
@@ -174,9 +187,76 @@ Thus, 60 unique combinations of decision values is the point at which a decision
 SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in version 1.1 of SSVC.
 “Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+### Sharing Trees With Others
+
+Communities of shared interest may desire to share information about decision points or even create custom trees to share within their community.
+Examples include:
+- an Information Sharing and Analysis Organization (ISAO) within a critical infrastructure sector might want to define a custom decision point relevant to their constituents' regulatory compliance.
+- a corporate Computer Security Incident Response Team (CSIRT) might choose to adjust decision priorities for an existing tree for use by its subsidiaries.
+- a government department might define a separate tree using existing decision points to address a particular governance process within their constituent agencies.
+- a regional coordinator might want to produce decision point information as a product of its threat analysis work and provide this information to its constituency in an advisory. 
+
+In these and other scenarios, there are two scopes to consider:
+1. Decision Point Scope
+2. Decision Tree Scope
+
+#### Decision Point Scope
+
+Each decision point defined in this document has a characteristic scope, either *stakeholder-agnostic* or *stakeholder-specific*.
+
+- **Stakeholder-agnostic decision points** describe the state of the world outside the stakeholder's environment. 
+One might think of them as global facts that form the background context in which the stakeholder is making a prioritization decision.
+Nearly all stakeholders should agree on the assignment of specific values to these decision points. 
+- **Stakeholder-specific decision points** are expected to be contextual to some set of stakeholders.
+Information about a stakeholder-specific decision point can still be inherited by other stakeholders using the same tree.
+For example in the corporate CSIRT scenario above, the [*System Exposure*](#system-exposure) value might be consistent across all subsidiaries for a centrally managed service.
+
+We generally consider the following decision points to be *stakeholder-agnostic*:
+- [*Exploitation*](#exploitation)
+- [*Technical Impact*](#technical-impact)
+- [*Automatable*](#automatable)
+
+On the contrary, we consider the following decision points to be *stakeholder-specific*:
+- [*Value Density*](#value-density)
+- [*Utility*](#utility)
+- [*Safety Impact*](#safety-impact)
+- [*Public Safety Impact*](#public-safety-impact)
+- [*Situated Safety Impact*](#situated-safety-impact)
+- [*Mission Impact*](#mission-impact)
+- [*Human Impact*](#human-impact)
+- [*System Exposure*](#system-exposure)
+
+We anticipate that most custom decision points created by stakeholders for themselves or a constituency will be of the *stakeholder-specific* variety.
+Examples of these sorts of custom decision points include
+- A decision point indicating whether a system or mission context is affected by regulatory oversight that might alter the decision priority.
+E.g., a healthcare-focused ISAO might define a decision point about whether a vulnerability affects patient data privacy protection.
+- A decision point that incorporates the concept of change risk to a deployer.
+E.g., a financial institution might have a very low tolerance for changes to a transaction clearing system.
+- A decision point that indicates whether the affected software belongs to a list of critical software for a specific constituency.
+E.g., an open-source consortium might want to prioritize fix development for a set of key projects.
+ 
+#### Decision Tree Scope
+
+Two kinds of modifications are possible at the decision tree level.
+
+- A *Risk Appetite Shift* retains the structure of an existing tree and all its decision points, and simply adjusts the decision outputs according to the stakeholder's risk appetite.
+For example, an organization with sufficient resources to efficiently deploy fixes might choose to defer fewer cases than the default tree would recommend.
+- *Tree Customization* can be done in one of three ways:
+  1. incorporating an already-defined decision point into an existing tree that does not already contain it.
+  2. defining a new decision point and adding it to an existing tree. 
+Note that adding or removing an option from an existing decision point should be treated as creating a new decision point.
+The new decision point should be given a distinct name as well.
+  3. defining a new tree entirely from existing or new decision points
+
+Because tree customization changes the tree structure and implies the addition or removal of leaf nodes, it will be necessary for the organization to review the decision outputs in light of its risk appetite as well.
+
+Risk-shifted or customized trees can be shared among a community of interest, of course.
+Further customization within each stakeholder remains an option as well, although there is likely a diminishing return on more than a few layers of customization for the same basic decision.
+Of course, SSVC users might choose to construct other trees to inform other decisions.
+
 ## Guidance for Evidence Gathering
 
-To answer each of these decision points, a supplier or deployer should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
+To answer each of these decision points, a stakeholder should, as much as possible, have a repeatable evidence collection and evaluation process. However, we are proposing decisions for humans to make, so evidence collection and evaluation is not totally automatable. That caveat notwithstanding, some automation is possible.
 
 For example, whether exploitation modules are available in ExploitDB, Metasploit, or other sources is straightforward.
 We hypothesize that searching Github and Pastebin for exploit code can be captured in a script.
