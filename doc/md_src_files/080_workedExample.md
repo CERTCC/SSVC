@@ -23,7 +23,7 @@ However, since most of the hospital’s clients have not installed the app, and 
 According to the fictional pilot scenario, “Our mission dictates that the first and foremost priority is to contribute to human welfare and to uphold the Hippocratic oath (do no harm).” The continuity of operations planning for a hospital is complex, with many MEFs. However, even from this abstract, it seems clear that “do no harm” is at risk due to this vulnerability. A mission essential function to that mission is each of the various medical devices works as expected, or at least if a device fails, it cannot actively be used to inflict harm. Unsolicited insulin delivery would mean that MEF “fails for a period of time longer than acceptable,” matching the description of MEF failure. The question is then whether the whole mission fails, which does not seem to be the case. The recovery of MEF functioning is not affected, and most MEFs (the emergency services, surgery, oncology, administration, etc.) would be unaffected. Therefore, we select [*MEF failure*](#mission-impact) and move on to ask about safety impact.
 
 This particular pilot study used SSVC version 1.
-In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](#human-impat), and [*Automatable*](#automatable) would need to be answered as well.
+In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](#human-impact), and [*Automatable*](#automatable) would need to be answered as well.
 Conducting further studies with the recommended version 2.1 Deployer tree remains an area of future work.
 In the pilot study, this information is conveyed as follows:
 
