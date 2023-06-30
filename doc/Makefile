@@ -13,12 +13,12 @@ SHELL=/bin/bash
 # versioning
 # need a better way of automatically updating version numbers
 MAJOR=2
-MINOR=0
+MINOR=1
 # these have the common meanings from semantic versioning
 # major should be incremented with content changes that introduce incompatibilities
 # minor should be incremented for meaningful changes that do not break compatibility
-FIX=5
-# fix version needs to be incremented with every commit
+# fix is based on git commit
+FIX=`git rev-parse --short HEAD`
 
 #versioning across different content is a bit complicated.
 # The PDF major.minor should match any schema, tree, or other supporting document version
@@ -29,6 +29,7 @@ HOME:=$(shell pwd)
 OUTDIR=$(HOME)
 SRC=./md_src_files
 
+
 TITLE:="Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC version $(MAJOR).$(MINOR).$(FIX))"
 TITLE_PREFIX:="SSVC"
 COMPILE_DATE:="Compiled `date -u`"
@@ -38,8 +39,8 @@ BIBLIOGRAPHY:=$(SRC)/sources_ssvc.bib
 # TODO decide whether to include FIX level in file name or not
 #PDF_OUT:=$(OUTDIR)/ssvc_v$(MAJOR)-$(MINOR)-$(FIX).pdf
 #HTML_OUT:=$(OUTDIR)/ssvc_v$(MAJOR)-$(MINOR)-$(FIX).html
-PDF_OUT:=$(OUTDIR)/ssvc_v$(MAJOR)-$(MINOR).pdf
-HTML_OUT:=$(OUTDIR)/ssvc_v$(MAJOR)-$(MINOR).html
+PDF_OUT:=$(OUTDIR)/ssvc.pdf
+HTML_OUT:=$(OUTDIR)/ssvc.html
 
 EMOJI_REPLACEMENTS:=$(HOME)/emoji-replacements.sed
 

@@ -1,7 +1,7 @@
 
-# Acknowledgements
+# Copyright
 
-Copyright 2019-2020 Carnegie Mellon University.
+Copyright 2019-2023 Carnegie Mellon University.
 
 This material is based upon work funded and supported by the Department of Defense under Contract No. FA8702-15-D-0002 with Carnegie Mellon University for the operation of the Software Engineering Institute, a federally funded research and development center.
 
