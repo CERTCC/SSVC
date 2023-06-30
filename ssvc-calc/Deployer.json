@@ -63,149 +63,6 @@
             ]
 	},
 	{
-	    "label": "Value Density",
-	    "key": "V",
-	    "decision_type": "simple",
-	    "options": [
-		{
-		    "label": "diffuse",
-		    "key": "D",
-		    "description": "The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small. Examples of systems with diffuse value are email accounts, most consumer online banking accounts, common cell phones, and most personal computing resources owned and maintained by users. (A “user” is anyone whose professional task is something other than the maintenance of the system or component. As with Safety Impact, a “system operator” is anyone who is professionally responsible for the proper operation or maintenance of a system.)"
-		},
-		{
-		    "label": "concentrated",
-		    "key": "C",
-		    "description": "The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users. Examples of concentrated value are database systems, Kerberos servers, web servers hosting login pages, and cloud service providers. However, usefulness and uniqueness of the resources on the vulnerable system also inform value density. For example, encrypted mobile messaging platforms may have concentrated value, not because each phone’s messaging history has a particularly large amount of data, but because it is uniquely valuable to law enforcement."
-		}
-	    ]
-	},
-	{
-            "decision_type": "complex",
-            "label": "Utility",
-            "key": "U",
-            "children": [
-		{
-		    "label": "Automatable"
-		},
-		{
-		    "label": "Value Density"
-		}
-            ],
-            "options": [
-		{
-                    "label": "laborious",
-                    "key": "L",
-                    "description": "No to automatable and diffuse value",
-                    "child_combinations": [
-			[
-			    {
-				"child_label": "Automatable",
-				"child_key": "A",
-				"child_option_labels": [
-				    "no"
-				],
-				"child_option_keys": [
-				    "N"
-				]
-			    },
-			    {
-				"child_label": "Value Density",
-				"child_key": "V",
-				"child_option_labels": [
-				    "diffuse"
-				],
-				"child_option_keys": [
-				    "D"
-				]
-			    }
-			]
-                    ]
-		},
-		{
-                    "label": "efficient",
-                    "key": "E",
-                    "description": "{Yes to automatable and diffuse value} OR {No to automatable and concentrated value}",
-                    "child_combinations": [
-			[
-			    {
-				"child_label": "Automatable",
-				"child_key": "A",
-				"child_option_labels": [
-				    "no"
-				],
-				"child_option_keys": [
-				    "N"
-				]
-			    },
-			    {
-				"child_label": "Value Density",
-				"child_key": "V",
-				"child_option_labels": [
-				    "concentrated"
-				],
-				"child_option_keys": [
-				    "C"
-				]
-			    }
-			],
-			[
-			    {
-				"child_label": "Automatable",
-				"child_key": "A",
-				"child_option_labels": [
-				    "yes"
-				],
-				"child_option_keys": [
-				    "Y"
-				]
-			    },
-			    {
-				"child_label": "Value Density",
-				"child_key": "V",
-				"child_option_labels": [
-				    "diffuse"
-				],
-				"child_option_keys": [
-				    "D"
-				]
-			    }
-			]
-			
-                    ]
-		},
-		{
-                    "label": "super effective",
-                    "key": "S",
-                    "description": "Yes to automatable and concentrated value",
-                    "child_combinations": [
-			[
-			    {
-				"child_label": "Automatable",
-				"child_key": "A",
-				"child_option_labels": [
-				    "yes"
-				],
-				"child_option_keys": [
-				    "Y"
-				]
-			    },
-			    {
-				"child_label": "Value Density",
-				"child_key": "V",
-				"child_option_labels": [
-				    "concentrated"
-				],
-				"child_option_keys": [
-				    "C"
-				]
-			    }
-			]
-                    ]
-		}
-            ]
-            
-	},
-	{
 	    "decision_type": "simple",
 	    "label": "Situated Safety Impact",
 	    "key": "S",
@@ -243,6 +100,11 @@
             "key": "M",
             "options": [
                 {
+                    "label": "none",
+                    "key": "N",
+                    "description": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions. (aka Non-Essential Degraded)"
+                },
+                {
                     "label": "degraded",
                     "key": "D",
                     "description": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions. (aka Non-Essential Degraded)"
@@ -267,7 +129,6 @@
             ]
             
 	},
-	
 	{
 	    "label": "Human Impact",
 	    "decision_type": "complex",
@@ -297,6 +158,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
+				  "none",
 				  "degraded",
 				  "crippled"
 			      ]
@@ -339,6 +201,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
+				  "none",
 				  "degraded",
 				  "crippled"
 			      ]
@@ -380,6 +243,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
+				  "none",
 				  "degraded",
 				  "crippled",
 				  "mef failure"
@@ -428,6 +292,7 @@
 			      "child_label": "Mission Impact",
 			      "child_key": "M",
 			      "child_option_labels":[
+				  "none",
 				  "degraded",
 				  "crippled",
 				  "mef failure",
@@ -471,767 +336,514 @@
 		}
 	    ],
 	    "label": "Priority"
-	}
-    ],
+	} ],
     "decisions_table": [
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "none",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "defer"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "poc",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "small",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "controlled",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "medium",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "high",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "laborious",
-	    "Human Impact": "very high",
-	    "Priority": "immediate"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "low",
-	    "Priority": "scheduled"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "medium",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "high",
-	    "Priority": "immediate"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "efficient",
-	    "Human Impact": "very high",
-	    "Priority": "immediate"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "low",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "medium",
-	    "Priority": "out-of-cycle"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "high",
-	    "Priority": "immediate"
-	},
-	{
-	    "Exploitation": "active",
-	    "Exposure": "open",
-	    "Utility": "super effective",
-	    "Human Impact": "very high",
-	    "Priority": "immediate"
-	}
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "immediate"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "immediate"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "immediate"
+      }	
     ],
     "lang": "en",
     "version": "2.0",
-    "title": "Deployer v2.0.0"
+    "title": "Deployer v2.1.0"
 }
