@@ -4,7 +4,7 @@
 i=1
 
 # default output file in the SSVC Github file structure
-out="../data/csvs/deployer-options_v2.csv"
+out="../data/csvs/deployer-options_v2_1.csv"
 
 # refuse to clobber existing file
 if [ -e "$out" ] 
@@ -13,13 +13,13 @@ if [ -e "$out" ]
 fi
 
 #header row
-echo "row,Exploitation,Exposure,Utility,Well-being and Mission Impact,Priority(TODO)">$out
+echo "row,Exploitation,Exposure,Automatable,HumanImpact,Priority(TODO)">$out
 
 for Exploitation in none PoC active
   do for Exposure in small controlled open
-    do for Utility in laborious efficient "super effective"
-      do for WellnessMissionImpact in low medium high "very high"
-          do echo $i,$Exploitation,$Exposure,$Utility,$WellnessMissionImpact,>>$out 
+    do for Automatable in no yes
+      do for HumanImpact in low medium high "very high"
+          do echo $i,$Exploitation,$Exposure,$Automatable,$HumanImpact,>>$out
              i=$(($i+1))
       done
     done

@@ -1,0 +1,849 @@
+{
+    "decision_points": [
+	{
+            "label": "Exploitation",
+            "decision_type": "simple",
+            "key": "E",
+            "options": [
+		{
+		    "label": "none",
+		    "key": "N",
+		    "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+		},
+		{
+		    "label": "poc",
+		    "key": "P",
+		    "description": "One of the following cases is true: (1) private evidence of exploitation is attested but not shared; (2) widespread hearsay attests to exploitation; (3) typical public PoC in places such as Metasploit or ExploitDB; or (4) the vulnerability has a well-known method of exploitation. Some examples of condition (4) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks."
+		},
+		{
+		    "label": "active",
+		    "key": "A",
+		    "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+		}
+            ]
+	},
+	{
+            "decision_type": "simple",
+            "label": "Exposure",
+            "key": "X",
+            "options": [
+		{
+		    "label": "small",
+		    "key": "S",
+		    "description": "Local service or program; highly controlled network"
+		},
+		{
+		    "label": "controlled",
+		    "key": "C",
+		    "description": "Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. Controlled covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then exposure should be small."
+		},
+		{
+		    "label": "open",
+		    "key": "O",
+		    "description": "Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)"
+		}
+            ]
+            
+	},
+	{
+            "label": "Automatable",
+            "key": "A",
+            "decision_type": "simple",
+            "options": [
+		{
+		    "label": "no",
+		    "key": "N",
+		    "description": "Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool."
+		},
+		{
+		    "label": "yes",
+		    "key": "Y",
+		    "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely yes."
+		}
+            ]
+	},
+	{
+	    "decision_type": "simple",
+	    "label": "Situated Safety Impact",
+	    "key": "S",
+	    "options": [
+		{
+		    "label": "none",
+		    "key": "N",
+		    "description": "Does not mean no impact literally; the effect is below the threshold for all aspects described in Minor"
+		},
+		{
+		    "label": "minor",
+		    "key": "M",
+		    "description": "Any one of the following is observed \"Physical Harm\": Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins. \"Environment\": Minor externalities (property damage, environmental damage, etc.) imposed on other parties. \"Financial\": Financial losses, which are not readily absorbable, to multiple persons. \"Psychological\": Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons."
+		},
+		{
+		    "label": "major",
+		    "key": "A",
+		    "description": "Any one of the following is observed \"Physical Harm\": Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation. \"Environment\": Major externalities (property damage, environmental damage, etc.) imposed on other parties. \"Financial\": Financial losses that likely lead to bankruptcy of multiple persons. \"Psychological\": Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people."
+		},
+		{
+		    "label": "hazardous",
+		    "key": "H",
+		    "description": "Any one of the following is observed \"Physical Harm\": Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures OR parts of the cyber-physical system that support safe operation break. \"Environment\": Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties. \"Financial\": Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state \"Psychological\": N/A"
+		},
+		{
+		    "label": "catastrophic",
+		    "key": "C",
+		    "description": "Any one of the following is observed \"Physical Harm\": Multiple immediate fatalities (emergency response probably cannot save the victims.). \"Environment\": Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties. \"Financial\": Social systems (elections, financial grid, etc.) supported by the software collapse. \"Psychological\": N/A"
+		}
+	    ]
+	},
+	{
+            "decision_type": "simple",
+            "label": "Mission Impact",
+            "key": "M",
+            "options": [
+                {
+                    "label": "none",
+                    "key": "N",
+                    "description": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions. (aka Non-Essential Degraded)"
+                },
+                {
+                    "label": "degraded",
+                    "key": "D",
+                    "description": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions. (aka Non-Essential Degraded)"
+                },		
+                {
+                    "label": "crippled",
+                    "key": "C",
+                    "description": "Mission Essential Function (MEF) support is crippled. Activities that directly support essential functions are crippled; essential functions continue for a time"
+                },
+                {
+                    "label": "mef failure",
+                    "key": "F",
+                    "description": "Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time"
+                    
+                },
+		{
+                    "label": "mission failure",
+                    "key": "M",
+                    "description": "Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails"
+                    
+		}
+            ]
+            
+	},
+	{
+	    "label": "Human Impact",
+	    "decision_type": "complex",
+	    "children": [
+		{
+		    "label": "Situated Safety Impact"
+		},
+		{
+		    "label": "Mission Impact"
+		}
+	    ],
+	    "options": [
+		{
+		    "label": "low",
+		    "key": "L",
+		    "description": "The combined Situated Safety Impact and Mission Impact is \"low\" ",
+		    "child_combinations": [
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"none",
+				"minor"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "none",
+				  "degraded",
+				  "crippled"
+			      ]
+			      
+			  }
+			]
+			
+		    ]
+		},
+		{
+		    "label": "medium",
+		    "key": "M",
+		    "description": "The combined Situated Safety Impact and Mission Impact is \"medium\" ",
+		    "child_combinations": [
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"none",
+				"minor"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "mef failure"
+			      ]
+			      
+			  }
+			],
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"major"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "none",
+				  "degraded",
+				  "crippled"
+			      ]
+			      
+			  }
+			]	      
+
+		    ]
+		},
+		{
+		    "label": "high",
+		    "key": "H",
+		    "description": "The combined Situated Safety Impact and Mission Impact is \"high\" ",	    
+		    "child_combinations": [
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"major"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "mef failure"
+			      ]
+			      
+			  }
+			],
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"hazardous"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "none",
+				  "degraded",
+				  "crippled",
+				  "mef failure"
+			      ]
+			      
+			  }
+			]
+			
+			
+			
+		    ]
+		},
+		{
+		    "label": "very high",
+		    "key": "V",
+		    "description": "The combined Situated Safety Impact and Mission Impact is \"very high\" ",
+		    "child_combinations": [
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"none",
+				"minor",
+				"major",
+				"hazardous",
+				"catastrophic"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "mission failure"
+			      ]
+			      
+			  }
+			],
+			[ {
+			    "child_label": "Situated Safety Impact",
+			    "child_key": "S",
+			    "child_option_labels":[
+				"catastrophic"
+			    ]
+			},
+			  {
+			      "child_label": "Mission Impact",
+			      "child_key": "M",
+			      "child_option_labels":[
+				  "none",
+				  "degraded",
+				  "crippled",
+				  "mef failure",
+				  "mission failure"
+			      ]
+			      
+			  }
+			]
+			
+		    ]
+		    
+		}
+	    ]
+	},
+	{
+	    "decision_type": "final",
+	    "options": [
+		{
+		    "label": "defer",
+		    "key": "D",
+		    "description": "Do not act at present.",
+		    "color": "#75FC4C"
+		},
+		{
+		    "label": "scheduled",
+		    "key": "S",
+		    "description": "Act during regularly scheduled maintenance time.",
+		    "color": "#FBEB61"
+		},
+		{
+		    "label": "out-of-cycle",
+		    "key": "O",
+		    "description": "Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary.",
+		    "color": "#EE8733"
+		},
+		{
+		    "label": "immediate",
+		    "key": "I",
+		    "description": "Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations.",
+		    "color": "#EA3423"
+		}
+	    ],
+	    "label": "Priority"
+	} ],
+    "decisions_table": [
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "none",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "defer"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "PoC",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "small",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "controlled",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "low",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "medium",
+        "Priority": "scheduled"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "high",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "no",
+        "Human Impact": "very high",
+        "Priority": "immediate"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "low",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "medium",
+        "Priority": "out-of-cycle"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "high",
+        "Priority": "immediate"
+      },
+      {
+        "Exploitation": "active",
+        "Exposure": "open",
+        "Automatable": "yes",
+        "Human Impact": "very high",
+        "Priority": "immediate"
+      }	
+    ],
+    "lang": "en",
+    "version": "2.0",
+    "title": "Deployer v2.1.0"
+}
