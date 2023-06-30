@@ -1,5 +1,5 @@
 
-# Acknowledgements
+# Copyright
 
 Copyright 2019-2020 Carnegie Mellon University.
 
