@@ -39,7 +39,7 @@ row,Exploitation,Exposure,Automatable,Human Impact,Priority
 38,PoC,controlled,yes,medium,scheduled
 39,PoC,controlled,yes,high,scheduled
 40,PoC,controlled,yes,very high,out-of-cycle
-41,PoC,open,no,low,defer
+41,PoC,open,no,low,scheduled
 42,PoC,open,no,medium,scheduled
 43,PoC,open,no,high,scheduled
 44,PoC,open,no,very high,out-of-cycle
@@ -52,19 +52,19 @@ row,Exploitation,Exposure,Automatable,Human Impact,Priority
 51,active,small,no,high,out-of-cycle
 52,active,small,no,very high,out-of-cycle
 53,active,small,yes,low,scheduled
-54,active,small,yes,medium,scheduled
+54,active,small,yes,medium,out-of-cycle
 55,active,small,yes,high,out-of-cycle
 56,active,small,yes,very high,out-of-cycle
 57,active,controlled,no,low,scheduled
 58,active,controlled,no,medium,scheduled
 59,active,controlled,no,high,out-of-cycle
 60,active,controlled,no,very high,out-of-cycle
-61,active,controlled,yes,low,scheduled
+61,active,controlled,yes,low,out-of-cycle
 62,active,controlled,yes,medium,out-of-cycle
 63,active,controlled,yes,high,out-of-cycle
 64,active,controlled,yes,very high,out-of-cycle
 65,active,open,no,low,scheduled
-66,active,open,no,medium,scheduled
+66,active,open,no,medium,out-of-cycle
 67,active,open,no,high,out-of-cycle
 68,active,open,no,very high,immediate
 69,active,open,yes,low,out-of-cycle
