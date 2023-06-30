@@ -9,7 +9,7 @@ The definition of choices can take a logical form, such as:
  - ([*Human Impact*](#human-impact) IS [medium](#human-impact))
  - THEN priority is *scheduled*.
 
-This logical statement is captured in line 35 of the deployer .csv file.
+This logical statement is captured in line 35 of the deployer `.csv` file.
 
 There are different formats for capturing these prioritization decisions depending on how and where they are going to be used.
 In this paper, we primarily represent a full set of guidance on how one stakeholder will make a decision as a **decision tree**.
@@ -126,11 +126,12 @@ To that end, we briefly examine the qualities for which decision tree measuremen
 
 ### Decision Tree Construction Concerns
 
-Decision tree construction methods must address four significant concerns: 
+Decision tree construction methods must address five significant concerns: 
 - feature selection 
 - feature type 
 - overfitting 
 - parsimony
+- versioning
 
 #### Feature selection
 
@@ -183,6 +184,8 @@ This sort of customization is often the simplest way to adjust the importance of
 
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
+
+#### Tree Versioning
 
 SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in version 1.1 of SSVC.
 “Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
