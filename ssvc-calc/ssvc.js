@@ -13,12 +13,13 @@ var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 		     version: "2.0", title: "SSVC Provision table"}
 /* If a new analysis is being done use this for export */
 var current_score = [];
-var current_tree = "CISA-Coordinator.json";
-var roll_tree_map = {"CISA-Coordinator" : "CISA-Coordinator.json",
+var current_tree = "Deployer.json";
+var roll_tree_map = {
 		     "Supplier": "Supplier.json",
 		     "Deployer": "Deployer.json",
 		     "Coordinator-Publish": "Coordinator-Publish.json",
-		     "Coordinator-Triage": "Coordinator-Triage.json"
+		     "Coordinator-Triage": "Coordinator-Triage.json",
+			 "CISA-Coordinator" : "CISA-Coordinator.json"
 		    };
 var current_schema = "SSVC_Computed.schema.json";
 /* A dictionary of elements that are children of a decision point*/
