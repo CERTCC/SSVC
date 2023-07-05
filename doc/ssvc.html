@@ -12,7 +12,7 @@
   <meta name="author" content="Vijay Sarvapalli" />
   <meta name="author" content="Deana Shick" />
   <meta name="author" content="Laurie Tyzenhaus" />
-  <title>SSVC – Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC version 2.1.72f6ee9)</title>
+  <title>SSVC – Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC version 2.1.51ea18a)</title>
   <style>
     html {
       line-height: 1.5;
@@ -189,7 +189,7 @@
 <header id="title-block-header">
 <h1 class="title">Prioritizing Vulnerability Response: A
 Stakeholder-Specific Vulnerability Categorization (SSVC version
-2.1.72f6ee9)</h1>
+2.1.51ea18a)</h1>
 <p class="author">Jonathan M. Spring</p>
 <p class="author">Eric Hatleback</p>
 <p class="author">Allen D. Householder</p>
@@ -198,7 +198,7 @@ Stakeholder-Specific Vulnerability Categorization (SSVC version
 <p class="author">Vijay Sarvapalli</p>
 <p class="author">Deana Shick</p>
 <p class="author">Laurie Tyzenhaus</p>
-<p class="date">Compiled Fri Jun 30 18:53:02 UTC 2023</p>
+<p class="date">Compiled Wed Jul 5 13:20:54 UTC 2023</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <p>This document defines a testable Stakeholder-Specific Vulnerability
@@ -3808,27 +3808,27 @@ allows remote attackers to execute arbitrary commands via crafted
 <p>For each of the nine CVEs, six analysts rated the priority of the
 vulnerability as both a supplier and deployer. Table 13 summarizes the
 results by reporting the inter-rater agreement for each decision point.
-For all measures, agreement (κ) is above zero, which is generally
-interpreted as some agreement among analysts. Below zero is interpreted
-as noise or discord. Closer to 1 indicates more or stronger
+For all measures, agreement (<em>k</em>) is above zero, which is
+generally interpreted as some agreement among analysts. Below zero is
+interpreted as noise or discord. Closer to 1 indicates more or stronger
 agreement.</p>
-<p>How close κ should be to 1 before agreement can be considered strong
-enough or reliable enough is a matter of some debate. The value
-certainly depends on the number of options among which analysts select.
-For those decision points with five options (mission and safety impact),
-agreement is lowest. Although portfolio value has a higher κ than
-mission or safety impact, it may not actually have higher agreement
-because portfolio value only has two options. The results for portfolio
-value are nearly indistinguishable as far as level of statistical
-agreement from mission impact and safety impact. The statistical
-community does not have hard and fast rules for cut lines on adequate
-agreement. We treat κ as a descriptive statistic rather than a test
-statistic.</p>
-<p>Table 13 is encouraging, though not conclusive. κ&lt;0 is a strong
-sign of discordance. Although it is unclear how close to 1 is success,
-κ&lt;0 would be clear sign of failure. In some ways, these results may
-be undercounting the agreement for SSVC as presented. These results are
-for SSVC prior to the improvements documented in <a href="#improvements-instigated-by-the-pilot">Improvement Instigated by
+<p>How close <em>k</em> should be to 1 before agreement can be
+considered strong enough or reliable enough is a matter of some debate.
+The value certainly depends on the number of options among which
+analysts select. For those decision points with five options (mission
+and safety impact), agreement is lowest. Although portfolio value has a
+higher <em>k</em> than mission or safety impact, it may not actually
+have higher agreement because portfolio value only has two options. The
+results for portfolio value are nearly indistinguishable as far as level
+of statistical agreement from mission impact and safety impact. The
+statistical community does not have hard and fast rules for cut lines on
+adequate agreement. We treat <em>k</em> as a descriptive statistic
+rather than a test statistic.</p>
+<p>Table 13 is encouraging, though not conclusive. <em>k</em>&lt;0 is a
+strong sign of discordance. Although it is unclear how close to 1 is
+success, <em>k</em>&lt;0 would be clear sign of failure. In some ways,
+these results may be undercounting the agreement for SSVC as presented.
+These results are for SSVC prior to the improvements documented in <a href="#improvements-instigated-by-the-pilot">Improvement Instigated by
 the Pilot</a>, which are implemented in SSVC version 1. On the other
 hand, the participant demographics may inflate the inter-rater agreement
 based on shared tacit understanding through the process of authorship.
@@ -3869,7 +3869,7 @@ a total artifact of the participant organization demographics.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Fleiss’ κ</td>
+<td style="text-align: left;">Fleiss’ <em>k</em></td>
 <td style="text-align: right;">0.122</td>
 <td style="text-align: right;">0.807</td>
 <td style="text-align: right;">0.679</td>
@@ -3892,19 +3892,20 @@ a total artifact of the participant organization demographics.</p>
 </tr>
 </tbody>
 </table>
-<p>For all decision points, the presumed goal is for κ to be close or
-equal to 1. The statistics literature has identified some limited cases
-in which Fleiss’ k behaves strangely—for example it is lower than
-expected when raters are split between 2 of q ratings when q&gt;2 <span class="citation" data-cites="falotico2015fleiss">(Falotico and Quatto
-2015)</span>. This paradox may apply to the safety and mission impact
-values, in particular. The paradox would bite hardest if the rating for
-each vulnerability was clustered on the same two values, for example,
-minor and major. Falotico and Quatto’s proposed solution is to permute
-the columns, which is safe with unordered categorical data. Since the
-nine vulnerabilities do not have the same answers as each other (that
-is, the answers are not clustered on the same two values), we happen to
-avoid the worst of this paradox, but the results for safety impact and
-mission impact should be interpreted with some care.</p>
+<p>For all decision points, the presumed goal is for <em>k</em> to be
+close or equal to 1. The statistics literature has identified some
+limited cases in which Fleiss’ k behaves strangely—for example it is
+lower than expected when raters are split between 2 of q ratings when
+q&gt;2 <span class="citation" data-cites="falotico2015fleiss">(Falotico
+and Quatto 2015)</span>. This paradox may apply to the safety and
+mission impact values, in particular. The paradox would bite hardest if
+the rating for each vulnerability was clustered on the same two values,
+for example, minor and major. Falotico and Quatto’s proposed solution is
+to permute the columns, which is safe with unordered categorical data.
+Since the nine vulnerabilities do not have the same answers as each
+other (that is, the answers are not clustered on the same two values),
+we happen to avoid the worst of this paradox, but the results for safety
+impact and mission impact should be interpreted with some care.</p>
 <p>This solution identifies another difficulty of Fleiss’ kappa, namely
 that it does not preserve any order; none and catastrophic are
 considered the same level of disagreement as none and minor. Table 13
@@ -3913,27 +3914,28 @@ weakness. This value is the largest distance between rater selections on
 a single vulnerability out of the maximum possible distance. So, for
 safety impact, the most two raters disagreed was by two steps (none to
 major, minor to hazardous, or major to catastrophic) out of the four
-possible steps (none to catastrophic). The only values of κ that are
-reliably comparable are those with the same number of options (that is,
-the same maximum distance). In other cases, closer to 1 is better, but
-how close is close enough to be considered “good” changes. In all but
-one case, if raters differed by two steps then there were raters who
-selected the central option between them. The exception was mission
-impact for CVE-201814781; it is unclear whether this discrepancy should
-be localized to a poor test scenario description, or to SSVC’s mission
-impact definition. Given it is an isolated occurrence, we expect the
-scenario description at least partly.</p>
-<p>Nonetheless, κ provides some way to measure improvement on this a
-conceptual engineering task. The pilot evaluation can be repeated, with
-more diverse groups of stakeholders after the descriptions have been
-refined by stakeholder input, to measure fit to this goal. For a
-standard to be reliably applied across different analyst backgrounds,
-skill sets, and cultures, a set of decision point descriptions should
-ideally achieve κ of 1 for each item in multiple studies with diverse
-participants. Such a high level of agreement would be difficult to
-achieve, but it would ensure that when two analysts assign a priority
-with the system that they get the same answer. Such agreement is not the
-norm with CVSS currently <span class="citation" data-cites="allodi2018effect">(Allodi et al. 2018)</span>.</p>
+possible steps (none to catastrophic). The only values of <em>k</em>
+that are reliably comparable are those with the same number of options
+(that is, the same maximum distance). In other cases, closer to 1 is
+better, but how close is close enough to be considered “good” changes.
+In all but one case, if raters differed by two steps then there were
+raters who selected the central option between them. The exception was
+mission impact for CVE-201814781; it is unclear whether this discrepancy
+should be localized to a poor test scenario description, or to SSVC’s
+mission impact definition. Given it is an isolated occurrence, we expect
+the scenario description at least partly.</p>
+<p>Nonetheless, <em>k</em> provides some way to measure improvement on
+this a conceptual engineering task. The pilot evaluation can be
+repeated, with more diverse groups of stakeholders after the
+descriptions have been refined by stakeholder input, to measure fit to
+this goal. For a standard to be reliably applied across different
+analyst backgrounds, skill sets, and cultures, a set of decision point
+descriptions should ideally achieve <em>k</em> of 1 for each item in
+multiple studies with diverse participants. Such a high level of
+agreement would be difficult to achieve, but it would ensure that when
+two analysts assign a priority with the system that they get the same
+answer. Such agreement is not the norm with CVSS currently <span class="citation" data-cites="allodi2018effect">(Allodi et al.
+2018)</span>.</p>
 <table>
 <caption>SSVC pilot scores compared with the CVSS base scores for the
 vulnerabilities provided by NVD.</caption>
@@ -4582,10 +4584,11 @@ variability makes it impossible to tell whether a difference in scores
 is really due to one vulnerability being higher priority than other.</p>
 <p>The SSVC version 1 pilot study provides a methodology for measuring
 and evaluating reliability of the decision process description based on
-the agreement measure κ. This study methodology should be repeated with
-different analyst groups, from different sectors and with different
-experience, using the results to make changes in the decision process
-description until the agreement measure is adequately close to 1.</p>
+the agreement measure <em>k</em>. This study methodology should be
+repeated with different analyst groups, from different sectors and with
+different experience, using the results to make changes in the decision
+process description until the agreement measure is adequately close to
+1.</p>
 <p>Internationalization and localization of SSVC will also need to be
 considered and tested in future work. It is not clear how best to
 consider translating SSVC decision points, if at all. And at <a href="https://github.com/CERTCC/SSVC/issues/123">a very practical
