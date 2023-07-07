@@ -21,7 +21,7 @@ def main():
     # parse command line
     parser = argparse.ArgumentParser(description="Analyze an SSVC tree csv file")
     parser.add_argument('csvfile',metavar="csvfile",type=str,help="the csv file to analyze")
-    parser.add_argument('--outcol',dest="outcol",type=str,help="the name of the outcome column",default="outcome")
+    parser.add_argument('--outcol',dest="outcol",type=str,help="the name of the outcome column",default="priority")
     args = parser.parse_args()
 
     # read csv
