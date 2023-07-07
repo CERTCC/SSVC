@@ -13,7 +13,7 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Improved consistency of [*Public Safety Impact*](#public_safety_impact) usage throughout the document and tooling.
 - Improved consistency of [*Human Impact*](#human_impact) usage throughout the document
 - Refactored markdown files to better track chapter and section numbering
-- Automated HTML and PDF generation into a [Github Workflow[(https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
+- Automated HTML and PDF generation into a [Github Workflow](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
 - Miscellaneous typo fixes and readability improvements (e.g., headings, bulleted lists)
   
 
