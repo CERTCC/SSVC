@@ -239,13 +239,13 @@
             "decision_type": "simple",
             "options": [
 		{
-		    "label": "minor",
+		    "label": "minimal",
 		    "key": "M",
 		    "description": "Any one of the following is observed \"Physical Harm\": Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins. \"Environment\": Minor externalities (property damage, environmental damage, etc.) imposed on other parties. \"Financial\": Financial losses, which are not readily absorbable, to multiple persons. \"Psychological\": Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons."
 		},
 		{
-		    "label": "huge",
-		    "key": "H",
+		    "label": "significant",
+		    "key": "S",
 		    "description": "Any one of the following (or worse) is observed \"Physical Harm\": Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation. \"Environment\": Major externalities (property damage, environmental damage, etc.) imposed on other parties. \"Financial\": Financial losses that likely lead to bankruptcy of multiple persons. \"Psychological\": Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people."
 		}
             ],
@@ -281,7 +281,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -291,7 +291,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "decline"
 	},
 	{
@@ -301,7 +301,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -311,7 +311,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -321,7 +321,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -331,7 +331,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -341,7 +341,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -351,7 +351,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "decline"
 	},
 	{
@@ -361,7 +361,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -371,7 +371,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -381,7 +381,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -391,7 +391,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -401,7 +401,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -411,7 +411,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -421,7 +421,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -431,7 +431,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -441,7 +441,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "track"
 	},
 	{
@@ -451,7 +451,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -461,7 +461,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -471,7 +471,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -481,7 +481,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -491,7 +491,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -501,7 +501,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "track"
 	},
 	{
@@ -511,7 +511,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -521,7 +521,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -531,7 +531,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "decline"
 	},
 	{
@@ -541,7 +541,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -551,7 +551,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -561,7 +561,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -571,7 +571,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -581,7 +581,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "track"
 	},
 	{
@@ -591,7 +591,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -601,7 +601,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "coordinate"
 	},
 	{
@@ -611,7 +611,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -621,7 +621,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "coordinate"
 	},
 	{
@@ -631,7 +631,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -641,7 +641,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -651,7 +651,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -661,7 +661,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -671,7 +671,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "track"
 	},
 	{
@@ -681,7 +681,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "coordinate"
 	},
 	{
@@ -691,7 +691,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -701,7 +701,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "coordinate"
 	},
 	{
@@ -711,7 +711,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -721,7 +721,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "coordinate"
 	},
 	{
@@ -731,7 +731,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -741,7 +741,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "coordinate"
 	},
 	{
@@ -751,7 +751,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -761,7 +761,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -771,7 +771,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -781,7 +781,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -791,7 +791,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -801,7 +801,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -811,7 +811,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -821,7 +821,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -831,7 +831,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -841,7 +841,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -851,7 +851,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -861,7 +861,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -871,7 +871,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -881,7 +881,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -891,7 +891,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -901,7 +901,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -911,7 +911,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -921,7 +921,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -931,7 +931,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -941,7 +941,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -951,7 +951,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -961,7 +961,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -971,7 +971,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -981,7 +981,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -991,7 +991,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1001,7 +1001,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -1011,7 +1011,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -1021,7 +1021,7 @@
             "Cardinality": "multiple",
             "Engagement": "active",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -1031,7 +1031,7 @@
             "Cardinality": "multiple",
             "Engagement": "unresponsive",
             "Utility": "super effective",
-            "Public_Safety_Impact": "huge",
+            "Public_Safety_Impact": "significant",
             "Priority": "coordinate"
 	},
 	{
@@ -1041,7 +1041,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1051,7 +1051,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1061,7 +1061,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1071,7 +1071,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1081,7 +1081,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1091,7 +1091,7 @@
             "Cardinality": "one",
             "Engagement": "active",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1101,7 +1101,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "laborious",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	},
 	{
@@ -1111,7 +1111,7 @@
             "Cardinality": "one",
             "Engagement": "unresponsive",
             "Utility": "efficient",
-            "Public_Safety_Impact": "minor",
+            "Public_Safety_Impact": "minimal",
             "Priority": "decline"
 	}
     ],
