@@ -19,7 +19,7 @@ for ReportCredibility in no yes
   do for Cardinality in one multiple
     do for Engagement in active unresponsive
       do for Utility in laborious efficient "super effective"
-        do for PublicSafetyImpact in minor huge
+        do for PublicSafetyImpact in minimal significant
           do echo $i,no,yes,$ReportCredibility,$Cardinality,$Engagement,$Utility,$PublicSafetyImpact, >>$out 
           # for this tree, there is not much variation unless the vul is not already
           # Public and the reported has already tried to contact the vendor/supplier 
@@ -33,7 +33,7 @@ done
 for Contacted in yes no
   do for ReportCredibility in no yes
     do for Engagement in active unresponsive
-      do echo $i,yes,$Contacted,$ReportCredibility,multiple,$Engagement,super effective,huge,coordinate >>$out 
+      do echo $i,yes,$Contacted,$ReportCredibility,multiple,$Engagement,super effective,significant,coordinate >>$out
              i=$(($i+1))
     done
   done
@@ -42,7 +42,7 @@ for Contacted in yes no
   do for ReportCredibility in no yes
     do for Engagement in active unresponsive
       do for Utility in laborious efficient
-        do echo $i,yes,$Contacted,$ReportCredibility,one,$Engagement,$Utility,minor,decline >>$out 
+        do echo $i,yes,$Contacted,$ReportCredibility,one,$Engagement,$Utility,minimal,decline >>$out
              i=$(($i+1))
       done
     done
@@ -52,14 +52,14 @@ done #Decline for other situations where vul is already public
 
 for ReportCredibility in no yes
   do for Engagement in active unresponsive
-    do echo $i,no,no,$ReportCredibility,multiple,$Engagement,super effective,huge,coordinate >>$out 
+    do echo $i,no,no,$ReportCredibility,multiple,$Engagement,super effective,significant,coordinate >>$out
              i=$(($i+1))
   done
 done #exceptions to supplier/vendor not contacted by reporter but will still coordinate
 for ReportCredibility in no yes
   do for Engagement in active unresponsive
     do for Utility in laborious efficient
-      do echo $i,no,no,$ReportCredibility,one,$Engagement,$Utility,minor,decline >>$out 
+      do echo $i,no,no,$ReportCredibility,one,$Engagement,$Utility,minimal,decline >>$out
              i=$(($i+1))
     done
   done
