@@ -7,11 +7,11 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Introduced a demo [SSVC Calc App](https://certcc.github.io/SSVC/ssvc-calc/) which became the basis for CISA's [SSVC Calculator](https://www.cisa.gov/ssvc-calculator)
 - Updated Deployer tree to use [*Automatable*](#automatable) instead of [*Utility*](#utility)
 - Adjusted Deployer tree decisions
-- Added section on [Sharing Trees With Others](#sharing_trees_with_others) including a discussion of decision point scope and decision tree scope.
-- Improved clarity of time-sensitivity of some decision points in [Representing Information for Decisions About Vulnerabilities](#representing_information_for_decisions_about_vulnerabilities)
-- Improved description of [*Mission Impact*](#mission_impact)
-- Improved consistency of [*Public Safety Impact*](#public_safety_impact) usage throughout the document and tooling.
-- Improved consistency of [*Human Impact*](#human_impact) usage throughout the document
+- Added section on [Sharing Trees With Others](#sharing-trees-with-others) including a discussion of decision point scope and decision tree scope.
+- Improved clarity of time-sensitivity of some decision points in [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities)
+- Improved description of [*Mission Impact*](#mission-impact)
+- Improved consistency of [*Public Safety Impact*](#public-safety-impact) usage throughout the document and tooling.
+- Improved consistency of [*Human Impact*](#human-impact) usage throughout the document
 - Refactored markdown files to better track chapter and section numbering
 - Automated HTML and PDF generation into a [Github Workflow](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
 - Miscellaneous typo fixes and readability improvements (e.g., headings, bulleted lists)
