@@ -81,7 +81,7 @@ While the group has made an effort to make the ML classifier transparent, ML cla
 The use of proprietary training data makes the system less transparent.
 
 EPSS could be used to inform the [*Exploitation*](#exploitation) decision point.
-The EPSS update is focused on designing a scoring system which includes practitioner requirements and achieving performance improvements on the observable state of the world at the time of the SSVC decision.
+The EPSS [update]([https://www.first.org/epss/](https://arxiv.org/pdf/2302.14172.pdf)) is focused on designing a scoring system which includes practitioner requirements and achieving performance improvements on the observable state of the world at the time of the SSVC decision.
 EPSS is about predicting if a transition will occur from the SSVC state of [*none*](#exploitation) to [*active*](#exploitation).
 A sufficiently high EPSS score could therefore be used as an additional criterion for scoring a vulnerability as [*active*](#exploitation) even when there is no observed active exploitation.
 
