@@ -76,13 +76,13 @@ SSVC does not have such customization as a bolt-on optional metric group because
 ## EPSS
 
 [EPSS](https://www.first.org/epss/) is an “effort for predicting when software vulnerabilities will be exploited.”
-EPSS is currently based on a machine-learning classifier and proprietary IDS alert data from Kenna Security.
+EPSS is currently based on a machine-learning classifier and proprietary data from Fortiguard, Alienvault OTX, the Shadowserver Foundation and GreyNoise.
 While the group has made an effort to make the ML classifier transparent, ML classifiers are not able to provide an intelligible, human-accessible explanation for their behavior [@spring2019ml].
 The use of proprietary training data makes the system less transparent.
 
 EPSS could be used to inform the [*Exploitation*](#exploitation) decision point.
-Currently, [*Exploitation*](#exploitation) focuses on the observable state of the world at the time of the SSVC decision.
-EPSS is about predicting if a transition will occur from the SSVC state of [*none*](#xploitation) to [*active*](#exploitation).
+The [*Exploitation*](#exploitation) EPSS update is focused on designing a scoring system which includes parctitioner requirements and achieving performance improvements on the observable state of the world at the time of the SSVC decision.
+EPSS is about predicting if a transition will occur from the SSVC state of [*none*](#exploitation) to [*active*](#exploitation).
 A sufficiently high EPSS score could therefore be used as an additional criterion for scoring a vulnerability as [*active*](#exploitation) even when there is no observed active exploitation.
 
 ## VPR
