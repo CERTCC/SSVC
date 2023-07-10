@@ -2,7 +2,7 @@
 # Related Vulnerability Management Systems
 
 There are several other bodies of work that are used in practice to assist vulnerability managers in making decisions.
-Three relevant systems are CVSS [@cvss_v3-1], EPSS [@jacobs2019exploit], and Tenable's Vulnerability Priority Rating ([VPR](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss)).
+Three relevant systems are CVSS [@cvss_v3-1], EPSS [@jacobs2021epss], and Tenable's Vulnerability Priority Rating ([VPR](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss)).
 There are other systems derived from CVSS, such as RVSS for robots [@vilches2018towards] and MITRE's effort to adapt CVSS to medical devices [@mitre2019medical].
 There are also other nascent efforts to automate aspects of the decision making process, such as [vPrioritizer](https://github.com/varchashva/vPrioritizer).
 This section discusses the relationship between these various systems and SSVC.
@@ -64,7 +64,7 @@ In SSVC, these definitions are in the [Scope](#scope) section.
 
 The temporal metric group primarily contains the Exploit Code Maturity metric.
 This metric expresses a concept similar to [*Exploitation*](#exploitation).
-The main difference is that [*Exploitation*](#exploitation) is not optional in SSVC and that SSVC accounts for the observation that most vulnerabilities with CVE-IDs do not have public exploit code [@householder2020historical] and are not actively exploited [@guido2011exploit,@jacobs2019exploit].
+The main difference is that [*Exploitation*](#exploitation) is not optional in SSVC and that SSVC accounts for the observation that most vulnerabilities with CVE-IDs do not have public exploit code [@householder2020historical] and are not actively exploited [@guido2011exploit,@jacobs2021epss].
 
 > Environmental metric group
 
