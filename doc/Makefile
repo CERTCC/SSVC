@@ -26,7 +26,7 @@ FIX=`git rev-parse --short HEAD`
 # The fix version for the schema and the PDF document may mismatch
 
 HOME:=$(shell pwd)
-OUTDIR=$(HOME)/../pdfs
+OUTDIR=$(HOME)/../draft
 SRC=./md_src_files
 
 
@@ -37,7 +37,7 @@ PDF_STYLING:=pdf-styling.yaml
 BIBLIOGRAPHY:=$(SRC)/sources_ssvc.bib
 
 PDF_OUT:=$(OUTDIR)/ssvc.pdf
-HTML_OUT:=$(HOME)/ssvc.html
+HTML_OUT:=$(OUTDIR)/ssvc.html
 
 EMOJI_REPLACEMENTS:=$(HOME)/emoji-replacements.sed
 
