@@ -260,7 +260,7 @@
             "Utility": "laborious",
             "Technical Impact": "total",
             "Public-Safety Impact": "minimal",
-            "Priority": "defer"
+            "Priority": "scheduled"
         },
         {
             "Exploitation": "none",
@@ -316,7 +316,7 @@
             "Utility": "super effective",
             "Technical Impact": "total",
             "Public-Safety Impact": "minimal",
-            "Priority": "scheduled"
+            "Priority": "out-of-cycle"
         },
         {
             "Exploitation": "none",
