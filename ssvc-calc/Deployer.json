@@ -623,7 +623,7 @@
         "Exposure": "open",
         "Automatable": "no",
         "Human Impact": "low",
-        "Priority": "defer"
+        "Priority": "scheduled"
       },
       {
         "Exploitation": "PoC",
@@ -714,7 +714,7 @@
         "Exposure": "small",
         "Automatable": "yes",
         "Human Impact": "medium",
-        "Priority": "scheduled"
+        "Priority": "out-of-cycle"
       },
       {
         "Exploitation": "active",
@@ -763,7 +763,7 @@
         "Exposure": "controlled",
         "Automatable": "yes",
         "Human Impact": "low",
-        "Priority": "scheduled"
+        "Priority": "out-of-cycle"
       },
       {
         "Exploitation": "active",
@@ -798,7 +798,7 @@
         "Exposure": "open",
         "Automatable": "no",
         "Human Impact": "medium",
-        "Priority": "scheduled"
+        "Priority": "out-of-cycle"
       },
       {
         "Exploitation": "active",
