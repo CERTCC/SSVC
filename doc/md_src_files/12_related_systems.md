@@ -2,7 +2,7 @@
 # Related Vulnerability Management Systems
 
 There are several other bodies of work that are used in practice to assist vulnerability managers in making decisions.
-Three relevant systems are CVSS [@cvss_v3-1], EPSS [@jacobs2019exploit], and Tenable's Vulnerability Priority Rating ([VPR](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss)).
+Three relevant systems are CVSS [@cvss_v3-1], EPSS [@jacobs2021epss], and Tenable's Vulnerability Priority Rating ([VPR](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss)).
 There are other systems derived from CVSS, such as RVSS for robots [@vilches2018towards] and MITRE's effort to adapt CVSS to medical devices [@mitre2019medical].
 There are also other nascent efforts to automate aspects of the decision making process, such as [vPrioritizer](https://github.com/varchashva/vPrioritizer).
 This section discusses the relationship between these various systems and SSVC.
@@ -64,7 +64,7 @@ In SSVC, these definitions are in the [Scope](#scope) section.
 
 The temporal metric group primarily contains the Exploit Code Maturity metric.
 This metric expresses a concept similar to [*Exploitation*](#exploitation).
-The main difference is that [*Exploitation*](#exploitation) is not optional in SSVC and that SSVC accounts for the observation that most vulnerabilities with CVE-IDs do not have public exploit code [@householder2020historical] and are not actively exploited [@guido2011exploit,@jacobs2019exploit].
+The main difference is that [*Exploitation*](#exploitation) is not optional in SSVC and that SSVC accounts for the observation that most vulnerabilities with CVE-IDs do not have public exploit code [@householder2020historical] and are not actively exploited [@guido2011exploit,@jacobs2021epss].
 
 > Environmental metric group
 
@@ -75,14 +75,14 @@ SSVC does not have such customization as a bolt-on optional metric group because
 
 ## EPSS
 
-[EPSS](https://www.first.org/epss/) is an “effort for predicting when software vulnerabilities will be exploited.”
-EPSS is currently based on a machine-learning classifier and proprietary IDS alert data from Kenna Security.
+The [Exploit Prediction Scoring System (EPSS)](https://www.first.org/epss/) is “a data-driven effort for estimating the likelihood (probability) that a software vulnerability will be exploited in the wild.”
+EPSS is currently based on a machine-learning classifier and proprietary data from Fortiguard, Alienvault OTX, the Shadowserver Foundation and GreyNoise.
 While the group has made an effort to make the ML classifier transparent, ML classifiers are not able to provide an intelligible, human-accessible explanation for their behavior [@spring2019ml].
 The use of proprietary training data makes the system less transparent.
 
 EPSS could be used to inform the [*Exploitation*](#exploitation) decision point.
 Currently, [*Exploitation*](#exploitation) focuses on the observable state of the world at the time of the SSVC decision.
-EPSS is about predicting if a transition will occur from the SSVC state of [*none*](#xploitation) to [*active*](#exploitation).
+EPSS is about predicting if a transition will occur from the SSVC state of [*none*](#exploitation) to [*active*](#exploitation).
 A sufficiently high EPSS score could therefore be used as an additional criterion for scoring a vulnerability as [*active*](#exploitation) even when there is no observed active exploitation.
 
 ## VPR
