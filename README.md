@@ -53,6 +53,8 @@ but it worked well enough for what was needed at the time.
 Directory with SSVC calculator using D3 graph.
 See [`ssvc-calc/README.md`](ssvc-calc/README.md) for more info.
 
+A demo version of `ssvc-calc` can be found at https://certcc.github.io/SSVC/ssvc-calc/
+
 ## Citing SSVC
 
 To reference SSVC in an academic publication, please refer to the version presented at the 2020 Workshop on Economics of Information Security (WEIS):
