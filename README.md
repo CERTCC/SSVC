@@ -10,16 +10,25 @@ SSVC aims to avoid one-size-fits-all solutions in favor of a modular decision-ma
 SSVC is mostly conceptual tools for vulnerability management.
 These conceptual tools (how to make decisions, what should go into a decision, how to document and communicate decisions clearly, etc.) are described here.
 
-`doc/*`
+## `/doc/*`
 
-Draft and final versions of reports. See [`doc/README.md`](doc/README.md) for
+Raw markdown and graphics files used to build document artifacts. 
+See [`doc/README.md`](doc/README.md) for
 more info.
 
-`doc/pdfs/*.pdf`
+## `/draft/*`
 
-Static versions of issued reports are stored in this directory.
+Generated drafts of reports. Usually these will be recent versions of the main document in both `pdf` and `html` formats.
+At the moment, these are manually generated using the `make all` target from within `/doc`.
+For the absolute latest version generated from the most recent commit on the `main` branch, 
+see the `output.zip` file artifact attached to the most recent run of the
+[pandoc_html_pdf.yaml](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml) workflow.
 
-`data/*.csv`
+## `/pdfs/*.pdf`
+
+Static versions of previously issued reports are stored in this directory.
+
+## `/data/*.csv`
 
 The data folder contains detailed data files that define suggested prioritization results based on each combination of information on a vulnerability work item.
 Also included in data are the lookup tables as csv files which `ssvc.py`
@@ -30,7 +39,7 @@ The tools in the `src` folder provide an interface to work with these data files
 Customizing the "outcome" column in this csv is the primary recommended way that stakehodlers might adapt SSVC to their environment.
 
 
-`src/ssvc.py`
+## `src/ssvc.py`
 
 A basic Python module for interacting with the SSVC trees. `ssvc.py` has
 two methods: `applier_tree()` and `developer_tree()`
@@ -39,10 +48,12 @@ The two methods just loop through their respective lookup tables until
 they hit a match, then return the outcome. Maybe not the best implementation,
 but it worked well enough for what was needed at the time.
 
-`ssvc-calc`
+## `ssvc-calc`
 
 Directory with SSVC calculator using D3 graph.
 See [`ssvc-calc/README.md`](ssvc-calc/README.md) for more info.
+
+A demo version of `ssvc-calc` can be found at https://certcc.github.io/SSVC/ssvc-calc/
 
 ## Citing SSVC
 

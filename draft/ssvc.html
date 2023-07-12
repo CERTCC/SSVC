@@ -12,7 +12,7 @@
   <meta name="author" content="Vijay Sarvapalli" />
   <meta name="author" content="Deana Shick" />
   <meta name="author" content="Laurie Tyzenhaus" />
-  <title>SSVC – Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC version 2.1.51ea18a)</title>
+  <title>SSVC – Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization (SSVC version 2.1.66aa51a)</title>
   <style>
     html {
       line-height: 1.5;
@@ -189,7 +189,7 @@
 <header id="title-block-header">
 <h1 class="title">Prioritizing Vulnerability Response: A
 Stakeholder-Specific Vulnerability Categorization (SSVC version
-2.1.51ea18a)</h1>
+2.1.66aa51a)</h1>
 <p class="author">Jonathan M. Spring</p>
 <p class="author">Eric Hatleback</p>
 <p class="author">Allen D. Householder</p>
@@ -198,7 +198,7 @@ Stakeholder-Specific Vulnerability Categorization (SSVC version
 <p class="author">Vijay Sarvapalli</p>
 <p class="author">Deana Shick</p>
 <p class="author">Laurie Tyzenhaus</p>
-<p class="date">Compiled Wed Jul 5 13:20:54 UTC 2023</p>
+<p class="date">Compiled Tue Jul 11 19:39:43 UTC 2023</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <p>This document defines a testable Stakeholder-Specific Vulnerability
@@ -1239,12 +1239,12 @@ collate responses to these decision points.</p>
 the vulnerability. The intent is not to predict future exploitation but
 only to acknowledge the current state of affairs. Predictive systems,
 such as EPSS, could be used to augment this decision or to notify
-stakeholders of likely changes <span class="citation" data-cites="jacobs2019exploit">(Jacobs et al. 2019)</span>.</p>
+stakeholders of likely changes <span class="citation" data-cites="jacobs2021epss">(Jacobs et al. 2021)</span>.</p>
 <table>
 <caption>Exploitation Decision Values</caption>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 76%" />
+<col style="width: 0%" />
+<col style="width: 99%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1268,7 +1268,8 @@ vulnerability has a well-known method of exploitation. Some examples of
 condition (3) are open-source web proxies serve as the PoC code for how
 to exploit any vulnerability in the vein of improper validation of TLS
 certificates. As another example, Wireshark serves as a PoC for packet
-replay attacks on ethernet or WiFi networks.</td>
+replay attacks on ethernet or WiFi networks. A publicly-known hard-coded
+or default password would also meet this criteria.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Active</td>
@@ -4224,8 +4225,8 @@ Management Systems</h1>
 <p>There are several other bodies of work that are used in practice to
 assist vulnerability managers in making decisions. Three relevant
 systems are CVSS <span class="citation" data-cites="cvss_v3-1">(CVSS SIG
-2019)</span>, EPSS <span class="citation" data-cites="jacobs2019exploit">(Jacobs et al. 2019)</span>, and
-Tenable&#39;s Vulnerability Priority Rating (<a href="https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss">VPR</a>).
+2019)</span>, EPSS <span class="citation" data-cites="jacobs2021epss">(Jacobs et al. 2021)</span>, and Tenable&#39;s
+Vulnerability Priority Rating (<a href="https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss">VPR</a>).
 There are other systems derived from CVSS, such as RVSS for robots <span class="citation" data-cites="vilches2018towards">(Vilches et al.
 2018)</span> and MITRE&#39;s effort to adapt CVSS to medical devices <span class="citation" data-cites="mitre2019medical">(Chase and Coley
 2019)</span>. There are also other nascent efforts to automate aspects
@@ -4323,7 +4324,7 @@ that <a href="#exploitation"><em>Exploitation</em></a> is not optional
 in SSVC and that SSVC accounts for the observation that most
 vulnerabilities with CVE-IDs do not have public exploit code <span class="citation" data-cites="householder2020historical">(Householder,
 Chrabaszcz, et al. 2020)</span> and are not actively exploited <span class="citation" data-cites="guido2011exploit">Jacobs et al.
-(2019)</span>.</p>
+(2021)</span>.</p>
 <blockquote>
 <p>Environmental metric group</p>
 </blockquote>
@@ -4336,19 +4337,20 @@ a variety of natural differences, which is why SSVC treats them
 separately. SSVC does not have such customization as a bolt-on optional
 metric group because SSVC is stakeholder-specific by design.</p>
 <h2 id="epss">EPSS</h2>
-<p><a href="https://www.first.org/epss/">EPSS</a> is an “effort for
-predicting when software vulnerabilities will be exploited.” EPSS is
-currently based on a machine-learning classifier and proprietary IDS
-alert data from Kenna Security. While the group has made an effort to
-make the ML classifier transparent, ML classifiers are not able to
-provide an intelligible, human-accessible explanation for their behavior
-<span class="citation" data-cites="spring2019ml">(Jonathan M. Spring et
-al. 2019)</span>. The use of proprietary training data makes the system
-less transparent.</p>
+<p>The <a href="https://www.first.org/epss/">Exploit Prediction Scoring
+System (EPSS)</a> is “a data-driven effort for estimating the likelihood
+(probability) that a software vulnerability will be exploited in the
+wild.” EPSS is currently based on a machine-learning classifier and
+proprietary data from Fortiguard, Alienvault OTX, the Shadowserver
+Foundation and GreyNoise. While the group has made an effort to make the
+ML classifier transparent, ML classifiers are not able to provide an
+intelligible, human-accessible explanation for their behavior <span class="citation" data-cites="spring2019ml">(Jonathan M. Spring et al.
+2019)</span>. The use of proprietary training data makes the system less
+transparent.</p>
 <p>EPSS could be used to inform the <a href="#exploitation"><em>Exploitation</em></a> decision point.
 Currently, <a href="#exploitation"><em>Exploitation</em></a> focuses on
 the observable state of the world at the time of the SSVC decision. EPSS
-is about predicting if a transition will occur from the SSVC state of <a href="#xploitation"><em>none</em></a> to <a href="#exploitation"><em>active</em></a>. A sufficiently high EPSS score
+is about predicting if a transition will occur from the SSVC state of <a href="#exploitation"><em>none</em></a> to <a href="#exploitation"><em>active</em></a>. A sufficiently high EPSS score
 could therefore be used as an additional criterion for scoring a
 vulnerability as <a href="#exploitation"><em>active</em></a> even when
 there is no observed active exploitation.</p>
@@ -4871,11 +4873,10 @@ Issues in Information Warfare &amp; Security Research</em> 1: 80.
 ISO. 2009. <span>“Risk Management – Vocabulary.”</span> 73:2009(en).
 Geneva, CH: International Organization for Standardization. <a href="https://www.iso.org/obp/ui/#iso:std:iso:guide:73:ed-1:v1:en">https://www.iso.org/obp/ui/#iso:std:iso:guide:73:ed-1:v1:en</a>.
 </div>
-<div id="ref-jacobs2019exploit" class="csl-entry" role="doc-biblioentry">
-Jacobs, Jay, Sasha Romanosky, Benjamin Edwards, Michael Roytman, and
-Idris Adjerid. 2019. <span>“Exploit Prediction Scoring System
-(<span>EPSS</span>).”</span> In <em>Workshop on the Economics of
-Information Security</em>. Boston, MA. <a href="https://arxiv.org/abs/1908.04856">https://arxiv.org/abs/1908.04856</a>.
+<div id="ref-jacobs2021epss" class="csl-entry" role="doc-biblioentry">
+Jacobs, Jay, Sasha Romanosky, Benjamin Edwards, Idris Adjerid, and
+Michael Roytman. 2021. <span>“Exploit Prediction Scoring System
+(EPSS).”</span> <em>Digital Threats</em> 2 (3). <a href="https://doi.org/10.1145/3436242">https://doi.org/10.1145/3436242</a>.
 </div>
 <div id="ref-manion2019sbom" class="csl-entry" role="doc-biblioentry">
 Jump, Michelle, and Art Manion. 2019. <span>“Framing Software Component
