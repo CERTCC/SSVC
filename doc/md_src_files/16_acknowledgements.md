@@ -6,12 +6,12 @@ Muhammad Akbar,
 Will Dormann,
 Manish Gaur,
 Ralph Langer,
+David Oxley
 Dale Peterson,
 Deana Shick,
 Jeroen van der Ham,
 Michel van Eeten,
-Sounil Yu,
-David Oxley
+and Sounil Yu.
 The authors also thank those others too numerous to name individually who provided comments and feedback, including:
 Attendees at S4, Miami FL 2020;
 Attendees at A Conference on Defense (ACoD), Austin TX 2020;
