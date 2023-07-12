@@ -1,7 +1,7 @@
 row,Exploitation,Utility,Technical Impact,Public-Safety Impact,Priority
 1,none,laborious,partial,minimal,defer
 2,none,laborious,partial,significant,scheduled
-3,none,laborious,total,minimal,defer
+3,none,laborious,total,minimal,scheduled
 4,none,laborious,total,significant,out-of-cycle
 5,none,efficient,partial,minimal,scheduled
 6,none,efficient,partial,significant,out-of-cycle
@@ -9,7 +9,7 @@ row,Exploitation,Utility,Technical Impact,Public-Safety Impact,Priority
 8,none,efficient,total,significant,out-of-cycle
 9,none,super effective,partial,minimal,scheduled
 10,none,super effective,partial,significant,out-of-cycle
-11,none,super effective,total,minimal,scheduled
+11,none,super effective,total,minimal,out-of-cycle
 12,none,super effective,total,significant,out-of-cycle
 13,PoC,laborious,partial,minimal,scheduled
 14,PoC,laborious,partial,significant,out-of-cycle
