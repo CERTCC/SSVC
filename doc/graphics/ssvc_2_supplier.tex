@@ -46,96 +46,96 @@ immediate/.style={outcome, fill=red, thick, draw=black, label=right:{immediate}}
 for tree={s sep*=0.33, l sep=20mm, child anchor=west, anchor=west, grow=east, calign=center, tier/.pgfmath=level()}, forked edges,
   [Exploitation, rectangle, draw,
 [Utility, rectangle, draw, my label={active},
-[TechnicalImpact, rectangle, draw, my label={super effective},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+[Technical Impact, rectangle, draw, my label={super effective},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, immediate, my label={significant} ]
 [, immediate, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, immediate, my label={significant} ]
 [, immediate, my label={minimal} ]
 ] 
 ] 
-[TechnicalImpact, rectangle, draw, my label={efficient},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+[Technical Impact, rectangle, draw, my label={efficient},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, immediate, my label={significant} ]
 [, out-of-cycle, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
-[, immediate, my label={significant} ]
-[, out-of-cycle, my label={minimal} ]
-] 
-] 
-[TechnicalImpact, rectangle, draw, my label={laborious},
-[PublicSafetyImpact, rectangle, draw, my label={total},
-[, immediate, my label={significant} ]
-[, out-of-cycle, my label={minimal} ]
-] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, immediate, my label={significant} ]
 [, out-of-cycle, my label={minimal} ]
 ] 
 ] 
-] 
-[Utility, rectangle, draw, my label={poc},
-[TechnicalImpact, rectangle, draw, my label={super effective},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+[Technical Impact, rectangle, draw, my label={laborious},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, immediate, my label={significant} ]
 [, out-of-cycle, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, immediate, my label={significant} ]
 [, out-of-cycle, my label={minimal} ]
 ] 
 ] 
-[TechnicalImpact, rectangle, draw, my label={efficient},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+] 
+[Utility, rectangle, draw, my label={PoC},
+[Technical Impact, rectangle, draw, my label={super effective},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, immediate, my label={significant} ]
 [, out-of-cycle, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+] 
+[Technical Impact, rectangle, draw, my label={efficient},
+[Public-Safety Impact, rectangle, draw, my label={total},
+[, immediate, my label={significant} ]
+[, out-of-cycle, my label={minimal} ]
+] 
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, immediate, my label={significant} ]
 [, scheduled, my label={minimal} ]
 ] 
 ] 
-[TechnicalImpact, rectangle, draw, my label={laborious},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+[Technical Impact, rectangle, draw, my label={laborious},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, immediate, my label={significant} ]
 [, scheduled, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, out-of-cycle, my label={significant} ]
 [, scheduled, my label={minimal} ]
 ] 
 ] 
 ] 
 [Utility, rectangle, draw, my label={none},
-[TechnicalImpact, rectangle, draw, my label={super effective},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+[Technical Impact, rectangle, draw, my label={super effective},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, out-of-cycle, my label={significant} ]
-[, scheduled, my label={minimal} ]
+[, out-of-cycle, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
-[, out-of-cycle, my label={significant} ]
-[, scheduled, my label={minimal} ]
-] 
-] 
-[TechnicalImpact, rectangle, draw, my label={efficient},
-[PublicSafetyImpact, rectangle, draw, my label={total},
-[, out-of-cycle, my label={significant} ]
-[, scheduled, my label={minimal} ]
-] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, out-of-cycle, my label={significant} ]
 [, scheduled, my label={minimal} ]
 ] 
 ] 
-[TechnicalImpact, rectangle, draw, my label={laborious},
-[PublicSafetyImpact, rectangle, draw, my label={total},
+[Technical Impact, rectangle, draw, my label={efficient},
+[Public-Safety Impact, rectangle, draw, my label={total},
 [, out-of-cycle, my label={significant} ]
-[, defer, my label={minimal} ]
+[, scheduled, my label={minimal} ]
 ] 
-[PublicSafetyImpact, rectangle, draw, my label={partial},
+[Public-Safety Impact, rectangle, draw, my label={partial},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+] 
+[Technical Impact, rectangle, draw, my label={laborious},
+[Public-Safety Impact, rectangle, draw, my label={total},
+[, out-of-cycle, my label={significant} ]
+[, scheduled, my label={minimal} ]
+] 
+[Public-Safety Impact, rectangle, draw, my label={partial},
 [, scheduled, my label={significant} ]
 [, defer, my label={minimal} ]
 ] 
