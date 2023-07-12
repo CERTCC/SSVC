@@ -5,15 +5,19 @@ This section summarizes the changes between SSVC 2.1 and [SSVC version 2.0](http
 The details of what changes were made can be viewed on the SSVC Github under the [SSVC v2.1](https://github.com/CERTCC/SSVC/milestone/2) milestone.
 
 - Introduced a demo [SSVC Calc App](https://certcc.github.io/SSVC/ssvc-calc/) which became the basis for CISA's [SSVC Calculator](https://www.cisa.gov/ssvc-calculator)
-- Updated Deployer tree to use [*Automatable*](#automatable) instead of [*Utility*](#utility)
-- Adjusted Deployer tree decisions
+- Updated Deployer tree to use [*Automatable*](#automatable) instead of [*Utility*](#utility), which reduced the size from 108 leaf nodes to 72.
+- Adjusted Deployer tree decisions based on stakeholder feedback
+- Adjusted Supplier tree decisions based on stakeholder feedback
 - Added section on [Sharing Trees With Others](#sharing-trees-with-others) including a discussion of decision point scope and decision tree scope.
 - Improved clarity of time-sensitivity of some decision points in [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities)
 - Improved description of [*Mission Impact*](#mission-impact)
-- Improved consistency of [*Public Safety Impact*](#public-safety-impact) usage throughout the document and tooling.
+- Improved consistency of [*Public Safety Impact*](#public-safety-impact) usage throughout the document and tooling
 - Improved consistency of [*Human Impact*](#human-impact) usage throughout the document
-- Refactored markdown files to better track chapter and section numbering
+- Clarified that known default passwords are an example of [*Exploitation*](#exploitation):PoC
+- Updated references to [EPSS](https://www.first.org/epss/) to reflect recent publications
+- Refactored markdown files to better track chapter and section numbering, improving findability when editing
 - Automated HTML and PDF generation into a [Github Workflow](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
+- Updated python tools to maintain sync with current SSVC decision models
 - Miscellaneous typo fixes and readability improvements (e.g., headings, bulleted lists)
   
 
