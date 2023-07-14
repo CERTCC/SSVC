@@ -7,6 +7,21 @@ When reviewing the list of organizational functions, an organization must first 
 
 As mission essential functions are most clearly defined for government agencies, stakeholders in other sectors may be familiar with different terms of art from continuity planning. For example, infrastructure providers in the US may better align with [National Critical Functions](https://www.cisa.gov/national-critical-functions). Private sector businesses may better align with [operational and financial impacts](https://www.ready.gov/sites/default/files/2020-03/business-impact-analysis-worksheet.pdf) in a [business continuity plan](https://www.ready.gov/business-continuity-plan). While the processes, terminology, and audience for these different frameworks differ, they all can provide a sense of the criticality of an asset or assets within the scope of the stakeholder conducting the cyber vulnerability prioritization with SSVC. In that sense they all function quite similarly within SSVC. Organizations should use whatever is most appropriate for their stakeholder context, with Mission Essential Function analysis serving as a fully worked example in the SSVC documents. 
 
+The DoD's concept of Mission Essential Functions (MEF), as referenced in DOD DIRECTIVE 3020.26 DOD CONTINUITY POLICY, is a slightly different use case. Select functions directly related to accomplishing the Department’s mission. Failure to
+perform or sustain these functions, which directly support PMEF, would significantly affect the
+Department of Defense’s ability to provide vital services or exercise authority, direction, and
+control.
+
+To evaluate performance of DoD MEFs, validated by the National Continuity Coordinator, which must be
+performed in order to support the performance of the national essential functions before, during,
+and in the aftermath of an emergency. PMEFs need to be performed continuously or resumed
+within 12 hours after an event and maintained for up to 30 days or until normal operations can be
+resumed.
+
+The DoD's concept of national essential functions is more aligned with FEMA's notion. The select functions that are necessary to lead and sustain the
+United States during a catastrophic emergency and that, therefore, must be supported through
+COOP, COG, and ECG capabilities.
+
 Table:  Mission Impact Decision Values
 
 | Value | Definition  |
