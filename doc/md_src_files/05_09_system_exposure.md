@@ -36,4 +36,12 @@ Apply these heuristics in order and stop when one of them applies.
  - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure). The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of [*small*](#system-exposure).
  - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).
 
+One scenario we've been thinking about a lot is unreachable vulnerable code. I think this scenario can be described using the existing decision points, but it's not explicitly covered in the SSVC paper.
+
+Example 1: An unreachable vulnerable function in a third party library. We're using a library with a vulnerable function, but we're not actually using the vulnerable function. If it's a stable library and there's a bug fix release available - great. We don't really need to get into a detailed discussion of the security risk and mitigation options. It's cheaper to just bump the library version to get the bug fix and call it a day. Otherwise, it's important to figure out how to use SSVC to communicate the characteristics of the vulnerability, especially if we think the appropriate decision is to defer taking action.
+
+Example 2: Making a vulnerable function unreachable as a mitigation action. Let's say we have a publicly accessible REST API function that calls an internal function. The internal function is vulnerable to command injection. The affected REST API function is not mission critical, but the system itself is, i.e. RCE would be catastrophic. As an emergency mitigation, we update the REST API function to respond with a 501 in lieu of calling the vulnerable internal function.
+
+I think using a System Exposure of Small makes the most sense to represent these scenarios. System Exposure is all about attack surface. There are few ways to reduce the attack surface more than by making a vulnerability unreachable. The only way an attacker is able to exploit an unreachable vulnerability is by executing code in the same process space where the vulnerable function has been loaded. And at that point, there's no trust boundary that's being violated.
+
 If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
