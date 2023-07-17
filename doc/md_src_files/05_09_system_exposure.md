@@ -35,5 +35,9 @@ Apply these heuristics in order and stop when one of them applies.
  - If the system's networking and communication interfaces have been physically removed or disabled, choose [*small*](#system-exposure).
  - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure). The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of [*small*](#system-exposure).
  - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).
+ - If the vulnerable component is in a third party library that is unreachable because the feature is unused in the surrounding product, choose [*small*](#system-exposure).
+
+The unreachable vulnerable component scenario may be a point of concern for stakeholders like patch suppliers who often find it more cost-effective to simply update the included library to an existing fixed version rather than try to explain to customers why the vulnerable code is unreachable in their own product.
+In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [_defer_](#supplier-tree) vs [_scheduled_](#supplier-tree), for example).
 
 If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
