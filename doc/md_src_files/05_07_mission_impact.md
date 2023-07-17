@@ -10,7 +10,7 @@ When reviewing the list of organizational functions, an organization must first 
 The distinction between these two categories is whether or not an organization must perform a function during a disruption to normal operations and must continue performance during emergencies [@FCD2_2017, page B-2]. 
 Essential functions are both important and urgent.
 Functions that can be deferred until after an emergency are identified as non-essential.
-For example, DoD defines MEFs in [DoD Directive 3020.26 DoD Continuity Policy](https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodd/302026p.pdf) using similar terminology to [FCD-2](https://www.fema.gov/sites/default/files/2020-07/Federal_Continuity_Directive-2_June132017.pdf).
+For example, DoD defines MEFs in [DoD Directive 3020.26 DoD Continuity Policy](https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodd/302026p.pdf) using similar terminology to [FCD-2](https://www.fema.gov/sites/default/files/2020-07/Federal_Continuity_Directive-2_June132017.pdf) [@dod3026_26_2018].
 
 As mission essential functions are most clearly defined for government agencies, stakeholders in other sectors may be familiar with different terms of art from continuity planning. 
 For example, infrastructure providers in the US may better align with [National Critical Functions](https://www.cisa.gov/national-critical-functions). 
