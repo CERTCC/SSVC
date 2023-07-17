@@ -8,7 +8,9 @@ During an event, key resources may be limited and personnel may be unavailable, 
 
 When reviewing the list of organizational functions, an organization must first identify whether a function is essential or non-essential. 
 The distinction between these two categories is whether or not an organization must perform a function during a disruption to normal operations and must continue performance during emergencies [@FCD2_2017, page B-2]. 
-Essential functions are both important and urgent. Functions that can be deferred until after an emergency are identified as non-essential.
+Essential functions are both important and urgent.
+Functions that can be deferred until after an emergency are identified as non-essential.
+For example, DoD defines MEFs in [DoD Directive 3020.26 DoD Continuity Policy](https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodd/302026p.pdf) using similar terminology to [FCD-2](https://www.fema.gov/sites/default/files/2020-07/Federal_Continuity_Directive-2_June132017.pdf).
 
 As mission essential functions are most clearly defined for government agencies, stakeholders in other sectors may be familiar with different terms of art from continuity planning. 
 For example, infrastructure providers in the US may better align with [National Critical Functions](https://www.cisa.gov/national-critical-functions). 
@@ -16,16 +18,6 @@ Private sector businesses may better align with [operational and financial impac
 
 While the processes, terminology, and audience for these different frameworks differ, they all can provide a sense of the criticality of an asset or assets within the scope of the stakeholder conducting the cyber vulnerability prioritization with SSVC.
 In that sense they all function quite similarly within SSVC. Organizations should use whatever is most appropriate for their stakeholder context, with Mission Essential Function analysis serving as a fully worked example in the SSVC documents. 
-
-The DoD's concept of Mission Essential Functions (MEF), as referenced in DOD DIRECTIVE 3020.26 DOD CONTINUITY POLICY, is a slightly different use case.
-Select functions directly related to accomplishing the Department’s mission. 
-Failure to perform or sustain these functions, which directly support PMEF, would significantly affect the Department of Defense’s ability to provide vital services or exercise authority, direction, and control.
-
-To evaluate performance of DoD MEFs, validated by the National Continuity Coordinator, which must be performed in order to support the performance of the national essential functions before, during, and in the aftermath of an emergency. 
-PMEFs need to be performed continuously or resumed within 12 hours after an event and maintained for up to 30 days or until normal operations can be resumed.
-
-The DoD's concept of national essential functions is more aligned with FEMA's notion. 
-The select functions that are necessary to lead and sustain the United States during a catastrophic emergency and that, therefore, must be supported through COOP, COG, and ECG capabilities.
 
 Table:  Mission Impact Decision Values
 
