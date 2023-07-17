@@ -15,8 +15,8 @@ on:
 # todo version numbers should be read from a file within the repository
 env:
   MAJOR: 2
-  MINOR: 0
-  FIX: 5
+  MINOR: 1
+  FIX: 0
   TITLE_PREFIX: "SSVC"
   COMPILE_DATE: "${{ github.event.head_commit.timestamp }}"
   BIBLIOGRAPHY: "doc/md_src_files/sources_ssvc.bib"

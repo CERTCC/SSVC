@@ -26,7 +26,7 @@ FIX=`git rev-parse --short HEAD`
 # The fix version for the schema and the PDF document may mismatch
 
 HOME:=$(shell pwd)
-OUTDIR=$(HOME)
+OUTDIR=$(HOME)/../draft
 SRC=./md_src_files
 
 
@@ -36,9 +36,6 @@ COMPILE_DATE:="Compiled `date -u`"
 PDF_STYLING:=pdf-styling.yaml
 BIBLIOGRAPHY:=$(SRC)/sources_ssvc.bib
 
-# TODO decide whether to include FIX level in file name or not
-#PDF_OUT:=$(OUTDIR)/ssvc_v$(MAJOR)-$(MINOR)-$(FIX).pdf
-#HTML_OUT:=$(OUTDIR)/ssvc_v$(MAJOR)-$(MINOR)-$(FIX).html
 PDF_OUT:=$(OUTDIR)/ssvc.pdf
 HTML_OUT:=$(OUTDIR)/ssvc.html
 
