@@ -14,10 +14,13 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Improved consistency of [*Public Safety Impact*](#public-safety-impact) usage throughout the document and tooling
 - Improved consistency of [*Human Impact*](#human-impact) usage throughout the document
 - Clarified that known default passwords are an example of [*Exploitation*](#exploitation):PoC
+- Clarified that unreachable code (as in unused library features) are [_System Exposure_](#system-exposure):small
+- Mention DoD MEF definition in [_Mission Impact_](#mission-impact)
 - Updated references to [EPSS](https://www.first.org/epss/) to reflect recent publications
 - Refactored markdown files to better track chapter and section numbering, improving findability when editing
 - Automated HTML and PDF generation into a [Github Workflow](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
 - Updated python tools to maintain sync with current SSVC decision models
+- Consolidated the SSVC document style guide into a single file in the repository
 - Miscellaneous typo fixes and readability improvements (e.g., headings, bulleted lists)
   
 
