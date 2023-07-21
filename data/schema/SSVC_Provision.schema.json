@@ -38,7 +38,7 @@
                                     "type": "string"
                                 },
                                 "key": {
-				    "description": "An optional short \"key\" that identified this \"descision_point\" in SSVC score vector form.  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
+				    "description": "An optional short \"key\" that identified this \"decision_point\" in SSVC score vector form.  This is one or two letter(s) used in short-form vector representation of the SSVC score.",
                                     "type": "string",
                                     "maxLength": 2
                                 },
@@ -67,7 +67,7 @@
                     },
                     "children": {
                         "type": "array",			
-			"description": "The children property is used to identify decision_points that are children of a parent decision_point. The child decision_point(s) should be declared BEFORE the parent decision_point is declared in the array of decision_points.  The children property should NOT be present if the decision_point is not a parent decision_point that is dependant on the the other (child)  decisions.",
+			"description": "The children property is used to identify decision_points that are children of a parent decision_point. The child decision_point(s) should be declared BEFORE the parent decision_point is declared in the array of decision_points.  The children property should NOT be present if the decision_point is not a parent decision_point that is dependent on the the other (child)  decisions.",
 			"items": {
 			    "type": "object",
 			    "properties": {

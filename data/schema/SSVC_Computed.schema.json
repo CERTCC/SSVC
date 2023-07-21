@@ -38,7 +38,7 @@
 	},
 	"version": {
 	    "type": "string",
-	    "description":"Version of the SSVC that was used in this decision.  This version is of the semver format major.minor.patch The major.minor should identify SSVC version being used.  The specific tree being used should be in the patch numbet For example: \"Applier Tree 2.0.3\" would be the identity of the version of SSVC being \"2.0\" and the version of the Applier Tree to be \"3\"."
+	    "description":"Version of the SSVC that was used in this decision.  This version is of the semver format major.minor.patch The major.minor should identify SSVC version being used.  The specific tree being used should be in the patch number For example: \"Applier Tree 2.0.3\" would be the identity of the version of SSVC being \"2.0\" and the version of the Applier Tree to be \"3\"."
 	},
 	"decision_tree": {
 	    "description": "The full decision tree that was used for this SSVC computed score",
@@ -46,7 +46,7 @@
 	},
 	"id": {
 	    "type": "string",
-	    "description": "Identifier for a vulnerbaility could be CVE, CERT/CC VU#, OSV id, Bugtraq etc."
+	    "description": "Identifier for a vulnerability could be CVE, CERT/CC VU#, OSV id, Bugtraq etc."
 	},
 	"decision_tree_url": {
 	    "type": "string",
