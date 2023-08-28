@@ -19,5 +19,5 @@ With a total lack of information, assume [*support crippled*](#mission-impact) a
 [*Exploitation*](#exploitation) needs no special default; if adequate searches are made for exploit code and none is found, the answer is [*none*](#exploitation).
 If nothing is known about [*Automatable*](#automatable), the safer answer to assume is [*yes*](#automatable).
 [*Value Density*](#value-density) should always be answerable; if the product is uncommon, it is probably [*diffuse*](#value-density).
-The resulting decision set {*none*, *open*, *efficient*, *medium*} results in a scheduled patch application in our recommended deployer tree.
+The resulting decision set {*none*, *open*, *yes*, *medium*} results in a scheduled patch application in our recommended deployer tree.
 
