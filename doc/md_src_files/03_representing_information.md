@@ -139,9 +139,9 @@ An interoperable CSV format is also flexible enough to support a variety of uses
 Every situation in SSVC is defined by the values for each decision point and the priority label (outcome) for that situation (as defined in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data)).
 A CSV will typically be 30-100 rows that each look something like:
 ```
-2,none,slow,diffuse,laborious,partial,minor,defer
+2,none,laborious,partial,significant,scheduled
 ```
-Where “2” is the row number, [*none*](#exploitation) through [*minor*](#public-safety-impact) are values for decision points, and *defer* is a priority label or outcome.
+Where “2” is the row number, [*none*](#exploitation) through [*significant*](#public-safety-impact) are values for decision points, and *scheduled* is a priority label or outcome.
 Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions.
 
 The tree visualization options are more diverse.
