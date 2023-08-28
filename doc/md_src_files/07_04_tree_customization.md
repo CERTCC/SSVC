@@ -162,7 +162,7 @@ For example, an organization with sufficient resources to efficiently deploy fix
   2. defining a new decision point and adding it to an existing tree. 
 Note that adding or removing an option from an existing decision point should be treated as creating a new decision point.
 The new decision point should be given a distinct name as well.
-  3. defining a new tree entirely from existing or new decision points
+  3. defining a new tree entirely from existing or new decision points.
 
 Because tree customization changes the tree structure and implies the addition or removal of leaf nodes, it will be necessary for the organization to review the decision outputs in light of its risk appetite as well.
 
