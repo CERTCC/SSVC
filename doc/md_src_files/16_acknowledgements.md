@@ -1,15 +1,22 @@
 # Acknowledgements
 
-The authors thank the following people for helpful comments on prior drafts: 
-Deana Shick;
-Will Dormann (CERT/CC); 
-Michel van Eeten and the anonymous WEIS reviewers; 
-Sounil Yu and other attendees at A Conference on Defense (ACoD), Austin TX 2020; 
-Dale Peterson, Ralph Langer, and attendees at S4, Miami FL 2020; 
-Muhammad Akbar and Manish Gaur (VMWare); 
-David Oxley (McAfee);
-CISA analysts;
-Jeroen van der Ham;
-CVSS and EPSS SIG members;
+The authors thank the [contributors](https://github.com/CERTCC/SSVC/graphs/contributors) to the [SSVC project](https://github.com/CERTCC/SSVC) on Github as well as
+the following individuals for helpful comments on prior drafts (listed in alphabetical order): 
+Muhammad Akbar, 
+Will Dormann,
+Manish Gaur,
+Ralph Langer,
+David Oxley
+Dale Peterson,
+Deana Shick,
+Jeroen van der Ham,
+Michel van Eeten,
+and Sounil Yu.
+The authors also thank those others too numerous to name individually who provided comments and feedback, including:
+Attendees at S4, Miami FL 2020;
+Attendees at A Conference on Defense (ACoD), Austin TX 2020;
+Anonymous WEIS reviewers;
+Various staff members and analysts at CERT/CC, CISA, McAfee, and VMWare;
+FIRST CVSS SIG and EPSS SIG members;
 and others who wish to remain anonymous.
 
