@@ -1,6 +1,30 @@
 ## Automatable
 
-[*Automatable*](#automatable) captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?” This metric can take the values *no* or *yes*:
+[*Automatable*](#automatable) captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?”
+
+
+!!! note "Automatable"
+    
+    Can an attacker reliably automate creating exploitation events for this vulnerability?
+
+    | Value | Definition |
+    | :--- | :----------  |
+    | no  | Attackers cannot reliably automate steps 1-4 of the kill chain [@hutchins2011intelligence] for this vulnerability. |
+    | yes | Attackers can reliably automate steps 1-4 of the kill chain. If the vulnerability allows remote code execution or command injection, the expected response should be yes. |
+
+!!! question "What are Steps 1-4 of the Kill Chain?"
+
+    These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation.
+    Reasons why a step may not be reliably automatable could include the following:
+    
+    1. the vulnerable component is not searchable or enumerable on the network,
+    2. weaponization may require human direction for each target,
+    3. delivery may require channels that widely deployed network security configurations block, and
+    4. exploitation is not reliable, due to exploit-prevention techniques enabled by default;
+    
+    ASLR is an example of an exploit-prevention tool. 
+
+This metric can take the values *no* or *yes*:
 
   - [*no*](#automatable): Attackers cannot reliably automate steps 1-4 of the kill chain
     [@hutchins2011intelligence] for this vulnerability. These

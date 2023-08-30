@@ -5,7 +5,7 @@ As described in [Decisions During Vulnerability Coordination](#decisions-during-
 ### Triage Decision Tree
 
 
-![Suggested Coordinator Triage Tree](../graphics/ssvc_2_coord-triage.pdf){ width=100% }
+![Suggested Coordinator Triage Tree](../../doc/graphics/ssvc_2_coord-triage.pdf){ width=100% }
 
 <!--
 <embed src="../graphics/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
@@ -18,10 +18,10 @@ Other coordinators should consider customizing the tree to their needs, as descr
 
 ### Publication Decision Tree
 
-Suggested decision values for this decision are available in [CSV](../../data/csvs/ssvc_2_coord-publish.csv) and [PDF](../graphics/ssvc_2_coord-publish.pdf) formats.
+Suggested decision values for this decision are available in [CSV](../../data/csvs/ssvc_2_coord-publish.csv) and [PDF](../../doc/graphics/ssvc_2_coord-publish.pdf) formats.
 
 
-![Suggested Coordinator Publication Tree](../graphics/ssvc_2_coord-publish.pdf){ width=100% }
+![Suggested Coordinator Publication Tree](../../doc/graphics/ssvc_2_coord-publish.pdf){ width=100% }
 
 <!--
 <embed src="../graphics/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
