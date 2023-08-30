@@ -57,9 +57,9 @@ The optional parameter `time` is the date and time of the SSVCv2 record creation
 
 Based on this, an example string could be:
 ```
-SSVCv2/Ps:Nm/T:T/U:E/2018-11-13T20:20:00Z/
+SSVCv2/Ps:M/T:T/U:E/2018-11-13T20:20:00Z/
 ```
-For a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 13,2018 at 8:20 PM UTC.
+For a vulnerability with [minimal](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility), which was evaluated on Nov 13,2018 at 8:20 PM UTC.
 
 While these abbreviated format vectors can be uniquely produced based on a properly formatted JSON object, going from abbreviated form to JSON is not supported.
 Therefore, JSON is the preferred storage and transmission method.
@@ -67,8 +67,8 @@ Therefore, JSON is the preferred storage and transmission method.
 ### Full JSON format
 
 For a more robust, self-contained, machine-readable, we provide JSON schemas.
-The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.03.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
-The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed_v2.03.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
+The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision.schema.json) is equivalent to a decision tree and documents the full set of logical statements that a stakeholder uses to make decisions.
+The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
 
 Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
@@ -98,7 +98,7 @@ A stakeholder might have information to communicate about some decision points b
 If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special “I don't know” marker.
 
 The merit in this “list all values” approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
-For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [*Automatability](#automatability).
+For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [*Automatability*](#automatability).
 Then the analyst can usefully restrict [*Utility*](#utility) to one of [laborious](#utility) or [efficient](#utility).
 In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.
@@ -129,7 +129,7 @@ As an initial heuristic, we suggest the associated polling frequency for each.
 These frequencies can be customized, as the update frequency is directly related to the organization's tolerance for the risk that the information is out of date.
 As discussed in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance), risk tolerance is unique to each organization.
 Risk tolerance and risk appetite are primarily reflected in the priority labels (that is, decisions) encoded in the SSVC decision tree, but information polling frequency is also a risk tolerance decision and each organization may choose different time values.
- - [*State of Exploitation*](#state-of-exploitation): every 1 day
+ - [*Exploitation*](#exploitation): every 1 day
  - [*Technical Impact*](#technical-impact): never (should be static per vulnerability)
  - [*Utility*](#utility): every 6 months
  - [*Public Safety Impact*](#public-safety-impact): every 1 year

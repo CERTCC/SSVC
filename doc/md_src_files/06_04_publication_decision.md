@@ -45,6 +45,6 @@ Then one might go from [*limited*](#public-value-added) to [*ampliative*](#publi
 
 This decision point accounts for the state of the supplier's work on addressing the vulnerability.
 
- - *Fix Ready*—the supplier has provided a patch or fix
+ - *Fix Ready*—the supplier has provided a patch or fix.
  - *Cooperative*—the supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.
  - *Uncooperative/Unresponsive*—the supplier has not responded, declined to generate a remediation, or no longer exists.

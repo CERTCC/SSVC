@@ -9,7 +9,7 @@ The definition of choices can take a logical form, such as:
  - ([*Human Impact*](#human-impact) IS [medium](#human-impact))
  - THEN priority is *scheduled*.
 
-This logical statement is captured in line 35 of the deployer `.csv` file.
+This example logical statement is captured in (line 35 of the deployer `.csv` file)[https://github.com/CERTCC/SSVC/blob/main/data/csvs/deployer-options.csv#L35].
 
 There are different formats for capturing these prioritization decisions depending on how and where they are going to be used.
 In this paper, we primarily represent a full set of guidance on how one stakeholder will make a decision as a **decision tree**.

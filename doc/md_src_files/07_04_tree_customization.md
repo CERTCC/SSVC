@@ -24,9 +24,9 @@ As long as each team has documented this choice and is consistent in its own app
 SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.
 
 When doing the detailed risk management work of creating or modifying a tree, we recommend working from text files with one line or row for each unique combination of decision values.
-For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+For examples, see [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data/csvs).
 An important benefit, in our experience, is that it is easier to identify a question by saying  “I'm unsure about row 16” than anything else we have thought of so far.
-Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision_v2.03.schema.json).
+Once the humans agree on the decision tree, it can be converted to a JSON schema for easier machine-readable communication, following the provided [SSVC provision JSON schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision.schema.json).
 
 Once the decision points are selected and the prioritization labels agreed upon, it is convenient to be able to visually compress the text file by displaying it as a decision tree.
 Making the decision process accessible has a lot of benefits.
@@ -77,7 +77,7 @@ Permutation importance can be calculated on a candidate tree to highlight potent
 It works by randomly shuffling the values for each feature individually and comparing a fitness metric on the shuffled tree to the original.
 The change in fitness is taken to be the importance of the feature that was shuffled.
 Permutation importance is usually given as a number in the interval [0,1].
-Python's scikit-learn provides a permutation importance method, which we used to evaluate our trees.
+Python's scikit-learn [@pedregosa2011scikit-learn] provides a permutation importance method, which we used to evaluate our trees.
 
 Interpreting the results of a permutation importance computation on a tree involves nuance, but one rule we can state is this:
 any feature with a computed permutation importance of zero can be eliminated from the tree without losing any relevant information.
@@ -162,7 +162,7 @@ For example, an organization with sufficient resources to efficiently deploy fix
   2. defining a new decision point and adding it to an existing tree. 
 Note that adding or removing an option from an existing decision point should be treated as creating a new decision point.
 The new decision point should be given a distinct name as well.
-  3. defining a new tree entirely from existing or new decision points
+  3. defining a new tree entirely from existing or new decision points.
 
 Because tree customization changes the tree structure and implies the addition or removal of leaf nodes, it will be necessary for the organization to review the decision outputs in light of its risk appetite as well.
 
