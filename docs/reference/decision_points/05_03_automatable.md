@@ -1,16 +1,34 @@
-# Automatable
-
-[*Automatable*](#automatable) captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?”
-
-
 !!! note "Automatable"
     
-    Can an attacker reliably automate creating exploitation events for this vulnerability?
+    === "Text"    
+        Can an attacker reliably automate creating exploitation events for this vulnerability?
+    
+        | Value | Definition |
+        | :--- | :----------  |
+        | no  | Attackers cannot reliably automate steps 1-4 of the kill chain [@hutchins2011intelligence] for this vulnerability. |
+        | yes | Attackers can reliably automate steps 1-4 of the kill chain. |
 
-    | Value | Definition |
-    | :--- | :----------  |
-    | no  | Attackers cannot reliably automate steps 1-4 of the kill chain [@hutchins2011intelligence] for this vulnerability. |
-    | yes | Attackers can reliably automate steps 1-4 of the kill chain. |
+    === "JSON"
+
+        ```json
+            {
+                key: "A",
+                values = [
+                   {
+                     value: "no"
+                     description: "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability."
+                   },
+                   {
+                     value: "yes"
+                     description: "Attackers can reliably automate steps 1-4 of the kill chain."
+                   }
+            ],
+            }
+        ```
+
+
+
+[*Automatable*](#automatable) captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?”
 
 !!! question "What are Steps 1-4 of the Kill Chain?"
 

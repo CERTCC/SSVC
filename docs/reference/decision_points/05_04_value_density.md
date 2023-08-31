@@ -1,5 +1,3 @@
-## Value Density
-
 !!! note "Value Density"
    
     [*Value Density*](#value-density) is described as *diffuse* or *concentrated* based on the resources that the adversary will gain control over with a single exploitation event:

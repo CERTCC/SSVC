@@ -1,4 +1,11 @@
-## Technical Impact
+!!! note "Technical Impact"
+
+    Technical Impact of Exploiting the Vulnerability
+
+    | Value | Definition |
+    | :--- | :-------------  |
+    | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
+    | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
 
 When evaluating [*Technical Impact*](#technical-impact), recall the scope definition in the [Scope Section](#scope).
 Total control is relative to the affected component where the vulnerability resides.
@@ -9,14 +16,6 @@ Our definition of **vulnerability** is based on the determination that some secu
 We consider a security policy violation to be a technical impact—or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
 
-!!! note "Technical Impact"
-
-    Technical Impact of Exploiting the Vulnerability
-
-    | Value | Definition |
-    | :--- | :-------------  |
-    | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
-    | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
 
 !!! tip "Gathering Information About Technical Impact"
 

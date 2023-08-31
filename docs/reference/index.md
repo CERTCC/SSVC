@@ -1,4 +1,4 @@
-# SSVC Refernce
+# SSVC Reference
 
 !!! note "TODO: What should go here?"
 

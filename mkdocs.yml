@@ -16,9 +16,7 @@ nav:
         Items With Same Priority: 'topics/04_04_items_with_same_priority.md'
         Risk Tolerance and Priority: 'topics/04_05_risk_tolerance_and_priority.md'
         Scope: 'topics/04_06_scope.md'
-      Compound Decision Points:
-        Utility: 'topics/05_05_utility.md'
-        Human Impact: 'topics/05_08_human_impact.md'
+      Compound Decision Points: 'topics/compound_decision_points.md'
       Credibility Indicators: 'topics/credibility_indicators.md'
       Worked Example: 'topics/11_worked_example.md'
       Limitations: 'topics/14_limitations.md'
@@ -30,7 +28,8 @@ nav:
         Intro: 'howto/07_00_prioritization.md'
         Supplier Tree: 'howto/07_01_supplier_tree.md'
         Deployer Tree: 'howto/07_02_deployer_tree.md'
-        Coordinator Trees: 'howto/07_03_coordinator_trees.md'
+        Coordinator Triage Tree: 'howto/07_03_coordinator_trees.md'
+        Coordinator Publication Tree: 'howto/coordinator_publish_tree.md'
       Tree Customization: 'howto/07_04_tree_customization.md'
       Evidence Gathering: 'howto/07_05_evidence_gathering.md'
       Asset Management: 'howto/07_06_asset_management.md'
@@ -40,14 +39,20 @@ nav:
       Intro: 'reference/index.md'
       Decision Points:
         Intro: 'reference/decision_points/05_00_likely_decision_points.md'
-        Exploitation: 'reference/decision_points/05_01_exploitation.md'
-        Technical Impact: 'reference/decision_points/05_02_technical_impact.md'
         Automatable: 'reference/decision_points/05_03_automatable.md'
-        Value Density: 'reference/decision_points/05_04_value_density.md'
-        Safety Impact: 'reference/decision_points/05_06_safety_impact.md'
+        Exploitation: 'reference/decision_points/05_01_exploitation.md'
         Mission Impact: 'reference/decision_points/05_07_mission_impact.md'
+        Public Value Added: 'reference/decision_points/public_value_added.md'
+        Report Credibility: 'reference/decision_points/report_credibility.md'
+        Report Public: 'reference/decision_points/report_public.md'
+        Safety Impact: 'reference/decision_points/05_06_safety_impact.md'
+        Supplier Cardinality: 'reference/decision_points/supplier_cardinality.md'
+        Supplier Contacted: 'reference/decision_points/supplier_contacted.md'
+        Supplier Engagement: 'reference/decision_points/supplier_engagement.md'
+        Supplier Involvement: 'reference/decision_points/supplier_involvement.md'
         System Exposure: 'reference/decision_points/05_09_system_exposure.md'
-        Coordinator Decision Points: 'reference/decision_points/coordinator_decision_points.md'
+        Technical Impact: 'reference/decision_points/05_02_technical_impact.md'
+        Value Density: 'reference/decision_points/05_04_value_density.md'
   - About:
     - Intro: 'about/index.md'
     - Change log: 'about/09_changelog.md'
@@ -104,6 +109,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.keys
   - pymdownx.mark
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde

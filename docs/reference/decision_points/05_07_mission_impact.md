@@ -1,5 +1,14 @@
-## Mission Impact
-> Impact on Mission Essential Functions of the Organization
+!!! note "Mission Impact"
+
+    Impact on Mission Essential Functions of the Organization
+
+    | Value | Description  |
+    | :--- | :---------- |
+    | Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
+    | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
+    | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
+    | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
+
 
 A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. 
 Identification and prioritization of mission essential functions enables effective continuity planning or crisis planning. 
@@ -19,14 +28,6 @@ Private sector businesses may better align with [operational and financial impac
 While the processes, terminology, and audience for these different frameworks differ, they all can provide a sense of the criticality of an asset or assets within the scope of the stakeholder conducting the cyber vulnerability prioritization with SSVC.
 In that sense they all function quite similarly within SSVC. Organizations should use whatever is most appropriate for their stakeholder context, with Mission Essential Function analysis serving as a fully worked example in the SSVC documents. 
 
-Table:  Mission Impact Decision Values
-
-| Value | Definition  |
-| :--- | :---------- |
-| Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
-| MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
-| MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
-| Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
 
 ### Gathering Information About Mission Impact
 

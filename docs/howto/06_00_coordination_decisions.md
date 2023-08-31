@@ -32,6 +32,15 @@ We take three priority levels in our decision about whether and how to coordinat
  - *Coordinate*—Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), advise only, secondary coordinator (assist another lead coordinator). See [@csirtservices_v2] for additional vulnerability management services a coordinator may provide.
 
 
+## Coordinator Decision Points
+
+Our goal with the coordination decision is to base it on information that is available to the analyst when CERT/CC receives a vulnerability report.
+In addition to using some of the decision points in [Likely Decision Points](#likely-decision-points-and-relevant-data); coordination makes use of [Utility](#utility) and [Public Safety Impact](#public-safety-impact) decision points.
+The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
+To assess this, the decision involves five new decision points.
+
+{== TODO link to specific decision points ==}
+
 ## Coordination Triage Decision Process
 
 The decision tree for reaching a [Decision](#coordination-triage-decisions) involves seven decision points.
@@ -43,3 +52,5 @@ In the second case, CERT/CC may encourage the reporter to contact the supplier a
 
 These two sets of exceptional circumstances mean that the seven decision points involved in the coordination triage tree can be compressed slightly, as the tree shows.
 This tree's information is available as either a [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-triage.csv) or [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-triage.pdf)
+
+{== TODO merge with [Coordinator Trees](07_03_coordinator_trees.md)? ==}

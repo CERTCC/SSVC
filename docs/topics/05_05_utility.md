@@ -1,5 +1,17 @@
-## Utility
-> The Usefulness of the Exploit to the Adversary
+# Utility
+
+!!! note "Utility"
+
+    The Usefulness of the Exploit to the Adversary
+    
+    | *Automatable* | *Value Density* | *Utility* |
+    | ----------- | --------------- |       --: |
+    | *no*  | *diffuse*   | laborious |
+    | *no*  | *concentrated* | efficient |
+    | *yes* | *diffuse*   | efficient |
+    | *yes* | *concentrated* | super effective |
+
+{== TODO note that this is a compound decision point, therefore it is a notational convenience ==}
 
 [*Utility*](#utility) estimates an adversary's benefit compared to their effort based on the assumption that they can exploit the vulnerability.
 [*Utility*](#utility) is independent from the state of [*Exploitation*](#exploitation), which measures whether a set of adversaries have ready access to exploit code or are in fact exploiting the vulnerability.
@@ -13,26 +25,9 @@ This framing makes it easier to analytically derive these categories from a desc
 
 Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in [Utility Decision Values](#table-utility). [The next table](#table-utility-2) is an equivalent expression of [*Utility*](#utility) that resembles a lookup table in a program.
 
-Table: Utility Decision Values
-
-| Value | Definition |
-| :--- | :----------  |
-| Laborious       | *No* to automatable and diffuse value                                               |
-| Efficient       | {*Yes* to automatable and diffuse value} OR {*No* to automatable and concentrated value} |
-| Super Effective | *Yes* to automatable and concentrated value                                         |
-
-Table: Utility to the Adversary, as a Combination of Automatable and Value Density
-
-| *Automatable* | *Value Density* | *Utility* |
-| ----------- | --------------- |       --: |
-| *no*  | *diffuse*   | laborious |
-| *no*  | *concentrated* | efficient |
-| *yes* | *diffuse*   | efficient |
-| *yes* | *concentrated* | super effective |
 
 
-
-### Alternative Utility Outputs
+## Alternative Utility Outputs
 
 Alternative heuristics can plausibly be used as proxies for adversary utility.
 One example is the value of the vulnerability if it were sold on the open market.

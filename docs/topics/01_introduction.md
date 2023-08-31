@@ -21,11 +21,13 @@ We suggest that specific vulnerability management stakeholder communities use de
 These suggestions are hypotheses for viable replacements for CVSS in those communities, but the hypotheses require empirical testing before they can be justifiably considered fit for use.
 We propose a methodology for such testing.
 
-This document describes version 2 of SSVC.
+This documentation describes version 2 of SSVC.
 The main improvements from version 1 are the addition of the coordinator stakeholder perspective, improvements to terminology, integration of feedback on decision point definitions, and tools to support practical use.
 These changes are described in more detail in [Version 2 Changelog](#version-2-changelog).
 
-The document is organized as follows.
+{== REVISE for webification ==}
+{== The documentation is organized as follows.
+
 - [Current State of Practice](#current-state-of-practice) summarizes the current state of vulnerability management.
 - [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities) describes our design goals for an improved prioritization method.
 - [Vulnerability Management Decisions](#vulnerability-management-decisions) defines who the decision makers are and what options they are deciding among.
@@ -36,3 +38,4 @@ The document is organized as follows.
 - [Future Work](#future-work) identifies ideas we haven't had time to incorporate yet.
 - [Limitations](#limitations) identifies limitations in the design.
 - [Conclusion](#conclusion) provides some final thoughts.
+ ==}
