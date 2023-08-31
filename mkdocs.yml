@@ -19,6 +19,7 @@ nav:
       Compound Decision Points:
         Utility: 'topics/05_05_utility.md'
         Human Impact: 'topics/05_08_human_impact.md'
+      Credibility Indicators: 'topics/credibility_indicators.md'
       Worked Example: 'topics/11_worked_example.md'
       Limitations: 'topics/14_limitations.md'
   - SSVC How-To:
@@ -46,6 +47,7 @@ nav:
         Safety Impact: 'reference/decision_points/05_06_safety_impact.md'
         Mission Impact: 'reference/decision_points/05_07_mission_impact.md'
         System Exposure: 'reference/decision_points/05_09_system_exposure.md'
+        Coordinator Decision Points: 'reference/decision_points/coordinator_decision_points.md'
   - About:
     - Intro: 'about/index.md'
     - Change log: 'about/09_changelog.md'
