@@ -86,6 +86,8 @@ plugins:
       comments: false
   - search
   - table-reader
+  - bibtex:
+      bib_file: 'doc/md_src_files/sources_ssvc.bib'
 repo_url: 'https://github.com/CERTCC/SSVC'
 repo_name: 'CERTCC/SSVC'
 markdown_extensions:
