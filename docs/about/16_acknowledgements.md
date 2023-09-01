@@ -24,5 +24,3 @@ Various staff members and analysts at CERT/CC, CISA, McAfee, and VMWare;
 FIRST CVSS SIG and EPSS SIG members;
 and others who wish to remain anonymous.
 
-
-

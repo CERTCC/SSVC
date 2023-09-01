@@ -16,17 +16,11 @@ nav:
         Items With Same Priority: 'topics/04_04_items_with_same_priority.md'
         Risk Tolerance and Priority: 'topics/04_05_risk_tolerance_and_priority.md'
         Scope: 'topics/04_06_scope.md'
-      Likely Decision Points:
-        Intro: 'topics/05_00_likely_decision_points.md'
-        Exploitation: 'topics/05_01_exploitation.md'
-        Technical Impact: 'topics/05_02_technical_impact.md'
-        Automatable: 'topics/05_03_automatable.md'
-        Value Density: 'topics/05_04_value_density.md'
+      Compound Decision Points:
         Utility: 'topics/05_05_utility.md'
-        Safety Impact: 'topics/05_06_safety_impact.md'
-        Mission Impact: 'topics/05_07_mission_impact.md'
         Human Impact: 'topics/05_08_human_impact.md'
-        System Exposure: 'topics/05_09_system_exposure.md'
+      Worked Example: 'topics/11_worked_example.md'
+      Limitations: 'topics/14_limitations.md'
   - SSVC How-To:
       Intro: 'howto/index.md'
       Coordination Decision: 'howto/06_00_coordination_decisions.md'
@@ -41,8 +35,20 @@ nav:
       Asset Management: 'howto/07_06_asset_management.md'
       Development Methodology: 'howto/07_07_development_methodology.md'
       Communicating Results: 'howto/08_communicating_results.md'
-  - Reference: 'reference/index.md'
+  - Reference:
+      Intro: 'reference/index.md'
+      Decision Points:
+        Intro: 'reference/decision_points/05_00_likely_decision_points.md'
+        Exploitation: 'reference/decision_points/05_01_exploitation.md'
+        Technical Impact: 'reference/decision_points/05_02_technical_impact.md'
+        Automatable: 'reference/decision_points/05_03_automatable.md'
+        Value Density: 'reference/decision_points/05_04_value_density.md'
+        Safety Impact: 'reference/decision_points/05_06_safety_impact.md'
+        Mission Impact: 'reference/decision_points/05_07_mission_impact.md'
+        System Exposure: 'reference/decision_points/05_09_system_exposure.md'
   - About:
+    - Intro: 'about/index.md'
+    - Change log: 'about/09_changelog.md'
     - Contributing: 'about/contributing.md'
 #    - FAQ: 'about/faq.md'
     - Acknowledgements: 'about/16_acknowledgements.md'
@@ -72,6 +78,7 @@ plugins:
   - include-markdown:
       comments: false
   - search
+  - table-reader
 repo_url: 'https://github.com/CERTCC/SSVC'
 repo_name: 'CERTCC/SSVC'
 markdown_extensions:
