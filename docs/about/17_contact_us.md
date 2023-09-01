@@ -6,4 +6,4 @@ Software Engineering Institute
 
 **Phone**: 412.268.5800 | 888.201.4479  
 **Web**: [www.sei.cmu.edu](http://www.sei.cmu.edu)  
-**Email**: info@sei.cmu.edu
+**Email**: [info@sei.cmu.edu](mailto:info@sei.cmu.edu)
