@@ -2,7 +2,9 @@ site_name: SSVC
 copyright: Copyright &copy; 2023 Carnegie Mellon University.
 nav:
   - Home: 'index.md'
-  - Learning SSVC: 'tutorials/index.md'
+  - Learning SSVC:
+    - Intro: 'tutorials/index.md'
+    - SSVC Calculator: 'ssvc-calc/index.html'
   - Understanding SSVC:
       Intro: 'topics/01_introduction.md'
       State of Practice: 'topics/02_state_of_practice.md'
@@ -53,6 +55,7 @@ nav:
         System Exposure: 'reference/decision_points/05_09_system_exposure.md'
         Technical Impact: 'reference/decision_points/05_02_technical_impact.md'
         Value Density: 'reference/decision_points/05_04_value_density.md'
+  - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
     - Change log: 'about/09_changelog.md'

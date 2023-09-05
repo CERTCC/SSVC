@@ -51,7 +51,7 @@ but it worked well enough for what was needed at the time.
 ## `ssvc-calc`
 
 Directory with SSVC calculator using D3 graph.
-See [`ssvc-calc/README.md`](ssvc-calc/README.md) for more info.
+See [`ssvc-calc/README.md`](docs/ssvc-calc/README.md) for more info.
 
 A demo version of `ssvc-calc` can be found at https://certcc.github.io/SSVC/ssvc-calc/
 
