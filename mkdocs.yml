@@ -28,6 +28,7 @@ nav:
         Intro: 'topics/evaluation/development_methodology.md'
         Evaluation: 'topics/evaluation/evaluation_of_draft_trees.md'
       Limitations: 'topics/limitations.md'
+      Future Work: 'topics/future_work.md'
   - SSVC How-To:
       Intro: 'howto/index.md'
       Coordination Decision: 'howto/coordination_decisions.md'

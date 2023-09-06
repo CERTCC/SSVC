@@ -1,5 +1,3 @@
-
-
 # Future Work
 
 We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology.
