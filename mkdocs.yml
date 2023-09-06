@@ -8,7 +8,10 @@ nav:
   - Understanding SSVC:
       Intro: 'topics/01_introduction.md'
       State of Practice: 'topics/02_state_of_practice.md'
-      Representing Information: 'topics/03_representing_information.md'
+      Representing Information:
+        Design Goals: 'topics/03_representing_information.md'
+        Formalization Options: 'topics/formalization_options.md'
+        Decision Trees: 'topics/decision_trees.md'
       Vulnerability Management Decisions:
         Intro: 'topics/04_00_vulnerability_management_decisions.md'
         Stakeholders: 'topics/04_01_enumerating_stakeholders.md'
