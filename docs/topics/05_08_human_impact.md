@@ -23,8 +23,8 @@
 
 In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
 if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
-We therefore combine [Safety Impact](../reference/decision_points/05_06_safety_impact.md) and
-[Mission Impact](../reference/decision_points/05_07_mission_impact) for deployers into a single _Human Impact_ factor
+We therefore combine [Safety Impact](../reference/decision_points/safety_impact.md) and
+[Mission Impact](../reference/decision_points/mission_impact) for deployers into a single _Human Impact_ factor
 as a dimension reduction step as follows.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
