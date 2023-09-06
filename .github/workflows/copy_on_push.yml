@@ -1,3 +1,5 @@
+name: Copy on push to staging
+
 # This workflow copies the staging branch to the staging repository.
 # Functional summary:
 # on push to staging branch
@@ -6,7 +8,6 @@
 # check out staging branch
 # add staging repository as remote
 # push to staging repository
-
 on:
   push:
     branches: [staging]
