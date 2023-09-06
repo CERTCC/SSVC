@@ -10,6 +10,6 @@ Examples of compound decision points include:
 - Utility
 - Human Impact
 
-{% include-markdown "./05_05_utility.md"  heading-offset=1 %}
+{% include-markdown "./utility.md"  heading-offset=1 %}
 {% include-markdown "./public_safety_impact.md" heading-offset=1 %}
-{% include-markdown "./05_08_human_impact.md"  heading-offset=1 %}
+{% include-markdown "./human_impact.md"  heading-offset=1 %}
