@@ -50,6 +50,6 @@ Because this function produces output like the following:
 ```
 
 This sample is a snippet of the CVSS version 3.0 base scoring algorithm represented as a decision tree.
-The full tree can be found in [doc/graphics/cvss_tree_severity-score.txt](https://github.com/CERTCC/SSVC/tree/main/doc/graphics).
+The full tree can be found [here](cvss_full_tree.md).
 This tree representation is functional, but not as flexible or aesthetic as might be hoped.
 The visualizations provided by R are geared towards analysis of decision trees in a random forest ML model, rather than operations-research type trees.
