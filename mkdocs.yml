@@ -24,6 +24,9 @@ nav:
       Compound Decision Points: 'topics/compound_decision_points.md'
       Credibility Indicators: 'topics/credibility_indicators.md'
       Worked Example: 'topics/worked_example.md'
+      Development Methodology:
+        Intro: 'topics/evaluation/development_methodology.md'
+        Evaluation: 'topics/evaluation/evaluation_of_draft_trees.md'
       Limitations: 'topics/limitations.md'
   - SSVC How-To:
       Intro: 'howto/index.md'
@@ -38,7 +41,6 @@ nav:
       Tree Customization: 'howto/tree_customization.md'
       Evidence Gathering: 'howto/evidence_gathering.md'
       Asset Management: 'howto/asset_management.md'
-      Development Methodology: 'howto/development_methodology.md'
       Communicating Results: 'howto/communicating_results.md'
   - Reference:
       Intro: 'reference/index.md'

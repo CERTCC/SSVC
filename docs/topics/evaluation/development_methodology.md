@@ -1,4 +1,6 @@
-## Development Methodology
+# Development Methodology
+
+{== TODO this is a bit of a non-sequitur in its current location. Revise or Decide where it should go ==}
 
 For this tabletop refinement, we could not select a mathematically representative set of CVEs. 
 The goal was to select a handful of CVEs that would cover diverse types of vulnerabilities. 
