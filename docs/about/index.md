@@ -1,7 +1,7 @@
 # About SSVC
 
-- [Acknowledgements](16_acknowledgements.md)
-- [Change Log](09_changelog.md)
+- [Acknowledgements](acknowledgements.md)
+- [Change Log](changelog.md)
 - [Contributing](contributing.md)
-- [Copyright](18_copyright.md)
-- [Contact Us](17_contact_us.md)
+- [Copyright](copyright.md)
+- [Contact Us](contact_us.md)

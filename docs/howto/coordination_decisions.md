@@ -53,4 +53,4 @@ In the second case, CERT/CC may encourage the reporter to contact the supplier a
 These two sets of exceptional circumstances mean that the seven decision points involved in the coordination triage tree can be compressed slightly, as the tree shows.
 This tree's information is available as either a [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-triage.csv) or [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-triage.pdf)
 
-{== TODO merge with [Coordinator Trees](07_03_coordinator_trees.md)? ==}
+{== TODO merge with [Coordinator Trees](coordinator_trees.md)? ==}
