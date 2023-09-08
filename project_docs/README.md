@@ -1,57 +1,64 @@
 # Definitional documents
 
-This folder contains the text documents that describe the decision process, the decision points, the possible decision
+`/docs` contains the text documents that describe the decision process, the decision points, the possible decision
 values, and the decision trees that should be used to reach prioritization decisions.
 
-The current draft should be compiled into `/draft/ssvc.html` for easy viewing, though it may be behind the markdown source
-by a couple commits.
+We use `mkdocs` to build the documentation website. The `mkdocs.yml` file in the root of the repository contains the
+configuration for the website. The `docs` folder contains the markdown files, css, and other assets that are used to 
+build the website. 
+
+We are using 'material for mkdocs' to provide the theme and some extensions for the website.
 
 The documents are in markdown for easy editing.
-All the source files needed to create a polished document are in the [`md_src_files`](../doc/md_src_files) folder.
-The work on version 1 started with the version of the paper published
-at [WEIS 2020](https://weis2020.econinfosec.org/wp-content/uploads/sites/8/2020/06/weis20-final6.pdf).
-A copy of this document and other prior drafts is in the `/pdfs` folder.
+
+## Diátaxis Framework
+
+We are using the [Diátaxis Framework](https://diataxis.fr/) to organize our documentation into four main categories,
+oriented around the different ways that people might need to learn about and use SSVC.
+
+Contributors should follow the Diátaxis Framework's [_Map of Needs_](https://diataxis.fr/needs/) to determine where to
+put new content. Summarizing the map:
+
+|                      | Tutorials                            | How-to guides                           | Reference                        | Explanation                           |
+|----------------------|--------------------------------------|-----------------------------------------|----------------------------------|---------------------------------------|
+| what they do         | introduce, educate, lead             | guide, demonstrate                      | state, describe, inform          | explain, clarify, discuss             |
+| answers the question | "Can you teach me to...?"            | "How do I...?"                          | "What is...?"                    | "Why...?"                             |
+| oriented to          | learning                             | tasks                                   | information                      | understanding                         |
+| purpose              | to allow the newcomer to get started | to show how to solve a specific problem | to describe the machinery        | to explain                            |
+| form                 | a lesson                             | a series of steps                       | dry description                  | discursive explanation                |
+| analogy              | teaching a child how to cook         | a recipe in a cookbook                  | a reference encyclopedia article | an article on culinary social history |
+
+
+## Documentation Directory Structure
+
+- `/docs/tutorials` - Tutorials
+- `/docs/howto` - How-to guides
+- `/docs/reference` - Reference
+- `/docs/topics` - Explanation
+- `/docs/about` - project-level information (e.g., about, contributing, etc.)
+- other directories as needed for the website (`/docs/assets`, `/docs/stylesheets`, `/docs/javascript`, etc.)
+
 
 ## Markdown file naming conventions
 
-The `*.md` files should be limited to one file per chapter or section, for easier editing and merging.
-The current numbering scheme is important so the command line `*` ingests the files in the right (i.e., ASCII-sort) order.
-File names follow the convention `CC_SS_name.md` where:
+Previously we had used a more strict naming convention for the markdown files, but we have relaxed that to allow for
+more flexibility in organizing content in the future.
 
-- `CC` is a zero-padded two-digit chapter number
-- `SS` (optional) is a zero-padded two-digit section number
-- `name` is a string derived from the first heading in the file
+## PDF and HTML output
 
-So for example, a file whose content starts with `## Foo` representing the third section of chapter two would likely be named `02_03_foo.md`. 
+We are no longer generating PDF or single-HTML-all-in-one-file output for the documentation.
+This is because the documentation is now organized as a website, and maintaining multiple formats adds a lot of overhead.
 
-## Makefile
-
-The [`Makefile`](../doc/Makefile) contains pandoc commands line for creating a single HTML and PDF document from the markdown. It also
-contains the document metadata (title, authors, date) as command-line arguments. You can:
-
-```bash
-$ make all
-```
-to produce both HTML and PDF output, or do either of
-```bash
-$ make pdf
-$ make html
-```
-for the respective output.
-Output of the `make` commands can be found in `/draft`.
-
-Note that the `Makefile` was used as the basis for the github action
-[`.github/workflows/pandoc_html_pdf.yaml`](./github/workflows/pandoc_html_pdf.yaml), which should be maintained in sync 
-with the `Makefile` in the future.
-
-
-The `*how-to` files contain discussion on document composition and style. Please align any commits with the existing
-how-to guidance. At present (Aug 2020), the how-to guidance is not yet fixed, but it should only change with community
-discussion.
-
+We may revisit this decision in the future, but for now we are only generating HTML output in the form of a website.
 
 
 # Style Guide and How-To
+
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
 
 In the text, please use the following conventions:
 - Names of decision points are capitalized and italics (md is `*` or `_`)
@@ -85,6 +92,12 @@ For example: the decision is to move forward with `[*scheduled*](#applier-decisi
 
 ## How To Use Cross References
 
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
+
 - Cross references to other sections can be accomplished with the `[text](link)` syntax for links.
   - The text to appear goes in `[]`
   - The heading to link to goes in `()`
@@ -102,6 +115,12 @@ For example: the decision is to move forward with `[*scheduled*](#applier-decisi
 
 ## Terms quoted from other sources
 
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
+
 - In order not to collide use of emphasis, italics (`*word*`) should not be used to identify a vocabulary word that is not the name of a decision point.
   - If the word or phrase need not be emphasized, it should simply but put in double quotes (`"`). 
   - If the word or phrase needs to be emphasized because it is critical to understanding the passage and it should stand out from the surrounding text, bold can be used (`**` or `__`).
@@ -118,6 +137,12 @@ For example: the decision is to move forward with `[*scheduled*](#applier-decisi
 
 ## Do not use footnotes. 
   
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
+
 - There is a markdown style for footnotes (https://pandoc.org/MANUAL.html#footnote)
   - But right now GFM doesn't support that.
   - Footnotes and asides that were not references in v1 have been written in to the flow of the text. 
@@ -145,6 +170,12 @@ aside content
 
 ## Tables
 
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
+
 - GFM uses the `pipe_tables` markdown extension by default, so tables should use that format. 
 - Tables should avoid HTML or LaTeX literal tables, as those aren't portable.
   - If absolutely necessary, include both. 
@@ -160,6 +191,12 @@ aside content
 
 ## Embedding images
 
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
+
 Use the supported markdown for images where possible and support the link_attributes extension. 
 https://pandoc.org/MANUAL.html#images
 
@@ -170,6 +207,12 @@ It will render as a normal image in GFM.
 
 ## Spacing
 
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
+
 - Pandoc Markdown will treat a period (`.`) followed by two spaces (`  `) at the end of a line as a request for a line break. 
 - Always use only one space after a period, especially at the end of a line. 
 
@@ -177,6 +220,12 @@ It will render as a normal image in GFM.
 - Do not try to use LaTeX conventions of (``) and (''). 
 
 ## Notes on References
+
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
 
 - Would most prefer using `pandoc-citeproc`. 
 - GFM does not natively support bibtex citations. However, the pandoc markdown syntax is to use `@referencetag`. 
@@ -186,6 +235,12 @@ It will render as a normal image in GFM.
   - https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
 
 ### The preferred citation method is as follows:
+
+**NOTE:** These conventions were put in place to make a consistent style for the PDF version of the documentation.
+Many of them may have been superseded by the move to a website format, but we are keeping them here for now.
+We expect that we will need to revisit these conventions as we continue to develop the documentation.
+
+---
 
 1. Search [`md_src_files/sources_ssvc.bib`](../doc/md_src_files/sources_ssvc.bib) for the desired reference
 2. If it's there, use `[@referencetag]` in the markdown text. For example, the tag in the entry beginning with
