@@ -7,7 +7,7 @@ The current draft should be compiled into `/draft/ssvc.html` for easy viewing, t
 by a couple commits.
 
 The documents are in markdown for easy editing.
-All the source files needed to create a polished document are in the [`md_src_files`](md_src_files) folder.
+All the source files needed to create a polished document are in the [`md_src_files`](../doc/md_src_files) folder.
 The work on version 1 started with the version of the paper published
 at [WEIS 2020](https://weis2020.econinfosec.org/wp-content/uploads/sites/8/2020/06/weis20-final6.pdf).
 A copy of this document and other prior drafts is in the `/pdfs` folder.
@@ -26,7 +26,7 @@ So for example, a file whose content starts with `## Foo` representing the third
 
 ## Makefile
 
-The [`Makefile`](Makefile) contains pandoc commands line for creating a single HTML and PDF document from the markdown. It also
+The [`Makefile`](../doc/Makefile) contains pandoc commands line for creating a single HTML and PDF document from the markdown. It also
 contains the document metadata (title, authors, date) as command-line arguments. You can:
 
 ```bash
@@ -187,7 +187,7 @@ It will render as a normal image in GFM.
 
 ### The preferred citation method is as follows:
 
-1. Search [`md_src_files/sources_ssvc.bib`](md_src_files/sources_ssvc.bib) for the desired reference
+1. Search [`md_src_files/sources_ssvc.bib`](../doc/md_src_files/sources_ssvc.bib) for the desired reference
 2. If it's there, use `[@referencetag]` in the markdown text. For example, the tag in the entry beginning with
 ```bibtex
     @book{simon1996sciences,
