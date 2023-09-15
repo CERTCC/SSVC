@@ -1,0 +1,6 @@
+| Step | Description                                                                                                                                                                                         |
+| ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Prepare**](prepare.md) | Define the decision you want to make, the outcomes you care about, the decision points you will use to make the decision, the decision policy, and the data you need to inform the decision points. |
+| [**Collect**](collect.md) | Collect the data you need to make informed decisions.                                                                                                                                               |
+| [**Use SSVC**](use.md) | Use SSVC to make decisions about how to respond to vulnerabilities.                                                                                                        |
+| [**Respond**](use.md#respond-to-vulnerabilities) | Respond to vulnerabilities according to the prioritization.                                                                                                                                         |
