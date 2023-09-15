@@ -1,0 +1,30 @@
+# These rules follow a last-match behavior.
+
+# default (if nothing else matches)
+* @ahouseholder @sei-vsarvepalli @cgyarbrough
+
+# any markdown file in doc
+/doc/**/*.md @ahouseholder @cgyarbrough @sei-vsarvepalli @j---
+
+# any markdown file in docs
+/doc/**/*.md @ahouseholder @cgyarbrough @sei-vsarvepalli @j---
+
+# ssvc-calc, wherever it lives
+ssvc-calc/ @sei-vsarvepalli @ahouseholder
+
+# source code
+/src/ @ahouseholder @sei-vsarvepalli
+*.py @ahouseholder
+*.js @sei-vsarvepalli
+
+# data
+/data/ @sei-vsarvepalli @ahouseholder
+/data/csvs @ahouseholder @j---
+/data/schema @sei-vsarvepalli
+/data/schema_examples @sei-vsarvepalli
+
+# website config
+mkdocs.yml @ahouseholder
+
+# github setup
+/.github/ @ahouseholder @sei-vsarvepalli
