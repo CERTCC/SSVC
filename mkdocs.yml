@@ -6,7 +6,7 @@ nav:
     - Intro: 'tutorials/index.md'
     - SSVC Calculator: 'ssvc-calc/index.html'
   - Understanding SSVC:
-    - Intro: 'topics/introduction.md'
+    - Intro: 'topics/index.md'
     - State of Practice: 'topics/state_of_practice.md'
     - Representing Information:
       - Design Goals: 'topics/representing_information.md'
