@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title> Dryad SSVC Calc App</title>
+    <link rel="stylesheet"
+	  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	  crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	    integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+	    crossorigin="anonymous">
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"
+	    integrity="sha384-N8EP0Yml0jN7e0DcXlZ6rt+iqKU9Ck6f1ZQ+j2puxatnBq4k9E8Q6vqBcY34LNbn"
+	    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/jspdf@2.5.0/dist/jspdf.umd.min.js"
+	    async defer 
+	    integrity="sha384-Nv+hqH4nwlvCyvxoqPdrn3BtB2QwToN5tP4+ETu8HJC5oihLaEXHr3+Fa7Ob6VGf"
+	    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magicsuggest/2.1.5/magicsuggest-min.js" integrity="sha512-0qwHzv41cwsUdBjAxZb4g2U26gD3I0nbfwsM9loIDabYtspTH5XOaKpmOv/M9GQG3CCWjQvv4biWWZK7tcnDJA==" crossorigin="anonymous" referrerpolicy="no-referrer" async defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magicsuggest/2.1.5/magicsuggest-min.css" integrity="sha512-GSJWiGBeg4y85t66huKij+Oev1gKtVLfi/LKSZSyaSfPrNJORYM1lZkk94kpVtWAmDjYGDsxtLlHuFUtgVKBlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css.css?v=1663537129">
+    <script src="ungraph.js?v=1663537129"></script>
+  </head>
+  <body class="text-center blackbody">
+    <img src="moon_icon.png" class="cert-tweet" alt="CERT Logo"
+         onclick="$('body').toggleClass('blackbody').toggleClass('whitebody')"/>
+    <div class="tright">
+      <a href="javascript:void(0)" onclick="$('#helper').show()"
+	 title="Dryad SSVC Calc App">
+	<svg height="24" width="24">
+	  <circle cx="12" cy="12" r="11" stroke="black" stroke-width="1" fill="black"></circle>
+	  <text x="50%" y="50%" text-anchor="middle" fill="#ffffff" stroke-width="0.05em" dy=".3em">i</text>
+
+	</svg>
+      </a>
+      <a href="https://github.com/CERTCC/SSVC/"
+	 title="Code Git Repo">
+	<svg height="32" class="octicon octicon-mark-github text-white topbar" viewBox="0 0 16 16" version="1.1"  aria-hidden="true">
+	  <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+	</svg>
+      </a>
+    </div>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="top-container" style="margin-bottom: 10px; visibility:hidden">
+	<div class="inner">
+	  <h3 class="brand">
+	    <a class="wordmark" href="https://www.cmu.edu">
+	      <img src="cmu-logo.png" alt="CMU Logo"
+               style="visibility:hidden"/>
+	    </a>
+	  </h3>
+	  <nav class="nav nav-head justify-content-center nomobile">
+	    <span style="padding-left: 2rem"></span>
+	    <a class="nav-link active" href="https://democert.org/ssvc/">SSVC</a>
+	    <span style="padding-left: 2rem"></span>
+	    <a class="nav-link" href="https://kb.cert.org/">Vuls KB</a>
+	    <span style="padding-left: 2rem"></span>
+	    <a class="nav-link" href="https://github.com/CERTCC/SSVC">Software</a>
+	    <span style="padding-left: 2rem"></span>
+	    <a class="nav-link" href="https://www.sei.cmu.edu/contact-us/">Contact</a>
+	    <span style="padding-left: 2rem"></span>
+	  </nav>
+	</div>
+      </header>
+
+      <main class="inner cover">
+	<h4 class="cover-heading">
+	  Dryad - SSVC Calc App
+	  (<select id="tree_samples" class="form-control impselector"
+		   onchange="tree_process(this)">
+	    <option value="">Select</option>
+	    <option value="import">Import Tree</option>
+	  </select>)
+	  
+	  <div class="cover_heading_append d-none">
+	    (CISA Coordinator v2)
+	  </div>
+	  <button type="button" class="btn btn-secondary" id="exportopen"
+		  data-toggle="tooltip" data-placement="bottom"
+		  title="Show Export" style="display:none"
+		  onclick="export_show(false)">
+	    Export</button>
+	  
+	</h4>
+	<div class="alert" id="topalert" role="alert">
+	  This is an alert!
+	</div>
+	<p class="lead graphy">
+	  <button type="button" class="btn btn-primary" id="dt_start"
+		  data-toggle="tooltip" data-placement="bottom"
+		  title="Start walking the SSVC decision tree"
+		  onclick="dt_start()">
+	    Start Decision</button>
+	  <button type="button" class="btn btn-danger" id="dt_clear"
+		  data-toggle="tooltip" data-placement="bottom"
+		  title="Clear all decisions and start over"
+		  onclick="dt_clear()">
+	    Clear All</button>
+	  <button type="button" class="btn btn-info" id="dt_full_tree"
+		  data-toggle="tooltip" data-placement="bottom"
+		  title="Explore the full decision tree of this SSVC Instance"
+		  onclick="show_full_tree()">
+	    Show Full Tree
+	  </button>
+	  <a href="javascript:void(0)" title="View previous score"
+	     alt="View previous score" id="table_toggle" style="display:none"
+	     onclick="cve_table_toggle()">
+	    &#8853; </a>
+	  <button onclick="show_complex()" id="tcummulative"
+		  class="btn btn-warning btn-sm d-none">
+	    Show Cummulative</button>
+	  <table id="cve_table" class="table table-dark d-none">
+	    <thead><tr></tr></thead>
+	    <tbody><tr></tr></tbody>
+	  </table>
+	</p>
+	<div id="zoomcontrol" class="graphy">
+	  <div class="d-none">&#128269;</div>
+	  <input type="range" orient="vertical" alt="Zoom Graph"
+		 max="100" min="0" value="100" title="Zoom Graph"
+		 onchange="svgzoom(this)">
+	  </div>
+	<div id="graph" class="position-relative graphy">
+	</div>
+	<div id="ungraph" class="position-relative d-none">
+	  <table class="table table-borderless">
+	    <thead><tr id="ughtr"></tr></thead>
+	    <tbody><tr id="ugbtr"></tr></tbody>
+	  </table>
+	</div>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+	<div class="inner shift-top">
+	  <div id="sponsorbar">
+	    <div class="row bottom-space justify-content-between">
+	      <div class="large-12 medium-12 columns" style="display:none">
+		<p>Sponsored by
+		  <a href="https://www.cisa.gov/cybersecurity"
+		     target="_blank" rel="noopener">CISA.</a> </p>
+	      </div>
+	      <select id="graph-ungraph" class="form-control mauto"
+		      onchange="swapg(this)">
+		<option value="Graphic">Mode: Graphic</option>
+		<option value="Analyst">Mode: Analyst</option>		
+	      </select>	      
+	      <button class="btn btn-dark btn-bordered d-none"
+		      onclick="$('#cvetsvload').click()">
+		Import CVE</button>
+	      <select id="cve_samples" class="form-control mauto d-none"
+		      onchange="process(this)">
+		<option>Choose Sample CVE</option>
+		<option value="import">Import CVE</option>		
+	      </select>
+	      <input type="file" onchange="readFile(this)" style="display:none"
+		     id="cvetsvload">	      
+	      <button class="btn btn-dark btn-bordered d-none"
+		      onclick="$('#dtreecsvload').click()">
+		Import Decisions</button>
+	      <input type="file" onchange="readFile(this)" style="display:none"
+		     id="dtreecsvload">    
+	      <div class="float-right" style="display:none">
+		Explore other &nbsp; 
+		<a href="https://www.ntia.gov/SBOM" target="_blank"
+		   class="float-right">
+		  NTIA SBOM Efforts</a>	  
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </footer>
+    </div>
+    <div class="modal fade complex" id="mwb" tabindex="-1" role="dialog"
+	 data-toggle="modal" data-backdrop="static" data-keyboard="false"
+	 aria-hidden="true">
+      <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <h5 class="modal-title" id="exampleModalLabel">Mission & Well-Being impact value
+	    </h5>    
+	    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	  </div>
+	  <div class="modal-body">
+	    <form class="wbform">
+	      <table class="table table-dark table-stripped wbtable">
+		<tr><td>
+		    Mission Prevelance
+		    &nbsp; 
+		    <a href="javascript:void(0)"
+		       class="circletext"
+		       onclick="$('#mwb_addon').show()">
+		      &quest; </a>
+		  </td>
+		  <td>
+		    <select id="mp" class="form-control">
+		      <option value=0>Minimal</option>
+		      <option value=1>Support</option>
+		      <option value=2>Essential</option>
+		    </select>
+		</td></tr>
+		<tr><td>
+		    Public Well-Being Impact
+		    <a href="javascript:void(0)"
+		       class="circletext"
+		       onclick="$('#public_well_being_addon').show()">
+		      &quest; </a>
+		  </td><td>
+		    <select id="wb" class="form-control">
+		      <option value=0>Minimal</option>
+		      <option value=1>Material</option>
+		      <option value=2>Irreversible</option>
+		    </select>
+	      </td></tr></table>
+	    </form>
+	    <div class="wsdiv" style="display:none">
+	      Cummulative value is <strong class="wscore"></strong>
+	    </div>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-warning"
+		    onclick="tmp_dismiss_modal()">
+	      Choose Manually
+	    </button>
+	    <button type="button" class="btn btn-primary">
+	      Calculate</button>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <div id="mpopup" onclick="checkclose()">
+    </div>
+    <div class="Exploitation d-RXhwbG9pdGF0 d-none">
+      <h5>Exploitation choices</h5>
+      <b>None: </b> &nbsp; There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability.
+      <hr/>
+      <b>PoC: </b> &nbsp; 
+      (Proof of Concept)One of the following cases is true: (1) private evidence of exploitation is attested but not shared; (2) widespread hearsay attests to exploitation; (3) typical public PoC in places such as Metasploit or ExploitDB; or (4) the vulnerability has a well-known method of exploitation. Some examples of condition (4) are open-source web proxies serve as the PoC code for how to exploit any vulnerability in the vein of improper validation of TLS certificates. As another example, Wireshark serves as a PoC for packet replay attacks on ethernet or WiFi networks.
+      <hr />
+      <b>Active:</b> &nbsp;  Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting.
+    </div>
+    <div class="Virulence d-VmlydWxlbmNl d-none">
+      <h5>Virulence choices</h5>
+      <b>Slow:</b> &nbsp; Steps 1-4 of the kill chain  cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation. Example reasons for why a step may not be reliably automatable include (1) the vulnerable component is not searchable or enumerable on the network, (2) weaponization may require human direction for each target, (3) delivery may require channels that widely deployed network security configurations block, and (4) exploitation may be frustrated by adequate exploit-prevention techniques enabled by default; ASLR is an example of an exploit-prevention tool.
+      <hr/>
+      <b>Rapid: </b> &nbsp; Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows unauthenticated remote code execution (RCE) or command injection, the response is likely rapid.
+    </div>
+    <div class="Technical_Impact d-VGVjaG5pY2Fs d-none">
+      <h5>Technical Impact</h5>
+      <b>Partial: </b> &nbsp; The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component.
+      <hr/>
+      <b>Total: </b> &nbsp;  The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability.
+    </div>
+    <div id="mwb_addon" class="top_fixed top_blue tescape">      
+      <button type="button" class="close float-right" onclick="$('.tescape').hide()">
+	<span>&times;</span>
+      </button>      
+      <h5>Mission Prevelance choices</h5>
+      <b>Minimal: </b> &nbsp; Neither support nor essential apply. The vulnerable component may be used within the entities, but it is not used as a mission-essential component nor does it support (enough) mission essential functions.
+      <hr/>
+      <b>Support: </b> &nbsp; The operation of the vulnerable component merely supports mission essential functions for two or more entities.
+      EssentialThe vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity, and failure may (but need not) lead to overall mission failure.
+    </div>
+    <div class="Track Track_ Attend Act d-VHJhY2s61 d-VHJhY2sq d-QXR0ZW5k d-QWN0 d-none">
+      <h5> Vulnerability Scoring Decisions</h5>
+      <b>Track </b> &nbsp; The vulnerability does not require attention outside of Vulnerability Management (VM) at this time.  Continue to track the situation and reassess the severity of vulnerability if necessary.
+      <hr />
+      <b>Track * </b> &nbsp; Track these closely, especially if mitigation is unavailable or difficult. Recommended that analyst discuss with other ana-lysts and get a second opinion.
+      <hr />
+      <b>Attend  </b> &nbsp; The vulnerability requires to be attended to by stakeholders outside VM. The action is a request to others for assistance / information / details, as well as a potential publication about the issue.
+      <hr/>
+      <b>Act </b> &nbsp; The vulnerability requires immediate action by the relevant leadership. The action is a high-priority meeting among the relevant supervisors to decide how to respond.
+    </div>
+    
+    <div class="Mission___Well_being d-TWlzc2lvbiAm d-none">
+      <table class="table table-striped table-dark table-bordered table-well-being">
+	<thead>
+	  <tr>
+	    <th colspan="6">
+	      Determining Mission & Well-being impact value
+	    </th>
+	  </tr>
+	</thead>
+	<tbody><tr><td colspan="3" ><p><strong>&nbsp;</strong></p></td><td colspan="3" ><p><strong>Public Well-Being Impact</strong></p></td></tr>
+	  <tr><td colspan="3"><p><br></p></td><td ><p><em>Minimal</em></p></td><td ><p><em>Material</em></p></td><td ><p><em>Irreversible</em></p></td></tr>
+	  <tr><td colspan="2" rowspan="3"  style="vertical-align:middle"><p><strong>Mission Prevalence</strong></p></td><td ><p><em>Minimal</em></p></td><td ><p>Low</p></td><td ><p>Medium</p></td><td ><p>High</p></td></tr><tr><td ><p><em>Support</em></p></td><td ><p>Medium</p></td><td ><p>Medium</p></td><td ><p>High</p></td></tr><tr><td ><p><em>Essential</em></p></td><td ><p>High</p></td><td ><p>High</p></td><td ><p>High</p></td></tr></tbody></table>
+    </div>
+
+    
+    
+    <div id="public_well_being_addon" class="top_fixed top_blue tescape">
+      <button type="button" class="close float-right" onclick="$('.tescape').hide()">
+	<span>&times;</span>
+      </button>
+      <h5> Public Well-being Impact Decision Values</h5>
+      
+      <table class="table table-bordered table-striped table-pwell-being"><thead><tr><td>
+	      <p><span class="bold">Impact</span></p></td><td ><p><span class="bold">Type of Harm</span></p></td><td ><p><span class="bold">Description</span></p></td></tr></thead><tbody><tr><td ><p><strong>Minimal</strong></p></td><td ><p>All</p></td><td ><p>The effect is below the threshold for all aspects described in material.</p></td></tr><tr><td rowspan="6" ><p><strong>Material <br>(Any one or more of these conditions hold.)</strong></p></td><td ><p>Physical harm</p></td><td ><p>Physical distress and injuries for users (not operators) of the system.</p></td></tr><tr><td ><p>Operator <br>resiliency</p></td><td ><p>If the operator is expected to be able to keep the cyber-physical system safely operating (that is, prevents one of the other types of harm), then select this option if one of these three apply: system operator must react to exploitation of the vulnerability to maintain safe system state but operator actions would be within their capabilities; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard.</p></td></tr><tr><td ><p>System <br>resiliency</p></td><td ><p>Cyber-physical system’s safety margin effectively eliminated but no actual harm; OR failure of cyber-physical system functional capabilities that support safe operation.</p></td></tr><tr><td ><p>Environment</p></td><td ><p>Major externalities (property damage, environmental damage, etc.) imposed on other parties.</p></td></tr><tr><td ><p>Financial</p></td><td ><p>Financial losses that likely lead to bankruptcy of multiple persons.</p></td></tr><tr><td ><p>Psychological</p></td><td ><p>Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people.</p></td></tr><tr><td rowspan="6" ><p><strong>Irreversible (Any one or more of these conditions hold.)</strong></p></td><td ><p>Physical harm</p></td><td ><p>Multiple fatalities likely.</p></td></tr><tr><td ><p>Operator <br>resiliency</p></td><td ><p>Operator is incapacitated, where operator usually maintains safe cyber-physical system operations, and so other harms at this level are likely.</p></td></tr><tr><td ><p>System<br>resiliency</p></td><td ><p>Total loss of whole cyber-physical system of which the software is a part.</p></td></tr><tr><td ><p>Environment</p></td><td ><p>Extreme or serious externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.</p></td></tr><tr><td ><p>Financial</p></td><td ><p>Social systems (elections, financial grid, etc.) supported by the software are destabilized and potentially collapse.</p></td></tr><tr><td ><p>Psychological</p></td><td ><p>N/A</p></td></tr></tbody>
+      </table>
+    </div>
+    <div id="helper" class="top_fixed tescape">
+      <button type="button" class="close" onclick="$('#helper').hide();tooltip_cycle_through();">
+	<span aria-hidden="true">&times;</span>
+      </button>	                 
+      <h5>
+	Stakeholder-Specific Vulnerability Categorization (SSVC)
+      </h5>
+      <span class="text-muted">version 2 (October 2020) </span>
+      <hr style="background-color:#9f9f9f"/>
+      <div style="text-align:left">
+	<h4>Introduction:</h4>
+	<p>
+	  Our proposed SSVC approach for vulnerability prioritization takes the form of decision trees.  This decision tree can be adapted for different vulnerability management stakeholders such as  patch developers and patch appliers.  In this instance of Drayd - SSVC calculator app, SSVC is being prototyped for CISA in their unique role as advisors to be able to provide decision support to various stakeholders and influence their prioritization of vulnerabilities. 
+	</p>
+      </div>
+      <div style="text-align:left">
+	<h4>Decision Tree Usage:</h4>
+	<p>
+	  Click on the <button class="btn btn-info">Show Full Tree</button> button to see
+	  the complete decision tree at a glance. Each circle
+	  <svg style="width: 24px; height: 24px;">
+	    <g class="node">
+	      <circle cx="12" cy="12" r="10" class="junction"
+		      style="fill: rgb(255, 255, 255);">
+	      </circle>
+	    </g>
+	  </svg>
+	  represents a decision point or
+	  stage/fork in the decision tree. You can move your mouse over each circle
+	  to get a glimpse at the definition of the choices you can make after  that stage/fork.
+	  The path (branch) leading to the next stage fork is labeled 
+	  <svg style="width: 100px;height: 30px;">
+	    <g transform="translate(0,4)">
+	      <path d="M0 2 V1 Q30 17 55 12 T100 11 V9" id="smline" class="xlink"></path>
+	      <text dx="10" dy="-4">
+		<textPath href="#smline" fill="lightsteelblue" startOffset="8%" font-size="18px">partial</textPath>
+	      </text>
+	    </g>
+	  </svg> also as it leads you to the next stage/fork represented by a circle.
+	</p>
+	<hr/>
+	<p>
+	  When using for a new SSVC calculation with
+	  <button class="btn btn-primary">Start Decision</button>
+	  <br />
+	  You can move your mouse over circle
+	  <svg style="width: 24px; height: 24px;">
+	    <g class="node">
+	      <circle cx="12" cy="12" r="10" class="junction"
+		      style="fill: rgb(255, 255, 255);">
+	      </circle>
+	    </g>
+	  </svg>
+	  or on the text
+	  <b style="color:lightsteelblue; background: #222">		    
+	    Exploitation</b>
+	  that represents a stage/fork in the decision tree
+	  to get information
+	  on choices you can make for
+	  your <i>next</i> stage/fork of the tree.
+	  You will see each branch will also be be labeled
+	  <svg style="width: 100px;height: 30px;">
+	    <g transform="translate(0,4)">
+	      <path d="M0 2 V1 Q30 17 55 12 T100 11 V9" id="smline2" class="xlink"></path>
+	      <text dx="10" dy="-4">
+		<textPath href="#smline2" fill="lightsteelblue" startOffset="8%" font-size="18px">partial</textPath>
+	      </text>
+	    </g>
+	  </svg> that leads you to the next stage/fork. 
+	  You can make the appropriate choice by clicking on the text "partial" or on the 
+	  circle where your chosen path ends or terminates. Follow these steps on the decision tree.
+	  When prompted for more complex decision making like
+	  <b style="color:lightsteelblue; background: #222">
+	    Mission & Well-Being Impact</b>, you will be presented with more choices,
+	  you can click on
+	  <a href="javascript:void" class="circletext">?</a> to get more help in
+	  understanding and making the right choices.
+	</p>
+	<p>
+	  <b style="color:lightsteelblue; background: #222"> Mission & Well-being</b>
+	  is a
+	  cumulative decision that is comprised of
+	  <a href="javascript:void(0)" onclick="$('#mwb_addon').show()"
+	     style="color:lightsteelblue; background: #222; font-weight:bold">
+	    Mission Prevelance </a> and
+	  <a href="javascript:void(0)" onclick="$('#public_well_being_addon').show()"
+	     style="color:lightsteelblue; background: #222; font-weight:bold">  
+	    Public Well-Being Impact
+	  </a>.
+	</p>
+      </div>
+    </div>
+    <div id="biscuit" class="top_fixed tescape tloader">
+    </div>
+    <div id="exporter" class="d-none">
+      <div class="row justify-content-center position-absolute exportdiv">
+	<div class="export-header">
+	  <h3> Export Calculated Score</h3>
+	  <button type="button" aria-label="Close" class="close h3" onclick="$(this).parent().parent().remove()">
+	    <span aria-hidden="true">×</span>
+	  </button>
+	</div>
+	  <div class="col-auto">
+	    <table class="table table-borderless w-auto">
+	      <tbody>
+		<tr>
+		  <td>
+		    <input type="text" placeholder="ID CVE/VU#"
+			   class="form-control exportId">
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <select  class="form-control exportRole">
+		      <option value="" disabled selected>Select Role</option>
+		      <option>Coordinator</option>
+		      <option>Supplier</option>
+		      <option>Deployer</option>
+		      <option>Other</option>
+		    </select>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <div>
+		      <span class="text ssvcvector d-inline">
+		      </span>
+		      <span onclick="copym('#graph .ssvcvector')">
+			<img src="icons8-copy-60.png"
+			     class="icon8"/>
+		      </span>
+		      <span onclick="create_permalink('copy')">
+			<img src="icons8-copy-link-48.png"
+			     class="icon8"/>
+		      </span>
+		      <br/>
+		      <span class="permalink d-none"
+			    style="font-size:1px; position:fixed">
+		      </span>
+		    </div>
+		    
+		    <input type="checkbox" class="includetree" unchecked>
+		    <span class="text-muted">
+		      Include decision tree in export
+		    </span>
+		    <div>
+		      Contact: 
+		      <input type="text" id="contact" class="form-control"
+			     value="DHS CISA can be contacted at cisa@cisa.dhs.gov"/>
+		    </div>
+		    <br/>
+		    <div class="btn-group primary-button Exporter">
+		      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Export
+		      </button>
+		      <div class="dropdown-menu">
+			<a class="dropdown-item" href="javascript:void(0)"
+			   onclick="export_json()">JSON</a>
+			<a class="dropdown-item" href="javascript:void(0)"
+			   onclick="export_pdf()">PDF</a>
+			<!-- 
+			     <div class="dropdown-divider"></div>
+			     <a class="dropdown-item" href="#">Separated link</a>
+			     -->
+		      </div>
+		    </div>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+    </div>
+    <div id="exportpng" style="display:none">
+      <form id="pngform">
+	<input type="hidden" id="pngblob" value=""/>
+      </form>
+      <canvas id="canvas" style="display:none">
+    </div>      
+    <script src="ssvc.js?v=1663537129"></script>
+  </body>
+</html>
+
