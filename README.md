@@ -56,6 +56,23 @@ The two methods just loop through their respective lookup tables until
 they hit a match, then return the outcome. Maybe not the best implementation,
 but it worked well enough for what was needed at the time.
 
+## Local development
+
+Install prerequisites:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start a local server:
+
+```bash
+mkdocs serve
+```
+
+Navigate to http://localhost:8000/ to see the site.
+
+(Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8001`)
 
 ## Citing SSVC
 
