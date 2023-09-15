@@ -2,6 +2,7 @@
 
 !!! note "Utility"
 
+    <a name="table-utility"></a>
     The Usefulness of the Exploit to the Adversary
     
     | *Automatable* | *Value Density* | *Utility* |
@@ -23,8 +24,8 @@ Heuristically, we base Utility on a combination of the value density of vulnerab
 This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component.
 [*Automatable*](../reference/decision_points/automatable.md) as ([*no*](../reference/decision_points/automatable.md) or [*yes*](../reference/decision_points/automatable.md)) and [*Value Density*](../reference/decision_points/value_density.md) as ([*diffuse*](../reference/decision_points/value_density.md) or [*concentrated*](../reference/decision_points/value_density.md)) define those decision points.
 
-Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events. We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in [Utility Decision Values](#table-utility). [The next table](#table-utility-2) is an equivalent expression of [*Utility*](#utility) that resembles a lookup table in a program.
-
+Roughly, [*Utility*](#utility) is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events.
+We define [*Utility*](#utility) as laborious, efficient, or super effective, as described in the [table](#table-utility) above.
 
 
 ## Alternative Utility Outputs
