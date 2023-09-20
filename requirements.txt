@@ -4,3 +4,4 @@ mkdocs-include-markdown-plugin
 mkdocs-table-reader-plugin
 mkdocs-material
 mkdocs-material-extensions
+dataclasses-json
