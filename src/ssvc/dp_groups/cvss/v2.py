@@ -5,7 +5,7 @@ author: adh
 created_at: 9/20/23 12:54 PM
 """
 
-from ssvc.decision_points.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.decision_points.cvss.access_vector import ACCESS_VECTOR_2 as ACCESS_VECTOR
 from ssvc.decision_points.cvss.access_complexity import (
     ACCESS_COMPLEXITY_2 as ACCESS_COMPLEXITY,

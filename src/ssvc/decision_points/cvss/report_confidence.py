@@ -62,11 +62,7 @@ REPORT_CONFIDENCE_2.values = [
         key="C",
         description="Detailed reports exist, or functional reproduction is possible (functional exploits may provide this). Source code is available to independently verify the assertions of the research, or the author or vendor of the affected code has confirmed the presence of the vulnerability.",
     ),
-    SsvcValue(
-        name="Not Defined",
-        key="ND",
-        description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
-    ),
+    deepcopy(nd),
 ]
 
 

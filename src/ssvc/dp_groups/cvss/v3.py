@@ -6,7 +6,8 @@ created_at: 9/20/23 2:30 PM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcDecisionPointGroup, SsvcValue
+from ssvc.decision_points.base import SsvcValue
+from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.decision_points.cvss.attack_complexity import (
     ATTACK_COMPLEXITY_1 as ATTACK_COMPLEXITY,
 )
