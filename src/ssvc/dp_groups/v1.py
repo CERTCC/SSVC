@@ -31,9 +31,34 @@ SSVCv1 = SsvcDecisionPointGroup(
     ],
 )
 
+PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
+    name="SSVC Patch Developer",
+    description="The decision points used by the patch developer.",
+    key="PD",
+    version="1.0.0",
+    decision_points=[
+        EXPLOITATION,
+        UTILITY,
+        TECHNICAL_IMPACT,
+        VIRULENCE,
+        VALUE_DENSITY,
+        SAFETY_IMPACT,
+    ],
+)
+
+PATCH_APPLIER_1 = SsvcDecisionPointGroup(
+    name="SSVC Patch Applier",
+    description="The decision points used by the patch applier.",
+    key="PA",
+    version="1.0.0",
+    decision_points=[EXPLOITATION, EXPOSURE, MISSION_IMPACT, SAFETY_IMPACT],
+)
+
 
 def main():
     print(SSVCv1.to_json(indent=2))
+    print(PATCH_DEVELOPER_1.to_json(indent=2))
+    print(PATCH_APPLIER_1.to_json(indent=2))
 
 
 if __name__ == "__main__":
