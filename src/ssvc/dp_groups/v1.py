@@ -5,6 +5,7 @@ author: adh
 created_at: 9/21/23 9:52 AM
 """
 from ssvc.decision_points.exploitation import EXPLOITATION_1 as EXPLOITATION
+from ssvc.decision_points.exposure import EXPOSURE_1 as EXPOSURE
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1 as SAFETY_IMPACT
 from ssvc.decision_points.technical_impact import TECHNICAL_IMPACT_1 as TECHNICAL_IMPACT
 from ssvc.decision_points.value_density import VALUE_DENSITY_1 as VALUE_DENSITY
@@ -24,6 +25,7 @@ SSVCv1 = SsvcDecisionPointGroup(
         VIRULENCE,
         VALUE_DENSITY,
         SAFETY_IMPACT,
+        EXPOSURE,
     ],
 )
 
