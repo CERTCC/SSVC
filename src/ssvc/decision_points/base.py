@@ -6,7 +6,7 @@ created_at: 9/20/23 10:07 AM
 """
 
 from dataclasses import dataclass
-from typing import List
+from typing import Tuple
 
 from dataclasses_json import dataclass_json
 
@@ -34,7 +34,7 @@ class SsvcDecisionPoint(_Base, _Versioned, _Namespaced):
     Models a single decision point as a list of values.
     """
 
-    values: List[SsvcValue]
+    values: Tuple[SsvcValue]
 
 
 def main():

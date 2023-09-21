@@ -5,13 +5,9 @@ author: adh
 created_at: 9/20/23 1:46 PM
 """
 from copy import deepcopy
-from dataclasses import dataclass, field
-
-from dataclasses_json import dataclass_json
 
 from ssvc.decision_points.base import SsvcValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-
 
 AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
     name="Availability Impact",
