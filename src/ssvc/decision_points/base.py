@@ -36,6 +36,20 @@ class SsvcDecisionPoint(_Base, _Versioned, _Namespaced):
 
     values: Tuple[SsvcValue]
 
+    def to_table(self):
+        rows = []
+        rows.append(f"{self.description}")
+        rows.append("")
+
+        headings = ["Value", "Key", "Description"]
+        rows.append("|".join(headings))
+        rows.append("|".join(["---" for _ in headings]))
+
+        for value in self.values:
+            rows.append("|".join([value.name, value.key, value.description]))
+
+        return "\n".join(rows)
+
 
 def main():
     opt_none = SsvcValue(name="None", key="N", description="No exploit available")

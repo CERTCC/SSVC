@@ -47,15 +47,6 @@ def get_all_decision_points_from(
     return dps
 
 
-def group_to_jsonfiles(group: SsvcDecisionPointGroup, path: str = ".") -> None:
-    for dp in group.decision_points:
-        basename = dp.name.strip().lower().replace(" ", "_")
-        fname = f"{path}/{basename}.json"
-        with open(fname, "w") as f:
-            print(f"Writing {fname}")
-            f.write(dp.to_json(indent=2))
-
-
 def main():
     pass
 
