@@ -7,23 +7,25 @@ created_at: 9/21/23 10:37 AM
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
 
 
+AUT_NO = SsvcValue(
+    name="No",
+    key="N",
+    description="Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. "
+    "These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation.",
+)
+AUT_YES = SsvcValue(
+    name="Yes",
+    key="Y",
+    description="Attackers can reliably automate steps 1-4 of the kill chain.",
+)
+
+
 AUTOMATABLE_1 = SsvcDecisionPoint(
     name="Automatable",
     description="Can an attacker reliably automate creating exploitation events for this vulnerability?",
     key="A",
     version="1.0.0",
-    values=[
-        SsvcValue(
-            name="No",
-            key="N",
-            description="Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation.",
-        ),
-        SsvcValue(
-            name="Yes",
-            key="Y",
-            description="Attackers can reliably automate steps 1-4 of the kill chain.",
-        ),
-    ],
+    values=(AUT_NO, AUT_YES),
 )
 
 

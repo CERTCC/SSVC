@@ -6,24 +6,27 @@ created_at: 9/21/23 11:20 AM
 """
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
 
+MULTIPLE = SsvcValue(
+    name="Multiple",
+    key="M",
+    description="There are multiple suppliers of the vulnerable component.",
+)
+
+ONE = SsvcValue(
+    name="One",
+    key="O",
+    description="There is only one supplier of the vulnerable component.",
+)
+
 SUPPLIER_CARDINALITY_1 = SsvcDecisionPoint(
     name="Supplier Cardinality",
     description="How many suppliers are responsible for the vulnerable component and its remediation or mitigation plan?",
     key="SC",
     version="1.0.0",
-    values=[
-        # One, Multiple
-        SsvcValue(
-            name="One",
-            key="O",
-            description="There is only one supplier of the vulnerable component.",
-        ),
-        SsvcValue(
-            name="Multiple",
-            key="M",
-            description="There are multiple suppliers of the vulnerable component.",
-        ),
-    ],
+    values=(
+        ONE,
+        MULTIPLE,
+    ),
 )
 
 

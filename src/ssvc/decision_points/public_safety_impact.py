@@ -6,21 +6,25 @@ created_at: 9/21/23 10:43 AM
 """
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
 
+SIGNIFICANT = SsvcValue(
+    name="Significant",
+    description="Safety impact of Major, Hazardous, or Catastrophic.",
+    key="S",
+)
+
+MINIMAL = SsvcValue(
+    name="Minimal", description="Safety impact of None or Minor.", key="M"
+)
+
 PUBLIC_SAFETY_IMPACT_1 = SsvcDecisionPoint(
     name="Public Safety Impact",
     description="A coarse-grained representation of impact to public safety.",
     key="PSI",
     version="1.0.0",
-    values=[
-        SsvcValue(
-            name="Minimal", description="Safety impact of None or Minor.", key="M"
-        ),
-        SsvcValue(
-            name="Significant",
-            description="Safety impact of Major, Hazardous, or Catastrophic.",
-            key="S",
-        ),
-    ],
+    values=(
+        MINIMAL,
+        SIGNIFICANT,
+    ),
 )
 
 
