@@ -5,7 +5,7 @@
         The value is based on the state of existing public information about the vulnerablity.
     
         | Value | Description |
-        | :---: | :--- |
+        | :--- | :--- |
         | Precedence | The publication would be the first publicly available, or be coincident with the first publicly available. |
         | Ampliative | Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc. |
         | Limited | Minimal value added to the existing public information because existing information is already high quality and in multiple outlets. |
