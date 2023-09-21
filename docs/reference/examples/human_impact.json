@@ -1,0 +1,29 @@
+{
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "name": "Human Impact",
+  "description": "Human Impact",
+  "key": "HI",
+  "values": [
+    {
+      "name": "Low",
+      "description": "Safety=None/Minor, Mission=None/Degraded/Crippled",
+      "key": "L"
+    },
+    {
+      "name": "Medium",
+      "description": "Safety=None/Minor, Mission=MEF Failure OR Safety=Major, Mission=None/Degraded/Crippled",
+      "key": "M"
+    },
+    {
+      "name": "High",
+      "description": "Safety=Hazardous, Mission=None/Degraded/Crippled/MEF Failure OR Safety=Major, Mission=MEF Failure",
+      "key": "H"
+    },
+    {
+      "name": "Very High",
+      "description": "Safety=Catastrophic OR Mission=Mission Failure",
+      "key": "VH"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ from ssvc.dp_groups.supplier import SUPPLIER_2
 GROUPS = [COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_3, SUPPLIER_2]
 
 
-SSVCv2 = SsvcDecisionPointGroup(
+SSVCv2_1 = SsvcDecisionPointGroup(
     name="SSVCv2.1",
     description="The second version of the SSVC.",
     key="SSVCv2.1",
@@ -29,7 +29,7 @@ def main():
     for group in GROUPS:
         print(group.to_json(indent=2))
         print()
-    print(SSVCv2.to_json(indent=2))
+    print(SSVCv2_1.to_json(indent=2))
 
 
 if __name__ == "__main__":

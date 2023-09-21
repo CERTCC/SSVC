@@ -1,14 +1,17 @@
 #!/usr/bin/env python
-'''
+"""
 file: deployer
 author: adh
 created_at: 9/21/23 11:40 AM
-'''
+"""
 from copy import deepcopy
 
 from ssvc.decision_points.automatable import AUTOMATABLE_1
 from ssvc.decision_points.exploitation import EXPLOITATION_1
-from ssvc.decision_points.exposure import EXPOSURE_1, EXPOSURE_1_0_1
+from ssvc.decision_points.system_exposure import (
+    SYSTEM_EXPOSURE_1,
+    SYSTEM_EXPOSURE_1_0_1,
+)
 from ssvc.decision_points.human_impact import HUMAN_IMPACT_1
 from ssvc.decision_points.mission_impact import MISSION_IMPACT_1, MISSION_IMPACT_2
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
@@ -22,7 +25,12 @@ PATCH_APPLIER_1 = SsvcDecisionPointGroup(
     description="The decision points used by the patch applier.",
     key="PA",
     version="1.0.0",
-    decision_points=[EXPLOITATION_1, EXPOSURE_1, MISSION_IMPACT_1, SAFETY_IMPACT_1],
+    decision_points=[
+        EXPLOITATION_1,
+        SYSTEM_EXPOSURE_1,
+        MISSION_IMPACT_1,
+        SAFETY_IMPACT_1,
+    ],
 )
 
 # alias for forward compatibility
@@ -35,8 +43,8 @@ DEPLOYER_2.name = "SSVC Deployer"
 DEPLOYER_2.key = "D"
 DEPLOYER_2.version = "2.0.0"
 # update exposure
-DEPLOYER_2.decision_points.remove(EXPOSURE_1)
-DEPLOYER_2.decision_points.append(EXPOSURE_1_0_1)
+DEPLOYER_2.decision_points.remove(SYSTEM_EXPOSURE_1)
+DEPLOYER_2.decision_points.append(SYSTEM_EXPOSURE_1_0_1)
 # add UTILITY (AUTOMATABLE + VALUE DENSITY)
 DEPLOYER_2.decision_points.append(UTILITY_1_0_1)
 DEPLOYER_2.decision_points.append(AUTOMATABLE_1)
@@ -57,13 +65,11 @@ DEPLOYER_3.decision_points.remove(MISSION_IMPACT_1)
 DEPLOYER_3.decision_points.append(MISSION_IMPACT_2)
 
 
-
 def main():
     print(PATCH_APPLIER_1.to_json(indent=2))
     print(DEPLOYER_2.to_json(indent=2))
     print(DEPLOYER_3.to_json(indent=2))
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

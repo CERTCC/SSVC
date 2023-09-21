@@ -1,11 +1,20 @@
 !!! note "Technical Impact"
 
-    Technical Impact of Exploiting the Vulnerability
-
-    | Value | Definition |
-    | :--- | :-------------  |
-    | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
-    | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
+    === "Text"
+        Technical Impact of Exploiting the Vulnerability
+    
+        | Value | Definition |
+        | :--- | :-------------  |
+        | Partial | The exploit gives the adversary *limited* control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component. |
+        | Total   | The exploit gives the adversary *total* control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability       |
+    === "JSON"
+        ```json
+        {% include-markdown "../examples/technical_impact.json" %}
+        ```
+    === "Python"
+        ```python
+        {% include-markdown "../../../src/ssvc/decision_points/technical_impact.py" %}
+        ```
 
 When evaluating [*Technical Impact*](#technical-impact), recall the scope definition in the [Scope Section](#scope).
 Total control is relative to the affected component where the vulnerability resides.

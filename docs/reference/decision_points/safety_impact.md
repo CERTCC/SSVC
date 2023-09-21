@@ -1,26 +1,35 @@
 !!! note "Safety Impact"
 
-    Safety Impacts of Affected System Compromise
-
-    | Value | Type of Harm  | Definition |
-    | --:          | :--            | :-----------   |
-    | None          | All           | Does *not* mean no impact *literally*; the effect is below the threshold for all aspects described in Minor |
-    | Minor         | Physical Harm | Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins |
-    | Minor         | Environment   | Minor externalities (property damage, environmental damage, etc.) imposed on other parties |
-    | Minor         | Financial     | Financial losses, which are not readily absorbable, to multiple persons |
-    | Minor         | Psychological | Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons |
-    | Major         | Physical Harm | Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation |
-    | Major         | Environment   | Major externalities (property damage, environmental damage, etc.) imposed on other parties |
-    | Major         | Financial     | Financial losses that likely lead to bankruptcy of multiple persons |
-    | Major         | Psychological | Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people |
-    | Hazardous     | Physical Harm | Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures OR parts of the cyber-physical system that support safe operation break |
-    | Hazardous     | Environment   | Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties |
-    | Hazardous     | Financial     | Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state |
-    | Hazardous     | Psychological | N/A |
-    | Catastrophic  | Physical Harm | Multiple immediate fatalities (emergency response probably cannot save the victims.) |
-    | Catastrophic  | Environment   | Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties |
-    | Catastrophic  | Financial     | Social systems (elections, financial grid, etc.) supported by the software collapse |
-    | Catastrophic  | Psychological | N/A |
+    === "Text"
+        Safety Impacts of Affected System Compromise
+    
+        | Value | Type of Harm  | Definition |
+        | --:          | :--            | :-----------   |
+        | None          | All           | Does *not* mean no impact *literally*; the effect is below the threshold for all aspects described in Minor |
+        | Minor         | Physical Harm | Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins |
+        | Minor         | Environment   | Minor externalities (property damage, environmental damage, etc.) imposed on other parties |
+        | Minor         | Financial     | Financial losses, which are not readily absorbable, to multiple persons |
+        | Minor         | Psychological | Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons |
+        | Major         | Physical Harm | Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation |
+        | Major         | Environment   | Major externalities (property damage, environmental damage, etc.) imposed on other parties |
+        | Major         | Financial     | Financial losses that likely lead to bankruptcy of multiple persons |
+        | Major         | Psychological | Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people |
+        | Hazardous     | Physical Harm | Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures OR parts of the cyber-physical system that support safe operation break |
+        | Hazardous     | Environment   | Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties |
+        | Hazardous     | Financial     | Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state |
+        | Hazardous     | Psychological | N/A |
+        | Catastrophic  | Physical Harm | Multiple immediate fatalities (emergency response probably cannot save the victims.) |
+        | Catastrophic  | Environment   | Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties |
+        | Catastrophic  | Financial     | Social systems (elections, financial grid, etc.) supported by the software collapse |
+        | Catastrophic  | Psychological | N/A |
+    === "JSON"
+        ```json
+        {% include-markdown "../examples/safety_impact.json" %}
+        ```
+    === "Python"
+        ```python
+        {% include-markdown "../../../src/ssvc/decision_points/safety_impact.py" %}
+        ```
 
 
 

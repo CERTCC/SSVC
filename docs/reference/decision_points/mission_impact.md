@@ -1,13 +1,22 @@
 !!! note "Mission Impact"
 
-    Impact on Mission Essential Functions of the Organization
-
-    | Value | Description  |
-    | :--- | :---------- |
-    | Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
-    | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
-    | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
-    | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
+    === "Text"
+        Impact on Mission Essential Functions of the Organization
+    
+        | Value | Description  |
+        | :--- | :---------- |
+        | Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
+        | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
+        | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
+        | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
+    === "JSON"
+        ```json
+        {% include-markdown "../examples/mission_impact.json" %}
+        ```
+    === "Python"
+        ```python
+        {% include-markdown "../../../src/ssvc/decision_points/mission_impact.py" %}
+        ```
 
 
 A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. 

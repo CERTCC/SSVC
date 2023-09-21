@@ -1,11 +1,21 @@
 !!! note "Report Credibility"
 
-    Assessing the credibility of a report is complex, but the assessment must reach a conclusion of either:
+    === "Text"
+        Assessing the credibility of a report is complex, but the assessment must reach a conclusion of either:
+    
+        | Value | Description |
+        | :---: | :--- |
+        | Credible | The report is credible. |
+        | Not credible | The report is not credible. |
+    === "JSON"
+        ```json
+        {% include-markdown "../examples/report_credibility.json" %}
+        ```
+    === "Python"
+        ```python
+        {% include-markdown "../../../src/ssvc/decision_points/report_credibility.py" %}
+        ```
 
-    | Value | Description |
-    | :---: | :--- |
-    | Credible | The report is credible. |
-    | Not credible | The report is not credible. |
 
 
 !!! tip inline "See Also"

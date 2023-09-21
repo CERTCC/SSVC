@@ -1,13 +1,22 @@
 !!! note "Public Value Added"
 
-    This decision point asks how much value a publication from the coordinator would benefit the broader community.
-    The value is based on the state of existing public information about the vulnerablity.
-
-    | Value | Description |
-    | :---: | :--- |
-    | Precedence | The publication would be the first publicly available, or be coincident with the first publicly available. |
-    | Ampliative | Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc. |
-    | Limited | Minimal value added to the existing public information because existing information is already high quality and in multiple outlets. |
+    === "Text"
+        This decision point asks how much value a publication from the coordinator would benefit the broader community.
+        The value is based on the state of existing public information about the vulnerablity.
+    
+        | Value | Description |
+        | :---: | :--- |
+        | Precedence | The publication would be the first publicly available, or be coincident with the first publicly available. |
+        | Ampliative | Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc. |
+        | Limited | Minimal value added to the existing public information because existing information is already high quality and in multiple outlets. |
+    === "JSON"
+        ```json
+        {% include-markdown "../examples/public_value_added.json" %}
+        ```
+    === "Python"
+        ```python
+        {% include-markdown "../../../src/ssvc/decision_points/public_value_added.py" %}
+        ```
 
 
 The intent of the definition is that one rarely if ever transitions from limited to ampliative or ampliative to precedence.

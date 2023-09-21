@@ -4,8 +4,7 @@ file: critical
 author: adh
 created_at: 9/21/23 2:09 PM
 """
-from ssvc.decision_points.base import SsvcValue
-from ssvc.decision_points.ossf.base import OssfDecisionPoint
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
 
 NO = SsvcValue(
     name="No",
@@ -18,10 +17,11 @@ YES = SsvcValue(
     description="System meets the Open Source Software Foundation's critical software definition.",
 )
 
-OSSF_CRITICAL_SOFTWARE = OssfDecisionPoint(
+OSSF_CRITICAL_SOFTWARE = SsvcDecisionPoint(
     name="OSSF Critical Software",
     description="Denotes whether a system meets the Open Source Software Foundation's critical software definition. "
     "Based on https://openssf.org/wp-content/uploads/2021/07/OSSF-Criticality-Definition-1.0.pdf",
+    namespace="ossf",
     key="OSSFCS",
     version="1.0.0",
     values=(

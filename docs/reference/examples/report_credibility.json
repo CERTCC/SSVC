@@ -1,0 +1,19 @@
+{
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "name": "Report Credibility",
+  "description": "Is the report credible?",
+  "key": "RC",
+  "values": [
+    {
+      "name": "Credible",
+      "description": "The report is credible.",
+      "key": "C"
+    },
+    {
+      "name": "Not Credible",
+      "description": "The report is not credible.",
+      "key": "NC"
+    }
+  ]
+}
