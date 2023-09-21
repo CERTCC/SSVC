@@ -15,8 +15,10 @@ def group_to_jsonfiles(group: SsvcDecisionPointGroup, path: str = ".") -> None:
         with open(json_fname, "w") as f:
             print(f"Writing {json_fname}")
             f.write(dp.to_json(indent=2))
+            f.write("\n")
 
         table_fname = f"{path}/{basename}.md"
         with open(table_fname, "w") as f:
             print(f"Writing {table_fname}")
             f.write(dp.to_table())
+            f.write("\n")
