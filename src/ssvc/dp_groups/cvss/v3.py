@@ -9,42 +9,42 @@ from copy import deepcopy
 from ssvc.decision_points.base import SsvcValue
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.decision_points.cvss.attack_complexity import (
-    ATTACK_COMPLEXITY_1 as ATTACK_COMPLEXITY,
+    ATTACK_COMPLEXITY_1,
 )
-from ssvc.decision_points.cvss.attack_vector import ATTACK_VECTOR_1 as ATTACK_VECTOR
+from ssvc.decision_points.cvss.attack_vector import ATTACK_VECTOR_1
 from ssvc.decision_points.cvss.availability_impact import (
-    AVAILABILITY_IMPACT_2 as AVAILABILITY_IMPACT,
+    AVAILABILITY_IMPACT_2,
 )
 from ssvc.decision_points.cvss.availability_requirement import (
-    AVAILABILITY_REQUIREMENT_1 as AVAILABILITY_REQUIREMENT,
+    AVAILABILITY_REQUIREMENT_1,
 )
 from ssvc.decision_points.cvss.confidentiality_impact import (
-    CONFIDENTIALITY_IMPACT_2 as CONFIDENTIALITY_IMPACT,
+    CONFIDENTIALITY_IMPACT_2,
 )
 from ssvc.decision_points.cvss.confidentiality_requirement import (
-    CONFIDENTIALITY_REQUIREMENT_1 as CONFIDENTIALITY_REQUIREMENT,
+    CONFIDENTIALITY_REQUIREMENT_1,
 )
 from ssvc.decision_points.cvss.exploitability import (
-    EXPLOIT_CODE_MATURITY_1_1_1 as EXPLOIT_CODE_MATURITY,
+    EXPLOIT_CODE_MATURITY_1_1_1,
 )
 from ssvc.decision_points.cvss.integrity_impact import (
-    INTEGRITY_IMPACT_2 as INTEGRITY_IMPACT,
+    INTEGRITY_IMPACT_2,
 )
 from ssvc.decision_points.cvss.integrity_requirement import (
-    INTEGRITY_REQUIREMENT_1 as INTEGRITY_REQUIREMENT,
+    INTEGRITY_REQUIREMENT_1,
 )
 from ssvc.decision_points.cvss.privileges_required import (
-    PRIVILEGES_REQUIRED_1 as PRIVILEGES_REQUIRED,
+    PRIVILEGES_REQUIRED_1,
 )
 from ssvc.decision_points.cvss.remediation_level import (
-    REMEDIATION_LEVEL_1_1 as REMEDIATION_LEVEL,
+    REMEDIATION_LEVEL_1_1,
 )
 from ssvc.decision_points.cvss.report_confidence import (
-    REPORT_CONFIDENCE_2 as REPORT_CONFIDENCE,
+    REPORT_CONFIDENCE_2,
 )
 from ssvc.decision_points.cvss.scope import SCOPE_1 as SCOPE
 from ssvc.decision_points.cvss.user_interaction import (
-    USER_INTERACTION_1 as USER_INTERACTION,
+    USER_INTERACTION_1,
 )
 
 
@@ -59,18 +59,20 @@ def _modify(obj):
     o.name = "Modified " + o.name
     o.key = "M" + o.key
     nd = SsvcValue(name="Not Defined", key="ND", description="Ignore this value")
-    o.values.append(nd)
+    values = list(o.values)
+    values.append(nd)
+    o.values = tuple(values)
     return o
 
 
-MODIFIED_ATTACK_VECTOR = _modify(ATTACK_VECTOR)
-MODIFIED_ATTACK_COMPLEXITY = _modify(ATTACK_COMPLEXITY)
-MODIFIED_PRIVILEGES_REQUIRED = _modify(PRIVILEGES_REQUIRED)
-MODIFIED_USER_INTERACTION = _modify(USER_INTERACTION)
+MODIFIED_ATTACK_VECTOR = _modify(ATTACK_VECTOR_1)
+MODIFIED_ATTACK_COMPLEXITY = _modify(ATTACK_COMPLEXITY_1)
+MODIFIED_PRIVILEGES_REQUIRED = _modify(PRIVILEGES_REQUIRED_1)
+MODIFIED_USER_INTERACTION = _modify(USER_INTERACTION_1)
 MODIFIED_SCOPE = _modify(SCOPE)
-MODIFIED_CONFIDENTIALITY_IMPACT = _modify(CONFIDENTIALITY_IMPACT)
-MODIFIED_INTEGRITY_IMPACT = _modify(INTEGRITY_IMPACT)
-MODIFIED_AVAILABILITY_IMPACT = _modify(AVAILABILITY_IMPACT)
+MODIFIED_CONFIDENTIALITY_IMPACT = _modify(CONFIDENTIALITY_IMPACT_2)
+MODIFIED_INTEGRITY_IMPACT = _modify(INTEGRITY_IMPACT_2)
+MODIFIED_AVAILABILITY_IMPACT = _modify(AVAILABILITY_IMPACT_2)
 
 
 CVSSv3 = SsvcDecisionPointGroup(
@@ -79,20 +81,20 @@ CVSSv3 = SsvcDecisionPointGroup(
     key="CVSSv3",
     version="3.0",
     decision_points=[
-        ATTACK_VECTOR,
-        ATTACK_COMPLEXITY,
-        PRIVILEGES_REQUIRED,
-        USER_INTERACTION,
+        ATTACK_VECTOR_1,
+        ATTACK_COMPLEXITY_1,
+        PRIVILEGES_REQUIRED_1,
+        USER_INTERACTION_1,
         SCOPE,
-        CONFIDENTIALITY_IMPACT,
-        INTEGRITY_IMPACT,
-        AVAILABILITY_IMPACT,
-        EXPLOIT_CODE_MATURITY,
-        REMEDIATION_LEVEL,
-        REPORT_CONFIDENCE,
-        CONFIDENTIALITY_REQUIREMENT,
-        INTEGRITY_REQUIREMENT,
-        AVAILABILITY_REQUIREMENT,
+        CONFIDENTIALITY_IMPACT_2,
+        INTEGRITY_IMPACT_2,
+        AVAILABILITY_IMPACT_2,
+        EXPLOIT_CODE_MATURITY_1_1_1,
+        REMEDIATION_LEVEL_1_1,
+        REPORT_CONFIDENCE_2,
+        CONFIDENTIALITY_REQUIREMENT_1,
+        INTEGRITY_REQUIREMENT_1,
+        AVAILABILITY_REQUIREMENT_1,
         MODIFIED_ATTACK_VECTOR,
         MODIFIED_ATTACK_COMPLEXITY,
         MODIFIED_PRIVILEGES_REQUIRED,

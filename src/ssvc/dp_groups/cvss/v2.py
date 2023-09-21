@@ -6,43 +6,43 @@ created_at: 9/20/23 12:54 PM
 """
 
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.decision_points.cvss.access_vector import ACCESS_VECTOR_2 as ACCESS_VECTOR
+from ssvc.decision_points.cvss.access_vector import ACCESS_VECTOR_2
 from ssvc.decision_points.cvss.access_complexity import (
-    ACCESS_COMPLEXITY_2 as ACCESS_COMPLEXITY,
+    ACCESS_COMPLEXITY_2,
 )
-from ssvc.decision_points.cvss.authentication import AUTHENTICATION_2 as AUTHENTICATION
+from ssvc.decision_points.cvss.authentication import AUTHENTICATION_2
 from ssvc.decision_points.cvss.availability_requirement import (
-    AVAILABILITY_REQUIREMENT_1 as AVAILABILITY_REQUIREMENT,
+    AVAILABILITY_REQUIREMENT_1,
 )
 from ssvc.decision_points.cvss.collateral_damage_potential import (
-    COLLATERAL_DAMAGE_POTENTIAL_2 as COLLATERAL_DAMAGE_POTENTIAL,
+    COLLATERAL_DAMAGE_POTENTIAL_2,
 )
 from ssvc.decision_points.cvss.confidentiality_impact import (
-    CONFIDENTIALITY_IMPACT_1 as CONFIDENTIALITY_IMPACT,
+    CONFIDENTIALITY_IMPACT_1,
 )
 from ssvc.decision_points.cvss.confidentiality_requirement import (
-    CONFIDENTIALITY_REQUIREMENT_1 as CONFIDENTIALITY_REQUIREMENT,
+    CONFIDENTIALITY_REQUIREMENT_1,
 )
 from ssvc.decision_points.cvss.exploitability import (
-    EXPLOITABILITY_1_1 as EXPLOITABILITY,
+    EXPLOITABILITY_1_1,
 )
 from ssvc.decision_points.cvss.integrity_impact import (
-    INTEGRITY_IMPACT_1 as INTEGRITY_IMPACT,
+    INTEGRITY_IMPACT_1,
 )
 from ssvc.decision_points.cvss.availability_impact import (
-    AVAILABILITY_IMPACT_1 as AVAILABILITY_IMPACT,
+    AVAILABILITY_IMPACT_1,
 )
 from ssvc.decision_points.cvss.integrity_requirement import (
-    INTEGRITY_REQUIREMENT_1 as INTEGRITY_REQUIREMENT,
+    INTEGRITY_REQUIREMENT_1,
 )
 from ssvc.decision_points.cvss.remediation_level import (
-    REMEDIATION_LEVEL_1_1 as REMEDIATION_LEVEL,
+    REMEDIATION_LEVEL_1_1,
 )
 from ssvc.decision_points.cvss.report_confidence import (
-    REPORT_CONFIDENCE_1_1 as REPORT_CONFIDENCE,
+    REPORT_CONFIDENCE_1_1,
 )
 from ssvc.decision_points.cvss.target_distribution import (
-    TARGET_DISTRIBUTION_1_1 as TARGET_DISTRIBUTION,
+    TARGET_DISTRIBUTION_1_1,
 )
 
 CVSSv2 = SsvcDecisionPointGroup(
@@ -51,20 +51,20 @@ CVSSv2 = SsvcDecisionPointGroup(
     key="CVSSv2",
     version="2.0",
     decision_points=[
-        ACCESS_VECTOR,
-        ACCESS_COMPLEXITY,
-        AUTHENTICATION,
-        CONFIDENTIALITY_IMPACT,
-        INTEGRITY_IMPACT,
-        AVAILABILITY_IMPACT,
-        EXPLOITABILITY,
-        REMEDIATION_LEVEL,
-        REPORT_CONFIDENCE,
-        COLLATERAL_DAMAGE_POTENTIAL,
-        TARGET_DISTRIBUTION,
-        CONFIDENTIALITY_REQUIREMENT,
-        INTEGRITY_REQUIREMENT,
-        AVAILABILITY_REQUIREMENT,
+        ACCESS_VECTOR_2,
+        ACCESS_COMPLEXITY_2,
+        AUTHENTICATION_2,
+        CONFIDENTIALITY_IMPACT_1,
+        INTEGRITY_IMPACT_1,
+        AVAILABILITY_IMPACT_1,
+        EXPLOITABILITY_1_1,
+        REMEDIATION_LEVEL_1_1,
+        REPORT_CONFIDENCE_1_1,
+        COLLATERAL_DAMAGE_POTENTIAL_2,
+        TARGET_DISTRIBUTION_1_1,
+        CONFIDENTIALITY_REQUIREMENT_1,
+        INTEGRITY_REQUIREMENT_1,
+        AVAILABILITY_REQUIREMENT_1,
     ],
 )
 
