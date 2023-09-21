@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-"""
-file: v2
+'''
+file: v2_1
 author: adh
-created_at: 9/21/23 10:31 AM
-"""
-from copy import deepcopy
+created_at: 9/21/23 11:45 AM
+'''
 
 from ssvc.decision_points.automatable import AUTOMATABLE_1 as AUTOMATABLE
 from ssvc.decision_points.exploitation import EXPLOITATION_1 as EXPLOITATION
 from ssvc.decision_points.exposure import EXPOSURE_1_0_1 as EXPOSURE
 from ssvc.decision_points.human_impact import HUMAN_IMPACT_1 as HUMAN_IMPACT
-from ssvc.decision_points.mission_impact import MISSION_IMPACT_1 as MISSION_IMPACT
+from ssvc.decision_points.mission_impact import MISSION_IMPACT_2 as MISSION_IMPACT
 from ssvc.decision_points.public_safety_impact import (
     PUBLIC_SAFETY_IMPACT_1 as PUBLIC_SAFETY_IMPACT,
 )
@@ -32,18 +31,16 @@ from ssvc.decision_points.value_density import VALUE_DENSITY_1 as VALUE_DENSITY
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 
 # convenience imports
-from ssvc.dp_groups.coordinator_publication import COORDINATOR_PUBLICATION_1 # noqa
-from ssvc.dp_groups.coordinator_triage import COORDINATOR_TRIAGE_1 # noqa
-from ssvc.dp_groups.deployer import DEPLOYER_2 # noqa
-from ssvc.dp_groups.supplier import SUPPLIER_1 # noqa
-
-SITUATED_SAFETY_IMPACT = deepcopy(SAFETY_IMPACT)
+from ssvc.dp_groups.coordinator_publication import COORDINATOR_PUBLICATION_1
+from ssvc.dp_groups.coordinator_triage import COORDINATOR_TRIAGE_1
+from ssvc.dp_groups.deployer import DEPLOYER_3
+from ssvc.dp_groups.supplier import SUPPLIER_1
 
 SSVCv2 = SsvcDecisionPointGroup(
-    name="SSVCv2",
+    name="SSVCv2.1",
     description="The second version of the SSVC.",
-    key="SSVCv2",
-    version="2.0.0",
+    key="SSVCv2.1",
+    version="2.1.0",
     decision_points=[
         EXPLOITATION,
         TECHNICAL_IMPACT,
@@ -52,7 +49,7 @@ SSVCv2 = SsvcDecisionPointGroup(
         VALUE_DENSITY,
         SAFETY_IMPACT,
         PUBLIC_SAFETY_IMPACT,
-        SITUATED_SAFETY_IMPACT,
+        SAFETY_IMPACT,
         MISSION_IMPACT,
         HUMAN_IMPACT,
         EXPOSURE,
@@ -70,9 +67,16 @@ SSVCv2 = SsvcDecisionPointGroup(
 def main():
     print(SSVCv2.to_json(indent=2))
     print(SUPPLIER_1.to_json(indent=2))
-    print(DEPLOYER_2.to_json(indent=2))
+    print(DEPLOYER_3.to_json(indent=2))
     print(COORDINATOR_TRIAGE_1.to_json(indent=2))
     print(COORDINATOR_PUBLICATION_1.to_json(indent=2))
 
 if __name__ == "__main__":
+    main()
+
+def main():
+    pass
+
+
+if __name__ == '__main__':
     main()

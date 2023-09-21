@@ -15,7 +15,7 @@ from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.decision_points.utility import UTILITY_1 as UTILITY
 
 # convenience imports
-from ssvc.dp_groups.patch_applier import PATCH_APPLIER_1 as PATCH_APPLIER  # noqa
+from ssvc.dp_groups.deployer import PATCH_APPLIER_1 as PATCH_APPLIER  # noqa
 from ssvc.dp_groups.patch_developer import PATCH_DEVELOPER_1 as PATCH_DEVELOPER  # noqa
 
 SSVCv1 = SsvcDecisionPointGroup(
