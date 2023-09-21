@@ -42,11 +42,15 @@ class SsvcDecisionPoint(_Base, _Versioned, _Namespaced):
         rows.append("")
 
         headings = ["Value", "Key", "Description"]
-        rows.append("|".join(headings))
-        rows.append("|".join(["---" for _ in headings]))
+
+        def make_row(items):
+            return "| " + " | ".join(items) + " |"
+
+        rows.append(make_row(headings))
+        rows.append(make_row(["---" for _ in headings]))
 
         for value in self.values:
-            rows.append("|".join([value.name, value.key, value.description]))
+            rows.append(make_row([value.name, value.key, value.description]))
 
         return "\n".join(rows)
 

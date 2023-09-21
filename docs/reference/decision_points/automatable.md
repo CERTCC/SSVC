@@ -1,12 +1,7 @@
 !!! note "Automatable"
     
-    === "Text"    
-        Can an attacker reliably automate creating exploitation events for this vulnerability?
-    
-        | Value | Definition |
-        | :--- | :----------  |
-        | no  | Attackers cannot reliably automate steps 1-4 of the kill chain [@hutchins2011intelligence] for this vulnerability. |
-        | yes | Attackers can reliably automate steps 1-4 of the kill chain. |
+    === "Text" 
+        {% include-markdown "../examples/automatable.md" %}
 
     === "JSON"
         ```json
