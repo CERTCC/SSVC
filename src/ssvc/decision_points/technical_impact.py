@@ -21,7 +21,7 @@ TECHNICAL_IMPACT_1 = SsvcDecisionPoint(
         SsvcValue(
             name="Partial",
             key="P",
-            description="The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. In this context, “low” means that the attacker cannot reasonably make enough attempts to overcome the low chance of each attempt not working. Denial of service is a form of limited control over the behavior of the vulnerable component.",
+            description="The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control.",
         ),
         SsvcValue(
             name="Total",
