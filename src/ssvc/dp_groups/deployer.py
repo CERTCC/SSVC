@@ -18,7 +18,7 @@ from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.utility import UTILITY_1_0_1
 from ssvc.decision_points.value_density import VALUE_DENSITY_1
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-
+from ssvc.tools import replace_in_list
 
 PATCH_APPLIER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Applier",
@@ -43,8 +43,9 @@ DEPLOYER_2.name = "SSVC Deployer"
 DEPLOYER_2.key = "D"
 DEPLOYER_2.version = "2.0.0"
 # update exposure
-DEPLOYER_2.decision_points.remove(SYSTEM_EXPOSURE_1)
-DEPLOYER_2.decision_points.append(SYSTEM_EXPOSURE_1_0_1)
+replace_in_list(
+    DEPLOYER_2.decision_points, old=SYSTEM_EXPOSURE_1, new=SYSTEM_EXPOSURE_1_0_1
+)
 # add UTILITY (AUTOMATABLE + VALUE DENSITY)
 DEPLOYER_2.decision_points.append(UTILITY_1_0_1)
 DEPLOYER_2.decision_points.append(AUTOMATABLE_1)
@@ -61,8 +62,9 @@ DEPLOYER_3.decision_points.remove(UTILITY_1_0_1)
 DEPLOYER_3.decision_points.remove(VALUE_DENSITY_1)
 
 # update MISSION_IMPACT_1 to MISSION_IMPACT_2
-DEPLOYER_3.decision_points.remove(MISSION_IMPACT_1)
-DEPLOYER_3.decision_points.append(MISSION_IMPACT_2)
+replace_in_list(
+    lst=DEPLOYER_3.decision_points, old=MISSION_IMPACT_1, new=MISSION_IMPACT_2
+)
 
 
 def main():
