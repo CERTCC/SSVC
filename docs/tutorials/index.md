@@ -4,16 +4,16 @@
 
 ## Videos
 
-| Source | Video |
-| ------ | ----- |
-| SEI Podcast Series | [A Stakeholder-Specific Approach to Vulnerability Management](https://youtu.be/sV0BNkHJgF0) |
-| CISA | [SSVC On-Demand Training](https://youtu.be/NqiwyUPLy6I) |
-| Nucleus Security | [SSVC and Decision Trees](https://www.youtube.com/watch?v=BKVvmAaCnSs) |
-| Nucleus Security | Panel Discussion: [Using Decision Trees for Vulnerability Prioritization with SSVC](https://www.youtube.com/watch?v=25RHdcSwHCg) |
-| Nucleus Security | [What is SSVC?](https://youtu.be/LV6PclEQ3QA) |
-| ICS Cybersecurity Academy | [Create your own SSVC decision tree for ICS patching](https://youtu.be/MLkA2N3aXK4) |
-| ICS Cybersecurity Academy | [SSVC: A great replacement for CVSS in ICS?](https://youtu.be/1T36ieOqzNw) |
-| Waterfall Security Solutions | Industrial Security Podcast Eps. 102: [Stakeholder-Specific Vulnerability Categorization (SSVC)](https://youtu.be/n5tVYjGxFj0) |
+| Source | Video                                                                                                                            |
+| ------ |----------------------------------------------------------------------------------------------------------------------------------|
+| SEI Podcast Series | [A Stakeholder-Specific Approach to Vulnerability Management](https://youtu.be/wbUTizBaXA0)                                      |
+| CISA | [SSVC On-Demand Training](https://youtu.be/NqiwyUPLy6I)                                                                          |
+| Nucleus Security | [SSVC and Decision Trees](https://youtu.be/BKVvmAaCnSs)                                                                          |
+| Nucleus Security | Panel Discussion: [Using Decision Trees for Vulnerability Prioritization with SSVC](https://youtu.be/25RHdcSwHCg) |
+| Nucleus Security | [What is SSVC?](https://youtu.be/LV6PclEQ3QA)                                                                                    |
+| ICS Cybersecurity Academy | [Create your own SSVC decision tree for ICS patching](https://youtu.be/MLkA2N3aXK4)                                              |
+| ICS Cybersecurity Academy | [SSVC: A great replacement for CVSS in ICS?](https://youtu.be/1T36ieOqzNw)                                                       |
+| Waterfall Security Solutions | Industrial Security Podcast Eps. 102: [Stakeholder-Specific Vulnerability Categorization (SSVC)](https://youtu.be/n5tVYjGxFj0)   |
 
 ## Other Content
 
