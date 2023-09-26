@@ -156,3 +156,7 @@ extra_javascript:
   - javascripts/tablesort.js
 extra_css:
   - stylesheets/extra.css
+watch:
+  - docs
+  - src
+dev_addr: 127.0.0.1:8001
