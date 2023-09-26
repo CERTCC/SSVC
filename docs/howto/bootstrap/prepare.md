@@ -85,7 +85,7 @@ flowchart LR
         os[/Outcome Set/]
     end
     d --> oc1
-    oc1 -->|y| cos
+    oc1 -->|y| oss
     oc1 -->|n| dos
     dos --> oss
     cos --> os
@@ -134,7 +134,7 @@ flowchart LR
     oc --> dp1
     d --> dp1
     
-    dp1 -->|y| cdp
+    dp1 -->|y| dpt
     dp1 -->|n| ddp
     ddp --> dpt
     dpt --> cdp

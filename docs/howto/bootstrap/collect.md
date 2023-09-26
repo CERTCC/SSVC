@@ -24,12 +24,15 @@ flowchart LR
     subgraph do[Data Operations]
         cd[Collect Data]
         vd[/Vulnerability Data/]
-        ed[/Environment Data/]    
+        ed[/Environment Data/]
+        dt[\Available Data/]
     end
     dd --> cd
     cd --> cd
     cd --> vd
     cd --> ed
+    vd --> dt
+    ed --> dt
 ```
 
 !!! example

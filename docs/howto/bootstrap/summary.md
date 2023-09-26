@@ -45,6 +45,8 @@ subgraph dataops [Data Operations]
 	cd[Collect Data]
 	vd[/Vulnerability Data/]
 	ed[/Environment Data/]
+    dt[\Available Data/]
+
 end
 subgraph runtime [Use SSVC]
 	mdp[[Apply Decision Point Mapping to Data]]
@@ -57,9 +59,9 @@ start --> dcd
 dcd --> d
 d --> oc1
 dps --> dd1
-oc1 -->|y| cos
+oc1 -->|y| oss
 oc1 -->|n| dos
-dp1 -->|y| cdp
+dp1 -->|y| dpt
 dp1 -->|n| ddp
 dd1 -->|y| ddf
 dd1 -->|n| dd
@@ -82,8 +84,9 @@ ddf --> cd
 cd --> cd
 cd --> vd
 cd --> ed
-vd --> mdp
-ed --> mdp
+vd --> dt
+ed --> dt
+dt --> mdp
 mdp --> dp
 dfp --> p
 p --> ap
