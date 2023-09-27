@@ -31,19 +31,56 @@ PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
         SAFETY_IMPACT_1,
     ],
 )
+"""
+In SSVC v1, Patch Developer v1 represents the decision points used by the patch developer.
+
+It includes decision points:
+
+- Exploitation v1.0.0
+- Utility v1.0.0
+    - Virulence v1.0.0
+    - Value Density v1.0.0
+- Technical Impact v1.0.0
+- Safety Impact v1.0.0
+"""
 
 # alias for forward compatibility
 SUPPLIER_1 = PATCH_DEVELOPER_1
 
 # SSVC v2 renamed to SSVC Supplier
-SUPPLIER_2 = deepcopy(SUPPLIER_1)
-SUPPLIER_2.name = ("Supplier",)
-SUPPLIER_2.description = ("The decision points used by the supplier.",)
-SUPPLIER_2.version = "2.0.0"
-# replace UTILITY 1 with UTILITY 1.0.1
-replace_in_list(SUPPLIER_2.decision_points, old=UTILITY_1, new=UTILITY_1_0_1)
-# add PUBLIC_SAFETY_IMPACT_1
-SUPPLIER_2.decision_points.append(PUBLIC_SAFETY_IMPACT_1)
+SUPPLIER_2 = SsvcDecisionPointGroup(
+    name="SSVC Supplier",
+    description="The decision points used by the supplier.",
+    key="S",
+    version="2.0.0",
+    decision_points=[
+        EXPLOITATION_1,
+        UTILITY_1_0_1,
+        TECHNICAL_IMPACT_1,
+        AUTOMATABLE_1,
+        VALUE_DENSITY_1,
+        SAFETY_IMPACT_1,
+    ],
+)
+"""
+In SSVC v2, Supplier v2 represents the decision points used by the supplier.
+It includes decision points:
+
+- Exploitation v1.0.0
+- Utility v1.0.1
+    - Automatable v1.0.0
+    - Value Density v1.0.0
+- Technical Impact v1.0.0
+- Public Safety Impact v1.0.0
+    - Safety Impact v1.0.0
+    
+Changes from Patch Developer v1:
+
+- Name change from Patch Developer v1 -> Supplier v2
+- Utility v1.0.0 -> v1.0.1
+- Virulence v1.0.0 replaced by Automatable v1.0.0
+- Public Safety Impact v1.0.0 added, which subsumes Safety Impact v1.0.0
+"""
 
 
 def main():
