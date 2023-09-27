@@ -74,6 +74,11 @@ Navigate to http://localhost:8000/ to see the site.
 
 (Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8001`)
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for high-level information, and the [SSVC Project Wiki](https://github.com/CERTCC/SSVC/wiki)
+for more detail on how to contribute to the project.
+
 ## Citing SSVC
 
 To reference SSVC in an academic publication, please refer to the version presented at the 2020 Workshop on Economics of Information Security (WEIS):
