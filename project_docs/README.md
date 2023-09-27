@@ -11,6 +11,21 @@ We are using 'material for mkdocs' to provide the theme and some extensions for 
 
 The documents are in markdown for easy editing.
 
+## Local development
+
+To build the documentation locally, you will need to install `mkdocs` and `mkdocs-material`:
+
+```bash
+pip install -r requirements.txt
+```
+
+Then you can run the development server:
+
+```bash
+mkdocs serve
+```
+
+
 ## Diátaxis Framework
 
 We are using the [Diátaxis Framework](https://diataxis.fr/) to organize our documentation into four main categories,
