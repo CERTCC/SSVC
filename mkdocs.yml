@@ -45,6 +45,12 @@ nav:
     - Evidence Gathering: 'howto/evidence_gathering.md'
     - Asset Management: 'howto/asset_management.md'
     - Communicating Results: 'howto/communicating_results.md'
+    - Bootstrapping SSVC:
+      - Intro: 'howto/bootstrap/index.md'
+      - Prepare: 'howto/bootstrap/prepare.md'
+      - Collect: 'howto/bootstrap/collect.md'
+      - Use & Respond: 'howto/bootstrap/use.md'
+      - Summary: 'howto/bootstrap/summary.md'
   - Reference:
     - Intro: 'reference/index.md'
     - Decision Points:
