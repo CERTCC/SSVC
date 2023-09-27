@@ -4,8 +4,8 @@
 
     |   Value     | Definition |
     | :--- | :--------- |
-    | Minimal     | [Safety Impact](../reference/decision_points/05_06_safety_impact.md) of None or Minor                     |
-    | Significant | [Safety Impact](../reference/decision_points/05_06_safety_impact.md) of Major, Hazardous, or Catastrophic |
+    | Minimal     | [Safety Impact](../reference/decision_points/safety_impact.md) of None or Minor                     |
+    | Significant | [Safety Impact](../reference/decision_points/safety_impact.md) of Major, Hazardous, or Catastrophic |
 
 {== TODO note that this is a compound decision point, therefore it is a notational convenience ==}
 

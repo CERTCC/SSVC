@@ -53,7 +53,7 @@ The context of the vulnerability, and the systems it impacts, are inextricably l
 Some information about the context will be relatively static over time, such as the contribution of a system to an organization's mission.
 Other information can change rapidly as events occur, such as the public release of an exploit or observation of attacks. 
 Temporal and environmental considerations should be primary, not optional as they are in CVSS.
-We discuss the temporal aspects further in [Information Changes over Time](information-changes-over-time).
+We discuss the temporal aspects further in [Information Changes over Time](../howto/communicating_results.md#information-changes-over-time).
 
 ## Be Transparent
 
