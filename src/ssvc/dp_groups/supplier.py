@@ -4,18 +4,15 @@ file: supplier
 author: adh
 created_at: 9/21/23 11:41 AM
 """
-from copy import deepcopy
 
 from ssvc.decision_points.automatable import AUTOMATABLE_1
 from ssvc.decision_points.exploitation import EXPLOITATION_1
-from ssvc.decision_points.public_safety_impact import PUBLIC_SAFETY_IMPACT_1
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.technical_impact import TECHNICAL_IMPACT_1
 from ssvc.decision_points.utility import UTILITY_1, UTILITY_1_0_1
 from ssvc.decision_points.value_density import VALUE_DENSITY_1
 from ssvc.decision_points.virulence import VIRULENCE_1
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.tools import replace_in_list
 
 PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Developer",

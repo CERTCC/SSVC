@@ -22,9 +22,3 @@ def group_to_jsonfiles(group: SsvcDecisionPointGroup, path: str = ".") -> None:
             print(f"Writing {table_fname}")
             f.write(dp.to_table())
             f.write("\n")
-
-
-def replace_in_list(lst, old, new):
-    idx = lst.index(old)
-    lst[idx] = new
-    return lst

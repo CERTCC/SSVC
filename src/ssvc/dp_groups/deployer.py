@@ -4,21 +4,19 @@ file: deployer
 author: adh
 created_at: 9/21/23 11:40 AM
 """
-from copy import deepcopy
 
 from ssvc.decision_points.automatable import AUTOMATABLE_1
 from ssvc.decision_points.exploitation import EXPLOITATION_1
+from ssvc.decision_points.human_impact import HUMAN_IMPACT_1
+from ssvc.decision_points.mission_impact import MISSION_IMPACT_1, MISSION_IMPACT_2
+from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.system_exposure import (
     SYSTEM_EXPOSURE_1,
     SYSTEM_EXPOSURE_1_0_1,
 )
-from ssvc.decision_points.human_impact import HUMAN_IMPACT_1
-from ssvc.decision_points.mission_impact import MISSION_IMPACT_1, MISSION_IMPACT_2
-from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.utility import UTILITY_1_0_1
 from ssvc.decision_points.value_density import VALUE_DENSITY_1
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.tools import replace_in_list
 
 PATCH_APPLIER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Applier",
