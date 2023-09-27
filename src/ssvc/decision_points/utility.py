@@ -52,13 +52,16 @@ UTILITY_1 = SsvcDecisionPoint(
     ),
 )
 
-# SSVC v2 keeps same options but changes descriptions
-UTILITY_1_0_1 = deepcopy(UTILITY_1)
-UTILITY_1_0_1.version = "1.0.1"
-UTILITY_1_0_1.values = (
-    LABORIOUS_2,
-    EFFICIENT_2,
-    SUPER_EFFECTIVE_2,
+UTILITY_1_0_1 = SsvcDecisionPoint(
+    name="Utility",
+    description="The Usefulness of the Exploit to the Adversary",
+    key="U",
+    version="1.0.1",
+    values=(
+        LABORIOUS_2,
+        EFFICIENT_2,
+        SUPER_EFFECTIVE_2,
+    ),
 )
 
 

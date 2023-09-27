@@ -44,13 +44,22 @@ SYSTEM_EXPOSURE_1 = SsvcDecisionPoint(
     ),
 )
 
+# EXP_OPEN is just a rename of EXP_UNAVOIDABLE
 EXP_OPEN = deepcopy(EXP_UNAVOIDABLE)
 EXP_OPEN.name = "Open"
 EXP_OPEN.key = "O"
 
-SYSTEM_EXPOSURE_1_0_1 = deepcopy(SYSTEM_EXPOSURE_1)
-SYSTEM_EXPOSURE_1_0_1.version = "1.0.1"
-SYSTEM_EXPOSURE_1_0_1.values = (EXP_SMALL, EXP_CONTROLLED, EXP_OPEN)
+SYSTEM_EXPOSURE_1_0_1 = SsvcDecisionPoint(
+    name="System Exposure",
+    description="The Accessible Attack Surface of the Affected System or Service",
+    key="EXP",
+    version="1.0.1",
+    values=(
+        EXP_SMALL,
+        EXP_CONTROLLED,
+        EXP_OPEN,
+    ),
+)
 
 
 def main():
