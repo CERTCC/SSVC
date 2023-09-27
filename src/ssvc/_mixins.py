@@ -9,14 +9,6 @@ from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 
 
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
-
-
 @dataclass_json
 @dataclass(kw_only=True)
 class _Versioned:
@@ -47,3 +39,11 @@ class _Base:
     name: str
     description: str
     key: str
+
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
