@@ -21,6 +21,15 @@ COORDINATOR_PUBLICATION_1 = SsvcDecisionPointGroup(
         PUBLIC_VALUE_ADDED_1,
     ],
 )
+"""
+Added in SSVC v2, the Coordinator Publication v1.0.0 decision points are used by the coordinator during the publication process.
+
+It includes decision points:
+
+- Supplier Involvement v1.0.0
+- Exploitation v1.0.0
+- Public Value Added v1.0.0
+"""
 
 
 def main():
