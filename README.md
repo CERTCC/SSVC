@@ -76,7 +76,7 @@ Navigate to http://localhost:8000/ to see the site.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for high-level information, and the [SSVC Project Wiki](https://https://github.com/CERTCC/SSVC/wiki)
+See [CONTRIBUTING.md](CONTRIBUTING.md) for high-level information, and the [SSVC Project Wiki](https://github.com/CERTCC/SSVC/wiki)
 for more detail on how to contribute to the project.
 
 ## Citing SSVC
