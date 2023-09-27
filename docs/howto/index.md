@@ -2,13 +2,13 @@
 
 !!! tip inline end "Prerequisites"
 
-    The [Using SSVC](/docs/howto/index.md) section assumes that you have
+    The [Using SSVC](index.md) section assumes that you have
     
     - An interest in using SSVC in a vulnerability management process
     - Basic familiarity with SSVC
 
     If you are unfamiliar with SSVC, we suggest you start with the
-    [Understanding SSVC](../topics/background/index.md) section, which provides necessary background detail.
+    [Understanding SSVC](../topics/index.md) section, which provides necessary background detail.
     For technical reference, see [Reference](../reference/index.md).
 
 !!! note "TODO: What should go here?"
