@@ -32,39 +32,84 @@ PATCH_APPLIER_1 = SsvcDecisionPointGroup(
         SAFETY_IMPACT_1,
     ],
 )
+"""
+In SSVC v1, Patch Applier v1 represents the decision points used by the patch applier.
+It includes decision points:
+
+- Exploitation v1.0.0
+- System Exposure v1.0.0
+- Mission Impact v1.0.0
+- Safety Impact v1.0.0.
+"""
+
 
 # alias for forward compatibility
 DEPLOYER_1 = PATCH_APPLIER_1
 
 # SSVC v2
-DEPLOYER_2 = deepcopy(DEPLOYER_1)
-# change name to SSVC Deployer
-DEPLOYER_2.name = "SSVC Deployer"
-DEPLOYER_2.key = "D"
-DEPLOYER_2.version = "2.0.0"
-# update exposure
-replace_in_list(
-    DEPLOYER_2.decision_points, old=SYSTEM_EXPOSURE_1, new=SYSTEM_EXPOSURE_1_0_1
+DEPLOYER_2 = SsvcDecisionPointGroup(
+    name="SSVC Deployer",
+    description="The decision points used by the deployer.",
+    key="D",
+    version="2.0.0",
+    decision_points=[
+        EXPLOITATION_1,
+        SYSTEM_EXPOSURE_1_0_1,
+        MISSION_IMPACT_1,
+        SAFETY_IMPACT_1,
+        UTILITY_1_0_1,
+        AUTOMATABLE_1,
+        VALUE_DENSITY_1,
+        HUMAN_IMPACT_1,
+    ],
 )
-# add UTILITY (AUTOMATABLE + VALUE DENSITY)
-DEPLOYER_2.decision_points.append(UTILITY_1_0_1)
-DEPLOYER_2.decision_points.append(AUTOMATABLE_1)
-DEPLOYER_2.decision_points.append(VALUE_DENSITY_1)
-# condense MISSION_IMPACT_1 and SAFETY_IMPACT_1 into HUMAN_IMPACT_1
-DEPLOYER_2.decision_points.append(HUMAN_IMPACT_1)
+"""
+Deployer v2.0.0 is renamed from Patch Applier v1.0.0.
+It includes decision points:
 
+- Exploitation v1.0.0
+- System Exposure v1.0.1
+- Human Impact v1.0.0 (consolidate Mission Impact v1.0.0 and Safety Impact v1.0.0)
+  - Safety Impact v1.0.0
+  - Mission Impact v1.0.0
+- Utility v1.0.1 (consolidate Automatable v1.0.0 and Value Density v1.0.0)
+  - Automatable v1.0.0
+  - Value Density v1.0.0
 
-# SSVC v2.1
-DEPLOYER_3 = deepcopy(DEPLOYER_2)
-DEPLOYER_3.version = "3.0.0"
-# replace UTILITY (AUTOMATABLE + VALUE DENSITY) with just AUTOMATABLE
-DEPLOYER_3.decision_points.remove(UTILITY_1_0_1)
-DEPLOYER_3.decision_points.remove(VALUE_DENSITY_1)
+Changes from Patch Applier v1.0.0:
+- System Exposure v1.0.0 -> v1.0.1
+- Utility v1.0.1 is added, which depends on Automatable v1.0.0 and Value Density v1.0.0
+- Human Impact v1.0.0 is added, which depends on Mission Impact v1.0.0 and Safety Impact v1.0.0
+"""
 
-# update MISSION_IMPACT_1 to MISSION_IMPACT_2
-replace_in_list(
-    lst=DEPLOYER_3.decision_points, old=MISSION_IMPACT_1, new=MISSION_IMPACT_2
+DEPLOYER_3 = SsvcDecisionPointGroup(
+    name="SSVC Deployer",
+    description="The decision points used by the deployer.",
+    key="D",
+    version="3.0.0",
+    decision_points=[
+        EXPLOITATION_1,
+        SYSTEM_EXPOSURE_1_0_1,
+        MISSION_IMPACT_2,
+        SAFETY_IMPACT_1,
+        AUTOMATABLE_1,
+        HUMAN_IMPACT_1,
+    ],
 )
+"""
+In SSVC 2.1, Deployer 3.0.0 includes decision points:
+
+- Exploitation 1.0.0
+- System Exposure 1.0.1
+- Automatable 1.0.0
+- Human Impact 1.0.0
+  - Safety Impact 1.0.0
+  - Mission Impact 2.0.0
+ 
+Changes from v2.0.0: 
+- removes Utility v1.0.1 in favor of Automatable v1.0.0.
+- Mission Impact v1.0.0 -> v2.0.0
+"""
 
 
 def main():
