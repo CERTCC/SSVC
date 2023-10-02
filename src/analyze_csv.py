@@ -2,6 +2,7 @@
 """
 This module provides a script for analyzing an SSVC tree csv file.
 
+```shell
 usage: analyze_csv.py [-h] [--outcol OUTCOL] [--permutation] csvfile
 
 Analyze an SSVC tree csv file
@@ -13,7 +14,32 @@ options:
   -h, --help       show this help message and exit
   --outcol OUTCOL  the name of the outcome column
   --permutation    use permutation importance instead of drop column importance
-"""
+```
+
+Example:
+    Given a `test.csv` file like this:
+    ```csv
+    row,Exploitation,Exposure,Automatable,Human Impact,Priority
+    1,none,small,no,low,defer
+    2,none,small,no,medium,defer
+    3,none,small,no,high,scheduled
+    ...
+    ```
+    Analyze the csv file:
+    ```shell
+    $ python analyze_csv.py test.csv
+
+    Feature Importance after Dropping Each Feature in test.csv
+             feature  feature_importance
+    0  exploitation_            0.347222
+    1  human_impact_            0.291667
+    2   automatable_            0.180556
+    3      exposure_            0.166667
+    ```
+
+    Higher values imply more important features.
+    """
+
 import argparse
 import pandas as pd
 import re
@@ -22,7 +48,7 @@ import sklearn.inspection
 from sklearn.base import clone
 
 
-def col_norm(c: str) -> str:
+def _col_norm(c: str) -> str:
     """
     Normalize a column name
 
@@ -37,7 +63,7 @@ def col_norm(c: str) -> str:
     return new_col
 
 
-def imp_df(column_names: list, importances: list) -> pd.DataFrame:
+def _imp_df(column_names: list, importances: list) -> pd.DataFrame:
     """
     Create a dataframe of feature importances
 
@@ -56,7 +82,7 @@ def imp_df(column_names: list, importances: list) -> pd.DataFrame:
     return df
 
 
-def drop_col_feat_imp(
+def _drop_col_feat_imp(
     model: DecisionTreeClassifier,
     X_train: pd.DataFrame,
     y_train: pd.DataFrame,
@@ -81,11 +107,11 @@ def drop_col_feat_imp(
         drop_col_score = model_clone.score(X_train.drop(col, axis=1), y_train)
         importances.append(benchmark_score - drop_col_score)
 
-    importances_df = imp_df(X_train.columns, importances)
+    importances_df = _imp_df(X_train.columns, importances)
     return importances_df
 
 
-def split_data(df: pd.DataFrame, target: str) -> (pd.DataFrame, pd.DataFrame):
+def _split_data(df: pd.DataFrame, target: str) -> (pd.DataFrame, pd.DataFrame):
     """
     Split a dataframe into features and target
 
@@ -104,7 +130,7 @@ def split_data(df: pd.DataFrame, target: str) -> (pd.DataFrame, pd.DataFrame):
     return X, y
 
 
-def clean_table(df: pd.DataFrame) -> pd.DataFrame:
+def _clean_table(df: pd.DataFrame) -> pd.DataFrame:
     """
     Clean up a dataframe, normalizing column names and dropping columns we don't need
 
@@ -115,7 +141,7 @@ def clean_table(df: pd.DataFrame) -> pd.DataFrame:
         the cleaned dataframe
     """
     # normalize data
-    df = df.rename(columns=col_norm)
+    df = df.rename(columns=_col_norm)
     # drop columns we don't need
     drop_cols = [
         "row",
@@ -124,7 +150,7 @@ def clean_table(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def drop_col_imp_feature(
+def _drop_col_imp_feature(
     model: DecisionTreeClassifier,
     x: pd.DataFrame,
     y: pd.DataFrame,
@@ -132,11 +158,11 @@ def drop_col_imp_feature(
 ) -> None:
     # drop columns and re-run
     print(f"Feature Importance after Dropping Each Feature in {csvfile}")
-    imp = drop_col_feat_imp(model, x, y)
+    imp = _drop_col_feat_imp(model, x, y)
     print(imp)
 
 
-def perm_imp_feature(
+def _perm_imp_feature(
     model: DecisionTreeClassifier,
     x: pd.DataFrame,
     y: pd.DataFrame,
@@ -156,7 +182,7 @@ def perm_imp_feature(
         print(f"{label:>25}: {importance:0.4f}")
 
 
-def parse_args() -> argparse.Namespace:
+def _parse_args() -> argparse.Namespace:
     # parse command line
     parser = argparse.ArgumentParser(description="Analyze an SSVC tree csv file")
     parser.add_argument(
@@ -183,11 +209,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def main():
-    args = parse_args()
+    args = _parse_args()
 
     # read csv
     df = pd.read_csv(args.csvfile)
-    df = clean_table(df)
+    df = _clean_table(df)
 
     # check for target column
     target = args.outcol
@@ -197,7 +223,7 @@ def main():
         )
         exit(1)
 
-    X, y = split_data(df, target)
+    X, y = _split_data(df, target)
 
     # turn features into ordinals
     # this assumes that every column is an ordinal label
@@ -216,9 +242,9 @@ def main():
     dt = DecisionTreeClassifier(random_state=99, criterion="entropy")
 
     if args.permutation:
-        perm_imp_feature(dt, X2, y, args.csvfile)
+        _perm_imp_feature(dt, X2, y, args.csvfile)
     else:
-        drop_col_imp_feature(dt, X2, y, args.csvfile)
+        _drop_col_imp_feature(dt, X2, y, args.csvfile)
 
 
 if __name__ == "__main__":
