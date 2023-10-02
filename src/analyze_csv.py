@@ -1,8 +1,18 @@
 #!/usr/bin/env python
 """
-file: analyze_csv
-author: adh
-created_at: 3/18/21 2:30 PM
+This module provides a script for analyzing an SSVC tree csv file.
+
+usage: analyze_csv.py [-h] [--outcol OUTCOL] [--permutation] csvfile
+
+Analyze an SSVC tree csv file
+
+positional arguments:
+  csvfile          the csv file to analyze
+
+options:
+  -h, --help       show this help message and exit
+  --outcol OUTCOL  the name of the outcome column
+  --permutation    use permutation importance instead of drop column importance
 """
 import argparse
 import pandas as pd
@@ -12,14 +22,32 @@ import sklearn.inspection
 from sklearn.base import clone
 
 
-# normalize column names
-def col_norm(c):
+def col_norm(c: str) -> str:
+    """
+    Normalize a column name
+
+    Args:
+        c: the column name to normalize
+
+    Returns:
+        the normalized column name
+    """
     new_col = re.sub("[^0-9a-zA-Z]+", "_", c)
     new_col = new_col.lower()
     return new_col
 
 
-def imp_df(column_names, importances) -> pd.DataFrame:
+def imp_df(column_names: list, importances: list) -> pd.DataFrame:
+    """
+    Create a dataframe of feature importances
+
+    Args:
+        column_names: the names of the columns
+        importances: the feature importances
+
+    Returns:
+        a dataframe of feature importances
+    """
     df = (
         pd.DataFrame({"feature": column_names, "feature_importance": importances})
         .sort_values("feature_importance", ascending=False)
@@ -28,8 +56,13 @@ def imp_df(column_names, importances) -> pd.DataFrame:
     return df
 
 
-def drop_col_feat_imp(model, X_train, y_train, random_state=42) -> pd.DataFrame:
-    # from https://gist.github.com/erykml/6854134220276b1a50862aa486a44192#file-drop_col_feat_imp-py
+def drop_col_feat_imp(
+    model: DecisionTreeClassifier,
+    X_train: pd.DataFrame,
+    y_train: pd.DataFrame,
+    random_state: int = 99,
+) -> pd.DataFrame:
+    # based on https://gist.github.com/erykml/6854134220276b1a50862aa486a44192#file-drop_col_feat_imp-py
     # clone the model to have the exact same specification as the one initially trained
     model_clone = clone(model)
     # set random_state for comparability
@@ -52,12 +85,109 @@ def drop_col_feat_imp(model, X_train, y_train, random_state=42) -> pd.DataFrame:
     return importances_df
 
 
+def split_data(df: pd.DataFrame, target: str) -> (pd.DataFrame, pd.DataFrame):
+    """
+    Split a dataframe into features and target
+
+    Args:
+        df: the dataframe to split
+        target: the name of the target column
+
+    Returns:
+        a tuple of (features, target)
+    """
+
+    # construct feature list
+    features = [c for c in df.columns if c != target]
+    y = df[target]
+    X = df[features]
+    return X, y
+
+
+def clean_table(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean up a dataframe, normalizing column names and dropping columns we don't need
+
+    Args:
+        df: the dataframe to clean
+
+    Returns:
+        the cleaned dataframe
+    """
+    # normalize data
+    df = df.rename(columns=col_norm)
+    # drop columns we don't need
+    drop_cols = [
+        "row",
+    ]
+    df = df.drop(columns=drop_cols, errors="ignore")
+    return df
+
+
+def drop_col_imp_feature(
+    model: DecisionTreeClassifier,
+    x: pd.DataFrame,
+    y: pd.DataFrame,
+    csvfile: str,
+) -> None:
+    # drop columns and re-run
+    print(f"Feature Importance after Dropping Each Feature in {csvfile}")
+    imp = drop_col_feat_imp(model, x, y)
+    print(imp)
+
+
+def perm_imp_feature(
+    model: DecisionTreeClassifier,
+    x: pd.DataFrame,
+    y: pd.DataFrame,
+    csvfile: str,
+) -> None:
+    model.fit(x, y)
+    # analyze tree
+    results = sklearn.inspection.permutation_importance(model, x, y)
+    imp = results["importances_mean"]
+    labels = [c.replace("_", "") for c in x.columns]
+    pairs = zip(labels, imp)
+    pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
+
+    # print results
+    print(f"Feature Permutation Importance for {csvfile}")
+    for label, importance in pairs:
+        print(f"{label:>25}: {importance:0.4f}")
+
+
+def parse_args() -> argparse.Namespace:
+    # parse command line
+    parser = argparse.ArgumentParser(description="Analyze an SSVC tree csv file")
+    parser.add_argument(
+        "csvfile", metavar="csvfile", type=str, help="the csv file to analyze"
+    )
+    parser.add_argument(
+        "--outcol",
+        dest="outcol",
+        type=str,
+        help="the name of the outcome column",
+        default="priority",
+    )
+    # use permutation or drop column importance?
+    # default is drop column
+    parser.add_argument(
+        "--permutation",
+        dest="permutation",
+        action="store_true",
+        help="use permutation importance instead of drop column importance",
+        default=False,
+    )
+    args = parser.parse_args()
+    return args
+
+
 def main():
     args = parse_args()
 
     # read csv
     df = pd.read_csv(args.csvfile)
-    df = clean_data(df)
+    df = clean_table(df)
 
     # check for target column
     target = args.outcol
@@ -86,101 +216,9 @@ def main():
     dt = DecisionTreeClassifier(random_state=99, criterion="entropy")
 
     if args.permutation:
-        perm_imp_feature(X2, args, cols, dt, y)
+        perm_imp_feature(dt, X2, y, args.csvfile)
     else:
-        drop_col_imp_feature(dt, X2, y)
-
-
-def split_data(df: pd.DataFrame, target: str) -> (pd.DataFrame, pd.DataFrame):
-    """
-    Split a dataframe into features and target
-
-    Args:
-        df: the dataframe to split
-        target: the name of the target column
-
-    Returns:
-        a tuple of (features, target)
-    """
-
-    # construct feature list
-    features = [c for c in df.columns if c != target]
-    y = df[target]
-    X = df[features]
-    return X, y
-
-
-def clean_data(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Clean up a dataframe, normalizing column names and dropping columns we don't need
-
-    Args:
-        df: the dataframe to clean
-
-    Returns:
-        the cleaned dataframe
-    """
-    # normalize data
-    df = df.rename(columns=col_norm)
-    # drop columns we don't need
-    drop_cols = [
-        "row",
-    ]
-    df = df.drop(columns=drop_cols, errors="ignore")
-    return df
-
-
-def drop_col_imp_feature(
-    dt: DecisionTreeClassifier,
-    x: pd.DataFrame,
-    y: pd.DataFrame,
-) -> None:
-    # drop columns and re-run
-    print("\nFeature Importance after Dropping Each Feature")
-    imp = drop_col_feat_imp(dt, x, y)
-    print(imp)
-
-
-def perm_imp_feature(
-    X2: pd.DataFrame, args, cols: list, dt: DecisionTreeClassifier, y: pd.DataFrame
-) -> None:
-    dt.fit(X2, y)
-    # analyze tree
-    results = sklearn.inspection.permutation_importance(dt, X2, y)
-    imp = results["importances_mean"]
-    labels = [c.replace("_", "") for c in cols]
-    pairs = zip(labels, imp)
-    pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
-    # print results
-    print(f"Feature Permutation Importance for {args.csvfile}")
-    for label, importance in pairs:
-        print(f"{label:>25}: {importance:0.4f}")
-
-
-def parse_args():
-    # parse command line
-    parser = argparse.ArgumentParser(description="Analyze an SSVC tree csv file")
-    parser.add_argument(
-        "csvfile", metavar="csvfile", type=str, help="the csv file to analyze"
-    )
-    parser.add_argument(
-        "--outcol",
-        dest="outcol",
-        type=str,
-        help="the name of the outcome column",
-        default="priority",
-    )
-    # use permutation or drop column importance?
-    # default is drop column
-    parser.add_argument(
-        "--permutation",
-        dest="permutation",
-        action="store_true",
-        help="use permutation importance instead of drop column importance",
-        default=False,
-    )
-    args = parser.parse_args()
-    return args
+        drop_col_imp_feature(dt, X2, y, args.csvfile)
 
 
 if __name__ == "__main__":
