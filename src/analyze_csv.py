@@ -153,6 +153,7 @@ def _clean_table(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _perm_feat_imp(model, x, y):
+    model.random_state = 99
     model.fit(x, y)
     # analyze tree
     results = sklearn.inspection.permutation_importance(model, x, y)
