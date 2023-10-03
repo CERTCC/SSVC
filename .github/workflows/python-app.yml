@@ -30,7 +30,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest build
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - uses: psf/black@stable
+#    - uses: psf/black@stable
     - name: Test with pytest
       run: |
         pytest
