@@ -41,6 +41,8 @@ Example:
     """
 
 import argparse
+import sys
+
 import pandas as pd
 import re
 from sklearn.tree import DecisionTreeClassifier
@@ -150,39 +152,17 @@ def _clean_table(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def _drop_col_imp_feature(
-    model: DecisionTreeClassifier,
-    x: pd.DataFrame,
-    y: pd.DataFrame,
-    csvfile: str,
-) -> None:
-    # drop columns and re-run
-    print(f"Feature Importance after Dropping Each Feature in {csvfile}")
-    imp = _drop_col_feat_imp(model, x, y)
-    print(imp)
-
-
-def _perm_imp_feature(
-    model: DecisionTreeClassifier,
-    x: pd.DataFrame,
-    y: pd.DataFrame,
-    csvfile: str,
-) -> None:
+def _perm_feat_imp(model, x, y):
     model.fit(x, y)
     # analyze tree
     results = sklearn.inspection.permutation_importance(model, x, y)
     imp = results["importances_mean"]
-    labels = [c.replace("_", "") for c in x.columns]
-    pairs = zip(labels, imp)
-    pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
 
-    # print results
-    print(f"Feature Permutation Importance for {csvfile}")
-    for label, importance in pairs:
-        print(f"{label:>25}: {importance:0.4f}")
+    imp = _imp_df(x.columns, imp)
+    return imp
 
 
-def _parse_args() -> argparse.Namespace:
+def _parse_args(args) -> argparse.Namespace:
     # parse command line
     parser = argparse.ArgumentParser(description="Analyze an SSVC tree csv file")
     parser.add_argument(
@@ -204,12 +184,11 @@ def _parse_args() -> argparse.Namespace:
         help="use permutation importance instead of drop column importance",
         default=False,
     )
-    args = parser.parse_args()
-    return args
+    return parser.parse_args(args)
 
 
 def main():
-    args = _parse_args()
+    args = _parse_args(sys.argv[1:])
 
     # read csv
     df = pd.read_csv(args.csvfile)
@@ -228,7 +207,6 @@ def main():
     # turn features into ordinals
     # this assumes that every column is an ordinal label
     # and that the ordinals are sorted in ascending order
-    encoded = {c: list(enumerate(X[c].unique())) for c in X.columns}
     cols = []
     for c in X.columns:
         newcol = f"{c}_"
@@ -242,9 +220,14 @@ def main():
     dt = DecisionTreeClassifier(random_state=99, criterion="entropy")
 
     if args.permutation:
-        _perm_imp_feature(dt, X2, y, args.csvfile)
+        imp = _perm_feat_imp(dt, X2, y)
+        print(f"Feature Permutation Importance for {args.csvfile}")
     else:
-        _drop_col_imp_feature(dt, X2, y, args.csvfile)
+        # drop columns and re-run
+        imp = _drop_col_feat_imp(dt, X2, y)
+        print(f"Drop Column Feature Importance for {args.csvfile}")
+
+    print(imp)
 
 
 if __name__ == "__main__":
