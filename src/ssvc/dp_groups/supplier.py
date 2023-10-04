@@ -18,14 +18,14 @@ PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Developer",
     description="The decision points used by the patch developer.",
     version="1.0.0",
-    decision_points=[
+    decision_points=(
         EXPLOITATION_1,
         UTILITY_1,
         TECHNICAL_IMPACT_1,
         VIRULENCE_1,
         VALUE_DENSITY_1,
         SAFETY_IMPACT_1,
-    ],
+    ),
 )
 """
 In SSVC v1, Patch Developer v1 represents the decision points used by the patch developer.

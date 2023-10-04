@@ -21,7 +21,7 @@ COORDINATOR_TRIAGE_1 = SsvcDecisionPointGroup(
     name="Coordinator Triage",
     description="The decision points used by the coordinator during triage.",
     version="1.0.0",
-    decision_points=[
+    decision_points=(
         REPORT_PUBLIC_1,
         SUPPLIER_CONTACTED_1,
         REPORT_CREDIBILITY_1,
@@ -32,7 +32,7 @@ COORDINATOR_TRIAGE_1 = SsvcDecisionPointGroup(
         VALUE_DENSITY_1,
         PUBLIC_SAFETY_IMPACT_1,
         SAFETY_IMPACT_1,
-    ],
+    ),
 )
 """
 Added in SSVC v2, the Coordinator Triage v1.0.0 decision points are used by the coordinator during the intake and triage process.

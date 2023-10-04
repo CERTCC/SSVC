@@ -5,7 +5,7 @@ author: adh
 created_at: 9/20/23 4:47 PM
 """
 from dataclasses import dataclass
-from typing import List
+from typing import Tuple
 
 from dataclasses_json import dataclass_json
 
@@ -20,12 +20,12 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
     Models a group of decision points.
     """
 
-    decision_points: List[SsvcDecisionPoint]
+    decision_points: Tuple[SsvcDecisionPoint]
 
 
 def get_all_decision_points_from(
     glist: list[SsvcDecisionPointGroup],
-) -> list[SsvcDecisionPoint]:
+) -> Tuple[SsvcDecisionPoint]:
     """
     Given a list of SsvcDecisionPointGroup objects, return a list of all
     the unique SsvcDecisionPoint objects contained in those groups.
@@ -44,7 +44,8 @@ def get_all_decision_points_from(
                 continue
             # keep non-duplicates
             dps.append(dp)
-    return dps
+
+    return tuple(dps)
 
 
 def main():

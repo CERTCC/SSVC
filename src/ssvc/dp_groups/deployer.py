@@ -82,14 +82,14 @@ DEPLOYER_3 = SsvcDecisionPointGroup(
     name="SSVC Deployer",
     description="The decision points used by the deployer.",
     version="3.0.0",
-    decision_points=[
+    decision_points=(
         EXPLOITATION_1,
         SYSTEM_EXPOSURE_1_0_1,
         MISSION_IMPACT_2,
         SAFETY_IMPACT_1,
         AUTOMATABLE_1,
         HUMAN_IMPACT_1,
-    ],
+    ),
 )
 """
 In SSVC 2.1, Deployer 3.0.0 includes decision points:

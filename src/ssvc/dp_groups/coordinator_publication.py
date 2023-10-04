@@ -14,11 +14,11 @@ COORDINATOR_PUBLICATION_1 = SsvcDecisionPointGroup(
     name="Coordinator Publication",
     description="The decision points used by the coordinator during publication.",
     version="1.0.0",
-    decision_points=[
+    decision_points=(
         SUPPLIER_INVOLVEMENT_1,
         EXPLOITATION_1,
         PUBLIC_VALUE_ADDED_1,
-    ],
+    ),
 )
 """
 Added in SSVC v2, the Coordinator Publication v1.0.0 decision points are used by the coordinator during the publication process.

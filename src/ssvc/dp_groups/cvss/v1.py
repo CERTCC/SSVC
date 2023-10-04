@@ -42,7 +42,7 @@ CVSSv1 = SsvcDecisionPointGroup(
     name="CVSS",
     version="1.0",
     description="CVSS v1 decision points",
-    decision_points=[
+    decision_points=(
         ACCESS_VECTOR_1,
         ACCESS_COMPLEXITY_1,
         AUTHENTICATION_1,
@@ -55,7 +55,7 @@ CVSSv1 = SsvcDecisionPointGroup(
         REPORT_CONFIDENCE_1,
         COLLATERAL_DAMAGE_POTENTIAL_1,
         TARGET_DISTRIBUTION_1,
-    ],
+    ),
 )
 
 
