@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 """
-file: attack_complexity
-author: adh
-created_at: 9/20/23 2:32 PM
+Models the CVSS Attack Complexity metric as an SSVC decision point.
 """
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-HIGH = SsvcDecisionPointValue(
+_HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="A successful attack depends on conditions beyond the attacker's control.",
 )
 
-LOW = SsvcDecisionPointValue(
+_LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component.",
@@ -26,10 +24,13 @@ ATTACK_COMPLEXITY_1 = CvssDecisionPoint(
     key="AC",
     version="1.0.0",
     values=(
-        LOW,
-        HIGH,
+        _LOW,
+        _HIGH,
     ),
 )
+"""
+Defines LOW and HIGH values for CVSS Attack Complexity.
+"""
 
 
 def main():

@@ -1,32 +1,30 @@
 #!/usr/bin/env python
 """
-file: confidentiality_requirement
-author: adh
-created_at: 9/20/23 2:11 PM
+Models the CVSS Confidentiality Requirement metric as an SSVC decision point.
 """
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-NOT_DEFINED = SsvcDecisionPointValue(
+_NOT_DEFINED = SsvcDecisionPointValue(
     name="Not Defined",
     key="ND",
     description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
 )
 
-HIGH = SsvcDecisionPointValue(
+_HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="Loss of confidentiality is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers).",
 )
 
-MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="Loss of confidentiality is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers).",
 )
 
-LOW = SsvcDecisionPointValue(
+_LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Loss of confidentiality is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers).",
@@ -38,12 +36,15 @@ CONFIDENTIALITY_REQUIREMENT_1 = CvssDecisionPoint(
     key="CR",
     version="1.0.0",
     values=(
-        LOW,
-        MEDIUM,
-        HIGH,
-        NOT_DEFINED,
+        _LOW,
+        _MEDIUM,
+        _HIGH,
+        _NOT_DEFINED,
     ),
 )
+"""
+Defines Low, Medium, High, and Not Defined values for CVSS Confidentiality Requirement.
+"""
 
 
 def main():

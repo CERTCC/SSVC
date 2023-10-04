@@ -1,39 +1,36 @@
 #!/usr/bin/env python
 """
-file: authentication
-author: adh
-created_at: 9/20/23 1:39 PM
+Models the CVSS Authentication metric as an SSVC decision point.
 """
-from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-AUTH_NONE = SsvcDecisionPointValue(
+_AUTH_NONE = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="Authentication is not required to exploit the vulnerability.",
 )
 
-SINGLE = SsvcDecisionPointValue(
+_SINGLE = SsvcDecisionPointValue(
     name="Single",
     key="S",
     description="The vulnerability requires an attacker to be logged into the system (such as at a command line or via a desktop session or web interface).",
 )
 
-MULTIPLE = SsvcDecisionPointValue(
+_MULTIPLE = SsvcDecisionPointValue(
     name="Multiple",
     key="M",
     description="Exploiting the vulnerability requires that the attacker authenticate two or more times, even if the same credentials are used each time.",
 )
-from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-REQUIRED = SsvcDecisionPointValue(
+_REQUIRED = SsvcDecisionPointValue(
     name="Required",
     key="R",
     description="Authentication is required to access and exploit the vulnerability.",
 )
 
-NOT_REQUIRED = SsvcDecisionPointValue(
+_NOT_REQUIRED = SsvcDecisionPointValue(
     name="Not Required",
     key="N",
     description="Authentication is not required to access or exploit the vulnerability.",
@@ -42,22 +39,31 @@ NOT_REQUIRED = SsvcDecisionPointValue(
 AUTHENTICATION_1 = CvssDecisionPoint(
     name="Authentication",
     description="This metric measures whether or not an attacker needs to be authenticated to the target system in order to exploit the vulnerability.",
-    key="AU",
+    key="Au",
     version="1.0.0",
     values=(
-        NOT_REQUIRED,
-        REQUIRED,
+        _NOT_REQUIRED,
+        _REQUIRED,
     ),
 )
+"""
+Includes NOT_REQUIRED and REQUIRED values for CVSS Authentication.
+"""
 
-AUTHENTICATION_2 = deepcopy(AUTHENTICATION_1)
-AUTHENTICATION_2.version = "2.0.0"
-AUTHENTICATION_2.description = "This metric measures the number of times an attacker must authenticate to a target in order to exploit a vulnerability. This metric does not gauge the strength or complexity of the authentication process, only that an attacker is required to provide credentials before an exploit may occur.  The possible values for this metric are listed in Table 3. The fewer authentication instances that are required, the higher the vulnerability score."
-AUTHENTICATION_2.values = (
-    MULTIPLE,
-    SINGLE,
-    AUTH_NONE,
+AUTHENTICATION_2 = CvssDecisionPoint(
+    name="Authentication",
+    description="This metric measures the number of times an attacker must authenticate to a target in order to exploit a vulnerability. This metric does not gauge the strength or complexity of the authentication process, only that an attacker is required to provide credentials before an exploit may occur.  The possible values for this metric are listed in Table 3. The fewer authentication instances that are required, the higher the vulnerability score.",
+    key="Au",
+    version="2.0.0",
+    values=(
+        _MULTIPLE,
+        _SINGLE,
+        _AUTH_NONE,
+    ),
 )
+"""
+Includes MULTIPLE, SINGLE, and AUTH_NONE values for CVSS Authentication.
+"""
 
 
 def main():

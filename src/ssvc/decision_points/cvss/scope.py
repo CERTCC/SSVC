@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 """
-file: scope
-author: adh
-created_at: 9/20/23 2:47 PM
+Models CVSS Scope as an SSVC decision point.
 """
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-CHANGED = SsvcDecisionPointValue(
+_CHANGED = SsvcDecisionPointValue(
     name="Changed",
     key="C",
     description="An exploited vulnerability can affect resources beyond the authorization privileges intended by the vulnerable component. In this case the vulnerable component and the impacted component are different.",
 )
 
-UNCHANGED = SsvcDecisionPointValue(
+_UNCHANGED = SsvcDecisionPointValue(
     name="Unchanged",
     key="U",
     description="An exploited vulnerability can only affect resources managed by the same authority. In this case the vulnerable component and the impacted component are the same.",
@@ -26,10 +24,13 @@ SCOPE_1 = CvssDecisionPoint(
     key="S",
     version="1.0.0",
     values=(
-        UNCHANGED,
-        CHANGED,
+        _UNCHANGED,
+        _CHANGED,
     ),
 )
+"""
+Defines Changed and Unchanged values for CVSS Scope.
+"""
 
 
 def main():

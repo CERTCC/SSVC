@@ -1,41 +1,39 @@
 #!/usr/bin/env python
 """
-file: access_complexity
-author: adh
-created_at: 9/20/23 1:35 PM
+Models the CVSS Access Complexity metric as an SSVC decision point.
 """
-from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-HIGH_2 = SsvcDecisionPointValue(
+_HIGH_2 = SsvcDecisionPointValue(
     name="High", key="H", description="Specialized access conditions exist."
 )
 
-MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="The access conditions are somewhat specialized.",
 )
 
-LOW_2 = SsvcDecisionPointValue(
+_LOW_2 = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist.",
 )
 
-HIGH = SsvcDecisionPointValue(
+_HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="Specialized access conditions exist; for example: the system is exploitable during specific windows of time (a race condition), the system is exploitable under specific circumstances (nondefault configurations), or the system is exploitable with victim interaction (vulnerability exploitable only if user opens e-mail)",
 )
 
-LOW = SsvcDecisionPointValue(
+_LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable.",
 )
-from ssvc.decision_points.cvss.base import CvssDecisionPoint
+
 
 ACCESS_COMPLEXITY_1 = CvssDecisionPoint(
     name="Access Complexity",
@@ -43,18 +41,28 @@ ACCESS_COMPLEXITY_1 = CvssDecisionPoint(
     key="AC",
     version="1.0.0",
     values=(
-        LOW,
-        HIGH,
+        _LOW,
+        _HIGH,
     ),
 )
+"""
+Defines LOW and HIGH values for CVSS Access Complexity.
+"""
 
-ACCESS_COMPLEXITY_2 = deepcopy(ACCESS_COMPLEXITY_1)
-ACCESS_COMPLEXITY_2.version = "2.0.0"
-ACCESS_COMPLEXITY_2.values = (
-    LOW_2,
-    MEDIUM,
-    HIGH_2,
+ACCESS_COMPLEXITY_2 = CvssDecisionPoint(
+    name="Access Complexity",
+    description="This metric measures the complexity of the attack required to exploit the vulnerability once an attacker has gained access to the target system.",
+    key="AC",
+    version="2.0.0",
+    values=(
+        _LOW_2,
+        _MEDIUM,
+        _HIGH_2,
+    ),
 )
+"""
+Updates LOW and HIGH definitions for CVSS Access Complexity. Adds MEDIUM value.
+"""
 
 
 def main():

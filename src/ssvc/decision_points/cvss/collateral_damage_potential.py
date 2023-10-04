@@ -1,57 +1,54 @@
 #!/usr/bin/env python
 """
-file: collateral_damage_potential
-author: adh
-created_at: 9/20/23 1:48 PM
+Models the CVSS Collateral Damage Potential metric as an SSVC decision point.
 """
-from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-NOT_DEFINED = SsvcDecisionPointValue(
+_NOT_DEFINED = SsvcDecisionPointValue(
     name="Not Defined",
     key="ND",
     description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
 )
 
-MEDIUM_HIGH = SsvcDecisionPointValue(
+_MEDIUM_HIGH = SsvcDecisionPointValue(
     name="Medium-High",
     key="MH",
     description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
-LOW_MEDIUM = SsvcDecisionPointValue(
+_LOW_MEDIUM = SsvcDecisionPointValue(
     name="Low-Medium",
     key="LM",
     description="A successful exploit of this vulnerability may result in moderate physical or property damage or loss.",
 )
 
-CDP_NONE_2 = SsvcDecisionPointValue(
+_CDP_NONE_2 = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="There is no potential for loss of life, physical assets, productivity or revenue.",
 )
 
-HIGH = SsvcDecisionPointValue(
+_HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area.",
 )
 
-MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
-LOW = SsvcDecisionPointValue(
+_LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="A successful exploit of this vulnerability may result in light physical or property damage or loss. The system itself may be damaged or destroyed.",
 )
-from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-CDP_NONE = SsvcDecisionPointValue(
+_CDP_NONE = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="There is no potential for physical or property damage.",
@@ -64,23 +61,32 @@ COLLATERAL_DAMAGE_POTENTIAL_1 = CvssDecisionPoint(
     key="CDP",
     version="1.0.0",
     values=(
-        CDP_NONE,
-        LOW,
-        MEDIUM,
-        HIGH,
+        _CDP_NONE,
+        _LOW,
+        _MEDIUM,
+        _HIGH,
     ),
 )
+"""
+Defines None, Low, Medium, and High values for CVSS Collateral Damage Potential.
+"""
 
-COLLATERAL_DAMAGE_POTENTIAL_2 = deepcopy(COLLATERAL_DAMAGE_POTENTIAL_1)
-COLLATERAL_DAMAGE_POTENTIAL_2.version = "2.0.0"
-COLLATERAL_DAMAGE_POTENTIAL_2.values = (
-    CDP_NONE_2,
-    LOW,
-    LOW_MEDIUM,
-    MEDIUM_HIGH,
-    HIGH,
-    NOT_DEFINED,
+COLLATERAL_DAMAGE_POTENTIAL_2 = CvssDecisionPoint(
+    name="Collateral Damage Potential",
+    description="This metric measures the potential for loss of life or physical assets.",
+    key="CDP",
+    version="2.0.0",
+    values=(
+        _CDP_NONE_2,
+        _LOW_MEDIUM,
+        _MEDIUM_HIGH,
+        _HIGH,
+        _NOT_DEFINED,
+    ),
 )
+"""
+Updates None description. Adds Low-Medium, Medium-High, and Not Defined value.
+"""
 
 
 def main():

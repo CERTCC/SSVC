@@ -1,45 +1,42 @@
 #!/usr/bin/env python
 """
-file: confidentiality_impact
-author: adh
-created_at: 9/20/23 1:46 PM
+Models the CVSS Confidentiality Impact metric as an SSVC decision point.
 """
-from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-HIGH = SsvcDecisionPointValue(
+_HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="There is total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server.",
 )
 
-LOW = SsvcDecisionPointValue(
+_LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is constrained. The information disclosure does not cause a direct, serious loss to the impacted component.",
 )
 
-CI_NONE_2 = SsvcDecisionPointValue(
+_CI_NONE_2 = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="There is no loss of confidentiality within the impacted component.",
 )
 
-COMPLETE = SsvcDecisionPointValue(
+_COMPLETE = SsvcDecisionPointValue(
     name="Complete",
     key="C",
     description="A total compromise of critical system information. A complete loss of system protection resulting in all critical system files being revealed. The attacker has sovereign control to read all of the system's data (memory, files, etc).",
 )
 
-PARTIAL = SsvcDecisionPointValue(
+_PARTIAL = SsvcDecisionPointValue(
     name="Partial",
     key="P",
     description="There is considerable informational disclosure. Access to critical system files is possible. There is a loss of important information, but the attacker doesn't have control over what is obtainable or the scope of the loss is constrained.",
 )
 
-CI_NONE = SsvcDecisionPointValue(
+_CI_NONE = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="No impact on confidentiality.",
@@ -51,19 +48,29 @@ CONFIDENTIALITY_IMPACT_1 = CvssDecisionPoint(
     key="C",
     version="1.0.0",
     values=(
-        CI_NONE,
-        PARTIAL,
-        COMPLETE,
+        _CI_NONE,
+        _PARTIAL,
+        _COMPLETE,
     ),
 )
+"""
+Defines None, Partial, and Complete values for CVSS Confidentiality Impact.
+"""
 
-CONFIDENTIALITY_IMPACT_2 = deepcopy(CONFIDENTIALITY_IMPACT_1)
-CONFIDENTIALITY_IMPACT_2.version = "2.0.0"
-CONFIDENTIALITY_IMPACT_2.values = (
-    CI_NONE_2,
-    LOW,
-    HIGH,
+CONFIDENTIALITY_IMPACT_2 = CvssDecisionPoint(
+    name="Confidentiality Impact",
+    description="This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.",
+    key="C",
+    version="2.0.0",
+    values=(
+        _CI_NONE_2,
+        _LOW,
+        _HIGH,
+    ),
 )
+"""
+Updates None. Removes Partial and Complete. Adds Low and High values for CVSS Confidentiality Impact.
+"""
 
 
 def main():

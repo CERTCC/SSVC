@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 """
-file: cvss_dp
-author: adh
-created_at: 9/20/23 12:08 PM
+Provides a base class for modeling CVSS vector metrics as SSVC decision points.
 """
 
 
 from dataclasses import dataclass
+
 from dataclasses_json import dataclass_json
 
 from ssvc.decision_points.base import SsvcDecisionPoint
