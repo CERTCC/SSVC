@@ -41,7 +41,6 @@ from ssvc.dp_groups.base import SsvcDecisionPointGroup
 CVSSv1 = SsvcDecisionPointGroup(
     name="CVSS",
     version="1.0",
-    key="CVSSv1",
     description="CVSS v1 decision points",
     decision_points=[
         ACCESS_VECTOR_1,

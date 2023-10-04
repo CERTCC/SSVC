@@ -48,7 +48,6 @@ from ssvc.decision_points.cvss.target_distribution import (
 CVSSv2 = SsvcDecisionPointGroup(
     name="CVSS Version 2",
     description="The Common Vulnerability Scoring System (CVSS) is a free and open industry standard for assessing the severity of computer system security vulnerabilities. CVSS attempts to assign severity scores to vulnerabilities, allowing responders to prioritize responses and resources according to threat. Scores are calculated based on a formula that depends on several metrics that approximate ease of exploit and the impact of exploit. Scores range from 0 to 10, with 10 being the most severe.",
-    key="CVSSv2",
     version="2.0",
     decision_points=[
         ACCESS_VECTOR_2,

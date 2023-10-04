@@ -20,7 +20,6 @@ from ssvc.dp_groups.base import SsvcDecisionPointGroup
 COORDINATOR_TRIAGE_1 = SsvcDecisionPointGroup(
     name="Coordinator Triage",
     description="The decision points used by the coordinator during triage.",
-    key="CT",
     version="1.0.0",
     decision_points=[
         REPORT_PUBLIC_1,

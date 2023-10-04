@@ -78,7 +78,6 @@ MODIFIED_AVAILABILITY_IMPACT = _modify(AVAILABILITY_IMPACT_2)
 CVSSv3 = SsvcDecisionPointGroup(
     name="CVSS Version 3",
     description="The Common Vulnerability Scoring System (CVSS) is a free and open industry standard for assessing the severity of computer system security vulnerabilities. CVSS attempts to assign severity scores to vulnerabilities, allowing responders to prioritize responses and resources according to threat. Scores are calculated based on a formula that depends on several metrics that approximate ease of exploit and the impact of exploit. Scores range from 0 to 10, with 10 being the most severe.",
-    key="CVSSv3",
     version="3.0",
     decision_points=[
         ATTACK_VECTOR_1,

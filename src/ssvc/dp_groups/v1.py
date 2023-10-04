@@ -15,7 +15,6 @@ GROUPS = [PATCH_APPLIER_1, PATCH_DEVELOPER_1]
 SSVCv1 = SsvcDecisionPointGroup(
     name="SSVCv1",
     description="The first version of the SSVC.",
-    key="SSVCv1",
     version="1.0.0",
     decision_points=get_all_decision_points_from(GROUPS),
 )

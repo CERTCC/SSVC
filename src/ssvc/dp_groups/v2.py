@@ -19,7 +19,6 @@ GROUPS = [COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_2, SUPPLIER_
 SSVCv2 = SsvcDecisionPointGroup(
     name="SSVCv2",
     description="The second version of the SSVC.",
-    key="SSVCv2",
     version="2.0.0",
     decision_points=get_all_decision_points_from(GROUPS),
 )

@@ -17,7 +17,6 @@ from ssvc.dp_groups.base import SsvcDecisionPointGroup
 PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Developer",
     description="The decision points used by the patch developer.",
-    key="PD",
     version="1.0.0",
     decision_points=[
         EXPLOITATION_1,
@@ -48,7 +47,6 @@ SUPPLIER_1 = PATCH_DEVELOPER_1
 SUPPLIER_2 = SsvcDecisionPointGroup(
     name="SSVC Supplier",
     description="The decision points used by the supplier.",
-    key="S",
     version="2.0.0",
     decision_points=[
         EXPLOITATION_1,

@@ -21,7 +21,6 @@ from ssvc.dp_groups.base import SsvcDecisionPointGroup
 PATCH_APPLIER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Applier",
     description="The decision points used by the patch applier.",
-    key="PA",
     version="1.0.0",
     decision_points=[
         EXPLOITATION_1,
@@ -48,7 +47,6 @@ DEPLOYER_1 = PATCH_APPLIER_1
 DEPLOYER_2 = SsvcDecisionPointGroup(
     name="SSVC Deployer",
     description="The decision points used by the deployer.",
-    key="D",
     version="2.0.0",
     decision_points=[
         EXPLOITATION_1,
@@ -83,7 +81,6 @@ Changes from Patch Applier v1.0.0:
 DEPLOYER_3 = SsvcDecisionPointGroup(
     name="SSVC Deployer",
     description="The decision points used by the deployer.",
-    key="D",
     version="3.0.0",
     decision_points=[
         EXPLOITATION_1,
