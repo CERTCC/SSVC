@@ -50,7 +50,7 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
         rows.append(make_row(["---" for _ in headings]))
 
         for value in self.values:
-            rows.append(makess_row([value.name, value.key, value.description]))
+            rows.append(make_row([value.name, value.key, value.description]))
 
         return "\n".join(rows)
 
