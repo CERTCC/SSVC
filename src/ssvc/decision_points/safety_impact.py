@@ -6,9 +6,9 @@ created_at: 9/21/23 10:05 AM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-CATASTROPHIC = SsvcValue(
+CATASTROPHIC = SsvcDecisionPointValue(
     name="Catastrophic",
     key="C",
     description="Any one or more of these conditions hold. "
@@ -20,7 +20,7 @@ CATASTROPHIC = SsvcValue(
     "Psychological: N/A.",
 )
 
-HAZARDOUS = SsvcValue(
+HAZARDOUS = SsvcDecisionPointValue(
     name="Hazardous",
     key="H",
     description="Any one or more of these conditions hold. "
@@ -32,7 +32,7 @@ HAZARDOUS = SsvcValue(
     "Psychological: N/A.",
 )
 
-MAJOR = SsvcValue(
+MAJOR = SsvcDecisionPointValue(
     name="Major",
     key="J",
     description="Any one or more of these conditions hold. "
@@ -45,7 +45,7 @@ MAJOR = SsvcValue(
     "Psychological: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people.",
 )
 
-MINOR = SsvcValue(
+MINOR = SsvcDecisionPointValue(
     name="Minor",
     key="M",
     description="Any one or more of these conditions hold. "
@@ -58,7 +58,7 @@ MINOR = SsvcValue(
     "Psychological: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons.",
 )
 
-SAF_NONE = SsvcValue(
+SAF_NONE = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="The effect is below the threshold for all aspects described in Minor.",

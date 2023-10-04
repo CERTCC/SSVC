@@ -4,15 +4,15 @@ file: supplier_contacted
 author: adh
 created_at: 9/21/23 11:17 AM
 """
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-YES = SsvcValue(
+YES = SsvcDecisionPointValue(
     name="Yes",
     key="Y",
     description="The supplier has been contacted.",
 )
 
-NO = SsvcValue(
+NO = SsvcDecisionPointValue(
     name="No",
     key="N",
     description="The supplier has not been contacted.",

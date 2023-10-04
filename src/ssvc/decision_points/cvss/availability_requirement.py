@@ -5,28 +5,28 @@ author: adh
 created_at: 9/20/23 2:11 PM
 """
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-NOT_DEFINED = SsvcValue(
+NOT_DEFINED = SsvcDecisionPointValue(
     name="Not Defined",
     key="ND",
     description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
 )
 
-HIGH = SsvcValue(
+HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="Loss of availability is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers).",
 )
 
-MEDIUM = SsvcValue(
+MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="Loss of availability is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers).",
 )
 
-LOW = SsvcValue(
+LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Loss of availability is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers).",

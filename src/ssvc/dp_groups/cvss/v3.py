@@ -6,7 +6,7 @@ created_at: 9/20/23 2:30 PM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.decision_points.cvss.attack_complexity import (
     ATTACK_COMPLEXITY_1,
@@ -58,7 +58,9 @@ def _modify(obj):
     o = deepcopy(obj)
     o.name = "Modified " + o.name
     o.key = "M" + o.key
-    nd = SsvcValue(name="Not Defined", key="ND", description="Ignore this value")
+    nd = SsvcDecisionPointValue(
+        name="Not Defined", key="ND", description="Ignore this value"
+    )
     values = list(o.values)
     values.append(nd)
     o.values = tuple(values)

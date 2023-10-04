@@ -6,52 +6,52 @@ created_at: 9/20/23 1:48 PM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 
-NOT_DEFINED = SsvcValue(
+NOT_DEFINED = SsvcDecisionPointValue(
     name="Not Defined",
     key="ND",
     description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
 )
 
-MEDIUM_HIGH = SsvcValue(
+MEDIUM_HIGH = SsvcDecisionPointValue(
     name="Medium-High",
     key="MH",
     description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
-LOW_MEDIUM = SsvcValue(
+LOW_MEDIUM = SsvcDecisionPointValue(
     name="Low-Medium",
     key="LM",
     description="A successful exploit of this vulnerability may result in moderate physical or property damage or loss.",
 )
 
-CDP_NONE_2 = SsvcValue(
+CDP_NONE_2 = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="There is no potential for loss of life, physical assets, productivity or revenue.",
 )
 
-HIGH = SsvcValue(
+HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area.",
 )
 
-MEDIUM = SsvcValue(
+MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
-LOW = SsvcValue(
+LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="A successful exploit of this vulnerability may result in light physical or property damage or loss. The system itself may be damaged or destroyed.",
 )
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-CDP_NONE = SsvcValue(
+CDP_NONE = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="There is no potential for physical or property damage.",

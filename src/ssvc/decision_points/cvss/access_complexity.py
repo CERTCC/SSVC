@@ -6,31 +6,31 @@ created_at: 9/20/23 1:35 PM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 
-HIGH_2 = SsvcValue(
+HIGH_2 = SsvcDecisionPointValue(
     name="High", key="H", description="Specialized access conditions exist."
 )
 
-MEDIUM = SsvcValue(
+MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="The access conditions are somewhat specialized.",
 )
 
-LOW_2 = SsvcValue(
+LOW_2 = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist.",
 )
 
-HIGH = SsvcValue(
+HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="Specialized access conditions exist; for example: the system is exploitable during specific windows of time (a race condition), the system is exploitable under specific circumstances (nondefault configurations), or the system is exploitable with victim interaction (vulnerability exploitable only if user opens e-mail)",
 )
 
-LOW = SsvcValue(
+LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable.",

@@ -6,7 +6,7 @@ created_at: 9/20/23 1:46 PM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
 AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
@@ -15,13 +15,15 @@ AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
     key="A",
     version="1.0.0",
     values=[
-        SsvcValue(name="None", key="N", description="No impact on availability."),
-        SsvcValue(
+        SsvcDecisionPointValue(
+            name="None", key="N", description="No impact on availability."
+        ),
+        SsvcDecisionPointValue(
             name="Partial",
             key="P",
             description="Considerable lag in or interruptions in resource availability. For example, a network-based flood attack that reduces available bandwidth to a web server farm to such an extent that only a small number of connections successfully complete.",
         ),
-        SsvcValue(
+        SsvcDecisionPointValue(
             name="Complete",
             key="C",
             description="Total shutdown of the affected resource. The attacker can render the resource completely unavailable.",
@@ -33,17 +35,17 @@ AVAILABILITY_IMPACT_2 = deepcopy(AVAILABILITY_IMPACT_1)
 AVAILABILITY_IMPACT_2.version = "2.0.0"
 AVAILABILITY_IMPACT_2.description = "This metric measures the impact to availability of a successfully exploited vulnerability."
 AVAILABILITY_IMPACT_2.values = [
-    SsvcValue(
+    SsvcDecisionPointValue(
         name="None",
         key="N",
         description="There is no impact to the availability of the system.",
     ),
-    SsvcValue(
+    SsvcDecisionPointValue(
         name="Low",
         key="L",
         description="There is reduced performance or interruptions in resource availability.",
     ),
-    SsvcValue(
+    SsvcDecisionPointValue(
         name="High",
         key="H",
         description="There is total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed).",

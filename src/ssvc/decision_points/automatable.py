@@ -4,16 +4,16 @@ file: automatable
 author: adh
 created_at: 9/21/23 10:37 AM
 """
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
 
-AUT_NO = SsvcValue(
+AUT_NO = SsvcDecisionPointValue(
     name="No",
     key="N",
     description="Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. "
     "These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation.",
 )
-AUT_YES = SsvcValue(
+AUT_YES = SsvcDecisionPointValue(
     name="Yes",
     key="Y",
     description="Attackers can reliably automate steps 1-4 of the kill chain.",

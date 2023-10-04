@@ -4,15 +4,15 @@ file: public_safety_impact
 author: adh
 created_at: 9/21/23 10:43 AM
 """
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-SIGNIFICANT = SsvcValue(
+SIGNIFICANT = SsvcDecisionPointValue(
     name="Significant",
     description="Safety impact of Major, Hazardous, or Catastrophic.",
     key="S",
 )
 
-MINIMAL = SsvcValue(
+MINIMAL = SsvcDecisionPointValue(
     name="Minimal", description="Safety impact of None or Minor.", key="M"
 )
 

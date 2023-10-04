@@ -4,27 +4,27 @@ file: human_impact
 author: adh
 created_at: 9/21/23 10:49 AM
 """
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-VERY_HIGH = SsvcValue(
+VERY_HIGH = SsvcDecisionPointValue(
     name="Very High",
     key="VH",
     description="Safety=Catastrophic OR Mission=Mission Failure",
 )
 
-HIGH = SsvcValue(
+HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="Safety=Hazardous, Mission=None/Degraded/Crippled/MEF Failure OR Safety=Major, Mission=MEF Failure",
 )
 
-MEDIUM = SsvcValue(
+MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
     description="Safety=None/Minor, Mission=MEF Failure OR Safety=Major, Mission=None/Degraded/Crippled",
 )
 
-LOW = SsvcValue(
+LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Safety=None/Minor, Mission=None/Degraded/Crippled",

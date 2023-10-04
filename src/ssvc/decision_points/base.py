@@ -19,7 +19,7 @@ from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 
 @dataclass_json
 @dataclass(kw_only=True)
-class SsvcValue(_Base, _Keyed):
+class SsvcDecisionPointValue(_Base, _Keyed):
     """
     Models a single value option for a decision point.
     """
@@ -34,7 +34,7 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
     Models a single decision point as a list of values.
     """
 
-    values: Tuple[SsvcValue]
+    values: Tuple[SsvcDecisionPointValue]
 
     def to_table(self):
         rows = []
@@ -56,11 +56,13 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
 
 
 def main():
-    opt_none = SsvcValue(name="None", key="N", description="No exploit available")
-    opt_poc = SsvcValue(
+    opt_none = SsvcDecisionPointValue(
+        name="None", key="N", description="No exploit available"
+    )
+    opt_poc = SsvcDecisionPointValue(
         name="PoC", key="P", description="Proof of concept exploit available"
     )
-    opt_active = SsvcValue(
+    opt_active = SsvcDecisionPointValue(
         name="Active", key="A", description="Active exploitation observed"
     )
     opts = [opt_none, opt_poc, opt_active]

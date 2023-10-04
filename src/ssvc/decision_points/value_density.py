@@ -4,15 +4,15 @@ file: value_density
 author: adh
 created_at: 9/21/23 10:01 AM
 """
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-CONCENTRATED = SsvcValue(
+CONCENTRATED = SsvcDecisionPointValue(
     name="Concentrated",
     key="C",
     description="The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users.",
 )
 
-DIFFUSE = SsvcValue(
+DIFFUSE = SsvcDecisionPointValue(
     name="Diffuse",
     key="D",
     description="The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small.",

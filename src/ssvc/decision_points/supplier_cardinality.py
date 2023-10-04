@@ -4,15 +4,15 @@ file: supplier_cardinality
 author: adh
 created_at: 9/21/23 11:20 AM
 """
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-MULTIPLE = SsvcValue(
+MULTIPLE = SsvcDecisionPointValue(
     name="Multiple",
     key="M",
     description="There are multiple suppliers of the vulnerable component.",
 )
 
-ONE = SsvcValue(
+ONE = SsvcDecisionPointValue(
     name="One",
     key="O",
     description="There is only one supplier of the vulnerable component.",

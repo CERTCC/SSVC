@@ -4,28 +4,28 @@ file: impact_bias
 author: adh
 created_at: 9/20/23 1:47 PM
 """
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-AVAILABILITY = SsvcValue(
+AVAILABILITY = SsvcDecisionPointValue(
     name="Availability",
     key="A",
     description="Availability Impact is assigned greater weight than Confidentiality Impact or Integrity Impact.",
 )
 
-INTEGRITY = SsvcValue(
+INTEGRITY = SsvcDecisionPointValue(
     name="Integrity",
     key="I",
     description="Integrity Impact is assigned greater weight than Confidentiality Impact or Availability Impact.",
 )
 
-CONFIDENTIALITY = SsvcValue(
+CONFIDENTIALITY = SsvcDecisionPointValue(
     name="Confidentiality",
     key="C",
     description="Confidentiality impact is assigned greater weight than Integrity Impact or Availability Impact.",
 )
 
-NORMAL = SsvcValue(
+NORMAL = SsvcDecisionPointValue(
     name="Normal",
     key="N",
     description="Confidentiality Impact, Integrity Impact, and Availability Impact are all assigned the same weight.",

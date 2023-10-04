@@ -5,21 +5,21 @@ author: adh
 created_at: 9/21/23 11:28 AM
 """
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-UNCOOPERATIVE = SsvcValue(
+UNCOOPERATIVE = SsvcDecisionPointValue(
     name="Uncooperative/Unresponsive",
     key="UU",
     description="The supplier has not responded, declined to generate a remediation, or no longer exists.",
 )
 
-COOPERATIVE = SsvcValue(
+COOPERATIVE = SsvcDecisionPointValue(
     name="Cooperative",
     key="C",
     description="The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.",
 )
 
-FIX_READY = SsvcValue(
+FIX_READY = SsvcDecisionPointValue(
     name="Fix Ready",
     key="FR",
     description="The supplier has provided a patch or fix.",

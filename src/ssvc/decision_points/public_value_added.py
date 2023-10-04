@@ -5,21 +5,21 @@ author: adh
 created_at: 9/21/23 11:27 AM
 """
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-LIMITED = SsvcValue(
+LIMITED = SsvcDecisionPointValue(
     name="Limited",
     key="L",
     description="Minimal value added to the existing public information because existing information is already high quality and in multiple outlets.",
 )
 
-AMPLIATIVE = SsvcValue(
+AMPLIATIVE = SsvcDecisionPointValue(
     name="Ampliative",
     key="A",
     description="Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.",
 )
 
-PRECEDENCE = SsvcValue(
+PRECEDENCE = SsvcDecisionPointValue(
     name="Precedence",
     key="P",
     description="The publication would be the first publicly available, or be coincident with the first publicly available.",

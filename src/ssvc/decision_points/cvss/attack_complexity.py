@@ -5,16 +5,16 @@ author: adh
 created_at: 9/20/23 2:32 PM
 """
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-HIGH = SsvcValue(
+HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
     description="A successful attack depends on conditions beyond the attacker's control.",
 )
 
-LOW = SsvcValue(
+LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component.",

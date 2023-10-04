@@ -5,16 +5,16 @@ author: adh
 created_at: 9/20/23 2:47 PM
 """
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-CHANGED = SsvcValue(
+CHANGED = SsvcDecisionPointValue(
     name="Changed",
     key="C",
     description="An exploited vulnerability can affect resources beyond the authorization privileges intended by the vulnerable component. In this case the vulnerable component and the impacted component are different.",
 )
 
-UNCHANGED = SsvcValue(
+UNCHANGED = SsvcDecisionPointValue(
     name="Unchanged",
     key="U",
     description="An exploited vulnerability can only affect resources managed by the same authority. In this case the vulnerable component and the impacted component are the same.",

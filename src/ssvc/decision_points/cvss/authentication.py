@@ -6,34 +6,34 @@ created_at: 9/20/23 1:39 PM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPointValue
 
-AUTH_NONE = SsvcValue(
+AUTH_NONE = SsvcDecisionPointValue(
     name="None",
     key="N",
     description="Authentication is not required to exploit the vulnerability.",
 )
 
-SINGLE = SsvcValue(
+SINGLE = SsvcDecisionPointValue(
     name="Single",
     key="S",
     description="The vulnerability requires an attacker to be logged into the system (such as at a command line or via a desktop session or web interface).",
 )
 
-MULTIPLE = SsvcValue(
+MULTIPLE = SsvcDecisionPointValue(
     name="Multiple",
     key="M",
     description="Exploiting the vulnerability requires that the attacker authenticate two or more times, even if the same credentials are used each time.",
 )
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
-REQUIRED = SsvcValue(
+REQUIRED = SsvcDecisionPointValue(
     name="Required",
     key="R",
     description="Authentication is required to access and exploit the vulnerability.",
 )
 
-NOT_REQUIRED = SsvcValue(
+NOT_REQUIRED = SsvcDecisionPointValue(
     name="Not Required",
     key="N",
     description="Authentication is not required to access or exploit the vulnerability.",

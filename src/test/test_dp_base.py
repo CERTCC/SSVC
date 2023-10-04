@@ -4,7 +4,9 @@ import ssvc.decision_points.base as base
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.value = base.SsvcValue(name="foo", key="bar", description="baz")
+        self.value = base.SsvcDecisionPointValue(
+            name="foo", key="bar", description="baz"
+        )
 
         self.dp = base.SsvcDecisionPoint(
             name="foo",
@@ -43,7 +45,7 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(json, str)
         self.assertGreater(len(json), 0)
 
-        obj2 = base.SsvcValue.from_json(json)
+        obj2 = base.SsvcDecisionPointValue.from_json(json)
         self.assertEqual(obj, obj2)
 
     def test_ssvc_decision_point_json_roundtrip(self):

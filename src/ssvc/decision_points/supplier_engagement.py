@@ -5,15 +5,15 @@ author: adh
 created_at: 9/21/23 11:22 AM
 """
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
-UNRESPONSIVE = SsvcValue(
+UNRESPONSIVE = SsvcDecisionPointValue(
     name="Unresponsive",
     key="U",
     description="The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort.",
 )
 
-ACTIVE = SsvcValue(
+ACTIVE = SsvcDecisionPointValue(
     name="Active",
     key="A",
     description="The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort.",

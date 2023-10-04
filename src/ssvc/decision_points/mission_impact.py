@@ -6,38 +6,40 @@ created_at: 9/21/23 10:20 AM
 """
 from copy import deepcopy
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcValue
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
 
-MISSION_FAILURE = SsvcValue(
+MISSION_FAILURE = SsvcDecisionPointValue(
     name="Mission Failure",
     key="MF",
     description="Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails",
 )
 
-MEF_FAILURE = SsvcValue(
+MEF_FAILURE = SsvcDecisionPointValue(
     name="MEF Failure",
     key="MEF",
     description="Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time",
 )
 
-MEF_CRIPPLED = SsvcValue(
+MEF_CRIPPLED = SsvcDecisionPointValue(
     name="MEF Support Crippled",
     key="MSC",
     description="Activities that directly support essential functions are crippled; essential functions continue for a time",
 )
 
 
-MI_NED = SsvcValue(
+MI_NED = SsvcDecisionPointValue(
     name="Non-Essential Degraded",
     key="NED",
     description="Degradation of non-essential functions; chronic degradation would eventually harm essential functions",
 )
 
-MI_NONE = SsvcValue(name="None", key="N", description="Little to no impact")
+MI_NONE = SsvcDecisionPointValue(
+    name="None", key="N", description="Little to no impact"
+)
 
 # combine MI_NONE and MI_NED into a single value
-DEGRADED = SsvcValue(
+DEGRADED = SsvcDecisionPointValue(
     name="Degraded",
     key="D",
     description="Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions",
