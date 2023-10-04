@@ -31,6 +31,16 @@ class _Namespaced:
 
 @dataclass_json
 @dataclass(kw_only=True)
+class _Keyed:
+    """
+    Mixin class for keyed SSVC objects.
+    """
+
+    key: str
+
+
+@dataclass_json
+@dataclass(kw_only=True)
 class _Base:
     """
     Base class for SSVC objects.
@@ -38,7 +48,6 @@ class _Base:
 
     name: str
     description: str
-    key: str
 
 
 def main():

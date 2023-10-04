@@ -10,7 +10,7 @@ from typing import Tuple
 
 from dataclasses_json import dataclass_json
 
-from ssvc._mixins import _Base, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 
 
 ## notes
@@ -19,7 +19,7 @@ from ssvc._mixins import _Base, _Namespaced, _Versioned
 
 @dataclass_json
 @dataclass(kw_only=True)
-class SsvcValue(_Base):
+class SsvcValue(_Base, _Keyed):
     """
     Models a single value option for a decision point.
     """
@@ -29,7 +29,7 @@ class SsvcValue(_Base):
 
 @dataclass_json
 @dataclass(kw_only=True)
-class SsvcDecisionPoint(_Base, _Versioned, _Namespaced):
+class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
     """
     Models a single decision point as a list of values.
     """
