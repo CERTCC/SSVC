@@ -1,3 +1,5 @@
+# Safety Impact
+
 !!! note "Safety Impact"
 
     Safety Impacts of Affected System Compromise
