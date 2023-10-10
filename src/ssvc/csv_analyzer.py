@@ -3,7 +3,7 @@
 This module provides a script for analyzing an SSVC tree csv file.
 
 ```shell
-usage: analyze_csv.py [-h] [--outcol OUTCOL] [--permutation] csvfile
+usage: csv_analyzer.py [-h] [--outcol OUTCOL] [--permutation] csvfile
 
 Analyze an SSVC tree csv file
 
@@ -27,7 +27,7 @@ Example:
     ```
     Analyze the csv file:
     ```shell
-    $ python analyze_csv.py test.csv
+    $ python csv_analyzer.py test.csv
 
     Feature Importance after Dropping Each Feature in test.csv
              feature  feature_importance
@@ -41,13 +41,13 @@ Example:
     """
 
 import argparse
+import re
 import sys
 
 import pandas as pd
-import re
-from sklearn.tree import DecisionTreeClassifier
 import sklearn.inspection
 from sklearn.base import clone
+from sklearn.tree import DecisionTreeClassifier
 
 
 def _col_norm(c: str) -> str:
