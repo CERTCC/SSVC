@@ -69,6 +69,8 @@ nav:
       - System Exposure: 'reference/decision_points/system_exposure.md'
       - Technical Impact: 'reference/decision_points/technical_impact.md'
       - Value Density: 'reference/decision_points/value_density.md'
+    - Code:
+        analyze_csv: 'reference/code/analyze_csv.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
@@ -105,7 +107,10 @@ plugins:
   - table-reader
   - bibtex:
       bib_file: 'doc/md_src_files/sources_ssvc.bib'
-  # NOTE print-site must be last in the list of plugins (see its docs for why)
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [ 'src' ]
   - print-site
 repo_url: 'https://github.com/CERTCC/SSVC'
 repo_name: 'CERTCC/SSVC'
