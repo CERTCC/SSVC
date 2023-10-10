@@ -1,4 +1,4 @@
-## Tree Construction and Customization Guidance
+# Tree Construction and Customization Guidance
 
 Stakeholders are encouraged to customize the SSVC decision process to their needs.
 Indeed, the first part of SSVC stands for “stakeholder-specific."

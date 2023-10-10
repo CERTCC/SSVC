@@ -1,3 +1,5 @@
+# Mission Impact
+
 !!! note "Mission Impact"
 
     Impact on Mission Essential Functions of the Organization

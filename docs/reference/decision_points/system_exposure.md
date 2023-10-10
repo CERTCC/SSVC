@@ -1,3 +1,5 @@
+# System Exposure
+
 !!! note "System Exposure"
 
     The Accessible Attack Surface of the Affected System or Service
