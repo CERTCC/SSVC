@@ -1,3 +1,5 @@
+# Mission Impact
+
 !!! note "Mission Impact"
 
     === "Text"

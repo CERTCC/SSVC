@@ -1,3 +1,5 @@
+# Safety Impact
+
 !!! note "Safety Impact"
 
     === "Text"
