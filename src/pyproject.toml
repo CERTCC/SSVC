@@ -52,6 +52,9 @@ exclude = ["test*"]  # exclude packages matching these glob patterns (empty by d
 
 [tool.setuptools_scm]
 version_file = "ssvc/_version.py"
+root = ".."
+relative_to = "pyproject.toml"
+
 
 #[tools.setuptools.dynamic]
 
