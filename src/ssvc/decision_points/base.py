@@ -5,30 +5,16 @@ author: adh
 created_at: 9/20/23 10:07 AM
 """
 
-import logging
-from dataclasses import dataclass, field
-from typing import ClassVar, Dict, Tuple
+from dataclasses import dataclass
+from typing import Tuple
 
-from dataclasses_json import config, dataclass_json
+from dataclasses_json import dataclass_json
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
-
-class _DecisionPoints:
-    """
-    A collection of SSVC decision points.
-    """
-
-    registry: ClassVar[Dict[str, "SsvcDecisionPoint"]] = {}
-
-    def __iter__(self):
-        return iter(self.registry.values())
-
-
-REGISTERED_DECISION_POINTS = _DecisionPoints()
+## notes
+# based on https://gist.githubusercontent.com/sei-vsarvepalli/de2cd7dae33e1e1dc906d50846becb45/raw/2a85d08a4028f6dd3cc162d4ace3509e0458426f/Exploitation.json
 
 
 @dataclass_json
@@ -50,15 +36,11 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
 
     values: Tuple[SsvcDecisionPointValue]
 
-    # this is only for our own use in Python land, exclude it from serialization
-    _fullname: str = field(
-        init=False, repr=False, default=None, metadata=config(exclude=lambda x: True)
-    )
-
-    def __post_init__(self):
-        self._fullname = f"{self.namespace} {self.name} v{self.version}"
-        logging.debug(f"Add {self._fullname} to registry")
-        REGISTERED_DECISION_POINTS.registry[self._fullname] = self
+    def __iter__(self):
+        """
+        Allow iteration over the decision points in the group.
+        """
+        return iter(self.values)
 
     def to_table(self):
         rows = []
@@ -80,26 +62,25 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
 
 
 def main():
+    opt_none = SsvcDecisionPointValue(
+        name="None", key="N", description="No exploit available"
+    )
+    opt_poc = SsvcDecisionPointValue(
+        name="PoC", key="P", description="Proof of concept exploit available"
+    )
+    opt_active = SsvcDecisionPointValue(
+        name="Active", key="A", description="Active exploitation observed"
+    )
+    opts = [opt_none, opt_poc, opt_active]
+
     dp = SsvcDecisionPoint(
-        _comment="This is an optional comment that will be included in the object.",
+        values=opts,
         name="Exploitation",
         description="Is there an exploit available?",
         key="E",
         version="1.0.0",
-        values=(
-            SsvcDecisionPointValue(
-                name="None", key="N", description="No exploit available"
-            ),
-            SsvcDecisionPointValue(
-                name="PoC",
-                key="P",
-                description="Proof of concept exploit available",
-            ),
-            SsvcDecisionPointValue(
-                name="Active", key="A", description="Active exploitation observed"
-            ),
-        ),
     )
+
     print(dp.to_json(indent=2))
 
 
