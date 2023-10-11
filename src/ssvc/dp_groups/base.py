@@ -25,7 +25,7 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
     def schemaprops(root=True):
         props = {"$schema": "https://json-schema.org/draft/2020-12/schema",
                  "title":"Decision Points Group schema definition",
-                 "$id": "https://certcc.github.io/SSVC/data/schema/dp.json",
+                 "$id": "https://certcc.github.io/SSVC/docs/reference/schema/Decision_Point_Group.schema.json",
                  "type": "object",
                  "additionalProperties": False
                  }
