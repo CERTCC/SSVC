@@ -23,7 +23,11 @@ class SsvcDecisionPointValue(_Base, _Keyed):
     """
     Models a single value option for a decision point.
     """
-
+    def schemaprops(root=False):
+        props = {"description": "Decision Point Values are valid results from a Decision Point",
+                 "uniqueItems": True
+                 }
+        return props
     pass
 
 
@@ -35,6 +39,19 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
     """
 
     values: Tuple[SsvcDecisionPointValue]
+
+    def schemaprops(root=True):
+        props = {"$schema": "https://json-schema.org/draft/2020-12/schema",
+                 "title":"Decision Point schema definition",
+                 "$id": "https://certcc.github.io/SSVC/data/schema/dp.json",
+                 "description": "Decision points are the basic building blocks of SSVC decision functions. Individual decision points describe a single aspect of the input to a decision function.",
+                 "type": "object",
+                 "additionalProperties": False
+                 }
+        if not root:
+            for d in ['$schema','$id','title','type']:
+                del props[d]
+        return props
 
     def to_table(self):
         rows = []

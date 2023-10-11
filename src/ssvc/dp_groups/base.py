@@ -22,9 +22,20 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
 
     decision_points: Tuple[SsvcDecisionPoint]
 
-
+    def schemaprops(root=True):
+        props = {"$schema": "https://json-schema.org/draft/2020-12/schema",
+                 "title":"Decision Points Group schema definition",
+                 "$id": "https://certcc.github.io/SSVC/data/schema/dp.json",
+                 "type": "object",
+                 "additionalProperties": False
+                 }
+        if not root:
+            for d in ['$schema','$id','title','type']:
+                del props[d]
+        return props
+    
 def get_all_decision_points_from(
-    glist: list[SsvcDecisionPointGroup],
+        glist: list[SsvcDecisionPointGroup],
 ) -> Tuple[SsvcDecisionPoint]:
     """
     Given a list of SsvcDecisionPointGroup objects, return a list of all
