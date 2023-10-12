@@ -5,12 +5,30 @@ author: adh
 created_at: 9/20/23 10:07 AM
 """
 
-from dataclasses import dataclass
-from typing import Tuple
+import logging
+from dataclasses import dataclass, field
+from typing import ClassVar, Dict, Tuple
 
-from dataclasses_json import dataclass_json
+from dataclasses_json import config, dataclass_json
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+
+class _DecisionPoints:
+    """
+    A collection of SSVC decision points.
+    """
+
+    registry: ClassVar[Dict[str, "SsvcDecisionPoint"]] = {}
+
+    def __iter__(self):
+        return iter(self.registry.values())
+
+
+REGISTERED_DECISION_POINTS = _DecisionPoints()
 
 
 @dataclass_json
@@ -31,6 +49,16 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
     """
 
     values: Tuple[SsvcDecisionPointValue]
+
+    # this is only for our own use in Python land, exclude it from serialization
+    _fullname: str = field(
+        init=False, repr=False, default=None, metadata=config(exclude=lambda x: True)
+    )
+
+    def __post_init__(self):
+        self._fullname = f"{self.namespace} {self.name} v{self.version}"
+        logging.debug(f"Add {self._fullname} to registry")
+        REGISTERED_DECISION_POINTS.registry[self._fullname] = self
 
     def to_table(self):
         rows = []
