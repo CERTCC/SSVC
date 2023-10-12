@@ -37,13 +37,20 @@ def get_all_decision_points_from(
         list: A list of SsvcDecisionPoint objects.
     """
     dps = []
+    seen = set()
+
     for group in glist:
         for dp in group.decision_points:
             if dp in dps:
                 # skip duplicates
                 continue
+            key = (dp.name, dp.version)
+            if key in seen:
+                # skip duplicates
+                continue
             # keep non-duplicates
             dps.append(dp)
+            seen.add(key)
 
     return tuple(dps)
 
