@@ -7,34 +7,39 @@ created_at: 9/21/23 3:20 PM
 from ssvc.decision_points.base import SsvcDecisionPoint
 from ssvc.dp_groups.base import SsvcDecisionPointGroup, get_all_decision_points_from
 
+_DISCLAIMER = "This file is auto-generated. Do not edit."
 
-def write_json(fname: str, dp: SsvcDecisionPoint) -> None:
+
+def _html_comment(s: str) -> str:
+    return f"<!-- {s} -->\n"
+
+
+def write_file(fname: str, blob: str) -> None:
     with open(fname, "w") as f:
         print(f"Writing {fname}")
-        f.write(dp.to_json(indent=2))
-        f.write("\n")
-
-
-def write_markdown_table(fname: str, dp: SsvcDecisionPoint) -> None:
-    with open(fname, "w") as f:
-        print(f"Writing {fname}")
-        f.write(dp.to_table())
+        f.write(blob)
         f.write("\n")
 
 
 def dump_dp(dp: SsvcDecisionPoint, path: str = None) -> None:
+    dp._comment = _DISCLAIMER
+    json_blob = dp.to_json(indent=2)
+
     if path is None:
         # act like we're in a json list
-        lines = [f"  {line}" for line in dp.to_json(indent=2).split("\n")]
+        lines = [f"  {line}" for line in json_blob.split("\n")]
         print("\n".join(lines) + ",")
     else:
         basename = dp.name.strip().lower().replace(" ", "_")
+        basename += f"_{dp.version.replace('.', '_')}"
 
         json_fname = f"{path}/{basename}.json"
-        write_json(json_fname, dp)
+        write_file(json_fname, json_blob)
 
         table_fname = f"{path}/{basename}.md"
-        write_markdown_table(table_fname, dp)
+        md_str = _html_comment(_DISCLAIMER)
+        md_str += dp.to_table()
+        write_file(table_fname, md_str)
 
 
 def group_to_jsonfiles(group: SsvcDecisionPointGroup, path: str = None) -> None:
