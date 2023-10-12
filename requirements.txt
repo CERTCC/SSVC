@@ -10,3 +10,4 @@ mkdocs-print-site-plugin
 dataclasses-json
 pandas
 scikit-learn
+jsonschema

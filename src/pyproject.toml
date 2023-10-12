@@ -32,7 +32,7 @@ classifiers = [
 ]
 dependencies = [
     "mkdocs","mkdocs-material","mkdocs-material-extensions","mkdocstrings","mkdocstrings-python",
-    "mkdocs-include-markdown-plugin", "pandas","scipy", "dataclasses-json"
+    "mkdocs-include-markdown-plugin", "pandas","scipy", "dataclasses-json", "jsonschema"
 ]
 dynamic = ["version",]
 
