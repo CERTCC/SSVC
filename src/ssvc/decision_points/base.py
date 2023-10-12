@@ -13,10 +13,6 @@ from dataclasses_json import dataclass_json
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 
 
-## notes
-# based on https://gist.githubusercontent.com/sei-vsarvepalli/de2cd7dae33e1e1dc906d50846becb45/raw/2a85d08a4028f6dd3cc162d4ace3509e0458426f/Exploitation.json
-
-
 @dataclass_json
 @dataclass(kw_only=True)
 class SsvcDecisionPointValue(_Base, _Keyed):
@@ -56,25 +52,26 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
 
 
 def main():
-    opt_none = SsvcDecisionPointValue(
-        name="None", key="N", description="No exploit available"
-    )
-    opt_poc = SsvcDecisionPointValue(
-        name="PoC", key="P", description="Proof of concept exploit available"
-    )
-    opt_active = SsvcDecisionPointValue(
-        name="Active", key="A", description="Active exploitation observed"
-    )
-    opts = [opt_none, opt_poc, opt_active]
-
     dp = SsvcDecisionPoint(
-        values=opts,
+        _comment="This is an optional comment that will be included in the object.",
         name="Exploitation",
         description="Is there an exploit available?",
         key="E",
         version="1.0.0",
+        values=(
+            SsvcDecisionPointValue(
+                name="None", key="N", description="No exploit available"
+            ),
+            SsvcDecisionPointValue(
+                name="PoC",
+                key="P",
+                description="Proof of concept exploit available",
+            ),
+            SsvcDecisionPointValue(
+                name="Active", key="A", description="Active exploitation observed"
+            ),
+        ),
     )
-
     print(dp.to_json(indent=2))
 
 
