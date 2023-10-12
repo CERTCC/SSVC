@@ -4,9 +4,10 @@ file: _basics
 author: adh
 created_at: 9/20/23 4:51 PM
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Optional
 
-from dataclasses_json import dataclass_json
+from dataclasses_json import config, dataclass_json
 
 
 @dataclass_json
@@ -39,6 +40,10 @@ class _Keyed:
     key: str
 
 
+def exclude_if_none(value):
+    return value is None
+
+
 @dataclass_json
 @dataclass(kw_only=True)
 class _Base:
@@ -48,6 +53,9 @@ class _Base:
 
     name: str
     description: str
+    _comment: Optional[str] = field(
+        default=None, metadata=config(exclude=exclude_if_none)
+    )
 
 
 def main():
