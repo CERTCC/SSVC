@@ -4,7 +4,6 @@ file: exposure
 author: adh
 created_at: 9/21/23 10:16 AM
 """
-from copy import deepcopy
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
 EXP_UNAVOIDABLE = SsvcDecisionPointValue(
@@ -45,9 +44,13 @@ SYSTEM_EXPOSURE_1 = SsvcDecisionPoint(
 )
 
 # EXP_OPEN is just a rename of EXP_UNAVOIDABLE
-EXP_OPEN = deepcopy(EXP_UNAVOIDABLE)
-EXP_OPEN.name = "Open"
-EXP_OPEN.key = "O"
+EXP_OPEN = SsvcDecisionPointValue(
+    name="Open",
+    key="O",
+    description="Internet or another widely accessible network where access cannot plausibly be restricted or "
+    "controlled (e.g., DNS servers, web servers, VOIP servers, email servers)",
+)
+
 
 SYSTEM_EXPOSURE_1_0_1 = SsvcDecisionPoint(
     name="System Exposure",

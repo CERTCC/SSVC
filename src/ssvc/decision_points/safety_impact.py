@@ -4,7 +4,6 @@ file: safety_impact
 author: adh
 created_at: 9/21/23 10:05 AM
 """
-from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
