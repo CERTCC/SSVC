@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Decision Points Group schema definition",
-    "$id": "https://certcc.github.io/SSVC/docs/reference/schema/Decision_Point_Group.schema.json",
+    "$id": "https://github.com/CERTCC/SSVC/tree/main/data/schema/Decision_Point_Group.schema.json",
     "type": "object",
     "additionalProperties": false,
     "properties": {
