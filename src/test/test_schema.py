@@ -6,7 +6,8 @@ import jsonschema
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
-
+from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
+from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.v1 import SSVCv1  # noqa
 from ssvc.dp_groups.v2 import SSVCv2  # noqa
@@ -30,6 +31,15 @@ class MyTestCase(unittest.TestCase):
         hdlr = logging.StreamHandler()
         logger.addHandler(hdlr)
         self.logger = logger
+
+    def test_confirm_registered_decision_points(self):
+        dps = list(REGISTERED_DECISION_POINTS)
+        self.assertGreater(len(dps), 0)
+
+        extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1]
+        for dpg in [SSVCv1, SSVCv2, SSVCv2_1, extras]:
+            for dp in dpg:
+                self.assertIn(dp, REGISTERED_DECISION_POINTS)
 
     def test_decision_point_validation(self):
         # path relative to top level of repo
