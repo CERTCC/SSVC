@@ -1,0 +1,79 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Decision Points Group schema definition",
+    "$id": "https://github.com/CERTCC/SSVC/tree/main/data/schema/Decision_Point_Group.schema.json",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "version": {
+            "type": "string",
+            "description": "Version (a semantic version string) that identifies this object"
+        },
+        "name": {
+            "type": "string",
+            "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+        },
+        "description": {
+            "type": "string",
+            "description": "Description of the Decision Point or the Group of Decision Points."
+        },
+        "decision_points": {
+            "description": "Decision points are the basic building blocks of SSVC decision functions. Individual decision points describe a single aspect of the input to a decision function.",
+            "additionalProperties": false,
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "namespace": {
+                        "type": "string",
+                        "description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Version (a semantic version string) that identifies this object"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the Decision Point or the Group of Decision Points."
+                    },
+                    "values": {
+                        "description": "Decision Point Values are valid results from a Decision Point",
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "key": {
+                                    "type": "string",
+                                    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Description of the Decision Point or the Group of Decision Points."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "version",
+        "name",
+        "description",
+        "decision_points"
+    ]
+}
