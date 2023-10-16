@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Decision Point schema definition",
-    "$id": "https://certcc.github.io/SSVC/docs/reference/schema/Decision_Point.schema.json",
+    "$id": "https://github.com/CERTCC/SSVC/tree/main/data/schema/Decision_Point.schema.json",
     "description": "Decision points are the basic building blocks of SSVC decision functions. Individual decision points describe a single aspect of the input to a decision function.",
     "type": "object",
     "additionalProperties": false,
