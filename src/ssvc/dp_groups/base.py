@@ -22,6 +22,9 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
 
     decision_points: Tuple[SsvcDecisionPoint]
 
+    def __iter__(self):
+        return iter(self.decision_points)
+
 
 def get_all_decision_points_from(
     glist: list[SsvcDecisionPointGroup],
