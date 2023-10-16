@@ -1,10 +1,8 @@
-import contextlib
-import io
 import unittest
 
 import pandas as pd
 
-import analyze_csv as acsv
+from ssvc import csv_analyzer as acsv
 
 
 class MyTestCase(unittest.TestCase):
