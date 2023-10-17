@@ -1,7 +1,7 @@
 ---
-status: proposed
+status: accepted
 date: 2023-10-17 
-deciders: adh, jspring, vssarvepalli, latyzenhaus, cgyarbrough
+deciders: adh, jspring, vssarvepalli, latyzenhaus, cgyarbrough, ehatleback
 ---
 # SSVC Decision Points are versioned using Semantic Versioning
 
