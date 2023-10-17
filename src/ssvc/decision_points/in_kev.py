@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Provides an SSVC decision point for critical software designation.
+Provides a decision point representing whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.
 """
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -20,19 +20,19 @@ from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 YES = SsvcDecisionPointValue(
     name="Yes",
     key="Y",
-    description="System meets a critical software definition.",
+    description="Vulnerability is listed in KEV.",
 )
 
 NO = SsvcDecisionPointValue(
     name="No",
     key="N",
-    description="System does not meet a critical software definition.",
+    description="Vulnerability is not listed in KEV.",
 )
 
-CRITICAL_SOFTWARE_1 = SsvcDecisionPoint(
-    name="Critical Software",
-    description="Denotes whether a system meets a critical software definition.",
-    key="CS",
+IN_KEV_1 = SsvcDecisionPoint(
+    name="In KEV",
+    description="Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
+    key="KEV",
     version="1.0.0",
     values=(
         NO,
@@ -42,7 +42,7 @@ CRITICAL_SOFTWARE_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(CRITICAL_SOFTWARE_1.to_json(indent=2))
+    print(IN_KEV_1.to_json(indent=2))
 
 
 if __name__ == "__main__":
