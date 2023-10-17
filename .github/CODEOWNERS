@@ -9,6 +9,9 @@
 # any markdown file in docs
 /doc/**/*.md @ahouseholder @cgyarbrough @sei-vsarvepalli @j---
 
+# architecture decision records
+/docs/adr/*.md @ahouseholder @cgyarbrough @sei-vsarvepalli @j---
+
 # ssvc-calc, wherever it lives
 ssvc-calc/ @sei-vsarvepalli @ahouseholder
 
