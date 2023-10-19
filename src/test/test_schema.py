@@ -1,3 +1,16 @@
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
+
 import json
 import logging
 import unittest
@@ -6,7 +19,9 @@ import jsonschema
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
-
+from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
+from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
+from ssvc.decision_points.in_kev import IN_KEV_1
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.v1 import SSVCv1  # noqa
 from ssvc.dp_groups.v2 import SSVCv2  # noqa
@@ -30,6 +45,15 @@ class MyTestCase(unittest.TestCase):
         hdlr = logging.StreamHandler()
         logger.addHandler(hdlr)
         self.logger = logger
+
+    def test_confirm_registered_decision_points(self):
+        dps = list(REGISTERED_DECISION_POINTS)
+        self.assertGreater(len(dps), 0)
+
+        extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1, IN_KEV_1]
+        for dpg in [SSVCv1, SSVCv2, SSVCv2_1, extras]:
+            for dp in dpg:
+                self.assertIn(dp, REGISTERED_DECISION_POINTS)
 
     def test_decision_point_validation(self):
         # path relative to top level of repo

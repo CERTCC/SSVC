@@ -4,7 +4,6 @@ file: mission_impact
 author: adh
 created_at: 9/21/23 10:20 AM
 """
-from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
@@ -61,9 +60,13 @@ MISSION_IMPACT_1 = SsvcDecisionPoint(
 )
 
 # SSVC v2.1 combined None and Non-Essential Degraded into a single value
-MISSION_IMPACT_2 = deepcopy(MISSION_IMPACT_1)
-MISSION_IMPACT_2.version = "2.0.0"
-MISSION_IMPACT_2.values = (DEGRADED, MEF_CRIPPLED, MEF_FAILURE, MISSION_FAILURE)
+MISSION_IMPACT_2 = SsvcDecisionPoint(
+    name="Mission Impact",
+    description="Impact on Mission Essential Functions of the Organization",
+    key="MI",
+    version="2.0.0",
+    values=(DEGRADED, MEF_CRIPPLED, MEF_FAILURE, MISSION_FAILURE),
+)
 
 
 def main():
