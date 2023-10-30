@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """
-Provides a Policy Generator class for SSVC decision point groups
+Provides a Policy Generator class for SSVC decision point groups.
+
 """
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -29,12 +30,37 @@ logger = logging.getLogger(__name__)
 
 
 class PolicyGenerator:
+    """
+    Generates a policy for a given decision point group and outcome group.
+
+    An SSVC policy is represented as a table of decision point values and outcomes.
+    Each row of the table represents a specific set of decision point values, and the outcome that results from those values.
+
+    Internally, the PolicyGenerator represents a policy as a directed graph.
+    Each node in the graph corresponds to a specific set of decision point values.
+    Each edge in the graph indicates an ordering between two states.
+    Taken together, the graph represents a partial ordering of the decision point values mapped to outcomes.
+    """
+
     def __init__(
         self,
         dp_group: SsvcDecisionPointGroup = None,
         outcomes: OutcomeGroup = None,
         outcome_weights: List[float] = None,
     ):
+        """
+        Create a policy generator.
+
+        If outcome weights are unspecified, then the weights are evenly distributed across the outcomes.
+
+        Args:
+            dp_group: The decision point group to generate a policy for.
+            outcomes: The outcome group to generate a policy for.
+            outcome_weights: The relative weights of the outcomes (optional)
+
+        Raises:
+            ValueError: If dp_group or outcomes are None.
+        """
         if dp_group is None:
             raise ValueError("dp_group is required")
         else:
@@ -61,7 +87,31 @@ class PolicyGenerator:
 
     def __enter__(self) -> "PolicyGenerator":
         """
-        Set up the policy generator.
+        Sets up a policy generator runtime context.
+
+        The runtime context performs the following steps in order:
+
+        1. Converts the decision point group to a vector
+        representation.
+        2. Adds nodes to the graph. A node is represented as a tuple of decision point values as
+        integers. E.g., `(0,1,0,2)`, `(1,2,1,3)`
+        3. Adds edges to the graph where each edge $(u,v)$ indicates that $u < v$.
+        4. Assigns outcomes to each node in the graph according to the outcome weights.
+        5. Validates that the graph
+        meets the requirement that outcome ordering is consistent with node ordering.
+        6. Converts the graph to a policy table. The policy table is a dataframe where each row represents a node in
+        the graph.
+
+        !!! note "Node ordering"
+
+            A node $u$ is considered less than another node $v$ if $u[i] <= v[i]$ for all $i$.
+
+
+        Example:
+            ```python
+            with PolicyGenerator(dp_group, outcomes) as pg:
+                pg.emit_policy()
+            ```
 
         Returns:
             The policy generator context.
@@ -112,7 +162,10 @@ class PolicyGenerator:
 
         self.policy = pd.DataFrame(rows)
 
-    def emit_policy(self):
+    def emit_policy(self) -> None:
+        """
+        Prints the policy to stdout in CSV format.
+        """
         df = self.policy.copy()
         print_cols = [c for c in df.columns if not c.startswith("idx_")]
         for c in print_cols:

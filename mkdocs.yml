@@ -71,6 +71,7 @@ nav:
       - Value Density: 'reference/decision_points/value_density.md'
     - Code:
         analyze_csv: 'reference/code/analyze_csv.md'
+        policy_generator: 'reference/code/policy_generator.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
