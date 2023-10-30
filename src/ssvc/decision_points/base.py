@@ -4,17 +4,31 @@ file: decisionpoints
 author: adh
 created_at: 9/20/23 10:07 AM
 """
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
 
+import logging
 from dataclasses import dataclass
 from typing import Tuple
 
 from dataclasses_json import dataclass_json
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Commented, _Keyed, _Namespaced, _Versioned
+
+logger = logging.getLogger(__name__)
 
 
-## notes
-# based on https://gist.githubusercontent.com/sei-vsarvepalli/de2cd7dae33e1e1dc906d50846becb45/raw/2a85d08a4028f6dd3cc162d4ace3509e0458426f/Exploitation.json
+REGISTERED_DECISION_POINTS = []
 
 
 @dataclass_json
@@ -29,12 +43,18 @@ class SsvcDecisionPointValue(_Base, _Keyed):
 
 @dataclass_json
 @dataclass(kw_only=True)
-class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
+class SsvcDecisionPoint(
+    _Base,
+    _Keyed,
+    _Versioned,
+    _Namespaced,
+    _Commented,
+):
     """
     Models a single decision point as a list of values.
     """
 
-    values: Tuple[SsvcDecisionPointValue]
+    values: Tuple[SsvcDecisionPointValue] = ()
 
     def __iter__(self):
         """
@@ -42,23 +62,34 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
         """
         return iter(self.values)
 
-    def to_table(self):
-        rows = []
-        rows.append(f"{self.description}")
-        rows.append("")
+    def __post_init__(self):
+        global REGISTERED_DECISION_POINTS
 
-        headings = ["Value", "Key", "Description"]
+        REGISTERED_DECISION_POINTS.append(self)
 
-        def make_row(items):
-            return "| " + " | ".join(items) + " |"
 
-        rows.append(make_row(headings))
-        rows.append(make_row(["---" for _ in headings]))
+def dp_to_table(dp: SsvcDecisionPoint) -> str:
+    """
+    Convert a decision point to a markdown table.
+    :param dp: The decision point to convert.
+    :return: a string containing the markdown table.
+    """
+    rows = []
+    rows.append(f"{dp.description}")
+    rows.append("")
 
-        for value in self.values:
-            rows.append(make_row([value.name, value.key, value.description]))
+    headings = ["Value", "Key", "Description"]
 
-        return "\n".join(rows)
+    def make_row(items):
+        return "| " + " | ".join(items) + " |"
+
+    rows.append(make_row(headings))
+    rows.append(make_row(["---" for _ in headings]))
+
+    for value in dp.values:
+        rows.append(make_row([value.name, value.key, value.description]))
+
+    return "\n".join(rows)
 
 
 def main():
@@ -74,6 +105,7 @@ def main():
     opts = [opt_none, opt_poc, opt_active]
 
     dp = SsvcDecisionPoint(
+        _comment="This is an optional comment that will be included in the object.",
         values=opts,
         name="Exploitation",
         description="Is there an exploit available?",
