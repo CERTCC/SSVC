@@ -5,6 +5,9 @@
 
 * [0000 - Record architecture decisions](0000-record-architecture-decisions.md)
 * [0001 - Use Markdown Architectural Decision Records](0001-use-markdown-architectural-decision-records.md)
+* [0002 - SSVC Decision Points are versioned using Semantic Versioning](0002-ssvc-decision-points-are-versioned.md)
+* [0003 - SSVC Decision Points Versioning Rules](0003-ssvc-decision-point-versioning-rules.md)
+* 
 
 ## Rejected Records
 
