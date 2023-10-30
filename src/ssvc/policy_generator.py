@@ -2,6 +2,19 @@
 """
 Provides a Policy Generator class for SSVC decision point groups
 """
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
+
 import itertools
 import logging
 from typing import List, Tuple
@@ -22,20 +35,29 @@ class PolicyGenerator:
         outcomes: OutcomeGroup = None,
         outcome_weights: List[float] = None,
     ):
-        self.dpg: SsvcDecisionPointGroup = dp_group
-        self.outcomes: OutcomeGroup = outcomes
+        if dp_group is None:
+            raise ValueError("dp_group is required")
+        else:
+            self.dpg: SsvcDecisionPointGroup = dp_group
+
+        if outcomes is None:
+            raise ValueError("outcomes is required")
+        else:
+            self.outcomes: OutcomeGroup = outcomes
+
+        if outcome_weights is None:
+            weight = 1.0 / len(list(self.outcomes))
+            self.outcome_weights = [weight for _ in self.outcomes]
+        else:
+            self.outcome_weights = outcome_weights
+        logger.debug(f"Outcome weights: {self.outcome_weights}")
+
         self.policy: pd.DataFrame = None
         self.G: nx.DiGraph = nx.DiGraph()
         self.top: Tuple[int] = None
         self.bottom: Tuple[int] = None
 
         self._enumerated_vec = None
-
-        if outcome_weights is None:
-            self.outcome_weights = [1.0 / len(outcomes) for _ in outcomes]
-        else:
-            self.outcome_weights = outcome_weights
-        logger.debug(f"Outcome weights: {self.outcome_weights}")
 
     def __enter__(self) -> "PolicyGenerator":
         """
@@ -67,7 +89,8 @@ class PolicyGenerator:
             for start, end in zip(path[:-1], path[1:]):
                 u = self.G.nodes[start]["outcome"]
                 v = self.G.nodes[end]["outcome"]
-                assert u <= v, f"Invalid path: {u} !<= {v} in {path}"
+                if u > v:
+                    raise (ValueError(f"Invalid path: {u} !<= {v} in {path}"))
 
     def _create_policy(self):
         rows = []
@@ -153,8 +176,9 @@ class PolicyGenerator:
         # [[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,1,1],[0,1,2]]
         vec = self._enumerated_vec
 
-        self.bottom = tuple([0 for _ in vec])
-        self.top = tuple([len(vec) - 1 for vec in vec])
+        self.bottom = tuple([min(t) for t in vec])
+        self.top = tuple([max(t) for t in vec])
+
         logger.debug(f"Top node: {self.top}")
         logger.debug(f"Bottom node: {self.bottom}")
 
