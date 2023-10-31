@@ -72,6 +72,7 @@ nav:
     - Code:
         analyze_csv: 'reference/code/analyze_csv.md'
         policy_generator: 'reference/code/policy_generator.md'
+        outcomes: 'reference/code/outcomes.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
