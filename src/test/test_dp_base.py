@@ -96,7 +96,7 @@ class MyTestCase(unittest.TestCase):
         self.assertGreater(len(json), 0)
 
         obj2 = base.SsvcDecisionPoint.from_json(json)
-        self.assertEqual(obj, obj2)
+        self.assertEqual(obj.to_dict(), obj2.to_dict())
 
     def test_dp_to_table(self):
         obj = self.dp

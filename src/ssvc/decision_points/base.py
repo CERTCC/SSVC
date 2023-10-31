@@ -19,7 +19,7 @@ created_at: 9/20/23 10:07 AM
 
 import logging
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Iterable
 
 from dataclasses_json import dataclass_json
 
@@ -54,7 +54,7 @@ class SsvcDecisionPoint(
     Models a single decision point as a list of values.
     """
 
-    values: Tuple[SsvcDecisionPointValue] = ()
+    values: Iterable[SsvcDecisionPointValue] = ()
 
     def __iter__(self):
         """

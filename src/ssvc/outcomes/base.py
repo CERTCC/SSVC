@@ -16,7 +16,7 @@ Provides outcome group and outcome value classes for SSVC.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Iterable
 
 from dataclasses_json import dataclass_json
 
@@ -38,7 +38,7 @@ class OutcomeGroup(_Base):
     Models an outcome group.
     """
 
-    outcomes: Tuple[OutcomeValue]
+    outcomes: Iterable[OutcomeValue]
 
     def __iter__(self):
         """
