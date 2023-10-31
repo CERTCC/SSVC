@@ -41,6 +41,12 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
         """
         return iter(self.decision_points)
 
+    def __len__(self):
+        """
+        Allow len() to be called on the group.
+        """
+        return len(self.decision_points)
+
 
 def get_all_decision_points_from(
     glist: list[SsvcDecisionPointGroup],
