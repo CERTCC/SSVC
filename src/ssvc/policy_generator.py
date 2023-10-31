@@ -261,7 +261,7 @@ def main():
     from ssvc.decision_points.exploitation import EXPLOITATION_1
     from ssvc.decision_points.human_impact import HUMAN_IMPACT_1
     from ssvc.decision_points.system_exposure import SYSTEM_EXPOSURE_1_0_1
-    from ssvc.outcomes.groups import DSIO
+    from ssvc.outcomes.groups import DSOI
 
     # set up logging
     logger = logging.getLogger()
@@ -282,7 +282,7 @@ def main():
     )
 
     with PolicyGenerator(
-        dp_group=dpg, outcomes=DSIO, outcome_weights=[0.097, 0.583, 0.278, 0.042]
+        dp_group=dpg, outcomes=DSOI, outcome_weights=[0.097, 0.583, 0.278, 0.042]
     ) as pg:
         pg.emit_policy()
 
