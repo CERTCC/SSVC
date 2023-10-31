@@ -23,7 +23,7 @@ from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.attack_complexity import (
     ATTACK_COMPLEXITY_3,
 )
-from ssvc.decision_points.cvss.attack_vector import ATTACK_VECTOR_1
+from ssvc.decision_points.cvss.attack_vector import ATTACK_VECTOR_3
 from ssvc.decision_points.cvss.availability_impact import (
     AVAILABILITY_IMPACT_2,
 )
@@ -83,7 +83,7 @@ def _modify(obj):
     return o
 
 
-MODIFIED_ATTACK_VECTOR = _modify(ATTACK_VECTOR_1)
+MODIFIED_ATTACK_VECTOR = _modify(ATTACK_VECTOR_3)
 MODIFIED_ATTACK_COMPLEXITY = _modify(ATTACK_COMPLEXITY_3)
 MODIFIED_PRIVILEGES_REQUIRED = _modify(PRIVILEGES_REQUIRED_1)
 MODIFIED_USER_INTERACTION = _modify(USER_INTERACTION_1)
@@ -98,7 +98,7 @@ CVSSv3 = SsvcDecisionPointGroup(
     description="The Common Vulnerability Scoring System (CVSS) is a free and open industry standard for assessing the severity of computer system security vulnerabilities. CVSS attempts to assign severity scores to vulnerabilities, allowing responders to prioritize responses and resources according to threat. Scores are calculated based on a formula that depends on several metrics that approximate ease of exploit and the impact of exploit. Scores range from 0 to 10, with 10 being the most severe.",
     version="3.0",
     decision_points=(
-        ATTACK_VECTOR_1,
+        ATTACK_VECTOR_3,
         ATTACK_COMPLEXITY_3,
         PRIVILEGES_REQUIRED_1,
         USER_INTERACTION_1,
