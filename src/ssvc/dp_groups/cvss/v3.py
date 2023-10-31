@@ -4,11 +4,24 @@ file: v3
 author: adh
 created_at: 9/20/23 2:30 PM
 """
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
+
 from copy import deepcopy
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.attack_complexity import (
-    ATTACK_COMPLEXITY_1,
+    ATTACK_COMPLEXITY_3,
 )
 from ssvc.decision_points.cvss.attack_vector import ATTACK_VECTOR_1
 from ssvc.decision_points.cvss.availability_impact import (
@@ -71,7 +84,7 @@ def _modify(obj):
 
 
 MODIFIED_ATTACK_VECTOR = _modify(ATTACK_VECTOR_1)
-MODIFIED_ATTACK_COMPLEXITY = _modify(ATTACK_COMPLEXITY_1)
+MODIFIED_ATTACK_COMPLEXITY = _modify(ATTACK_COMPLEXITY_3)
 MODIFIED_PRIVILEGES_REQUIRED = _modify(PRIVILEGES_REQUIRED_1)
 MODIFIED_USER_INTERACTION = _modify(USER_INTERACTION_1)
 MODIFIED_SCOPE = _modify(SCOPE)
@@ -86,7 +99,7 @@ CVSSv3 = SsvcDecisionPointGroup(
     version="3.0",
     decision_points=(
         ATTACK_VECTOR_1,
-        ATTACK_COMPLEXITY_1,
+        ATTACK_COMPLEXITY_3,
         PRIVILEGES_REQUIRED_1,
         USER_INTERACTION_1,
         SCOPE,
