@@ -29,7 +29,7 @@ This ADR establishes the rules for versioning Decision Point Groups.
 A number of options were discussed in
 [SSVC Discussion #303](https://github.com/CERTCC/SSVC/discussions/303).
 
-Summarizin that discussion:
+Summarizing that discussion:
 
 - No versioning
 - [Semantic Versioning](https://semver.org/) of SSVC as a whole (status quo)
