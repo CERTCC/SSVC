@@ -62,8 +62,8 @@ version of the existing name according to the following rules.
 ### Increment the major version when
 
 - Conditions for creating a new object are not met, AND
-- Adding or removing a decision point entirely, OR
-- An existing decision point increments its major version
+  - Adding or removing a decision point entirely, OR
+  - An existing decision point increments its major version
 
 ### Increment the minor version when
 
@@ -73,9 +73,9 @@ version of the existing name according to the following rules.
 ### Increment the patch version when
 
 - Conditions for incrementing the minor version are not met, AND
-- An existing decision point increments its patch version, OR
-- The decision point group description changes, OR
-- The decision point group name changes
+  - An existing decision point increments its patch version, OR
+  - The decision point group description changes, OR
+  - The decision point group name changes
 
 ### Examples
 
