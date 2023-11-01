@@ -57,24 +57,24 @@ the decision represents a branching in the version history.
 
 Otherwise, a change (add, remove) in decision point groups where both the
 role and decision being modeled are held constant SHOULD be given a new
-version of the existing name.
+version of the existing name according to the following rules.
 
 ### Increment the major version when
 
-- Conditions for creating a new object are not met
-- Adding or removing a decision point entirely
+- Conditions for creating a new object are not met, AND
+- Adding or removing a decision point entirely, OR
 - An existing decision point increments its major version
 
 ### Increment the minor version when
 
-- Conditions for incrementing the major version are not met
+- Conditions for incrementing the major version are not met, AND
 - An existing decision point increments its minor version
 
 ### Increment the patch version when
 
-- Conditions for incrementing the minor version are not met
-- An existing decision point increments its patch version
-- The decision point group description changes
+- Conditions for incrementing the minor version are not met, AND
+- An existing decision point increments its patch version, OR
+- The decision point group description changes, OR
 - The decision point group name changes
 
 ### Examples
