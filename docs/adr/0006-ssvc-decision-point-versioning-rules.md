@@ -1,4 +1,4 @@
-[0003-ssvc-decision-point-versioning-rules.md](0003-ssvc-decision-point-versioning-rules.md)---
+---
 status: accepted
 date: 2023-11-01
 deciders: adh, jspring
