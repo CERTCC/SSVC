@@ -1,12 +1,4 @@
-!!! note "Report Credibility"
-
-    Assessing the credibility of a report is complex, but the assessment must reach a conclusion of either:
-
-    | Value | Description |
-    | :---: | :--- |
-    | Credible | The report is credible. |
-    | Not credible | The report is not credible. |
-
+{% include-markdown "../../_generated/decision_points/report_credibility.md" %}
 
 !!! tip inline "See Also"
 
