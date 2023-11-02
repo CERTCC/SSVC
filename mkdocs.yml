@@ -75,6 +75,7 @@ nav:
       - Virulence: 'reference/decision_points/virulence.md'
     - Code:
         analyze_csv: 'reference/code/analyze_csv.md'
+        doctools: 'reference/code/doctools.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
