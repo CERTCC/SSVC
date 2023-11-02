@@ -20,7 +20,9 @@ from ssvc.decision_points import SsvcDecisionPoint
 from ssvc.doctools import (
     EnsureDirExists,
     _filename_friendly,
+    dump_decision_point,
     dump_json,
+    dump_markdown,
     remove_if_exists,
     to_markdown_table,
 )
@@ -95,10 +97,77 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(os.path.exists(path))
 
     def test_dump_decision_point(self):
-        pass
+        jsondir = os.path.join(self.tempdir.name, "json")
+        outdir = os.path.join(self.tempdir.name, "out")
+        dp = self.dp
+        overwrite = False
+
+        self.assertEqual(0, len(os.listdir(self.tempdir.name)))
+
+        # should create the files in the expected places
+        r = dump_decision_point(jsondir, outdir, dp, overwrite)
+        self.assertTrue(os.path.exists(r["include_file"]))
+        self.assertTrue(os.path.exists(r["symlink"]))
+        self.assertTrue(os.path.exists(r["json_file"]))
+
+        # not checking these thoroughly, just making sure they are there
+        # because they are tested elsewhere in dump_markdown and dump_json
 
     def test_dump_markdown(self):
-        pass
+        # dump_markdown should create a file, write to it, and then create a generic symlink
+        basename = "foo"
+        dp = self.dp
+        json_file = os.path.join(self.tempdir.name, f"{basename}.json")
+        outdir = self.tempdir.name
+        overwrite = False
+
+        # should create the file in the expected place
+        include_file = os.path.join(outdir, f"{basename}.md")
+        symlink = os.path.join(outdir, f"{_filename_friendly(dp.name)}.md")
+
+        self.assertFalse(os.path.exists(include_file))
+        self.assertFalse(os.path.exists(symlink))
+        r = dump_markdown(basename, dp, json_file, outdir, overwrite)
+        self.assertTrue(os.path.exists(include_file))
+
+        self.assertEqual(include_file, r["include_file"])
+        self.assertEqual(symlink, r["symlink"])
+
+        # the file contains text based on the dp
+        with open(include_file, "r") as f:
+            text = f.read()
+
+        self.assertIn(dp.description, text)
+        self.assertIn(dp.name, text)
+        self.assertIn(dp.version, text)
+        for value in dp.values:
+            self.assertIn(value.name, text)
+            self.assertIn(value.description, text)
+            self.assertIn(value.key, text)
+
+        # should create the symlink in the expected place
+        self.assertTrue(os.path.exists(symlink), symlink)
+        # should be a symlink
+        self.assertTrue(os.path.islink(symlink))
+        # should point to the include file
+        self.assertEqual(os.path.realpath(symlink), os.path.realpath(include_file))
+
+        # should not overwrite the file
+        overwrite = False
+        # capture logger output
+        with self.assertLogs() as cm:
+            dump_markdown(basename, dp, json_file, outdir, overwrite)
+        # logger warns that the file exists
+        self.assertIn("already exists", cm.output[0])
+
+        # should overwrite the file
+        overwrite = True
+        dp.name = "Different Decision Point"
+        # capture logger output
+        with self.assertLogs(level=logging.DEBUG) as cm:
+            dump_markdown(basename, dp, json_file, outdir, overwrite)
+        # logger warns that the file was removed
+        self.assertIn("Removed", cm.output[0])
 
     def test_dump_json(self):
         basename = "foo"
