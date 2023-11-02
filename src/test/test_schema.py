@@ -22,10 +22,9 @@ from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
 from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
 from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
 from ssvc.decision_points.in_kev import IN_KEV_1
+
 # importing these causes the decision points to register themselves
-from ssvc.dp_groups.v1 import SSVCv1  # noqa
-from ssvc.dp_groups.v2 import SSVCv2  # noqa
-from ssvc.dp_groups.v2_1 import SSVCv2_1  # noqa
+from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1
 
 
 def find_schema(basepath: str) -> str:
