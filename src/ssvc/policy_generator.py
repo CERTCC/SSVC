@@ -23,6 +23,7 @@ from typing import List, Tuple
 import networkx as nx
 import pandas as pd
 
+from ssvc import csv_analyzer
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
@@ -162,16 +163,21 @@ class PolicyGenerator:
 
         self.policy = pd.DataFrame(rows)
 
-    def emit_policy(self) -> None:
-        """
-        Prints the policy to stdout in CSV format.
-        """
+    def clean_policy(self) -> pd.DataFrame:
         df = self.policy.copy()
         print_cols = [c for c in df.columns if not c.startswith("idx_")]
         for c in print_cols:
             df[c] = df[c].str.lower()
 
-        print(df[print_cols].to_csv(index=False))
+        return pd.DataFrame(df[print_cols])
+
+    def emit_policy(self) -> None:
+        """
+        Prints the policy to stdout in CSV format.
+        """
+        df = self.clean_policy()
+
+        print(df.to_csv(index=False))
 
     def _assign_outcomes(self):
         node_count = len(self.G.nodes)
@@ -285,6 +291,12 @@ def main():
         dp_group=dpg, outcomes=DSOI, outcome_weights=[0.097, 0.583, 0.278, 0.042]
     ) as pg:
         pg.emit_policy()
+
+    # check policy against csv_analyzer
+    df = pg.clean_policy()
+    imp = csv_analyzer.drop_col_feature_importance(df, "outcome")
+
+    print(imp)
 
 
 if __name__ == "__main__":
