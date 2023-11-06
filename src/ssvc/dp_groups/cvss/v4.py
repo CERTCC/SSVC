@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """
-Provides a base class for modeling CVSS vector metrics as SSVC decision points.
+file: v4
+author: adh
+created_at: 11/6/23 11:48 AM
 """
-
-
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -17,18 +17,28 @@ Provides a base class for modeling CVSS vector metrics as SSVC decision points.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass
-
-from dataclasses_json import dataclass_json
-
-from ssvc.decision_points.base import SsvcDecisionPoint
+from ssvc.decision_points.cvss.eq_sets import EQ1, EQ2, EQ3, EQ4, EQ5, EQ6
+from ssvc.dp_groups.base import SsvcDecisionPointGroup
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class CvssDecisionPoint(SsvcDecisionPoint):
-    """
-    Models a single CVSS decision point as a list of values.
-    """
+EquivalenceSetsV4 = SsvcDecisionPointGroup(
+    name="CVSSv4 EQ Sets",
+    description="Equivalence Sets for CVSS v4",
+    version="1.0.0",
+    decision_points=[
+        EQ1,
+        EQ2,
+        EQ3,
+        EQ4,
+        EQ5,
+        EQ6,
+    ],
+)
 
-    namespace: str = "cvss"
+
+def main():
+    print(EquivalenceSetsV4.to_json(indent=2))
+
+
+if __name__ == "__main__":
+    main()
