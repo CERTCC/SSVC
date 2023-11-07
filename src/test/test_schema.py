@@ -19,16 +19,11 @@ import jsonschema
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
-from ssvc.dp_groups.cvss.v1 import CVSSv1  # noqa
-from ssvc.dp_groups.cvss.v2 import CVSSv2  # noqa
-from ssvc.dp_groups.cvss.v3 import CVSSv3  # noqa
 # importing these causes the decision points to register themselves
 from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
 from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
 from ssvc.decision_points.in_kev import IN_KEV_1
-from ssvc.dp_groups.cvss.v1 import CVSSv1  # noqa
-from ssvc.dp_groups.cvss.v2 import CVSSv2  # noqa
-from ssvc.dp_groups.cvss.v3 import CVSSv3  # noqa
+from ssvc.dp_groups.cvss.collections import CVSSv1, CVSSv2, CVSSv3, CVSSv4_BTE  # noqa
 from ssvc.dp_groups.v1 import SSVCv1  # noqa
 from ssvc.dp_groups.v2 import SSVCv2  # noqa
 from ssvc.dp_groups.v2_1 import SSVCv2_1  # noqa

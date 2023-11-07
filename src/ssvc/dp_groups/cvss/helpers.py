@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-file: v4
-author: adh
-created_at: 11/6/23 11:48 AM
+Provides helpers for working with CVSS decision points.
 """
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -17,27 +15,38 @@ created_at: 11/6/23 11:48 AM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.cvss.eq_sets import EQ1, EQ2, EQ3, EQ4, EQ5, EQ6
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from copy import deepcopy
+
+from ssvc.decision_points import SsvcDecisionPointValue
 
 
-EquivalenceSetsV4 = SsvcDecisionPointGroup(
-    name="CVSSv4 EQ Sets",
-    description="Equivalence Sets for CVSS v4",
-    version="1.0.0",
-    decision_points=[
-        EQ1,
-        EQ2,
-        EQ3,
-        EQ4,
-        EQ5,
-        EQ6,
-    ],
-)
+def modify(obj):
+    """
+    Prepends "Modified " to the name and "M" to the key of the given object. Also adds a value of "Not Defined" to the
+    values list.
+    Args:
+        obj: the decision point object to modify
+
+    Returns:
+        A modified copy of the given object
+    """
+    o = deepcopy(obj)
+    o.name = "Modified " + o.name
+    o.key = "M" + o.key
+    nd = SsvcDecisionPointValue(
+        name="Not Defined", key="ND", description="Ignore this value"
+    )
+    values = list(o.values)
+    # if there is no value named "Not Defined" value, add it
+    names = [v.name for v in values]
+    if nd.name not in names:
+        values.append(nd)
+    o.values = tuple(values)
+    return o
 
 
 def main():
-    print(EquivalenceSetsV4.to_json(indent=2))
+    pass
 
 
 if __name__ == "__main__":
