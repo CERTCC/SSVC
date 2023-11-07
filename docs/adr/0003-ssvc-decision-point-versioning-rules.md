@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by [ADR-0006](0006-ssvc-decision-point-versioning-rules.md)
 date: 2023-10-17 
 deciders: adh, jspring, vssarvepalli, latyzenhaus, cgyarbrough, ehatleback
 ---
