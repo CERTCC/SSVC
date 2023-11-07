@@ -7,7 +7,8 @@
 * [0001 - Use Markdown Architectural Decision Records](0001-use-markdown-architectural-decision-records.md)
 * [0002 - SSVC Decision Points are versioned using Semantic Versioning](0002-ssvc-decision-points-are-versioned.md)
 * [0003 - SSVC Decision Points Versioning Rules](0003-ssvc-decision-point-versioning-rules.md)
-* 
+* [0004 - SSVC Decision Point Groups are Versioned using SemVer](0004-ssvc-decision-point-groups-are-versioned.md)
+* [0005 - SSVC Decision Point Group Versioning Rules](0005-ssvc-decision-point-group-versioning.md)
 
 ## Rejected Records
 
