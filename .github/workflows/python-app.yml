@@ -34,13 +34,12 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-# stop here for now because we don't have a build step yet
-#    - name: Build
-#      run: |
-#        python -m build
-#    - name: Upload Artifacts
-#      uses: actions/upload-artifact@v3
-#      with:
-#        name: ssvc
-#        path: dist/ssvc-*.tar.gz
-#        retention-days: 14
+    - name: Build
+      run: |
+        python -m build src
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ssvc
+        path: src/dist/ssvc-*.tar.gz
+        retention-days: 14
