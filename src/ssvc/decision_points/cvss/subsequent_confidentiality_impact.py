@@ -17,7 +17,7 @@ CVSS Subsequent System Confidentiality Impact
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.helpers import show_diffs
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 NEGLIGIBLE = SsvcDecisionPointValue(
     name="Negligible",
@@ -57,14 +57,13 @@ SUBSEQUENT_CONFIDENTIALITY_IMPACT_1 = CvssDecisionPoint(
     ),
 )
 
+versions = [
+    SUBSEQUENT_CONFIDENTIALITY_IMPACT_1,
+]
+
 
 def main():
-    versions = (SUBSEQUENT_CONFIDENTIALITY_IMPACT_1,)
-
-    for version in versions:
-        print(version.to_json(indent=2))
-
-    show_diffs(versions)
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

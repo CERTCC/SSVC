@@ -17,7 +17,7 @@ Models the CVSS Attack Complexity (formerly known as Access Complexity) metric a
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.helpers import show_diffs
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _HIGH_3 = SsvcDecisionPointValue(
     name="High",
@@ -133,18 +133,16 @@ Defines LOW and HIGH values for CVSS Attack Complexity.
 """
 
 
+versions = [
+    ACCESS_COMPLEXITY_1,
+    ACCESS_COMPLEXITY_2,
+    ATTACK_COMPLEXITY_3,
+    ATTACK_COMPLEXITY_3_0_1,
+]
+
+
 def main():
-    versions = [
-        ACCESS_COMPLEXITY_1,
-        ACCESS_COMPLEXITY_2,
-        ATTACK_COMPLEXITY_3,
-        ATTACK_COMPLEXITY_3_0_1,
-    ]
-
-    for version in versions:
-        print(version.to_json(indent=2) + "\n")
-
-    show_diffs(versions)
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

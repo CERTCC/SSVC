@@ -18,7 +18,7 @@ Models the CVSS Availability Impact metric as an SSVC decision point.
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.helpers import show_diffs
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _HIGH = SsvcDecisionPointValue(
     name="High",
@@ -127,14 +127,11 @@ AVAILABILITY_IMPACT_2_0_1 = CvssDecisionPoint(
     ),
 )
 
+versions = [AVAILABILITY_IMPACT_1, AVAILABILITY_IMPACT_2, AVAILABILITY_IMPACT_2_0_1]
+
 
 def main():
-    versions = [AVAILABILITY_IMPACT_1, AVAILABILITY_IMPACT_2, AVAILABILITY_IMPACT_2_0_1]
-
-    for version in versions:
-        print(version.to_json(indent=2))
-
-    show_diffs(versions)
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

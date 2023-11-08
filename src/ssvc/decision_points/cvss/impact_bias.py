@@ -17,6 +17,7 @@ Model the CVSS Impact Bias as an SSVC decision point.
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _AVAILABILITY = SsvcDecisionPointValue(
     name="Availability",
@@ -58,9 +59,13 @@ IMPACT_BIAS_1 = CvssDecisionPoint(
 Defines Normal, Confidentiality, Integrity, and Availability values for CVSS Impact Bias.
 """
 
+versions = [
+    IMPACT_BIAS_1,
+]
+
 
 def main():
-    print(IMPACT_BIAS_1.to_json(indent=2))
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ Models CVSS User Interaction as an SSVC decision point.
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.helpers import show_diffs
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _REQUIRED = SsvcDecisionPointValue(
     name="Required",
@@ -89,14 +89,11 @@ USER_INTERACTION_2 = CvssDecisionPoint(
     ),
 )
 
+versions = [USER_INTERACTION_1, USER_INTERACTION_2]
+
 
 def main():
-    versions = [USER_INTERACTION_1, USER_INTERACTION_2]
-
-    for version in versions:
-        print(version.to_json(indent=2))
-
-    show_diffs(versions)
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

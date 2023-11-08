@@ -18,6 +18,7 @@ Models CVSS Target Distribution as an SSVC decision point.
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _NOT_DEFINED = SsvcDecisionPointValue(
     name="Not Defined",
@@ -92,10 +93,14 @@ TARGET_DISTRIBUTION_1_1 = CvssDecisionPoint(
 Introduces Not Defined value.
 """
 
+versions = [
+    TARGET_DISTRIBUTION_1,
+    TARGET_DISTRIBUTION_1_1,
+]
+
 
 def main():
-    print(TARGET_DISTRIBUTION_1.to_json(indent=2))
-    print(TARGET_DISTRIBUTION_1_1.to_json(indent=2))
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

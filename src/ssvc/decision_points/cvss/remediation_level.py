@@ -18,6 +18,7 @@ Models the CVSS Remediation Level metric as an SSVC decision point.
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _NOT_DEFINED = SsvcDecisionPointValue(
     name="Not Defined",
@@ -82,10 +83,11 @@ REMEDIATION_LEVEL_1_1 = CvssDecisionPoint(
 Adds Not Defined to the CVSS Remediation Level decision point.
 """
 
+versions = [REMEDIATION_LEVEL_1, REMEDIATION_LEVEL_1_1]
+
 
 def main():
-    print(REMEDIATION_LEVEL_1.to_json(indent=2))
-    print(REMEDIATION_LEVEL_1_1.to_json(indent=2))
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

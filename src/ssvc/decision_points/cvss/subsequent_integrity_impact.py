@@ -17,7 +17,7 @@ CVSS Subsequent System Integrity Impact Decision Point
 
 from ssvc.decision_points import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.helpers import show_diffs
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 SI_HIGH = SsvcDecisionPointValue(
     name="High",
@@ -60,16 +60,13 @@ SUBSEQUENT_INTEGRITY_IMPACT_1 = CvssDecisionPoint(
     ),
 )
 
+versions = [
+    SUBSEQUENT_INTEGRITY_IMPACT_1,
+]
+
 
 def main():
-    versions = [
-        SUBSEQUENT_INTEGRITY_IMPACT_1,
-    ]
-
-    for version in versions:
-        print(version.to_json(indent=2))
-
-    show_diffs(versions)
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

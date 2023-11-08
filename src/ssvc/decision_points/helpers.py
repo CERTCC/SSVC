@@ -15,12 +15,10 @@ Provides helper functions for working with SSVC decision points.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from typing import List
-
 from ssvc.decision_points import SsvcDecisionPoint
 
 
-def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> List[str]:
+def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
     """
     Compares two decision points and returns a list of differences.
 
@@ -177,7 +175,7 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> List[str]:
     return diffs
 
 
-def show_diffs(versions):
+def show_diffs(versions: list[SsvcDecisionPoint]) -> None:
     if len(versions) < 2:
         print("Not enough versions to compare")
         return
@@ -186,6 +184,21 @@ def show_diffs(versions):
         diff = dp_diff(a, b)
         print("\n".join(diff))
         print()
+
+
+def print_versions_and_diffs(versions: list[SsvcDecisionPoint]) -> None:
+    """
+    Prints the json representation of each version and then shows the diffs between each version.
+
+    Args:
+        versions: a list of decision point versions
+
+    Returns:
+        None
+    """
+    for version in versions:
+        print(version.to_json(indent=2))
+    show_diffs(versions)
 
 
 def main():
