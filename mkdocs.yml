@@ -37,10 +37,9 @@ nav:
         - Supplier Decision Model: 'howto/supplier_tree.md'
         - Deployer Decision Model: 'howto/deployer_tree.md'
         - Coordinator Decision Models:
+          - About Coordination: 'howto/coordination_intro.md'
           - Coordination Decision: 'howto/coordination_decisions.md'
-          - Coordinator Triage Tree: 'howto/coordinator_trees.md'
           - Publication Decision: 'howto/publication_decision.md'
-          - Coordinator Publication Tree: 'howto/coordinator_publish_tree.md'
     - Bootstrapping SSVC:
       - Intro: 'howto/bootstrap/index.md'
       - Prepare: 'howto/bootstrap/prepare.md'
