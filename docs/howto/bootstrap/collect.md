@@ -43,3 +43,4 @@ flowchart LR
      They also write a script that parses the data from the threat feeds and applies the data map to assign a value to 
      the _Exploitation_ decision point.
 
+{% include-markdown '../evidence_gathering.md' heading-offset=1 %}
