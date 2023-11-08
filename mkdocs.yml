@@ -33,7 +33,6 @@ nav:
     - Future Work: 'topics/future_work.md'
   - SSVC How-To:
     - Intro: 'howto/index.md'
-    - Asset Management: 'howto/asset_management.md'
     - Stakeholder Decision Models:
         - Supplier Decision Model: 'howto/supplier_tree.md'
         - Deployer Decision Model: 'howto/deployer_tree.md'
@@ -49,6 +48,7 @@ nav:
       - Use & Respond: 'howto/bootstrap/use.md'
       - Summary: 'howto/bootstrap/summary.md'
     - Customizing SSVC: 'howto/tree_customization.md'
+    - SSVC and Asset Management: 'howto/asset_management.md'
 
   - Reference:
     - Intro: 'reference/index.md'
