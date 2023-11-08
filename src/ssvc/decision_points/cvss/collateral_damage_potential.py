@@ -17,14 +17,10 @@ Models the CVSS Collateral Damage Potential metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="ND",
-    description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
-)
 
 _MEDIUM_HIGH = SsvcDecisionPointValue(
     name="Medium-High",
@@ -95,7 +91,7 @@ COLLATERAL_DAMAGE_POTENTIAL_2 = CvssDecisionPoint(
         _LOW_MEDIUM,
         _MEDIUM_HIGH,
         _HIGH,
-        _NOT_DEFINED,
+        NOT_DEFINED_ND,
     ),
 )
 """

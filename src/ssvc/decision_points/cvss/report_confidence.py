@@ -17,15 +17,9 @@ Models the CVSS Report Confidence metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND, NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="ND",
-    description="Assigning this value to the metric will not influence the score. It is a signal to the equation to "
-    "skip this metric.",
-)
 
 _CONFIRMED_2 = SsvcDecisionPointValue(
     name="Confirmed",
@@ -104,7 +98,7 @@ REPORT_CONFIDENCE_1_1 = CvssDecisionPoint(
         _UNCONFIRMED,
         _UNCORROBORATED,
         _CONFIRMED,
-        _NOT_DEFINED,
+        NOT_DEFINED_ND,
     ),
 )
 """
@@ -121,12 +115,13 @@ REPORT_CONFIDENCE_2 = CvssDecisionPoint(
         _UNKNOWN,
         _REASONABLE,
         _CONFIRMED_2,
-        _NOT_DEFINED,
+        NOT_DEFINED_X,
     ),
 )
 """
 Replaces Unconfirmed and Uncorroborated with Unknown and Reasonable. Updated Confirmed. Retains Not Defined.
 """
+
 
 versions = [
     REPORT_CONFIDENCE_1,

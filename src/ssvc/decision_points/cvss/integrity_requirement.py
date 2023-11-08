@@ -17,15 +17,9 @@ Models the CVSS Integrity Requirement metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND, NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="X",
-    description="Assigning this value to the metric will not influence the score. It is a signal to the equation to "
-    "skip this metric.",
-)
 
 _HIGH = SsvcDecisionPointValue(
     name="High",
@@ -51,25 +45,32 @@ _LOW = SsvcDecisionPointValue(
 INTEGRITY_REQUIREMENT_1 = CvssDecisionPoint(
     name="Integrity Requirement",
     description="This metric measures the impact to the integrity of a successfully exploited vulnerability.",
-    key="CR",
+    key="IR",
     version="1.0.0",
     values=(
         _LOW,
         _MEDIUM,
         _HIGH,
-        _NOT_DEFINED,
+        NOT_DEFINED_ND,
     ),
 )
 """
 Defines Low, Medium, High, and Not Defined values for CVSS Integrity Requirement.
 """
 
-_NOT_DEFINED_2 = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="X",
-    description="Assigning this value indicates there is insufficient information to choose one of the other values. "
-    "This has the same effect as assigning High as the worst case.",
+INTEGRITY_REQUIREMENT_1_1 = CvssDecisionPoint(
+    name="Integrity Requirement",
+    description="This metric measures the impact to the integrity of a successfully exploited vulnerability.",
+    key="IR",
+    version="1.1.0",
+    values=(
+        _LOW,
+        _MEDIUM,
+        _HIGH,
+        NOT_DEFINED_X,
+    ),
 )
+
 
 _HIGH_2 = SsvcDecisionPointValue(
     name="High",
@@ -92,21 +93,25 @@ _LOW_2 = SsvcDecisionPointValue(
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-INTEGRITY_REQUIREMENT_1_0_1 = CvssDecisionPoint(
+INTEGRITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     name="Integrity Requirement",
     description="This metric enables the consumer to customize the assessment depending on the importance of the "
     "affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
-    key="CR",
+    key="IR",
     version="1.0.1",
     values=(
         _LOW_2,
         _MEDIUM_2,
         _HIGH_2,
-        _NOT_DEFINED_2,
+        NOT_DEFINED_X,
     ),
 )
 
-versions = [INTEGRITY_REQUIREMENT_1, INTEGRITY_REQUIREMENT_1_0_1]
+versions = [
+    INTEGRITY_REQUIREMENT_1,
+    INTEGRITY_REQUIREMENT_1_1,
+    INTEGRITY_REQUIREMENT_1_1_1,
+]
 
 
 def main():

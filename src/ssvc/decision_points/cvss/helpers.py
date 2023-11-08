@@ -18,6 +18,7 @@ Provides helpers for working with CVSS decision points.
 from copy import deepcopy
 
 from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 
 
 def modify_3(dp: SsvcDecisionPoint):
@@ -35,9 +36,8 @@ def modify_3(dp: SsvcDecisionPoint):
     _dp.key = "M" + _dp.key
 
     # if there is no value named "Not Defined" value, add it
-    nd = SsvcDecisionPointValue(
-        name="Not Defined", key="X", description="Ignore this value"
-    )
+    nd = NOT_DEFINED_X
+
     values = list(_dp.values)
 
     names = [v.name for v in values]

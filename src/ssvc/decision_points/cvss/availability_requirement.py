@@ -17,15 +17,10 @@ Models the CVSS Availability Requirement metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND, NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="X",
-    description="Assigning this value to the metric will not influence the score. It is a signal to the equation to "
-    "skip this metric.",
-)
 
 _HIGH = SsvcDecisionPointValue(
     name="High",
@@ -52,25 +47,32 @@ _LOW = SsvcDecisionPointValue(
 AVAILABILITY_REQUIREMENT_1 = CvssDecisionPoint(
     name="Availability Requirement",
     description="This metric measures the impact to the availability of a successfully exploited vulnerability.",
-    key="CR",
+    key="AR",
     version="1.0.0",
     values=(
         _LOW,
         _MEDIUM,
         _HIGH,
-        _NOT_DEFINED,
+        NOT_DEFINED_ND,
     ),
 )
 """
 Defines Low, Medium, High, and Not Defined values for CVSS Availability Requirement.
 """
 
-_NOT_DEFINED_2 = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="X",
-    description="Assigning this value indicates there is insufficient information to choose one of the other values. "
-    "This has the same effect as assigning High as the worst case.",
+AVAILABILITY_REQUIREMENT_1_1 = CvssDecisionPoint(
+    name="Availability Requirement",
+    description="This metric measures the impact to the availability of a successfully exploited vulnerability.",
+    key="AR",
+    version="1.1.0",
+    values=(
+        _LOW,
+        _MEDIUM,
+        _HIGH,
+        NOT_DEFINED_X,
+    ),
 )
+
 
 _HIGH_2 = SsvcDecisionPointValue(
     name="High",
@@ -93,21 +95,25 @@ _LOW_2 = SsvcDecisionPointValue(
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-AVAILABILITY_REQUIREMENT_1_0_1 = CvssDecisionPoint(
+AVAILABILITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     name="Availability Requirement",
     description="This metric enables the consumer to customize the assessment depending on the importance of the "
     "affected IT asset to the analyst’s organization, measured in terms of Availability.",
-    key="CR",
-    version="1.0.1",
+    key="AR",
+    version="1.1.1",
     values=(
         _LOW_2,
         _MEDIUM_2,
         _HIGH_2,
-        _NOT_DEFINED_2,
+        NOT_DEFINED_X,
     ),
 )
 
-versions = [AVAILABILITY_REQUIREMENT_1, AVAILABILITY_REQUIREMENT_1_0_1]
+versions = [
+    AVAILABILITY_REQUIREMENT_1,
+    AVAILABILITY_REQUIREMENT_1_1,
+    AVAILABILITY_REQUIREMENT_1_1_1,
+]
 
 
 def main():

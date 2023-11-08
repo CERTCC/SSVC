@@ -36,7 +36,8 @@ from ssvc.decision_points.cvss.availability_impact import (
 )
 from ssvc.decision_points.cvss.availability_requirement import (
     AVAILABILITY_REQUIREMENT_1,
-    AVAILABILITY_REQUIREMENT_1_0_1,
+    AVAILABILITY_REQUIREMENT_1_1,
+    AVAILABILITY_REQUIREMENT_1_1_1,
 )
 from ssvc.decision_points.cvss.collateral_damage_potential import (
     COLLATERAL_DAMAGE_POTENTIAL_1,
@@ -49,7 +50,8 @@ from ssvc.decision_points.cvss.confidentiality_impact import (
 )
 from ssvc.decision_points.cvss.confidentiality_requirement import (
     CONFIDENTIALITY_REQUIREMENT_1,
-    CONFIDENTIALITY_REQUIREMENT_1_0_1,
+    CONFIDENTIALITY_REQUIREMENT_1_1,
+    CONFIDENTIALITY_REQUIREMENT_1_1_1,
 )
 from ssvc.decision_points.cvss.eq_sets import EQ1, EQ2, EQ3, EQ4, EQ5, EQ6
 from ssvc.decision_points.cvss.exploitability import (
@@ -67,7 +69,8 @@ from ssvc.decision_points.cvss.integrity_impact import (
 )
 from ssvc.decision_points.cvss.integrity_requirement import (
     INTEGRITY_REQUIREMENT_1,
-    INTEGRITY_REQUIREMENT_1_0_1,
+    INTEGRITY_REQUIREMENT_1_1,
+    INTEGRITY_REQUIREMENT_1_1_1,
 )
 from ssvc.decision_points.cvss.privileges_required import (
     PRIVILEGES_REQUIRED_1,
@@ -211,9 +214,9 @@ _TEMPORAL_3 = [
 _ENVIRONMENTAL_3 = [modify_3(dp) for dp in _BASE_3]
 _ENVIRONMENTAL_3.extend(
     [
-        CONFIDENTIALITY_REQUIREMENT_1,
-        INTEGRITY_REQUIREMENT_1,
-        AVAILABILITY_REQUIREMENT_1,
+        CONFIDENTIALITY_REQUIREMENT_1_1,
+        INTEGRITY_REQUIREMENT_1_1,
+        AVAILABILITY_REQUIREMENT_1_1,
     ]
 )
 
@@ -263,9 +266,9 @@ _BASE_4 = _EXPLOITABILITY_4 + _IMPACT_4
 _ENVIRONMENTAL_4 = [modify_4(dp) for dp in _BASE_4]
 _ENVIRONMENTAL_4.extend(
     [
-        CONFIDENTIALITY_REQUIREMENT_1_0_1,
-        INTEGRITY_REQUIREMENT_1_0_1,
-        AVAILABILITY_REQUIREMENT_1_0_1,
+        CONFIDENTIALITY_REQUIREMENT_1_1_1,
+        INTEGRITY_REQUIREMENT_1_1_1,
+        AVAILABILITY_REQUIREMENT_1_1_1,
     ]
 )
 _THREAT_4 = [

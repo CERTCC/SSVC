@@ -17,16 +17,10 @@ Models CVSS Target Distribution as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="ND",
-    description="This value is not defined in any specification, but is used in the CVSS v3.0 vector string when a "
-    "value is required by the specification, but cannot be provided. This is a special case value and "
-    "should be used sparingly.",
-)
 
 _HIGH = SsvcDecisionPointValue(
     name="High",
@@ -86,7 +80,7 @@ TARGET_DISTRIBUTION_1_1 = CvssDecisionPoint(
         _LOW,
         _MEDIUM,
         _HIGH,
-        _NOT_DEFINED,
+        NOT_DEFINED_X,
     ),
 )
 """

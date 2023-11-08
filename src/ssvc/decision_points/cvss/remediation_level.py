@@ -17,14 +17,10 @@ Models the CVSS Remediation Level metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="ND",
-    description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
-)
 
 _UNAVAILABLE = SsvcDecisionPointValue(
     name="Unavailable",
@@ -35,19 +31,24 @@ _UNAVAILABLE = SsvcDecisionPointValue(
 _WORKAROUND = SsvcDecisionPointValue(
     name="Workaround",
     key="W",
-    description="There is an unofficial, non-vendor solution available. In some cases, users of the affected technology will create a patch of their own or provide steps to work around or otherwise mitigate against the vulnerability. When it is generally accepted that these unofficial fixes are adequate in plugging the hole for the mean time and no official remediation is available, this value can be set.",
+    description="There is an unofficial, non-vendor solution available. In some cases, users of the affected "
+    "technology will create a patch of their own or provide steps to work around or otherwise mitigate "
+    "against the vulnerability. When it is generally accepted that these unofficial fixes are adequate in "
+    "plugging the hole for the mean time and no official remediation is available, this value can be set.",
 )
 
 _TEMPORARY_FIX = SsvcDecisionPointValue(
     name="Temporary Fix",
     key="TF",
-    description="There is an official but temporary fix available. This includes instances where the vendor issues a temporary hotfix, tool or official workaround.",
+    description="There is an official but temporary fix available. This includes instances where the vendor issues a "
+    "temporary hotfix, tool or official workaround.",
 )
 
 _OFFICIAL_FIX = SsvcDecisionPointValue(
     name="Official Fix",
     key="OF",
-    description="A complete vendor solution is available. Either the vendor has issued the final, official patch which eliminates the vulnerability or an upgrade that is not vulnerable is available.",
+    description="A complete vendor solution is available. Either the vendor has issued the final, official patch "
+    "which eliminates the vulnerability or an upgrade that is not vulnerable is available.",
 )
 
 REMEDIATION_LEVEL_1 = CvssDecisionPoint(
@@ -76,7 +77,7 @@ REMEDIATION_LEVEL_1_1 = CvssDecisionPoint(
         _TEMPORARY_FIX,
         _WORKAROUND,
         _UNAVAILABLE,
-        _NOT_DEFINED,
+        NOT_DEFINED_X,
     ),
 )
 """
