@@ -35,7 +35,6 @@ nav:
     - Intro: 'howto/index.md'
     - Asset Management: 'howto/asset_management.md'
     - Stakeholder Decision Models:
-        - Intro: 'howto/prioritization.md'
         - Supplier Decision Model: 'howto/supplier_tree.md'
         - Deployer Decision Model: 'howto/deployer_tree.md'
         - Coordinator Decision Models:
