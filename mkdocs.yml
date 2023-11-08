@@ -46,12 +46,11 @@ nav:
     - Bootstrapping SSVC:
       - Intro: 'howto/bootstrap/index.md'
       - Prepare: 'howto/bootstrap/prepare.md'
-      - Tree Customization: 'howto/tree_customization.md'
       - Collect: 'howto/bootstrap/collect.md'
-      - Evidence Gathering: 'howto/evidence_gathering.md'
       - Use & Respond: 'howto/bootstrap/use.md'
-      - Communicating Results: 'howto/communicating_results.md'
       - Summary: 'howto/bootstrap/summary.md'
+    - Customizing SSVC: 'howto/tree_customization.md'
+
   - Reference:
     - Intro: 'reference/index.md'
     - Decision Points:
