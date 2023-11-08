@@ -58,6 +58,7 @@ from ssvc.decision_points.cvss.exploitability import (
     EXPLOIT_CODE_MATURITY_1_2,
     EXPLOIT_MATURITY_2,
 )
+from ssvc.decision_points.cvss.helpers import modify_3, modify_4
 from ssvc.decision_points.cvss.impact_bias import IMPACT_BIAS_1
 from ssvc.decision_points.cvss.integrity_impact import (
     INTEGRITY_IMPACT_1,
@@ -100,103 +101,155 @@ from ssvc.decision_points.cvss.user_interaction import (
     USER_INTERACTION_2,
 )
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.dp_groups.cvss.helpers import modify
-
 
 # Instantiate the CVSS v1 decision point group
-CVSSv1 = SsvcDecisionPointGroup(
+_BASE_1 = [
+    ACCESS_VECTOR_1,
+    ACCESS_COMPLEXITY_1,
+    AUTHENTICATION_1,
+    CONFIDENTIALITY_IMPACT_1,
+    INTEGRITY_IMPACT_1,
+    AVAILABILITY_IMPACT_1,
+    IMPACT_BIAS_1,
+]
+_TEMPORAL_1 = [
+    EXPLOITABILITY_1,
+    REMEDIATION_LEVEL_1,
+    REPORT_CONFIDENCE_1,
+]
+_ENVIRONMENTAL_1 = [
+    COLLATERAL_DAMAGE_POTENTIAL_1,
+    TARGET_DISTRIBUTION_1,
+]
+
+CVSSv1_B = SsvcDecisionPointGroup(
     name="CVSS",
     version="1.0",
     description="CVSS v1 decision points",
-    decision_points=(
-        ACCESS_VECTOR_1,
-        ACCESS_COMPLEXITY_1,
-        AUTHENTICATION_1,
-        CONFIDENTIALITY_IMPACT_1,
-        INTEGRITY_IMPACT_1,
-        AVAILABILITY_IMPACT_1,
-        IMPACT_BIAS_1,
-        EXPLOITABILITY_1,
-        REMEDIATION_LEVEL_1,
-        REPORT_CONFIDENCE_1,
-        COLLATERAL_DAMAGE_POTENTIAL_1,
-        TARGET_DISTRIBUTION_1,
-    ),
+    decision_points=tuple(_BASE_1),
 )
+
+CVSSv1_BT = SsvcDecisionPointGroup(
+    name="CVSS",
+    version="1.0",
+    description="CVSS v1 decision points",
+    decision_points=tuple(_BASE_1 + _TEMPORAL_1),
+)
+
+CVSSv1_BTE = SsvcDecisionPointGroup(
+    name="CVSS",
+    version="1.0",
+    description="CVSS v1 decision points",
+    decision_points=tuple(_BASE_1 + _TEMPORAL_1 + _ENVIRONMENTAL_1),
+)
+
+CVSSv1 = CVSSv1_BTE  # convenience alias
 
 # CVSS v2 decision points
-CVSSv2 = SsvcDecisionPointGroup(
-    name="CVSS Version 2",
-    description="The Common Vulnerability Scoring System (CVSS) is a free and open industry standard for assessing the severity of computer system security vulnerabilities. CVSS attempts to assign severity scores to vulnerabilities, allowing responders to prioritize responses and resources according to threat. Scores are calculated based on a formula that depends on several metrics that approximate ease of exploit and the impact of exploit. Scores range from 0 to 10, with 10 being the most severe.",
+
+_BASE_2 = [
+    ACCESS_VECTOR_2,
+    ACCESS_COMPLEXITY_2,
+    AUTHENTICATION_2,
+    CONFIDENTIALITY_IMPACT_1,
+    INTEGRITY_IMPACT_1,
+    AVAILABILITY_IMPACT_1,
+]
+_TEMPORAL_2 = [
+    EXPLOITABILITY_1_1,
+    REMEDIATION_LEVEL_1_1,
+    REPORT_CONFIDENCE_1_1,
+]
+_ENVIRONMENTAL_2 = [
+    COLLATERAL_DAMAGE_POTENTIAL_2,
+    TARGET_DISTRIBUTION_1_1,
+    CONFIDENTIALITY_REQUIREMENT_1,
+    INTEGRITY_REQUIREMENT_1,
+    AVAILABILITY_REQUIREMENT_1,
+]
+
+CVSSv2_B = SsvcDecisionPointGroup(
+    name="CVSS Version 2 Base Metrics",
+    description="Base metrics for CVSS v2",
     version="2.0",
-    decision_points=(
-        ACCESS_VECTOR_2,
-        ACCESS_COMPLEXITY_2,
-        AUTHENTICATION_2,
-        CONFIDENTIALITY_IMPACT_1,
-        INTEGRITY_IMPACT_1,
-        AVAILABILITY_IMPACT_1,
-        EXPLOITABILITY_1_1,
-        REMEDIATION_LEVEL_1_1,
-        REPORT_CONFIDENCE_1_1,
-        COLLATERAL_DAMAGE_POTENTIAL_2,
-        TARGET_DISTRIBUTION_1_1,
-        CONFIDENTIALITY_REQUIREMENT_1,
-        INTEGRITY_REQUIREMENT_1,
-        AVAILABILITY_REQUIREMENT_1,
-    ),
+    decision_points=tuple(_BASE_2),
 )
+
+CVSSv2_BT = SsvcDecisionPointGroup(
+    name="CVSS Version 2 Base and Temporal Metrics",
+    description="Base and Temporal metrics for CVSS v2",
+    version="2.0",
+    decision_points=tuple(_BASE_2 + _TEMPORAL_2),
+)
+
+CVSSv2_BTE = SsvcDecisionPointGroup(
+    name="CVSS Version 2 Base, Temporal, and Environmental Metrics",
+    description="Base, Temporal, and Environmental metrics for CVSS v2",
+    version="2.0",
+    decision_points=tuple(_BASE_2 + _TEMPORAL_2 + _ENVIRONMENTAL_2),
+)
+
+CVSSv2 = CVSSv2_BTE  # convenience alias
 
 # CVSS v3 decision points
-MODIFIED_ATTACK_VECTOR = modify(ATTACK_VECTOR_3)
-MODIFIED_ATTACK_COMPLEXITY = modify(ATTACK_COMPLEXITY_3)
-MODIFIED_PRIVILEGES_REQUIRED = modify(PRIVILEGES_REQUIRED_1)
-MODIFIED_USER_INTERACTION = modify(USER_INTERACTION_1)
-MODIFIED_SCOPE = modify(SCOPE)
-MODIFIED_CONFIDENTIALITY_IMPACT = modify(CONFIDENTIALITY_IMPACT_2)
-MODIFIED_INTEGRITY_IMPACT = modify(INTEGRITY_IMPACT_2)
-MODIFIED_AVAILABILITY_IMPACT = modify(AVAILABILITY_IMPACT_2)
+_BASE_3 = [
+    ATTACK_VECTOR_3,
+    ATTACK_COMPLEXITY_3,
+    PRIVILEGES_REQUIRED_1,
+    USER_INTERACTION_1,
+    SCOPE,
+    CONFIDENTIALITY_IMPACT_2,
+    INTEGRITY_IMPACT_2,
+    AVAILABILITY_IMPACT_2,
+]
+_TEMPORAL_3 = [
+    EXPLOIT_CODE_MATURITY_1_2,
+    REMEDIATION_LEVEL_1_1,
+    REPORT_CONFIDENCE_2,
+]
 
-CVSSv3 = SsvcDecisionPointGroup(
-    name="CVSS Version 3",
-    description="The Common Vulnerability Scoring System (CVSS) is a free and open industry standard for assessing the severity of computer system security vulnerabilities. CVSS attempts to assign severity scores to vulnerabilities, allowing responders to prioritize responses and resources according to threat. Scores are calculated based on a formula that depends on several metrics that approximate ease of exploit and the impact of exploit. Scores range from 0 to 10, with 10 being the most severe.",
-    version="3.0",
-    decision_points=(
-        ATTACK_VECTOR_3,
-        ATTACK_COMPLEXITY_3,
-        PRIVILEGES_REQUIRED_1,
-        USER_INTERACTION_1,
-        SCOPE,
-        CONFIDENTIALITY_IMPACT_2,
-        INTEGRITY_IMPACT_2,
-        AVAILABILITY_IMPACT_2,
-        EXPLOIT_CODE_MATURITY_1_2,
-        REMEDIATION_LEVEL_1_1,
-        REPORT_CONFIDENCE_2,
+_ENVIRONMENTAL_3 = [modify_3(dp) for dp in _BASE_3]
+_ENVIRONMENTAL_3.extend(
+    [
         CONFIDENTIALITY_REQUIREMENT_1,
         INTEGRITY_REQUIREMENT_1,
         AVAILABILITY_REQUIREMENT_1,
-        MODIFIED_ATTACK_VECTOR,
-        MODIFIED_ATTACK_COMPLEXITY,
-        MODIFIED_PRIVILEGES_REQUIRED,
-        MODIFIED_USER_INTERACTION,
-        MODIFIED_SCOPE,
-        MODIFIED_CONFIDENTIALITY_IMPACT,
-        MODIFIED_INTEGRITY_IMPACT,
-        MODIFIED_AVAILABILITY_IMPACT,
-    ),
+    ]
 )
+
+CVSSv3_B = SsvcDecisionPointGroup(
+    name="CVSS Version 3 Base Metrics",
+    description="Base metrics for CVSS v3",
+    version="3.0",
+    decision_points=tuple(_BASE_3),
+)
+
+CVSSv3_BT = SsvcDecisionPointGroup(
+    name="CVSS Version 3 Base and Temporal Metrics",
+    description="Base and Temporal metrics for CVSS v3",
+    version="3.0",
+    decision_points=tuple(_BASE_3 + _TEMPORAL_3),
+)
+
+CVSSv3_BTE = SsvcDecisionPointGroup(
+    name="CVSS Version 3 Base, Temporal, and Environmental Metrics",
+    description="Base, Temporal, and Environmental metrics for CVSS v3",
+    version="3.0",
+    decision_points=tuple(_BASE_3 + _TEMPORAL_3 + _ENVIRONMENTAL_3),
+)
+
+CVSSv3 = CVSSv3_BTE  # convenience alias
 
 # CVSS v4 decision points
 
-_EXPLOITABILITY = [
+_EXPLOITABILITY_4 = [
     ATTACK_VECTOR_3_0_1,
     ATTACK_COMPLEXITY_3_0_1,
     ATTACK_REQUIREMENTS_1,
     PRIVILEGES_REQUIRED_1_0_1,
     USER_INTERACTION_2,
 ]
-_IMPACT = [
+_IMPACT_4 = [
     CONFIDENTIALITY_IMPACT_2_0_1,
     INTEGRITY_IMPACT_2_0_1,
     AVAILABILITY_IMPACT_2_0_1,
@@ -204,16 +257,18 @@ _IMPACT = [
     SUBSEQUENT_INTEGRITY_IMPACT_1,
     SUBSEQUENT_AVAILABILITY_IMPACT_1,
 ]
-_BASE = _EXPLOITABILITY + _IMPACT
-_ENVIRONMENTAL = [modify(base_metric) for base_metric in _BASE]
-_ENVIRONMENTAL.extend(
+_BASE_4 = _EXPLOITABILITY_4 + _IMPACT_4
+
+# note: CVSS v4 does more than just insert "modified" in front of the name and "M" in front of the key
+_ENVIRONMENTAL_4 = [modify_4(dp) for dp in _BASE_4]
+_ENVIRONMENTAL_4.extend(
     [
         CONFIDENTIALITY_REQUIREMENT_1_0_1,
         INTEGRITY_REQUIREMENT_1_0_1,
         AVAILABILITY_REQUIREMENT_1_0_1,
     ]
 )
-_THREAT = [
+_THREAT_4 = [
     EXPLOIT_MATURITY_2,
 ]
 
@@ -222,7 +277,7 @@ CVSSv4_B = SsvcDecisionPointGroup(
     name="CVSSv4 Base Metrics",
     description="Base metrics for CVSS v4",
     version="1.0.0",
-    decision_points=tuple(_BASE),
+    decision_points=tuple(_BASE_4),
 )
 
 # CVSS-BE	Base and Environmental metrics
@@ -230,7 +285,7 @@ CVSSv4_BE = SsvcDecisionPointGroup(
     name="CVSSv4 Base and Environmental Metrics",
     description="Base and Environmental metrics for CVSS v4",
     version="1.0.0",
-    decision_points=tuple(_BASE + _ENVIRONMENTAL),
+    decision_points=tuple(_BASE_4 + _ENVIRONMENTAL_4),
 )
 
 # CVSS-BT	Base and Threat metrics
@@ -238,7 +293,7 @@ CVSSv4_BT = SsvcDecisionPointGroup(
     name="CVSSv4 Base and Threat Metrics",
     description="Base and Threat metrics for CVSS v4",
     version="1.0.0",
-    decision_points=tuple(_BASE + _THREAT),
+    decision_points=tuple(_BASE_4 + _THREAT_4),
 )
 
 # CVSS-BTE
@@ -246,7 +301,7 @@ CVSSv4_BTE = SsvcDecisionPointGroup(
     name="CVSSv4 Base, Threat, and Environmental Metrics",
     description="Base, Threat, and Environmental metrics for CVSS v4",
     version="1.0.0",
-    decision_points=tuple(_BASE + _THREAT + _ENVIRONMENTAL),
+    decision_points=tuple(_BASE_4 + _THREAT_4 + _ENVIRONMENTAL_4),
 )
 
 CVSSv4 = CVSSv4_BTE  # convenience alias
@@ -265,18 +320,27 @@ CVSSv4_Equivalence_Sets = SsvcDecisionPointGroup(
     ),
 )
 
+CVSSv4_EQ = CVSSv4_Equivalence_Sets  # convenience alias
+
 
 def main():
     for group in [
-        CVSSv1,
-        CVSSv2,
-        CVSSv3,
+        CVSSv1_B,
+        CVSSv1_BT,
+        CVSSv1_BTE,
+        CVSSv2_B,
+        CVSSv2_BT,
+        CVSSv2_BTE,
+        CVSSv3_B,
+        CVSSv3_BT,
+        CVSSv3_BTE,
         CVSSv4_B,
         CVSSv4_BE,
         CVSSv4_BT,
         CVSSv4_BTE,
         CVSSv4_Equivalence_Sets,
     ]:
+        print(f"## {group.name} v{group.version}")
         print(group.to_json(indent=2))
         print()
 
