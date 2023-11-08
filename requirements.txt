@@ -11,3 +11,4 @@ dataclasses-json
 pandas
 scikit-learn
 jsonschema
+thefuzz==0.20.0
