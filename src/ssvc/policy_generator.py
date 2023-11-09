@@ -18,6 +18,7 @@ Provides a Policy Generator class for SSVC decision point groups.
 
 import itertools
 import logging
+import math
 from typing import List, Tuple
 
 import networkx as nx
@@ -76,7 +77,19 @@ class PolicyGenerator:
             weight = 1.0 / len(list(self.outcomes))
             self.outcome_weights = [weight for _ in self.outcomes]
         else:
+            # validate the number of outcome weights
+            if len(outcome_weights) != len(list(self.outcomes)):
+                raise ValueError(
+                    f"Outcome weights must have {len(list(self.outcomes))} elements, but has {len(outcome_weights)}"
+                )
+
+            # validate that the outcome weights sum to 1.0
+            total = sum(outcome_weights)
+            if not math.isclose(total, 1.0):
+                raise ValueError(f"Outcome weights must sum to 1.0, but sum to {total}")
+
             self.outcome_weights = outcome_weights
+
         logger.debug(f"Outcome weights: {self.outcome_weights}")
 
         self.policy: pd.DataFrame = None
