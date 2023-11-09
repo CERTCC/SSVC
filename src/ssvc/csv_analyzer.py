@@ -40,6 +40,19 @@ Example:
     Higher values imply more important features.
     """
 
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
+
 import argparse
 import re
 import sys
@@ -97,6 +110,7 @@ def _drop_col_feat_imp(
     model_clone.random_state = random_state
     # training and scoring the benchmark model
     model_clone.fit(X_train, y_train)
+
     benchmark_score = model_clone.score(X_train, y_train)
     # list for storing feature importances
     importances = []
@@ -191,20 +205,41 @@ def _parse_args(args) -> argparse.Namespace:
 def main():
     args = _parse_args(sys.argv[1:])
 
+    csvfile = args.csvfile
     # read csv
-    df = pd.read_csv(args.csvfile)
-    df = _clean_table(df)
+    df = pd.read_csv(csvfile)
 
+    if args.permutation:
+        imp = permute_feature_importance(df, args.outcol)
+        print(f"Feature Permutation Importance for {df.columns}")
+    else:
+        imp = drop_col_feature_importance(df, args.outcol)
+        print(f"Drop Column Feature Importance for {df.columns}")
+
+    print(imp)
+
+
+def _create_dt_classifier(
+    df: pd.DataFrame, target: str, permute: bool = False
+) -> (pd.DataFrame, pd.DataFrame):
+    """
+    Compute feature importance two different ways for a dataframe
+
+    Args:
+        df: the dataframe to analyze
+        target: the name of the target column to analyze against
+        permute: use permutation importance instead of drop column importance
+
+    Returns:
+        a tuple of (the cleaned dataframe, the feature importance dataframe)
+    """
+
+    df = _clean_table(df)
     # check for target column
-    target = args.outcol
     if target not in df.columns:
-        print(
-            f"Column '{target}' not found in {list(df.columns)}.\nPlease specify --outcol=<col> and try again."
-        )
-        exit(1)
+        raise KeyError(f"Column '{target}' not found in {list(df.columns)}")
 
     X, y = _split_data(df, target)
-
     # turn features into ordinals
     # this assumes that every column is an ordinal label
     # and that the ordinals are sorted in ascending order
@@ -216,19 +251,42 @@ def main():
         mapper = {v: k for (k, v) in codes}
         X[newcol] = X[c].replace(mapper)
     X2 = X[cols]
-
     # construct tree
     dt = DecisionTreeClassifier(random_state=99, criterion="entropy")
 
-    if args.permutation:
-        imp = _perm_feat_imp(dt, X2, y)
-        print(f"Feature Permutation Importance for {args.csvfile}")
-    else:
-        # drop columns and re-run
-        imp = _drop_col_feat_imp(dt, X2, y)
-        print(f"Drop Column Feature Importance for {args.csvfile}")
+    return dt, X2, y
 
-    print(imp)
+
+def drop_col_feature_importance(df: pd.DataFrame, target: str) -> pd.DataFrame:
+    """
+    Compute feature importance using drop column feature importance
+
+    Args:
+        df: the dataframe to analyze
+        target: the name of the target column to analyze against
+
+    Returns:
+        a dataframe of feature importances
+    """
+    dt, X2, y = _create_dt_classifier(df, target)
+    imp = _drop_col_feat_imp(dt, X2, y)
+    return imp
+
+
+def permute_feature_importance(df: pd.DataFrame, target: str) -> pd.DataFrame:
+    """
+    Compute feature importance using permutation feature importance
+
+    Args:
+        df: the dataframe to analyze
+        target: the name of the target column to analyze against
+
+    Returns:
+        a dataframe of feature importances
+    """
+    dt, X2, y = _create_dt_classifier(df, target)
+    imp = _perm_feat_imp(dt, X2, y)
+    return imp
 
 
 if __name__ == "__main__":
