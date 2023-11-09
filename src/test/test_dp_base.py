@@ -55,6 +55,26 @@ class MyTestCase(unittest.TestCase):
             values=tuple(self.values),
         )
 
+    def tearDown(self) -> None:
+        # restore the original registry
+        base.REGISTERED_DECISION_POINTS = self.original_registry
+
+    def test_registry(self):
+        # just by creating the objects, they should be registered
+        self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
+
+        dp2 = base.SsvcDecisionPoint(
+            name="asdfad",
+            key="asdfasdf",
+            description="asdfasdf",
+            version="1.33.1",
+            namespace="asdfasdf",
+            values=(
+                self.value,
+                self.value,
+            ),
+        )
+
         dp2._comment = "asdfasdfasdf"
 
         self.assertIn(dp2, base.REGISTERED_DECISION_POINTS)

@@ -74,8 +74,10 @@ nav:
       - Value Density: 'reference/decision_points/value_density.md'
       - Virulence: 'reference/decision_points/virulence.md'
     - Code:
-        analyze_csv: 'reference/code/analyze_csv.md'
-        doctools: 'reference/code/doctools.md'
+        CSV Analyzer: 'reference/code/analyze_csv.md'
+        Doctools: 'reference/code/doctools.md'
+        Outcomes: 'reference/code/outcomes.md'
+        Policy Generator: 'reference/code/policy_generator.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
