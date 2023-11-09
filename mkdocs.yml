@@ -70,7 +70,9 @@ nav:
       - Technical Impact: 'reference/decision_points/technical_impact.md'
       - Value Density: 'reference/decision_points/value_density.md'
     - Code:
-        analyze_csv: 'reference/code/analyze_csv.md'
+        CSV Analyzer: 'reference/code/analyze_csv.md'
+        Policy Generator: 'reference/code/policy_generator.md'
+        Outcomes: 'reference/code/outcomes.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'

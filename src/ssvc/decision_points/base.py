@@ -4,31 +4,31 @@ file: decisionpoints
 author: adh
 created_at: 9/20/23 10:07 AM
 """
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 import logging
-from dataclasses import dataclass, field
-from typing import ClassVar, Dict, Tuple
+from dataclasses import dataclass
+from typing import Iterable
 
-from dataclasses_json import config, dataclass_json
+from dataclasses_json import dataclass_json
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Commented, _Keyed, _Namespaced, _Versioned
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
-class _DecisionPoints:
-    """
-    A collection of SSVC decision points.
-    """
-
-    registry: ClassVar[Dict[str, "SsvcDecisionPoint"]] = {}
-
-    def __iter__(self):
-        return iter(self.registry.values())
-
-
-REGISTERED_DECISION_POINTS = _DecisionPoints()
+REGISTERED_DECISION_POINTS = []
 
 
 @dataclass_json
@@ -43,63 +43,76 @@ class SsvcDecisionPointValue(_Base, _Keyed):
 
 @dataclass_json
 @dataclass(kw_only=True)
-class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced):
+class SsvcDecisionPoint(
+    _Base,
+    _Keyed,
+    _Versioned,
+    _Namespaced,
+    _Commented,
+):
     """
     Models a single decision point as a list of values.
     """
 
-    values: Tuple[SsvcDecisionPointValue]
+    values: Iterable[SsvcDecisionPointValue] = ()
 
-    # this is only for our own use in Python land, exclude it from serialization
-    _fullname: str = field(
-        init=False, repr=False, default=None, metadata=config(exclude=lambda x: True)
-    )
+    def __iter__(self):
+        """
+        Allow iteration over the decision points in the group.
+        """
+        return iter(self.values)
 
     def __post_init__(self):
-        self._fullname = f"{self.namespace} {self.name} v{self.version}"
-        logging.debug(f"Add {self._fullname} to registry")
-        REGISTERED_DECISION_POINTS.registry[self._fullname] = self
+        global REGISTERED_DECISION_POINTS
 
-    def to_table(self):
-        rows = []
-        rows.append(f"{self.description}")
-        rows.append("")
+        REGISTERED_DECISION_POINTS.append(self)
 
-        headings = ["Value", "Key", "Description"]
 
-        def make_row(items):
-            return "| " + " | ".join(items) + " |"
+def dp_to_table(dp: SsvcDecisionPoint) -> str:
+    """
+    Convert a decision point to a markdown table.
+    :param dp: The decision point to convert.
+    :return: a string containing the markdown table.
+    """
+    rows = []
+    rows.append(f"{dp.description}")
+    rows.append("")
 
-        rows.append(make_row(headings))
-        rows.append(make_row(["---" for _ in headings]))
+    headings = ["Value", "Key", "Description"]
 
-        for value in self.values:
-            rows.append(make_row([value.name, value.key, value.description]))
+    def make_row(items):
+        return "| " + " | ".join(items) + " |"
 
-        return "\n".join(rows)
+    rows.append(make_row(headings))
+    rows.append(make_row(["---" for _ in headings]))
+
+    for value in dp.values:
+        rows.append(make_row([value.name, value.key, value.description]))
+
+    return "\n".join(rows)
 
 
 def main():
+    opt_none = SsvcDecisionPointValue(
+        name="None", key="N", description="No exploit available"
+    )
+    opt_poc = SsvcDecisionPointValue(
+        name="PoC", key="P", description="Proof of concept exploit available"
+    )
+    opt_active = SsvcDecisionPointValue(
+        name="Active", key="A", description="Active exploitation observed"
+    )
+    opts = [opt_none, opt_poc, opt_active]
+
     dp = SsvcDecisionPoint(
         _comment="This is an optional comment that will be included in the object.",
+        values=opts,
         name="Exploitation",
         description="Is there an exploit available?",
         key="E",
         version="1.0.0",
-        values=(
-            SsvcDecisionPointValue(
-                name="None", key="N", description="No exploit available"
-            ),
-            SsvcDecisionPointValue(
-                name="PoC",
-                key="P",
-                description="Proof of concept exploit available",
-            ),
-            SsvcDecisionPointValue(
-                name="Active", key="A", description="Active exploitation observed"
-            ),
-        ),
     )
+
     print(dp.to_json(indent=2))
 
 
