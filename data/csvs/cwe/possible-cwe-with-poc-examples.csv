@@ -1,0 +1,157 @@
+﻿CWE-ID,CWE name,In NVD's CWE Slice?,Possible PoC? ,How could vulnerabilities containing this CWE be exploited?,Tools,Links to tools
+20,Improper Input Validation,yes,no,,,
+22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),yes,yes,"directory/path traversal ""../""",Panoptic; Burp Suite,https://github.com/lightos/Panoptic; https://portswigger.net/burp 
+59,Improper Link Resolution Before File Access ('Link Following'),yes,yes,symlink attack,No specialized resources are required to execute this type of attack. The only requirement is the ability to create the necessary symbolic link.,https://capec.mitre.org/data/definitions/132.html
+73,External Control of File Name or Path,no,no,,,
+74,Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection'),yes,no,,,
+77,Improper Neutralization of Special Elements used in a Command ('Command Injection'),yes,yes,command injection,Commix,https://github.com/commixproject/commix
+78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),yes,yes,OS command injection,Commix; Burp Suite,https://github.com/commixproject/commix; https://portswigger.net/burp 
+79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),yes,yes,cross-site scripting attack,XSSER; Pybelt; XSStrike,https://github.com/epsylon/xsser; https://github.com/Ekultek/Pybelt; https://github.com/s0md3v/XSStrike 
+88,Improper Neutralization of Argument Delimiters in a Command ('Argument Injection'),yes,yes,argument/parameter injection,Argument Injection Hammer,https://github.com/nccgroup/argumentinjectionhammer
+89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),yes,yes,malicious SQL command injection,SQLMap; BBQSQL; JSQL injection; NoSQLMap,https://github.com/sqlmapproject/sqlmap; https://github.com/CiscoCXSecurity/bbqsql; https://github.com/ron190/jsql-injection; https://github.com/codingo/NoSQLMap 
+91,XML Injection (aka Blind XPath Injection),yes,yes,"inject XML code into a web input, XML file or stream",XXExploiter,https://github.com/luisfontes19/xxexploiter
+94,Improper Control of Generation of Code ('Code Injection'),yes,no,,,
+115,Misinterpretation of Input,no,no,,,
+116,Improper Encoding or Escaping of Output,yes,no,,,
+119,Improper Restriction of Operations within the Bounds of a Memory Buffer,yes,no,,,
+120,Buffer Copy without Checking Size of Input ('Classic Buffer Overflow'),yes,no,,,
+122,Heap-based Buffer Overflow,no,no,,,
+125,Out-of-bounds Read,yes,no,,,
+129,Improper Validation of Array Index,yes,no,,,
+131,Incorrect Calculation of Buffer Size,yes,no,,,
+134,Use of Externally-Controlled Format String,yes,no,,,
+178,Improper Handling of Case Sensitivity,yes,no,,,
+190,Integer Overflow or Wraparound,yes,no,,,
+191,Integer Underflow (Wrap or Wraparound),yes,no,,,
+193,Off-by-one Error,yes,no,,,
+194,Unexpected Sign Extension,no,no,,,
+200,Exposure of Sensitive Information to an Unauthorized Actor,yes,no,,,
+201,Insertion of Sensitive Information Into Sent Data,no,no,,,
+203,Observable Discrepancy,yes,no,,,
+209,Generation of Error Message Containing Sensitive Information,yes,yes,read/capture sensitive information contained in error message,OWASP ZAP; Burp Suite,https://www.zaproxy.org/; https://portswigger.net/burp 
+212,Improper Removal of Sensitive Information Before Storage or Transfer,yes,no,,,
+252,Unchecked Return Value,yes,no,,,
+257,Storing Passwords in a Recoverable Format,no,no,,,
+264,"Permissions, Privileges, and Access Controls",no,no,,,
+269,Improper Privilege Management,yes,no,,,
+273,Improper Check for Dropped Privileges,yes,no,,,
+275,Permission Issues,no,no,,,
+276,Incorrect Default Permissions,yes,yes,try to access data or privileges you normally should not have access to,"No specialized resources are required to execute this type of attack. In order to discover unrestricted resources, the attacker does not need special tools or skills. They only have to observe the resources or access mechanisms invoked as each action is performed and then try and access those access mechanisms directly.",https://capec.mitre.org/data/definitions/1.html
+280,Improper Handling of Insufficient Permissions or Privileges,no,no,,,
+281,Improper Preservation of Permissions,yes,no,,,
+284,Improper Access Control,no,no,,,
+287,Improper Authentication,yes,no,,,
+290,Authentication Bypass by Spoofing,yes,no,,,
+294,Authentication Bypass by Capture-replay,yes,yes,capture-replay attack,Wireshark; smartsniff,https://www.wireshark.org/; https://www.nirsoft.net/utils/smsniff.html 
+295,Improper Certificate Validation,yes,no,,,
+305,Authentication Bypass by Primary Weakness,no,no,,,
+306,Missing Authentication for Critical Function,yes,no,,,
+307,Improper Restriction of Excessive Authentication Attempts,yes,yes,brute force attack,THC Hydra; John the Ripper; L0phtCrack; Hashcat,https://github.com/vanhauser-thc/thc-hydra; https://github.com/openwall/john; https://gitlab.com/l0phtcrack/l0phtcrack; https://hashcat.net/hashcat/ 
+311,Missing Encryption of Sensitive Data,yes,no,,,
+312,Cleartext Storage of Sensitive Information,yes,yes,find sensitive data stored in system,OWASP ZAP; Burp Suite,https://www.zaproxy.org/; https://portswigger.net/burp 
+319,Cleartext Transmission of Sensitive Information,yes,yes,capture traffic and extract sensitive information,Wireshark; Smartsniff,https://www.wireshark.org/; https://www.nirsoft.net/utils/smsniff.html 
+321,Use of Hard-coded Cryptographic Key,no,no,,,
+326,Inadequate Encryption Strength,yes,no,,,
+327,Use of a Broken or Risky Cryptographic Algorithm,yes,no,,,
+330,Use of Insufficiently Random Values,yes,yes,brute force attack,THC Hydra; John the Ripper; L0phtCrack; Hashcat,https://github.com/vanhauser-thc/thc-hydra; https://github.com/openwall/john; https://gitlab.com/l0phtcrack/l0phtcrack; https://hashcat.net/hashcat/ 
+331,Insufficient Entropy,yes,yes,brute force attack/predictive programs,hashcat; php_mt_seed,https://hashcat.net/hashcat/; https://github.com/openwall/php_mt_seed 
+335,Incorrect Usage of Seeds in Pseudo-Random Number Generator (PRNG),yes,no,,,
+337,Predictable Seed in Pseudo-Random Number Generator (PRNG),no,no,,,
+338,Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG),yes,no,,,
+345,Insufficient Verification of Data Authenticity,yes,no,,,
+346,Origin Validation Error,yes,no,,,
+347,Improper Verification of Cryptographic Signature,yes,no,,,
+352,Cross-Site Request Forgery (CSRF),yes,yes,CSRF,Burp Suite; XSRFProbe,https://portswigger.net/burp; https://github.com/0xInfection/XSRFProbe 
+354,Improper Validation of Integrity Check Value,yes,no,,,
+362,Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition'),yes,no,,,
+367,Time-of-check Time-of-use (TOCTOU) Race Condition,yes,no,,,
+369,Divide By Zero,yes,no,,,
+384,Session Fixation,yes,no,,,
+388,7PK - Errors,no,no,,,
+400,Uncontrolled Resource Consumption,yes,no,,,
+401,Missing Release of Memory after Effective Lifetime,yes,no,,,
+404,Improper Resource Shutdown or Release,yes,no,,,
+405,Asymmetric Resource Consumption (Amplification),no,no,,,
+407,Inefficient Algorithmic Complexity,yes,no,,,
+415,Double Free,yes,no,,,
+416,Use After Free,yes,no,,,
+425,Direct Request ('Forced Browsing'),yes,yes,forcibly navigate to unintended (by the system) URLs,Dirbuster; Dirstalk,https://sourceforge.net/projects/dirbuster/; https://github.com/stefanoj3/dirstalk 
+426,Untrusted Search Path,yes,yes,malicious dll injection/loading,evildll; evilldll-gen,https://github.com/CrackerCat/evildll; https://gist.github.com/klezVirus/e24c94d7061f5736e2452eee022f4011 
+427,Uncontrolled Search Path Element,yes,yes,malicious dll injection/loading,evildll; evilldll-gen,https://github.com/CrackerCat/evildll; https://gist.github.com/klezVirus/e24c94d7061f5736e2452eee022f4011 
+428,Unquoted Search Path or Element,yes,yes,insert malicious input into unquoted search path,Metasploit,https://www.metasploit.com/
+434,Unrestricted Upload of File with Dangerous Type,yes,yes,uploading of malicious file (program lacks restrictions to prevent this from occuring),No specialized resources are required to execute this type of attack.,https://capec.mitre.org/data/definitions/1.html
+436,Interpretation Conflict,yes,no,,,
+441,Unintended Proxy or Intermediary ('Confused Deputy'),no,no,,,
+444,Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling'),yes,yes,HTTP smuggling,Smuggler,https://github.com/defparam/smuggler
+451,User Interface (UI) Misrepresentation of Critical Information,no,no,,,
+459,Incomplete Cleanup,yes,no,,,
+470,Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection'),yes,no,,,
+476,NULL Pointer Dereference,yes,no,,,
+494,Download of Code Without Integrity Check,yes,no,,,
+502,Deserialization of Untrusted Data,yes,no,,,
+521,Weak Password Requirements,yes,yes,brute force attack,THC Hydra; John the Ripper; L0phtCrack; Hashcat,https://github.com/vanhauser-thc/thc-hydra; https://github.com/openwall/john; https://gitlab.com/l0phtcrack/l0phtcrack; https://hashcat.net/hashcat/ 
+522,Insufficiently Protected Credentials,yes,yes,"search for exposed credentials, capture traffic, or brute force (context-dependent)","Context-dependent, may utilize traffic sniffing tools, tools for discovering sensitive information, or brute forcing tools",https://www.wireshark.org/; https://www.nirsoft.net/utils/smsniff.html; https://www.zaproxy.org/; https://portswigger.net/burp; https://github.com/vanhauser-thc/thc-hydra; https://github.com/openwall/john; https://gitlab.com/l0phtcrack/l0phtcrack; https://hashcat.net/hashcat/ 
+532,Insertion of Sensitive Information into Log File,yes,yes,access log files and search them for sensitive information,OWASP ZAP; Burp Suite - along with the ability to access log files,https://www.zaproxy.org/; https://portswigger.net/burp 
+552,Files or Directories Accessible to External Parties,yes,no,,,
+565,Reliance on Cookies without Validation and Integrity Checking,yes,no,,,
+592,Authentication Bypass Issues,no,no,,,
+601,URL Redirection to Untrusted Site ('Open Redirect'),yes,no,,,
+602,Client-Side Enforcement of Server-Side Security,no,no,,,
+610,Externally Controlled Reference to a Resource in Another Sphere,yes,no,,,
+611,Improper Restriction of XML External Entity Reference,yes,yes,XML external entity injection,XXExploiter,https://github.com/luisfontes19/xxexploiter
+613,Insufficient Session Expiration,yes,no,,,
+617,Reachable Assertion,yes,no,,,
+639,Authorization Bypass Through User-Controlled Key,yes,yes,"modify key values to change what data attacker has access to, insecure direct object vulnerability exploit",AuthZ for burpsuite,https://portswigger.net/bappstore/4316cc18ac5f434884b2089831c7d19e
+640,Weak Password Recovery Mechanism for Forgotten Password,yes,no,,,
+662,Improper Synchronization,yes,no,,,
+665,Improper Initialization,yes,no,,,
+667,Improper Locking,yes,no,,,
+668,Exposure of Resource to Wrong Sphere,yes,no,,,
+669,Incorrect Resource Transfer Between Spheres,yes,no,,,
+670,Always-Incorrect Control Flow Implementation,yes,no,,,
+672,Operation on a Resource after Expiration or Release,yes,no,,,
+674,Uncontrolled Recursion,yes,no,,,
+681,Incorrect Conversion between Numeric Types,yes,no,,,
+682,Incorrect Calculation,yes,no,,,
+697,Incorrect Comparison,yes,no,,,
+703,Improper Check or Handling of Exceptional Conditions,no,no,,,
+704,Incorrect Type Conversion or Cast,yes,no,,,
+706,Use of Incorrectly-Resolved Name or Reference,yes,no,,,
+732,Incorrect Permission Assignment for Critical Resource,yes,no,,,
+749,Exposed Dangerous Method or Function,no,no,,,
+754,Improper Check for Unusual or Exceptional Conditions,yes,no,,,
+755,Improper Handling of Exceptional Conditions,yes,no,,,
+759,Use of a One-Way Hash without a Salt,no,no,,,
+763,Release of Invalid Pointer or Reference,yes,no,,,
+770,Allocation of Resources Without Limits or Throttling,yes,no,,,
+772,Missing Release of Resource after Effective Lifetime,yes,no,,,
+776,Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion'),yes,yes,XML entity expansion,XXExploiter,https://github.com/luisfontes19/xxexploiter
+787,Out-of-bounds Write,yes,no,,,
+789,Memory Allocation with Excessive Size Value,no,no,,,
+798,Use of Hard-coded Credentials,yes,yes,discover and use hardcoded credentials,"Context-dependent, may use password cracking tools, binary analysis tools, or may not require any tools (just knowledge of the default hard-coded credentials)",https://github.com/vanhauser-thc/thc-hydra; https://github.com/openwall/john; https://gitlab.com/l0phtcrack/l0phtcrack; https://hashcat.net/hashcat/; https://www.powergrep.com/ 
+823,Use of Out-of-range Pointer Offset,no,no,,,
+824,Access of Uninitialized Pointer,yes,no,,,
+829,Inclusion of Functionality from Untrusted Control Sphere,yes,no,,,
+834,Excessive Iteration,yes,no,,,
+835,Loop with Unreachable Exit Condition ('Infinite Loop'),yes,no,,,
+838,Inappropriate Encoding for Output Context,yes,no,,,
+843,Access of Resource Using Incompatible Type ('Type Confusion'),yes,no,,,
+862,Missing Authorization,yes,no,,,
+863,Incorrect Authorization,yes,no,,,
+908,Use of Uninitialized Resource,yes,no,,,
+909,Missing Initialization of Resource,yes,no,,,
+913,Improper Control of Dynamically-Managed Code Resources,yes,no,,,
+916,Use of Password Hash With Insufficient Computational Effort,yes,yes,brute force,THC Hydra; John the Ripper; L0phtCrack; Hashcat,https://github.com/vanhauser-thc/thc-hydra; https://github.com/openwall/john; https://gitlab.com/l0phtcrack/l0phtcrack; https://hashcat.net/hashcat/ 
+917,Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression La,yes,no,,,
+918,Server-Side Request Forgery (SSRF),yes,yes,SSRF,SSRFmap; Burp Suite,https://github.com/swisskyrepo/SSRFmap; https://portswigger.net/web-security/ssrf 
+920,Improper Restriction of Power Consumption,yes,no,,,
+922,Insecure Storage of Sensitive Information,yes,no,,,
+924,Improper Enforcement of Message Integrity During Transmission in a Communication Channel,yes,no,,,
+1021,Improper Restriction of Rendered UI Layers or Frames,yes,no,,,
+1188,Insecure Default Initialization of Resource,yes,yes,use default credentials,"Context-dependent, but may not need any tools (for example, try to use default credentials or access resources that typically require permissions) - knowledge of the system (and its defaults) helps",
+1236,Improper Neutralization of Formula Elements in a CSV File,yes,yes,CSV injection,"No specialized resources are required to execute this type of attack, it is more based on payloads.",https://gitlab.com/pentest-tools/PayloadsAllTheThings/-/tree/master/CSV%20Injection; https://owasp.org/www-community/attacks/CSV_Injection 
+1284,Improper Validation of Specified Quantity in Input,yes,no,,,
+1321,Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution'),yes,yes,prototype pollution,DOM Invader (Burp Suite),https://portswigger.net/burp/documentation/desktop/tools/dom-invader
+1333,Inefficient Regular Expression Complexity,yes,yes,ReDoS or exponential backtracking,ReScue,https://2bdenny.github.io/ReScue/
+NVD-noinfo,There is insufficient information about the issue to classify it; details are unkown or unspecified.,yes,no,,,
+NVD-Other,"NVD is only using a subset of CWE for mapping instead of the entire CWE, and the weakness type is not covered by that subset.",yes,no,,,
