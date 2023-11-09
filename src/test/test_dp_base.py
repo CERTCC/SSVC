@@ -69,10 +69,7 @@ class MyTestCase(unittest.TestCase):
             description="asdfasdf",
             version="1.33.1",
             namespace="asdfasdf",
-            values=(
-                self.value,
-                self.value,
-            ),
+            values=self.values,
         )
 
         dp2._comment = "asdfasdfasdf"
