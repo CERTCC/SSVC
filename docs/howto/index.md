@@ -23,3 +23,4 @@
     - how to integrate SSVC into existing processes
     - how to integrate data sources into SSVC decision points
 
+{% include-markdown './prioritization.md' heading-offset=1 %}

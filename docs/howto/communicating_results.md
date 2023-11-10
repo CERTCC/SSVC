@@ -129,16 +129,20 @@ As an initial heuristic, we suggest the associated polling frequency for each.
 These frequencies can be customized, as the update frequency is directly related to the organization's tolerance for the risk that the information is out of date.
 As discussed in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance), risk tolerance is unique to each organization.
 Risk tolerance and risk appetite are primarily reflected in the priority labels (that is, decisions) encoded in the SSVC decision tree, but information polling frequency is also a risk tolerance decision and each organization may choose different time values.
- - [*Exploitation*](#exploitation): every 1 day
- - [*Technical Impact*](#technical-impact): never (should be static per vulnerability)
- - [*Utility*](#utility): every 6 months
- - [*Public Safety Impact*](#public-safety-impact): every 1 year
+
+| Decision Point                                                                 | Suggested Polling Frequency |
+|--------------------------------------------------------------------------------|-----------------------------|
+| [*Exploitation*](../reference/decision_points/exploitation.md)                 | every 1 day |
+| [*Technical Impact*](../reference/decision_points/technical_impact.md)         | never (should be static per vulnerability) |
+| [*Utility*](../reference/decision_points/utility.md)                           | every 6 months |
+| [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) | every 1 year |
+
 
 The following decision points are usually in the control of the organization running SSVC and should be reevaluated when a relevant change is made or during annual reviews of assets.
 
- - [*Situated Safety Impact*](#situated-safety-impact)
- - [*Mission Impact*](#mission-impact)
- - [*System Exposure*](#system-exposure)
+ - [*Situated Safety Impact*](../reference/decision_points/safety_impact.md)
+ - [*Mission Impact*](../reference/decision_points/mission_impact.md)
+ - [*System Exposure*](../reference/decision_points/system_exposure.md)
 
 If SSVC information is all timestamped appropriately (as discussed earlier in this section), then an analyst can compare the timestamp to the current date and determine whether information is considered stale.
 The above rates are heuristic suggestions, and organizations may choose different ones.

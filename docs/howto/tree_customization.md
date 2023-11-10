@@ -1,9 +1,11 @@
-# Tree Construction and Customization Guidance
+# Modeling Other Decisions and Customization Guidance
 
 Stakeholders are encouraged to customize the SSVC decision process to their needs.
 Indeed, the first part of SSVC stands for “stakeholder-specific."
 However, certain parts of SSVC are more amenable to customization than others.
 In this section, we'll cover what a stakeholder should leave static, what we imagine customization looks like, and some advice on building a usable and manageable decision tree based on our experience so far.
+
+## Use Existing Decision Points Where Possible
 
 We suggest that the decision points, their definitions, and the decision values should not be customized.
 Different vulnerability management teams inevitably think of topics such as [*Utility*](#utility) to the adversary in slightly different ways.
@@ -11,12 +13,17 @@ However, a key contribution of SSVC is enabling different teams to communicate a
 In order to clearly communicate differences in the process, the decision points that factor into the process need to be the same between different teams.
 A stakeholder community may come together and, if there is broad consensus, add or change decision points.
 
-Which decision points are involved in a vulnerability management team's decision and the priority label for each resulting situation are, for all intents and purposes, totally at the discretion of the team.
+## Customizing a Decision Model
+
+Which decision points are involved in a vulnerability management team's 
+decision and the priority label for each resulting situation are, for all intents and purposes, totally at the discretion of the team.
 We have provided some examples for different stakeholder communities here.
 What decision points a team considers reflects what it cares about and the risks prioritizes.
 Different teams may legitimately prioritize different objectives.
 It should be easier for teams to discuss and communicate such differences if the definitions of the decision points remain static.
 The other aspect of risk management that SSVC allows a team to customize is its risk appetite or risk tolerance.
+
+### Customizing for Risk Appetite
 
 A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
 For example, a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility) might be handled with [*scheduled*](#supplier-decisions) priority by one team and [*out-of-cycle*](#supplier-decisions) priority by another.
@@ -37,7 +44,7 @@ In our case, we are not attempting to fit a tree to data.
 Rather, we are interested in producing usable trees that minimize extraneous effort.
 To that end, we briefly examine the qualities for which decision tree measurement is suitable.
 
-### Decision Tree Construction Concerns
+## Decision Tree Construction Concerns
 
 Decision tree construction methods must address five significant concerns: 
 - feature selection 
@@ -46,7 +53,7 @@ Decision tree construction methods must address five significant concerns:
 - parsimony
 - versioning
 
-#### Feature selection
+### Feature selection
 
 Feature selection is perhaps the most important consideration for SSVC, because it directly affects the information gathering requirements placed on the analyst attempting to use the tree.
 Each decision point in SSVC is a feature.
@@ -58,18 +65,19 @@ If nothing else, this means analysts are spending time gathering evidence to mak
 The added details also make it harder for the decision process to accurately manage the risks in question.
 This difficulty arises because more variance and complexity there is in the decision increases the possibility of errors in the decision process itself.
 
-#### Feature types
+### Feature types
 
 Regarding feature types, all of the features included in SSVC version 2 can be considered ordinal data.
 That is, while they can be ordered (e.g., for Exploitation, active is greater than poc is greater than none), they can not be compared via subtraction or division (active - poc = nonsense).
 The use of ordinal features is a key assumption behind our use of the parsimony analysis that follows.
 
-#### Overfitting
+### Overfitting
 
 When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree.
 In our case, our “data” is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
 
-#### Parsimony 
+### Parsimony 
+
 Parsimony is, in essence, Occam's Razor applied to tree selection. Given the choice between two trees that have identical outputs, one should choose the tree with fewer decisions.
 One way to evaluate the parsimony of a tree is by applying the concept of feature importance to ensure that each feature is contributing adequately to the result.
 While there are a few ways to compute feature importance, the one we found most useful is permutation importance.
@@ -98,12 +106,12 @@ This sort of customization is often the simplest way to adjust the importance of
 While there is no hard and fast rule for when a tree is too big, we suggest that if all of your outcomes are associated with more than 15 situations (unique combinations of decision values), you would benefit from asking whether your analysts actually use all the information they would be gathering.
 Thus, 60 unique combinations of decision values is the point at which a decision tree with four distinct outcomes is, on average, potentially too big.
 
-#### Tree Versioning
+### Tree Versioning
 
 SSVC trees should be identifiable by name and version. A tree name is simply a short descriptive label for the tree derived from the stakeholder and/or function the tree is intended for. Tree versions are expected to share the major and minor version numbers with the SSVC version in which their decision points are defined. Revisions should increment the patch number. For example: “Applier Tree v1.1.0” would be the identity of the version of the Applier Tree as published in version 1.1 of SSVC.
 “Coordinator Publish Tree v2.0.3” would be the identity of a future revision of the Coordinator Publish Tree as described in this document. The terms “major”, “minor”, and “patch” with respect to version numbering are intended to be consistent with [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
-### Sharing Trees With Others
+## Sharing Trees With Others
 
 Communities of shared interest may desire to share information about decision points or even create custom trees to share within their community.
 Examples include:
@@ -116,7 +124,7 @@ In these and other scenarios, there are two scopes to consider:
 1. Decision Point Scope
 2. Decision Tree Scope
 
-#### Decision Point Scope
+### Decision Point Scope
 
 Each decision point defined in this document has a characteristic scope, either *stakeholder-agnostic* or *stakeholder-specific*.
 
@@ -151,7 +159,7 @@ E.g., a financial institution might have a very low tolerance for changes to a t
 - A decision point that indicates whether the affected software belongs to a list of critical software for a specific constituency.
 E.g., an open-source consortium might want to prioritize fix development for a set of key projects.
  
-#### Decision Tree Scope
+### Decision Tree Scope
 
 Two kinds of modifications are possible at the decision tree level.
 

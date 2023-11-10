@@ -82,3 +82,5 @@ flowchart LR
     instructions to hospital users for applying patches.
     SSVC does not prescribe any particular response process, but it does provide a structured way to make decisions 
     within the response process.
+
+{% include-markdown '../communicating_results.md' heading-offset=1 %}
