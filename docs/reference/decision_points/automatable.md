@@ -53,3 +53,6 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
     Furthermore, discovery of a vulnerable service is not automatable in a situation where only two hosts are misconfigured to expose the service out of 2 million hosts that are properly configured.
     As discussed in in [Reasoning Steps Forward](#reasoning-steps-forward), the analyst should consider *credible* effects based on *known* use cases of the software system to be pragmatic about scope and providing values to decision points.
 
+## Prior Versions
+
+{% include-markdown "../../_generated/decision_points/virulence_1_0_0.md" %}

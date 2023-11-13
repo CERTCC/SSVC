@@ -13,5 +13,5 @@
 
 !!! tip "See also"
 
-    Utility v1.0.0 was a combination of [Virulence](./virulence.md) and
+    Utility v1.0.0 was a combination of [Virulence](./automatable.md) and
     [Value Density](./value_density.md)
