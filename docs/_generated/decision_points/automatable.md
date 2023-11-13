@@ -1,1 +1,1 @@
-automatable_1_0_0.md
+automatable_2_0_0.md
