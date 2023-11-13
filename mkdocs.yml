@@ -33,24 +33,22 @@ nav:
     - Future Work: 'topics/future_work.md'
   - SSVC How-To:
     - Intro: 'howto/index.md'
-    - Coordination Decision: 'howto/coordination_decisions.md'
-    - Publication Decision: 'howto/publication_decision.md'
-    - Prioritization:
-      - Intro: 'howto/prioritization.md'
-      - Supplier Tree: 'howto/supplier_tree.md'
-      - Deployer Tree: 'howto/deployer_tree.md'
-      - Coordinator Triage Tree: 'howto/coordinator_trees.md'
-      - Coordinator Publication Tree: 'howto/coordinator_publish_tree.md'
-    - Tree Customization: 'howto/tree_customization.md'
-    - Evidence Gathering: 'howto/evidence_gathering.md'
-    - Asset Management: 'howto/asset_management.md'
-    - Communicating Results: 'howto/communicating_results.md'
+    - Stakeholder Decision Models:
+        - Supplier Decision Model: 'howto/supplier_tree.md'
+        - Deployer Decision Model: 'howto/deployer_tree.md'
+        - Coordinator Decision Models:
+          - About Coordination: 'howto/coordination_intro.md'
+          - Coordination Decision: 'howto/coordination_decisions.md'
+          - Publication Decision: 'howto/publication_decision.md'
     - Bootstrapping SSVC:
       - Intro: 'howto/bootstrap/index.md'
       - Prepare: 'howto/bootstrap/prepare.md'
       - Collect: 'howto/bootstrap/collect.md'
       - Use & Respond: 'howto/bootstrap/use.md'
       - Summary: 'howto/bootstrap/summary.md'
+    - Customizing SSVC: 'howto/tree_customization.md'
+    - SSVC and Asset Management: 'howto/asset_management.md'
+
   - Reference:
     - Intro: 'reference/index.md'
     - Decision Points:
