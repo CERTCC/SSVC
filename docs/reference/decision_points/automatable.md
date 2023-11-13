@@ -55,4 +55,11 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 
 ## Prior Versions
 
+
 {% include-markdown "../../_generated/decision_points/virulence_1_0_0.md" %}
+
+!!! warning "Virulence is Superseded by Automatable"
+
+    Virulence is superseded by Automatable, which clarified the concept we 
+    we were attempting to capture. 
+    
