@@ -1,3 +1,5 @@
+# Automatable
+
 {% include-markdown "../../_generated/decision_points/automatable.md" %}
 
 !!! tip "See also"

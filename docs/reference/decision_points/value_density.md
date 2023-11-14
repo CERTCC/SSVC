@@ -1,3 +1,5 @@
+# Value Density
+
 {% include-markdown "../../_generated/decision_points/value_density.md" %}
 
 !!! tip "See also"

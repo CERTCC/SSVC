@@ -1,3 +1,5 @@
+# Technical Impact
+
 {% include-markdown "../../_generated/decision_points/technical_impact.md" %}
 
 When evaluating [*Technical Impact*](#technical-impact), recall the scope definition in the [Scope Section](#scope).
