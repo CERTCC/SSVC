@@ -1,0 +1,19 @@
+{
+  "namespace": "ssvc",
+  "version": "2.0.0",
+  "key": "A",
+  "name": "Automatable",
+  "description": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "description": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "description": "Attackers can reliably automate steps 1-4 of the kill chain."
+    }
+  ]
+}

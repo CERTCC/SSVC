@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 ssvc2-applier-wip.xlsx
+_version.py

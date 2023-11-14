@@ -48,7 +48,6 @@ class SsvcDecisionPoint(
     _Keyed,
     _Versioned,
     _Namespaced,
-    _Commented,
 ):
     """
     Models a single decision point as a list of values.
@@ -67,29 +66,10 @@ class SsvcDecisionPoint(
 
         REGISTERED_DECISION_POINTS.append(self)
 
-
-def dp_to_table(dp: SsvcDecisionPoint) -> str:
-    """
-    Convert a decision point to a markdown table.
-    :param dp: The decision point to convert.
-    :return: a string containing the markdown table.
-    """
-    rows = []
-    rows.append(f"{dp.description}")
-    rows.append("")
-
-    headings = ["Value", "Key", "Description"]
-
-    def make_row(items):
-        return "| " + " | ".join(items) + " |"
-
-    rows.append(make_row(headings))
-    rows.append(make_row(["---" for _ in headings]))
-
-    for value in dp.values:
-        rows.append(make_row([value.name, value.key, value.description]))
-
-    return "\n".join(rows)
+        if isinstance(self.values[0], dict):
+            self.values = tuple(
+                SsvcDecisionPointValue.from_dict(v) for v in self.values
+            )
 
 
 def main():

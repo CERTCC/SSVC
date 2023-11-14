@@ -1,14 +1,6 @@
 # System Exposure
 
-!!! note "System Exposure"
-
-    The Accessible Attack Surface of the Affected System or Service
-
-    | Value       | Description |
-    | :---        | :------------ |
-    | Small       | Local service or program; highly controlled network       |
-    | Controlled  | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. *Controlled* covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then *exposure* should be *small*. |
-    | Open        | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers)  |
+{% include-markdown "../../_generated/decision_points/system_exposure.md" %}
 
 Measuring the attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
 Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
@@ -21,7 +13,7 @@ If a mitigation changes exposure and thereby reduces the priority of a vulnerabi
 Whether that mitigation allows the deployer to defer further action varies according to each case.
 
 
-### Gathering Information About System Exposure
+## Gathering Information About System Exposure
 
 [*System Exposure*](#system-exposure) is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
 Therefore, it generally has a concrete answer, even though it may vary from vulnerable component to vulnerable component, based on their respective configurations.
@@ -43,3 +35,7 @@ The unreachable vulnerable component scenario may be a point of concern for stak
 In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [_defer_](#supplier-tree) vs [_scheduled_](#supplier-tree), for example).
 
 If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
+
+## Prior Versions
+
+{% include-markdown "../../_generated/decision_points/system_exposure_1_0_0.md" %}
