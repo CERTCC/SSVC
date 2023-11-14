@@ -49,8 +49,8 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
 
 
 def get_all_decision_points_from(
-    glist: list[SsvcDecisionPointGroup],
-) -> Iterable[SsvcDecisionPoint]:
+    *groups: Iterable[SsvcDecisionPointGroup],
+) -> list[SsvcDecisionPoint]:
     """
     Given a list of SsvcDecisionPointGroup objects, return a list of all
     the unique SsvcDecisionPoint objects contained in those groups.
@@ -62,15 +62,22 @@ def get_all_decision_points_from(
         list: A list of SsvcDecisionPoint objects.
     """
     dps = []
-    for group in glist:
+    seen = set()
+
+    for group in groups:
         for dp in group.decision_points:
             if dp in dps:
                 # skip duplicates
                 continue
+            key = (dp.name, dp.version)
+            if key in seen:
+                # skip duplicates
+                continue
             # keep non-duplicates
             dps.append(dp)
+            seen.add(key)
 
-    return tuple(dps)
+    return list(dps)
 
 
 def main():

@@ -1,30 +1,13 @@
 # Safety Impact
 
-!!! note "Safety Impact"
+{% include-markdown "../../_generated/decision_points/safety_impact.md" %}
 
-    Safety Impacts of Affected System Compromise
+!!! tip "See also"
 
-    | Value | Type of Harm  | Definition |
-    | --:          | :--            | :-----------   |
-    | None          | All           | Does *not* mean no impact *literally*; the effect is below the threshold for all aspects described in Minor |
-    | Minor         | Physical Harm | Physical discomfort for users of the system OR a minor occupational safety hazard OR reduction in physical system safety margins |
-    | Minor         | Environment   | Minor externalities (property damage, environmental damage, etc.) imposed on other parties |
-    | Minor         | Financial     | Financial losses, which are not readily absorbable, to multiple persons |
-    | Minor         | Psychological | Emotional or psychological harm, sufficient to be cause for counseling or therapy, to multiple persons |
-    | Major         | Physical Harm | Physical distress and injuries for users of the system OR a significant occupational safety hazard OR failure of physical system functional capabilities that support safe operation |
-    | Major         | Environment   | Major externalities (property damage, environmental damage, etc.) imposed on other parties |
-    | Major         | Financial     | Financial losses that likely lead to bankruptcy of multiple persons |
-    | Major         | Psychological | Widespread emotional or psychological harm, sufficient to be cause for counseling or therapy, to populations of people |
-    | Hazardous     | Physical Harm | Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures OR parts of the cyber-physical system that support safe operation break |
-    | Hazardous     | Environment   | Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties |
-    | Hazardous     | Financial     | Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state |
-    | Hazardous     | Psychological | N/A |
-    | Catastrophic  | Physical Harm | Multiple immediate fatalities (emergency response probably cannot save the victims.) |
-    | Catastrophic  | Environment   | Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties |
-    | Catastrophic  | Financial     | Social systems (elections, financial grid, etc.) supported by the software collapse |
-    | Catastrophic  | Psychological | N/A |
-
-
+    - Safety Impact combines with [Mission Impact](./mission_impact.md) to 
+      inform [Human Impact](./human_impact.md).
+    - [Public Safety Impact](./public_safety_impact.md) provides a simplified
+      version of this decision point.
 
 We take an expansive view of safety, in which a safety violation is a violation of what the United States [Centers for Disease Control (CDC)](https://www.cdc.gov/hrqol/wellbeing.htm#three) calls **well-being**. Physical well-being violations are common safety violations, but we also consider economic, social, emotional, and psychological well-being to be important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
 <!--The CDC webpage is better called a lit review. It has 74 citations on well-being across various fields. The following citations could reasonably be cited directly, rather than just referencing the CDC page:

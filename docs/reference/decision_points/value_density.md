@@ -1,13 +1,13 @@
-!!! note "Value Density"
-   
-    [*Value Density*](#value-density) is described as *diffuse* or *concentrated* based on the resources that the adversary will gain control over with a single exploitation event:
+# Value Density
 
-    | Value | Definition |
-    | :--- | :----------  |
-    | diffuse | The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively     small.| 
-    | concentrated | The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users. |
+{% include-markdown "../../_generated/decision_points/value_density.md" %}
 
-!!! info inline end "User vs. System Operator"
+!!! tip "See also"
+
+    Value Density combines with [Automatability](./automatable.md) to inform 
+    [Utility](./utility.md).
+
+!!! info "User vs. System Operator"
 
     A “user” is anyone whose professional task is something other than the maintenance of the system or component.
     As with [*Safety Impact*](#safety-impact), a “system operator” is anyone who is professionally responsible for

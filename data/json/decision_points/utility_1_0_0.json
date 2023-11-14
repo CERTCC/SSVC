@@ -1,0 +1,24 @@
+{
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "key": "U",
+  "name": "Utility",
+  "description": "The Usefulness of the Exploit to the Adversary",
+  "values": [
+    {
+      "key": "L",
+      "name": "Laborious",
+      "description": "Slow virulence and diffuse value"
+    },
+    {
+      "key": "E",
+      "name": "Efficient",
+      "description": "Rapid virulence and diffuse value OR Slow virulence and concentrated value"
+    },
+    {
+      "key": "S",
+      "name": "Super Effective",
+      "description": "Rapid virulence and concentrated value"
+    }
+  ]
+}
