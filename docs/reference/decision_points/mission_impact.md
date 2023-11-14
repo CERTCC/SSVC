@@ -1,16 +1,11 @@
 # Mission Impact
 
-!!! note "Mission Impact"
+{% include-markdown "../../_generated/decision_points/mission_impact.md" %}
 
-    Impact on Mission Essential Functions of the Organization
+!!! tip "See also"
 
-    | Value | Description  |
-    | :--- | :---------- |
-    | Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions                                                                     |
-    | MEF Support Crippled   | Activities that directly support essential functions are crippled; essential functions continue for a time                                                                |
-    | MEF Failure            | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
-    | Mission Failure        | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails                |
-
+    Mission Impact combines with [Safety Impact](./safety_impact.md) to inform 
+    [Human Impact](./human_impact.md)
 
 A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. 
 Identification and prioritization of mission essential functions enables effective continuity planning or crisis planning. 
@@ -31,7 +26,7 @@ While the processes, terminology, and audience for these different frameworks di
 In that sense they all function quite similarly within SSVC. Organizations should use whatever is most appropriate for their stakeholder context, with Mission Essential Function analysis serving as a fully worked example in the SSVC documents. 
 
 
-### Gathering Information About Mission Impact
+## Gathering Information About Mission Impact
 
 The factors that influence the mission impact level are diverse. 
 This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work. 
@@ -42,3 +37,7 @@ It should require the vulnerability management team to interact with more senior
 
 As a heuristic, [*Utility*](#utility) might constrain [*Mission Impact*](#mission-impact) if both are not used in the same decision tree.
 For example, if the [*Utility*](#utility) is [*super effective*](#utility), then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact).
+
+## Prior Versions
+
+{% include-markdown "../../_generated/decision_points/mission_impact_1_0_0.md" %}
