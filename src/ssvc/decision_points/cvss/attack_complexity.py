@@ -17,6 +17,7 @@ Models the CVSS Attack Complexity (formerly known as Access Complexity) metric a
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _HIGH_3 = SsvcDecisionPointValue(
     name="High",
@@ -99,11 +100,49 @@ ATTACK_COMPLEXITY_3 = CvssDecisionPoint(
 Defines LOW and HIGH values for CVSS Attack Complexity.
 """
 
+LOW_4 = SsvcDecisionPointValue(
+    name="Low",
+    key="L",
+    description="The attacker must take no measurable action to exploit the vulnerability. The attack requires no "
+    "target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable "
+    "success against the vulnerable system. ",
+)
+
+HIGH_4 = SsvcDecisionPointValue(
+    name="High",
+    key="H",
+    description="The successful attack depends on the evasion or circumvention of security-enhancing "
+    "techniques in place that would otherwise hinder the attack. These include: Evasion of exploit "
+    "mitigation techniques. The attacker must have additional methods available to bypass security "
+    "measures in place.",
+)
+
+ATTACK_COMPLEXITY_3_0_1 = CvssDecisionPoint(
+    name="Attack Complexity",
+    description="This metric captures measurable actions that must be taken by the attacker to actively evade or "
+    "circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
+    key="AC",
+    version="3.0.1",
+    values=(
+        LOW_4,
+        HIGH_4,
+    ),
+)
+"""
+Defines LOW and HIGH values for CVSS Attack Complexity.
+"""
+
+
+versions = [
+    ACCESS_COMPLEXITY_1,
+    ACCESS_COMPLEXITY_2,
+    ATTACK_COMPLEXITY_3,
+    ATTACK_COMPLEXITY_3_0_1,
+]
+
 
 def main():
-    print(ACCESS_COMPLEXITY_1.to_json(indent=2))
-    print(ACCESS_COMPLEXITY_2.to_json(indent=2))
-    print(ATTACK_COMPLEXITY_3.to_json(indent=2))
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

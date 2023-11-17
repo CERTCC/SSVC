@@ -24,11 +24,10 @@ from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
 from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
 from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
 from ssvc.decision_points.in_kev import IN_KEV_1
+from ssvc.dp_groups.cvss.collections import CVSSv1, CVSSv2, CVSSv3, CVSSv4  # noqa
+
 # importing these causes the decision points to register themselves
-from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1 # noqa
-from ssvc.dp_groups.cvss.v1 import CVSSv1  # noqa
-from ssvc.dp_groups.cvss.v2 import CVSSv2  # noqa
-from ssvc.dp_groups.cvss.v3 import CVSSv3  # noqa
+from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
 
 def find_schema(basepath: str) -> str:
@@ -49,14 +48,19 @@ class MyTestCase(unittest.TestCase):
         logger.addHandler(hdlr)
         self.logger = logger
 
+        self.dpgs = [SSVCv1, SSVCv2, SSVCv2_1, CVSSv1, CVSSv2, CVSSv3, CVSSv4]
+
     def test_confirm_registered_decision_points(self):
         dps = list(REGISTERED_DECISION_POINTS)
         self.assertGreater(len(dps), 0)
 
-        extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1, IN_KEV_1]
-        for dpg in [SSVCv1, SSVCv2, SSVCv2_1, extras]:
+        for dpg in self.dpgs:
             for dp in dpg:
                 self.assertIn(dp, REGISTERED_DECISION_POINTS)
+
+        extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1, IN_KEV_1]
+        for dp in extras:
+            self.assertIn(dp, REGISTERED_DECISION_POINTS)
 
     def test_decision_point_validation(self):
         # path relative to top level of repo
@@ -85,7 +89,7 @@ class MyTestCase(unittest.TestCase):
         schema_file = find_schema("data/schema/Decision_Point_Group.schema.json")
         schema = json.load(open(schema_file))
 
-        for dpg in (SSVCv1, SSVCv2, SSVCv2_1):
+        for dpg in self.dpgs:
             exp = None
             as_json = dpg.to_json()
             loaded = json.loads(as_json)

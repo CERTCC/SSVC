@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 """
-Provides a base class for modeling CVSS vector metrics as SSVC decision points.
+Provides a generic Not Define decision point value for CVSS decision points.
 """
-
-
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -17,18 +15,17 @@ Provides a base class for modeling CVSS vector metrics as SSVC decision points.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass
-
-from dataclasses_json import dataclass_json
-
-from ssvc.decision_points.base import SsvcDecisionPoint
+from ssvc.decision_points import SsvcDecisionPointValue
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class CvssDecisionPoint(SsvcDecisionPoint):
-    """
-    Models a single CVSS decision point as a list of values.
-    """
+NOT_DEFINED_ND = SsvcDecisionPointValue(
+    name="Not Defined",
+    key="ND",
+    description="This metric value is not defined. See CVSS documentation for details.",
+)
 
-    namespace: str = "cvss"
+NOT_DEFINED_X = SsvcDecisionPointValue(
+    name="Not Defined",
+    key="X",
+    description="This metric value is not defined. See CVSS documentation for details.",
+)

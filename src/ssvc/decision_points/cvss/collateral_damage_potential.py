@@ -3,14 +3,24 @@
 Models the CVSS Collateral Damage Potential metric as an SSVC decision point.
 """
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
-from ssvc.decision_points.cvss.base import CvssDecisionPoint
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-_NOT_DEFINED = SsvcDecisionPointValue(
-    name="Not Defined",
-    key="ND",
-    description="Assigning this value to the metric will not influence the score. It is a signal to the equation to skip this metric.",
-)
+from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND
+from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
+
 
 _MEDIUM_HIGH = SsvcDecisionPointValue(
     name="Medium-High",
@@ -81,17 +91,18 @@ COLLATERAL_DAMAGE_POTENTIAL_2 = CvssDecisionPoint(
         _LOW_MEDIUM,
         _MEDIUM_HIGH,
         _HIGH,
-        _NOT_DEFINED,
+        NOT_DEFINED_ND,
     ),
 )
 """
 Updates None description. Adds Low-Medium, Medium-High, and Not Defined value.
 """
 
+versions = [COLLATERAL_DAMAGE_POTENTIAL_1, COLLATERAL_DAMAGE_POTENTIAL_2]
+
 
 def main():
-    print(COLLATERAL_DAMAGE_POTENTIAL_1.to_json(indent=2))
-    print(COLLATERAL_DAMAGE_POTENTIAL_2.to_json(indent=2))
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

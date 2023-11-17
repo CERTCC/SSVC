@@ -8,6 +8,7 @@ mkdocstrings
 mkdocstrings-python
 mkdocs-print-site-plugin
 dataclasses-json
+thefuzz==0.20.0
 pandas~=2.1.2
 scikit-learn~=1.3.2
 jsonschema~=4.19.2

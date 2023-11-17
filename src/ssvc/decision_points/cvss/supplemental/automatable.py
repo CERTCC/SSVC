@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 """
-Models CVSS Scope as an SSVC decision point.
+Provides the CVSS supplemental metric Automatable
 """
-
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -16,45 +15,40 @@ Models CVSS Scope as an SSVC decision point.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_CHANGED = SsvcDecisionPointValue(
-    name="Changed",
-    key="C",
-    description="An exploited vulnerability can affect resources beyond the authorization privileges intended by the "
-    "vulnerable component. In this case the vulnerable component and the impacted component are different.",
-)
 
-_UNCHANGED = SsvcDecisionPointValue(
-    name="Unchanged",
-    key="U",
-    description="An exploited vulnerability can only affect resources managed by the same authority. In this case the "
-    "vulnerable component and the impacted component are the same.",
-)
-
-SCOPE_1 = CvssDecisionPoint(
-    name="Scope",
-    description="the ability for a vulnerability in one software component to impact resources beyond its means, "
-    "or privileges",
-    key="S",
+AUTOMATABLE_1 = CvssDecisionPoint(
+    name="Automatable",
+    description='The "Automatable" metric captures the answer to the question "Can an attacker automate exploitation '
+    'events for this vulnerability across multiple targets?" based on steps 1-4 of the kill chain.',
+    key="AU",
     version="1.0.0",
     values=(
-        _UNCHANGED,
-        _CHANGED,
+        SsvcDecisionPointValue(
+            name="No",
+            key="N",
+            description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
+            "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
+        ),
+        SsvcDecisionPointValue(
+            name="Yes",
+            key="Y",
+            description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
+            "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is "
+            '"wormable").',
+        ),
     ),
 )
-"""
-Defines Changed and Unchanged values for CVSS Scope.
-"""
-
-versions = [
-    SCOPE_1,
-]
 
 
 def main():
+    versions = [
+        AUTOMATABLE_1,
+    ]
+
     print_versions_and_diffs(versions)
 
 
