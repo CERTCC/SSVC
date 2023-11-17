@@ -23,12 +23,39 @@ from typing import Iterable
 
 from dataclasses_json import dataclass_json
 
-from ssvc._mixins import _Base, _Commented, _Keyed, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 
 logger = logging.getLogger(__name__)
 
 
+_RDP = {}
 REGISTERED_DECISION_POINTS = []
+
+
+def register(dp):
+    """
+    Register a decision point.
+    """
+    global _RDP
+
+    key = (dp.namespace, dp.name, dp.key, dp.version)
+
+    if key in _RDP:
+        logger.warning(f"Duplicate decision point {key}")
+
+    _RDP[key] = dp
+    REGISTERED_DECISION_POINTS.append(dp)
+
+
+def _reset_registered():
+    """
+    Reset the registered decision points.
+    """
+    global _RDP
+    global REGISTERED_DECISION_POINTS
+
+    _RDP = {}
+    REGISTERED_DECISION_POINTS = []
 
 
 @dataclass_json
@@ -37,8 +64,6 @@ class SsvcDecisionPointValue(_Base, _Keyed):
     """
     Models a single value option for a decision point.
     """
-
-    pass
 
 
 @dataclass_json
@@ -62,9 +87,7 @@ class SsvcDecisionPoint(
         return iter(self.values)
 
     def __post_init__(self):
-        global REGISTERED_DECISION_POINTS
-
-        REGISTERED_DECISION_POINTS.append(self)
+        register(self)
 
         if isinstance(self.values[0], dict):
             self.values = tuple(

@@ -40,7 +40,7 @@ class MyTestCase(unittest.TestCase):
 
     def tearDown(self) -> None:
         # restore the original registry
-        base.REGISTERED_DECISION_POINTS = self.original_registry
+        base._reset_registered()
 
     def test_registry(self):
         # just by creating the objects, they should be registered
@@ -54,10 +54,6 @@ class MyTestCase(unittest.TestCase):
             namespace="asdfasdf",
             values=tuple(self.values),
         )
-
-    def tearDown(self) -> None:
-        # restore the original registry
-        base.REGISTERED_DECISION_POINTS = self.original_registry
 
     def test_registry(self):
         # just by creating the objects, they should be registered

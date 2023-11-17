@@ -21,16 +21,7 @@ from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 
 
-def modify_3(dp: SsvcDecisionPoint):
-    """
-    Prepends "Modified " to the name and "M" to the key of the given object. Also adds a value of "Not Defined" to the
-    values list.
-    Args:
-        dp: the decision point object to modify
-
-    Returns:
-        A modified copy of the given object
-    """
+def _modify_3(dp: SsvcDecisionPoint):
     _dp = deepcopy(dp)
     _dp.name = "Modified " + _dp.name
     _dp.key = "M" + _dp.key
@@ -44,6 +35,23 @@ def modify_3(dp: SsvcDecisionPoint):
     if nd.name not in names:
         values.append(nd)
     _dp.values = tuple(values)
+
+    return _dp
+
+
+def modify_3(dp: SsvcDecisionPoint):
+    """
+    Prepends "Modified " to the name and "M" to the key of the given object. Also adds a value of "Not Defined" to the
+    values list.
+    Args:
+        dp: the decision point object to modify
+
+    Returns:
+        A modified copy of the given object
+    """
+
+    _dp = _modify_3(dp)
+    _dp.__post_init__()  # call post-init to update the key & register
     return _dp
 
 
@@ -58,8 +66,10 @@ def modify_4(dp: SsvcDecisionPoint):
         A modified copy of the given object
     """
 
-    _dp = modify_3(dp)
+    _dp = _modify_3(dp)
     _dp = _modify_4(_dp)
+    _dp.__post_init__()  # call post-init to update the key & register
+
     return _dp
 
 

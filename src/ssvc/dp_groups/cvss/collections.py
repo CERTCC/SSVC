@@ -95,6 +95,14 @@ from ssvc.decision_points.cvss.subsequent_confidentiality_impact import (
 from ssvc.decision_points.cvss.subsequent_integrity_impact import (
     SUBSEQUENT_INTEGRITY_IMPACT_1,
 )
+from ssvc.decision_points.cvss.supplemental.automatable import AUTOMATABLE_1
+from ssvc.decision_points.cvss.supplemental.provider_urgency import PROVIDER_URGENCY_1
+from ssvc.decision_points.cvss.supplemental.recovery import RECOVERY_1
+from ssvc.decision_points.cvss.supplemental.safety import SAFETY_1
+from ssvc.decision_points.cvss.supplemental.value_density import VALUE_DENSITY_1
+from ssvc.decision_points.cvss.supplemental.vulnerability_response_effort import (
+    VULNERABILITY_RESPONSE_EFFORT_1,
+)
 from ssvc.decision_points.cvss.target_distribution import (
     TARGET_DISTRIBUTION_1,
     TARGET_DISTRIBUTION_1_1,
@@ -275,6 +283,14 @@ _THREAT_4 = [
     EXPLOIT_MATURITY_2,
 ]
 
+_SUPPLEMENTAL_4 = [
+    SAFETY_1,
+    AUTOMATABLE_1,
+    PROVIDER_URGENCY_1,
+    RECOVERY_1,
+    VALUE_DENSITY_1,
+    VULNERABILITY_RESPONSE_EFFORT_1,
+]
 # CVSS-B	Base metrics
 CVSSv4_B = SsvcDecisionPointGroup(
     name="CVSSv4 Base Metrics",
@@ -307,7 +323,12 @@ CVSSv4_BTE = SsvcDecisionPointGroup(
     decision_points=tuple(_BASE_4 + _THREAT_4 + _ENVIRONMENTAL_4),
 )
 
-CVSSv4 = CVSSv4_BTE  # convenience alias
+CVSSv4 = SsvcDecisionPointGroup(
+    name="CVSSv4",
+    description="All decision points for CVSS v4 (including supplemental metrics)",
+    version="1.0.0",
+    decision_points=tuple(_BASE_4 + _THREAT_4 + _ENVIRONMENTAL_4 + _SUPPLEMENTAL_4),
+)
 
 CVSSv4_Equivalence_Sets = SsvcDecisionPointGroup(
     name="CVSSv4 EQ Sets",
@@ -342,6 +363,7 @@ def main():
         CVSSv4_BT,
         CVSSv4_BTE,
         CVSSv4_Equivalence_Sets,
+        CVSSv4,
     ]:
         print(f"## {group.name} v{group.version}")
         print(group.to_json(indent=2))
