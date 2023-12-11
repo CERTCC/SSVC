@@ -49,6 +49,7 @@ class PolicyGenerator:
         dp_group: SsvcDecisionPointGroup = None,
         outcomes: OutcomeGroup = None,
         outcome_weights: List[float] = None,
+        validate: bool = False,
     ):
         """
         Create a policy generator.
@@ -98,6 +99,7 @@ class PolicyGenerator:
         self.bottom: Tuple[int] = None
 
         self._enumerated_vec = None
+        self._check_valid_paths = validate
 
     def __enter__(self) -> "PolicyGenerator":
         """
@@ -145,7 +147,8 @@ class PolicyGenerator:
         self._add_nodes()
         self._add_edges()
         self._assign_outcomes()
-        self._validate_paths()
+        if self._check_valid_paths:
+            self._validate_paths()
         self._create_policy()
 
     def _validate_paths(self):
