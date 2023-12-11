@@ -56,7 +56,7 @@ class MyTestCase(unittest.TestCase):
                 name=f"test_{i}",
                 description=f"test_{i}",
                 version="1.0",
-                key="TDP{i}",
+                key=f"TDP{i}",
                 values=(
                     SsvcDecisionPointValue(
                         name=f"yes_{i}",
