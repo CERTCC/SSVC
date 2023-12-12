@@ -52,7 +52,7 @@ MINOR = SsvcDecisionPointValue(
     "Operator resiliency: Requires action by system operator to maintain safe system state as a result of exploitation of the "
     "vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard. "
     "System resiliency: Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation. "
-    "Environment Minor externalities (property damage, environmental damage, etc.) imposed on other parties. "
+    "Environment: Minor externalities (property damage, environmental damage, etc.) imposed on other parties. "
     "Financial Financial losses, which are not readily absorbable, to multiple persons. "
     "Psychological: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons.",
 )
