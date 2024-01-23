@@ -2,7 +2,7 @@ mkdocs
 mkdocs-bibtex
 mkdocs-include-markdown-plugin
 mkdocs-table-reader-plugin
-mkdocs-material
+mkdocs-material~=9.5.4
 mkdocs-material-extensions
 mkdocstrings
 mkdocstrings-python
