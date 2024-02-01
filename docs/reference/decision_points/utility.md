@@ -7,19 +7,6 @@
     Utility is a combination of [Automatable](./automatable.md) and
     [Value Density](./value_density.md)
 
-# Utility
-
-!!! note "Utility"
-
-    <a name="table-utility"></a>
-    The Usefulness of the Exploit to the Adversary
-    
-    | *Automatable* | *Value Density* | *Utility* |
-    | ----------- | --------------- |       --: |
-    | *no*  | *diffuse*   | laborious |
-    | *no*  | *concentrated* | efficient |
-    | *yes* | *diffuse*   | efficient |
-    | *yes* | *concentrated* | super effective |
 
 This is a compound decision point, therefore it is a notational convenience.
 
