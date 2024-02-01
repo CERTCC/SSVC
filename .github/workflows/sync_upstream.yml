@@ -8,14 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
       - name: config
         run: |
           git config --global user.name 'certcc-ghbot'
           git config --global user.email 'cert+ghbot@cert.org'
-      - name: pull
-        run: |
-          git pull --unshallow
-
       - name: fetch upstream
         run: |
           git remote add upstream https://github.com/CERTCC/SSVC.git
