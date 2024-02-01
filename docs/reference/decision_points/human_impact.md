@@ -7,21 +7,6 @@
     Human Impact is a combination of [Safety Impact](./safety_impact.md) and
     [Mission Impact](./mission_impact.md)
 
-    | Situated Safety Impact | Mission Impact | Combined Value (Human Impact) |
-    | -----:                 | :-----         | :---:          |
-    |  None/Minor         | Degraded/Crippled | Low       |
-    |  None/Minor         | MEF Failure       | Medium         |
-    |  None/Minor         | Mission Failure   | Very High      |
-    |  Major              | Degraded/Crippled | Medium    |
-    |  Major              | MEF Failure       | High           |
-    |  Major              | Mission Failure   | Very High      |
-    |  Hazardous          | Degraded/Crippled | High      |
-    |  Hazardous          | MEF Failure       | High           |
-    |  Hazardous          | Mission Failure   | Very High      |
-    |  Catastrophic       | Degraded/Crippled | Very High |
-    |  Catastrophic       | MEF Failure       | Very High      |
-    |  Catastrophic       | Mission Failure   | Very High      |
-
 This is a compound decision point, therefore it is a notational convenience.
 
 In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
