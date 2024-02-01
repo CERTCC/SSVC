@@ -1,0 +1,27 @@
+name: sync_upstream
+on:
+  schedule:
+    - cron:  '15 0,10 * 1-5' # every weekday at 00:15 and 10:15am UTC (7:15pm and 5:15am EST)
+  workflow_dispatch: # on button click
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: config
+        run: |
+          git config --global user.name 'certcc-ghbot'
+          git config --global user.email 'cert+ghbot@cert.org'
+      - name: pull
+        run: |
+          git pull --unshallow
+
+      - name: fetch upstream
+        run: |
+          git remote add upstream https://github.com/CERTCC/SSVC.git
+          git fetch upstream
+      - name: merge and push
+        run: |
+          git checkout main
+          git merge --no-edit upstream/main
+          git push origin main
