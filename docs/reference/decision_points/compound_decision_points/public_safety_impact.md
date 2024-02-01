@@ -9,10 +9,11 @@
 
 {== TODO note that this is a compound decision point, therefore it is a notational convenience ==}
 
-Suppliers necessarily have a rather coarse-grained perspective on the broadly defined [Safety Impact](../reference/decision_points/safety_impact.md) Decision Point.
+Suppliers necessarily have a rather coarse-grained perspective on the broadly defined [Safety Impact](../safety_impact.md) Decision Point.
 Therefore we simplify the above into a binary categorization:
 
 - _Significant_ is when any impact meets the criteria for an impact of Major, Hazardous, or Catastrophic in the
-  [Safety Impact](../reference/decision_points/safety_impact.md) table.
+  [Safety Impact](../safety_impact.md) table.
 - _Minimal_ is when none do.
 
+{% include-markdown "../public_safety_impact.md" heading-offset=1%}
