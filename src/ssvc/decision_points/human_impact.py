@@ -1,10 +1,5 @@
 #!/usr/bin/env python
-"""
-file: human_impact
-author: adh
-created_at: 9/21/23 10:49 AM
-"""
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -18,29 +13,30 @@ created_at: 9/21/23 10:49 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 VERY_HIGH = SsvcDecisionPointValue(
     name="Very High",
     key="VH",
-    description="Safety=Catastrophic OR Mission=Mission Failure",
+    description="Safety Impact:Catastrophic OR Mission Impact:Mission Failure",
 )
 
 HIGH = SsvcDecisionPointValue(
     name="High",
     key="H",
-    description="Safety=Hazardous, Mission=None/Degraded/Crippled/MEF Failure OR Safety=Major, Mission=MEF Failure",
+    description="(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)",
 )
 
 MEDIUM = SsvcDecisionPointValue(
     name="Medium",
     key="M",
-    description="Safety=None/Minor, Mission=MEF Failure OR Safety=Major, Mission=None/Degraded/Crippled",
+    description="(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
 LOW = SsvcDecisionPointValue(
     name="Low",
     key="L",
-    description="Safety=None/Minor, Mission=None/Degraded/Crippled",
+    description="Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
 HUMAN_IMPACT_1 = SsvcDecisionPoint(
@@ -58,7 +54,9 @@ HUMAN_IMPACT_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(HUMAN_IMPACT_1.to_json(indent=2))
+    versions = (HUMAN_IMPACT_1,)
+
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

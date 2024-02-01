@@ -1,10 +1,4 @@
 #!/usr/bin/env python
-"""
-file: utility
-author: adh
-created_at: 9/21/23 9:55 AM
-"""
-
 #  Copyright (c) 2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -24,17 +18,17 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 SUPER_EFFECTIVE_2 = SsvcDecisionPointValue(
     name="Super Effective",
     key="S",
-    description="Automatable:Yes and Value Density:Concentrated",
+    description="Automatable:Yes AND Value Density:Concentrated",
 )
 
 EFFICIENT_2 = SsvcDecisionPointValue(
     name="Efficient",
     key="E",
-    description="Automatable:Yes and Value Density:Diffuse OR Automatable:No  and Value Density:Concentrated",
+    description="(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)",
 )
 
 LABORIOUS_2 = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Automatable:No and Value Density:Diffuse"
+    name="Laborious", key="L", description="Automatable:No AND Value Density:Diffuse"
 )
 
 SUPER_EFFECTIVE = SsvcDecisionPointValue(

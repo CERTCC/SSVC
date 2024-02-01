@@ -7,9 +7,9 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | Laborious | Automatable:No and Value Density:Diffuse |
-        | Efficient | Automatable:Yes and Value Density:Diffuse OR Automatable:No  and Value Density:Concentrated |
-        | Super Effective | Automatable:Yes and Value Density:Concentrated |
+        | Laborious | Automatable:No AND Value Density:Diffuse |
+        | Efficient | (Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated) |
+        | Super Effective | Automatable:Yes AND Value Density:Concentrated |
         
     === "JSON"
     
