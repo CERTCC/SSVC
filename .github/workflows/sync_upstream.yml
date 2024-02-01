@@ -1,7 +1,7 @@
 name: sync_upstream
 on:
   schedule:
-    - cron:  '15 0,10 * 1-5' # every weekday at 00:15 and 10:15am UTC (7:15pm and 5:15am EST)
+    - cron:  '15 0,10 * * 1-5' # every weekday at 00:15 and 10:15am UTC (7:15pm and 5:15am EST)
   workflow_dispatch: # on button click
 jobs:
   merge:
