@@ -4,7 +4,7 @@ file: coordinator_triage
 author: adh
 created_at: 9/21/23 11:40 AM
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -18,7 +18,7 @@ created_at: 9/21/23 11:40 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.automatable import AUTOMATABLE_2
-from ssvc.decision_points.public_safety_impact import PUBLIC_SAFETY_IMPACT_1
+from ssvc.decision_points.public_safety_impact import PUBLIC_SAFETY_IMPACT_2
 from ssvc.decision_points.report_credibility import REPORT_CREDIBILITY_1
 from ssvc.decision_points.report_public import REPORT_PUBLIC_1
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
@@ -43,7 +43,7 @@ COORDINATOR_TRIAGE_1 = SsvcDecisionPointGroup(
         UTILITY_1_0_1,
         AUTOMATABLE_2,
         VALUE_DENSITY_1,
-        PUBLIC_SAFETY_IMPACT_1,
+        PUBLIC_SAFETY_IMPACT_2,
         SAFETY_IMPACT_1,
     ),
 )

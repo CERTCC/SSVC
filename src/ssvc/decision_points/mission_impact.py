@@ -83,12 +83,9 @@ MISSION_IMPACT_2 = SsvcDecisionPoint(
 
 
 def main():
-    print_versions_and_diffs(
-        [
-            MISSION_IMPACT_1,
-            MISSION_IMPACT_2,
-        ]
-    )
+    versions = (MISSION_IMPACT_1, MISSION_IMPACT_2)
+
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":
