@@ -4,7 +4,7 @@ For notational convenience we will sometimes combine multiple decision points in
 
 Examples of compound decision points include:
 
-- [Public Safety Impact](../public_safety_impact.md)
-- [Utility](../utility.md)
-- [Human Impact](../human_impact.md)
+- [Human Impact](human_impact.md)
+- [Public Safety Impact](public_safety_impact.md)
+- [Utility](utility.md)
 

@@ -66,7 +66,7 @@ nav:
       - Technical Impact: 'reference/decision_points/technical_impact.md'
       - Value Density: 'reference/decision_points/value_density.md'
       - Compound Decision Points:
-        - Intro: 'reference/decision_points/compound_decision_points/index.md'
+        - Intro: 'reference/decision_points/compound_decision_points.md'
         - Human Impact: 'reference/decision_points/human_impact.md'
         - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
         - Utility: 'reference/decision_points/utility.md'
