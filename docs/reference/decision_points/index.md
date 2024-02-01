@@ -7,15 +7,39 @@
     constructive criticism, refuting evidence, or supporting evidence about any aspect of this proposal.
     Please submit feedback to the [GitHub repository](https://github.com/CERTCC/SSVC/issues).
 
-We propose the following decision points and associated values should be a factor when making decisions about
+We propose the following decision points and associated values should be a
+factor when making decisions about
 vulnerability prioritization.
-We emphasize that these descriptions are hypotheses to be further tested and validated.
+We emphasize that these descriptions are hypotheses to be further tested and
+validated.
 
-We propose satisfactory decision points for vulnerability management in the next sections, in alphabetical order.
-Each decision point page includes advice on gathering information about the decision point.
-[SSVC using Current Information Sources](../../topics/information_sources.md) provides some
-suggestions about how existing sources of information about vulnerabilities can be used to collate responses to these
+We propose satisfactory decision points for vulnerability management in the next
+sections, in alphabetical order.
+Each decision point page includes advice on gathering information about the
+decision point.
+[SSVC using Current Information Sources](../../topics/information_sources.md)
+provides some
+suggestions about how existing sources of information about vulnerabilities can
+be used to collate responses to these
 decision points.
+
+!!! note "Decision Point Values are Ordered Sets"
+
+    The values for each decision point are ordered sets, meaning that the order
+    of the values is significant. The ordering of the values is intended to
+    reflect the relative importance of the values, with the first value being the
+    least important and the last value being the most important. By requiring
+    ordered sets, we can apply consistency checks that ensure that the outcome priority
+    of a set of decision point values is greater than or equal to the outcome priority of
+    another set of decision point values if the first set of values is greater than or equal to
+    the second set of values in every dimension.
+
+!!! question "What determines the ordering?"
+
+    The relevant dimension to which the ordering for both decision points and
+    outcomes applies can be different for different decision points and outcomes.
+    Sometimes this is a "better" or "worse" dimension, but it seems to generalize to
+    a "more likely to act" or "less likely to act" of dimension.
 
 !!! question "Where are the _Unknown_ options?"
 
