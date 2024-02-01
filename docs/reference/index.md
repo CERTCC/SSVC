@@ -1,12 +1,29 @@
 # SSVC Reference
 
-!!! note "TODO: What should go here?"
+!!! tip inline end "Prerequisites"
 
-    - a list of all the decision points, values, and versions
-    - decision point versioning rules
-    - outcome versioning rules
-    - tree versioning rules (if applicable)
-    - a list of outcome values and versions
-    - code documentation
-        - ssvc calc app
-        - python modules
+    This section assumes that you are already familiar with SSVC and want to look up specific details.
+    
+    If you are new to SSVC, you may want to start with the [Learning SSVC](tutorials) section.
+    If you are already familiar with SSVC and want to learn more, you may want to start with either the
+    [Understanding SSVC](topics) or [SSVC How To](howto) sections.
+
+In this section, we provide reference documentation for SSVC.
+We have organized the reference documentation into two main sections:
+
+
+<div class="grid cards" markdown>
+
+-    :material-arrow-decision-outline: [**Decision Points**](decision_points/index.md)
+
+     ---
+      
+     A list of all the decision points, values, and versions.
+
+-    :material-language-python: [**Code Documentation**](code/index.md)
+    
+     ---
+  
+     Documentation for the SSVC Python modules.
+
+</div>
