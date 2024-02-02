@@ -29,7 +29,12 @@ One way to think about the tradeoffs in acuity is to consider the cost or diffic
 Some vulnerability information is readily available for free as a public resource. 
 Other information is available for purchase, for example as a subscription to a threat intelligence feed.
 Still other information is only available if you set up a system to collect and manage it yourself, such as an internal
-asset management system.
+asset management system. 
+
+The quality and readiness for use of the information can also vary. Structured, low resolution public data might be
+easier to incorporate into a decision model than unstructured data that requires a lot of manual analysis.
+At the CERT/CC, we have observed otherwise high quality threat intelligence provided as PDF files with threat indicators 
+embedded as screenshots of text, which would be difficult to extract and use in a decision model.
 
 Another tradeoff is that sometimes one decision point can serve as a close-enough proxy for another decision point that
 is more costly or difficult to acquire. For example, in a given deployment context, 
