@@ -112,11 +112,13 @@ data collection and analysis capabilities increase. We demonstrate this with the
 
 ## Conclusion
 
-The example above is just a single illustration of the _acuity ramp_ concept. There are many other ways that an
-organization might evolve their decision model from a simple starting point toward a more complex decision model for 
-any particular decision. 
-
 The _acuity ramp_ concept is a way to show how a stakeholder could "grow into" their desired decision function as their
 data collection and analysis capabilities improve. It is a way to show how a decision model can be adapted to the
 context of the decisionmaker, and how the decisionmaker can make trade-offs between the cost of gathering information
 and the quality of the decision they are able to make.
+
+The example above is just a single illustration of the _acuity ramp_ concept. There are many other ways that an
+organization might evolve their decision model from a simple starting point toward a more detailed decision model for 
+any particular decision. Substituting one decision point for another, adding decision points over time, or even
+customizing decision points to better fit the organization's specific context are all ways that an organization might
+grow from a simple decision model to a more robust one.
