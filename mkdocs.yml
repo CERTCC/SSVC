@@ -47,6 +47,7 @@ nav:
       - Use & Respond: 'howto/bootstrap/use.md'
       - Summary: 'howto/bootstrap/summary.md'
     - Customizing SSVC: 'howto/tree_customization.md'
+    - Acuity Ramp: 'howto/acuity_ramp.md'
     - SSVC and Asset Management: 'howto/asset_management.md'
 
   - Reference:
