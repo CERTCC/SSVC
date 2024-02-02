@@ -17,13 +17,13 @@ complex while addressing the same decision. The idea is that a decisionmaker can
 then, as they become more capable of gathering and analyzing data and understanding their environment, they can move to
 a more complex decision model.
 
+## Acuity Tradeoffs
+
 In Cybersecurity Threat and Vulnerability analysis, as with most decision-making processes, the more information you
 have (up to a point of diminishing returns), the better your decision will be.
 However, gathering information comes at a cost, and there are always trade-offs to be made.
 There are many good reasons that decisionmakers might choose to use a lower resolution indicator that is readily 
 available over a higher resolution indicator that comes at a high cost in terms of time, money, or effort.
-
-## Acuity Tradeoffs
 
 One way to think about the tradeoffs in acuity is to consider the cost or difficulty of gathering and analyzing data.
 Some vulnerability information is readily available for free as a public resource. 
