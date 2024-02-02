@@ -23,6 +23,23 @@ However, gathering information comes at a cost, and there are always trade-offs 
 There are many good reasons that decisionmakers might choose to use a lower resolution indicator that is readily 
 available over a higher resolution indicator that comes at a high cost in terms of time, money, or effort.
 
+## Acuity Tradeoffs
+
+One way to think about the tradeoffs in acuity is to consider the cost or difficulty of gathering and analyzing data.
+Some vulnerability information is readily available for free as a public resource. 
+Other information is available for purchase, for example as a subscription to a threat intelligence feed.
+Still other information is only available if you set up a system to collect and manage it yourself, such as an internal
+asset management system.
+
+Another tradeoff is that sometimes one decision point can serve as a close-enough proxy for another decision point that
+is more costly or difficult to acquire. For example, in a given deployment context, 
+[_Value Density_](../reference/decision_points/value_density.md) might be more readily discerned than
+[_Mission Impact_](../reference/decision_points/mission_impact.md) for some stakeholders because it's easier to 
+count how many of something there are than to estimate the impact of a loss of specific instances of the thing.
+An organization might start with _Value Density_ as a proxy for _Mission Impact_ and then, as they develop a better
+understanding of their environment, they might replace _Value Density_ with _Mission Impact_ in their decision model.
+
+
 ## An Acuity Ramp in Action
 
 The _acuity ramp_ idea is a way to show how a stakeholder could "grow into" their desired decision function as their
