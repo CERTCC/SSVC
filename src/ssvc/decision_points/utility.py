@@ -1,42 +1,50 @@
 #!/usr/bin/env python
-"""
-file: utility
-author: adh
-created_at: 9/21/23 9:55 AM
-"""
+#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 SUPER_EFFECTIVE_2 = SsvcDecisionPointValue(
     name="Super Effective",
     key="S",
-    description="Yes to automatable and concentrated value",
+    description="Automatable:Yes AND Value Density:Concentrated",
 )
 
 EFFICIENT_2 = SsvcDecisionPointValue(
     name="Efficient",
     key="E",
-    description="Yes to automatable and diffuse value OR No to automatable and concentrated value",
+    description="(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)",
 )
 
 LABORIOUS_2 = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="No to automatable and diffuse value"
+    name="Laborious", key="L", description="Automatable:No AND Value Density:Diffuse"
 )
 
 SUPER_EFFECTIVE = SsvcDecisionPointValue(
     name="Super Effective",
     key="S",
-    description="Rapid virulence and concentrated value",
+    description="Virulence:Rapid and Value Density:Concentrated",
 )
 
 EFFICIENT = SsvcDecisionPointValue(
     name="Efficient",
     key="E",
-    description="Rapid virulence and diffuse value OR Slow virulence and concentrated value",
+    description="Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated",
 )
 
 LABORIOUS = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Slow virulence and diffuse value"
+    name="Laborious", key="L", description="Virulence:Slow and Value Density:Diffuse"
 )
 
 UTILITY_1 = SsvcDecisionPoint(
@@ -65,8 +73,9 @@ UTILITY_1_0_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(UTILITY_1.to_json(indent=2))
-    print(UTILITY_1_0_1.to_json(indent=2))
+    versions = (UTILITY_1, UTILITY_1_0_1)
+
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":

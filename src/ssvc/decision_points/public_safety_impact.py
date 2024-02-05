@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-"""
-file: public_safety_impact
-author: adh
-created_at: 9/21/23 10:43 AM
-"""
+
 #  Copyright (c) 2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -69,13 +65,12 @@ collapse.
 
 SIGNIFICANT = SsvcDecisionPointValue(
     name="Significant",
-    description="Safety impact of Major, Hazardous, or Catastrophic.",
+    description="Safety Impact:(Major OR Hazardous OR Catastrophic)",
     key="S",
 )
 
-
 MINIMAL_2 = SsvcDecisionPointValue(
-    name="Minimal", description="Safety impact of None or Minor.", key="M"
+    name="Minimal", description="Safety Impact:(None OR Minor)", key="M"
 )
 
 PUBLIC_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(

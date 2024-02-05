@@ -1,9 +1,4 @@
 #!/usr/bin/env python
-"""
-file: human_impact
-author: adh
-created_at: 9/21/23 10:49 AM
-"""
 #  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -23,43 +18,43 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 LOW_1 = SsvcDecisionPointValue(
     name="Low",
     key="L",
-    description="Mission Prevalence Minimal and Public Well-Being Impact Minimal",
+    description="Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal",
 )
 
 MEDIUM_1 = SsvcDecisionPointValue(
     name="Medium",
     key="M",
-    description="Mission Prevalence Support and Public Well-Being Impact Minimal or Material",
+    description="Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)",
 )
 
 HIGH_1 = SsvcDecisionPointValue(
     name="High",
     key="H",
-    description="Mission Prevalence Essential or Public Well-Being Impact Irreversible",
+    description="Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)",
 )
 
 VERY_HIGH_1 = SsvcDecisionPointValue(
     name="Very High",
     key="VH",
-    description="Safety=Catastrophic OR Mission=Mission Failure",
+    description="Safety Impact:Catastrophic OR Mission Impact:Mission Failure",
 )
 
 HIGH_2 = SsvcDecisionPointValue(
     name="High",
     key="H",
-    description="Safety=Hazardous, Mission=None/Degraded/Crippled/MEF Failure OR Safety=Major, Mission=MEF Failure",
+    description="(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)",
 )
 
 MEDIUM_2 = SsvcDecisionPointValue(
     name="Medium",
     key="M",
-    description="Safety=None/Minor, Mission=MEF Failure OR Safety=Major, Mission=None/Degraded/Crippled",
+    description="(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
 LOW_2 = SsvcDecisionPointValue(
     name="Low",
     key="L",
-    description="Safety=None/Minor, Mission=None/Degraded/Crippled",
+    description="Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
 

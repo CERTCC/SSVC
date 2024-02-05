@@ -7,9 +7,9 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | Laborious | Slow virulence and diffuse value |
-        | Efficient | Rapid virulence and diffuse value OR Slow virulence and concentrated value |
-        | Super Effective | Rapid virulence and concentrated value |
+        | Laborious | Virulence:Slow and Value Density:Diffuse |
+        | Efficient | Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated |
+        | Super Effective | Virulence:Rapid and Value Density:Concentrated |
         
     === "JSON"
     

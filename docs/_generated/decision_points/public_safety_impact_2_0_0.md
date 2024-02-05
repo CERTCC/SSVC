@@ -7,8 +7,8 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | Minimal | Safety impact of None or Minor. |
-        | Significant | Safety impact of Major, Hazardous, or Catastrophic. |
+        | Minimal | Safety Impact:(None OR Minor) |
+        | Significant | Safety Impact:(Major OR Hazardous OR Catastrophic) |
         
     === "JSON"
     

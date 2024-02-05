@@ -7,10 +7,10 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | Low | Safety=None/Minor, Mission=None/Degraded/Crippled |
-        | Medium | Safety=None/Minor, Mission=MEF Failure OR Safety=Major, Mission=None/Degraded/Crippled |
-        | High | Safety=Hazardous, Mission=None/Degraded/Crippled/MEF Failure OR Safety=Major, Mission=MEF Failure |
-        | Very High | Safety=Catastrophic OR Mission=Mission Failure |
+        | Low | Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled) |
+        | Medium | (Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled)) |
+        | High | (Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure) |
+        | Very High | Safety Impact:Catastrophic OR Mission Impact:Mission Failure |
         
     === "JSON"
     
