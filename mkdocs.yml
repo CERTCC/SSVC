@@ -24,9 +24,7 @@ nav:
     - Compound Decision Points: 'topics/compound_decision_points.md'
     - Credibility Indicators: 'topics/credibility_indicators.md'
     - Worked Example: 'topics/worked_example.md'
-    - Development Methodology:
-      - Intro: 'topics/evaluation/development_methodology.md'
-      - Evaluation: 'topics/evaluation/evaluation_of_draft_trees.md'
+    - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
     - Information Sources: 'topics/information_sources.md'
     - Limitations: 'topics/limitations.md'
@@ -52,7 +50,7 @@ nav:
   - Reference:
     - Intro: 'reference/index.md'
     - Decision Points:
-      - Intro: 'reference/decision_points/likely_decision_points.md'
+      - Intro: 'reference/decision_points/index.md'
       - Automatable: 'reference/decision_points/automatable.md'
       - Exploitation: 'reference/decision_points/exploitation.md'
       - Human Impact: 'reference/decision_points/human_impact.md'
@@ -71,10 +69,11 @@ nav:
       - Utility: 'reference/decision_points/utility.md'
       - Value Density: 'reference/decision_points/value_density.md'
     - Code:
+        Intro: 'reference/code/index.md'
         CSV Analyzer: 'reference/code/analyze_csv.md'
-        Doctools: 'reference/code/doctools.md'
-        Outcomes: 'reference/code/outcomes.md'
         Policy Generator: 'reference/code/policy_generator.md'
+        Outcomes: 'reference/code/outcomes.md'
+        Doctools: 'reference/code/doctools.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'

@@ -1,5 +1,3 @@
-
-
 # Introduction
 
 This documentation defines a testable Stakeholder-Specific Vulnerability Categorization (SSVC) for prioritizing actions during vulnerability management.
@@ -13,21 +11,24 @@ As such, the modeling framework is important but difficult to pin down.
 We approach this problem as a satisficing process.
 We do not seek optimal formalisms, but an adequate formalism.
 
-{== DRAFT ==}
 
-{== SSVC models individual vulnerability management decisions. ==} 
-{==
-- A set of _inputs_ variables that are relevant to the decision. These are the _decision points_. 
-- Decision point are independent variables.
-- In SSVC, _decision points_ are an ordered set of enumerated values
-- Ordered because they are sortable in some dimension
-- Enumerated because they are finite and discrete
-- An _output_ variable that are relevant to the decision. These are the _outcome_.
-- Outcome is also an ordered set of enumerated values
-- Usually indicating a priority or urgency (defer, scheduled, out-of-cycle, ...)
-- A _policy_ that maps each combination of the set of decision point values to the set of outcome values.
-- a decision function that accepts a set of decision point values and returns an outcome value
-==}
+## Key Concepts in SSVC Decision Models
+
+SSVC models individual vulnerability management decisions. It is built around the following concepts:
+
+- **Decision Points** are the independent variables that are relevant to the decision.
+  Each decision point represents a different aspect or dimension of the decision.
+- **Decision Values** are the possible values for a decision point. The decision values (or *decision point values*)
+  are an ordered set of enumerated values. They are ordered because they are sortable in some dimension, usually
+  having to do with priority or urgency. They are enumerated because they are finite and discrete.
+- **Outcomes** are the dependent variables that are relevant to the decision. Each outcome represents a different
+  possible result of the decision. 
+- **Outcome Values** are the possible values for an Outcome. Outcomes are similarly defined as an ordered set of 
+  enumerated values, usually indicating a priority or urgency.
+- A **Policy** is a mapping from each combination of decision point values to the set of outcome values.
+- A **Decision Function** is a function that accepts a set of decision point values and returns an outcome value based
+  on a policy.
+
 
 ```mermaid
 ---
@@ -57,36 +58,40 @@ flowchart LR
 ```
 
 
-{== We usually represent a decision function as a decision tree.
-The trees we show reflect both the policy and the decision function.
-However we should be clear that this is for convenience and not a requirement.
-The underlying decision function that maps every combination of decision point values to an outcome value is the same regardless of how we represent it.
-==}
+!!! question "Where do the trees come in?"
 
+    Our initial concept for SSVC's decision modeling was based on decision trees.
+    A decision tree represents important elements of a decision, possible decision values, and possible outcomes.
+    We often represent a decision function as a decision tree because it is a convenient way to represent
+    a **Policy** as a branching decision structure.    
+    We do not claim this approach is the only viable option.
 
-Our decision-making process is based on decision trees.
-A decision tree represents important elements of a decision, possible decision values, and possible outcomes.
-We suggest decision trees as an adequate formalism for practical, widespread advice about vulnerability prioritization.
-We do not claim this approach is the only viable option.
-We suggest that specific vulnerability management stakeholder communities use decision trees.
-These suggestions are hypotheses for viable replacements for CVSS in those communities, but the hypotheses require empirical testing before they can be justifiably considered fit for use.
-We propose a methodology for such testing.
+    In particular, we have received feedback that decision trees are not always the best way to represent
+    the decision function, because stakeholders have different access to the information needed to make decisions.
+    We are open to other representations of the decision function, and we are open to representing the decision
+    function in multiple ways to accommodate different stakeholders.
 
-This documentation describes version 2 of SSVC.
-The main improvements from version 1 are the addition of the coordinator stakeholder perspective, improvements to terminology, integration of feedback on decision point definitions, and tools to support practical use.
-These changes are described in more detail in [Version 2 Changelog](#version-2-changelog).
+    The underlying decision function that maps every combination of decision point values to an outcome value is the
+    same regardless of how we represent it, or the order in which the decision points are considered.
+    In other parts of the documentation, we use tables to represent the same information. Trees provide a
+    convenient way to visualize the decision function, but they are not a requirement of the model.
 
-{== REVISE for webification ==}
-{== The documentation is organized as follows.
+## Topics Overview
+ 
+The remainder of this section is organized as follows:
 
-- [Current State of Practice](#current-state-of-practice) summarizes the current state of vulnerability management.
-- [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities) describes our design goals for an improved prioritization method.
-- [Vulnerability Management Decisions](#vulnerability-management-decisions) defines who the decision makers are and what options they are deciding among.
-- [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data) proposes a definition of decision points that a stakeholder might use during vulnerability management.
-- [Prioritization](#prioritization) combines these decision points into example decision trees that can be used to prioritize action on a work item.
-- [Evaluation of the Draft Trees](#evaluation-of-the-draft-trees) describes an early test of this method against the design goals, as much to show an adequate usability test methodology as for the results.
-- [Worked example](#worked-example) provides examples of applying the methodology to sample vulnerabilities and discusses the relationship between SSVC and other vulnerability management prioritization systems.
-- [Future Work](#future-work) identifies ideas we haven't had time to incorporate yet.
-- [Limitations](#limitations) identifies limitations in the design.
-- [Conclusion](#conclusion) provides some final thoughts.
- ==}
+<div class="grid cards" markdown>
+
+- :material-state-machine: [**Current State of Practice**](state_of_practice.md)
+- :material-information-box-outline: [**Representing Information for Decisions About Vulnerabilities**](representing_information.md)
+- :material-arrow-decision: [**Vulnerability Management Decisions**](vulnerability_management_decisions.md)
+- :material-group: [**Compound Decision Points**](compound_decision_points.md)
+- :material-scale-balance: [**Credibility Indicators**](credibility_indicators.md)
+- :material-file-document-check-outline: [**Worked Example**](worked_example.md)
+- :material-checkbox-marked-outline: [**Evaluation**](evaluation_of_draft_trees.md)
+- :material-relation-one-to-many: [**Related Systems**](related_systems.md)
+- :material-inbox-arrow-down: [**Information Sources**](information_sources.md)
+- :material-wall: [**Limitations**](limitations.md)
+- :material-chart-timeline-variant-shimmer: [**Future Work**](future_work.md)
+
+</div>
