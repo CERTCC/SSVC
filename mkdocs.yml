@@ -24,9 +24,7 @@ nav:
     - Compound Decision Points: 'topics/compound_decision_points.md'
     - Credibility Indicators: 'topics/credibility_indicators.md'
     - Worked Example: 'topics/worked_example.md'
-    - Development Methodology:
-      - Intro: 'topics/evaluation/development_methodology.md'
-      - Evaluation: 'topics/evaluation/evaluation_of_draft_trees.md'
+    - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
     - Information Sources: 'topics/information_sources.md'
     - Limitations: 'topics/limitations.md'
