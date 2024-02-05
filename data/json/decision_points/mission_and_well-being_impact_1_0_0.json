@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "key": "MWI",
   "name": "Mission and Well-Being Impact",
-  "description": "Mission and Well-Being Impact is a combination of Mission Impact and Public Well-Being impacts.",
+  "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
   "values": [
     {
       "key": "L",

@@ -3,7 +3,7 @@
 
     === "Text" 
     
-        Mission and Well-Being Impact is a combination of Mission Impact and Public Well-Being impacts.
+        Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.
 
         | Value | Definition |
         |:-----|:-----------|
