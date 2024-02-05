@@ -8,9 +8,9 @@
     _Acuity_ has a more neutral connotation, and represents the ability to perceive the world in more detail. 
     In our usage, _Acuity_ as a dimension is more akin to the idea of resolution in the imagery/photography sense.
 
-    We prefer to avoid burdening the language with an implication of deficiency should an SSVC stakeholder choose to build
-    their decision process using a lower resolution decision point over a higher resolution one, assuming that the lower
-    resolution decision point provides an _appropriate_ resolution for the decision in question.
+    Given the choice between a lower-resolution and a higher-resolution decision point, stakeholders should choose the
+    one that is most appropriate for both their decision and context. It is not inherently better to use a
+    higher-resolution decision point, and it is not inherently worse to use a lower-resolution decision point.
 
 An SSVC _acuity ramp_ is a concept that describes a series of decision functions that are increasingly more detailed and
 complex while addressing the same decision. The idea is that a decision maker can start with a simple decision model and
