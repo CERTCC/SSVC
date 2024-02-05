@@ -14,24 +14,23 @@
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.helpers import print_versions_and_diffs
 
 LOW_1 = SsvcDecisionPointValue(
     name="Low",
     key="L",
-    description="Mission Prevalence Minimal and Public Well-Being Impact Minimal",
+    description="Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal",
 )
 
 MEDIUM_1 = SsvcDecisionPointValue(
     name="Medium",
     key="M",
-    description="Mission Prevalence Support and Public Well-Being Impact Minimal or Material",
+    description="Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)",
 )
 
 HIGH_1 = SsvcDecisionPointValue(
     name="High",
     key="H",
-    description="Mission Prevalence Essential or Public Well-Being Impact Irreversible",
+    description="Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)",
 )
 
 VERY_HIGH_1 = SsvcDecisionPointValue(
