@@ -30,6 +30,8 @@ Some vulnerability information is readily available for free as a public resourc
 Other information is available for purchase, for example as a subscription to a threat intelligence feed.
 Still other information is only available if you set up a system to collect and manage it yourself, such as an internal
 asset management system. 
+For direct cost tradeoffs, one might conduct a cost-benefit analysis of whether the additional acuity provides value 
+more than its cost. Sometimes, tradeoffs are not directly cost-based. 
 
 The quality and readiness for use of the information can also vary. Structured, low resolution public data might be
 easier to incorporate into a decision model than unstructured data that requires a lot of manual analysis.
@@ -41,8 +43,10 @@ is more costly or difficult to acquire. For example, in a given deployment conte
 [_Value Density_](../reference/decision_points/value_density.md) might be more readily discerned than
 [_Mission Impact_](../reference/decision_points/mission_impact.md) for some stakeholders because it's easier to 
 count how many of something there are than to estimate the impact of a loss of specific instances of the thing.
+Alternately, information about _Value Density_ might be available from another source, such as a CVSS v4 scoring provider,
+whereas _Mission Impact_ might require a more detailed understanding of the stakeholder's mission and environment.
 An organization might start with _Value Density_ as a proxy for _Mission Impact_ and then, as they develop a better
-understanding of their environment, they might replace _Value Density_ with _Mission Impact_ in their decision model.
+understanding of their environment, they could replace _Value Density_ with _Mission Impact_ in their decision model.
 
 
 ## An Acuity Ramp in Action
