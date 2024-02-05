@@ -14,8 +14,8 @@
 
 An SSVC _acuity ramp_ is a concept that describes a series of decision functions that are increasingly more detailed and
 complex while addressing the same decision. The idea is that a decision maker can start with a simple decision model and
-then, as they become more capable of gathering and analyzing data and understanding their environment, they can move to
-a more detailed decision model.
+then, as their needs, resources, or abilities change, they can gather and analyze more or different data to understand
+their environment with more acuity.
 
 ## Acuity Tradeoffs
 
