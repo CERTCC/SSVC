@@ -2,7 +2,7 @@
 """
 Provides a set of outcome groups for use in SSVC.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -87,7 +87,6 @@ EISENHOWER = OutcomeGroup(
 The Eisenhower outcome group.
 """
 
-
 CVSS = OutcomeGroup(
     name="CVSS Levels",
     description="The CVSS outcome group.",
@@ -100,6 +99,46 @@ CVSS = OutcomeGroup(
 )
 """
 The CVSS outcome group.
+"""
+
+CISA = OutcomeGroup(
+    name="CISA Levels",
+    description="The CISA outcome group. "
+    "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
+    outcomes=(
+        OutcomeValue(
+            name="Track",
+            key="T",
+            description="The vulnerability does not require action at this time. "
+            "The organization would continue to track the vulnerability and reassess it if new information becomes available. "
+            "CISA recommends remediating Track vulnerabilities within standard update timelines.",
+        ),
+        OutcomeValue(
+            name="Track*",
+            key="T*",
+            description="The vulnerability contains specific characteristics that may require closer monitoring for changes. "
+            "CISA recommends remediating Track* vulnerabilities within standard update timelines.",
+        ),
+        OutcomeValue(
+            name="Attend",
+            key="A",
+            description="The vulnerability requires attention from the organization's internal, supervisory-level individuals. "
+            "Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. "
+            "CISA recommends remediating Attend vulnerabilities sooner than standard update timelines.",
+        ),
+        OutcomeValue(
+            name="Act",
+            key="A",
+            description="The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. "
+            "Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. "
+            "Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. "
+            "CISA recommends remediating Act vulnerabilities as soon as possible.",
+        ),
+    ),
+)
+"""
+The CISA outcome group. Based on CISA's customizations of the SSVC model.
+See https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc
 """
 
 YES_NO = OutcomeGroup(
@@ -127,6 +166,24 @@ VALUE_COMPLEXITY = OutcomeGroup(
 )
 """
 The Value/Complexity outcome group.
+"""
+
+THE_PARANOIDS = OutcomeGroup(
+    name="theParanoids",
+    description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
+    outcomes=(
+        OutcomeValue(name="Track 5", key="5", description="Track"),
+        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
+        OutcomeValue(name="Attend 3", key="3", description="Attend"),
+        OutcomeValue(name="Attend 2", key="2", description="Attend"),
+        OutcomeValue(name="Act 1", key="1", description="Act"),
+        OutcomeValue(name="Act ASAP 0", key="0", description="Act ASAP"),
+    ),
+)
+"""
+Outcome group based on TheParanoids' PrioritizedRiskRemediation.
+Their model is a 6-point scale, with 0 being the most urgent and 5 being the least.
+See https://github.com/theparanoids/PrioritizedRiskRemediation
 """
 
 
