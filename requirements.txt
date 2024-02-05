@@ -1,5 +1,5 @@
 mkdocs==1.5.3
-mkdocs-bibtex==2.11.0
+mkdocs-bibtex==2.12.0
 mkdocs-include-markdown-plugin==6.0.4
 mkdocs-table-reader-plugin==2.1.0
 mkdocs-material==9.5.6
