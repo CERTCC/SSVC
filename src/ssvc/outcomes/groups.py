@@ -133,12 +133,12 @@ THE_PARANOIDS = OutcomeGroup(
     name="theParanoids",
     description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
     outcomes=(
-        OutcomeValue(name="Track", key="5", description="Track"),
-        OutcomeValue(name="Track Closely", key="4", description="Track Closely"),
-        OutcomeValue(name="Attend", key="3", description="Attend"),
-        OutcomeValue(name="Attend", key="2", description="Attend"),
-        OutcomeValue(name="Act", key="1", description="Act"),
-        OutcomeValue(name="Act ASAP", key="0", description="Act ASAP"),
+        OutcomeValue(name="Track 5", key="5", description="Track"),
+        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
+        OutcomeValue(name="Attend 3", key="3", description="Attend"),
+        OutcomeValue(name="Attend 2", key="2", description="Attend"),
+        OutcomeValue(name="Act 1", key="1", description="Act"),
+        OutcomeValue(name="Act ASAP 0", key="0", description="Act ASAP"),
     ),
 )
 """
