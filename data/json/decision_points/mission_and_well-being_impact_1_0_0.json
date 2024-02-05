@@ -1,0 +1,24 @@
+{
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "key": "MWI",
+  "name": "Mission and Well-Being Impact",
+  "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
+  "values": [
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Mission Prevalence Minimal and Public Well-Being Impact Minimal"
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "Mission Prevalence Support and Public Well-Being Impact Minimal or Material"
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Mission Prevalence Essential or Public Well-Being Impact Irreversible"
+    }
+  ]
+}
