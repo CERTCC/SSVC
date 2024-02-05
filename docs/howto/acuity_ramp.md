@@ -19,9 +19,9 @@ their environment with more acuity.
 
 ## Acuity Tradeoffs
 
-In Cybersecurity Threat and Vulnerability analysis, as with most decision-making processes, the more information you
-have (up to a point of diminishing returns), the better your decision will be.
-However, gathering information comes at a cost, and there are always trade-offs to be made.
+In Cybersecurity Threat and Vulnerability analysis, as with most decision-making processes, decision makers must
+balance trade-offs between the volume, quality, or detail of the information they use and the cost of gathering and
+analyzing that information. 
 There are many good reasons that decision makers might choose to use a lower resolution indicator that is readily 
 available over a higher resolution indicator that comes at a high cost in terms of time, money, or effort.
 
