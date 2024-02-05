@@ -13,16 +13,16 @@
     resolution decision point provides an _appropriate_ resolution for the decision in question.
 
 An SSVC _acuity ramp_ is a concept that describes a series of decision functions that are increasingly more detailed and
-complex while addressing the same decision. The idea is that a decisionmaker can start with a simple decision model and
+complex while addressing the same decision. The idea is that a decision maker can start with a simple decision model and
 then, as they become more capable of gathering and analyzing data and understanding their environment, they can move to
-a more complex decision model.
+a more detailed decision model.
 
 ## Acuity Tradeoffs
 
 In Cybersecurity Threat and Vulnerability analysis, as with most decision-making processes, the more information you
 have (up to a point of diminishing returns), the better your decision will be.
 However, gathering information comes at a cost, and there are always trade-offs to be made.
-There are many good reasons that decisionmakers might choose to use a lower resolution indicator that is readily 
+There are many good reasons that decision makers might choose to use a lower resolution indicator that is readily 
 available over a higher resolution indicator that comes at a high cost in terms of time, money, or effort.
 
 One way to think about the tradeoffs in acuity is to consider the cost or difficulty of gathering and analyzing data.
@@ -82,7 +82,7 @@ data collection and analysis capabilities increase. We demonstrate this with the
     ### Improved Exploit Awareness (Acuity Level 2)
 
     As the organization becomes more capable of gathering and analyzing data, they might start collecting their own
-    data on exploitation, allowing them to move to a more complex decision tree that replaces the binary `IN_KEV` 
+    data on exploitation, allowing them to move to a more detailed decision model that replaces the binary `IN_KEV` 
     decision point with the trinary `EXPLOITATION_1` decision point.
 
     {% include-markdown "../_generated/decision_points/exploitation_1_0_0.md" %}
@@ -112,14 +112,14 @@ data collection and analysis capabilities increase. We demonstrate this with the
     {% include-markdown "../_generated/decision_points/mission_impact_2_0_0.md" %}
     {% include-markdown "../_generated/decision_points/safety_impact_1_0_0.md" %}
 
-    In this way, the organization can grow into a more complex decision model as their understanding and capabilities improve.
+    In this way, the organization can grow into a more detailed decision model as their understanding and capabilities improve.
 
 
 ## Conclusion
 
 The _acuity ramp_ concept is a way to show how a stakeholder could "grow into" their desired decision function as their
 data collection and analysis capabilities improve. It is a way to show how a decision model can be adapted to the
-context of the decisionmaker, and how the decisionmaker can make trade-offs between the cost of gathering information
+context of the decision maker, and how the decision maker can make trade-offs between the cost of gathering information
 and the quality of the decision they are able to make.
 
 The example above is just a single illustration of the _acuity ramp_ concept. There are many other ways that an
