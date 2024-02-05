@@ -107,6 +107,9 @@ data collection and analysis capabilities increase. We demonstrate this with the
     Over time, the organization's threat and vulnerability analysis capabilities might reach a point where they can
     begin to collect data on the degree to which a vulnerability is automatable, allowing them to incorporate the
     `AUTOMATABLE_1` decision point into their decision model.
+    This decision point might be informed by data from the
+    [National Vulnerability Database](https://nvd.nist.gov/) ([NVD](https://nvd.nist.gov/))
+    or by translating CVSS v3 or v4 scores into a value for this decision point.
 
     {% include-markdown "../_generated/decision_points/automatable_2_0_0.md" %}
 
