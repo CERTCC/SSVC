@@ -65,7 +65,7 @@ LOW_2 = SsvcDecisionPointValue(
 
 MISSION_AND_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(
     name="Mission and Well-Being Impact",
-    description="Mission and Well-Being Impact is a combination of Mission Impact and Public Well-Being impacts.",
+    description="Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
     key="MWI",
     version="1.0.0",
     values=(
