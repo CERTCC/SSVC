@@ -87,7 +87,10 @@ data collection and analysis capabilities increase. We demonstrate this with the
 
     As the organization becomes more capable of gathering and analyzing data, they might start collecting their own
     data on exploitation, allowing them to move to a more detailed decision model that replaces the binary `IN_KEV` 
-    decision point with the trinary `EXPLOITATION_1` decision point.
+    decision point with the trinary `EXPLOITATION_1` decision point. For example, they might incorporate data from the
+    [Exploit Database](https://www.exploit-db.com/) or the
+    [Exploit Prediction Scoring System](https://www.first.org/epss/) ([EPSS](https://www.first.org/epss/))
+    into their decision model.
 
     {% include-markdown "../_generated/decision_points/exploitation_1_0_0.md" %}
 
