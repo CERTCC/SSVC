@@ -3,7 +3,7 @@
 Provides a Policy Generator class for SSVC decision point groups.
 
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -281,7 +281,7 @@ class PolicyGenerator:
 def main():
     from ssvc.decision_points.automatable import AUTOMATABLE_1
     from ssvc.decision_points.exploitation import EXPLOITATION_1
-    from ssvc.decision_points.human_impact import HUMAN_IMPACT_1
+    from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
     from ssvc.decision_points.system_exposure import SYSTEM_EXPOSURE_1_0_1
     from ssvc.outcomes.groups import DSOI
 
@@ -299,7 +299,7 @@ def main():
             EXPLOITATION_1,
             SYSTEM_EXPOSURE_1_0_1,
             AUTOMATABLE_1,
-            HUMAN_IMPACT_1,
+            HUMAN_IMPACT_2,
         ],
     )
 
