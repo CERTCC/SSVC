@@ -2,7 +2,7 @@
 """
 Provides a set of outcome groups for use in SSVC.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -127,6 +127,24 @@ VALUE_COMPLEXITY = OutcomeGroup(
 )
 """
 The Value/Complexity outcome group.
+"""
+
+THE_PARANOIDS = OutcomeGroup(
+    name="theParanoids",
+    description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
+    outcomes=(
+        OutcomeValue(name="Track 5", key="5", description="Track"),
+        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
+        OutcomeValue(name="Attend 3", key="3", description="Attend"),
+        OutcomeValue(name="Attend 2", key="2", description="Attend"),
+        OutcomeValue(name="Act 1", key="1", description="Act"),
+        OutcomeValue(name="Act ASAP 0", key="0", description="Act ASAP"),
+    ),
+)
+"""
+Outcome group based on TheParanoids' PrioritizedRiskRemediation.
+Their model is a 6-point scale, with 0 being the most urgent and 5 being the least.
+See https://github.com/theparanoids/PrioritizedRiskRemediation
 """
 
 
