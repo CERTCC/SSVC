@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "key": "SI",
   "name": "Safety Impact",
-  "description": "The safety impact of the vulnerability.",
+  "description": "The safety impact of the vulnerability. (based on IEC 61508)",
   "values": [
     {
       "key": "N",

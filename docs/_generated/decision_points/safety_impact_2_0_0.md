@@ -3,7 +3,7 @@
 
     === "Text" 
     
-        The safety impact of the vulnerability.
+        The safety impact of the vulnerability. (based on IEC 61508)
 
         | Value | Definition |
         |:-----|:-----------|
