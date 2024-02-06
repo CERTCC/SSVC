@@ -43,7 +43,7 @@ MATERIAL = SsvcDecisionPointValue(
 IRREVERSIBLE = SsvcDecisionPointValue(
     name="Irreversible",
     description="Any one or more of these conditions hold. "
-    "Physical harm*: One or both of the following are true: (a) Multiple fatalities are likely."
+    "Physical harm: One or both of the following are true: (a) Multiple fatalities are likely."
     "(b) The cyber-physical system, of which the vulnerable componen is a part, is likely lost or destroyed. "
     " Environment: Extreme or serious externalities (immediate public health threat, environmental damage leading to small "
     " ecosystem collapse, etc.) are imposed on other parties. "
