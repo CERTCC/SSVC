@@ -38,3 +38,8 @@ For considerations on how organizations might communicate SSVC information to th
 see [Guidance on Communicating Results](../../../howto/communicating_results.md).
 
 
+## Prior Versions
+
+{% include-markdown "../../_generated/decision_points/human_impact_2_0_0.md" %}
+
+{% include-markdown "../../_generated/decision_points/mission_and_well-being_impact_1_0_0.md" %}

@@ -15,3 +15,8 @@ Therefore we simplify the above into a binary categorization:
   [Safety Impact](../safety_impact.md) table.
 - _Minimal_ is when none do.
 
+## Prior Versions
+
+{% include-markdown "../../_generated/decision_points/public_safety_impact_2_0_0.md" %}
+
+{% include-markdown "../../_generated/decision_points/public_well-being_impact_1_0_0.md" %}
