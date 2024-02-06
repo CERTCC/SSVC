@@ -5,7 +5,7 @@ author: adh
 created_at: 9/21/23 11:40 AM
 """
 
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -20,7 +20,7 @@ created_at: 9/21/23 11:40 AM
 
 from ssvc.decision_points.automatable import AUTOMATABLE_2
 from ssvc.decision_points.exploitation import EXPLOITATION_1
-from ssvc.decision_points.human_impact import HUMAN_IMPACT_1
+from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
 from ssvc.decision_points.mission_impact import MISSION_IMPACT_1, MISSION_IMPACT_2
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.system_exposure import (
@@ -69,7 +69,7 @@ DEPLOYER_2 = SsvcDecisionPointGroup(
         UTILITY_1_0_1,
         AUTOMATABLE_2,
         VALUE_DENSITY_1,
-        HUMAN_IMPACT_1,
+        HUMAN_IMPACT_2,
     ],
 )
 """
@@ -101,7 +101,7 @@ DEPLOYER_3 = SsvcDecisionPointGroup(
         MISSION_IMPACT_2,
         SAFETY_IMPACT_1,
         AUTOMATABLE_2,
-        HUMAN_IMPACT_1,
+        HUMAN_IMPACT_2,
     ),
 )
 """

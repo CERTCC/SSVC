@@ -8,17 +8,17 @@
     {
       "key": "L",
       "name": "Laborious",
-      "description": "No to automatable and diffuse value"
+      "description": "Automatable:No AND Value Density:Diffuse"
     },
     {
       "key": "E",
       "name": "Efficient",
-      "description": "Yes to automatable and diffuse value OR No to automatable and concentrated value"
+      "description": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
     },
     {
       "key": "S",
       "name": "Super Effective",
-      "description": "Yes to automatable and concentrated value"
+      "description": "Automatable:Yes AND Value Density:Concentrated"
     }
   ]
 }

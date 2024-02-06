@@ -8,17 +8,17 @@
     {
       "key": "L",
       "name": "Laborious",
-      "description": "Slow virulence and diffuse value"
+      "description": "Virulence:Slow and Value Density:Diffuse"
     },
     {
       "key": "E",
       "name": "Efficient",
-      "description": "Rapid virulence and diffuse value OR Slow virulence and concentrated value"
+      "description": "Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated"
     },
     {
       "key": "S",
       "name": "Super Effective",
-      "description": "Rapid virulence and concentrated value"
+      "description": "Virulence:Rapid and Value Density:Concentrated"
     }
   ]
 }

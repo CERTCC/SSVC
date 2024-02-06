@@ -2,7 +2,7 @@
 """
 Provides helper functions for working with SSVC decision points.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -15,7 +15,23 @@ Provides helper functions for working with SSVC decision points.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
+from typing import Sequence
+
 from ssvc.decision_points import SsvcDecisionPoint
+
+
+#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 
 def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
@@ -175,7 +191,7 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
     return diffs
 
 
-def show_diffs(versions: list[SsvcDecisionPoint]) -> None:
+def show_diffs(versions: Sequence[SsvcDecisionPoint]) -> None:
     if len(versions) < 2:
         print("Not enough versions to compare")
         return
@@ -186,7 +202,7 @@ def show_diffs(versions: list[SsvcDecisionPoint]) -> None:
         print()
 
 
-def print_versions_and_diffs(versions: list[SsvcDecisionPoint]) -> None:
+def print_versions_and_diffs(versions: Sequence[SsvcDecisionPoint]) -> None:
     """
     Prints the json representation of each version and then shows the diffs between each version.
 
