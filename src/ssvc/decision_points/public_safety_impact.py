@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""
+Provides the Public Safety Impact decision point and its values.
+"""
 
 #  Copyright (c) 2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -73,6 +76,17 @@ MINIMAL_2 = SsvcDecisionPointValue(
     name="Minimal", description="Safety Impact:(None OR Minor)", key="M"
 )
 
+SIGNIFICANT_1 = SsvcDecisionPointValue(
+    name="Significant",
+    description="Safety Impact:(Marginal OR Critical OR Catastrophic)",
+    key="S",
+)
+
+MINIMAL_3 = SsvcDecisionPointValue(
+    name="Minimal", description="Safety Impact:Negligible", key="M"
+)
+
+
 PUBLIC_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(
     name="Public Well-Being Impact",
     description="A coarse-grained representation of impact to public well-being.",
@@ -96,14 +110,25 @@ PUBLIC_SAFETY_IMPACT_2 = SsvcDecisionPoint(
     ),
 )
 
+PUBLIC_SAFETY_IMPACT_2_0_1 = SsvcDecisionPoint(
+    name="Public Safety Impact",
+    description="A coarse-grained representation of impact to public safety.",
+    key="PSI",
+    version="2.0.1",
+    values=(
+        MINIMAL_3,
+        SIGNIFICANT_1,
+    ),
+)
+
 
 def main():
-    print_versions_and_diffs(
-        [
-            PUBLIC_WELL_BEING_IMPACT_1,
-            PUBLIC_SAFETY_IMPACT_2,
-        ]
+    versions = (
+        PUBLIC_WELL_BEING_IMPACT_1,
+        PUBLIC_SAFETY_IMPACT_2,
+        PUBLIC_SAFETY_IMPACT_2_0_1,
     )
+    print_versions_and_diffs(versions)
 
 
 if __name__ == "__main__":
