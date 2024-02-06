@@ -24,7 +24,7 @@ Even small deviations in safety are unlikely to go unnoticed or unaddressed.
 We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior.
 Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension.
 We then combine Mission Impact with Situated Safety impact and map them onto a 4-tiered scale (Low, Medium, High, Very High).
-The mapping is shown in the following table.
+The mapping is shown in the table above.
 
 ## Safety and Mission Impact Decision Points for Industry Sectors
 
