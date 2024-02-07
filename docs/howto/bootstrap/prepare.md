@@ -34,10 +34,10 @@ We will go through each step in detail.
     
     Decisions we have modeled with SSVC include:
    
-    - [Patch Supplier Prioritization](supplier_tree.md)
-    - [Patch Deployer Prioritization](deployer_tree.md)
-    - [Coordinator Triage](coordinator_trees.md)
-    - [Coordinator Publication](coordinator_publish_tree.md)
+    - [Patch Supplier Prioritization](../supplier_tree.md)
+    - [Patch Deployer Prioritization](../deployer_tree.md)
+    - [Coordinator Triage](../coordinator_trees.md)
+    - [Coordinator Publication](../coordinator_publish_tree.md)
 
 The first step in preparing to use SSVC is to choose a decision to model.
 SSVC is designed to help you make decisions about how to respond to a vulnerability.
@@ -60,9 +60,9 @@ flowchart LR
 
 !!! example inline end
 
-     In the [Patch Supplier](supplier_tree.md) and [Patch Deployer](deployer_tree) prioritization examples, the outcomes are:
-     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](coordinator_trees.md) example,
-     the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](coordinator_publish_tree.md) example,
+     In the [Patch Supplier](../supplier_tree.md) and [Patch Deployer](../deployer_tree.md) prioritization examples, the outcomes are:
+     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordinator_trees.md) example,
+     the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](../coordinator_publish_tree.md) example,
      the outcomes are _Publish_ and _Do Not Publish_.
 
 Once you have chosen a decision to model, you need to define the outcomes for that decision.
@@ -181,11 +181,11 @@ flowchart LR
 !!! example
 
      A small bank has a policy that they must deploy patches within 48 hours of release if the vulnerability affects systems
-     that could lead to customer data being exposed. They examine the example [Deployer Prioritization](supplier_tree.md)
+     that could lead to customer data being exposed. They examine the example [Deployer Prioritization](../supplier_tree.md)
      decision model and decide that both the outcome set and the decision point set that define the structure of the
      decision model are appropriate for their needs. They map the 48 hour requirement to the _Immediate_ outcome, because
      it essentially represents their highest priority response.
-     However, they notice that the specific policy given in the [Deployer Prioritization](supplier_tree.md)
+     However, they notice that the specific policy given in the [Deployer Prioritization](../supplier_tree.md)
      example&mdash;that is, the mapping from decision point values to outcomes&mdash;is not appropriate for their needs
      because it has too few _Immediate_ outcomes to suit their policy.
      Therefore, the bank decides to reuse the same decision point set and outcome set but define their own policy.
