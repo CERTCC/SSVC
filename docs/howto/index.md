@@ -32,7 +32,7 @@ The definition of choices can take a logical form, such as:
    - ([*Exploitation*](../reference/decision_points/exploitation.md) IS [PoC](../reference/decision_points/exploitation.md)) AND
    - ([Exposure](../reference/decision_points/system_exposure.md) IS [controlled](../reference/decision_points/exploitation.md)) AND
    - ([*Automatable*](../reference/decision_points/automatable.md) IS [no](../reference/decision_points/automatable.md)) AND
-   - ([*Human Impact*](reference/decision_points/human_impact.md) IS [medium](reference/decision_points/human_impact.md))
+   - ([*Human Impact*](../reference/decision_points/human_impact.md) IS [medium](../reference/decision_points/human_impact.md))
  - THEN priority is *scheduled*.
 
 This example logical statement is captured in (line 35 of the deployer `.csv` file)[https://github.com/CERTCC/SSVC/blob/main/data/csvs/deployer-options.csv#L35].

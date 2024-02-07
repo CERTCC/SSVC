@@ -133,7 +133,7 @@ One might think of them as global facts that form the background context in whic
 Nearly all stakeholders should agree on the assignment of specific values to these decision points. 
 - **Stakeholder-specific decision points** are expected to be contextual to some set of stakeholders.
 Information about a stakeholder-specific decision point can still be inherited by other stakeholders using the same tree.
-For example in the corporate CSIRT scenario above, the [*System Exposure*](reference/decision_points/system_exposure.md) value might be consistent across all subsidiaries for a centrally managed service.
+For example in the corporate CSIRT scenario above, the [*System Exposure*](../reference/decision_points/system_exposure.md) value might be consistent across all subsidiaries for a centrally managed service.
 
 We generally consider the following decision points to be *stakeholder-agnostic*:
 - [*Exploitation*](../reference/decision_points/exploitation.md)
@@ -141,14 +141,14 @@ We generally consider the following decision points to be *stakeholder-agnostic*
 - [*Automatable*](../reference/decision_points/automatable.md)
 
 On the contrary, we consider the following decision points to be *stakeholder-specific*:
-- [*Value Density*](reference/decision_points/value_density.md)
+- [*Value Density*](../reference/decision_points/value_density.md)
 - [Utility](../reference/decision_points/utility.md)
 - [*Safety Impact*](../reference/decision_points/safety_impact.md)
 - [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md)
 - [*Situated Safety Impact*](#situated-safety-impact)
 - [*Mission Impact*](../reference/decision_points/mission_impact.md)
-- [*Human Impact*](reference/decision_points/human_impact.md)
-- [*System Exposure*](reference/decision_points/system_exposure.md)
+- [*Human Impact*](../reference/decision_points/human_impact.md)
+- [*System Exposure*](../reference/decision_points/system_exposure.md)
 
 We anticipate that most custom decision points created by stakeholders for themselves or a constituency will be of the *stakeholder-specific* variety.
 Examples of these sorts of custom decision points include

@@ -10,7 +10,7 @@ We take three priority levels in our decision about whether and how to coordinat
 ## Coordinator Decision Points
 
 Our goal with the coordination decision is to base it on information that is available to the analyst when CERT/CC receives a vulnerability report.
-In addition to using some of the decision points in [Likely Decision Points](reference/decision_points/index.md); coordination makes use of [Utility](../reference/decision_points/utility.md) and [Public Safety Impact](../reference/decision_points/public_safety_impact.md) decision points.
+In addition to using some of the decision points in [Likely Decision Points](../reference/decision_points/index.md); coordination makes use of [Utility](../reference/decision_points/utility.md) and [Public Safety Impact](../reference/decision_points/public_safety_impact.md) decision points.
 The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
 To assess this, the decision involves five new decision points.
 
