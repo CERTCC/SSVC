@@ -220,7 +220,7 @@ Risk tolerance and risk appetite are primarily reflected in the priority labels 
 | [*Exploitation*](../../reference/decision_points/exploitation.md)                 | every 1 day |
 | [*Technical Impact*](../../reference/decision_points/technical_impact.md)         | never (should be static per vulnerability) |
 | [*Utility*](../../reference/decision_points/utility.md)                           | every 6 months |
-| [*Public Safety Impact*](../../reference/decision_points/public_safety_impact.md.md) | every 1 year |
+| [*Public Safety Impact*](../../reference/decision_points/public_safety_impact.md) | every 1 year |
 
 
 The following decision points are usually in the control of the organization running SSVC and should be reevaluated when a relevant change is made or during annual reviews of assets.
