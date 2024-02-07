@@ -121,8 +121,8 @@ The reach of software exploits is no longer limited to a research network.
 !!! tip "Default Automatable Values"
 
     If nothing is known about [*Automatable*](../../reference/decision_points/automatable.md), the safer answer to assume is [*yes*](../../reference/decision_points/automatable.md).
-    [*Value Density*](#value-density) should always be answerable; if the product is uncommon, it is probably
-    [*diffuse*](#value-density).
+    [*Value Density*](reference/decision_points/value_density.md) should always be answerable; if the product is uncommon, it is probably
+    [*diffuse*](reference/decision_points/value_density.md).
 
 The resulting decision set `{none, open, yes, medium}` results in a scheduled patch application in our recommended
 deployer tree.

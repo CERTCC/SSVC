@@ -74,15 +74,15 @@ Some sources, such as CWE or existing asset management solutions, would require 
 ### Automatable and Value Density
 
 The SSVC decision point that we have not identified an information source for is [Utility](../reference/decision_points/utility.md).
-[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](#value-density), so the question is what a sort of feed could support each of those decision points.
+[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md), so the question is what a sort of feed could support each of those decision points.
 
 A feed is plausible for both of these decision points.
-The values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](#value-density) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
+The values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
 While that is a broad analysis frame, it means that any community that shares a similar set of adversaries and a similar region of the Internet can share the same response to both decision points.
-An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](#value-density).
+An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md).
 These factors suggest a market for an information feed about these decision points is a viable possibility.
 
-At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](#value-density).
+At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md).
 It would be a complex natural language processing task.
 Perhaps a machine learning system could be designed to suggest values.
 But more likely, if there is a market for this information, a few analysts could be paid to score vulnerabilities on these values for the community.

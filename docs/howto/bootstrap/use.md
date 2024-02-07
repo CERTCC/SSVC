@@ -183,7 +183,7 @@ A stakeholder might have information to communicate about some decision points b
 If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special “I don't know” marker.
 
 The merit in this “list all values” approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
-For example, say the analyst knows that [*Value Density*](#value-density) is [diffuse](#value-density) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
+For example, say the analyst knows that [*Value Density*](reference/decision_points/value_density.md) is [diffuse](reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
 Then the analyst can usefully restrict [Utility](../../reference/decision_points/utility.md) to one of [laborious](../../reference/decision_points/utility.md) or [efficient](../../reference/decision_points/utility.md).
 In abbreviated form, write this as `U:LE`.
 As discussed below, information can change over time.

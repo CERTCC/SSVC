@@ -141,7 +141,7 @@ We generally consider the following decision points to be *stakeholder-agnostic*
 - [*Automatable*](../reference/decision_points/automatable.md)
 
 On the contrary, we consider the following decision points to be *stakeholder-specific*:
-- [*Value Density*](#value-density)
+- [*Value Density*](reference/decision_points/value_density.md)
 - [Utility](../reference/decision_points/utility.md)
 - [*Safety Impact*](../reference/decision_points/safety_impact.md)
 - [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md)
