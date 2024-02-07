@@ -4,6 +4,12 @@ We have adopted the use of [Markdown Any Decision Records](https://adr.github.io
 to document significant decisions made in the development of SSVC. Below is a list of all
 the decision records that have been made.
 
+!!! warning "See repository for authoritative source of decision records"
+
+    While we include these records in the site for reference, the authoritative source
+    for these records, including their current adoption status, is the
+    [SSVC GitHub repository](https://github.com/CERTCC/SSVC/tree/main/docs/adr).
+
 ## Accepted Records
 
 - [0000 - Record architecture decisions](0000-record-architecture-decisions.md)
