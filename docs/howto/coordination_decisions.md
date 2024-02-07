@@ -21,7 +21,7 @@ To assess this, the decision involves five new decision points.
 
 ## Coordination Triage Decision Process
 
-The decision tree for reaching a [Decision](#coordination-triage-decisions) involves seven decision points.
+The decision tree for reaching a [Decision](coordination_decisions.md) involves seven decision points.
 The first two function as gating questions:
  - If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
  - If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).

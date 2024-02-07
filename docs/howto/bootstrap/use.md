@@ -94,7 +94,7 @@ This section handles three aspects of this challenge: formats for communicating 
 
 This section is about communicating SSVC information about a specific vulnerability.
 Any stakeholder making a decision on allocating effort should have a decision tree with its decision points and possible values specified already.
-[Representation choices](#representation-choices) and [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
+[Representation choices](../../topics/decision_trees.md) and [Tree Construction and Customization Guidance](../tree_customization.md) discussed how SSVC uses a text file as the canonical form of a decision tree; the example trees can be found in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 This section discusses the situation where one stakeholder, usually a supplier or coordinator, wants to communicate some information about a specific vulnerability to other stakeholders or constituents.
 
 ### Communication Formats
@@ -196,10 +196,10 @@ Information changes are one reason why SSVC decisions should always be timestamp
 SSVC decision points have different temporal properties.
 Some, such as [Utility](../../reference/decision_points/utility.md), are mostly static.
 For [Utility](../../reference/decision_points/utility.md) to change, the market penetration or deployment norms of a vulnerable component would have to meaningfully change.
-Some, such as [*State of Exploitation*](#state-of-exploitation), may change quickly but only in one direction.
+Some, such as [Exploitation](../../reference/decision_points/exploitation.md), may change quickly but only in one direction.
 
 Both of these examples are out of the direct control of the vulnerability manager.
-Some, such as [Exposure](../../reference/decision_points/system_exposure.md), change mostly due to actions taken by the organization managing the vulnerable component.
+Some, such as [System Exposure](../../reference/decision_points/system_exposure.md), change mostly due to actions taken by the organization managing the vulnerable component.
 If the actor who can usually trigger a relevant change is the organization using SSVC, then it is relatively straightforward to know when to update the SSVC decision.
 That is, the organization should reevaluate the decision when they make a relevant change.
 For those decision points that are about topics outside the control of the organization using SSVC, then the organization should occasionally poll their information sources for changes.
@@ -212,7 +212,7 @@ For an organization without a mature asset management system, we would recommend
 The following decision points are usually out of the control of the organization running SSVC.
 As an initial heuristic, we suggest the associated polling frequency for each.
 These frequencies can be customized, as the update frequency is directly related to the organization's tolerance for the risk that the information is out of date.
-As discussed in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance), risk tolerance is unique to each organization.
+As discussed in [Tree Construction and Customization Guidance](../tree_customization.md), risk tolerance is unique to each organization.
 Risk tolerance and risk appetite are primarily reflected in the priority labels (that is, decisions) encoded in the SSVC decision tree, but information polling frequency is also a risk tolerance decision and each organization may choose different time values.
 
 | Decision Point                                                                 | Suggested Polling Frequency |

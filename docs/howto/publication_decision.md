@@ -23,10 +23,10 @@ As a matter of policy, CERT/CC will support an embargo from the public of inform
   - Other exceptions have not been met, including active exploitation of the vulnerability in the wild or other public discussion of the vulnerability details.
 
 Regardless, the decision described in this section assumes the embargo period is over, one way or another.
-The second point is related to the [Coordination Triage Decisions](#coordination-triage-decisions) and the status of the vulnerability.
-CERT/CC only expects to publish about vulnerabilities with a [*coordinate*](#coordination-triage-decisions) status.
-While an issue that is tracked or declined may be reevaluated at a later date and status changed to [*coordinate*](#coordination-triage-decisions), unless that happens we would not publish about the vulnerability.
-Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision points or the decision itself from the [Coordination Triage Decisions](#coordination-triage-decisions) in their publication decision.
+The second point is related to the [Coordination Triage Decisions](coordination_decisions.md) and the status of the vulnerability.
+CERT/CC only expects to publish about vulnerabilities with a [*coordinate*](coordination_decisions.md) status.
+While an issue that is tracked or declined may be reevaluated at a later date and status changed to [*coordinate*](coordination_decisions.md), unless that happens we would not publish about the vulnerability.
+Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision points or the decision itself from the [Coordination Triage Decisions](coordination_decisions.md) in their publication decision.
 
 In addition to the two decision points defined in this section, the publication decision uses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point.
 
