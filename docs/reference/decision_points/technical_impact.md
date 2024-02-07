@@ -2,7 +2,7 @@
 
 {% include-markdown "../../_generated/decision_points/technical_impact.md" %}
 
-When evaluating [*Technical Impact*](technical_impact.md), recall the scope definition in the [Scope Section](#scope).
+When evaluating [*Technical Impact*](technical_impact.md), recall the scope definition in the [Scope Section](../../topics/scope.md).
 Total control is relative to the affected component where the vulnerability resides.
 If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 

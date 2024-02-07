@@ -53,7 +53,7 @@ We changed “out-of-band” to [**out-of-cycle**](#enumerating-vulnerability-ma
 Some concepts needed to be clarified or added.
 These changes are a bit more substantive than the above terminology changes, but are similar.
 For example, we clarified how end-of-life products are prioritized with SSVC.
-We also clarified in [Scope](#scope) concepts around vulnerability identificatin and disambiguation.
+We also clarified in [Scope](../topics/scope.md) concepts around vulnerability identificatin and disambiguation.
 Version 2 adopts an explicit definition of **risk** (from ISO Guide 73).
 We also differentiated between vulnerability risk, or that risk arising from an unmanaged vulnerability in an information system, and change risk, or that risk from modifying or updating an information system to mitigate or remediate a vulnerability.
 SSVC version 2 focuses on assessing and managing vulnerability risk, not change risk.

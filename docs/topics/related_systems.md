@@ -58,7 +58,7 @@ This is a fuzzy concept.
 SSVC better describes this concept by breaking it down into component parts.
 The impact of exploitation of the vulnerable component on other components is covered under [*Mission Impact*](../reference/decision_points/mission_impact.md), public and situated [*Well-being Impact*](#well-being-impact), and the stakeholder-specific nature where SSVC is tailored to stakeholder concerns.
 CVSS addresses some definitions of the scope of CVSS as a whole under the Scope metric definition.
-In SSVC, these definitions are in the [Scope](#scope) section.
+In SSVC, these definitions are in the [Scope](scope.md) section.
 
 > Temporal metric groups
 
