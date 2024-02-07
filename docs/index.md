@@ -26,7 +26,7 @@ We have organized the SSVC documentation into four main sections:
     Get started learning about SSVC and how it can help you prioritize vulnerabilities.
     This section is intended for people who are new to SSVC.
 
-    [:octicons-arrow-right-24: Learning SSVC](tutorials)
+    [:octicons-arrow-right-24: Learning SSVC](tutorials/index.md)
 
 - :fontawesome-solid-book:{ .lg .middle } __Learn More about SSVC__
 
@@ -35,7 +35,7 @@ We have organized the SSVC documentation into four main sections:
     Dig deeper to understand the SSVC methodology and how it works.
     This section is intended for people who are already familiar with SSVC and want to learn more.
 
-    [:octicons-arrow-right-24: Understanding SSVC](topics)
+    [:octicons-arrow-right-24: Understanding SSVC](topics/index.md)
 
 - :material-clipboard-check:{ .lg .middle } __SSVC How To__
 
@@ -44,7 +44,7 @@ We have organized the SSVC documentation into four main sections:
     Start using SSVC in your organization today with step-by-step instructions.
     This section is intended for people who are already familiar with SSVC and want to start using it.
 
-    [:octicons-arrow-right-24: SSVC How To](howto)
+    [:octicons-arrow-right-24: SSVC How To](howto/index.md)
 
 - :material-book-open-page-variant:{ .lg .middle } __SSVC Reference__
 
@@ -53,6 +53,6 @@ We have organized the SSVC documentation into four main sections:
     Reference documentation for SSVC.
     This section is intended for people who are already familiar with SSVC and want to look up specific details.
 
-    [:octicons-arrow-right-24: Reference](reference)
+    [:octicons-arrow-right-24: Reference](reference/index.md)
 
 </div>
