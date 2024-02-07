@@ -14,7 +14,7 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Improved consistency of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) usage throughout the document and tooling
 - Improved consistency of [*Human Impact*](reference/decision_points/human_impact.md) usage throughout the document
 - Clarified that known default passwords are an example of [*Exploitation*](../reference/decision_points/exploitation.md):PoC
-- Clarified that unreachable code (as in unused library features) are [_System Exposure_](#system-exposure):small
+- Clarified that unreachable code (as in unused library features) are [_System Exposure_](reference/decision_points/system_exposure.md):small
 - Mention DoD MEF definition in [_Mission Impact_](../reference/decision_points/mission_impact.md)
 - Updated references to [EPSS](https://www.first.org/epss/) to reflect recent publications
 - Refactored markdown files to better track chapter and section numbering, improving findability when editing
@@ -69,7 +69,7 @@ However, [*Public Safety Impact*](../reference/decision_points/public_safety_imp
 In addition, based on feedback from SSVC users, the SSVC version 2 recommended applier tree makes use of a combined value for [*Mission Impact*](../reference/decision_points/mission_impact.md) and [*Situated Safety Impact*](../reference/decision_points/safety_impact.md).
 The intuition behind this change is that if a person is going to die OR the organization is going to fail (for example, go bankrupt), then the organization will likely want to act with highest priority.
 Either situation is sufficient to increase the priority, and there do not appear to be situations where a low  [*Mission Impact*](../reference/decision_points/mission_impact.md) would mitigate a high [*Situated Safety Impact*](../reference/decision_points/safety_impact.md) or vice versa.
-On the other hand, a low [Utility](../reference/decision_points/utility.md) or [*System Exposure*](#system-exposure) may mitigate a high mission or well-being impact.
+On the other hand, a low [Utility](../reference/decision_points/utility.md) or [*System Exposure*](reference/decision_points/system_exposure.md) may mitigate a high mission or well-being impact.
 So the Version 2 recommended tree is more usable than the Version 1 tree, thanks to these changes.
 
 

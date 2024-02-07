@@ -4,7 +4,7 @@ Some SSVC decision points can be informed or answered by currently available inf
 These include
 
 - [*Exploitation*](../reference/decision_points/exploitation.md)
-- [*System Exposure*](#system-exposure)
+- [*System Exposure*](reference/decision_points/system_exposure.md)
 - [*Technical Impact*](../reference/decision_points/technical_impact.md)
 - [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md).
 
@@ -24,10 +24,10 @@ Namely, each list has a different view and vantage on the problem, which makes t
 
 ## System Exposure
 
-[*System Exposure*](#system-exposure) could be informed by the various scanning platforms such as Shodan and Shadowserver.
-A service on a device should be scored as [*open*](#system-exposure) if such a general purpose Internet scan finds that the service responds.
-Such scans do not find all [*open*](#system-exposure) systems, but any system they find should be considered [*open*](#system-exposure).
-Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](#system-exposure) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
+[*System Exposure*](reference/decision_points/system_exposure.md) could be informed by the various scanning platforms such as Shodan and Shadowserver.
+A service on a device should be scored as [*open*](reference/decision_points/system_exposure.md) if such a general purpose Internet scan finds that the service responds.
+Such scans do not find all [*open*](reference/decision_points/system_exposure.md) systems, but any system they find should be considered [*open*](reference/decision_points/system_exposure.md).
+Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](reference/decision_points/system_exposure.md) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
 
 ---
 ## Adapting other Information Sources
