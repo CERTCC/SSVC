@@ -147,7 +147,7 @@ On the contrary, we consider the following decision points to be *stakeholder-sp
 - [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md)
 - [*Situated Safety Impact*](#situated-safety-impact)
 - [*Mission Impact*](../reference/decision_points/mission_impact.md)
-- [*Human Impact*](#human-impact)
+- [*Human Impact*](reference/decision_points/human_impact.md)
 - [*System Exposure*](#system-exposure)
 
 We anticipate that most custom decision points created by stakeholders for themselves or a constituency will be of the *stakeholder-specific* variety.

@@ -57,7 +57,7 @@ administration, etc.) would be unaffected.
 Therefore, we select [*MEF failure*](../reference/decision_points/mission_impact.md) and move on to ask about safety impact.
 
 This particular pilot study used SSVC version 1.
-In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](#human-impact), and [*Automatable*](../reference/decision_points/automatable.md) would need to be answered as well.
+In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](reference/decision_points/human_impact.md), and [*Automatable*](../reference/decision_points/automatable.md) would need to be answered as well.
 Conducting further studies with the recommended version 2.1 Deployer tree remains an area of future work.
 In the pilot study, this information is conveyed as follows:
 

@@ -44,9 +44,9 @@ If applying a mitigation reduces the priority to *defer*, the deployer may not n
 {== Table 3 ==} displays the action priorities for the deployer, which are similar to the supplier case.
 
 In a later section, the different types of impacts are defined and then implemented in the decision trees as examples of how the various impacts affect the priority.
-For now, assume the decision points are ordered as: [*Exploitation*](../reference/decision_points/exploitation.md); [Exposure](../reference/decision_points/system_exposure.md); [Utility](../reference/decision_points/utility.md); and [*Human Impact*](#human-impact).
+For now, assume the decision points are ordered as: [*Exploitation*](../reference/decision_points/exploitation.md); [Exposure](../reference/decision_points/system_exposure.md); [Utility](../reference/decision_points/utility.md); and [*Human Impact*](reference/decision_points/human_impact.md).
 In this order, an [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
-A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](#human-impact) is [_very high_](#human-impact), resulting in an *out-of-cycle* priority.
+A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](reference/decision_points/human_impact.md) is [_very high_](reference/decision_points/human_impact.md), resulting in an *out-of-cycle* priority.
 
 As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
 

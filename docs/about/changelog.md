@@ -12,7 +12,7 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Improved clarity of time-sensitivity of some decision points in [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities)
 - Improved description of [*Mission Impact*](../reference/decision_points/mission_impact.md)
 - Improved consistency of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) usage throughout the document and tooling
-- Improved consistency of [*Human Impact*](#human-impact) usage throughout the document
+- Improved consistency of [*Human Impact*](reference/decision_points/human_impact.md) usage throughout the document
 - Clarified that known default passwords are an example of [*Exploitation*](../reference/decision_points/exploitation.md):PoC
 - Clarified that unreachable code (as in unused library features) are [_System Exposure_](#system-exposure):small
 - Mention DoD MEF definition in [_Mission Impact_](../reference/decision_points/mission_impact.md)
