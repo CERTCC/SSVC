@@ -9,7 +9,7 @@ That caveat notwithstanding, some automation is possible.
 
     For example, whether exploitation modules are available in ExploitDB, Metasploit, or other sources is straightforward.
     We hypothesize that searching Github and Pastebin for exploit code can be captured in a script.
-    A supplier or deployer could then define [*Exploitation*](#exploitation) to take the value of [*PoC*](#exploitation) if
+    A supplier or deployer could then define [*Exploitation*](../reference/decision_points/exploitation.md) to take the value of [*PoC*](../reference/decision_points/exploitation.md) if
     there are positive search results for a set of inputs derived from the CVE entry in at least one of these venues.
     At least, for those vulnerabilities that are not “automatically” PoC-ready, such as on-path attackers for TLS or network
     replays.
@@ -58,7 +58,7 @@ we can suggest something like defaults for some decision points.
 !!! tip "Default Safety Values"
 
     If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a
-    [*major*](#safety-impact) [*Safety Impact*](#safety-impact).
+    [*major*](../reference/decision_points/safety_impact.md) [*Safety Impact*](../reference/decision_points/safety_impact.md).
     This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision
     maker provide evidence that no one’s well-being will suffer.
 
@@ -66,16 +66,16 @@ The reach of software exploits is no longer limited to a research network.
 
 !!! tip "Default Mission Impact Values"
 
-    Similarly, with [*Mission Impact*](#mission-impact), the deployer should assume that the software is in use at the
+    Similarly, with [*Mission Impact*](../reference/decision_points/mission_impact.md), the deployer should assume that the software is in use at the
     organization for a reason, and that it supports essential functions unless they have evidence otherwise.
-    With a total lack of information, assume [*support crippled*](#mission-impact) as a default.
-    [*Exploitation*](#exploitation) needs no special default; if adequate searches are made for exploit code and none is
-    found, the answer is [*none*](#exploitation).
+    With a total lack of information, assume [*support crippled*](../reference/decision_points/mission_impact.md) as a default.
+    [*Exploitation*](../reference/decision_points/exploitation.md) needs no special default; if adequate searches are made for exploit code and none is
+    found, the answer is [*none*](../reference/decision_points/exploitation.md).
 
 
 !!! tip "Default Automatable Values"
 
-    If nothing is known about [*Automatable*](#automatable), the safer answer to assume is [*yes*](#automatable).
+    If nothing is known about [*Automatable*](../reference/decision_points/automatable.md), the safer answer to assume is [*yes*](../reference/decision_points/automatable.md).
     [*Value Density*](#value-density) should always be answerable; if the product is uncommon, it is probably
     [*diffuse*](#value-density).
 

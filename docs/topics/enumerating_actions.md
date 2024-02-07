@@ -24,7 +24,7 @@ We focus only on the priority of building the patch, and we consider four catego
 
 A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. An effective firewall or IDS rule coupled with an adequate change control process for rules may be enough to reduce the priority where no further action is necessary. In the area of Financial impacts, a better insurance policy may be purchased, providing necessary fraud insurance. Physicial well-being impact may be reduced by testing the physicial barriers designed to restrict a robot's ability to interact with humans. Mission impact could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow. If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation if it later becomes available. [Table 3](#table-deployer-outcomes) displays the action priorities for the deployer, which are similar to the supplier case.
 
-When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](#system-exposure) from open to controlled. Financial well-being, a [*Safety Impact*](#safety-impact) category, might be reduced with adequate fraud detection and insurance. Physical well-being, also a [*Safety Impact*](#safety-impact) category, might be reduced by physical barriers that restrict a robot's ability to interact with humans. [*Mission Impact*](#mission-impact) might be reduced by introducing back-up business flows that do not use the vulnerable component. In a later section we combine [Mission and Situated Safety Impact](#table-mission-safety-combined) to reduce the complexity of the tree.
+When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](#system-exposure) from open to controlled. Financial well-being, a [*Safety Impact*](../reference/decision_points/safety_impact.md) category, might be reduced with adequate fraud detection and insurance. Physical well-being, also a [*Safety Impact*](../reference/decision_points/safety_impact.md) category, might be reduced by physical barriers that restrict a robot's ability to interact with humans. [*Mission Impact*](../reference/decision_points/mission_impact.md) might be reduced by introducing back-up business flows that do not use the vulnerable component. In a later section we combine [Mission and Situated Safety Impact](#table-mission-safety-combined) to reduce the complexity of the tree.
 
 However, these mitigation techniques will not always work.
 
@@ -35,7 +35,7 @@ However, these mitigation techniques will not always work.
     - In the area of Financial impacts, the caps on the insurance may be too low to act as a mitigation.
     - The Physical impact may be increased by incorrect installation of the physical barriers designed to restrict a
     robot’s ability to interact with humans.
-    - The [*Mission Impact*](#mission-impact) could be increased when a disaster recovery test-run identifies problems
+    - The [*Mission Impact*](../reference/decision_points/mission_impact.md) could be increased when a disaster recovery test-run identifies problems
     with an alternate business flow.
     - The mitigating action may not be permanent or work as designed.
 
@@ -44,9 +44,9 @@ If applying a mitigation reduces the priority to *defer*, the deployer may not n
 {== Table 3 ==} displays the action priorities for the deployer, which are similar to the supplier case.
 
 In a later section, the different types of impacts are defined and then implemented in the decision trees as examples of how the various impacts affect the priority.
-For now, assume the decision points are ordered as: [*Exploitation*](#exploitation); [*Exposure*](#exposure); [*Utility*](#utility); and [*Human Impact*](#human-impact).
-In this order, an [_active_](#exploitation) state of [*Exploitation*](#exploitation) will never result in a *defer* priority.
-A [_none_](#exploitation) state of [*Exploitation*](#exploitation) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](#human-impact) is [_very high_](#human-impact), resulting in an *out-of-cycle* priority.
+For now, assume the decision points are ordered as: [*Exploitation*](../reference/decision_points/exploitation.md); [Exposure](../reference/decision_points/system_exposure.md); [Utility](../reference/decision_points/utility.md); and [*Human Impact*](#human-impact).
+In this order, an [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
+A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](#human-impact) is [_very high_](#human-impact), resulting in an *out-of-cycle* priority.
 
 As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
 

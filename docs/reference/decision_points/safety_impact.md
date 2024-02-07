@@ -49,8 +49,8 @@ Because each of these information items depends heavily on domain-specific knowl
 For example, viable manual backup mechanisms are likely to be important in assessing the safety impact of an industrial control system in a sewage plant, but in banking the insurance structures that prevent bankruptcies are more important.
 
 The decision values for safety impact are based on the hazard categories for aircraft software [@DO-178C; @faa2000safety, Section 3.3.2].
-To assign a value to [*Safety Impact*](#safety-impact), at least one type of harm must reach that value. For example, for a [*Safety Impact*](#safety-impact) of [*major*](#safety-impact), at least one type of harm must reach [*major*](#safety-impact) level.
-All types of harm do not need to rise to the level of [*major*](#safety-impact), just one type of harm does.
+To assign a value to [*Safety Impact*](safety_impact.md), at least one type of harm must reach that value. For example, for a [*Safety Impact*](safety_impact.md) of [*major*](safety_impact.md), at least one type of harm must reach [*major*](safety_impact.md) level.
+All types of harm do not need to rise to the level of [*major*](safety_impact.md), just one type of harm does.
 
 
 <!-- Literal HTML is only included by pandoc etc in HTML output, so the below is correct but not portable -->
@@ -209,5 +209,5 @@ resiliency</td>
 ### Situated Safety Impact
 
 Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in [Safety Impact](#table-safety-impact).
-We defer this topic for now because we combine it with [*Mission Impact*](#mission-impact) to simplify implementation for deployers.
+We defer this topic for now because we combine it with [*Mission Impact*](mission_impact.md) to simplify implementation for deployers.
 

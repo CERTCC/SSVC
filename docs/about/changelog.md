@@ -5,17 +5,17 @@ This section summarizes the changes between SSVC 2.1 and [SSVC version 2.0](http
 The details of what changes were made can be viewed on the SSVC Github under the [SSVC v2.1](https://github.com/CERTCC/SSVC/milestone/2) milestone.
 
 - Introduced a demo [SSVC Calc App](https://certcc.github.io/SSVC/ssvc-calc/) which became the basis for CISA's [SSVC Calculator](https://www.cisa.gov/ssvc-calculator)
-- Updated Deployer tree to use [*Automatable*](#automatable) instead of [*Utility*](#utility), which reduced the size from 108 leaf nodes to 72.
+- Updated Deployer tree to use [*Automatable*](reference/decision_points/automatable.md) instead of [Utility](../reference/decision_points/utility.md), which reduced the size from 108 leaf nodes to 72.
 - Adjusted Deployer tree decisions based on stakeholder feedback
 - Adjusted Supplier tree decisions based on stakeholder feedback
 - Added section on [Sharing Trees With Others](#sharing-trees-with-others) including a discussion of decision point scope and decision tree scope.
 - Improved clarity of time-sensitivity of some decision points in [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities)
-- Improved description of [*Mission Impact*](#mission-impact)
-- Improved consistency of [*Public Safety Impact*](#public-safety-impact) usage throughout the document and tooling
+- Improved description of [*Mission Impact*](reference/decision_points/mission_impact.md)
+- Improved consistency of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md.md) usage throughout the document and tooling
 - Improved consistency of [*Human Impact*](#human-impact) usage throughout the document
-- Clarified that known default passwords are an example of [*Exploitation*](#exploitation):PoC
+- Clarified that known default passwords are an example of [*Exploitation*](../reference/decision_points/exploitation.md):PoC
 - Clarified that unreachable code (as in unused library features) are [_System Exposure_](#system-exposure):small
-- Mention DoD MEF definition in [_Mission Impact_](#mission-impact)
+- Mention DoD MEF definition in [_Mission Impact_](reference/decision_points/mission_impact.md)
 - Updated references to [EPSS](https://www.first.org/epss/) to reflect recent publications
 - Refactored markdown files to better track chapter and section numbering, improving findability when editing
 - Automated HTML and PDF generation into a [Github Workflow](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
@@ -47,7 +47,7 @@ Some terms have been adjusted to better align with other usage in the field or b
 Therefore, “patch developer” became **supplier** and “patch applier” became **deployer**.
 These terms in version 2 better reflect the stakeholder's relationship to the vulnerable component and also help keep clear that SSVC is about prioritization of work items in vulnerability management, not just patches.
 We have also generally removed the word patch and instead use the more general “remediation” for a complete fix and “mitigation” for actions that reduce risk but do not remove a vulnerability from a system.
-“Virulence” was renamed [*Automatable*](#automatable) in a effort to be more direct and clear, rather than relying on an epidemiology metaphor.
+“Virulence” was renamed [*Automatable*](reference/decision_points/automatable.md) in a effort to be more direct and clear, rather than relying on an epidemiology metaphor.
 We changed “out-of-band” to [**out-of-cycle**](#enumerating-vulnerability-management-actions).
 
 Some concepts needed to be clarified or added.
@@ -62,14 +62,14 @@ This stance was not explicit in SSVC version 1.
 ### Improvements to decision points
 
 Version 1 had a decision point for well-being impact that was shared between **supplier** and **deployer** stakeholders.
-Since these types of stakeholder have access to different information about safety and well-being, Version 2 splits this concept into [*Public Safety Impact*](#public-safety-impact) and [*Situated Safety Impact*](#situated-safety-impact).
+Since these types of stakeholder have access to different information about safety and well-being, Version 2 splits this concept into [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md.md) and [*Situated Safety Impact*](../reference/decision_points/safety_impact.md).
 The underlying definition remains largely the same.
-However, [*Public Safety Impact*](#public-safety-impact) has fewer output options (it is less granular) in recognition that a supplier or coordinator has less information about the context of deployment than a deployer does.
+However, [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md.md) has fewer output options (it is less granular) in recognition that a supplier or coordinator has less information about the context of deployment than a deployer does.
 
-In addition, based on feedback from SSVC users, the SSVC version 2 recommended applier tree makes use of a combined value for [*Mission Impact*](#mission-impact) and [*Situated Safety Impact*](#situated-safety-impact).
+In addition, based on feedback from SSVC users, the SSVC version 2 recommended applier tree makes use of a combined value for [*Mission Impact*](reference/decision_points/mission_impact.md) and [*Situated Safety Impact*](../reference/decision_points/safety_impact.md).
 The intuition behind this change is that if a person is going to die OR the organization is going to fail (for example, go bankrupt), then the organization will likely want to act with highest priority.
-Either situation is sufficient to increase the priority, and there do not appear to be situations where a low  [*Mission Impact*](#mission-impact) would mitigate a high [*Situated Safety Impact*](#situated-safety-impact) or vice versa.
-On the other hand, a low [*Utility*](#utility) or [*System Exposure*](#system-exposure) may mitigate a high mission or well-being impact.
+Either situation is sufficient to increase the priority, and there do not appear to be situations where a low  [*Mission Impact*](reference/decision_points/mission_impact.md) would mitigate a high [*Situated Safety Impact*](../reference/decision_points/safety_impact.md) or vice versa.
+On the other hand, a low [Utility](../reference/decision_points/utility.md) or [*System Exposure*](#system-exposure) may mitigate a high mission or well-being impact.
 So the Version 2 recommended tree is more usable than the Version 1 tree, thanks to these changes.
 
 

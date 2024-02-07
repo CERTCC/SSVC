@@ -3,9 +3,9 @@
 Given a specific stakeholder decision and set of useful decision points, we are now in a position to combine them into a comprehensive set of decisions about the priority with which to act.
 The definition of choices can take a logical form, such as:
  - IF
- - ([*Exploitation*](#exploitation) IS [PoC](#exploitation)) AND
- - ([*Exposure*](#exposure) IS [controlled](#exploitation)) AND
- - ([*Automatable*](#automatable) IS [no](#automatable)) AND
+ - ([*Exploitation*](../reference/decision_points/exploitation.md) IS [PoC](../reference/decision_points/exploitation.md)) AND
+ - ([Exposure](../reference/decision_points/system_exposure.md) IS [controlled](../reference/decision_points/exploitation.md)) AND
+ - ([*Automatable*](../reference/decision_points/automatable.md) IS [no](../reference/decision_points/automatable.md)) AND
  - ([*Human Impact*](#human-impact) IS [medium](#human-impact))
  - THEN priority is *scheduled*.
 

@@ -54,10 +54,10 @@ description of MEF failure.
 The question is then whether the whole mission fails, which does not seem to be the case.
 The recovery of MEF functioning is not affected, and most MEFs (the emergency services, surgery, oncology,
 administration, etc.) would be unaffected.
-Therefore, we select [*MEF failure*](#mission-impact) and move on to ask about safety impact.
+Therefore, we select [*MEF failure*](../reference/decision_points/mission_impact.md) and move on to ask about safety impact.
 
 This particular pilot study used SSVC version 1.
-In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](#human-impact), and [*Automatable*](#automatable) would need to be answered as well.
+In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](#human-impact), and [*Automatable*](../reference/decision_points/automatable.md) would need to be answered as well.
 Conducting further studies with the recommended version 2.1 Deployer tree remains an area of future work.
 In the pilot study, this information is conveyed as follows:
 
@@ -72,15 +72,15 @@ In the pilot study, this information is conveyed as follows:
     The impacted insulin pumps have a local (on-patient) wireless control, so wires to the pump do not have to be connected
     to the patient's control of the system, making the system lighter and less prone to be ripped out.
 
-The closest match to “death in a matter of hours” would be [*hazardous*](#safety-impact) because that description reads
+The closest match to “death in a matter of hours” would be [*hazardous*](../reference/decision_points/safety_impact.md) because that description reads
 “serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures.”
 Depending on the details of the hospital’s contingency plans and its monitoring of their patients, the
-[*Safety Impact*](#safety-impact) could be [*catastrophic*](#safety-impact).
+[*Safety Impact*](../reference/decision_points/safety_impact.md) could be [*catastrophic*](../reference/decision_points/safety_impact.md).
 If there is no way to tell whether the insulin pumps are misbehaving, for example, then exploitation could go on for
-some time, leading to a [*catastrophic*](#safety-impact) [*Safety Impact*](#safety-impact).
+some time, leading to a [*catastrophic*](../reference/decision_points/safety_impact.md) [*Safety Impact*](../reference/decision_points/safety_impact.md).
 The pilot information is inadequate in this regard, which is the likely source of disagreement about
-[*Safety Impact*](#safety-impact) in Table 13.
+[*Safety Impact*](../reference/decision_points/safety_impact.md) in Table 13.
 For the purposes of this example, imagine that after gathering that information, the monitoring situation is adequate,
-and select [*hazardous*](#safety-impact).
+and select [*hazardous*](../reference/decision_points/safety_impact.md).
 Therefore, mitigate this vulnerability *out-of-cycle*, meaning that it should be addressed quickly, ahead of the usual
 update and patch cycle.

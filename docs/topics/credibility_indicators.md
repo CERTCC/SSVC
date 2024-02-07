@@ -10,7 +10,7 @@ The indicators for or against are not commensurate, and so they cannot be put on
     1. the vendor confirms the existence of the vulnerability or
     2. independent confirmation of the vulnerability by an analyst who is neither the reporter nor the vendor.
 
-    If neither of these confirmations are available, then the value of the [*Report Credibility*](#report-credibility) decision point depends on a balancing test among the following indicators.
+    If neither of these confirmations are available, then the value of the [*Report Credibility*](../reference/decision_points/report_credibility.md) decision point depends on a balancing test among the following indicators.
 
 **Indicators *for* Credibility** include:
  

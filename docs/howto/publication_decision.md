@@ -28,7 +28,7 @@ CERT/CC only expects to publish about vulnerabilities with a [*coordinate*](#coo
 While an issue that is tracked or declined may be reevaluated at a later date and status changed to [*coordinate*](#coordination-triage-decisions), unless that happens we would not publish about the vulnerability.
 Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision points or the decision itself from the [Coordination Triage Decisions](#coordination-triage-decisions) in their publication decision.
 
-In addition to the two decision points defined in this section, the publication decision uses the [*Exploitation*](#exploitation) decision point.
+In addition to the two decision points defined in this section, the publication decision uses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point.
 
 - [Public Value Added](../reference/decision_points/public_value_added.md)
 - [Supplier Involvement](../reference/decision_points/supplier_involvement.md)

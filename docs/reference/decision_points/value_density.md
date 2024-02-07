@@ -10,7 +10,7 @@
 !!! info "User vs. System Operator"
 
     A “user” is anyone whose professional task is something other than the maintenance of the system or component.
-    As with [*Safety Impact*](#safety-impact), a “system operator” is anyone who is professionally responsible for
+    As with [*Safety Impact*](safety_impact.md), a “system operator” is anyone who is professionally responsible for
     the proper operation or maintenance of a system.
 
 !!! example "Diffuse"

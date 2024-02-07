@@ -27,7 +27,7 @@ A CSV will typically be 30-100 rows that each look something like:
 ```
 2,none,laborious,partial,significant,scheduled
 ```
-Where “2” is the row number, [*none*](#exploitation) through [*significant*](#public-safety-impact) are values for decision points, and *scheduled* is a priority label or outcome.
+Where “2” is the row number, [*none*](../reference/decision_points/exploitation.md) through [*significant*](../reference/decision_points/public_safety_impact.md) are values for decision points, and *scheduled* is a priority label or outcome.
 Different stakeholders will have different decision points (and so different options for values) and different outcomes, but this is the basic shape of a CSV file to define SSVC stakeholder decisions.
 
 ### Visualizing Decision Trees
