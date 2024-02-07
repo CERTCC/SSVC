@@ -22,7 +22,7 @@ For data input, we elected to keep SSVC simpler than R, and just use a CSV (or o
 All visualizations of a tree should be built from a canonical CSV that defines the decisions for that stakeholder.
 Examples are located in [SSVC/data](https://github.com/CERTCC/SSVC/tree/main/data).
 An interoperable CSV format is also flexible enough to support a variety of uses.
-Every situation in SSVC is defined by the values for each decision point and the priority label (outcome) for that situation (as defined in [Likely Decision Points and Relevant Data](reference/decision_points/index.md)).
+Every situation in SSVC is defined by the values for each decision point and the priority label (outcome) for that situation (as defined in [Likely Decision Points and Relevant Data](../reference/decision_points/index.md)).
 A CSV will typically be 30-100 rows that each look something like:
 ```
 2,none,laborious,partial,significant,scheduled

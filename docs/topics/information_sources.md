@@ -4,7 +4,7 @@ Some SSVC decision points can be informed or answered by currently available inf
 These include
 
 - [*Exploitation*](../reference/decision_points/exploitation.md)
-- [*System Exposure*](reference/decision_points/system_exposure.md)
+- [*System Exposure*](../reference/decision_points/system_exposure.md)
 - [*Technical Impact*](../reference/decision_points/technical_impact.md)
 - [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md).
 
@@ -24,10 +24,10 @@ Namely, each list has a different view and vantage on the problem, which makes t
 
 ## System Exposure
 
-[*System Exposure*](reference/decision_points/system_exposure.md) could be informed by the various scanning platforms such as Shodan and Shadowserver.
-A service on a device should be scored as [*open*](reference/decision_points/system_exposure.md) if such a general purpose Internet scan finds that the service responds.
-Such scans do not find all [*open*](reference/decision_points/system_exposure.md) systems, but any system they find should be considered [*open*](reference/decision_points/system_exposure.md).
-Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](reference/decision_points/system_exposure.md) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
+[*System Exposure*](../reference/decision_points/system_exposure.md) could be informed by the various scanning platforms such as Shodan and Shadowserver.
+A service on a device should be scored as [*open*](../reference/decision_points/system_exposure.md) if such a general purpose Internet scan finds that the service responds.
+Such scans do not find all [*open*](../reference/decision_points/system_exposure.md) systems, but any system they find should be considered [*open*](../reference/decision_points/system_exposure.md).
+Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](../reference/decision_points/system_exposure.md) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
 
 ---
 ## Adapting other Information Sources
@@ -74,15 +74,15 @@ Some sources, such as CWE or existing asset management solutions, would require 
 ### Automatable and Value Density
 
 The SSVC decision point that we have not identified an information source for is [Utility](../reference/decision_points/utility.md).
-[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md), so the question is what a sort of feed could support each of those decision points.
+[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md), so the question is what a sort of feed could support each of those decision points.
 
 A feed is plausible for both of these decision points.
-The values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
+The values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
 While that is a broad analysis frame, it means that any community that shares a similar set of adversaries and a similar region of the Internet can share the same response to both decision points.
-An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md).
+An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md).
 These factors suggest a market for an information feed about these decision points is a viable possibility.
 
-At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](reference/decision_points/value_density.md).
+At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md).
 It would be a complex natural language processing task.
 Perhaps a machine learning system could be designed to suggest values.
 But more likely, if there is a market for this information, a few analysts could be paid to score vulnerabilities on these values for the community.
