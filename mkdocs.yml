@@ -85,6 +85,9 @@ nav:
     - Copyright: 'about/copyright.md'
     - Contact: 'about/contact_us.md'
   - Issue Tracker: 'https://github.com/CERTCC/SSVC/issues'
+not_in_nav: |
+  _*.md
+  _*/**/*.md
 theme:
   logo: 'assets/cert_seal.svg'
   name: 'material'
