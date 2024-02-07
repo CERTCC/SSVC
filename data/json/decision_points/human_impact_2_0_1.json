@@ -1,0 +1,29 @@
+{
+  "namespace": "ssvc",
+  "version": "2.0.1",
+  "key": "HI",
+  "name": "Human Impact",
+  "description": "Human Impact is a combination of Safety and Mission impacts.",
+  "values": [
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)"
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))"
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
+    }
+  ]
+}
