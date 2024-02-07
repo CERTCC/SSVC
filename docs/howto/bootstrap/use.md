@@ -113,7 +113,7 @@ SSVC/(version)/(decision point):(value)[/decision point:value[/decision point:va
 ```
 Where `version` is `v2` if it is based on this current version of the SSVC.
 The term `decision point` is one or two letters derived from the name of the decision point as follows:
- - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+ - Start with the decision point name as given in [Likely Decision Points and Relevant Data](reference/decision_points/index.md).
  - Remove any text in parentheses (and the parentheses themselves).
  - Remove the word “Impact” if it is part of the name.
  - Create an initialism from remaining title-case words (ignore “of,” etc.), taking only the first two words.
@@ -157,12 +157,12 @@ The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
 
 Each element of `choices` should be an object that is a key-value pair of `decision point`:`value`, where the term `decision point` is a string derived from the name of the decision point as follows:
- - Start with the decision point name as given in [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+ - Start with the decision point name as given in [Likely Decision Points and Relevant Data](reference/decision_points/index.md).
  - Remove any text in parentheses (and the parentheses themselves).
  - Remove colon characters, if any (`:`).
  - Convert the string to [lower camel case](https://en.wikipedia.org/wiki/Camel_case) by lowercasing the string, capitalizing any letter after a space, and removing all spaces.
 
-The `value` term is derived the same way as `decision point` except start with the value name as given in the relevant decision point subsection of [Likely Decision Points and Relevant Data](#likely-decision-points-and-relevant-data).
+The `value` term is derived the same way as `decision point` except start with the value name as given in the relevant decision point subsection of [Likely Decision Points and Relevant Data](reference/decision_points/index.md).
 
 ### Partial or Incomplete Information    
 
