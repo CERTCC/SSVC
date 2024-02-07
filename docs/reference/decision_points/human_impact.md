@@ -35,6 +35,6 @@ Therefore, vulnerability information providers&mdash;that is, vulnerability data
 Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs)&mdash;may
 provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
 For considerations on how organizations might communicate SSVC information to their constituents,
-see [Guidance on Communicating Results](../../howto/communicating_results.md).
+see [Guidance on Communicating Results](../../howto/bootstrap/use.md).
 
 
