@@ -4,9 +4,9 @@
 
     This section assumes that you are already familiar with SSVC and want to look up specific details.
     
-    If you are new to SSVC, you may want to start with the [Learning SSVC](tutorials) section.
+    If you are new to SSVC, you may want to start with the [Learning SSVC](../tutorials/index.md) section.
     If you are already familiar with SSVC and want to learn more, you may want to start with either the
-    [Understanding SSVC](topics) or [SSVC How To](howto) sections.
+    [Understanding SSVC](../topics/index.md) or [SSVC How To](../howto/index.md) sections.
 
 In this section, we provide reference documentation for SSVC.
 We have organized the reference documentation into two main sections:

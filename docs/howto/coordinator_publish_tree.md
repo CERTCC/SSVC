@@ -1,6 +1,9 @@
 # Coordinator Publication Decision Tree
 
-Suggested decision values for this decision are available in [CSV](../../data/csvs/ssvc_2_coord-publish.csv) and [PDF](../pdf/ssvc_2_coord-publish.pdf) formats.
+Suggested decision values for this decision are available in
+[CSV](https://github.com/CERTCC/SSVC/blob/main/data/csvs/coord-publish-options.csv)
+and
+[PDF](../pdf/ssvc_2_coord-publish.pdf) formats.
 
 <!-- 
 <embed src="../../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"

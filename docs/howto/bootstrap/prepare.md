@@ -36,8 +36,8 @@ We will go through each step in detail.
    
     - [Patch Supplier Prioritization](../supplier_tree.md)
     - [Patch Deployer Prioritization](../deployer_tree.md)
-    - [Coordinator Triage](../coordinator_trees.md)
-    - [Coordinator Publication](../coordinator_publish_tree.md)
+    - [Coordinator Triage](../coordination_decisions.md)
+    - [Coordinator Publication](../publication_decision.md)
 
 The first step in preparing to use SSVC is to choose a decision to model.
 SSVC is designed to help you make decisions about how to respond to a vulnerability.
@@ -61,8 +61,8 @@ flowchart LR
 !!! example inline end
 
      In the [Patch Supplier](../supplier_tree.md) and [Patch Deployer](../deployer_tree.md) prioritization examples, the outcomes are:
-     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordinator_trees.md) example,
-     the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](../coordinator_publish_tree.md) example,
+     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordination_decisions.md) example,
+     the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](../publication_decision.md) example,
      the outcomes are _Publish_ and _Do Not Publish_.
 
 Once you have chosen a decision to model, you need to define the outcomes for that decision.
@@ -109,7 +109,7 @@ Once you know what decision you want to make and what the possible outcomes are,
 A decision usually requires more than one piece of information.
 SSVC organizes this information into decision points.
 A single decision point enumerates a set of options for a particular aspect of the decision.
-We have defined a number of decision points in the [SSVC documentation](../reference/decision_points/index.md).
+We have defined a number of decision points in the [SSVC documentation](../../reference/decision_points/index.md).
 You can choose from these decision points, or you can define your own decision points to meet your needs.
 
 Whether you choose from the existing decision points or define your own, the set of decision points you use to make a 
