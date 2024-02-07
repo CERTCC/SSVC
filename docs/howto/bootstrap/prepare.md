@@ -159,7 +159,7 @@ Now, you need to define the policy you want to use to make that decision.
 A policy is a function that takes a set of decision point values as input and returns an outcome as output.
 While we often choose to represent policies as decision trees, they can be represented in other ways as well.
 In fact, we find that it is often useful to represent policies in tabular form, for example as a CSV file.
-We have provided a number of example policies in the [SSVC documentation](../prioritization.md), but you can define your own policy to meet your needs.
+We have provided a number of example policies in the [SSVC documentation](../index.md), but you can define your own policy to meet your needs.
 
 ```mermaid
 flowchart LR
