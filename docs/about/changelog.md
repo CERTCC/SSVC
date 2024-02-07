@@ -11,7 +11,7 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Added section on [Sharing Trees With Others](#sharing-trees-with-others) including a discussion of decision point scope and decision tree scope.
 - Improved clarity of time-sensitivity of some decision points in [Representing Information for Decisions About Vulnerabilities](#representing-information-for-decisions-about-vulnerabilities)
 - Improved description of [*Mission Impact*](../reference/decision_points/mission_impact.md)
-- Improved consistency of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md.md) usage throughout the document and tooling
+- Improved consistency of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) usage throughout the document and tooling
 - Improved consistency of [*Human Impact*](#human-impact) usage throughout the document
 - Clarified that known default passwords are an example of [*Exploitation*](../reference/decision_points/exploitation.md):PoC
 - Clarified that unreachable code (as in unused library features) are [_System Exposure_](#system-exposure):small
@@ -62,9 +62,9 @@ This stance was not explicit in SSVC version 1.
 ### Improvements to decision points
 
 Version 1 had a decision point for well-being impact that was shared between **supplier** and **deployer** stakeholders.
-Since these types of stakeholder have access to different information about safety and well-being, Version 2 splits this concept into [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md.md) and [*Situated Safety Impact*](../reference/decision_points/safety_impact.md).
+Since these types of stakeholder have access to different information about safety and well-being, Version 2 splits this concept into [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) and [*Situated Safety Impact*](../reference/decision_points/safety_impact.md).
 The underlying definition remains largely the same.
-However, [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md.md) has fewer output options (it is less granular) in recognition that a supplier or coordinator has less information about the context of deployment than a deployer does.
+However, [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) has fewer output options (it is less granular) in recognition that a supplier or coordinator has less information about the context of deployment than a deployer does.
 
 In addition, based on feedback from SSVC users, the SSVC version 2 recommended applier tree makes use of a combined value for [*Mission Impact*](../reference/decision_points/mission_impact.md) and [*Situated Safety Impact*](../reference/decision_points/safety_impact.md).
 The intuition behind this change is that if a person is going to die OR the organization is going to fail (for example, go bankrupt), then the organization will likely want to act with highest priority.
