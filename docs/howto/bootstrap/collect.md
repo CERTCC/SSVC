@@ -98,7 +98,7 @@ we can suggest something like defaults for some decision points.
 
     If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that
     means they do not know where the devices are or how they are controlled, so they should assume
-    [*System Exposure*](reference/decision_points/system_exposure.md) is [*open*](reference/decision_points/system_exposure.md).
+    [*System Exposure*](../../reference/decision_points/system_exposure.md) is [*open*](../../reference/decision_points/system_exposure.md).
 
 !!! tip "Default Safety Values"
 
@@ -121,8 +121,8 @@ The reach of software exploits is no longer limited to a research network.
 !!! tip "Default Automatable Values"
 
     If nothing is known about [*Automatable*](../../reference/decision_points/automatable.md), the safer answer to assume is [*yes*](../../reference/decision_points/automatable.md).
-    [*Value Density*](reference/decision_points/value_density.md) should always be answerable; if the product is uncommon, it is probably
-    [*diffuse*](reference/decision_points/value_density.md).
+    [*Value Density*](../../reference/decision_points/value_density.md) should always be answerable; if the product is uncommon, it is probably
+    [*diffuse*](../../reference/decision_points/value_density.md).
 
 The resulting decision set `{none, open, yes, medium}` results in a scheduled patch application in our recommended
 deployer tree.
