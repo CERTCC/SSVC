@@ -12,5 +12,6 @@ We invite questions, comments, and further community refinement in moving forwar
 - [Acknowledgements](acknowledgements.md)
 - [Change Log](changelog.md)
 - [Contributing](contributing.md)
+- [Decision Records](../adr/index.md)
 - [Copyright](copyright.md)
 - [Contact Us](contact_us.md)
