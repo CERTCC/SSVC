@@ -211,3 +211,8 @@ resiliency</td>
 Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in [Safety Impact](#table-safety-impact).
 We defer this topic for now because we combine it with [*Mission Impact*](#mission-impact) to simplify implementation for deployers.
 
+
+## Prior Versions
+
+{% include-markdown "../../_generated/decision_points/safety_impact_1_0_0.md" %}
+
