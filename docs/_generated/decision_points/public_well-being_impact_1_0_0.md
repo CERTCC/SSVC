@@ -8,37 +8,8 @@
         | Value | Definition |
         |:-----|:-----------|
         | Minimal | The effect is below the threshold for all aspects described in material.  |
-        | Material | (Any one or more of these conditions hold.) 
-
-*Physical harm*: Does one or more of the following:
-
-- Causes physical distress or injury to system users.
-- Introduces occupational safety hazards.
-- Reduces and/or results in failure of cyber-physical system safety margins.
-
-*Environment*: Major externalities (property damage, environmental damage, etc.) are
-imposed on other parties. 
-
-*Financial*: Financial losses likely lead to bankruptcy of multiple persons. 
- 
-*Psychological*: Widespread emotional or psychological harm, sufficient to necessitate
-counseling or therapy, impact populations of people. 
- |
-        | Irreversible | (Any one or more of these conditions hold.)
- 
-*Physical harm*: One or both of the following are true:
-
-- Multiple fatalities are likely.
-- The cyber-physical system, of which the vulnerable componen is a part, is likely lost or destroyed.
-
-*Environment*: Extreme or serious externalities (immediate public health threat, environmental damage leading to small
-ecosystem collapse, etc.) are imposed on other parties.
-
-*Financial*: Social systems (elections, financial grid, etc.) supported by the software are destabilized and potentially
-collapse.
-
-*Psychological*: N/A 
- |
+        | Material | Any one or more of these conditions hold. Physical harm: Does one or more of the following: (a) Causes physical distress or injury to system users. (b) Introduces occupational safety hazards. (c) Reduces and/or results in failure of cyber-physical system safety margins. Environment: Major externalities (property damage, environmental damage, etc.) are imposed on other parties. Financial: Financial losses likely lead to bankruptcy of multiple persons. Psychological: Widespread emotional or psychological harm, sufficient to necessitate counseling or therapy, impact populations of people.  |
+        | Irreversible | Any one or more of these conditions hold. Physical harm: One or both of the following are true: (a) Multiple fatalities are likely.(b) The cyber-physical system, of which the vulnerable componen is a part, is likely lost or destroyed.  Environment: Extreme or serious externalities (immediate public health threat, environmental damage leading to small  ecosystem collapse, etc.) are imposed on other parties.  Financial: Social systems (elections, financial grid, etc.) supported by the software are destabilized and potentially collapse.  Psychological: N/A  |
         
     === "JSON"
     

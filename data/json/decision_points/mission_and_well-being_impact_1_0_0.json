@@ -8,17 +8,17 @@
     {
       "key": "L",
       "name": "Low",
-      "description": "Mission Prevalence Minimal and Public Well-Being Impact Minimal"
+      "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
     },
     {
       "key": "M",
       "name": "Medium",
-      "description": "Mission Prevalence Support and Public Well-Being Impact Minimal or Material"
+      "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
     },
     {
       "key": "H",
       "name": "High",
-      "description": "Mission Prevalence Essential or Public Well-Being Impact Irreversible"
+      "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
     }
   ]
 }

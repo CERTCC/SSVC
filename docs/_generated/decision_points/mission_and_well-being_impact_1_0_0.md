@@ -7,9 +7,9 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | Low | Mission Prevalence Minimal and Public Well-Being Impact Minimal |
-        | Medium | Mission Prevalence Support and Public Well-Being Impact Minimal or Material |
-        | High | Mission Prevalence Essential or Public Well-Being Impact Irreversible |
+        | Low | Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal |
+        | Medium | Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material) |
+        | High | Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible) |
         
     === "JSON"
     
