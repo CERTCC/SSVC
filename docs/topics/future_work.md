@@ -26,12 +26,12 @@ One way to view what SSVC currently provides is that it tells you how urgently a
 For all but the most dire vulnerabilities, what the stakeholder chooses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
 Future work should attempt to provide a method for [evaluating change risk or cost](https://github.com/CERTCC/SSVC/issues/35) relative to vulnerability risk.
 
-[Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.
+[Tree Construction and Customization Guidance](../howto/tree_customization.md) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.
 Specifically, these reflect vulnerability risk appetite.
 Appetite for vulnerability risk may be negatively correlated with change risk; future work could explore this relationship.
 Furthermore, future work could examine suggested practices for connecting tree customization to risk management.
 
-[Reasoning Steps Forward](#reasoning-steps-forward) states the scope of SSVC analysis is “consider credible effects based on known use cases of the software system as a part of cyber-physical systems.”
+[Reasoning Steps Forward](scope.md) states the scope of SSVC analysis is “consider credible effects based on known use cases of the software system as a part of cyber-physical systems.”
 The unit of prioritization in SSVC should be work items.
 For deployers, a work item is often applying a patch that addresses multiple vulnerabilities.
 The “credible effects” to consider are those of all vulnerabilities remediated by the patch.

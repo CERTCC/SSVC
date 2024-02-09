@@ -4,7 +4,7 @@
 
 We conducted a pilot test on the adequacy of the hypothesized decision trees.
 This section reports results for SSVC version 1.
- The method of the pilot test is described in [Pilot Methodogy](#pilot-methodology). The study resulted in several changes to the hypothesized trees; we capture those changes and the reason for each of them in [Pilot Results](#pilot-results). The version 1 supplier and deployer trees included the improvements reported in [Improvement Instigated by the Pilot](#improvements-instigated-by-the-pilot).
+The method of the pilot test is described in [Pilot Methodogy](#pilot-methodology). The study resulted in several changes to the hypothesized trees; we capture those changes and the reason for each of them in [Pilot Results](#pilot-results). The version 1 supplier and deployer trees included the improvements reported in [Improvement Instigated by the Pilot](#improvements-instigated-by-the-pilot).
 
 ## Pilot Methodology
 

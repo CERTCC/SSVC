@@ -6,7 +6,7 @@ When evaluating [*Technical Impact*](technical_impact.md), recall the scope defi
 Total control is relative to the affected component where the vulnerability resides.
 If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.
 
-As mentioned in [Current State of Practice](#current-state-of-practice), the scope of SSVC is just those situations in which there is a vulnerability.
+As mentioned in [Current State of Practice](../../topics/state_of_practice.md), the scope of SSVC is just those situations in which there is a vulnerability.
 Our definition of **vulnerability** is based on the determination that some security policy is violated.
 We consider a security policy violation to be a technical impact—or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
