@@ -32,7 +32,7 @@ Apply these heuristics in order and stop when one of them applies.
  - If the vulnerable component is in a third party library that is unreachable because the feature is unused in the surrounding product, choose *small*.
 
 The unreachable vulnerable component scenario may be a point of concern for stakeholders like patch suppliers who often find it more cost-effective to simply update the included library to an existing fixed version rather than try to explain to customers why the vulnerable code is unreachable in their own product.
-In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [_defer_](../howto/supplier_tree.md) vs [_scheduled_](../howto/supplier_tree.md), for example).
+In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [_defer_](../../howto/supplier_tree.md) vs [_scheduled_](../../howto/supplier_tree.md), for example).
 
 If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
 
