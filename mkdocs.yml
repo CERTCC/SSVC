@@ -21,6 +21,7 @@ nav:
       - Items With Same Priority: 'topics/items_with_same_priority.md'
       - Risk Tolerance and Priority: 'topics/risk_tolerance_and_priority.md'
       - Scope: 'topics/scope.md'
+      - SSVC and Asset Management: 'topics/asset_management.md'
     - Credibility Indicators: 'topics/credibility_indicators.md'
     - Worked Example: 'topics/worked_example.md'
     - Evaluation: 'topics/evaluation_of_draft_trees.md'
@@ -45,7 +46,6 @@ nav:
       - Summary: 'howto/bootstrap/summary.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
-    - SSVC and Asset Management: 'howto/asset_management.md'
   - Reference:
     - Intro: 'reference/index.md'
     - Decision Points:
