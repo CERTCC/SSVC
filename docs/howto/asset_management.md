@@ -6,10 +6,14 @@ SSVC depends on asset management to some extent, particularly for context on the
 
 !!! tip "Asset Management Informs Decision Points"
 
-    Asset management can help automate the collection of the [*Mission Impact*](../reference/decision_points/mission_impact.md), [*Situated Safety Impact*](#situated-safety-impact), and [*System Exposure*](../reference/decision_points/system_exposure.md) decision points.
+    Asset management can help automate the collection of the 
+    [*Mission Impact*](../reference/decision_points/mission_impact.md), 
+    [*Situated Safety Impact*](../reference/decision_points/safety_impact.md), and
+    [*System Exposure*](../reference/decision_points/system_exposure.md) decision points.
     These decision points tend to apply per asset rather than per vulnerability.
     Therefore, once each is assessed for each asset, it can be applied to each vulnerability that applies to that asset.
-    While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management system should enable automated scoring of new vulnerabilities on these decision points for those assets.
+    While the asset assessment should be reviewed occasionally for accuracy, storing this data in an asset management 
+    system should enable automated scoring of new vulnerabilities on these decision points for those assets.
 
 Our method is for prioritizing vulnerabilities based on the risk stemming from exploitation.
 There are other reasonable asset management considerations that may influence remediation timelines.
