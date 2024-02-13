@@ -80,10 +80,13 @@ nav:
     - Change log: 'about/changelog.md'
     - Contributing: 'about/contributing.md'
 #    - FAQ: 'about/faq.md'
+    - Decision Records: 'adr/index.md'
     - Acknowledgements: 'about/acknowledgements.md'
     - Copyright: 'about/copyright.md'
     - Contact: 'about/contact_us.md'
   - Issue Tracker: 'https://github.com/CERTCC/SSVC/issues'
+not_in_nav: |
+    _*.md
 theme:
   logo: 'assets/cert_seal.svg'
   name: 'material'
@@ -168,8 +171,6 @@ extra_javascript:
   - javascripts/tablesort.js
 extra_css:
   - stylesheets/extra.css
-exclude_docs: |
-  /adr/
 watch:
   - docs
   - src
