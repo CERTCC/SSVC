@@ -51,7 +51,7 @@ It is not clear how best to consider translating SSVC decision points, if at all
 And at [a very practical level](https://github.com/CERTCC/SSVC/issues/123), the [Abbreviated Format](#abbreviated-format) would have to define a new algorithm for creating initialisms that is not dependent an an alphabet for languages based on syllabaries or ideograms.
 But a more actionable item of future work would be to include non-native English speakers in future usability studies.
 
-A different approach to testing the [Utility](../reference/decision_points/utility.md) decision point could be based on [Alternative Utility Outputs](#alternative-utility-outputs).
+A different approach to testing the [Utility](../reference/decision_points/utility.md) decision point could be based on the *Alternative Utility Outputs* found in that page.
 Namely, future work could example exploit resale markets and compare the value of exploits to the [Utility](../reference/decision_points/utility.md) score of the exploited vulnerability.
 There are some limitations to this approach, since exploit markets target certain adversary groups (such as those with lots of resources) and may not be representative of all adversary types.
 However, such analysis would provide some information as to whether the definition of [Utility](../reference/decision_points/utility.md) is reasonable.

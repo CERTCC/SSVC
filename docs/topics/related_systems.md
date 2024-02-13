@@ -23,7 +23,7 @@ CVSS scores have a complex relationship with patch deployment in situations wher
 CVSS has struggled to adapt to other stakeholder contexts.
 Various stakeholder groups have expressed dissatisfaction by making new versions of CVSS, such as medical devices [@mitre2019medical], robotics [@vilches2018towards], and industrial systems [@figueroa2020survey].
 In these three examples, the modifications tend to add complexity to CVSS by adding metrics.
-Product vendors have varying degrees of adaptation of CVSS for development prioritization, including but not limited to [Red Hat](https://access.redhat.com/security/updates/classification), [Microsoft](https://www.microsoft.com/en-us/msrc/security-update-severity-rating-system), and [Cisco](https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#asr).
+Product vendors have varying degrees of adaptation of CVSS for development prioritization, including but not limited to [Red Hat](https://access.redhat.com/security/updates/classification), [Microsoft](https://www.microsoft.com/en-us/msrc/security-update-severity-rating-system), and [Cisco](https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html).
 The vendors codify CVSS’s recommended qualitative severity rankings in different ways, and Red Hat and Microsoft make the user interaction base metric more important.
 
 > Exploitability metrics (Base metric group)
@@ -56,7 +56,7 @@ Scope is a difficult CVSS metric to categorize.
 The specification describes it as “whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope” [@cvss_v3-1].
 This is a fuzzy concept.
 SSVC better describes this concept by breaking it down into component parts.
-The impact of exploitation of the vulnerable component on other components is covered under [*Mission Impact*](../reference/decision_points/mission_impact.md), public and situated [*Well-being Impact*](#well-being-impact), and the stakeholder-specific nature where SSVC is tailored to stakeholder concerns.
+The impact of exploitation of the vulnerable component on other components is covered under [*Mission Impact*](../reference/decision_points/mission_impact.md), public and situated [*Well-being Impact*](../reference/decision_points/human_impact.md), and the stakeholder-specific nature where SSVC is tailored to stakeholder concerns.
 CVSS addresses some definitions of the scope of CVSS as a whole under the Scope metric definition.
 In SSVC, these definitions are in the [Scope](scope.md) section.
 
@@ -96,14 +96,14 @@ VPR is therefore essentially a subset of SSVC.
 VPR is stylistically methodologically quite different from SSVC.
 VPR is based on machine learning models and proprietary data, so the results are totally opaque.
 There is no ability to coherently and transparently customize the VPR system.
-Such customization is a central feature of SSVC, as described in [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance).
+Such customization is a central feature of SSVC, as described in [Tree Construction and Customization Guidance](../howto/tree_customization.md).
 
 ## CVSS spin offs
 
 Attempts to tailor CVSS to specific stakeholder groups, such as robotics or medical devices, are are perhaps the biggest single reason we created SSVC.
 CVSS is one-size-fits-all by design.
 These customization efforts struggle with adapting CVSS because it was not designed to be adaptable to different stakeholder considerations.
-The SSVC section [Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) explains how stakeholders or stakeholder communities can adapt SSVC in a reliable way that still promotes repeatability and communication.
+The SSVC section [Tree Construction and Customization Guidance](../howto/tree_customization.md) explains how stakeholders or stakeholder communities can adapt SSVC in a reliable way that still promotes repeatability and communication.
 
 
 ## vPrioritizer
@@ -115,6 +115,6 @@ vPrioritizer is an example of a product that is closely associated with vulnerab
 In that sense, it is compatible with any of methods mentioned above or SSVC.
 However, SSVC would be better suited to address vPrioritizer's broad spectrum asset management data.
 For example, vPrioritizer aims to collect data points on topics such as asset significance.
-Asset significance could be expressed through the SSVC decision points of  [*Mission Impact*](../reference/decision_points/mission_impact.md) and situated [*Well-being Impact*](#well-being-impact), but it does not have a ready expression in CVSS, EPSS, or VPR.
+Asset significance could be expressed through the SSVC decision points of  [*Mission Impact*](../reference/decision_points/mission_impact.md) and situated [*Well-being Impact*](../reference/decision_points/human_impact.md), but it does not have a ready expression in CVSS, EPSS, or VPR.
 
 

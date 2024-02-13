@@ -10,7 +10,7 @@
 While the actual collection of operational data is outside the scope of SSVC, it is an important part of any implementation
 of the process.
 SSVC is designed to be flexible enough to accommodate a variety of data collection methods.
-The [Data Mapping](prepare.md#data-mapping) step defines the data that is needed to assign a value to each decision point.
+The [Data Mapping](prepare.md) step defines the data that is needed to assign a value to each decision point.
 The Data Operations process collects that data so that it can be used to assign values to decision points in the 
 [Use SSVC](use.md) step.
 

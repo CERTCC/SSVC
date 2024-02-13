@@ -220,7 +220,7 @@ flowchart LR
 !!! example
 
     A Software-as-a-Service Provider differentiates its service levels into three categories: silver, gold, and platinum.
-    In the [Define Inputs](#define-inputs) step, they defined a custom decision point called _Service Level_ with the values
+    In the Define Inputs step, they defined a custom decision point called _Service Level_ with the values
     _Silver_, _Gold_, and _Platinum_.
     Now, they need to define a data map that will assign a value to the _Service Level_ decision point.
     The data they need to assign a value to the _Service Level_ decision point originates in the service level

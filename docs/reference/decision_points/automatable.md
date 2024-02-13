@@ -35,7 +35,7 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 
     For example, consider a vulnerability A.
     If the systems vulnerable to A are usually not openly connected to incoming traffic (that is, [Exposure](system_exposure.md) is [small](system_exposure.md) or [controlled](system_exposure.md)), reconnaissance probably cannot be automated (scans would be blocked, etc.). This would make Automatable equal to [no](automatable.md) for vulnerability A.
-    However, suppose that another vulnerability B where Automatable is equal to [yes](#automatiability) can be reliably used to chain to vulnerability A.
+    However, suppose that another vulnerability B where Automatable is equal to _yes_ can be reliably used to chain to vulnerability A.
     This automates the _reconnaissance_ of vulnerable systems.
     In this situation, the analyst should continue to analyze vulnerability A to understand whether the remaining steps in the kill chain can be automated.
 
@@ -53,7 +53,7 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
     Liveness of Internet-connected services means quite a few overlapping things [@bano2018scanning].
     For most vulnerabilities, an open port does not automatically mean that reconnaissance, weaponization, and delivery are automatable.
     Furthermore, discovery of a vulnerable service is not automatable in a situation where only two hosts are misconfigured to expose the service out of 2 million hosts that are properly configured.
-    As discussed in in [Reasoning Steps Forward](#reasoning-steps-forward), the analyst should consider *credible* effects based on *known* use cases of the software system to be pragmatic about scope and providing values to decision points.
+    As discussed in in [Reasoning Steps Forward](../../topics/scope.md), the analyst should consider *credible* effects based on *known* use cases of the software system to be pragmatic about scope and providing values to decision points.
 
 ## Prior Versions
 

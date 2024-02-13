@@ -26,7 +26,18 @@ The other aspect of risk management that SSVC allows a team to customize is its 
 ### Customizing for Risk Appetite
 
 A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
-For example, a vulnerability with [no or minor](../reference/decision_points/public_safety_impact.md) [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md), [total](../reference/decision_points/technical_impact.md) [*Technical Impact*](../reference/decision_points/technical_impact.md), and [efficient](../reference/decision_points/utility.md) [Utility](../reference/decision_points/utility.md) might be handled with [*scheduled*](#supplier-decisions) priority by one team and [*out-of-cycle*](#supplier-decisions) priority by another.
+For example, a vulnerability with
+[no or minor](../reference/decision_points/public_safety_impact.md) 
+[*Public Safety Impact*](../reference/decision_points/public_safety_impact.md),
+[total](../reference/decision_points/technical_impact.md)
+[*Technical Impact*](../reference/decision_points/technical_impact.md),
+and [efficient](../reference/decision_points/utility.md)
+[Utility](../reference/decision_points/utility.md)
+might be handled with
+[*scheduled*](../topics/enumerating_actions.md)
+priority by one team and
+[*out-of-cycle*](../topics/enumerating_actions.md)
+priority by another.
 As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk.
 SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.
 
@@ -145,7 +156,7 @@ On the contrary, we consider the following decision points to be *stakeholder-sp
 - [Utility](../reference/decision_points/utility.md)
 - [*Safety Impact*](../reference/decision_points/safety_impact.md)
 - [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md)
-- [*Situated Safety Impact*](#situated-safety-impact)
+- [*Situated Safety Impact*](../reference/decision_points/safety_impact.md)
 - [*Mission Impact*](../reference/decision_points/mission_impact.md)
 - [*Human Impact*](../reference/decision_points/human_impact.md)
 - [*System Exposure*](../reference/decision_points/system_exposure.md)

@@ -62,7 +62,7 @@ If paired with active exploitation feeds discussed above, then the value of  [*E
 ### CPE and Safety Impact
 
 [CPE](https://cpe.mitre.org/specification/) could possibly be curated into a list of representative [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) values for each platform or product.
-The [*Situated Safety Impact*](#situated-safety-impact) would be too specific for a classification as broad as CPE.
+The [*Situated Safety Impact*](../reference/decision_points/safety_impact.md) would be too specific for a classification as broad as CPE.
 But it might work for [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md), since it is concerned with a more general assessment of usual use of a component.
 Creating a mapping between CPE and [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) could be a community effort to associate a value with each CPE entry, or an organization might label a fragment of the CPE data with [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) based on the platforms that the supplier needs information about most often.
 

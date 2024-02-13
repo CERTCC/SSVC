@@ -8,7 +8,7 @@ However, that is not the intended use case; this section describes how a coordin
 !!! tip "The Publication Decision is Time Sensitive"
 
     The publication decision is always a decision at a point in time.
-    As discussed in [Guidance on Communicating Results](#guidance-on-communicating-results), a SSVC decision may change over time as the inputs to that decision change.
+    As discussed in [Guidance on Communicating Results](bootstrap/use.md), a SSVC decision may change over time as the inputs to that decision change.
     A decision to publish cannot be revoked, since the publication is likely to be archived or at least remembered.
     However, a decision to not publish is a decision not to publish at the time the decision was made.
     It is not a decision never to publish in the future.
