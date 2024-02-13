@@ -21,6 +21,7 @@ the decision records that have been made.
 - [0007 - Object Descriptions Exclude Examples](0007-descriptions-exclude-examples.md)
 - [0008 - Decision Points are Ordered Sets](0008-decision-points-are-ordered-sets.md)
 - [0009 - Outcomes are Ordered Sets](0009-outcomes-are-ordered-sets.md)
+- [0010 - Outcome Sets are separate from Decision Point Groups](0010-outcome-sets-are-separate-from-decision-point-groups.md)
 
 ## Rejected Records
 
