@@ -41,7 +41,7 @@ The basic guidance is that the analyst should communicate all of the vulnerabili
 If the analyst knows nothing, all states are possible.
 For example, [*Utility*](#utility) may be [laborious](#utility), [efficient](#utility), or [super effective](#utility).
 
-The reason a stakeholder might publish a decision point with more than one value is that it expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
+The reason a stakeholder might publish a decision point with all its possible values is that doing so expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
 A stakeholder might have information to communicate about some decision points but not others.
 If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special “I don't know” marker.
 
