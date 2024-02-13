@@ -14,7 +14,14 @@ In addition to using some of the decision points in [Likely Decision Points](#li
 The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
 To assess this, the decision involves five new decision points.
 
-{== TODO link to specific decision points ==}
+{% include-markdown './coordinator_trees.md' heading-offset=1 %}
+[Report Public] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/bootstrap/coordinator_trees.md)
+[Supplier Contacted] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/reference/decision_points/supplier_contacted.md)
+[Report Credibility] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/reference/decision_points/report_credibility.md)
+[Supplier Cardinality] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/reference/decision_points/supplier_cardinality.md)
+[Supplier Engagement] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/reference/decision_points/supplier_engagement.md)
+[Utility] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/reference/decision_points/utility.md)
+[Public Safety Impact] (https://github.com/CERTCC/SSVC/blob/main/docs/howto/reference/decision_points/public_safety_impact.md)
 
 
 
@@ -31,4 +38,3 @@ In the second case, CERT/CC may encourage the reporter to contact the supplier a
 These two sets of exceptional circumstances mean that the seven decision points involved in the coordination triage tree can be compressed slightly, as the tree shows.
 This tree's information is available as either a [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-triage.csv) or [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-triage.pdf)
 
-{% include-markdown './coordinator_trees.md' heading-offset=1 %}
