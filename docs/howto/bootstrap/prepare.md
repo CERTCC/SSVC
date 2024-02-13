@@ -113,7 +113,7 @@ We have defined a number of decision points in the [SSVC documentation](../refer
 You can choose from these decision points, or you can define your own decision points to meet your needs.
 
 Whether you choose from the existing decision points or define your own, the set of decision points you use to make a 
-decision is called a {== decision point set TODO RENAME? ==}.
+decision is called a Decision Point Set.
 
 ```mermaid
 flowchart LR
