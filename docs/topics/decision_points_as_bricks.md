@@ -27,15 +27,15 @@ Decision points and outcomes have a few key characteristics that make them usefu
 - **Independence**: Each decision point represents a different aspect or dimension of the decision being modeled. This means that
   the decision points are not redundant with each other. They may each be relevant to the decision, but they are relevant
   in different ways.
-- **Discreteness**: Each decision point has a finite and discrete set of possible values. This means that the decision point
-  values can be enumerated
+- **Discreteness**: Each decision point has a finite and discrete set of possible values. These specific values
+  that can then be mapped onto data collection and analysis results so that the data can be used to inform the decision.
 - **Well-Definedness**: Each decision point has a clear meaning and a clear, ordered set of possible values. This means that the decision
   point values are not ambiguous or open to interpretation.
 
 In our brick analogy, the toy bricks are similarly independent, discrete, and well-defined. 
 Independence means that different bricks can serve different purposes in the model. 
-Discreteness means that the bricks can be combined in different ways to build different structures.
-The well-definedness (specification and manufacturing consistency) of the bricks is what allows them to be combined at all.
+The pips on the bricks provide discrete points of attachment to allow bricks to connect together.
+Well-definedness (specification and manufacturing consistency) allows bricks to be combined effectively.
 
 ## Model Kits and How to Use Them
 
