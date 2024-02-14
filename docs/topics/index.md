@@ -86,7 +86,6 @@ The remainder of this section is organized as follows:
 - :material-information-box-outline: [**Representing Information for Decisions About Vulnerabilities**](representing_information.md)
 - :material-arrow-decision: [**Vulnerability Management Decisions**](vulnerability_management_decisions.md)
 - :material-group: [**Compound Decision Points**](compound_decision_points.md)
-- :material-scale-balance: [**Credibility Indicators**](credibility_indicators.md)
 - :material-file-document-check-outline: [**Worked Example**](worked_example.md)
 - :material-checkbox-marked-outline: [**Evaluation**](evaluation_of_draft_trees.md)
 - :material-relation-one-to-many: [**Related Systems**](related_systems.md)

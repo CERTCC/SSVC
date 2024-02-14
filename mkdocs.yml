@@ -22,7 +22,6 @@ nav:
       - Risk Tolerance and Priority: 'topics/risk_tolerance_and_priority.md'
       - Scope: 'topics/scope.md'
       - SSVC and Asset Management: 'topics/asset_management.md'
-    - Credibility Indicators: 'topics/credibility_indicators.md'
     - Worked Example: 'topics/worked_example.md'
     - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
@@ -81,10 +80,13 @@ nav:
     - Change log: 'about/changelog.md'
     - Contributing: 'about/contributing.md'
 #    - FAQ: 'about/faq.md'
+    - Decision Records: 'adr/index.md'
     - Acknowledgements: 'about/acknowledgements.md'
     - Copyright: 'about/copyright.md'
     - Contact: 'about/contact_us.md'
   - Issue Tracker: 'https://github.com/CERTCC/SSVC/issues'
+not_in_nav: |
+    _*.md
 theme:
   logo: 'assets/cert_seal.svg'
   name: 'material'
@@ -169,8 +171,6 @@ extra_javascript:
   - javascripts/tablesort.js
 extra_css:
   - stylesheets/extra.css
-exclude_docs: |
-  /adr/
 watch:
   - docs
   - src

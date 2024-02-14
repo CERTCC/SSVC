@@ -9,8 +9,13 @@ We endeavored to be transparent about our process and provide justification for 
 We invite questions, comments, and further community refinement in moving forward with a transparent and justified vulnerability prioritization methodology that is inclusive for the various stakeholders and industries that develop and use information and computer technology.
 
 
-- [Acknowledgements](acknowledgements.md)
-- [Change Log](changelog.md)
-- [Contributing](contributing.md)
-- [Copyright](copyright.md)
-- [Contact Us](contact_us.md)
+<div class="grid cards" markdown>
+
+- :material-handshake: [Acknowledgements](acknowledgements.md)
+- :material-delta: [Change Log](changelog.md)
+- :material-offer: [Contributing](contributing.md)
+- :material-arrow-decision: [Decision Records](../adr/index.md)
+- :material-copyright: [Copyright](copyright.md)
+- :material-inbox-arrow-down: [Contact Us](contact_us.md)
+
+</div>
