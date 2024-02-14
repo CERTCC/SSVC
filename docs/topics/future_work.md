@@ -48,8 +48,7 @@ This study methodology should be repeated with different analyst groups, from di
 
 Internationalization and localization of SSVC will also need to be considered and tested in future work.
 It is not clear how best to consider translating SSVC decision points, if at all.
-And at [a very practical level](https://github.com/CERTCC/SSVC/issues/123), the [Abbreviated Format](#abbreviated-format) would have to define a new algorithm for creating initialisms that is not dependent an an alphabet for languages based on syllabaries or ideograms.
-But a more actionable item of future work would be to include non-native English speakers in future usability studies.
+An actionable item of future work would be to include non-native English speakers in future usability studies.
 
 A different approach to testing the [*Utility*](#utility) decision point could be based on [Alternative Utility Outputs](#alternative-utility-outputs).
 Namely, future work could example exploit resale markets and compare the value of exploits to the [*Utility*](#utility) score of the exploited vulnerability.
