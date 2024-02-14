@@ -41,5 +41,5 @@ There are different formats for capturing these prioritization decisions dependi
 In this paper, we primarily represent a full set of guidance on how one stakeholder will make a decision as a **decision tree**.
 This section presents example trees for each stakeholder: supplier, deployer, and coordinator.
 This section also provides some guidance on how to [construct and customize a decision tree](tree_customization.md) and [gather evidence](bootstrap/collect.md) to make decisions.
-How this decision information might be stored or communicated is the topic of subsections on [Asset Management](asset_management.md) and [Communication](bootstrap/use.md).
+How this decision information might be stored or communicated is the topic of subsections on [Asset Management](../topics/asset_management.md) and [Communication](bootstrap/use.md).
 

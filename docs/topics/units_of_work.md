@@ -73,7 +73,7 @@ Managing this information is generally called **asset management**.
 
 !!! tip inline end "Relationship to asset management"
 
-    The relationship between SSVC and asset management is discussed further in [SSVC and Asset Management](../howto/asset_management.md).
+    The relationship between SSVC and asset management is discussed further in [SSVC and Asset Management](asset_management.md).
 
 In turn, Deployers must resolve this information into specific actions in which a remediation or mitigation is slated for deployment to replace or modify a particular instance of the product.
 The Deployer tree in SSVC considers the mission and safety risks inherent to the category of systems to which those deployed instances belong.
