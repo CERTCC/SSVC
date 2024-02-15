@@ -1,4 +1,4 @@
-site_name: SSVC
+site_name: "SSVC: Stakeholder-Specific Vulnerability Categorization"
 copyright: Copyright &copy; 2024 Carnegie Mellon University.
 nav:
   - Home: 'index.md'
