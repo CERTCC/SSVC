@@ -1,4 +1,4 @@
-[![Link Checker](https://github.com/CERTCC/SSVC/actions/workflows/link_checker.yml/badge.svg)](https://github.com/CERTCC/SSVC/actions/workflows/link_checker.yml)
+[![Link Checker](https://github.com/CERTCC/SSVC/actions/workflows/link_checker.yml/badge.svg?branch=main)](https://github.com/CERTCC/SSVC/actions/workflows/link_checker.yml)
 
 # SSVC
 
