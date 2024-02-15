@@ -28,20 +28,20 @@ This considers the (fictional) deployer scenario blurb and the notional deployme
 
     These pumps are attached directly to the client. If an update is required, the client is permitted to do that through their own computer or app. However, we have not provided them with documentation on properly using their computer or app to securely access their device. This is done for convenience so that if the user needs to change something quickly, they can. They can also come to us (hospital) for a change in their device’s settings for dosage etc. The doctor’s computer that directly handles interfacing with these devices is only connected to the intranet for the purpose of updating the client’s settings on the device. Doctors authenticate with ID badge and password.
 
-[*System Exposure*](#system-exposure) is less straightforward than *Exploitation*.
-The option [*open*](#system-exposure) is clearly ruled out.
+[*System Exposure*](../reference/decision_points/system_exposure.md) is less straightforward than *Exploitation*.
+The option [*open*](../reference/decision_points/system_exposure.md) is clearly ruled out.
 However, it is not clear whether the optional Bluetooth connection between the medical device and a phone app represents
-[*controlled*](#system-exposure) or [*small*](#system-exposure) exposure.
+[*controlled*](../reference/decision_points/system_exposure.md) or [*small*](../reference/decision_points/system_exposure.md) exposure.
 The description does not explicitly handle the capture/replay aspect of the vulnerability.
 If the only way to exploit the vulnerability is to be within physical transmission range of the device, then that
-physical constraint argues for exposure being [*small*](#system-exposure).
+physical constraint argues for exposure being [*small*](../reference/decision_points/system_exposure.md).
 However, if the client’s phone app could be used to capture and replay attack packets, then unless that app is
-particularly well secured, the answer should be [*controlled*](#system-exposure).
+particularly well secured, the answer should be [*controlled*](../reference/decision_points/system_exposure.md).
 Regardless, the answer is not clear from the supplied information.
 Furthermore, if this fictional app is specific to the insulin pump, then even if it is not compromised, the attack might
 use its installation to remotely identify targets.
 However, since most of the hospital’s clients have not installed the app, and for nearly all cases, physical proximity
-to the device is necessary; therefore, we select [*small*](#system-exposure) and move on to ask about mission impact.
+to the device is necessary; therefore, we select [*small*](../reference/decision_points/system_exposure.md) and move on to ask about mission impact.
 
 According to the fictional pilot scenario, “Our mission dictates that the first and foremost priority is to contribute
 to human welfare and to uphold the Hippocratic oath (do no harm).” The continuity of operations planning for a hospital
@@ -54,10 +54,10 @@ description of MEF failure.
 The question is then whether the whole mission fails, which does not seem to be the case.
 The recovery of MEF functioning is not affected, and most MEFs (the emergency services, surgery, oncology,
 administration, etc.) would be unaffected.
-Therefore, we select [*MEF failure*](#mission-impact) and move on to ask about safety impact.
+Therefore, we select [*MEF failure*](../reference/decision_points/mission_impact.md) and move on to ask about safety impact.
 
 This particular pilot study used SSVC version 1.
-In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](#human-impact), and [*Automatable*](#automatable) would need to be answered as well.
+In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](../reference/decision_points/human_impact.md), and [*Automatable*](../reference/decision_points/automatable.md) would need to be answered as well.
 Conducting further studies with the recommended version 2.1 Deployer tree remains an area of future work.
 In the pilot study, this information is conveyed as follows:
 
@@ -72,15 +72,15 @@ In the pilot study, this information is conveyed as follows:
     The impacted insulin pumps have a local (on-patient) wireless control, so wires to the pump do not have to be connected
     to the patient's control of the system, making the system lighter and less prone to be ripped out.
 
-The closest match to “death in a matter of hours” would be [*hazardous*](#safety-impact) because that description reads
+The closest match to “death in a matter of hours” would be [*hazardous*](../reference/decision_points/safety_impact.md) because that description reads
 “serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures.”
 Depending on the details of the hospital’s contingency plans and its monitoring of their patients, the
-[*Safety Impact*](#safety-impact) could be [*catastrophic*](#safety-impact).
+[*Safety Impact*](../reference/decision_points/safety_impact.md) could be [*catastrophic*](../reference/decision_points/safety_impact.md).
 If there is no way to tell whether the insulin pumps are misbehaving, for example, then exploitation could go on for
-some time, leading to a [*catastrophic*](#safety-impact) [*Safety Impact*](#safety-impact).
+some time, leading to a [*catastrophic*](../reference/decision_points/safety_impact.md) [*Safety Impact*](../reference/decision_points/safety_impact.md).
 The pilot information is inadequate in this regard, which is the likely source of disagreement about
-[*Safety Impact*](#safety-impact) in Table 13.
+[*Safety Impact*](../reference/decision_points/safety_impact.md) in Table 13.
 For the purposes of this example, imagine that after gathering that information, the monitoring situation is adequate,
-and select [*hazardous*](#safety-impact).
+and select [*hazardous*](../reference/decision_points/safety_impact.md).
 Therefore, mitigate this vulnerability *out-of-cycle*, meaning that it should be addressed quickly, ahead of the usual
 update and patch cycle.

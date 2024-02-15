@@ -18,7 +18,7 @@ Using SSVC to prioritize vulnerability response requires a few steps. The steps 
         r --> dataops
     ```
 
-{% include-markdown "howto/bootstrap/steps_table.md" %}
+{% include-markdown "howto/bootstrap/_steps_table.md" %}
 
 We cover each of these in the following sections, starting with [Prepare to Use SSVC](prepare.md).
 If you want to skip ahead to the full process, see [Bootstrapping SSVC Summary](summary.md).
