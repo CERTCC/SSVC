@@ -158,5 +158,6 @@ flowchart LR
 
 ### Table of Values
 
-{{ read_csv('../../data/csvs/coord-publish-options.csv') }}
+<!-- relative to /data/csvs/ -->
+{{ read_csv('coord-publish-options.csv') }}
 

@@ -111,7 +111,8 @@ plugins:
   - include-markdown:
       comments: false
   - search
-  - table-reader
+  - table-reader:
+      data_path: 'data/csvs'
   - bibtex:
       bib_file: 'doc/md_src_files/sources_ssvc.bib'
   - mkdocstrings:

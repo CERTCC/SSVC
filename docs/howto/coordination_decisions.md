@@ -43,4 +43,5 @@ Other coordinators should consider customizing the tree to their needs, as descr
 
 ### Table of Values
 
-{{ read_csv('../../data/csvs/coord-triage-options.csv') }}
+<!-- relative to /data/csvs/ -->
+{{ read_csv('coord-triage-options.csv') }}
