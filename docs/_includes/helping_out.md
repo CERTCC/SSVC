@@ -9,11 +9,10 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
     ---
 
     If you have a specific question for the SSVC team, please feel free to 
-    [Ask a Question](https://github.com/CERTCC/SSVC/issues/new?template=question.md) in form of an
-    issue.
+    [Ask a Question](https://github.com/CERTCC/SSVC/issues/new?template=question.md).
  
     Questions of more general interest to the community of SSVC users might fit better in the
-    [Q&A](https://github.com/CERTCC/SSVC/discussions/categories/q-a) topic in the
+    [Q&A](https://github.com/CERTCC/SSVC/discussions/categories/q-a) section of the
     [Discussion](https://github.com/CERTCC/SSVC/discussions) area.
 
 - :fontawesome-solid-bug: Report a problem
@@ -29,6 +28,13 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
     Got an idea for how to make SSVC better? We'd love to hear it! Please submit your
     [Feature Requests](https://github.com/CERTCC/SSVC/issues/new?labels=enhancement)
  
+- :fontawesome-regular-comments: Join the conversation
+
+    ---
+
+    More in-depth conversations that might not be actionable as issues are found in the
+    [Discussions](https://github.com/CERTCC/SSVC/discussions) area.
+
 - :material-binoculars: See what we're working on
 
     ---
@@ -37,16 +43,14 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
     [Pull Requests](https://github.com/CERTCC/SSVC/pulls). 
     Drop by and see what we're working on, or leave a comment to let us know what you're interested in.
 
-- :fontawesome-regular-comments: Join the conversation
+- :material-hub: Get more involved
 
     ---
 
-    More in-depth conversations that might not be actionable as issues are found in the
-    [Discussions](https://github.com/CERTCC/SSVC/discussions) area.
+    Want more information about engaging as a collaborator? Check out the [SSVC Project Wiki](https://github.com/CERTCC/SSVC/wiki)
     
 </div>
 
-Want more information about engaging as a collaborator? Check out the [SSVC Project Wiki](https://github.com/CERTCC/SSVC/wiki)
 
 !!! tip "Footer Icons"
 
