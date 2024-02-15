@@ -26,7 +26,7 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
 
     ---
     Got an idea for how to make SSVC better? We'd love to hear it! Please submit your
-    [Feature Requests](https://github.com/CERTCC/SSVC/issues/new?labels=enhancement)
+    [Feature Requests](https://github.com/CERTCC/SSVC/issues/new?template=feature_request.md)
  
 - :fontawesome-regular-comments: _Join the conversation_
 
