@@ -14,10 +14,11 @@ In addition to using some of the decision points in [Likely Decision Points](#li
 The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
 To assess this, the decision involves five new decision points.
 
-{== TODO link to specific decision points ==}
-
-
-
+- [Report Public](../reference/decision_points/report_public.md)
+- [Supplier Contacted](../reference/decision_points/supplier_contacted.md)
+- [Report Credibility](../reference/decision_points/report_credibility.md)
+- [Supplier Cardinality](../reference/decision_points/supplier_cardinality.md)
+- [Supplier Engagement](../reference/decision_points/supplier_engagement.md)
 
 ## Coordination Triage Decision Process
 
