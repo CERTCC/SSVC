@@ -10,4 +10,5 @@ The example deployer tree [PDF](../pdf/ssvc_2_deployer_SeEUMss.pdf) is depicted 
 
 ## Table of Values
 
-{{ read_csv('data/csvs/deployer-options.csv') }}
+<!-- relative to /data/csvs/ -->
+{{ read_csv('deployer-options.csv') }}

@@ -26,12 +26,12 @@ One way to view what SSVC currently provides is that it tells you how urgently a
 For all but the most dire vulnerabilities, what the stakeholder chooses to do may include accepting the vulnerability risk because the change risk or other costs of mitigation or remediation are too high.
 Future work should attempt to provide a method for [evaluating change risk or cost](https://github.com/CERTCC/SSVC/issues/35) relative to vulnerability risk.
 
-[Tree Construction and Customization Guidance](#tree-construction-and-customization-guidance) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.
+[Tree Construction and Customization Guidance](../howto/tree_customization.md) discusses how the prioritization labels in an SSVC tree reflect risk appetite or risk tolerance.
 Specifically, these reflect vulnerability risk appetite.
 Appetite for vulnerability risk may be negatively correlated with change risk; future work could explore this relationship.
 Furthermore, future work could examine suggested practices for connecting tree customization to risk management.
 
-[Reasoning Steps Forward](#reasoning-steps-forward) states the scope of SSVC analysis is “consider credible effects based on known use cases of the software system as a part of cyber-physical systems.”
+[Reasoning Steps Forward](scope.md) states the scope of SSVC analysis is “consider credible effects based on known use cases of the software system as a part of cyber-physical systems.”
 The unit of prioritization in SSVC should be work items.
 For deployers, a work item is often applying a patch that addresses multiple vulnerabilities.
 The “credible effects” to consider are those of all vulnerabilities remediated by the patch.
@@ -50,7 +50,7 @@ Internationalization and localization of SSVC will also need to be considered an
 It is not clear how best to consider translating SSVC decision points, if at all.
 An actionable item of future work would be to include non-native English speakers in future usability studies.
 
-A different approach to testing the [*Utility*](#utility) decision point could be based on [Alternative Utility Outputs](#alternative-utility-outputs).
-Namely, future work could example exploit resale markets and compare the value of exploits to the [*Utility*](#utility) score of the exploited vulnerability.
+A different approach to testing the [Utility](../reference/decision_points/utility.md) decision point could be based on the *Alternative Utility Outputs* found in that page.
+Namely, future work could example exploit resale markets and compare the value of exploits to the [Utility](../reference/decision_points/utility.md) score of the exploited vulnerability.
 There are some limitations to this approach, since exploit markets target certain adversary groups (such as those with lots of resources) and may not be representative of all adversary types.
-However, such analysis would provide some information as to whether the definition of [*Utility*](#utility) is reasonable.
+However, such analysis would provide some information as to whether the definition of [Utility](../reference/decision_points/utility.md) is reasonable.

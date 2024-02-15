@@ -8,13 +8,13 @@ deciders: adh, jspring, vssarvepalli, cgyarbrough, latyzenhaus, ehatleback
 
 ## Context and Problem Statement
 
-[ADR 004](./0004-ssvc-decision-point-groups-are-versioned.md) established that Decision Point Groups should be versioned.
+[ADR 004](0004-ssvc-decision-point-groups-are-versioned.md) established that Decision Point Groups should be versioned.
 
 This ADR establishes the rules for versioning Decision Point Groups.
 
 ## Decision Drivers
 
-(See [ADR 004](./0004-ssvc-decision-point-groups-are-versioned.md) for additional context.)
+(See [ADR 004](0004-ssvc-decision-point-groups-are-versioned.md) for additional context.)
 
 - Decision Points change over time
 - The composition of decision point groups change over time
@@ -103,7 +103,7 @@ In row 4, DP C undergoes a major version increment, which triggers a major versi
 - Because we don't anticipate frequent changes to decision point groups, the burden of maintaining version numbers should be minimal.
 - We are deliberately avoiding using the _name_ of the Decision Point Group as part of the versioning scheme, as
 in the motivating example in
-[ADR 0004](/0004-ssvc-decision-point-groups-are-versioned.md) we shifted the
+[ADR 0004](0004-ssvc-decision-point-groups-are-versioned.md) we shifted the
 group name from _Patch Applier_ to _Deployer_, but since the group is still
 intended to represent the same _stakeholder role_ and _decision_, we want
 to be able to treat name changes as aliases rather than versioning events.
