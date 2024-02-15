@@ -2,7 +2,7 @@
 
 Using SSVC to prioritize vulnerability response requires a few steps. The steps are:
 
-{% include-markdown "howto/bootstrap/steps_table.md" %}
+{% include-markdown "howto/bootstrap/_steps_table.md" %}
 
 We covered each of these in the previous sections, see the links in the table above for more information.
 
