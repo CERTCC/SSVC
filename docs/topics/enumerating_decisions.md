@@ -1,7 +1,7 @@
 # Enumerating Decisions
 
 Stakeholders with different responsibilities in vulnerability management have very different decisions to make.
-{== This section ==} focuses on the differences among organizations based on their vulnerability management responsibilities.
+This section focuses on the differences among organizations based on their vulnerability management responsibilities.
 Some decision makers may have different responsibilities in relation to different software.
 
 !!! example "Example: Different Responsibilities for Different Software"
@@ -24,4 +24,4 @@ we recommend that the professionals making genuine decisions do three things:
 2. describe how they view their role(s)
 3. identify which software projects their decision relates to
 
-If their decisions are explicit, then the decision makers can use the recommendations from this document that are relevant to them.
+If their decisions are explicit, then the decision makers can use the recommendations from this documentation that are relevant to them.
