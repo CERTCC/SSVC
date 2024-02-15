@@ -15,27 +15,27 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
     [Q&A](https://github.com/CERTCC/SSVC/discussions/categories/q-a) section of the
     [Discussion](https://github.com/CERTCC/SSVC/discussions) area.
 
-- :fontawesome-solid-bug: Report a problem
+- :fontawesome-solid-bug: _Report a problem_
 
     ---
 
     If you find a problem with the SSVC documentation, the methodology, or accompanying code, we
     welcome your [Bug Reports](https://github.com/CERTCC/SSVC/issues/new?template=bug_report.md)
     
-- :material-lightbulb-on: Suggest an improvement
+- :material-lightbulb-on: _Suggest an improvement_
 
     ---
     Got an idea for how to make SSVC better? We'd love to hear it! Please submit your
     [Feature Requests](https://github.com/CERTCC/SSVC/issues/new?labels=enhancement)
  
-- :fontawesome-regular-comments: Join the conversation
+- :fontawesome-regular-comments: _Join the conversation_
 
     ---
 
     More in-depth conversations that might not be actionable as issues are found in the
     [Discussions](https://github.com/CERTCC/SSVC/discussions) area.
 
-- :material-binoculars: See what we're working on
+- :material-binoculars: _See what we're working on_
 
     ---
 
@@ -43,7 +43,7 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
     [Pull Requests](https://github.com/CERTCC/SSVC/pulls). 
     Drop by and see what we're working on, or leave a comment to let us know what you're interested in.
 
-- :material-hub: Get more involved
+- :material-hub: _Get more involved_
 
     ---
 
