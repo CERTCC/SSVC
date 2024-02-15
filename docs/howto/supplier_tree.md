@@ -14,4 +14,5 @@ height = "700" />
 
 ## Table of Values
 
-{{ read_csv('data/csvs/supplier-options.csv') }}
+<!-- relative to /data/csvs/ -->
+{{ read_csv('supplier-options.csv') }}
