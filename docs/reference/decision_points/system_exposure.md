@@ -15,24 +15,24 @@ Whether that mitigation allows the deployer to defer further action varies accor
 
 ## Gathering Information About System Exposure
 
-[*System Exposure*](#system-exposure) is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
+*System Exposure* is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
 Therefore, it generally has a concrete answer, even though it may vary from vulnerable component to vulnerable component, based on their respective configurations.
 
-[*System Exposure*](#system-exposure) can be readily informed by network scanning techniques.
-For example, if the vulnerable component is visible on [Shodan](https://www.shodan.io) or by some other external scanning service, then it is [*open*](#system-exposure).
+*System Exposure* can be readily informed by network scanning techniques.
+For example, if the vulnerable component is visible on [Shodan](https://www.shodan.io) or by some other external scanning service, then it is *open*.
 Network policy or diagrams are also useful information sources, especially for services intentionally open to the Internet such as public web servers.
-An analyst should also choose [*open*](#system-exposure) for a phone or PC that connects to the web or email without the usual protections (IP and URL blocking, updated firewalls, etc.).
+An analyst should also choose *open* for a phone or PC that connects to the web or email without the usual protections (IP and URL blocking, updated firewalls, etc.).
 
-Distinguishing between [*small*](#system-exposure) and [*controlled*](#system-exposure) is more nuanced.
-If [*open*](#system-exposure) has been ruled out, some suggested heuristics for differentiating the other two are as follows.
+Distinguishing between *small* and *controlled* is more nuanced.
+If *open* has been ruled out, some suggested heuristics for differentiating the other two are as follows.
 Apply these heuristics in order and stop when one of them applies.
- - If the system's networking and communication interfaces have been physically removed or disabled, choose [*small*](#system-exposure).
- - If [*Automatable*](#automatable) is [*yes*](#automatable), then choose [*controlled*](#system-exposure). The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of [*small*](#system-exposure).
- - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose [*controlled*](#system-exposure).
- - If the vulnerable component is in a third party library that is unreachable because the feature is unused in the surrounding product, choose [*small*](#system-exposure).
+ - If the system's networking and communication interfaces have been physically removed or disabled, choose *small*.
+ - If [*Automatable*](automatable.md) is [*yes*](automatable.md), then choose *controlled*. The reasoning behind this heuristic is that if reconnaissance through exploitation is automatable, then the usual deployment scenario exposes the system sufficiently that access can be automated, which contradicts the expectations of *small*.
+ - If the vulnerable component is on a network where other hosts can browse the web or receive email, choose *controlled*.
+ - If the vulnerable component is in a third party library that is unreachable because the feature is unused in the surrounding product, choose *small*.
 
 The unreachable vulnerable component scenario may be a point of concern for stakeholders like patch suppliers who often find it more cost-effective to simply update the included library to an existing fixed version rather than try to explain to customers why the vulnerable code is unreachable in their own product.
-In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [_defer_](#supplier-tree) vs [_scheduled_](#supplier-tree), for example).
+In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [_defer_](../../howto/supplier_tree.md) vs [_scheduled_](../../howto/supplier_tree.md), for example).
 
 If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
 

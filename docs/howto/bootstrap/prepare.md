@@ -34,10 +34,10 @@ We will go through each step in detail.
     
     Decisions we have modeled with SSVC include:
    
-    - [Patch Supplier Prioritization](supplier_tree.md)
-    - [Patch Deployer Prioritization](deployer_tree.md)
-    - [Coordinator Triage](coordinator_trees.md)
-    - [Coordinator Publication](coordinator_publish_tree.md)
+    - [Patch Supplier Prioritization](../supplier_tree.md)
+    - [Patch Deployer Prioritization](../deployer_tree.md)
+    - [Coordinator Triage](../coordination_decisions.md)
+    - [Coordinator Publication](../publication_decision.md)
 
 The first step in preparing to use SSVC is to choose a decision to model.
 SSVC is designed to help you make decisions about how to respond to a vulnerability.
@@ -60,9 +60,9 @@ flowchart LR
 
 !!! example inline end
 
-     In the [Patch Supplier](supplier_tree.md) and [Patch Deployer](deployer_tree) prioritization examples, the outcomes are:
-     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](coordinator_trees.md) example,
-     the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](coordinator_publish_tree.md) example,
+     In the [Patch Supplier](../supplier_tree.md) and [Patch Deployer](../deployer_tree.md) prioritization examples, the outcomes are:
+     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordination_decisions.md) example,
+     the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](../publication_decision.md) example,
      the outcomes are _Publish_ and _Do Not Publish_.
 
 Once you have chosen a decision to model, you need to define the outcomes for that decision.
@@ -109,7 +109,7 @@ Once you know what decision you want to make and what the possible outcomes are,
 A decision usually requires more than one piece of information.
 SSVC organizes this information into decision points.
 A single decision point enumerates a set of options for a particular aspect of the decision.
-We have defined a number of decision points in the [SSVC documentation](../reference/decision_points/index.md).
+We have defined a number of decision points in the [SSVC documentation](../../reference/decision_points/index.md).
 You can choose from these decision points, or you can define your own decision points to meet your needs.
 
 Whether you choose from the existing decision points or define your own, the set of decision points you use to make a 
@@ -159,7 +159,7 @@ Now, you need to define the policy you want to use to make that decision.
 A policy is a function that takes a set of decision point values as input and returns an outcome as output.
 While we often choose to represent policies as decision trees, they can be represented in other ways as well.
 In fact, we find that it is often useful to represent policies in tabular form, for example as a CSV file.
-We have provided a number of example policies in the [SSVC documentation](../prioritization.md), but you can define your own policy to meet your needs.
+We have provided a number of example policies in the [SSVC documentation](../index.md), but you can define your own policy to meet your needs.
 
 ```mermaid
 flowchart LR
@@ -181,11 +181,11 @@ flowchart LR
 !!! example
 
      A small bank has a policy that they must deploy patches within 48 hours of release if the vulnerability affects systems
-     that could lead to customer data being exposed. They examine the example [Deployer Prioritization](supplier_tree.md)
+     that could lead to customer data being exposed. They examine the example [Deployer Prioritization](../supplier_tree.md)
      decision model and decide that both the outcome set and the decision point set that define the structure of the
      decision model are appropriate for their needs. They map the 48 hour requirement to the _Immediate_ outcome, because
      it essentially represents their highest priority response.
-     However, they notice that the specific policy given in the [Deployer Prioritization](supplier_tree.md)
+     However, they notice that the specific policy given in the [Deployer Prioritization](../supplier_tree.md)
      example&mdash;that is, the mapping from decision point values to outcomes&mdash;is not appropriate for their needs
      because it has too few _Immediate_ outcomes to suit their policy.
      Therefore, the bank decides to reuse the same decision point set and outcome set but define their own policy.
@@ -220,7 +220,7 @@ flowchart LR
 !!! example
 
     A Software-as-a-Service Provider differentiates its service levels into three categories: silver, gold, and platinum.
-    In the [Define Inputs](#define-inputs) step, they defined a custom decision point called _Service Level_ with the values
+    In the Define Inputs step, they defined a custom decision point called _Service Level_ with the values
     _Silver_, _Gold_, and _Platinum_.
     Now, they need to define a data map that will assign a value to the _Service Level_ decision point.
     The data they need to assign a value to the _Service Level_ decision point originates in the service level

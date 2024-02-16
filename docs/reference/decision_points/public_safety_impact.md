@@ -8,11 +8,11 @@
 
 This is a compound decision point, therefore it is a notational convenience.
 
-Suppliers necessarily have a rather coarse-grained perspective on the broadly defined [Safety Impact](../safety_impact.md) Decision Point.
+Suppliers necessarily have a rather coarse-grained perspective on the broadly defined [Safety Impact](safety_impact.md) Decision Point.
 Therefore we simplify the above into a binary categorization:
 
 - _Significant_ is when any impact meets the criteria for an impact of Marginal, Critical, or Catastrophic in the
-  [Safety Impact](../safety_impact.md) table.
+  [Safety Impact](safety_impact.md) table.
 - _Minimal_ is when none do.
 
 ## Prior Versions

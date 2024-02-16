@@ -8,7 +8,7 @@ In this section, we'll cover what a stakeholder should leave static, what we ima
 ## Use Existing Decision Points Where Possible
 
 We suggest that the decision points, their definitions, and the decision values should not be customized.
-Different vulnerability management teams inevitably think of topics such as [*Utility*](#utility) to the adversary in slightly different ways.
+Different vulnerability management teams inevitably think of topics such as [Utility](../reference/decision_points/utility.md) to the adversary in slightly different ways.
 However, a key contribution of SSVC is enabling different teams to communicate about their decision process.
 In order to clearly communicate differences in the process, the decision points that factor into the process need to be the same between different teams.
 A stakeholder community may come together and, if there is broad consensus, add or change decision points.
@@ -26,7 +26,18 @@ The other aspect of risk management that SSVC allows a team to customize is its 
 ### Customizing for Risk Appetite
 
 A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
-For example, a vulnerability with [no or minor](#public-safety-impact) [*Public Safety Impact*](#public-safety-impact), [total](#technical-impact) [*Technical Impact*](#technical-impact), and [efficient](#utility) [*Utility*](#utility) might be handled with [*scheduled*](#supplier-decisions) priority by one team and [*out-of-cycle*](#supplier-decisions) priority by another.
+For example, a vulnerability with
+[no or minor](../reference/decision_points/public_safety_impact.md) 
+[*Public Safety Impact*](../reference/decision_points/public_safety_impact.md),
+[total](../reference/decision_points/technical_impact.md)
+[*Technical Impact*](../reference/decision_points/technical_impact.md),
+and [efficient](../reference/decision_points/utility.md)
+[Utility](../reference/decision_points/utility.md)
+might be handled with
+[*scheduled*](../topics/enumerating_actions.md)
+priority by one team and
+[*out-of-cycle*](../topics/enumerating_actions.md)
+priority by another.
 As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk.
 SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.
 
@@ -133,22 +144,22 @@ One might think of them as global facts that form the background context in whic
 Nearly all stakeholders should agree on the assignment of specific values to these decision points. 
 - **Stakeholder-specific decision points** are expected to be contextual to some set of stakeholders.
 Information about a stakeholder-specific decision point can still be inherited by other stakeholders using the same tree.
-For example in the corporate CSIRT scenario above, the [*System Exposure*](#system-exposure) value might be consistent across all subsidiaries for a centrally managed service.
+For example in the corporate CSIRT scenario above, the [*System Exposure*](../reference/decision_points/system_exposure.md) value might be consistent across all subsidiaries for a centrally managed service.
 
 We generally consider the following decision points to be *stakeholder-agnostic*:
-- [*Exploitation*](#exploitation)
-- [*Technical Impact*](#technical-impact)
-- [*Automatable*](#automatable)
+- [*Exploitation*](../reference/decision_points/exploitation.md)
+- [*Technical Impact*](../reference/decision_points/technical_impact.md)
+- [*Automatable*](../reference/decision_points/automatable.md)
 
 On the contrary, we consider the following decision points to be *stakeholder-specific*:
-- [*Value Density*](#value-density)
-- [*Utility*](#utility)
-- [*Safety Impact*](#safety-impact)
-- [*Public Safety Impact*](#public-safety-impact)
-- [*Situated Safety Impact*](#situated-safety-impact)
-- [*Mission Impact*](#mission-impact)
-- [*Human Impact*](#human-impact)
-- [*System Exposure*](#system-exposure)
+- [*Value Density*](../reference/decision_points/value_density.md)
+- [Utility](../reference/decision_points/utility.md)
+- [*Safety Impact*](../reference/decision_points/safety_impact.md)
+- [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md)
+- [*Situated Safety Impact*](../reference/decision_points/safety_impact.md)
+- [*Mission Impact*](../reference/decision_points/mission_impact.md)
+- [*Human Impact*](../reference/decision_points/human_impact.md)
+- [*System Exposure*](../reference/decision_points/system_exposure.md)
 
 We anticipate that most custom decision points created by stakeholders for themselves or a constituency will be of the *stakeholder-specific* variety.
 Examples of these sorts of custom decision points include

@@ -10,7 +10,7 @@ We take three priority levels in our decision about whether and how to coordinat
 ## Coordinator Decision Points
 
 Our goal with the coordination decision is to base it on information that is available to the analyst when CERT/CC receives a vulnerability report.
-In addition to using some of the decision points in [Likely Decision Points](#likely-decision-points-and-relevant-data); coordination makes use of [Utility](#utility) and [Public Safety Impact](#public-safety-impact) decision points.
+In addition to using some of the decision points in [Likely Decision Points](../reference/decision_points/index.md); coordination makes use of [Utility](../reference/decision_points/utility.md) and [Public Safety Impact](../reference/decision_points/public_safety_impact.md) decision points.
 The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
 To assess this, the decision involves five new decision points.
 
@@ -22,14 +22,26 @@ To assess this, the decision involves five new decision points.
 
 ## Coordination Triage Decision Process
 
-The decision tree for reaching a [Decision](#coordination-triage-decisions) involves seven decision points.
+The decision tree for reaching a [Decision](coordination_decisions.md) involves seven decision points.
 The first two function as gating questions:
- - If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](#utility) [*Utility*](#utility), and [*significant*](#public-safety-impact) [Public Safety Impact](#public-safety-impact).
- - If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](#utility) [*Utility*](#utility), and [*significant*](#public-safety-impact) [Public Safety Impact](#public-safety-impact).
+ - If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
+ - If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
 
 In the second case, CERT/CC may encourage the reporter to contact the supplier and submit a new case request if the supplier is unresponsive.
 
 These two sets of exceptional circumstances mean that the seven decision points involved in the coordination triage tree can be compressed slightly, as the tree shows.
 This tree's information is available as either a [CSV](https://github.com/CERTCC/SSVC/blob/main/data/ssvc_2_coord-triage.csv) or [PDF](https://github.com/CERTCC/SSVC/blob/main/doc/graphics/ssvc_2_coord-triage.pdf)
 
-{% include-markdown './coordinator_trees.md' heading-offset=1 %}
+## Triage Decision Tree
+
+<embed src="../../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
+style="width: 100%;"
+height = "700" />
+
+This tree is a suggestion in that CERT/CC believes it works for us.
+Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](tree_customization.md).
+
+### Table of Values
+
+<!-- relative to /data/csvs/ -->
+{{ read_csv('coord-triage-options.csv') }}

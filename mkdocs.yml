@@ -22,6 +22,7 @@ nav:
       - Risk Tolerance and Priority: 'topics/risk_tolerance_and_priority.md'
       - Scope: 'topics/scope.md'
       - SSVC and Asset Management: 'topics/asset_management.md'
+    - Putting the Pieces Together: 'topics/decision_points_as_bricks.md'
     - Worked Example: 'topics/worked_example.md'
     - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
@@ -69,11 +70,11 @@ nav:
         - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
         - Utility: 'reference/decision_points/utility.md'
     - Code:
-        Intro: 'reference/code/index.md'
-        CSV Analyzer: 'reference/code/analyze_csv.md'
-        Policy Generator: 'reference/code/policy_generator.md'
-        Outcomes: 'reference/code/outcomes.md'
-        Doctools: 'reference/code/doctools.md'
+        - Intro: 'reference/code/index.md'
+        - CSV Analyzer: 'reference/code/analyze_csv.md'
+        - Policy Generator: 'reference/code/policy_generator.md'
+        - Outcomes: 'reference/code/outcomes.md'
+        - Doctools: 'reference/code/doctools.md'
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
@@ -86,7 +87,8 @@ nav:
     - Contact: 'about/contact_us.md'
   - Issue Tracker: 'https://github.com/CERTCC/SSVC/issues'
 not_in_nav: |
-    _*.md
+  _*.md
+  _*/**/*.md
 theme:
   logo: 'assets/cert_seal.svg'
   name: 'material'
@@ -110,7 +112,8 @@ plugins:
   - include-markdown:
       comments: false
   - search
-  - table-reader
+  - table-reader:
+      data_path: 'data/csvs'
   - bibtex:
       bib_file: 'doc/md_src_files/sources_ssvc.bib'
   - mkdocstrings:

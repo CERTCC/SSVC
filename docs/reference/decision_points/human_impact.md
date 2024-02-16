@@ -4,15 +4,15 @@
 
 !!! tip "See also"
 
-    Human Impact is a combination of [Safety Impact](./safety_impact.md) and
+    *Human Impact* is a combination of [Safety Impact](./safety_impact.md) and
     [Mission Impact](./mission_impact.md)
 
 This is a compound decision point, therefore it is a notational convenience.
 
 In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
 if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
-We therefore combine [Safety Impact](../safety_impact.md) and
-[Mission Impact](../mission_impact.md) for deployers into a single _Human Impact_ factor
+We therefore combine [Safety Impact](safety_impact.md) and
+[Mission Impact](mission_impact.md) for deployers into a single _Human Impact_ factor
 as a dimension reduction step as follows.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
@@ -35,7 +35,7 @@ Therefore, vulnerability information providers&mdash;that is, vulnerability data
 Information Sharing and Analysis Organizations (ISAOs), or Information Sharing and Analysis Centers (ISACs)&mdash;may
 provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
 For considerations on how organizations might communicate SSVC information to their constituents,
-see [Guidance on Communicating Results](../../../howto/communicating_results.md).
+see [Guidance on Communicating Results](../../howto/bootstrap/use.md).
 
 
 ## Prior Versions

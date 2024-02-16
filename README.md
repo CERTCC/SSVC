@@ -1,4 +1,4 @@
-[![pandoc_html_pdf](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml/badge.svg)](https://github.com/CERTCC/SSVC/actions/workflows/pandoc_html_pdf.yaml)
+[![Link Checker](https://github.com/CERTCC/SSVC/actions/workflows/link_checker.yml/badge.svg?branch=main)](https://github.com/CERTCC/SSVC/actions/workflows/link_checker.yml)
 
 # SSVC
 

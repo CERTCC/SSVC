@@ -1,7 +1,7 @@
 # Formalization Options
 
 This section briefly surveys the available formalization options against the six design goals described above.
-[Table 1](#table-form-options) summarizes the results.
+The table below summarizes the results.
 This survey is opportunistic; it is based on conversations with several experts and our professional experience.
 The search process leaves open the possibility of missing a better option.
 However, at the moment, we are searching for a satisfactory formalism, rather than an optimal one.

@@ -21,7 +21,7 @@ This framing makes it easier to analytically derive these categories from a desc
 [*Automatable*](automatable.md) as ([*no*](automatable.md) or [*yes*](automatable.md)) and [*Value Density*](value_density.md) as ([*diffuse*](value_density.md) or [*concentrated*](value_density.md)) define those decision points.
 
 Roughly, *Utility* is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events.
-We define *Utility* as laborious, efficient, or super effective, as described in the [table](#table-utility) above.
+We define *Utility* as laborious, efficient, or super effective, as described in the table above.
 
 
 ## Alternative Utility Outputs

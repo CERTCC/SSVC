@@ -35,8 +35,8 @@ There are various sources of guidance on how to gather this information; see for
 This is part of risk management more broadly.
 It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
-As a heuristic, [*Utility*](#utility) might constrain [*Mission Impact*](#mission-impact) if both are not used in the same decision tree.
-For example, if the [*Utility*](#utility) is [*super effective*](#utility), then [*Mission Impact*](#mission-impact) is at least [*MEF support crippled*](#mission-impact).
+As a heuristic, [Utility](utility.md) might constrain [*Mission Impact*](mission_impact.md) if both are not used in the same decision tree.
+For example, if the [Utility](utility.md) is [*super effective*](utility.md), then [*Mission Impact*](mission_impact.md) is at least [*MEF support crippled*](mission_impact.md).
 
 ## Prior Versions
 

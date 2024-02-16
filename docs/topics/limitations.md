@@ -1,7 +1,7 @@
 # Limitations
 
 SSVC has some inherent limits in its approach, which should be understood as tradeoffs.
-There are other limiting aspects of our implementation, but those have been covered as topics that need improvement and are described in [Future Work](#future-work).
+There are other limiting aspects of our implementation, but those have been covered as topics that need improvement and are described in [Future Work](future_work.md).
 
 We made two important tradeoffs compared to the current state of the practice.
 Other systems make different tradeoffs, which may be better or worse depending on the context of use.
@@ -24,7 +24,7 @@ relabel outcomes as \[2, 5.5, 8, 9.5\] for the midpoints of the current CVSS sev
 This is not a calculation of any kind, just an assignment of a label which may make adoption more convenient.
 Of course, these labels are dangerous, as they may be misused as numbers.
 Therefore, we prefer the use *defer*, *scheduled*, etc., as listed in
-[Enumerating Vulnerability Management Actions](#enumerating-vulnerability-management-actions).
+[Enumerating Vulnerability Management Actions](../howto/deployer_tree.md).
  
 ## Expanded Context
 
