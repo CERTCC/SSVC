@@ -9,7 +9,6 @@
 
 Note: This is a compound decision point[^1], therefore it is a notational convenience.
 
-<INSERT INTRO HERE>
 Human impact is a combination of how a vulnerability can affect mission essential functions of an organization and impact safety. 
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
