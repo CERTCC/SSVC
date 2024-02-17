@@ -1,5 +1,9 @@
 name: Link Checker
 on:
+  push:
+    branches:
+      # run on any push to main 
+      - main
   pull_request:
     paths:
       # run on any PR that modifies a markdown file
