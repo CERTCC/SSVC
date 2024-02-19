@@ -1,4 +1,4 @@
-site_name: SSVC
+site_name: "SSVC: Stakeholder-Specific Vulnerability Categorization"
 copyright: Copyright &copy; 2024 Carnegie Mellon University.
 nav:
   - Home: 'index.md'
@@ -78,14 +78,13 @@ nav:
   - Calculator: 'ssvc-calc/index.html'
   - About:
     - Intro: 'about/index.md'
-    - Change log: 'about/changelog.md'
-    - Contributing: 'about/contributing.md'
+    - Community Engagement: 'about/contributing.md'
 #    - FAQ: 'about/faq.md'
     - Decision Records: 'adr/index.md'
     - Acknowledgements: 'about/acknowledgements.md'
+    - Change log: 'about/changelog.md'
     - Copyright: 'about/copyright.md'
     - Contact: 'about/contact_us.md'
-  - Issue Tracker: 'https://github.com/CERTCC/SSVC/issues'
 not_in_nav: |
   _*.md
   _*/**/*.md
@@ -152,9 +151,18 @@ markdown_extensions:
   - tables
 extra:
   social:
+    - icon: material/message-question
+      link: https://github.com/CERTCC/SSVC/issues/new?template=question.md
+      name: Ask a Question
     - icon: fontawesome/solid/bug
-      link: https://github.com/CERTCC/SSVC/issues
-      name: Report an Issue or Suggest a Change
+      link: https://github.com/CERTCC/SSVC/issues/new?template=bug_report.md
+      name: Report a Problem
+    - icon: material/lightbulb-on
+      link: https://github.com/CERTCC/SSVC/issues/new?template=feature_request.md
+      name: Request a Feature
+    - icon: fontawesome/regular/comments
+      link: https://github.com/CERTCC/SSVC/discussions
+      name: SSVC Community Discussions
     - icon: fontawesome/brands/github
       link: https://github.com/CERTCC/SSVC
       name: CERTCC/SSVC on Github

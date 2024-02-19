@@ -56,3 +56,6 @@ We have organized the SSVC documentation into four main sections:
     [:octicons-arrow-right-24: Reference](reference/index.md)
 
 </div>
+
+
+{% include-markdown "_includes/helping_out.md" heading-offset=1 %}
