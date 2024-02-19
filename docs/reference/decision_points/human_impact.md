@@ -9,7 +9,8 @@
 
 Note: This is a compound decision point[^1], therefore it is a notational convenience.
 
-Human impact is a combination of how a vulnerability can affect mission essential functions of an organization and impact safety. 
+*Human Impact* is a combination of how a vulnerability can affect an organization's mission essential functions as well as
+safety considerations, whether for the organization's personnel or the public at large. 
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
 Therefore we combine the two lesser mission impacts of degraded and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
