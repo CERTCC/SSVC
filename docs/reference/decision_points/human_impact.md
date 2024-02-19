@@ -7,24 +7,27 @@
     *Human Impact* is a combination of [Safety Impact](./safety_impact.md) and
     [Mission Impact](./mission_impact.md)
 
-This is a compound decision point, therefore it is a notational convenience.
+Note: This is a compound decision point[^1], therefore it is a notational convenience.
 
-In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
-if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
-We therefore combine [Safety Impact](safety_impact.md) and
-[Mission Impact](mission_impact.md) for deployers into a single _Human Impact_ factor
-as a dimension reduction step as follows.
+*Human Impact* is a combination of how a vulnerability can affect an organization's mission essential functions as well as
+safety considerations, whether for the organization's personnel or the public at large. 
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
 Therefore we combine the two lesser mission impacts of degraded and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
 This gives us three levels of mission impact to work with.
-
 On the other hand, most organizations tend to have lower tolerance for variance in safety.
 Even small deviations in safety are unlikely to go unnoticed or unaddressed.
 We suspect that the presence of regulatory oversight for safety issues and its absence at the lower end of the mission impact scale influences this behavior.
 Because of this higher sensitivity to safety concerns, we chose to retain a four-level resolution for the safety dimension.
 We then combine Mission Impact with Situated Safety impact and map them onto a 4-tiered scale (Low, Medium, High, Very High).
 The mapping is shown in the table above.
+
+[^1]: In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
+if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
+We therefore combine [Safety Impact](safety_impact.md) and
+[Mission Impact](mission_impact.md) for deployers into a single _Human Impact_ factor
+as a dimension reduction step.
+
 
 ## Safety and Mission Impact Decision Points for Industry Sectors
 
