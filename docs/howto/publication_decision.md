@@ -1,5 +1,16 @@
 # Coordinator Publication Decision
 
+The second decision is whether to publish information about a vulnerability.
+
+!!! note "Coordinator Publish Priority"
+
+    | Publish Priority | Description |
+    | :---             | :----------  |
+    | Do not publish   | Do not publish information about the vulnerability. |
+    | Publish          | Publish information about the vulnerability. |
+
+## Coordinator Publication Decision
+
 A coordinator often has to decide when or whether to publish information about a vulnerability.
 A supplier also makes a decision about publicity—releasing information about a remediation or mitigation could be viewed as a kind of publication decision.
 While the context of publication is different for coordinators, a supplier may find some use in a publication decision if they need to decide whether to publish before a mitigation or remediation is available.

@@ -1,3 +1,20 @@
+# Coordinating Patches
+In coordinated vulnerability disclosure (CVD), there are two available decisions modelled in version 2 of SSVC.
+The first is whether or not to coordinate a vulnerability report.
+This decision is also known as triage.
+Vulnerability Response Decision Assistance (VRDA) provides a starting point for a decision tree for this situation.
+VRDA is likely adequate for national-level CSIRTs that do general CVD, but other CSIRT types may have different needs.
+The *CERT guide to Coordinated Vulnerability Disclosure* provides something similar for those who are deciding how to report and disclose vulnerabilities they have discovered [@householder2020cvd, section 6.10].
+
+!!! note "Coordinator Triage Priority"
+
+    | Triage Priority | Description |
+    | :---            | :----------  |
+    | Decline         | Do not act on the report. |
+    | Track           | Receive information about the vulnerability and monitor for status changes but do not take any overt actions. |
+    | Coordinate      | Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, publication, and assist another party. |
+
+
 # Coordination Triage Decisions
 
 We take three priority levels in our decision about whether and how to coordinate a vulnerability [@householder2020cvd, 1.1] based on an incoming report:

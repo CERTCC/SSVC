@@ -25,3 +25,13 @@ we recommend that the professionals making genuine decisions do three things:
 3. identify which software projects their decision relates to
 
 If their decisions are explicit, then the decision makers can use the recommendations from this documentation that are relevant to them.
+
+## Enumerating Action Priority
+
+SSVC models the decision of
+“With what priority should the organization take action on a given vulnerability management work unit?”
+to be agnostic to whether or not a patch is available.
+We explain what we mean by a “work unit” in the previous section.
+Here we explain what we mean by “priority”.
+
+
