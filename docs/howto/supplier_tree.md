@@ -1,5 +1,14 @@
 # Supplying Patches
 
+Here we describe an example decision model for a Supplier deciding the priority of creating a patch for a
+vulnerability in their software.
+
+!!! info "Supplier Patch Creation Priority"
+
+    As noted in [Enumerating Decisions](../topics/enumerating_decisions.md),
+    the root of a decision model's identity is the combination of the stakeholder and the decision being modeled.
+    In this case, the stakeholder is the **Supplier** and the decision is the **priority of creating a patch**.
+
 ## Supplier Units of Work
 
 On the input side of the Supplier process, Suppliers typically receive reports of vulnerabilities in one or more versions of their product.
@@ -17,30 +26,33 @@ There are a variety of ways a Supplier might need to resolve the set of affected
 
 !!! tip inline end "Independently Fixable Vulnerabilities"
 
-    Without belaboring the point, these methods are similar to how CVE Numbering Authorities discern “independently fixable vulnerabilities” [@mitre2020cna].
+    Without belaboring the point, these methods are similar to how [CVE Numbering Authorities](https://www.cve.org/ResourcesSupport/AllResources/CNARules#section_7_assignment_rules) discern “independently fixable vulnerabilities”.
     
-    We also note that SBOM[@manion2019sbom] seems well-placed to aid in that resolution process for the third-party library scenarios.
+    We also note that [Software Bill of Materials](https://www.cisa.gov/sbom) (SBOM) seems well-placed to aid in that resolution process for the third-party library scenarios.
 
 - recognize, on further investigation of the initial report, that additional versions of the product are affected
 - discover that other products are affected due to code sharing or programmer error consistent across products
 - receive reports of vulnerabilities in third party libraries they utilize in one or more of their products
 - receive fix bundles for third party libraries used in one or more of their products (where a fix bundle might resolve multiple vulnerabilities or add new features)
 
-
-
 In the end, Suppliers provide remediations and/or mitigations for affected products.
 A supplier-provided remediation is usually a software update which contains fixes for multiple vulnerabilities and, often, new or improved features.
-Supplier output is relevant because it will become input to Deployers.
+Supplier output is relevant because it will become input to [Deployers](deployer_tree.md).
 SSVC focuses only on the remediation in this case; a set of remediations for multiple vulnerabilities is a fix bundle.
 Suppliers may also produce mitigations, such as recommended configuration changes, to limit the impact of a vulnerability.
 
-## Supplier Decision Model
+## Supplier Decision Outcomes
 
-At a basic level, the decision at a software development organization is whether to issue a work order and what resources to expend to remediate a vulnerability in the organization’s software. Prioritization is required because, at least in the current history of software engineering, the effort to patch all known vulnerabilities will exceed available resources. The organization considers several other factors to build the patch; refactoring a large portion of the code base may be necessary for some patches, while others require relatively small changes.
+At a basic level, the decision at a software development organization is whether to issue a work order and what 
+resources to expend to remediate a vulnerability in the organization’s software.
+Prioritization is required because, at least in the current history of software engineering,
+the effort to patch all known vulnerabilities will exceed available resources.
+The organization considers several other factors to build the patch; refactoring a large portion of the code base may 
+be necessary for some patches, while others require relatively small changes.
 We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in the table below.
 
 !!! note "Patch Supplier Priority"
-   
+
     | Supplier Priority | Description |
     | :---              | :----------  |
     | Defer              | Do not work on the patch at present. |
@@ -48,23 +60,34 @@ We focus only on the priority of building the patch, and we consider four catego
     | Out-of-Cycle       | Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
     | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
-## Supplier Tree
+## Supplier Decision Points
 
-The example supplier tree [PDF](../pdf/ssvc_2_supplier.pdf) shows the proposed prioritization decision tree for the supplier. Both supplier and deployer trees use the above decision point definitions. Each tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations. Each tree organizes how we propose a stakeholder should treat these situations. Rectangles are decision points, and triangles represent outcomes. The values for each decision point are different, as described above. Outcomes are priority decisions (defer, scheduled, out-of-cycle, immediate); outcome triangles are color coded:
+The decision to create a patch is based on the following decision points:
 
-  - Defer = gray with green outline
-  - Scheduled = yellow
-  - Out-of-Cycle = orange
-  - Immediate = red with black outline
+{% include-markdown "../_generated/decision_points/exploitation.md" %}
+{% include-markdown "../_generated/decision_points/utility.md" %}
+{% include-markdown "../_generated/decision_points/technical_impact.md" %}
+{% include-markdown "../_generated/decision_points/public_safety_impact.md" %}
 
+!!! tip "Public Safety Impact is a notational convenience"
+
+    The [Public Safety Impact](../reference/decision_points/public_safety_impact.md) decision point is a
+    simplification of the more detailed [Safety Impact](../reference/decision_points/safety_impact.md) decision point.
+
+## Supplier Decision Model
+
+The example supplier tree shows an example prioritization policy for the supplier.
+Each decision tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations.
+Each tree organizes how we propose a stakeholder should treat these situations. 
+
+{% include-markdown "../_includes/_tree_notation_tip.md" %}
 
 
 <embed src="../../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"
 height = "700" />
 
-
-## Table of Values
+### Table of Values
 
 <!-- relative to /data/csvs/ -->
 {{ read_csv('supplier-options.csv') }}

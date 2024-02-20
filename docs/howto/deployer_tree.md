@@ -1,17 +1,32 @@
 # Deploying Patches
 
+Here we describe an example decision model for a Deployer deciding the priority of deploying a patch for a vulnerability
+in their infrastructure.
+
+!!! info "Deployer Patch Deployment Priority"
+
+    As noted in [Enumerating Decisions](../topics/enumerating_decisions.md), the root of a decision model's identity is
+    the combination of the stakeholder and the decision being modeled. In this case, the stakeholder is the **Deployer** and the
+    decision is the **priority of deploying a patch**.
+
 ## Deployer Units of Work
 
 !!! info inline end "Deployer Unit of Work"
 
     The unit of work for a Deployer is usually a single deployable patch or patch bundle such as a service pack.
 
-Deployers are usually in the position of receiving remediations or mitigations from their Suppliers for products they have deployed.
+Deployers are usually in the position of receiving remediations or mitigations from their [Suppliers](supplier_tree.md)
+for products they have deployed.
 They must then decide whether to deploy the remediation or mitigation to a particular instance (or not).
-Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility.
+Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the 
+Supplier has engineered their release process to permit that degree of flexibility.
 For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
 The vulnerability management process for deployers has at its core the collation of data including
+
+!!! tip inline end "Relationship to asset management"
+
+    The relationship between SSVC and asset management is discussed further in [SSVC and Asset Management](../topics/asset_management.md).
 
 - an inventory of deployed instances of product versions
 - a mapping of vulnerabilities to remediations or mitigations
@@ -20,21 +35,51 @@ The vulnerability management process for deployers has at its core the collation
 The first must be collected by the Deployer, while the latter two most often originate from the product Supplier.
 Managing this information is generally called **asset management**.
 
-!!! tip inline end "Relationship to asset management"
 
-    The relationship between SSVC and asset management is discussed further in [SSVC and Asset Management](asset_management.md).
+In turn, Deployers must resolve this information into specific actions in which a remediation or mitigation is slated 
+for deployment to replace or modify a particular instance of the product.
+The Deployer model described below considers the mission and safety risks inherent to the category of systems to which those 
+deployed instances belong.
+For this reason, we recommend that the pairing of remediation or mitigation to a product version instance constitutes 
+the unit of work most appropriate for the Deployer.
 
-In turn, Deployers must resolve this information into specific actions in which a remediation or mitigation is slated for deployment to replace or modify a particular instance of the product.
-The Deployer tree in SSVC considers the mission and safety risks inherent to the category of systems to which those deployed instances belong.
-For this reason, we recommend that the pairing of remediation or mitigation to  a product version instance constitutes the unit of work most appropriate for the SSVC.
+## Deployer Decision Outcomes
 
-## Deployer Decision Model
+A deployer's decision centers on with what priority to deploy a given remediation or mitigation to their infrastructure.
+Similar to the [Supplier](supplier_tree.md) case, we consider four categories of priority, as outlined in the table below.
+While we've used the same priority names, the meaning of the priority may have different implications for the deployer than for the supplier.
 
-A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. An effective firewall or IDS rule coupled with an adequate change control process for rules may be enough to reduce the priority where no further action is necessary. In the area of Financial impacts, a better insurance policy may be purchased, providing necessary fraud insurance. Physicial well-being impact may be reduced by testing the physicial barriers designed to restrict a robot's ability to interact with humans. Mission impact could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow. If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation if it later becomes available. The table below displays the action priorities for the deployer, which are similar to the supplier case.
+!!! note "Patch Deployer Priority"
 
-When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](../reference/decision_points/system_exposure.md) from open to controlled. Financial well-being, a [*Safety Impact*](../reference/decision_points/safety_impact.md) category, might be reduced with adequate fraud detection and insurance. Physical well-being, also a [*Safety Impact*](../reference/decision_points/safety_impact.md) category, might be reduced by physical barriers that restrict a robot's ability to interact with humans. [*Mission Impact*](../reference/decision_points/mission_impact.md) might be reduced by introducing back-up business flows that do not use the vulnerable component. In a later section we combine [Mission and Situated Safety Impact](../reference/decision_points/human_impact.md) to reduce the complexity of the tree.
+    | Deployer Priority | Description |
+    | :---              | :----------  |
+    | Defer            | Do not act at present. |
+    | Scheduled        | Act during regularly scheduled maintenance time. |
+    | Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
+    | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
-However, these mitigation techniques will not always work.
+
+When remediation is available, usually the action is to apply it. 
+When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability
+(e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability.
+
+Applying mitigations may change the value of decision points. 
+A mitigation that successfully changes the value of a decision point may shift the priority of further action to a 
+reduced state. 
+If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation if it later 
+becomes available. 
+
+!!! example "Mitigation Examples"
+
+     - An effective firewall or IDS rule coupled with an adequate change control process for rules may change
+     [*System Exposure*](../reference/decision_points/system_exposure.md) from open to controlled. This could be enough
+     to reduce the priority where no further action is necessary.
+     - In the area of Financial [*Safety Impact*](../reference/decision_points/safety_impact.md), a better insurance policy may be purchased, providing necessary fraud insurance.
+     - Physical [*Safety Impact*](../reference/decision_points/safety_impact.md) may be reduced by testing the
+     physical barriers designed to restrict a robot's ability to interact with humans.
+     - [*Mission Impact*](../reference/decision_points/mission_impact.md) could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow.
+
+However, mitigation techniques will not always be adequate to address the risk posed by the vulnerability.
 
 !!! example "Examples of Inadequate Mitigation"
 
@@ -47,44 +92,46 @@ However, these mitigation techniques will not always work.
     with an alternate business flow.
     - The mitigating action may not be permanent or work as designed.
 
-A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state.
-If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation, if later, it becomes available.
-{== Table 3 ==} displays the action priorities for the deployer, which are similar to the supplier case.
-
-In a later section, the different types of impacts are defined and then implemented in the decision trees as examples of how the various impacts affect the priority.
-For now, assume the decision points are ordered as: [*Exploitation*](../reference/decision_points/exploitation.md); [Exposure](../reference/decision_points/system_exposure.md); [Utility](../reference/decision_points/utility.md); and [*Human Impact*](../reference/decision_points/human_impact.md).
-In this order, an [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
-A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](../reference/decision_points/human_impact.md) is [_very high_](../reference/decision_points/human_impact.md), resulting in an *out-of-cycle* priority.
-
 As opposed to mitigation, applying a remediation finishes an SSVC analysis of a deployed system.
 
 !!! warning "Remediation is not a final state"
 
-    While specific vulnerabilities in specific systems can be remediated, the vulnerability cannot be 'disposed of' or eliminated from future consideration within an IT environment.
-    Since software and systems are dynamic, a single vulnerability can be re-introduced after initial remediation through updates, software rollbacks, or other systemic actions that change the operating conditions within an environment.
-    It is therefore important to continually monitor remediated environments for vulnerabilities reintroduced by either rollbacks or new deployments of outdated software.
+    While specific vulnerabilities in specific systems can be remediated, the vulnerability cannot be 'disposed of' or 
+    eliminated from future consideration within an IT environment.
+    Since software and systems are dynamic, a single vulnerability can be re-introduced after initial remediation 
+    through updates, software rollbacks, or other systemic actions that change the operating conditions within an environment.
+    It is therefore important to continually monitor remediated environments for vulnerabilities reintroduced by 
+    either rollbacks or new deployments of outdated software.
 
-!!! note "Patch Deployer Priority"
+## Deployer Decision Points
 
-    | Deployer Priority | Description |
-    | :---              | :----------  |
-    | Defer            | Do not act at present. |
-    | Scheduled        | Act during regularly scheduled maintenance time. |
-    | Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
-    | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
+The Deployer Patch Deployment Priority decision model uses the following decision points:
+
+{% include-markdown "../_generated/decision_points/exploitation.md" %}
+{% include-markdown "../_generated/decision_points/system_exposure.md" %}
+{% include-markdown "../_generated/decision_points/utility.md" %}
+{% include-markdown "../_generated/decision_points/human_impact.md" %}
+
+## Deployer Decision Model
+
+Below we provide an example deployer prioritization policy that maps the decision points just listed to the outcomes described above.
+
+!!! tip "Notes on the Deployer Decision Model Example Policy"
+
+    In the example policy shown below:
+
+    - An [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
+    - A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](../reference/decision_points/human_impact.md) is [_very high_](../reference/decision_points/human_impact.md), resulting in an *out-of-cycle* priority.
 
 
-## Deployer Tree
-
-The example deployer tree [PDF](../pdf/ssvc_2_deployer_SeEUMss.pdf) is depicted below.
-
+{% include-markdown "../_includes/_tree_notation_tip.md" %}
 
 <embed src="../../pdf/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
  type="application/pdf"
  style="width: 100%;"
  height = "1000"/>
 
-## Table of Values
+### Table of Values
 
 <!-- relative to /data/csvs/ -->
 {{ read_csv('deployer-options.csv') }}
