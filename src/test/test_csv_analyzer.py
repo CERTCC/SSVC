@@ -1,4 +1,4 @@
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -149,21 +149,20 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(args.outcol, "priority")
         self.assertFalse(args.permutation)
 
-    def test_create_dt_classifier(self):
+    def test_prepare_data(self):
         df = pd.DataFrame()
         target = "outcome"
 
         # key error when target is not in df.columns
         self.assertNotIn(target, df.columns)
-        self.assertRaises(KeyError, acsv._create_dt_classifier, df, target)
+        self.assertRaises(KeyError, acsv._prepare_data, df, target)
 
         df["color"] = [1, 1, 1, 1, 2, 2, 2, 2]
         df["size"] = [1, 2, 3, 4, 1, 2, 3, 4]
         df["outcome"] = [1, 1, 1, 1, 2, 2, 2, 2]
 
         # create_dt_classifier should return a DecisionTreeClassifier object
-        model, x, y = acsv._create_dt_classifier(df, target)
-        self.assertIsInstance(model, acsv.DecisionTreeClassifier)
+        x, y = acsv._prepare_data(df, target)
         self.assertIsInstance(x, pd.DataFrame)
         self.assertIsInstance(y, pd.Series)
 

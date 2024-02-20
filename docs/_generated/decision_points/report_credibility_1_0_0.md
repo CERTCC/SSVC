@@ -7,8 +7,8 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | Credible | The report is credible. |
         | Not Credible | The report is not credible. |
+        | Credible | The report is credible. |
         
     === "JSON"
     

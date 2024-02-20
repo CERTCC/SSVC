@@ -6,14 +6,14 @@
   "description": "Is a viable report of the details of the vulnerability already publicly available?",
   "values": [
     {
-      "key": "N",
-      "name": "No",
-      "description": "No public report of the vulnerability exists."
-    },
-    {
       "key": "Y",
       "name": "Yes",
       "description": "A public report of the vulnerability exists."
+    },
+    {
+      "key": "N",
+      "name": "No",
+      "description": "No public report of the vulnerability exists."
     }
   ]
 }

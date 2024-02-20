@@ -7,8 +7,8 @@
 
         | Value | Definition |
         |:-----|:-----------|
-        | No | No public report of the vulnerability exists. |
         | Yes | A public report of the vulnerability exists. |
+        | No | No public report of the vulnerability exists. |
         
     === "JSON"
     
