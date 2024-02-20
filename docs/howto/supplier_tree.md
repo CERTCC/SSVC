@@ -1,4 +1,4 @@
-# Supplying Patches
+# Prioritizing Patch Creation
 
 Here we describe an example decision model for a Supplier deciding the priority of creating a patch for a
 vulnerability in their software.

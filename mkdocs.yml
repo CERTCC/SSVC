@@ -40,7 +40,7 @@ nav:
         - Deployer Decision Model: 'howto/deployer_tree.md'
         - Coordinator Decision Models:
           - About Coordination: 'howto/coordination_intro.md'
-          - Coordination Decision: 'howto/coordination_decisions.md'
+          - Coordination Triage: 'howto/coordination_triage_decision.md'
           - Publication Decision: 'howto/publication_decision.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'

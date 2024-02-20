@@ -1,4 +1,4 @@
-# Deploying Patches
+# Prioritizing Patch Deployment
 
 Here we describe an example decision model for a Deployer deciding the priority of deploying a patch for a vulnerability
 in their infrastructure.
