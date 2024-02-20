@@ -1,5 +1,35 @@
 # Deploying Patches
 
+## Deployer Units of Work
+
+!!! info inline end "Deployer Unit of Work"
+
+    The unit of work for a Deployer is usually a single deployable patch or patch bundle such as a service pack.
+
+Deployers are usually in the position of receiving remediations or mitigations from their Suppliers for products they have deployed.
+They must then decide whether to deploy the remediation or mitigation to a particular instance (or not).
+Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the Supplier has engineered their release process to permit that degree of flexibility.
+For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
+
+The vulnerability management process for deployers has at its core the collation of data including
+
+- an inventory of deployed instances of product versions
+- a mapping of vulnerabilities to remediations or mitigations
+- a mapping of remediations and/or mitigations to product versions
+
+The first must be collected by the Deployer, while the latter two most often originate from the product Supplier.
+Managing this information is generally called **asset management**.
+
+!!! tip inline end "Relationship to asset management"
+
+    The relationship between SSVC and asset management is discussed further in [SSVC and Asset Management](asset_management.md).
+
+In turn, Deployers must resolve this information into specific actions in which a remediation or mitigation is slated for deployment to replace or modify a particular instance of the product.
+The Deployer tree in SSVC considers the mission and safety risks inherent to the category of systems to which those deployed instances belong.
+For this reason, we recommend that the pairing of remediation or mitigation to  a product version instance constitutes the unit of work most appropriate for the SSVC.
+
+## Deployer Decision Model
+
 A mitigation that successfully changes the value of a decision point may shift the priority of further action to a reduced state. An effective firewall or IDS rule coupled with an adequate change control process for rules may be enough to reduce the priority where no further action is necessary. In the area of Financial impacts, a better insurance policy may be purchased, providing necessary fraud insurance. Physicial well-being impact may be reduced by testing the physicial barriers designed to restrict a robot's ability to interact with humans. Mission impact could be reduced by correcting the problems identified in a disaster recover test-run of the alternate business flow. If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation if it later becomes available. The table below displays the action priorities for the deployer, which are similar to the supplier case.
 
 When remediation is available, usually the action is to apply it. When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability. Applying mitigations may change the value of decision points. For example, effective firewall and IDS rules may change [*System Exposure*](../reference/decision_points/system_exposure.md) from open to controlled. Financial well-being, a [*Safety Impact*](../reference/decision_points/safety_impact.md) category, might be reduced with adequate fraud detection and insurance. Physical well-being, also a [*Safety Impact*](../reference/decision_points/safety_impact.md) category, might be reduced by physical barriers that restrict a robot's ability to interact with humans. [*Mission Impact*](../reference/decision_points/mission_impact.md) might be reduced by introducing back-up business flows that do not use the vulnerable component. In a later section we combine [Mission and Situated Safety Impact](../reference/decision_points/human_impact.md) to reduce the complexity of the tree.

@@ -15,6 +15,19 @@ The *CERT guide to Coordinated Vulnerability Disclosure* provides something simi
     | Coordinate      | Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, publication, and assist another party. |
 
 
+## Coordinator Units of Work 
+
+!!! info inline end "Coordinator Unit of Work"
+
+    The unit of work for a Coordinator is usually a single report to be coordinated.
+
+Coordinator units of work tend to coincide with whatever arrives in a single report, which spans the range from a single
+vulnerability affecting a specific version of an individual product from one Supplier all the way to fundamental design 
+flaws in system specifications that could affect every Supplier and product that uses or implements the flawed specification.
+Coordinators may need to reorganize reports (e.g., merge, split, expand, or contract) according to their workflow demands.
+SSVC can be applied to either the initial report or to the results of such refinement.
+
+
 # Coordination Triage Decisions
 
 We take three priority levels in our decision about whether and how to coordinate a vulnerability [@householder2020cvd, 1.1] based on an incoming report:

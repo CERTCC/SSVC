@@ -26,6 +26,34 @@ we recommend that the professionals making genuine decisions do three things:
 
 If their decisions are explicit, then the decision makers can use the recommendations from this documentation that are relevant to them.
 
+# Enumerating Vulnerability Management Units of Work
+
+SSVC models the decision of
+“With what priority should the organization take action on a given vulnerability management work unit?”
+to be agnostic to whether or not a patch is available.
+In this page, we explain what we mean by a “work unit”.
+In the next page, we explain what we mean by “priority”.
+
+
+!!! note "Units of Work"
+
+    A unit of work means either remediating the vulnerability—such as applying a patch—or deploying a mitigation.
+    Both remediation and mitigations often address multiple identified vulnerabilities.
+    The unit of work may be different for different stakeholders.
+    The units of work can also change as the vulnerability response progresses through a stakeholder's process.
+
+We elucidate these ideas with the following examples.
+
+
+
+## Aggregation of SSVC across units of work
+
+SSVC users should answer the suggested questions for whatever discrete unit of work they are considering. There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent vulnerabilities. For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any difficulty in generalizing our advice to a more complex patch where appropriate.
+
+To further clarify terms, “Remediation occurs when the vulnerability is eliminated or removed. Mitigation occurs when the impact of the vulnerability is decreased without reducing or eliminating the vulnerability” [@dodi_8531_2020, section 3.5]. Examples of remediation include applying patches, fixes and upgrades; or removing the vulnerable software or system from operation. Mitigating actions may include software configuration changes, adding firewall ACLs, or otherwise limiting the system's exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
+
+
+
 ## Enumerating Action Priority
 
 SSVC models the decision of
