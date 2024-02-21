@@ -12,7 +12,7 @@ While other stakeholders may also have to make a publication decision, here we f
     **Coordinator** and the decision is **whether to publish an advisory about the vulnerability**.
 
 
-## Policy Choices and Publication Decisions
+## Policy Constraints and Publication Decisions
 
 !!! tip inline end "Other Stakeholders' Publication Decisions"
 
