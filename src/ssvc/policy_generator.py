@@ -90,7 +90,6 @@ class PolicyGenerator:
                 raise ValueError(f"Outcome weights must sum to 1.0, but sum to {total}")
 
             self.outcome_weights = outcome_weights
-
         logger.debug(f"Outcome weights: {self.outcome_weights}")
 
         self.policy: pd.DataFrame = None
@@ -219,7 +218,7 @@ class PolicyGenerator:
 
             # if we've assigned enough of this outcome, move on to the next outcome
             if (
-                outcome_idx < (len(self.outcomes.outcomes))
+                outcome_idx < (len(outcomes) - 1)
                 and outcome_counts[outcome_idx] <= assigned_counts[outcome_idx]
             ):
                 outcome_idx += 1
@@ -276,6 +275,56 @@ class PolicyGenerator:
         logger.debug(f"Enumerated vector: {vec}")
 
         self._enumerated_vec = vec
+
+    def _confirm_topological_order(self, node_order: list) -> None:
+        """
+        Throw an exception if the given node order is not a valid topological sort of the graph.
+
+        Args:
+            node_order: a list of nodes expected to be in topological order
+
+        Returns:
+            None: if the node order is a valid topological sort of the graph
+
+        Raises:
+            ValueError: If the node order is not a valid topological sort of the graph
+        """
+        # all nodes must be in the graph
+        for node in node_order:
+            if node not in self.G.nodes:
+                raise ValueError(f"Node order contains node {node} not in the graph")
+
+        for node in self.G.nodes:
+            if node not in node_order:
+                raise ValueError(f"Graph contains node {node} not in the node order")
+
+        node_idx = {node: i for i, node in enumerate(node_order)}
+
+        for u, v in self.G.edges:
+            if node_idx[u] > node_idx[v]:
+                raise ValueError(
+                    f"Node order is not a valid topological sort of the graph ({u} > {v} are out of order)"
+                )
+
+    def _is_topological_order(self, node_order: list) -> bool:
+        """
+        Determine whether the given node order is a valid topological sort of the graph.
+        This is the boolean version of _confirm_topological_order.
+
+        Args:
+            node_order: a list of nodes expected to be in topological order
+
+        Returns:
+            True: if the node order is a valid topological sort of the graph
+            False: if the node order is not a valid topological sort of the graph
+        """
+        try:
+            self._confirm_topological_order(node_order)
+        except ValueError as e:
+            logger.warning(e)
+            return False
+
+        return True
 
 
 def main():

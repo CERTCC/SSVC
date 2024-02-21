@@ -1,4 +1,4 @@
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -285,6 +285,40 @@ class MyTestCase(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             pg._validate_paths()
+
+    def test_is_topological_order(self):
+        pg = PolicyGenerator(
+            dp_group=self.dpg,
+            outcomes=self.og,
+        )
+        # just replace the graph with one we make up here
+        # 0 - 1 - 2 - 4 - 5
+        #      \- 3 -/
+
+        pg.G = nx.DiGraph()
+        pg.G.add_edges_from([(0, 1), (1, 2), (1, 3), (2, 4), (3, 4), (4, 5)])
+
+        self.assertTrue(pg._is_topological_order([0, 1, 2, 3, 4, 5]))
+        self.assertTrue(pg._is_topological_order([0, 1, 3, 2, 4, 5]))
+        self.assertFalse(pg._is_topological_order([0, 1, 2, 4, 3, 5]))
+        self.assertFalse(pg._is_topological_order([0, 1, 2, 3, 5]))
+
+    def test_confirm_topological_order(self):
+        pg = PolicyGenerator(
+            dp_group=self.dpg,
+            outcomes=self.og,
+        )
+        # just replace the graph with one we make up here
+        # 0 - 1 - 2 - 4 - 5
+        #      \- 3 -/
+
+        pg.G = nx.DiGraph()
+        pg.G.add_edges_from([(0, 1), (1, 2), (1, 3), (2, 4), (3, 4), (4, 5)])
+
+        self.assertIsNone(pg._confirm_topological_order([0, 1, 2, 3, 4, 5]))
+        self.assertIsNone(pg._confirm_topological_order([0, 1, 3, 2, 4, 5]))
+        self.assertRaises(ValueError, pg._confirm_topological_order, [0, 1, 2, 4, 3, 5])
+        self.assertRaises(ValueError, pg._confirm_topological_order, [0, 1, 2, 3, 5])
 
 
 if __name__ == "__main__":
