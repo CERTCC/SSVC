@@ -36,7 +36,7 @@ We will go through each step in detail.
    
     - [Patch Supplier Prioritization](../supplier_tree.md)
     - [Patch Deployer Prioritization](../deployer_tree.md)
-    - [Coordinator Triage](../coordination_decisions.md)
+    - [Coordinator Triage](../coordination_triage_decision.md)
     - [Coordinator Publication](../publication_decision.md)
 
 The first step in preparing to use SSVC is to choose a decision to model.
@@ -61,7 +61,7 @@ flowchart LR
 !!! example inline end
 
      In the [Patch Supplier](../supplier_tree.md) and [Patch Deployer](../deployer_tree.md) prioritization examples, the outcomes are:
-     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordination_decisions.md) example,
+     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordination_triage_decision.md) example,
      the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](../publication_decision.md) example,
      the outcomes are _Publish_ and _Do Not Publish_.
 

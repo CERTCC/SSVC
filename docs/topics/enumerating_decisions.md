@@ -12,8 +12,7 @@ Some decision makers may have different responsibilities in relation to differen
     - A web browser developer makes decisions about applying patches to DNS lookup libraries and transport layer security (TLS) libraries.
     - A video game developer makes decisions about applying patches released to the Unreal Engine.
     - A medical device developer makes decisions about applying patches to the Linux kernel.
-    
-    The list goes on.
+   
 
 
 One might view applying patches as including some development and distribution of the updated product.
@@ -21,7 +20,7 @@ Or one might take the converse view, that development includes updating librarie
 Either way, in each of these examples (mobile device apps, web browsers, video games, medical devices),
 we recommend that the professionals making genuine decisions do three things:
 
-!!! tip inline end "Bootstrapping SSVC"
+!!! example inline end "Bootstrapping SSVC"
 
     We provide a more detailed process for SSVC adoption in [Bootstrapping SSVC](../howto/bootstrap/index.md).
 
@@ -55,7 +54,7 @@ If their decisions are explicit, then the decision makers can use the recommenda
     - [Supplier deciding whether to create a patch](../howto/supplier_tree.md)
     - [Deployer deciding whether to deploy a patch](../howto/deployer_tree.md)
     - [Coordinator deciding whether to coordinate a case](../howto/coordination_triage_decision.md)
-    - [Coordinator deciding whether to publish about a case](../howto/coordination_publication.md)
+    - [Coordinator deciding whether to publish about a case](../howto/publication_decision.md)
 
     
 ## Enumerating Vulnerability Management Units of Work
@@ -63,12 +62,12 @@ If their decisions are explicit, then the decision makers can use the recommenda
 !!! example inline end "Stakeholder Units of Work"
 
     We provide a few examples of different stakeholders' units of work in the [_SSVC How-To_](../howto/index.md) section.
-    See the "Units of Work" section of each stakeholder's decision model for more information.
+    See the _Units of Work_ section of each stakeholder's decision model for more information.
     
     - [Supplier](../howto/supplier_tree.md)
     - [Deployer](../howto/deployer_tree.md)
     - [Coordinator Triage](../howto/coordination_triage_decision.md)
-    - [Coordinator Publication](../howto/coordination_publication.md)
+    - [Coordinator Publication](../howto/publication_decision.md)
 
 A unit of work means either remediating the vulnerability—such as applying a patch—or deploying a mitigation.
 Both remediation and mitigations often address multiple identified vulnerabilities.
@@ -100,15 +99,15 @@ difficulty in generalizing our advice to a more complex patch where appropriate.
 
 ## Enumerating Action Priority
 
-!!! tip inline end "Decision Outcomes and Action Priority"
+!!! example inline end "Decision Outcomes and Action Priority"
 
     We provide examples of different stakeholders' action priorities in the [_SSVC How-To_](../howto/index.md) section.
-    See the "Decision Outcomes" section of each stakeholder's decision model for more information.
+    See the _Decision Outcomes_ section of each stakeholder's decision model for more information.
     
     - [Supplier](../howto/supplier_tree.md)
     - [Deployer](../howto/deployer_tree.md)
     - [Coordinator Triage](../howto/coordination_triage_decision.md)
-    - [Coordinator Publication](../howto/coordination_publication.md)
+    - [Coordinator Publication](../howto/publication_decision.md)
 
 Structuring decisions about vulnerability management action priority is the core concept of SSVC.
 However, we also recognize that each stakeholder has different responsibilities and therefore different decisions to make.

@@ -1,7 +1,7 @@
 # Coordinator Publication Decision
 
 Coordinators have to make two decisions about publication of information about a vulnerability.
-The first is whether to coordinate the vulnerability, which we discuss in [Coordination Triage](coordination_triage_decision).
+The first is whether to coordinate the vulnerability, which we discuss in [Coordination Triage](coordination_triage_decision.md).
 The second decision is whether to publish information about a vulnerability.
 While other stakeholders may also have to make a publication decision, here we focus on the coordinator's decision.
 
