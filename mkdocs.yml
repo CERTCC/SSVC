@@ -30,7 +30,13 @@ nav:
     - Limitations: 'topics/limitations.md'
     - Future Work: 'topics/future_work.md'
   - SSVC How-To:
-    - Intro: 'howto/index.md'
+    - Overview: 'howto/index.md'
+    - Bootstrapping SSVC:
+      - Intro: 'howto/bootstrap/index.md'
+      - Prepare: 'howto/bootstrap/prepare.md'
+      - Collect: 'howto/bootstrap/collect.md'
+      - Use & Respond: 'howto/bootstrap/use.md'
+      - Summary: 'howto/bootstrap/summary.md'
     - Stakeholder Decision Models:
         - Supplier Decision Model: 'howto/supplier_tree.md'
         - Deployer Decision Model: 'howto/deployer_tree.md'
@@ -38,12 +44,6 @@ nav:
           - About Coordination: 'howto/coordination_intro.md'
           - Coordination Decision: 'howto/coordination_decisions.md'
           - Publication Decision: 'howto/publication_decision.md'
-    - Bootstrapping SSVC:
-      - Intro: 'howto/bootstrap/index.md'
-      - Prepare: 'howto/bootstrap/prepare.md'
-      - Collect: 'howto/bootstrap/collect.md'
-      - Use & Respond: 'howto/bootstrap/use.md'
-      - Summary: 'howto/bootstrap/summary.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
   - Reference:
