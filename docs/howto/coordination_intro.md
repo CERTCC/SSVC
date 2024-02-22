@@ -15,9 +15,9 @@ For more information about types of coordinators and their facilitation actions 
 
 The two decisions that CERT/CC makes as a coordinator that we will discuss in terms of SSVC are 
 
-1. The initial triage of vulnerability reports. This initial coordination decision is a prioritization decision, but it 
+1. [Coordination Triage](coordination_triage_decision.md) - The initial triage of vulnerability reports. This initial coordination decision is a prioritization decision, but it 
    does not have the same values as prioritization by a [deployer](deployer_tree.md) or [supplier](supplier_tree.md).
-2. Whether a publication about a vulnerability is warranted. The publication decision for us is a binary yes/no.
+2. [Publication](publication_decision.md) - Whether a publication about a vulnerability is warranted. The publication decision for us is a binary yes/no.
 
 These two decisions are not the entirety of vulnerability coordination, but we leave further details of the process for future work.
 

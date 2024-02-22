@@ -39,9 +39,14 @@ a vulnerability based on an incoming report:
     | Coordinate      | Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, publication, and assist another party. |
 
 
- - *Decline*—Do not act on the report. May take different forms, including ignoring the report as well as an acknowledgement to the reporter that we will not act and suggest the reporter to go to vendor or publish if unresponsive.
- - *Track*—Receive information about the vulnerability and monitor for status changes but do not take any overt actions.
- - *Coordinate*—Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), advise only, secondary coordinator (assist another lead coordinator). See [@csirtservices_v2] for additional vulnerability management services a coordinator may provide.
+ - *Decline* — Do not act on the report. May take different forms, including ignoring the report as well as an 
+   acknowledgement to the reporter that we will not act and suggest the reporter to go to vendor or publish if unresponsive.
+ - *Track* — Receive information about the vulnerability and monitor for status changes but do not take any overt actions.
+ - *Coordinate* — Take action on the report. “Action” may include any one or more of: technical analysis, reproduction,
+   notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message), 
+   advise only, secondary coordinator (assist another lead coordinator).
+   See the [FIRST CSIRT Services Framework](https://www.first.org/standards/frameworks/csirts/csirt_services_framework_v2.1#7-Service-Area-Vulnerability-Management)
+   for additional vulnerability management services a coordinator may provide.
 
 
 ## Coordinator Triage Decision Points
@@ -70,12 +75,15 @@ These two sets of exceptional circumstances mean that the seven decision points 
 tree can be compressed slightly, as the decision model below shows.
 
 The remaining five decision points are:
+
 - [Report Credibility](../reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
 - [Supplier Cardinality](../reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases. 
-- [Supplier Engagement](../reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it more likely that we will decline a case.
+- [Supplier Engagement](../reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
 - [Utility](../reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
 - [Public Safety Impact](../reference/decision_points/public_safety_impact.md): If the vulnerability has significant 
    public safety impact, then CERT/CC is more likely to coordinate the case.
+
+More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 {% include-markdown "../_generated/decision_points/report_public.md" %}
 {% include-markdown "../_generated/decision_points/supplier_contacted.md" %}

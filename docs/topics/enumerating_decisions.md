@@ -42,13 +42,14 @@ If their decisions are explicit, then the decision makers can use the recommenda
     their decisions. For example, one organization might need to map their decisions to three priority levels, while another
     might need to map their decisions to five priority levels.
 
-    Variations often arise from different organization goals or risk tolerance that alters the policy that maps the
+    Variation can also arise from different organization goals or risk tolerance that alters the policy mapping the
     decision points to priority outcomes. The decision points themselves are often the same for the 
     stakeholder-decision pairing, but the policy that maps the decision points to priority outcomes is different.
 
-    The salient information required to make a specific kind of decision in a specific context is often the same across organizations.  
+    The salient information required to make a specific kind of decision in a specific context is often the same across
+    organizations.
     For this reason, we have found it useful to think of the identity of a decision model as the combination of the
-    stakeholder role and the decision being modeled. We've provided a few examples of different stakeholders' decision models
+    _stakeholder role_ and the _decision_ being modeled. We've provided a few examples of different stakeholders' decision models
     in the [_SSVC How-To_](../howto/index.md) section:
 
     - [Supplier deciding whether to create a patch](../howto/supplier_tree.md)
@@ -71,8 +72,11 @@ If their decisions are explicit, then the decision makers can use the recommenda
 
 A unit of work means either remediating the vulnerability—such as applying a patch—or deploying a mitigation.
 Both remediation and mitigations often address multiple identified vulnerabilities.
-The unit of work may be different for different stakeholders.
+The unit of work may be different for different stakeholders: a supplier might be selecting individual vulnerabilities to fix,
+while a deployer is choosing whether or not to deploy a patch bundle that fixes multiple vulnerabilities.
+
 The units of work can also change as the vulnerability response progresses through a stakeholder's process.
+Coordinators might make triage decisions on individual reports, but then make publication decisions on a set of related cases at once.
 
 ### Aggregation of SSVC Across Units of Work
 
@@ -109,7 +113,7 @@ difficulty in generalizing our advice to a more complex patch where appropriate.
     - [Coordinator Triage](../howto/coordination_triage_decision.md)
     - [Coordinator Publication](../howto/publication_decision.md)
 
-Structuring decisions about vulnerability management action priority is the core concept of SSVC.
+Structuring decisions about vulnerability management action priority is a core concept of SSVC.
 However, we also recognize that each stakeholder has different responsibilities and therefore different decisions to make.
 Furthermore, even when stakeholders are making similar decisions, they may have different goals and constraints, which
 lead to different priorities.

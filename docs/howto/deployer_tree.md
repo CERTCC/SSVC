@@ -107,6 +107,13 @@ As opposed to mitigation, applying a remediation finishes an SSVC analysis of a 
 
 The Deployer Patch Deployment Priority decision model uses the following decision points:
 
+- [*Exploitation*](../reference/decision_points/exploitation.md) - A vulnerability with known exploitation is more likely to be given a higher priority.
+- [*System Exposure*](../reference/decision_points/system_exposure.md) - The more exposed a system is, the more likely it is to be given a higher priority.
+- [*Utility*](../reference/decision_points/utility.md) - The more useful a vulnerability is to an attacker, the more likely it is to be given a higher priority.
+- [*Human Impact*](../reference/decision_points/human_impact.md) - The more severe the human (safety, mission) impact of a vulnerability, the more likely it is to be given a higher priority.
+
+More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
+
 {% include-markdown "../_generated/decision_points/exploitation.md" %}
 {% include-markdown "../_generated/decision_points/system_exposure.md" %}
 {% include-markdown "../_generated/decision_points/utility.md" %}

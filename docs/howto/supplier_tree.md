@@ -64,6 +64,13 @@ We focus only on the priority of building the patch, and we consider four catego
 
 The decision to create a patch is based on the following decision points:
 
+- [*Exploitation*](../reference/decision_points/exploitation.md) - A vulnerabilty with known exploitation is more likely to be given a higher priority.
+- [*Utility*](../reference/decision_points/utility.md) - The more useful a vulnerability is to an attacker, the more likely it is to be given a higher priority.
+- [*Technical Impact*](../reference/decision_points/technical_impact.md) - The more severe the technical impact of a vulnerability, the more likely it is to be given a higher priority.
+- [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) - The more severe the public safety impact of a vulnerability, the more likely it is to be given a higher priority.
+
+More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
+
 {% include-markdown "../_generated/decision_points/exploitation.md" %}
 {% include-markdown "../_generated/decision_points/utility.md" %}
 {% include-markdown "../_generated/decision_points/technical_impact.md" %}
@@ -76,9 +83,9 @@ The decision to create a patch is based on the following decision points:
 
 ## Supplier Decision Model
 
-The example supplier tree shows an example prioritization policy for the supplier.
-Each decision tree is a compact way of expressing assertions or hypotheses about the relative priority of different situations.
-Each tree organizes how we propose a stakeholder should treat these situations. 
+The example supplier decision model below shows a prioritization policy for the supplier. 
+We display the decision model as a decision tree, which provides a compact representation of the policy, 
+showing the relative priority of different situations.
 
 {% include-markdown "../_includes/_tree_notation_tip.md" %}
 

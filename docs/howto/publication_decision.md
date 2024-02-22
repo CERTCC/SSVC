@@ -41,8 +41,10 @@ Regardless, the decision described in this section assumes the embargo period is
 
 The second point is related to the [Coordination Triage Decision](coordination_triage_decision.md) and the status of the vulnerability.
 CERT/CC only expects to publish about vulnerabilities with a [*coordinate*](coordination_triage_decision.md) status.
-While an issue that is tracked or declined may be reevaluated at a later date and status changed to [*coordinate*](coordination_triage_decision.md), unless that happens we would not publish about the vulnerability.
-Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision points or the decision itself from the [Coordination Triage Decision](coordination_triage_decision.md) in their publication decision.
+While an issue that is tracked or declined may be reevaluated at a later date and status changed to [*coordinate*](coordination_triage_decision.md),
+unless that happens we would not publish about the vulnerability.
+Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision 
+points or the decision itself from the [Coordination Triage Decision](coordination_triage_decision.md) in their publication decision.
 
 
 
@@ -53,7 +55,7 @@ Other organizations, such as [NVD](https://nvd.nist.gov/), would have different 
     The unit of work for the coordinator publication decision a single publication.
     For CERT/CC, this corresponds to a CERT Vulnerability Note.
 
-In the CERT/CC's vulnerability coordination practice, a single report leads to a single report which leads to a
+In the CERT/CC's vulnerability coordination practice, a single report leads to a single coordination case which leads to a
 single publication. Therefore the unit of work for the publication decision is often the same as the unit of work for the
 [coordination triage decision](coordination_triage_decision.md). 
 
@@ -96,16 +98,6 @@ For the CERT/CC, the publication decision is binary: publish or do not publish.
     | Do not publish   | Do not publish information about the vulnerability. |
     | Publish          | Publish information about the vulnerability. |
 
-In the past, the CERT/CC had multiple publication vehicles, including
-[Vulnerability Notes](https://www.kb.cert.org/vuls),
-[CERT Advisories](https://vuls.cert.org/confluence/display/historical/CERT+Advisories), and 
-[Current Activity](https://web.archive.org/web/20040411195130/http://www.cert.org/current/archive/2003/12/29/archive.html)
-entries.
-Each of these had different publication criteria. Had we been using SSVC at the time, we might
-have modeled the publication decision differently for each of these vehicles. Or we might have modeled the decision as
-a single decision with multiple outcomes, each of which would lead to a different publication vehicle. This is an example
-of how SSVC can be customized to the needs of the organization using it.
-
 !!! tip "The Publication Decision is Time Sensitive"
 
     The publication decision is always a decision at a point in time.
@@ -115,6 +107,20 @@ of how SSVC can be customized to the needs of the organization using it.
     It is not a decision never to publish in the future.
     
     One benefit of encoding the decision process in SSVC is the analysts can all agree on what new information would change the decision and prioritize maintaining awarenss of just those decision points. 
+
+!!! example "CERT/CC Publication Decision Outcomes Over Time"
+
+    The CERT/CC has a [long history](https://vuls.cert.org/confluence/display/historical/CERT+Advisory+CA-1988-01+ftpd+Vulnerability)
+    of publishing information about vulnerabilities.
+    In the past, the CERT/CC had multiple publication vehicles, including
+    [Vulnerability Notes](https://www.kb.cert.org/vuls),
+    [CERT Advisories](https://vuls.cert.org/confluence/display/historical/CERT+Advisories), and 
+    [Current Activity](https://web.archive.org/web/20040411195130/http://www.cert.org/current/archive/2003/12/29/archive.html)
+    entries.
+    Each of these had different publication criteria. Had we been using SSVC at the time, we might
+    have modeled the publication decision differently for each of these vehicles. Or we might have modeled the decision as
+    a single decision with multiple outcomes, each of which would lead to a different publication vehicle. This is an example
+    of how SSVC can be customized to the needs of the organization using it.
 
 
 ## Coordinator Publication Decision Points
@@ -127,6 +133,8 @@ and adds two new ones ([*Supplier Involvement*](../reference/decision_points/sup
 - [*Exploitation*](../reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
 - [*Public Value Added*](../reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be
   much for the CERT/CC to add, making us less likely to publish. 
+
+More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 {% include-markdown "../_generated/decision_points/supplier_involvement.md" %}
 {% include-markdown "../_generated/decision_points/exploitation.md" %}
