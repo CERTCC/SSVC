@@ -6,9 +6,13 @@ the information you need to make that decision, and the policy you want to use t
 Here is a diagram of the preparation process:
 
 ```mermaid
+---
+title: Prepare to Use SSVC Overview
+---
 flowchart
     subgraph prep [Prepare to use SSVC]
         dcd{{Choose Decision to Model}}
+        governance[Establish Governance]
         outcomes[Define Outcomes]
         decisionpoints[Define Inputs]
         dataeng[Data Mapping]
@@ -17,6 +21,8 @@ flowchart
         p[/Policy/]        
     end
     dcd --> outcomes
+    dcd --> governance
+    governance --> governance
     outcomes --> decisionpoints
     dcd --> decisionpoints
     decisionpoints --> dataeng
@@ -48,6 +54,9 @@ You can use one of these decisions, or you can define your own decision.
 <br/>
 
 ```mermaid
+---
+title: Choose a Decision Process
+---
 flowchart LR
     subgraph dd[Choose Decision]
         dcd{{Choose Decision to Model}}
@@ -73,6 +82,9 @@ We call the set of possible outcomes for a decision an outcome set.
 We have provided a number of example outcome sets in the SSVC documentation, but you can define your own outcome set to meet your needs.
 
 ```mermaid
+---
+title: Outcomes Definition Process
+---
 flowchart LR
     subgraph dd[Choose Decision]
     d[/Decision/]
@@ -116,6 +128,9 @@ Whether you choose from the existing decision points or define your own, the set
 decision is called a Decision Point Set.
 
 ```mermaid
+---
+title: Inputs Definition Process
+---
 flowchart LR
     subgraph dd[Choose Decision]
     d[/Decision/]
@@ -162,6 +177,9 @@ In fact, we find that it is often useful to represent policies in tabular form, 
 We have provided a number of example policies in the [SSVC documentation](../index.md), but you can define your own policy to meet your needs.
 
 ```mermaid
+---
+title: Policy Definition Process
+---
 flowchart LR
     subgraph do[Define Outcomes]
     oc[/Outcome Set/]
@@ -197,6 +215,9 @@ The resulting data map indicates which data sources are relevant to each decisio
 from each data source to assign a value to the decision point.
 
 ```mermaid 
+---
+title: Data Mapping Process
+---
 flowchart LR
     subgraph di[Define Inputs]
         dps[/Decision Point Set/]
@@ -233,6 +254,24 @@ flowchart LR
     containing the SLA data, and document that the script they wrote will assign a value to the _Service Level_ decision
     point based on the SLA data.
 
+
+!!! tip inline end "CERT RMM on Vulnerability Analysis and Resolution"
+
+    The process of maintaining SSVC decision models is a governance process.
+    Ideally, it should be part of a larger governance process for vulnerability analysis and response.
+    The _CERT Resilience Management Model, Version 1.2_
+    [Vulnerability Analysis and Resolution](https://insights.sei.cmu.edu/library/vulnerability-analysis-and-resolution-var-cert-rmm-process-area/)
+    ([VAR](https://insights.sei.cmu.edu/library/vulnerability-analysis-and-resolution-var-cert-rmm-process-area/)) chapter
+    covers a number of SSVC-related ideas:
+
+    - _VAR:SG2 Identify and Analyze Vulnerabilities_ covers data mapping, vulnerability prioritization,
+    and identifying vulnerable assets
+    - _VAR:SG3 Manage Exposure to Vulnerabilities_ addresses strategies for vulnerability management
+    - _VAR:GG2 Institutionalize a Managed Process_ provides considerable detail on establishing a governance process for
+      vulnerability analysis and resolution.
+
+    The entire CERT RMM collection can be found in the [SEI Digital Library](https://insights.sei.cmu.edu/library/cert-resilience-management-model-cert-rmm-collection/)
+
 ## Establish Governance
 
 The final step in preparing to use SSVC is to establish a governance process for the decision model.
@@ -253,6 +292,9 @@ Depending on the review, any necessary adjustments can be made to the outcomes, 
 or operational processes.
 
 ```mermaid
+---
+title: Governance Process for SSVC Use
+---
 flowchart LR
 
 subgraph Governance
