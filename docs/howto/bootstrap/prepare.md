@@ -190,7 +190,7 @@ flowchart LR
      because it has too few _Immediate_ outcomes to suit their policy.
      Therefore, the bank decides to reuse the same decision point set and outcome set but define their own policy.
      
-## Data Mapping
+## Map Data to Model Inputs
 
 In SSVC, data mapping is the process of defining what data can be used to assign a value to each decision point.
 The resulting data map indicates which data sources are relevant to each decision point, and how to interpret the data
