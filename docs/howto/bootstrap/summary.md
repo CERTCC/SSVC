@@ -12,9 +12,12 @@ The diagram below shows the complete process of using SSVC.
 ```mermaid
 flowchart
 start([Start])
+us{{Decide to use SSVC}}
 subgraph prep [Prepare to use SSVC]
 	dcd{{Choose Decision to Model}}
 	d[/Decision/]
+	eg{{Establish Governance Process}}
+	gp[[Governance Process]]
 	subgraph outcomes [Define Outcomes]
 		oc1[/Use available<br/>outcome sets?\]
 		dos{{Define Outcome Sets}}
@@ -55,7 +58,11 @@ subgraph runtime [Use SSVC]
 	oc[/Outcome/]
 end
 r[Vulnerability Response]
-start --> dcd
+start --> us
+us --> dcd
+us --> eg
+eg --> gp
+gp --> gp
 dcd --> d
 d --> oc1
 dps --> dd1
