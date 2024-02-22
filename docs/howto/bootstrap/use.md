@@ -134,14 +134,29 @@ A timely partial warning is better than a complete warning that is too late.
 
 The basic guidance is that the analyst should communicate all of the vulnerability's possible states, to the best of the analyst's knowledge.
 If the analyst knows nothing, all states are possible.
-For example, [Utility](../../reference/decision_points/utility.md) may be [laborious](../../reference/decision_points/utility.md), [efficient](../../reference/decision_points/utility.md), or [super effective](../../reference/decision_points/system_exposure.md).
-The reason a stakeholder might publish a decision point with all its possible values is that doing so expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
-A stakeholder might have information to communicate about some decision points but not others.
-If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special “I don't know” marker.
+
+!!! example "Communicating All Possible States"
+
+    For example, [Utility](../../reference/decision_points/utility.md) may be [laborious](../../reference/decision_points/utility.md), [efficient](../../reference/decision_points/utility.md), or [super effective](../../reference/decision_points/system_exposure.md).
+
+    {% include-markdown "../../_generated/decision_points/utility.md" %}
+
+    The reason a stakeholder might publish a decision point with all its possible values is that doing so expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
+    A stakeholder might have information to communicate about some decision points but not others.
+    If SSVC uses this format to list the values that are in play for a particular vulnerability, there is no need for a special “I don't know” marker.
 
 The merit in this “list all values” approach emerges when the stakeholder knows that the value for a decision point may be A or B, but not C.
-For example, say the analyst knows that [*Value Density*](../../reference/decision_points/value_density.md) is [diffuse](../../reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
-Then the analyst can usefully restrict [Utility](../../reference/decision_points/utility.md) to one of [laborious](../../reference/decision_points/utility.md) or [efficient](../../reference/decision_points/utility.md).
+
+!!! example "When Some Values Are Known (But Others Are Not)"
+
+    For example, say the analyst knows that [*Value Density*](../../reference/decision_points/value_density.md) is [diffuse](../../reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
+
+    {% include-markdown "../../_generated/decision_points/value_density.md" %}
+
+    {% include-markdown "../../_generated/decision_points/automatable.md" %}
+
+    Then the analyst can usefully restrict [Utility](../../reference/decision_points/utility.md) to one of [laborious](../../reference/decision_points/utility.md) or [efficient](../../reference/decision_points/utility.md).
+
 As discussed below, information can change over time.
 Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.
 
@@ -154,16 +169,20 @@ Some, such as [Utility](../../reference/decision_points/utility.md), are mostly 
 For [Utility](../../reference/decision_points/utility.md) to change, the market penetration or deployment norms of a vulnerable component would have to meaningfully change.
 Some, such as [Exploitation](../../reference/decision_points/exploitation.md), may change quickly but only in one direction.
 
+!!! tip inline end "Focus on Automation"
+
+    We expect that updating information over time will be most useful where the evidence-gathering process can be automated.
+    Organizations that have mature asset management systems will also find this update process more efficient than those that do not.
+    For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points.
+
 Both of these examples are out of the direct control of the vulnerability manager.
 Some, such as [System Exposure](../../reference/decision_points/system_exposure.md), change mostly due to actions taken by the organization managing the vulnerable component.
 If the actor who can usually trigger a relevant change is the organization using SSVC, then it is relatively straightforward to know when to update the SSVC decision.
-That is, the organization should reevaluate the decision when they make a relevant change.
+That is, the organization should re-evaluate the decision when they make a relevant change.
 For those decision points that are about topics outside the control of the organization using SSVC, then the organization should occasionally poll their information sources for changes.
 The cadence or rate of polls is different for each decision point, based on the expected rate of change.
 
-We expect that updating information over time will be most useful where the evidence-gathering process can be automated.
-Organizations that have mature asset management systems will also find this update process more efficient than those that do not.
-For an organization without a mature asset management system, we would recommend putting organizational resources into maturing that function before putting effort into regular updates to vulnerability prioritization decision points.
+#### Decision Points Not Under Direct Control
 
 The following decision points are usually out of the control of the organization running SSVC.
 As an initial heuristic, we suggest the associated polling frequency for each.
@@ -179,11 +198,15 @@ Risk tolerance and risk appetite are primarily reflected in the priority labels 
 | [*Public Safety Impact*](../../reference/decision_points/public_safety_impact.md) | every 1 year |
 
 
-The following decision points are usually in the control of the organization running SSVC and should be reevaluated when a relevant change is made or during annual reviews of assets.
+#### Decision Points Under Direct Control
+
+The following decision points are usually in the control of the organization running SSVC and should be re-evaluated when a relevant change is made or during annual reviews of assets.
 
  - [*Situated Safety Impact*](../../reference/decision_points/safety_impact.md)
  - [*Mission Impact*](../../reference/decision_points/mission_impact.md)
  - [*System Exposure*](../../reference/decision_points/system_exposure.md)
+
+#### Timestamping SSVC Information
 
 If SSVC information is all timestamped appropriately (as discussed earlier in this section), then an analyst can compare the timestamp to the current date and determine whether information is considered stale.
 The above rates are heuristic suggestions, and organizations may choose different ones.
