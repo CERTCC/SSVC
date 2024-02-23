@@ -18,7 +18,7 @@ nav:
         - Deployer Decision Model: 'howto/deployer_tree.md'
         - Coordinator Decision Models:
           - About Coordination: 'howto/coordination_intro.md'
-          - Coordination Decision: 'howto/coordination_decisions.md'
+          - Coordination Triage: 'howto/coordination_triage_decision.md'
           - Publication Decision: 'howto/publication_decision.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
@@ -33,8 +33,6 @@ nav:
       - Intro: 'topics/vulnerability_management_decisions.md'
       - Stakeholders: 'topics/enumerating_stakeholders.md'
       - Decisions: 'topics/enumerating_decisions.md'
-      - Units of Work: 'topics/units_of_work.md'
-      - Action Priority: 'topics/enumerating_actions.md'
       - Items With Same Priority: 'topics/items_with_same_priority.md'
       - Risk Tolerance and Priority: 'topics/risk_tolerance_and_priority.md'
       - Scope: 'topics/scope.md'

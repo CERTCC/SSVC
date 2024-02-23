@@ -6,9 +6,13 @@ the information you need to make that decision, and the policy you want to use t
 Here is a diagram of the preparation process:
 
 ```mermaid
+---
+title: Prepare to Use SSVC Overview
+---
 flowchart
     subgraph prep [Prepare to use SSVC]
         dcd{{Choose Decision to Model}}
+        governance[Establish Governance]
         outcomes[Define Outcomes]
         decisionpoints[Define Inputs]
         dataeng[Data Mapping]
@@ -17,6 +21,8 @@ flowchart
         p[/Policy/]        
     end
     dcd --> outcomes
+    dcd --> governance
+    governance --> governance
     outcomes --> decisionpoints
     dcd --> decisionpoints
     decisionpoints --> dataeng
@@ -36,7 +42,7 @@ We will go through each step in detail.
    
     - [Patch Supplier Prioritization](../supplier_tree.md)
     - [Patch Deployer Prioritization](../deployer_tree.md)
-    - [Coordinator Triage](../coordination_decisions.md)
+    - [Coordinator Triage](../coordination_triage_decision.md)
     - [Coordinator Publication](../publication_decision.md)
 
 The first step in preparing to use SSVC is to choose a decision to model.
@@ -48,6 +54,9 @@ You can use one of these decisions, or you can define your own decision.
 <br/>
 
 ```mermaid
+---
+title: Choose a Decision Process
+---
 flowchart LR
     subgraph dd[Choose Decision]
         dcd{{Choose Decision to Model}}
@@ -61,7 +70,7 @@ flowchart LR
 !!! example inline end
 
      In the [Patch Supplier](../supplier_tree.md) and [Patch Deployer](../deployer_tree.md) prioritization examples, the outcomes are:
-     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordination_decisions.md) example,
+     _Defer_, _Scheduled_, _Out-of-Cycle_, and _Immediate_. In the [Coordinator Triage](../coordination_triage_decision.md) example,
      the outcomes are _Coordinate_, _Track_, and _Decline_. In the [Coordinator Publication](../publication_decision.md) example,
      the outcomes are _Publish_ and _Do Not Publish_.
 
@@ -73,6 +82,9 @@ We call the set of possible outcomes for a decision an outcome set.
 We have provided a number of example outcome sets in the SSVC documentation, but you can define your own outcome set to meet your needs.
 
 ```mermaid
+---
+title: Outcomes Definition Process
+---
 flowchart LR
     subgraph dd[Choose Decision]
     d[/Decision/]
@@ -116,6 +128,9 @@ Whether you choose from the existing decision points or define your own, the set
 decision is called a Decision Point Set.
 
 ```mermaid
+---
+title: Inputs Definition Process
+---
 flowchart LR
     subgraph dd[Choose Decision]
     d[/Decision/]
@@ -162,6 +177,9 @@ In fact, we find that it is often useful to represent policies in tabular form, 
 We have provided a number of example policies in the [SSVC documentation](../index.md), but you can define your own policy to meet your needs.
 
 ```mermaid
+---
+title: Policy Definition Process
+---
 flowchart LR
     subgraph do[Define Outcomes]
     oc[/Outcome Set/]
@@ -190,13 +208,16 @@ flowchart LR
      because it has too few _Immediate_ outcomes to suit their policy.
      Therefore, the bank decides to reuse the same decision point set and outcome set but define their own policy.
      
-## Data Mapping
+## Map Data to Model Inputs
 
 In SSVC, data mapping is the process of defining what data can be used to assign a value to each decision point.
 The resulting data map indicates which data sources are relevant to each decision point, and how to interpret the data
 from each data source to assign a value to the decision point.
 
 ```mermaid 
+---
+title: Data Mapping Process
+---
 flowchart LR
     subgraph di[Define Inputs]
         dps[/Decision Point Set/]
@@ -232,3 +253,105 @@ flowchart LR
     They define a data map that indicates that the data source for the _Service Level_ decision point is the file 
     containing the SLA data, and document that the script they wrote will assign a value to the _Service Level_ decision
     point based on the SLA data.
+
+
+!!! tip inline end "CERT RMM on Vulnerability Analysis and Resolution"
+
+    The process of maintaining SSVC decision models is a governance process.
+    Ideally, it should be part of a larger governance process for vulnerability analysis and response.
+    The _CERT Resilience Management Model, Version 1.2_
+    [Vulnerability Analysis and Resolution](https://insights.sei.cmu.edu/library/vulnerability-analysis-and-resolution-var-cert-rmm-process-area/)
+    ([VAR](https://insights.sei.cmu.edu/library/vulnerability-analysis-and-resolution-var-cert-rmm-process-area/)) chapter
+    covers a number of SSVC-related ideas:
+
+    - _VAR:SG2 Identify and Analyze Vulnerabilities_ covers data mapping, vulnerability prioritization,
+    and identifying vulnerable assets
+    - _VAR:SG3 Manage Exposure to Vulnerabilities_ addresses strategies for vulnerability management
+    - _VAR:GG2 Institutionalize a Managed Process_ provides considerable detail on establishing a governance process for
+      vulnerability analysis and resolution.
+
+    The entire CERT RMM collection can be found in the [SEI Digital Library](https://insights.sei.cmu.edu/library/cert-resilience-management-model-cert-rmm-collection/)
+
+## Establish Governance
+
+The final step in preparing to use SSVC is to establish a governance process for the decision model.
+This process should ensure that the decision model remains relevant to the organization's needs and that the data 
+used to make decisions is accurate and up-to-date.
+It need not be complex or burdensome.
+
+A lightweight governance process might resemble a review of this _Prepare_ step for each decision modeled using
+SSVC. Each of the items we discussed above could be reviewed in turn, ensuring that:
+
+- The decision itself remains relevant to the organization
+- The outcomes remain relevant to the decision
+- The decision points remain relevant to the decision
+- The policy remains relevant to the organization's needs
+- The data sources remain relevant to informing the decision points
+
+Depending on the review, any necessary adjustments can be made to the outcomes, decision points, policy, data map, 
+or operational processes.
+
+```mermaid
+---
+title: Governance Process for SSVC Use
+---
+flowchart LR
+
+subgraph Governance
+    direction LR
+    ro[/Modify Outcomes?\]
+    mdp[/Modify Decision Points?\]
+    rp[/Modify Policy?\]
+    rds[/Modify Data Mapping?\]
+    oc[/Outcomes/]
+    dp[/Decision Points/]
+    dm[/Data Map/]
+    um{{Update Policy}}
+    po[/Policy/]
+end
+
+ro -->|yes| oc
+oc --> um
+ro -->|no| mdp
+mdp -->|yes| dp
+dp --> um
+mdp -->|no| rp
+rp -->|yes| um
+rp -->|no| rds
+rds -->|yes| dm
+um --> po
+```
+
+!!! example "A Simple Governance Process asks Questions"
+
+    A simple governance process might include regular reviews of the decision model intended to answer the following 
+    questions, starting with the decision itself:
+
+    - Did we model the right decision(s)?
+
+        - Are there new decisions we need to model?
+        - Do we need to maintain the existing decision models?
+
+    If a new decision is to be modeled, the process would start over with the entire *Prepare* step.
+
+    Then, for each decision model already in use:
+
+    - Are the outcomes still relevant?
+    - Are the decision points in the model still relevant?
+    
+        - Are there decision points that are not as useful as we thought they would be?
+        - Are there new decision points we should add?
+    
+    - Does the policy still reflect our understanding and expectations of how we want to make this decision?
+
+        - Have there been instances where the policy has led to a decision that we later regretted?
+        - Are there new constraints or requirements that the policy mapping does not capture?
+
+    - Do we have the right data to inform the decision points in the decision model?
+        
+        - Are there new data sources we should consider?
+        - Are there data sources we are using that are no longer relevant?
+        - Is our data mapping still appropriate?
+
+
+
