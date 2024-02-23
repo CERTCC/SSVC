@@ -1,5 +1,17 @@
 # Introduction
 
+!!! tip inline end "Prerequisites"
+
+    The [Understanding SSVC](index.md) section assumes that you have
+    
+    - Basic familiarity with SSVC
+    - An interest in learning more about the details of SSVC
+
+    If you are unfamiliar with SSVC, we suggest you start with the [Learning SSVC](../tutorials/index.md) section.
+    [SSVC How-To](../howto/index.md) provides practical guidance for implementing SSVC in your organization.
+    For technical reference, see [Reference](../reference/index.md).
+
+
 This documentation defines a testable Stakeholder-Specific Vulnerability Categorization (SSVC) for prioritizing actions during vulnerability management.
 The stakeholders in vulnerability management are diverse.
 This diversity must be accommodated in the main functionality, rather than squeezed into hard-to-use optional features.

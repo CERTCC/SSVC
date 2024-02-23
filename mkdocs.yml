@@ -5,6 +5,23 @@ nav:
   - Learning SSVC:
     - Intro: 'tutorials/index.md'
     - SSVC Calculator: 'ssvc-calc/index.html'
+  - SSVC How-To:
+    - Overview: 'howto/index.md'
+    - Getting Started with SSVC:
+      - Intro: 'howto/bootstrap/index.md'
+      - Prepare: 'howto/bootstrap/prepare.md'
+      - Collect: 'howto/bootstrap/collect.md'
+      - Use & Respond: 'howto/bootstrap/use.md'
+      - Summary: 'howto/bootstrap/summary.md'
+    - Stakeholder Decision Models:
+        - Supplier Decision Model: 'howto/supplier_tree.md'
+        - Deployer Decision Model: 'howto/deployer_tree.md'
+        - Coordinator Decision Models:
+          - About Coordination: 'howto/coordination_intro.md'
+          - Coordination Triage: 'howto/coordination_triage_decision.md'
+          - Publication Decision: 'howto/publication_decision.md'
+    - Customizing SSVC: 'howto/tree_customization.md'
+    - Acuity Ramp: 'howto/acuity_ramp.md'
   - Understanding SSVC:
     - Intro: 'topics/index.md'
     - State of Practice: 'topics/state_of_practice.md'
@@ -16,8 +33,6 @@ nav:
       - Intro: 'topics/vulnerability_management_decisions.md'
       - Stakeholders: 'topics/enumerating_stakeholders.md'
       - Decisions: 'topics/enumerating_decisions.md'
-      - Units of Work: 'topics/units_of_work.md'
-      - Action Priority: 'topics/enumerating_actions.md'
       - Items With Same Priority: 'topics/items_with_same_priority.md'
       - Risk Tolerance and Priority: 'topics/risk_tolerance_and_priority.md'
       - Scope: 'topics/scope.md'
@@ -29,23 +44,6 @@ nav:
     - Information Sources: 'topics/information_sources.md'
     - Limitations: 'topics/limitations.md'
     - Future Work: 'topics/future_work.md'
-  - SSVC How-To:
-    - Overview: 'howto/index.md'
-    - Bootstrapping SSVC:
-      - Intro: 'howto/bootstrap/index.md'
-      - Prepare: 'howto/bootstrap/prepare.md'
-      - Collect: 'howto/bootstrap/collect.md'
-      - Use & Respond: 'howto/bootstrap/use.md'
-      - Summary: 'howto/bootstrap/summary.md'
-    - Stakeholder Decision Models:
-        - Supplier Decision Model: 'howto/supplier_tree.md'
-        - Deployer Decision Model: 'howto/deployer_tree.md'
-        - Coordinator Decision Models:
-          - About Coordination: 'howto/coordination_intro.md'
-          - Coordination Decision: 'howto/coordination_decisions.md'
-          - Publication Decision: 'howto/publication_decision.md'
-    - Customizing SSVC: 'howto/tree_customization.md'
-    - Acuity Ramp: 'howto/acuity_ramp.md'
   - Reference:
     - Intro: 'reference/index.md'
     - Decision Points:

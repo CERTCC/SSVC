@@ -10,11 +10,12 @@ The diagram below shows the complete process of using SSVC.
 
 
 ```mermaid
-flowchart
+flowchart TD
 start([Start])
 subgraph prep [Prepare to use SSVC]
 	dcd{{Choose Decision to Model}}
 	d[/Decision/]
+    l4((1))
 	subgraph outcomes [Define Outcomes]
 		oc1[/Use available<br/>outcome sets?\]
 		dos{{Define Outcome Sets}}
@@ -22,6 +23,7 @@ subgraph prep [Prepare to use SSVC]
 		cos{{Choose Outcome Set}}
 		os[/Outcome Set/]
 	end
+    l5((1))
 	subgraph decisionpoints [Define Inputs]
 		dp1[/Use available<br/>decision points?\]
 		ddp{{Define Decision Points}}
@@ -29,6 +31,7 @@ subgraph prep [Prepare to use SSVC]
 		cdp{{Choose Decision Points}}
 		dps[/Decision Point Set/]
 	end
+    l6((1))
 	subgraph dataeng [Data Mapping]
 		dd1[/Use existing data?\]
 		dpm[/Data Map/]
@@ -36,10 +39,17 @@ subgraph prep [Prepare to use SSVC]
 		dd{{Define Data}}
 		ddf[/Data Definition/]
 	end
+    l7((1))
 	subgraph policy [Policy Development]
 		dfp{{Define Policy}}
 		p[/Policy/]
 	end
+    subgraph gov [Governance]
+        eg{{Establish Governance Process}}
+        gp[[Governance Process]]
+    end
+    l3((1))
+
 end
 subgraph dataops [Data Operations]
 	cd[Collect Data]
@@ -56,7 +66,13 @@ subgraph runtime [Use SSVC]
 end
 r[Vulnerability Response]
 start --> dcd
+start --> eg
+eg --> gp
+gp -->|ongoing| gp
+gp --> l3
+
 dcd --> d
+l4 --> oc1
 d --> oc1
 dps --> dd1
 oc1 -->|y| oss
@@ -71,8 +87,10 @@ dpt --> cdp
 cdp --> dps
 cos --> os
 oss --> cos
+l7 --> dfp
 os --> dfp
 os --> dp1
+l5 --> dp1
 d --> dp1
 dps --> dp2d
 dp2d --> dpm
@@ -93,7 +111,8 @@ p --> ap
 dp --> ap
 ap --> oc
 oc --> r
-r --> l1((1))
-l2((1)) --> cd
+r --> l1((2))
+l2((2)) --> cd
+l6 --> dd1
 ```
 

@@ -55,3 +55,9 @@ We welcome your feedback and contributions to SSVC. Here are some ways you can g
 !!! tip "Footer Icons"
 
     The icons in the footer of each page also provide links to engage with the SSVC community.
+
+!!! tip "Github Tips for New Contributors"
+
+    If you are new to contributing to open source projects on Github, we've assembled some pointers
+    to help you get started in the [Github Tips for SSVC contributors](https://github.com/CERTCC/SSVC/wiki/Github-Tips-for-SSVC-contributors)
+
