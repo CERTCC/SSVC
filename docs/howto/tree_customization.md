@@ -34,9 +34,9 @@ For example, a vulnerability with
 and [efficient](../reference/decision_points/utility.md)
 [Utility](../reference/decision_points/utility.md)
 might be handled with
-[*scheduled*](../topics/enumerating_actions.md)
+[*scheduled*](../howto/deployer_tree.md)
 priority by one team and
-[*out-of-cycle*](../topics/enumerating_actions.md)
+[*out-of-cycle*](../howto/deployer_tree.md)
 priority by another.
 As long as each team has documented this choice and is consistent in its own application of its own choice, the two teams can legitimately have different appetites for vulnerability risk.
 SSVC enables teams with such different risk appetites to discuss and communicate precisely the circumstances where they differ.
