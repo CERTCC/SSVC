@@ -9,7 +9,7 @@ mkdocstrings-python==1.8.0
 mkdocs-print-site-plugin==2.3.6
 dataclasses-json==0.6.4
 thefuzz==0.22.1
-pandas==2.2.0
+pandas==2.2.1
 scikit-learn==1.4.1.post1
 jsonschema==4.21.1
 networkx==3.2.1
