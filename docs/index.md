@@ -12,7 +12,6 @@ SSVC is designed to be used by any stakeholder in the vulnerability management p
     While it is intended to eventually be the official documentation for SSVC, it is not yet complete.
     For the latest version of SSVC documentation, see the [GitHub repository](https://github.com/CERTCC/SSVC).
 
-
 ## Where to go from here
 
 We have organized the SSVC documentation into four main sections:
