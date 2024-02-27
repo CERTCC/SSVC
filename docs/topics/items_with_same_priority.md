@@ -8,7 +8,7 @@ The priority is equivalent.
 !!! tip "This is not CVSS"
 
     This approach may feel uncomfortable since CVSS gives the appearance of a finer grained priority.
-    CVSS appears to say, 
+    CVSS appears to say,  
     > Not just 4.0 to 6.9 is ‘medium’ severity, but 4.6 is more severe than 4.5.
     However, CVSS is designed to be accurate only within +/- 0.5,
     and, in practice, is scored with errors of around +/- 1.5 to 2.5 [@allodi2018effect, see Figure 1].
