@@ -9,8 +9,8 @@ deciders: adh, jspring
 
 ## Context and Problem Statement
 
-Two SSVC decision points happen to match two CVSS v4 supplemental metrics. 
-This ADR is to make clear what the SSVC support plan is in regards to this overlap for future versions of these decision points and metrics. 
+Two SSVC decision points happen to match two CVSS v4 supplemental metrics.
+This ADR is to make clear what the SSVC support plan is in regards to this overlap for future versions of these decision points and metrics.
 
 
 ## Decision Drivers
@@ -42,7 +42,7 @@ While SSVC may mirror any changes the CVSS SIG makes to these metrics in the fut
 
 ### Confirmation
 
-The implementation of this decision is confirmed by continued use of SSVC community change management proceedures for these decision points independent of formal updates to CVSS. 
+The implementation of this decision is confirmed by continued use of SSVC community change management proceedures for these decision points independent of formal updates to CVSS.
 
 ## More Information
 
