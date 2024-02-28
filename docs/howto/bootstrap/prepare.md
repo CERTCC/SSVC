@@ -3,7 +3,11 @@
 Preparing to use SSVC involves defining a decision you want to make,
 the information you need to make that decision, and the policy you want to use to make that decision.
 
-During the bootstrapping process, internal discussions regarding what segments of an organization are to handle the decision making process need to be defined prior to engagement. Risk owners must be involved in the development of the risk management policy represented by SSVC. ITSM (Information Technology Services Management) and IT security should have contributing members from either side be involved in the decision process as well. These stakeholder roles and awareness within them may be different depending on the organization, however the knowledge present within them is essential to accurate decision making. SSVC usage involves stakeholders in different areas, and adoption is not a decision made unilaterally by any single one in an organization.
+During the bootstrapping process, internal discussions regarding what segments of an organization are to handle the decision making process need to be defined
+prior to engagement. Risk owners must be involved in the development of the risk management policy represented by SSVC. ITSM (Information Technology Services 
+Management) and IT security should have contributing members from either side be involved in the decision process as well. These stakeholder roles and awareness 
+within them may be different depending on the organization, however the knowledge present within them is essential to accurate decision making. SSVC usage 
+involves stakeholders in different areas, and adoption is not a decision made unilaterally by any single one in an organization.
 
 Here is a diagram of the preparation process:
 
