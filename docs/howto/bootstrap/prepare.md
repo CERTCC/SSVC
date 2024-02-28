@@ -3,6 +3,22 @@
 Preparing to use SSVC involves defining a decision you want to make,
 the information you need to make that decision, and the policy you want to use to make that decision.
 
+!!! tip "Stakeholder Involvement"
+
+    Multiple organizational stakeholders should be involved in the SSVC adoption process.
+    
+    - _Risk Owners_ must be involved in the development of the risk management policy represented by SSVC.
+    - _Vulnerability Management_ stakeholders, including IT Security and IT Service Management (ITSM), should 
+      be involved in the decision modeling and data mapping processes as well.
+    - _Other Roles_ depend on the organization and specific decision models being developed. For example, a Supplier
+      organization could include development and possibly service operations roles in the decision modeling process.
+      A Deployer organization might include safety and incident response roles.
+
+    Stakeholder roles and responsibilities can vary across organizations, however the contextual knowledge they can
+    bring to the decision making process is essential. SSVC adoption is not just a process for the security team or
+    technical staff.
+
+
 Here is a diagram of the preparation process:
 
 ```mermaid
