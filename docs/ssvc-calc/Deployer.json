@@ -507,168 +507,168 @@
         "Priority": "out-of-cycle"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "no",
         "Human Impact": "low",
         "Priority": "defer"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "no",
         "Human Impact": "medium",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "no",
         "Human Impact": "high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "no",
         "Human Impact": "very high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "yes",
         "Human Impact": "low",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "yes",
         "Human Impact": "medium",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "yes",
         "Human Impact": "high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "small",
         "Automatable": "yes",
         "Human Impact": "very high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "no",
         "Human Impact": "low",
         "Priority": "defer"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "no",
         "Human Impact": "medium",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "no",
         "Human Impact": "high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "no",
         "Human Impact": "very high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "yes",
         "Human Impact": "low",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "yes",
         "Human Impact": "medium",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "yes",
         "Human Impact": "high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "controlled",
         "Automatable": "yes",
         "Human Impact": "very high",
         "Priority": "out-of-cycle"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "no",
         "Human Impact": "low",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "no",
         "Human Impact": "medium",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "no",
         "Human Impact": "high",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "no",
         "Human Impact": "very high",
         "Priority": "out-of-cycle"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "yes",
         "Human Impact": "low",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "yes",
         "Human Impact": "medium",
         "Priority": "scheduled"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "yes",
         "Human Impact": "high",
         "Priority": "out-of-cycle"
       },
       {
-        "Exploitation": "PoC",
+        "Exploitation": "poc",
         "Exposure": "open",
         "Automatable": "yes",
         "Human Impact": "very high",
