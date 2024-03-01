@@ -110,7 +110,7 @@
     }
     #mpopup {
 	font-size: smaller;
-	max-width: 400px;
+	max-width: 300px;
     }
     #mgraph {
 	margin-left: 600px;
@@ -350,8 +350,9 @@ body.whitebody
     max-width:40%;
 }
 #mpopup {
-    max-width: 600px;
+    max-width: 400px;
     overflow-y: auto;
+    text-shadow: none;
     /* Just one greater than modal */
     z-index: 1051;
     display: none;
@@ -452,4 +453,7 @@ pre {
 }
 .btn-dark.btn-bordered:hover {
     border: 2px solid white;
+}
+textPath {
+cursor: pointer;
 }
