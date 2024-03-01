@@ -146,6 +146,9 @@ markdown_extensions:
   - pymdownx.tilde
   - tables
 extra:
+  analytics:
+    provider: google
+    property: G-87WECW6HCS
   social:
     - icon: material/message-question
       link: https://github.com/CERTCC/SSVC/issues/new?template=question.md
