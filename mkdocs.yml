@@ -1,5 +1,7 @@
 site_name: "SSVC: Stakeholder-Specific Vulnerability Categorization"
-copyright: Copyright &copy; 2024 Carnegie Mellon University.
+copyright: >
+  Copyright &copy; 2019-2024 Carnegie Mellon University.
+  <br/><a href="#__consent">Change cookie settings</a>
 nav:
   - Home: 'index.md'
   - Learning SSVC: 'tutorials/index.md'
@@ -146,6 +148,16 @@ markdown_extensions:
   - pymdownx.tilde
   - tables
 extra:
+  analytics:
+    provider: google
+    property: G-87WECW6HCS
+  consent:
+    title: About our use of cookies on this site
+    description: >-
+      We use cookies to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better. 
+      See our <a href="https://www.sei.cmu.edu/legal/privacy-notice/index.cfm">Privacy Notice</a> for more.
   social:
     - icon: material/message-question
       link: https://github.com/CERTCC/SSVC/issues/new?template=question.md
