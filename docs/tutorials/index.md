@@ -2,6 +2,12 @@
 
 {== todo add intro ==}
 
+!!! tip "SSVC Calculator"
+
+    We've created a simple [SSVC Calculator](../ssvc-calc/index.md) to help you understand how SSVC decision models work.
+    The decisions modeled in the calculator are based on the [Supplier](../howto/supplier_tree.md),
+    [Deployer](../howto/deployer_tree.md), and [Coordinator](../howto/coordination_intro.md) decision models.
+
 ## Videos
 
 | Source | Video                                                                                                                            |

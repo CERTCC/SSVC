@@ -2,9 +2,7 @@ site_name: "SSVC: Stakeholder-Specific Vulnerability Categorization"
 copyright: Copyright &copy; 2024 Carnegie Mellon University.
 nav:
   - Home: 'index.md'
-  - Learning SSVC:
-    - Intro: 'tutorials/index.md'
-    - SSVC Calculator: 'ssvc-calc/index.html'
+  - Learning SSVC: 'tutorials/index.md'
   - SSVC How-To:
     - Overview: 'howto/index.md'
     - Getting Started with SSVC:
@@ -73,7 +71,7 @@ nav:
         - Policy Generator: 'reference/code/policy_generator.md'
         - Outcomes: 'reference/code/outcomes.md'
         - Doctools: 'reference/code/doctools.md'
-  - Calculator: 'ssvc-calc/index.html'
+  - Calculator: 'ssvc-calc/index.md'
   - About:
     - Intro: 'about/index.md'
     - Community Engagement: 'about/contributing.md'

@@ -1,4 +1,4 @@
-/* css version 2.2.7 */
+/* css version 2.2.8 */
 .ssvcvector {
     color: #7d1d1d;
 }
@@ -16,7 +16,7 @@
     padding: 8px;
 }
 .exportdiv {
-    top: 0px;
+    top: 250px;
     left: 30%;
     border-radius: 6px;
     border: 1px solid #333;    
