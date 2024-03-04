@@ -14,7 +14,9 @@ This is a compound decision point, therefore it is a notational convenience.
 *Utility* is independent from the state of [*Exploitation*](exploitation.md), which measures whether a set of adversaries have ready access to exploit code or are in fact exploiting the vulnerability.
 In economic terms, [*Exploitation*](exploitation.md) measures whether the **capital cost** of producing reliable exploit code has been paid or not.
 *Utility* estimates the **marginal cost** of each exploitation event.
-More plainly, *Utility* is about how much an adversary might benefit from a campaign using the vulnerability in question, whereas [*Exploitation*](exploitation.md) is about how easy it would be to start such a campaign or if one is already underway.
+
+Whereas [*Exploitation*](exploitation.md) is about how easy it would be to start such a campaign or if one is already underway,
+*Utility* is about how much an adversary might benefit from a campaign using the vulnerability in question.
 
 Heuristically, we base Utility on a combination of the value density of vulnerable components and whether potential exploitation is automatable.
 This framing makes it easier to analytically derive these categories from a description of the vulnerability and the affected component.
