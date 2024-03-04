@@ -76,7 +76,7 @@ Some sources, such as CWE or existing asset management solutions, would require 
 ### Automatable and Value Density
 
 The SSVC decision point that we have not identified an information source for is [Utility](../reference/decision_points/utility.md).
-[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md), so the question is what a sort of feed could support each of those decision points.
+[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md), so the question is what sort of feed could support each of those decision points.
 
 A feed is plausible for both of these decision points.
 The values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
