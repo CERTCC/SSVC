@@ -1,6 +1,6 @@
 # Use SSVC
 
-The [preparation](prepare.md) is complete, data is being [collected](collect.md), and now it is time to use
+The [preparation](prepare.md) is complete, data has been [collected](collect.md), and now it is time to use
 SSVC to make decisions about how to respond to vulnerabilities.
 
 ```mermaid
@@ -79,7 +79,7 @@ flowchart LR
     The service providers in previous examples might need to notify customers of the vulnerability and schedule
     maintenance windows to apply patches.
     Medical device manufacturers might need to develop patches, notify regulators of the vulnerability, and provide 
-    instructions to hospital users for applying patches.
+    instructions to deployers (e.g., device maintainers at hospitals) for applying patches.
     SSVC does not prescribe any particular response process, but it does provide a structured way to make decisions 
     within the response process.
 
@@ -149,13 +149,18 @@ The merit in this “list all values” approach emerges when the stakeholder kn
 
 !!! example "When Some Values Are Known (But Others Are Not)"
 
-    For example, say the analyst knows that [*Value Density*](../../reference/decision_points/value_density.md) is [diffuse](../../reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
+    Extending the previous example, say the analyst knows that [*Value Density*](../../reference/decision_points/value_density.md) is [diffuse](../../reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
 
     {% include-markdown "../../_generated/decision_points/value_density.md" %}
 
     {% include-markdown "../../_generated/decision_points/automatable.md" %}
 
-    Then the analyst can usefully restrict [Utility](../../reference/decision_points/utility.md) to one of [laborious](../../reference/decision_points/utility.md) or [efficient](../../reference/decision_points/utility.md).
+    Therefore they could rule out [super effective](../../reference/decision_points/utility.md) 
+    for [Utility](../../reference/decision_points/utility.md)
+    but not [laborious](../../reference/decision_points/utility.md)
+    or [efficient](../../reference/decision_points/utility.md).
+    In this case, the analyst could usefully restrict [Utility](../../reference/decision_points/utility.md) to one of [laborious](../../reference/decision_points/utility.md) or [efficient](../../reference/decision_points/utility.md)
+    while leaving [Automatability](../../reference/decision_points/automatable.md) open.
 
 As discussed below, information can change over time.
 Partial information may be, but is not required to be, sharpened over time into a precise value for the decision point.

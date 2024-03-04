@@ -37,6 +37,8 @@ Three prominent examples are CVSS impact base metrics, CWE, and CPE.
 
 ### CVSS and Technical Impact
 
+{% include-markdown "../_includes/_cvss4_question.md" heading-offset=1 %}
+
 [*Technical Impact*](../reference/decision_points/technical_impact.md) is directly related to the CVSS impact metric group.
 However, this metric group cannot be directly mapped to [*Technical Impact*](../reference/decision_points/technical_impact.md) in CVSS version 3  because of the Scope metric.
 [*Technical Impact*](../reference/decision_points/technical_impact.md) is only about adversary control of the vulnerable component.
@@ -44,7 +46,7 @@ If the CVSS version 3 value of “Scope” is “Changed,” then the impact met
 If confidentiality, integrity, and availability metrics are all “high” then [*Technical Impact*](../reference/decision_points/technical_impact.md) is [*total*](../reference/decision_points/technical_impact.md), as long as the impact metrics in CVSS are clearly about just the vulnerable component.
 However, the other values of the CVSS version 3 impact metrics cannot be mapped directly to [*partial*](../reference/decision_points/technical_impact.md) because of CVSS version 3.1 scoring guidance.
 Namely, “only the increase in access, privileges gained, or other negative outcome as a result of successful exploitation should be considered” [@cvss_v3-1].
-The example given is that if an attacker already has read access, but gains all other access through the exploit, then read access didn't change and the confidentiality metric score should be “None” .
+The example given is that if an attacker already has read access, but gains all other access through the exploit, then read access didn't change and the confidentiality metric score should be “None”.
 However, in this case, SSVC would expect the decision point to be evaluated as [*total*](../reference/decision_points/technical_impact.md) because as a result of the exploit the attacker gains total control of the device, even though they started with partial control.
 
 ### CWE and Exploitation
@@ -74,13 +76,19 @@ Some sources, such as CWE or existing asset management solutions, would require 
 ### Automatable and Value Density
 
 The SSVC decision point that we have not identified an information source for is [Utility](../reference/decision_points/utility.md).
-[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md), so the question is what a sort of feed could support each of those decision points.
+[Utility](../reference/decision_points/utility.md) is composed of [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md), so the question is what sort of feed could support each of those decision points.
 
 A feed is plausible for both of these decision points.
 The values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md) are both about the relationship between a vulnerability, the attacker community, and the aggregate state of systems connected to the Internet.
 While that is a broad analysis frame, it means that any community that shares a similar set of adversaries and a similar region of the Internet can share the same response to both decision points.
 An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md).
 These factors suggest a market for an information feed about these decision points is a viable possibility.
+
+!!! note inline end "CVSS v4, Automatable, and Value Density"
+
+    It is not coincidental that the CVSS v4 supplemental metrics include [Automatable](https://www.first.org/cvss/v4.0/specification-document#Automatable-AU)
+    (AU) and [Value Density](https://www.first.org/cvss/v4.0/specification-document#Value-Density-V) (V).
+    The SSVC team collaborated in the development of these metrics with the [FIRST CVSS Special Interest Group](https://www.first.org/cvss).
 
 At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md).
 It would be a complex natural language processing task.

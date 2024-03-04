@@ -9,6 +9,8 @@ This section discusses the relationship between these various systems and SSVC.
 
 ## CVSS
 
+{% include-markdown "../_includes/_cvss4_question.md" heading-offset=1 %}
+
 CVSS version 3.1 has three metric groups: base, environmental, and temporal.
 The metrics in the base group are all required, and are the only required metrics.
 In connection with this design, CVSS base scores and base metrics are far and away the most commonly used and communicated.
@@ -26,7 +28,7 @@ In these three examples, the modifications tend to add complexity to CVSS by add
 Product vendors have varying degrees of adaptation of CVSS for development prioritization, including but not limited to [Red Hat](https://access.redhat.com/security/updates/classification), [Microsoft](https://www.microsoft.com/en-us/msrc/security-update-severity-rating-system), and [Cisco](https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html).
 The vendors codify CVSS’s recommended qualitative severity rankings in different ways, and Red Hat and Microsoft make the user interaction base metric more important.
 
-> Exploitability metrics (Base metric group)
+### Exploitability metrics (Base metric group)
 
 The four metrics in this group are Attack Vector, Attack Complexity, Privileges Required, and User Interaction.
 This considerations may likely be involved in the [Automatability](../reference/decision_points/automatable.md) decision point.
@@ -46,7 +48,7 @@ Most notably the concept of vulnerability chaining is addressed in [Automatabili
 A vulnerability is evaluated based on an observable outcome of whether the first four steps of the kill chain can be automated for it.
 A proof of automation in a relevant environment is an objective evaluation of the score in a way that cannot be provided for some CVSS elements, such as Attack Complexity.
 
-> Impact metrics (Base metric group)
+### Impact metrics (Base metric group)
 
 The metrics in this group are Confidentiality, Integrity, and Availability.
 There is also a loosely associated Scope metric.
@@ -60,13 +62,13 @@ The impact of exploitation of the vulnerable component on other components is co
 CVSS addresses some definitions of the scope of CVSS as a whole under the Scope metric definition.
 In SSVC, these definitions are in the [Scope](scope.md) section.
 
-> Temporal metric groups
+### Temporal metric groups
 
 The temporal metric group primarily contains the Exploit Code Maturity metric.
 This metric expresses a concept similar to [*Exploitation*](../reference/decision_points/exploitation.md).
 The main difference is that [*Exploitation*](../reference/decision_points/exploitation.md) is not optional in SSVC and that SSVC accounts for the observation that most vulnerabilities with CVE-IDs do not have public exploit code [@householder2020historical] and are not actively exploited [@guido2011exploit,@jacobs2021epss].
 
-> Environmental metric group
+### Environmental metric group
 
 The environmental metric group allows a consumer of a CVSS base score to change it based on their environment.
 CVSS needs this functionality because the organizations that produce CVSS scores tend to be what SSVC calls **suppliers** and consumers of CVSS scores are what SSVC calls **deployers**.

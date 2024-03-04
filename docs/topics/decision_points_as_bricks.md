@@ -50,7 +50,7 @@ From that starting point, there are a few different ways you might proceed:
 ### Follow the examples as provided
 
 For many people, this is the experience they want.
-They want to build the model exactly as it is pictured on the box, and for that purpose they can follow the instructions provided.
+They want to build the model exactly as it is pictured on the box, and so they will simply follow the instructions provided.
 
 ### Adapt the examples to suit your needs
 
