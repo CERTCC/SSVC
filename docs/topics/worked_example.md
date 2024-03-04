@@ -1,7 +1,7 @@
 
 # Worked Example
 
-As an example, we will evaluate CVE-2018-14781 step by step from the deployer point of view.
+As an example, we will evaluate [CVE-2018-14781](https://nvd.nist.gov/vuln/detail/CVE-2018-14781) step by step from the deployer point of view.
 The scenario here is that used for the pilot study.
 This example uses the SSVC version 1 deployer decision tree.
 
