@@ -60,7 +60,7 @@ Therefore, we select [*MEF failure*](../reference/decision_points/mission_impact
 
 This particular pilot study used SSVC version 1.
 In the suggested deployer tree for SSVC version 2.1, mission and safety impact would be used to calculate the overall [*Human Impact*](../reference/decision_points/human_impact.md), and [*Automatable*](../reference/decision_points/automatable.md) would need to be answered as well.
-Conducting further studies with the recommended version 2.1 Deployer tree remains an area of future work.
+Conducting further studies with the more recent versions of the Deployer decision model remains an area of future work.
 In the pilot study, this information is conveyed as follows:
 
 !!! info "Use of the cyber-physical system"
