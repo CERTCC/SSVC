@@ -84,6 +84,12 @@ While that is a broad analysis frame, it means that any community that shares a 
 An organization in the People's Republic of China may have a different view than an organization in the United States, but most organizations within each region should should have close enough to the same view to share values for [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md).
 These factors suggest a market for an information feed about these decision points is a viable possibility.
 
+!!! note inline end "CVSS v4, Automatable, and Value Density"
+
+    It is not coincidental that the CVSS v4 supplemental metrics include [Automatable](https://www.first.org/cvss/v4.0/specification-document#Automatable-AU)
+    (AU) and [Value Density](https://www.first.org/cvss/v4.0/specification-document#Value-Density-V) (V).
+    The SSVC team collaborated in the development of these metrics with the [FIRST CVSS Special Interest Group](https://www.first.org/cvss).
+
 At this point, it is not clear that an algorithm or search process could be designed to automate scoring [*Automatable*](../reference/decision_points/automatable.md) and [*Value Density*](../reference/decision_points/value_density.md).
 It would be a complex natural language processing task.
 Perhaps a machine learning system could be designed to suggest values.
