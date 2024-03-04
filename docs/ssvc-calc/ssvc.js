@@ -1019,6 +1019,11 @@ function generate_uuid() {
     return uuid+'-'+Math.random().toString(16).substr(2,12)
 }
 
+function togglehelp() {
+    $('#mpopup').toggleClass("d-none");
+    $('#frbcbx').prop("checked",$('#mpopup').hasClass("d-none"));
+}
+
 function draw_graph() {
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
 	width = 1060 - margin.right - margin.left,
@@ -1049,6 +1054,11 @@ function draw_graph() {
     }
     $('#zoomcontrol').show();
     $('#zoomcontrol input').val(100);
+    $('#graph').html($('<div>').attr({"id":"frbdiv"}).css({"position": "fixed","font-size": "x-small"})
+			.on("click",togglehelp).append($('<input>')
+						       .attr({"id": "frbcbx","type": "checkbox"})
+						       .css({"width": "10px"}))
+		     .append($('<span>').html("Hide help text")));
     svg = d3.select("#graph").append("svg")
 	.attr("xmlns","http://www.w3.org/2000/svg")
 	.attr("preserveAspectRatio","none")
@@ -1057,7 +1067,7 @@ function draw_graph() {
 	.attr("height", svg_height)
 	.append("g")
 	.attr("transform", default_translate)
-	.attr("id","pgroup")
+	.attr("id","pgroup");
 
     root = treeData[0];
     root.x0 = height / 2;
@@ -1377,7 +1387,7 @@ function showdiv(d) {
     }
 }
 function hidediv(d) {
-    $('#mpopup').hide()
+    $('#mpopup').hide();
 }
 function checkclose() {
     /* */
