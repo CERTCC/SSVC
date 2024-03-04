@@ -37,6 +37,8 @@ Three prominent examples are CVSS impact base metrics, CWE, and CPE.
 
 ### CVSS and Technical Impact
 
+{% include-markdown "../_includes/_cvss4_question.md" heading-offset=1 %}
+
 [*Technical Impact*](../reference/decision_points/technical_impact.md) is directly related to the CVSS impact metric group.
 However, this metric group cannot be directly mapped to [*Technical Impact*](../reference/decision_points/technical_impact.md) in CVSS version 3  because of the Scope metric.
 [*Technical Impact*](../reference/decision_points/technical_impact.md) is only about adversary control of the vulnerable component.

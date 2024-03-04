@@ -9,11 +9,7 @@ This section discusses the relationship between these various systems and SSVC.
 
 ## CVSS
 
-!!! question inline end "What about CVSS v4?"
-
-    Since this document was written, CVSS v4 has been released.
-    We are planning to address CVSS v4 in a future update to the SSVC documentation.
-    For now, we are maintaining our focus on CVSS v3.1 because it the most widely used version of CVSS.
+{% include-markdown "../_includes/_cvss4_question.md" heading-offset=1 %}
 
 CVSS version 3.1 has three metric groups: base, environmental, and temporal.
 The metrics in the base group are all required, and are the only required metrics.
