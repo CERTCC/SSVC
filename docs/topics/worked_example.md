@@ -43,9 +43,11 @@ use its installation to remotely identify targets.
 However, since most of the hospital’s clients have not installed the app, and for nearly all cases, physical proximity
 to the device is necessary; therefore, we select [*small*](../reference/decision_points/system_exposure.md) and move on to ask about mission impact.
 
-According to the fictional pilot scenario, “Our mission dictates that the first and foremost priority is to contribute
-to human welfare and to uphold the Hippocratic oath (do no harm).” The continuity of operations planning for a hospital
-is complex, with many MEFs.
+According to the fictional pilot scenario, 
+
+> Our mission dictates that the first and foremost priority is to contribute to human welfare and to uphold the Hippocratic oath (do no harm).
+
+The continuity of operations planning for a hospital is complex, with many Mission Essential Functions (MEFs).
 However, even from this abstract, it seems clear that “do no harm” is at risk due to this vulnerability.
 A mission essential function to that mission is each of the various medical devices works as expected, or at least if a
 device fails, it cannot actively be used to inflict harm.
