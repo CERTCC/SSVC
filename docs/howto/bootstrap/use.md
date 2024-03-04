@@ -1,6 +1,6 @@
 # Use SSVC
 
-The [preparation](prepare.md) is complete, data is being [collected](collect.md), and now it is time to use
+The [preparation](prepare.md) is complete, data has been [collected](collect.md), and now it is time to use
 SSVC to make decisions about how to respond to vulnerabilities.
 
 ```mermaid
