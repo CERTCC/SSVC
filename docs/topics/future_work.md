@@ -12,7 +12,7 @@ To explore their needs, it is important to understand how people actually use CV
 In general, such empirical, grounded evidence about what practitioners and decision makers want from vulnerability scoring is lacking.
 We have based SSVC’s methodology on multiple decades of professional experience and myriad informal conversations with practitioners. 
 Such evidence is not a bad place to start, but it does not lend itself to examination and validation by others. 
-The purpose of understanding practitioner expectations is to inform what a vulnerability-prioritization methodology should actually provide by matching it to what people want or expect. 
+The purpose of understanding practitioner expectations is to inform what a vulnerability-prioritization methodology should actually provide by matching it to what people need or expect. 
 The method this future work should take is long-form, structured interviews.
 We do not expect anyone to have access to enough consumers of CVSS to get statistically valid results out of a short survey, nor to pilot a long survey.
 
