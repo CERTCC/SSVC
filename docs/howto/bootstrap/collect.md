@@ -66,17 +66,19 @@ occasionally.
 
 !!! example "Evidence of Mission Impact"
 
-    An obvious example of this is the mission impact decision point.
-    To answer this, a deployer must analyze their essential functions, how they interrelate, and how they are supported.
+    An obvious example of this is the [Mission Impact](../../reference/decision_points/mission_impact.md) decision point.
+    To answer this, a deployer must analyze their Mission Essential Functions (MEFs), how they interrelate, and how they are supported.
 
-!!! example "Evidence of Exposure"
 
-    Exposure is similar; answering that decision point requires an asset inventory, adequate understanding of the network
+!!! example "Evidence of System Exposure"
+
+    [System Exposure](../../reference/decision_points/system_exposure.md) is similar; answering that decision point requires an asset inventory, adequate understanding of the network
     topology, and a view of the enforced security controls.
     Independently operated scans, such as Shodan or Shadowserver, may play a role in evaluating exposure, but the entire
     exposure question cannot be reduced to a binary question of whether an organization’s assets appear in such databases.
 
-Once the deployer has the situational awareness to understand MEFs or exposure, selecting the answer for each individual
+
+Once the deployer has the situational awareness to understand their Mission Essential Functions or System Exposure, selecting the answer for each individual
 vulnerability is usually straightforward.
 
 Stakeholders who use the prioritization method should consider releasing the priority with which they handled the
