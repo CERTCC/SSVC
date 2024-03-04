@@ -65,7 +65,7 @@ fit your organization's needs.
 
 <div class="grid cards" markdown>
 
-- :material-stairs: [Bootstrapping SSVC](bootstrap/index.md)
+- :material-stairs: [Getting Started with SSVC](bootstrap/index.md)
 - :material-factory: [Supplier Decision Model](supplier_tree.md)
 - :material-server-network: [Deployer Decision Model](deployer_tree.md)
 - :material-steering: [Coordinator Decision Models](coordination_intro.md)
