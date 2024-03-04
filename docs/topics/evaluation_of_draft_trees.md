@@ -12,9 +12,9 @@ The method of the pilot test is described in [Pilot Methodogy](#pilot-methodolog
 
     For this tabletop refinement, we could not select a mathematically representative set of CVEs. 
     The goal was to select a handful of CVEs that would cover diverse types of vulnerabilities. 
-    The CVEs that we used for our tabletop exercises are CVE-2017-8083, CVE-2019-2712, CVE-2014-5570, and CVE-2017-5753.
+    The CVEs that we used for our tabletop exercises are [CVE-2017-8083](https://nvd.nist.gov/vuln/detail/CVE-2017-8083), [CVE-2019-2712](https://nvd.nist.gov/vuln/detail/CVE-2019-2712), [CVE-2014-5570](https://nvd.nist.gov/vuln/detail/CVE-2014-5570), and [CVE-2017-5753](https://nvd.nist.gov/vuln/detail/CVE-2017-5753).
     We discussed each one from the perspective of supplier and deployer. 
-    We evaluated CVE-2017-8083 twice because our understanding and descriptions had changed materially after the first three CVEs (six evaluation exercises).
+    We evaluated [CVE-2017-8083](https://nvd.nist.gov/vuln/detail/CVE-2017-8083) twice because our understanding and descriptions had changed materially after the first three CVEs (six evaluation exercises).
     After we were satisfied that the decision trees were clearly defined and captured our intentions, we began the formal evaluation of the draft trees, which we describe in the next section.
 
 The pilot study tested inter-rater agreement of decisions reached. Each author played the role of an analyst in both stakeholder groups (supplying and deploying) for nine vulnerabilities. We selected these nine vulnerabilities based on expert analysis, with the goal that the nine cases cover a useful series of vulnerabilities of interest. Specifically, we selected three vulnerabilities to represent safety-critical cases, three to represent regulated-systems cases, and three to represent general computing cases.
@@ -37,7 +37,7 @@ The structure of the pilot test is as follows. The next table provides an exampl
 4.  Repeat this decision-and-evidence process until the analyst reaches a leaf node in the tree.
 
 Table: Example of Scenario Information Provided to Analysts (Using
-CVE-2019-9042 as the Example)
+[CVE-2019-9042](https://nvd.nist.gov/vuln/detail/CVE-2019-9042) as the Example)
 
 | Information Item                      | Description Provided to Analysts  |
 | :--- | :----------- |
@@ -82,27 +82,27 @@ The vulnerabilities used as case studies are as follows. All quotes are from the
 
 ### Safety-Critical Cases
 
-  - CVE-2015-5374: “Vulnerability … in \[Siemens\] Firmware variant PROFINET IO for EN100 Ethernet module… Specially crafted packets sent to port 50000/UDP could cause a denial-of-service of the affected device…”
+  - [CVE-2015-5374](https://nvd.nist.gov/vuln/detail/CVE-2015-5374): “Vulnerability … in \[Siemens\] Firmware variant PROFINET IO for EN100 Ethernet module… Specially crafted packets sent to port 50000/UDP could cause a denial-of-service of the affected device…”
 
-  - CVE-2014-0751: “Directory traversal vulnerability in … GE Intelligent Platforms Proficy HMI/SCADA - CIMPLICITY before 8.2 SIM 24, and Proficy Process Systems with CIMPLICITY, allows remote attackers to execute arbitrary code via a crafted message to TCP port 10212, aka ZDI-CAN-1623.”
+  - [CVE-2014-0751](https://nvd.nist.gov/vuln/detail/CVE-2014-0751): “Directory traversal vulnerability in … GE Intelligent Platforms Proficy HMI/SCADA - CIMPLICITY before 8.2 SIM 24, and Proficy Process Systems with CIMPLICITY, allows remote attackers to execute arbitrary code via a crafted message to TCP port 10212, aka ZDI-CAN-1623.”
 
-  - CVE-2015-1014: “A successful exploit of these vulnerabilities requires the local user to load a crafted DLL file in the system directory on servers running Schneider Electric OFS v3.5 with version v7.40 of SCADA Expert Vijeo Citect/CitectSCADA, OFS v3.5 with version v7.30 of Vijeo Citect/CitectSCADA, and OFS v3.5 with version v7.20 of Vijeo Citect/CitectSCADA. If the application attempts to open that file, the application could crash or allow the attacker to execute arbitrary code.”
+  - [CVE-2015-1014](https://nvd.nist.gov/vuln/detail/CVE-2015-1014): “A successful exploit of these vulnerabilities requires the local user to load a crafted DLL file in the system directory on servers running Schneider Electric OFS v3.5 with version v7.40 of SCADA Expert Vijeo Citect/CitectSCADA, OFS v3.5 with version v7.30 of Vijeo Citect/CitectSCADA, and OFS v3.5 with version v7.20 of Vijeo Citect/CitectSCADA. If the application attempts to open that file, the application could crash or allow the attacker to execute arbitrary code.”
 
 ### Regulated Systems Cases
 
-  - CVE-2018-14781: “Medtronic insulin pump \[specific versions\] when paired with a remote controller and having the “easy bolus” and “remote bolus” options enabled (non-default), are vulnerable to a capture-replay attack. An attacker can … cause an insulin (bolus) delivery.”
+  - [CVE-2018-14781](https://nvd.nist.gov/vuln/detail/CVE-2018-14781): “Medtronic insulin pump \[specific versions\] when paired with a remote controller and having the “easy bolus” and “remote bolus” options enabled (non-default), are vulnerable to a capture-replay attack. An attacker can … cause an insulin (bolus) delivery.”
 
-  - CVE-2017-9590: “The State Bank of Waterloo Mobile … app 3.0.2 … for iOS does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.”
+  - [CVE-2017-9590](https://nvd.nist.gov/vuln/detail/CVE-2017-9590): “The State Bank of Waterloo Mobile … app 3.0.2 … for iOS does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.”
 
-  - CVE-2017-3183: “Sage XRT Treasury, version 3, fails to properly restrict database access to authorized users, which may enable any authenticated user to gain full access to privileged database functions. Sage XRT Treasury is a business finance management application. …”
+  - [CVE-2017-3183](https://nvd.nist.gov/vuln/detail/CVE-2017-3183): “Sage XRT Treasury, version 3, fails to properly restrict database access to authorized users, which may enable any authenticated user to gain full access to privileged database functions. Sage XRT Treasury is a business finance management application. …”
 
 ### General Computing Cases
 
-  - CVE-2019-2691: “Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Roles). Supported versions that are affected are 8.0.15 and prior. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to … complete DoS of MySQL Server.”
+  - [CVE-2019-2691](https://nvd.nist.gov/vuln/detail/CVE-2019-2691): “Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Roles). Supported versions that are affected are 8.0.15 and prior. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to … complete DoS of MySQL Server.”
 
-  - CVE-2019-9042: “\[I\]n Sitemagic CMS v4.4… the user can upload a .php file to execute arbitrary code, as demonstrated by 404.php. This can only occur if the administrator neglects to set FileExtensionFilter and there are untrusted user accounts. …”
+  - [CVE-2019-9042](https://nvd.nist.gov/vuln/detail/CVE-2019-9042): “\[I\]n Sitemagic CMS v4.4… the user can upload a .php file to execute arbitrary code, as demonstrated by 404.php. This can only occur if the administrator neglects to set FileExtensionFilter and there are untrusted user accounts. …”
 
-  - CVE-2017-5638: “The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via crafted \[specific headers\], as exploited in the wild in March 2017…”
+  - [CVE-2017-5638](https://nvd.nist.gov/vuln/detail/CVE-2017-5638): “The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via crafted \[specific headers\], as exploited in the wild in March 2017…”
 
 ## Pilot Results
 
@@ -130,15 +130,15 @@ Table: SSVC pilot scores compared with the CVSS base scores for the vulnerabilit
 
 | CVE-ID         | Representative SSVC decision values | SSVC recommendation (supplier, deployer) | NVD’s CVSS base score  |
 | :---------------- | :--------------------------------: | :--------------------- | :---------------------- |
-| CVE-2014-0751  | E:N/T:T/U:L/S:H/X:C/M:C                   | (Sched, OOC)                       | 7.5 (High) (v2)        |
-| CVE-2015-1014  | E:N/T:T/U:L/S:J/X:S/M:F                   | (Sched, Sched)                     | 7.3 (High) (v3.0)      |
-| CVE-2015-5374  | E:A/T:P/U:L/S:H/X:C/M:F                   | (Immed, Immed)                     | 7.8 (High) (v2)        |
-| CVE-2017-3183  | E:N/T:T/U:E/S:M/X:C/M:C                   | (Sched, Sched)                     | 8.8 (High) (v3.0)      |
-| CVE-2017-5638  | E:A/T:T/U:S/S:M/X:U/M:C                   | (Immed, OOC)                       | 10.0 (Critical) (v3.0) |
-| CVE-2017-9590  | E:P/T:T/U:E/S:M/X:U/M:D                   | (OOC, Sched)                       | 5.9 (Medium) (v3.0)    |
-| CVE-2018-14781 | E:P/T:P/U:L/S:H/X:C/M:F                   | (OOC, OOC)                         | 5.3 (Medium) (v3.0)    |
-| CVE-2019-2691  | E:N/T:P/U:E/S:M/X:C/M:C                   | (Sched, Sched)                     | 4.9 (Medium) (v3.0)    |
-| CVE-2019-9042  | E:A/T:T/U:L/S:N/X:C/M:C                   | (OOC, Sched)                       | 7.2 (High) (v3.0)      |
+| [CVE-2014-0751](https://nvd.nist.gov/vuln/detail/CVE-2014-0751)  | E:N/T:T/U:L/S:H/X:C/M:C                   | (Sched, OOC)                       | 7.5 (High) (v2)        |
+| [CVE-2015-1014](https://nvd.nist.gov/vuln/detail/CVE-2015-1014)  | E:N/T:T/U:L/S:J/X:S/M:F                   | (Sched, Sched)                     | 7.3 (High) (v3.0)      |
+| [CVE-2015-5374](https://nvd.nist.gov/vuln/detail/CVE-2015-5374)  | E:A/T:P/U:L/S:H/X:C/M:F                   | (Immed, Immed)                     | 7.8 (High) (v2)        |
+| [CVE-2017-3183](https://nvd.nist.gov/vuln/detail/CVE-2017-3183)  | E:N/T:T/U:E/S:M/X:C/M:C                   | (Sched, Sched)                     | 8.8 (High) (v3.0)      |
+| [CVE-2017-5638](https://nvd.nist.gov/vuln/detail/CVE-2017-5638)  | E:A/T:T/U:S/S:M/X:U/M:C                   | (Immed, OOC)                       | 10.0 (Critical) (v3.0) |
+| [CVE-2017-9590](https://nvd.nist.gov/vuln/detail/CVE-2017-9590)  | E:P/T:T/U:E/S:M/X:U/M:D                   | (OOC, Sched)                       | 5.9 (Medium) (v3.0)    |
+| [CVE-2018-14781](https://nvd.nist.gov/vuln/detail/CVE-2018-14781) | E:P/T:P/U:L/S:H/X:C/M:F                   | (OOC, OOC)                         | 5.3 (Medium) (v3.0)    |
+| [CVE-2019-2691](https://nvd.nist.gov/vuln/detail/CVE-2019-2691)  | E:N/T:P/U:E/S:M/X:C/M:C                   | (Sched, Sched)                     | 4.9 (Medium) (v3.0)    |
+| [CVE-2019-9042](https://nvd.nist.gov/vuln/detail/CVE-2019-9042)  | E:A/T:T/U:L/S:N/X:C/M:C                   | (OOC, Sched)                       | 7.2 (High) (v3.0)      |
 
 The table above presents the mode decision point value for each vulnerability tested, as well as the recommendation that would result from that set based on the recommended decision trees in SSVC version 1. The comparison with the NVD’s CVSS base scores mostly confirms that SSVC is prioritizing based on different criteria, as designed. In particular, differences in the state of exploitation and safety impact are suggestive.
 
