@@ -46,7 +46,7 @@ If the CVSS version 3 value of “Scope” is “Changed,” then the impact met
 If confidentiality, integrity, and availability metrics are all “high” then [*Technical Impact*](../reference/decision_points/technical_impact.md) is [*total*](../reference/decision_points/technical_impact.md), as long as the impact metrics in CVSS are clearly about just the vulnerable component.
 However, the other values of the CVSS version 3 impact metrics cannot be mapped directly to [*partial*](../reference/decision_points/technical_impact.md) because of CVSS version 3.1 scoring guidance.
 Namely, “only the increase in access, privileges gained, or other negative outcome as a result of successful exploitation should be considered” [@cvss_v3-1].
-The example given is that if an attacker already has read access, but gains all other access through the exploit, then read access didn't change and the confidentiality metric score should be “None” .
+The example given is that if an attacker already has read access, but gains all other access through the exploit, then read access didn't change and the confidentiality metric score should be “None”.
 However, in this case, SSVC would expect the decision point to be evaluated as [*total*](../reference/decision_points/technical_impact.md) because as a result of the exploit the attacker gains total control of the device, even though they started with partial control.
 
 ### CWE and Exploitation
