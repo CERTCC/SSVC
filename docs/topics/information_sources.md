@@ -37,14 +37,22 @@ Three prominent examples are CVSS impact base metrics, CWE, and CPE.
 
 ### CVSS and Technical Impact
 
-{% include-markdown "../_includes/_cvss4_question.md" heading-offset=1 %}
-
 [*Technical Impact*](../reference/decision_points/technical_impact.md) is directly related to the CVSS impact metric group.
 The interpretation is different for CVSS version 3 than version 4.
 
-For CVSS v4, the impact metric group can be directly mapped to [*Technical Impact*](../reference/decision_points/technical_impact.md). 
-Stakeholders can define their own mapping, but the recommended mapping between CVSS v4 metric values and [*Technical Impact*](../reference/decision_points/technical_impact.md) is IF (VC:H AND VI:H) THEN [*Technical Impact*](../reference/decision_points/technical_impact.md) is *total*. ELSE [*Technical Impact*](../reference/decision_points/technical_impact.md) is *partial*.
-That is, if the vulnerability leads to a high impact on the confidentiality and integrity of the vulnerable system, then that is equivalent to total technical impact on the system.
+!!! tip "Mapping CVSS v4 to Technical Impact"
+
+    For CVSS v4, the [impact metric group](https://www.first.org/cvss/v4.0/specification-document#Impact-Metrics) can be
+    directly mapped to [*Technical Impact*](../reference/decision_points/technical_impact.md). 
+    Stakeholders can define their own mapping, but the recommended mapping between CVSS v4 metric values and [*Technical Impact*](../reference/decision_points/technical_impact.md) is
+
+    | Confidentiality<br/>(VC) | Integrity<br/>(VI)      | Availability<br/>(VA)  | [*Technical Impact*](../reference/decision_points/technical_impact.md) |
+    |:--------------------:|---------------------|--------------------|------------------------------------------------------------------------|
+    |   High (H)           | High (H)            | *any*              | Total                                                                  |
+    |       High (H)       | Low (L) or None (N) | *any*              | Partial                                                                |
+    | Low (L) or None (N)  | High (H)            | *any*              | Partial                                                                |
+
+    That is, if the vulnerability leads to a high impact on the confidentiality and integrity of the vulnerable system, then that is equivalent to total technical impact on the system.
 
 The following considerations are accounted for in this recommendation. 
 First, a denial of service condition is modeled as a *partial* [*Technical Impact*](../reference/decision_points/technical_impact.md).
@@ -56,12 +64,25 @@ Subsequent System impacts are captured, albeit in different framings, by decisio
 There is not a direct mapping between the subsequent system impact metric group and these decision points, except in the case of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) and the CVSS v4 environmental metrics for Safety Impact in the subsequent system metric group. 
 In that case, both definitions map back to the same safety impact standard for definitions (IEC 61508) and so are easily mapped to each other. 
 
-For CVSS v3, the impact metric group cannot be directly mapped to [*Technical Impact*](../reference/decision_points/technical_impact.md) because of the Scope metric.
+#### CVSS v3 and Technical Impact
+
+For CVSS v3, the impact metric group cannot be directly mapped to [*Technical Impact*](../reference/decision_points/technical_impact.md) because of the [Scope metric](https://www.first.org/cvss/v3.1/specification-document#2-2-Scope-S).
 [*Technical Impact*](../reference/decision_points/technical_impact.md) is only about adversary control of the vulnerable component.
 If the CVSS version 3 value of “Scope” is “Unchanged,” then the recommendation is the same as that for CVSS v4, above, as the impact metric group is information exclusively about the vulnerable system.
 If the CVSS version 3 value of “Scope” is “Changed,” then the impact metrics may be about either the vulnerable system or the subsequent systems, based on whichever makes the final score higher.
 Since [*Technical Impact*](../reference/decision_points/technical_impact.md) is based only on the vulnerable system impacts, if "Scope" is "Changed" then the ambiguity between vulnerable and subsequent system impacts is not documented in the vector string.
 This ambiguity makes it impossible to cleanly map the [*Technical Impact*](../reference/decision_points/technical_impact.md) value in this case. 
+
+!!! tip "Mapping CVSS v3 to Technical Impact"
+    
+    Summarizing the discussion above, the mapping between CVSS v3 and [*Technical Impact*](../reference/decision_points/technical_impact.md) is
+
+    | CVSS Scope | Confidentiality<br/>(C) | Integrity<br/>(I) | Availability<br/>(A) | [*Technical Impact*](../reference/decision_points/technical_impact.md) |
+    |:----------:|:-----------------------:|:------------------:|:---------------------:|------------------------------------------------------------------------|
+    | Unchanged  | High (H)               | High (H)           | *any*                 | Total                                                                  |
+    | Unchanged  | High (H)               | Low (L) or None (N)| *any*                 | Partial                                                                |
+    | Unchanged  | Low (L) or None (N)    | High (H)           | *any*                 | Partial                                                                |
+    | Changed    | *any*                  | *any*              | *any*                 | (ambiguous)                                                            |
 
 
 ### CWE and Exploitation
