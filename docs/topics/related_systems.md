@@ -2,8 +2,8 @@
 # Related Vulnerability Management Systems
 
 There are several other bodies of work that are used in practice to assist vulnerability managers in making decisions.
-Three relevant systems are CVSS [@cvss_v3-1], EPSS [@jacobs2021epss], and Tenable's Vulnerability Priority Rating ([VPR](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss)).
-There are other systems derived from CVSS, such as RVSS for robots [@vilches2018towards] and MITRE's effort to adapt CVSS to medical devices [@mitre2019medical].
+Three relevant systems are [CVSS](https://www.first.org/cvss/v3.1/specification-document), [EPSS](https://dl.acm.org/doi/10.1145/3436242), and Tenable's Vulnerability Priority Rating ([VPR](https://www.tenable.com/blog/what-is-vpr-and-how-is-it-different-from-cvss)).
+There are other systems derived from CVSS, such as RVSS for robots [@vilches2018towards] and MITRE's [Rubric for Applying CVSS to Medical Devices](https://www.mitre.org/news-insights/publication/rubric-applying-cvss-medical-devices).
 There are also other nascent efforts to automate aspects of the decision making process, such as [vPrioritizer](https://github.com/varchashva/vPrioritizer).
 This section discusses the relationship between these various systems and SSVC.
 
