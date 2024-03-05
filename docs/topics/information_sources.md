@@ -55,11 +55,12 @@ The interpretation is different for CVSS version 3 than version 4.
     That is, if the vulnerability leads to a high impact on the confidentiality and integrity of the vulnerable system, then that is equivalent to total technical impact on the system.
 
 The following considerations are accounted for in this recommendation. 
-First, a denial of service condition is modeled as a *partial* [*Technical Impact*](../reference/decision_points/technical_impact.md).
+
+1. A denial of service condition is modeled as a *partial* [*Technical Impact*](../reference/decision_points/technical_impact.md).
 Therefore, a high availability impact to the vulnerable system should not be mapped to *total* [*Technical Impact*](../reference/decision_points/technical_impact.md) on its own.
-Second, there may be situations in which a high confidentiality impact is sufficient for total technical impact; for example, disclosure of the root or administrative password for the system leads to total technical control of the system. 
+2. There may be situations in which a high confidentiality impact is sufficient for total technical impact; for example, disclosure of the root or administrative password for the system leads to total technical control of the system. 
 So this suggested mapping is a useful heuristic, but there may be exceptions, depending on exactly what the CVSS v4 metric value assignment norms are and become for these situations. 
-Third, while the Subsequent System impact metric group in CVSS v4 is useful, those concepts are not captured by [*Technical Impact*](../reference/decision_points/technical_impact.md).
+3. While the Subsequent System impact metric group in CVSS v4 is useful, those concepts are not captured by [*Technical Impact*](../reference/decision_points/technical_impact.md).
 Subsequent System impacts are captured, albeit in different framings, by decision points such as [*Situated Safety Impact*](../reference/decision_points/safety_impact.md), [*Mission Impact*](../reference/decision_points/mission_impact.md), and [*Value Density*](../reference/decision_points/value_density.md). 
 There is not a direct mapping between the subsequent system impact metric group and these decision points, except in the case of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) and the CVSS v4 environmental metrics for Safety Impact in the subsequent system metric group. 
 In that case, both definitions map back to the same safety impact standard for definitions (IEC 61508) and so are easily mapped to each other. 
