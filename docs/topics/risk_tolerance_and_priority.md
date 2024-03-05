@@ -1,7 +1,7 @@
 # Risk Tolerance and Response Priority
 
 SSVC enables stakeholders to balance and manage their risks themselves.
-We follow the risk management vocabulary from the [ISO 31073:2022(en)
+We follow the risk management vocabulary from [ISO 31073:2022(en)
 Risk management — Vocabulary](https://www.iso.org/obp/ui/#iso:std:iso:31073:ed-1:v1:en) and define risk as “effect of uncertainty on objectives;”
 see the original document for notes on the terms in the definition.
 A successful vulnerability management practice must balance at least two risks:
