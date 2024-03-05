@@ -81,7 +81,7 @@ Depending on the details of the hospital’s contingency plans and its monitorin
 If there is no way to tell whether the insulin pumps are misbehaving, for example, then exploitation could go on for
 some time, leading to a [*catastrophic*](../reference/decision_points/safety_impact.md) [*Safety Impact*](../reference/decision_points/safety_impact.md).
 The pilot information is inadequate in this regard, which is the likely source of disagreement about
-[*Safety Impact*](../reference/decision_points/safety_impact.md) in Table 13.
+[*Safety Impact*](../reference/decision_points/safety_impact.md) in our evaluation of [inter-rater agreement](evaluation_of_draft_trees.md).
 For the purposes of this example, imagine that after gathering that information, the monitoring situation is adequate,
 and select [*hazardous*](../reference/decision_points/safety_impact.md).
 Therefore, mitigate this vulnerability *out-of-cycle*, meaning that it should be addressed quickly, ahead of the usual
