@@ -6,7 +6,7 @@ Risk management — Vocabulary](https://www.iso.org/obp/ui/#iso:std:iso:31073:ed
 see the original document for notes on the terms in the definition.
 A successful vulnerability management practice must balance at least two risks:
 
-!!! tip inline end "Contexualizing Risk"
+!!! tip inline end "Contextualizing Risk"
 
     To place these risks in context, we follow the SEI's
     [Taxonomy of Operational Cyber Security Risks](https://insights.sei.cmu.edu/library/a-taxonomy-of-operational-cyber-security-risks/).
