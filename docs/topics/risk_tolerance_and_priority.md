@@ -1,14 +1,15 @@
 # Risk Tolerance and Response Priority
 
 SSVC enables stakeholders to balance and manage their risks themselves.
-We follow the risk management vocabulary from [@ISO73] and define risk as “effect of uncertainty on objectives;”
-see [@ISO73] for notes on the terms in the definition.
+We follow the risk management vocabulary from [ISO 31073:2022(en)
+Risk management — Vocabulary](https://www.iso.org/obp/ui/#iso:std:iso:31073:ed-1:v1:en) and define risk as “effect of uncertainty on objectives;”
+see the original document for notes on the terms in the definition.
 A successful vulnerability management practice must balance at least two risks:
 
-!!! tip inline end "Contexualizing Risk"
+!!! tip inline end "Contextualizing Risk"
 
-    To place these risks in context, we follow the SEI's Taxonomy of Operational Cyber Security Risks [@cebula2010taxonomy].
-
+    To place these risks in context, we follow the SEI's
+    [Taxonomy of Operational Cyber Security Risks](https://insights.sei.cmu.edu/library/a-taxonomy-of-operational-cyber-security-risks/).
     **Change risk** can be characterized as a combination of Class 2 and/or Class 3 risks.
     
     - Class 2: Systems and Technology Failures includes hardware, software, and systems risks.
@@ -25,6 +26,9 @@ In developing the decision trees in this document, we had in mind stakeholders w
 
 We therefore remind our readers that the labels on the trees (defer, immediate, etc.) can and should be customized to
 suit the needs of individual stakeholders wherever necessary and appropriate. 
+
+<!-- hr for vertical space -->
+---
 
 !!! example "Risk Tolerance Influences Response Priority"
 
