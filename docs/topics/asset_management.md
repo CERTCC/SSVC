@@ -31,7 +31,7 @@ Once the organization remediates or mitigates all the high-priority vulnerabilit
 
 Asset management and risk management also drive some of the up-front work an organization would need to do to gather some of the necessary information.
 This situation is not new; an asset owner cannot prioritize which fixes to deploy to its assets if it does not have an accurate inventory of its assets.
-The organization can pick its choice of tools; there are about 200 asset management tools on the market [@captera].
+The organization can pick its choice of tools; there are [hundreds of asset management tools on the market](https://www.capterra.com/it-asset-management-software/).
 Emerging standards like the [Software Bill of Materials](https://www.cisa.gov/sbom) (SBOM) would likely reduce the burden on asset management, and organizations should prefer systems which make such information available.
 If an organization does not have an asset management or risk management
 (see also [Gathering Information About Mission Impact](../reference/decision_points/mission_impact.md))
