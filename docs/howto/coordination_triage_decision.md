@@ -109,5 +109,7 @@ height = "700" />
 
 ### Table of Values
 
+{% include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
+
 <!-- relative to /data/csvs/ -->
 {{ read_csv('coord-triage-options.csv') }}

@@ -119,6 +119,8 @@ More detail about each of these decision points is provided at the links above, 
 {% include-markdown "../_generated/decision_points/utility.md" %}
 {% include-markdown "../_generated/decision_points/human_impact.md" %}
 
+In the _Human Impact_ table above, *MEF* stands for Mission Essential Function.
+
 ## Deployer Decision Model
 
 Below we provide an example deployer prioritization policy that maps the decision points just listed to the outcomes described above.
