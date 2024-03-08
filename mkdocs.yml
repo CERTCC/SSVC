@@ -1,0 +1,196 @@
+site_name: "SSVC: Stakeholder-Specific Vulnerability Categorization"
+copyright: >
+  Copyright &copy; 2019-2024 Carnegie Mellon University.
+  <br/><a href="#__consent">Change cookie settings</a>
+nav:
+  - Home: 'index.md'
+  - Learning SSVC: 'tutorials/index.md'
+  - SSVC How-To:
+    - Overview: 'howto/index.md'
+    - Getting Started with SSVC:
+      - Intro: 'howto/bootstrap/index.md'
+      - Prepare: 'howto/bootstrap/prepare.md'
+      - Collect: 'howto/bootstrap/collect.md'
+      - Use & Respond: 'howto/bootstrap/use.md'
+      - Summary: 'howto/bootstrap/summary.md'
+    - Stakeholder Decision Models:
+        - Supplier Decision Model: 'howto/supplier_tree.md'
+        - Deployer Decision Model: 'howto/deployer_tree.md'
+        - Coordinator Decision Models:
+          - About Coordination: 'howto/coordination_intro.md'
+          - Coordination Triage: 'howto/coordination_triage_decision.md'
+          - Publication Decision: 'howto/publication_decision.md'
+    - Customizing SSVC: 'howto/tree_customization.md'
+    - Acuity Ramp: 'howto/acuity_ramp.md'
+  - Understanding SSVC:
+    - Intro: 'topics/index.md'
+    - State of Practice: 'topics/state_of_practice.md'
+    - Representing Information:
+      - Design Goals: 'topics/representing_information.md'
+      - Formalization Options: 'topics/formalization_options.md'
+      - Decision Trees: 'topics/decision_trees.md'
+    - Vulnerability Management Decisions:
+      - Intro: 'topics/vulnerability_management_decisions.md'
+      - Stakeholders: 'topics/enumerating_stakeholders.md'
+      - Decisions: 'topics/enumerating_decisions.md'
+      - Items With Same Priority: 'topics/items_with_same_priority.md'
+      - Risk Tolerance and Priority: 'topics/risk_tolerance_and_priority.md'
+      - Scope: 'topics/scope.md'
+      - SSVC and Asset Management: 'topics/asset_management.md'
+    - Putting the Pieces Together: 'topics/decision_points_as_bricks.md'
+    - Worked Example: 'topics/worked_example.md'
+    - Evaluation: 'topics/evaluation_of_draft_trees.md'
+    - Related Systems: 'topics/related_systems.md'
+    - Information Sources: 'topics/information_sources.md'
+    - Limitations: 'topics/limitations.md'
+    - Future Work: 'topics/future_work.md'
+  - Reference:
+    - Intro: 'reference/index.md'
+    - Decision Points:
+      - Intro: 'reference/decision_points/index.md'
+      - Automatable: 'reference/decision_points/automatable.md'
+      - Exploitation: 'reference/decision_points/exploitation.md'
+      - Mission Impact: 'reference/decision_points/mission_impact.md'
+      - Public Value Added: 'reference/decision_points/public_value_added.md'
+      - Report Credibility: 'reference/decision_points/report_credibility.md'
+      - Report Public: 'reference/decision_points/report_public.md'
+      - Safety Impact: 'reference/decision_points/safety_impact.md'
+      - Supplier Cardinality: 'reference/decision_points/supplier_cardinality.md'
+      - Supplier Contacted: 'reference/decision_points/supplier_contacted.md'
+      - Supplier Engagement: 'reference/decision_points/supplier_engagement.md'
+      - Supplier Involvement: 'reference/decision_points/supplier_involvement.md'
+      - System Exposure: 'reference/decision_points/system_exposure.md'
+      - Technical Impact: 'reference/decision_points/technical_impact.md'
+      - Value Density: 'reference/decision_points/value_density.md'
+      - Compound Decision Points:
+        - Intro: 'reference/decision_points/compound_decision_points.md'
+        - Human Impact: 'reference/decision_points/human_impact.md'
+        - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
+        - Utility: 'reference/decision_points/utility.md'
+    - Code:
+        - Intro: 'reference/code/index.md'
+        - CSV Analyzer: 'reference/code/analyze_csv.md'
+        - Policy Generator: 'reference/code/policy_generator.md'
+        - Outcomes: 'reference/code/outcomes.md'
+        - Doctools: 'reference/code/doctools.md'
+  - Calculator: 'ssvc-calc/index.md'
+  - About:
+    - Intro: 'about/index.md'
+    - Community Engagement: 'about/contributing.md'
+#    - FAQ: 'about/faq.md'
+    - Decision Records: 'adr/index.md'
+    - Acknowledgements: 'about/acknowledgements.md'
+    - Change log: 'about/changelog.md'
+    - Copyright: 'about/copyright.md'
+    - Contact: 'about/contact_us.md'
+not_in_nav: |
+  _*.md
+  _*/**/*.md
+theme:
+  logo: 'assets/cert_seal.svg'
+  name: 'material'
+  features:
+    - content.tabs.link
+    - navigation.footer
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - toc.follow
+  palette:
+    scheme: 'cmu'
+    accent: 'red'
+  icon:
+    repo: fontawesome/brands/github
+plugins:
+  - include-markdown:
+      comments: false
+  - search
+  - table-reader:
+      data_path: 'data/csvs'
+  - bibtex:
+      bib_file: 'doc/md_src_files/sources_ssvc.bib'
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [ 'src' ]
+  - print-site
+repo_url: 'https://github.com/CERTCC/SSVC'
+repo_name: 'CERTCC/SSVC'
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - tables
+extra:
+  analytics:
+    provider: google
+    property: G-87WECW6HCS
+  consent:
+    title: About our use of cookies on this site
+    description: >-
+      We use cookies to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better. 
+      See our <a href="https://www.sei.cmu.edu/legal/privacy-notice/index.cfm">Privacy Notice</a> for more.
+  social:
+    - icon: material/message-question
+      link: https://github.com/CERTCC/SSVC/issues/new?template=question.md
+      name: Ask a Question
+    - icon: fontawesome/solid/bug
+      link: https://github.com/CERTCC/SSVC/issues/new?template=bug_report.md
+      name: Report a Problem
+    - icon: material/lightbulb-on
+      link: https://github.com/CERTCC/SSVC/issues/new?template=feature_request.md
+      name: Request a Feature
+    - icon: fontawesome/regular/comments
+      link: https://github.com/CERTCC/SSVC/discussions
+      name: SSVC Community Discussions
+    - icon: fontawesome/brands/github
+      link: https://github.com/CERTCC/SSVC
+      name: CERTCC/SSVC on Github
+    - icon: fontawesome/regular/envelope
+      link: mailto:cert@cert.org?subject=SSVC%20Feedback
+      name: Email CERT/CC
+    - icon: fontawesome/solid/house
+      link: https://www.sei.cmu.edu/
+      name: Software Engineering Institute
+extra_javascript:
+  # to render math
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # to sort tables
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
+extra_css:
+  - stylesheets/extra.css
+watch:
+  - docs
+  - src
+dev_addr: 127.0.0.1:8001
