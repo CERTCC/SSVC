@@ -23,11 +23,11 @@ We can treat the responsibilities as non-overlapping, and, therefore, we can bui
 Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work.
 <!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using “patch” here. -->
 
-{== The next two sections describe the decision space and the relevant decision points that we propose for these two responsibilities within the vulnerability management process. ==}
+In [Enumerating Decisions](./enumerating_decisions.md), we describe the decision space and the relevant decision points that we propose for these two responsibilities within the vulnerability management process.
 
 !!! info "Target Audience"
 
-    {== The target audience for this paper is professional staff responsible for making decisions about information systems. ==}
+    The target audience for this documentation is professional staff responsible for making decisions about information systems.
     This audience encompasses a broad class of professionals,  including suppliers, system maintainers, and administrators of many types.
     It also includes other roles, such as risk managers, technical managers, and incident responders.
     Although every layperson who owns a computing device makes decisions about managing it, they are not the target audience.
