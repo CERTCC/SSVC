@@ -8,8 +8,7 @@ for more information on how you can contribute to the project.
 
 ## Licenses
 
- - The license for all code in the repository is [here](https://github.com/CERTCC/SSVC/blob/main/LICENSE)
- - The license for all English writing in the repository is [here](https://github.com/CERTCC/SSVC/blob/main/doc/version_1/900_license.md)
+See [LICENSE](https://github.com/CERTCC/SSVC/blob/main/LICENSE)
  
 ## Questions
 
