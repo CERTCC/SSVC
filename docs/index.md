@@ -5,14 +5,6 @@ It is a methodology for prioritizing vulnerabilities based on the needs of the s
 SSVC is designed to be used by any stakeholder in the vulnerability management process, including finders, vendors, coordinators, deployers, and others.
 
 
-
-{== TODO remove this warning when the site is ready ==}
-!!! warning "Work in Progress"
-
-    This website is a work in progress.
-    While it is intended to eventually be the official documentation for SSVC, it is not yet complete.
-    For the latest version of SSVC documentation, see the [GitHub repository](https://github.com/CERTCC/SSVC).
-
 ## Where to go from here
 
 We have organized the SSVC documentation into four main sections:
