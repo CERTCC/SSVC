@@ -1,6 +1,47 @@
 # Changelog
 
-## Version 2.1 Changelog
+## Version 2024.3 Changelog
+
+In the 2024.3 release of the Stakeholder-Specific Vulnerability Classification (SSVC) system, we've made a number of significant changes:
+
+## New Web Site
+
+This release debuts the [certcc.github.io/SSVC](https://certcc.github.io/SSVC) web site to serve as the front-door for all things SSVC.
+
+- **Diátaxis Framework** - We adopted the [Diátaxis Framework](https://diataxis.fr/) as a document organization framework for SSVC documentation. High level content categories are: tutorials, how-to, topics, and reference. What used to be a linear paper format is now sectioned off into more digestible pieces.
+- **More call-outs and examples** - With our adoption of [_Material for MkDocs_](https://squidfunk.github.io/mkdocs-material/) as the underlying toolkit to construct our web site, we were able to better highlight examples, tips, and sidebar topics through the use of call-out boxes throughout the site.
+
+## New and Revised Content 
+
+- **Expanded Content** - We've included more examples of Decision Points and the like directly inline where they're mentioned so readers don't need to keep flipping back and forth to their definitions for reference.
+- **Bootstrapping advice** - Added a _Getting Started with SSVC_ process to help organizations go from being _potential_ SSVC users to being _actual_ SSVC users. This process is based on both our own experience helping organizations adopt SSVC as well as a few field reports of SSVC adoption from the community.
+- **Putting the Pieces Together** - _Added a Putting the Pieces Together_ page explaining some of our philosophy regarding how to use SSVC to model decisions. SSVC provides you with the pieces and some instructions on how to assemble them, but you can customize it however you like.
+- **Acuity Ramp** - Added an _Acuity Ramp_ explainer to show how an organization can grow into a decision model over time.
+- **Community Engagement** - Included in the new web site are a number of suggested ways for the community to interact with and contribute to the SSVC.
+
+## Versioned Objects
+
+- **Semantic Versioning for Decision Points and Decision Point Groups** - Introduced Semantic Versioning (SemVer) for _Decision Points_ and _Decision Point Groups_ to improve communication around decision points and decision models
+- **Calendar Versioning for SSVC as a whole** - With the introduction of SemVer for _Decision Points_ and _Decision Point Groups_, it started to make less sense for us to talk in terms of "SSVC v2.2", especially as we were simultaneously moving away from a PDF document-focused development model towards a more flexible web-based documentation model. Beginning with this version, we anticipate that future tagged releases will use Calendar Versioning (CalVer) instead of SemVer.
+
+## Experimental & Emerging Features
+
+There are a few improvements we've begun but have not yet fully finished, and that are largely undocumented. Most of these in the current release are python-centric. Here's a brief overview for those who want to poke around at code.
+
+- **SSVC Python module** - This release introduces the `ssvc` python module to allow us to more easily work with _Decision Points_, _Decision Point Groups_, _Outcomes_, and _Policies_ that map from _Decision Points_ to _Outcomes_. We expect to have more to say about this module in the future, but for now it's geared towards helping us produce the site documentation.
+- **Policy Generator** - We're prototyping a Python tool that can generate a starting policy given any combination of a _Decision Point Group_  and _Outcomes_. It's not ready for prime-time yet, but folks with a bit of python skill might be in a position to try it out.
+- **More Decision Points and Outcomes** - In the process of exercising our Semantic Versioning rules for decision points and groups, we needed some examples of versioning events for discussion purposes. As a result, the `ssvc.decision_points.cvss` and `ssvc.dp_groups.cvss` modules contain python implementations of CVSS vector elements from CVSS v1, v2, v3, v3.1, and v4. We anticipate some of these coming in handy in the future as we look toward modeling other decisions potentially based on CVSS vector elements as well as other decision points from SSVC and elsewhere. We also included decision points and groups from [CISA's customized SSVC implementation](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc).
+ 
+## Other project infrastructure improvements
+
+- Shifted from PDF-oriented to web-oriented workflow
+- Adopted [MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) for static site production
+- Adopted [Markdown Any Decision Records](https://adr.github.io/madr/) to preserve rationale and record decisions that are of significant impact to the project
+- Added documentation to the [SSVC project wiki](https://github.com/CERTCC/SSVC/wiki) with tips for current and future contributors.
+- Began using Github's [Dependabot](https://docs.github.com/en/code-security/dependabot) to help maintain dependency versions.
+
+## Version 2.1 (2023.7) Changelog
+
 This section summarizes the changes between SSVC 2.1 and SSVC version 2.0.
 The details of what changes were made can be viewed on the SSVC Github under the SSVC v2.1 milestone.
 
@@ -24,7 +65,7 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Miscellaneous typo fixes and readability improvements (e.g., headings, bulleted lists)
   
 
-## Version 2 Changelog
+## Version 2 (2021.5) Changelog
 
 This section summarizes the changes between SSVC version 2 and SSVC version 1.1 as published at the Workshop on the Ecnomics of Information Security (WEIS 2020).
 The details of what changes were made can be viewed on the SSVC GitHub issues closed under the `SSVC v2 Development` project.
@@ -83,3 +124,7 @@ Similarly, the section on Guidance on Communicating Results is largely new.
 The section presents both an abbreviated and unabridged format for communicating SSVC information about a vulnerability.
 This communication may be connected to the formats for communicating a whole decision tree.
 Version 2 also addresses several other questions about SSVC information management, such as handling information changes over time, partial information, sourcing information for each decision point, and how collection and analysis of SSVC decision points can be automated.
+
+## Version 1.0 (2019.12) Changelog
+
+Initial release
