@@ -6,7 +6,8 @@ copyright: >
   Copyright &copy; 2019-2024 Carnegie Mellon University.
   <br/><a href="#__consent">Change cookie settings</a>
 nav:
-  - Home: 'index.md'
+  - Home: 'https://certcc.github.io/'
+  - SSVC: 'index.md'
   - Learning SSVC: 'tutorials/index.md'
   - SSVC How-To:
     - Overview: 'howto/index.md'
