@@ -127,6 +127,7 @@
 	{
 	    "label": "Human Impact",
 	    "decision_type": "complex",
+	    "key": "H",
 	    "children": [
 		{
 		    "label": "Situated Safety Impact"
@@ -326,7 +327,8 @@
 		    "color": "#EA3423"
 		}
 	    ],
-	    "label": "Priority"
+	    "label": "Priority",
+	    "key": "P"
 	} ],
     "decisions_table": [
       {

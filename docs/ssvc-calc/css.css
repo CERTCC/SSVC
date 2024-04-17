@@ -185,12 +185,15 @@ span.bold {
     text-decoration: none;
     color: #fefefe;
 }
+.blackbody .top_fixed {
+    background-color: rgba(0,0,0,0.9);
+}
 .top_fixed {
     display:none;
     position:fixed;
     top:10px;
     z-index: 1051;
-    background-color: rgba(0,0,0,0.9);
+    background-color: #f8f8ff;
     height: 100%;
     width:75%;
     padding:12px;
