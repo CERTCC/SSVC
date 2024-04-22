@@ -31,7 +31,7 @@ Two points where CERT/CC policy clearly influences the publication decision are 
 As a matter of policy, CERT/CC will support an embargo from the public of information about a vulnerability through its
 choice not to publish that information while a number of conditions hold:
    
-  - A negotiated embargo timer has not expired. The CERT/CC default embargo period is [45 days](https://vuls.cert.org/confluence/display/Wiki/Vulnerability+Disclosure+Policy).
+  - A negotiated embargo timer has not expired. The CERT/CC default embargo period is [45 days](https://certcc.github.io/CERT-Guide-to-CVD/reference/certcc_disclosure_policy/).
   - Other exceptions have not been met, including active exploitation of the vulnerability in the wild or other public
     discussion of the vulnerability details.
 

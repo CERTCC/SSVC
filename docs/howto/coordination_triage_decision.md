@@ -27,7 +27,7 @@ SSVC can be applied to either the initial report or to the results of such refin
 
 ## Coordinator Triage Decision Outcomes
 
-We take three priority levels in our decision about whether and how to [coordinate](https://vuls.cert.org/confluence/display/CVD/1.1.+Coordinated+Vulnerability+Disclosure+is+a+Process%2C+Not+an+Event)
+We take three priority levels in our decision about whether and how to [coordinate](https://certcc.github.io/CERT-Guide-to-CVD/tutorials/cvd_is_a_process/)
 a vulnerability based on an incoming report:
 
 !!! info "Coordinator Triage Priority"
@@ -57,7 +57,7 @@ a vulnerability based on an incoming report:
     (VRDA) provides a starting point for a decision model for this situation.
     VRDA is likely [adequate](https://insights.sei.cmu.edu/library/effectiveness-of-the-vulnerability-response-decision-assistance-vrda-framework/)
     for national-level CSIRTs that do general CVD, but other CSIRT types may have different needs.
-    The [*CERT Guide to Coordinated Vulnerability Disclosure*](https://vuls.cert.org/confluence/display/CVD/6.10+Troubleshooting+Coordinated+Vulnerability+Disclosure+Table)
+    The [*CERT Guide to Coordinated Vulnerability Disclosure*](https://certcc.github.io/CERT-Guide-to-CVD/howto/coordination/cvd_recipes/)
     provides something similar for those who are deciding how to report and disclose vulnerabilities they have discovered.
 
 The coordination and publication decisions for CERT/CC are about the social and collaborative state of vulnerability management.
