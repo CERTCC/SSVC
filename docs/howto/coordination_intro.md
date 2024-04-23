@@ -11,7 +11,7 @@ A coordinator may want to gather and publish information about SSVC decision poi
 Furthermore, a coordinator may only publish some of the information it uses to make decisions.
 Consistent with other stakeholder perspectives (supplier and deployer), SSVC provides the priority with which a coordinator should take some defined action, but not how to do that action.
 For more information about types of coordinators and their facilitation actions within vulnerability management, see
-[The CERT Guide to Coordinated Vulnerability Disclosure](https://vuls.cert.org/confluence/display/CVD/3.5.+Coordinator)
+[The CERT Guide to Coordinated Vulnerability Disclosure](https://certcc.github.io/CERT-Guide-to-CVD/topics/roles/coordinator/)
 
 The two decisions that CERT/CC makes as a coordinator that we will discuss in terms of SSVC are 
 
@@ -27,7 +27,7 @@ These two decisions are not the entirety of vulnerability coordination, but we l
 
 
 Different coordinators have different scopes and constituencies.
-See [The CERT Guide to Coordinated Vulnerability Disclosure](https://vuls.cert.org/confluence/display/CVD/3.5.+Coordinator) for a listing of different coordinator types.
+See [The CERT Guide to Coordinated Vulnerability Disclosure](https://certcc.github.io/CERT-Guide-to-CVD/topics/roles/coordinator/) for a listing of different coordinator types.
 If a coordinator receives a report that is outside its own work scope or constituency, it should make an effort to route the report to a more suitable coordinator.
 The decisions in this section assume the report or vulnerability in question is within the work scope or constituency for the coordinator.
 
