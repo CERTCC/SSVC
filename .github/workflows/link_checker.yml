@@ -10,6 +10,8 @@ on:
       - '**/*.md'
       # run on any PR that changes this workflow
       - .github/workflows/linkchecker.yml
+      # run on any PR that changes the pip requirements
+      - requirements.txt
   # let us trigger it manually
   workflow_dispatch:
 
