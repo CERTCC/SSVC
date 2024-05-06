@@ -11,5 +11,5 @@ dataclasses-json==0.6.4
 thefuzz==0.22.1
 pandas==2.2.2
 scikit-learn==1.4.2
-jsonschema==4.21.1
+jsonschema==4.22.0
 networkx==3.3
