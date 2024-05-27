@@ -10,6 +10,6 @@ mkdocs-print-site-plugin==2.4.1
 dataclasses-json==0.6.6
 thefuzz==0.22.1
 pandas==2.2.2
-scikit-learn==1.4.2
+scikit-learn==1.5.0
 jsonschema==4.22.0
 networkx==3.3
