@@ -69,7 +69,7 @@ This directory holds helper scripts that can make managing or using SSVC easier.
 ### `/src/ssvc/*`
 
 The `ssvc` python module provides tools to work with decision points, decision point groups, and outcomes.
-These modules are used to generate documentation for various [Decision Points](https://certcc.github.io/SSVC/reference/decsion_points/)
+These modules are used to generate documentation for various [Decision Points](https://certcc.github.io/SSVC/reference/decision_points/)
 
 Documentation for the `ssvc` module can be found at [https://certcc.github.io/SSVC/reference/code/](https://certcc.github.io/SSVC/reference/code/)
 
