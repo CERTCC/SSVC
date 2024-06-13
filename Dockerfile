@@ -1,4 +1,18 @@
-FROM ubuntu:latest
-LABEL authors="adh"
+FROM python:3.11
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+# install requirements
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy the files we need
+COPY src/ .
+COPY data ./data
+
+# install pytest
+RUN pip install pytest
+
+# run the unit tests \
+ENTRYPOINT ["pytest"]
+CMD ["test"]
