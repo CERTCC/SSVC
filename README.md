@@ -101,6 +101,29 @@ Navigate to http://localhost:8001/ to see the site.
 
 (Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8000`)
 
+## Run tests 
+
+We include a few tests for the `ssvc` module.
+
+### With Docker
+
+```bash
+
+docker build -t ssvc_test .
+docker run -it --rm ssvc_test
+```
+
+### Without Docker
+
+```bash
+pip install pytest  # if you haven't already
+
+pytest # should find tests in src/test/*
+```
+
+
+
+
 ## Contributing
 
 - [SSVC Community Engagement](https://certcc.github.io/SSVC/about/contributing/) has more detail on how to contribute to the project.
