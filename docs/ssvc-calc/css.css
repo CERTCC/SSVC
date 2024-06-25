@@ -1,4 +1,8 @@
-/* css version 2.2.8 */
+/* css version 2.2.9 */
+#helper {
+    background-color: rgba(255,255,255,0.95);
+    border: 1px solid grey;
+}
 .ssvcvector {
     color: #7d1d1d;
 }
