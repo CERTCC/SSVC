@@ -10,10 +10,30 @@
 	    "description": "An optional short vector representation of a SSV computed decision score.  This will be useful in providing permalink and other ways to provide quick read and access to a SSVC decision made"
 
 	},
-	"options": {
+	"outcome": {
+	    "description": "This entry provides a list of potential outcomes once a Decision Tree were used to evaluate a vulnerability (or multiple) by a organization/person representing a Role",
 	    "type": "object",
-	    "items": {
-		"type": "string"
+	    "patternProperties": {
+		".*" : {
+		    "type": "array",
+		    "items": {
+			"type": "string"
+		    }
+		}
+	    },
+	    "maxProperties": 1,
+	    "additionalProperties": false
+	},
+	"options": {
+	    "description": "These entries list the Options that were evaluated by a organization/person representing a Role",
+	    "type": "object",
+	    "patternProperties": {
+		".*" : {
+		    "type": "array",
+		    "items": {
+			"type": "string"
+		    }
+		}
 	    },
 	    "minItems": 1,
 	    "uniqueItems": true		

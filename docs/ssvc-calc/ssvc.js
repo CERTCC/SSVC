@@ -302,7 +302,7 @@ function export_json() {
     var tstamp = new Date()
     var oexport = { role: $('.exportActive .exportRole').val() || "Unknown",
 		    id: $('.exportActive .exportId').val() || "Unspecified",
-		    version: "2.0",
+		    version: "2.1.3",
 		    generator: _tool
 		  }
     oexport['computed'] = $('.exportActive .ssvcvector').html();
@@ -315,14 +315,25 @@ function export_json() {
 	final_outcome = $('h4.hfinal').html();
     }
     /* Copy current_score as is to options that were selected */
-    oexport['options'] = current_score;
+    oexport['options'] = {};
+    current_score.forEach( function(x) x {
+	let q = Object.keys(x)[0];
+	oexport['options'][q] = [x[q]]
+    });
+    /* Remove old schema version of scores
+      oexport['options'] = current_score;
+    */
     if(current_score.findIndex(x => final_keyword in x) < 0) {
-	/* Add final_keywrod only if not exists see GitHub issue #190 */
-	var last_option = {};
+	/* Remove final keyword if exists */
+	let last_option = {};
 	last_option[final_keyword] = final_outcome;
-	oexport['options'].push(last_option);
+	if(final_keyword in oexport['options']) {
+	    delete oexport['options'][final_keyword];
+	}
     }
-    oexport['$schema'] = location.origin + location.pathname + current_schema
+    oexport["outcome"] = {};
+    oexport["outcome"][final_keyword] =   [final_outcome];
+    oexport['schema'] = location.origin + location.pathname + current_schema
     oexport['decision_tree_url'] = location.origin + location.pathname +
 	current_tree;
     var a = document.createElement("a")
