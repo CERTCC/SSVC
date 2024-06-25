@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://democert.org/ssvc/SVC_Computed_v2.03.schema.json",
+    "$id": "https://certcc.github.io/SSVC/data/schema/SSVC_Computed.schema.json",
     "title": "Computed SSVC score representing the path in the decision tree",
     "description": "This schema represents the full path in the decision tree taken by an analyst with a specific role.  The representation of the full decision tree is optional",
     "type": "object",
@@ -11,18 +11,9 @@
 
 	},
 	"options": {
-	    "type": "array",
-
+	    "type": "object",
 	    "items": {
-		"type": "object",
-		"patternProperties": {
-		    ".*": {
-			"type": ["array","string"],
-			"items": {
-			    "type": "string"
-			}
-		    }
-		}
+		"type": "string"
 	    },
 	    "minItems": 1,
 	    "uniqueItems": true		
@@ -42,7 +33,7 @@
 	},
 	"decision_tree": {
 	    "description": "The full decision tree that was used for this SSVC computed score",
-	    "$ref": "https://democert.org/ssvc/SSVC_Provision_v2.03.schema.json"
+	    "$ref": "https://certcc.github.io/SSVC/data/schema/SSVC_Provision.schema.json"
 	},
 	"id": {
 	    "type": "string",
@@ -53,7 +44,7 @@
 	    "format": "uri",
 	    "description": "A URL that points to the decision tree that was used to make this \"Computed\" decision"
 	},
-	"$schema": {
+	"schema": {
 	    "type": "string",
 	    "format": "uri",
 	    "description": "A URL that points to the schema that was used for the decision tree that was used to make this \"Computed\" decision"
