@@ -1,0 +1,28 @@
+{
+  "options": [
+    {
+      "namespace": "ssvc",
+      "name": "Exploitation",
+      "version": "1.1.0",
+      "values": [
+        "Public PoC"
+      ]
+    },
+    {
+      "namespace": "ssvc",
+      "name": "Automatable",
+      "version": "2.0.0",
+      "values": [
+        "No"
+      ]
+    },
+    {
+      "namespace": "ssvc",
+      "name": "Technical Impact",
+      "version": "1.0.0",
+      "values": [
+        "Total"
+      ]
+    }
+  ]
+}
