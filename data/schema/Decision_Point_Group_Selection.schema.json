@@ -35,8 +35,8 @@
     },
     "SsvcdecisionpointgroupselectionSchema": {
       "properties": {
-        "options": {
-          "title": "options",
+        "selections": {
+          "title": "selections",
           "type": "array",
           "items": {
             "type": "object",
@@ -47,7 +47,7 @@
       },
       "type": "object",
       "required": [
-        "options"
+        "selections"
       ],
       "additionalProperties": false
     }

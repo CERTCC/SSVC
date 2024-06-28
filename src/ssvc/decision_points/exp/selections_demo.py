@@ -27,7 +27,7 @@ group = SsvcDecisionPointGroup(
 
 
 def make_random_selections(group: SsvcDecisionPointGroup):
-    selections = SsvcDecisionPointGroupSelection(options=[])
+    selections = SsvcDecisionPointGroupSelection(selections=[])
     for dp in group.decision_points:
         select = SsvcDecisionPointSelection(
             namespace=dp.namespace, name=dp.name, version=dp.version, values=[]
@@ -36,7 +36,7 @@ def make_random_selections(group: SsvcDecisionPointGroup):
         value = random.choice(dp.values)
         # get the name of the value
         select.values.append(value.name)
-        selections.options.append(select)
+        selections.selections.append(select)
     return selections
 
 
@@ -50,7 +50,7 @@ def main():
     print(selections.to_json(indent=2))
 
     with open(
-        "../../../../data/schema_examples/Decision_Point_Group_Selection.json", "w"
+        "../../data/schema_examples/Decision_Point_Group_Selection.json", "w"
     ) as f:
         f.write(selections.to_json(indent=2))
 

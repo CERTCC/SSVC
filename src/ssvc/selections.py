@@ -34,7 +34,7 @@ class SsvcDecisionPointSelection:
 @dataclass_json
 @dataclass(kw_only=True)
 class SsvcDecisionPointGroupSelection:
-    options: List[SsvcDecisionPointSelection]
+    selections: List[SsvcDecisionPointSelection]
 
 
 def main():
@@ -47,7 +47,7 @@ def main():
     print("#####################################################")
     print(json_schema.dumps(SsvcDecisionPointSelection.schema(), indent=2))
 
-    with open("../../data/schema/Decision_Point_Selection.json", "w") as f:
+    with open("../../data/schema/Decision_Point_Selection.schema.json", "w") as f:
         f.write(json_schema.dumps(SsvcDecisionPointSelection.schema(), indent=2))
 
     print()
@@ -58,7 +58,7 @@ def main():
     print("##########################################################")
     print(json_schema.dumps(SsvcDecisionPointGroupSelection.schema(), indent=2))
 
-    with open("../../data/schema/Decision_Point_Group_Selection.json", "w") as f:
+    with open("../../data/schema/Decision_Point_Group_Selection.schema.json", "w") as f:
         f.write(json_schema.dumps(SsvcDecisionPointGroupSelection.schema(), indent=2))
 
     print()
