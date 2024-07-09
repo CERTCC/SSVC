@@ -89,7 +89,6 @@
 	    "required": [
 		"selections",
 		"id",
-		"role",
 		"timestamp",
 		"schemaVersion"
 	    ],
