@@ -64,7 +64,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_decision_point_validation(self):
         # path relative to top level of repo
-        schema_file = find_schema("data/schema/Decision_Point.schema.json")
+        schema_file = find_schema("data/schema/current/Decision_Point.schema.json")
         schema = json.load(open(schema_file))
 
         decision_points = list(REGISTERED_DECISION_POINTS)
@@ -82,11 +82,11 @@ class MyTestCase(unittest.TestCase):
 
             self.assertIsNone(exp, f"Validation failed for {dp.name} {dp.version}")
             self.logger.debug(
-                f"Validation passed for ({dp.namespace}) {dp.name} v{dp.version}"
+                f"Validation passed for Decision Point ({dp.namespace}) {dp.name} v{dp.version}"
             )
 
     def test_decision_point_group_validation(self):
-        schema_file = find_schema("data/schema/Decision_Point_Group.schema.json")
+        schema_file = find_schema("data/schema/current/Decision_Point_Group.schema.json")
         schema = json.load(open(schema_file))
 
         for dpg in self.dpgs:
