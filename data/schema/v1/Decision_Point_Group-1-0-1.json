@@ -1,0 +1,44 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Decision Points Group schema definition",
+    "$id": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Group-1-0-1.schema.json",
+    "definitions": {
+	"schemaVersion": {
+            "description": "Schema version used to represent Decision Point Group",
+            "type": "string",
+            "enum": ["1-0-1"]
+        },
+	"decision_point_group": {
+	    "type": "object",
+	    "additionalProperties": false,
+	    "properties": {
+		"version": {
+		    "type": "string",
+		    "description": "Version (a semantic version string) that identifies this object"
+		},
+		"name": {
+		    "type": "string",
+		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+		},
+		"description": {
+		    "type": "string",
+		    "description": "Description of the Decision Point or the Group of Decision Points."
+		},
+		"decision_points": {
+		    "type": "array",
+		    "items": {
+			"$ref": "https://certcc.github.io/SSVC/data/schema/Decision_Point.schema.json"
+		    }
+		}
+	    },
+	    "required": [
+		"version",
+		"name",
+		"description",
+		"decision_points"
+	    ]
+	}
+    },
+    "$ref": "#/definitions/decision_point_group"
+
+}
