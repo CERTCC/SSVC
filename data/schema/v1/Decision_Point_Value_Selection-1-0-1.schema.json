@@ -41,6 +41,7 @@
 		    "description": "Evaluated values of the Decision Point",
 		    "title": "values",
 		    "type": "array",
+		    "minItems": 1,
 		    "items": {
 			"description": "Each value that were down-selected for a Decision Point",
 			"title": "values",
@@ -80,6 +81,7 @@
 		    "description" : "An array of Decision Points and their Values that were down-selected or evaluated ",
 		    "title": "selections",
 		    "type": "array",
+		    "minItems": 1,
 		    "items": {
 			"$ref": "#/definitions/SsvcdecisionpointselectionSchema"
 		    }

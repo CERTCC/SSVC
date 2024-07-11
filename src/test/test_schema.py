@@ -16,6 +16,9 @@ import logging
 import unittest
 
 import jsonschema
+from jsonschema import Draft202012Validator
+from referencing import Registry, Resource
+import os
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
@@ -29,15 +32,16 @@ from ssvc.dp_groups.cvss.collections import CVSSv1, CVSSv2, CVSSv3, CVSSv4  # no
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
+def retrieve_local(uri):
+    fileuri = uri.replace("https://certcc.github.io/SSVC", os.getcwd())
+    if os.path.exists(fileuri):
+        fh = open(fileuri)
+        schema = json.load(fh)
+        fh.close()
+        return Resource.from_contents(schema)
+    raise FileNotFoundError(f"Could not find DEBUG path issues {fileuri}")
 
-def find_schema(basepath: str) -> str:
-    import os
-
-    for pfx in (".", "..", "../.."):
-        path = os.path.join(pfx, basepath)
-        if os.path.exists(path):
-            return path
-    raise FileNotFoundError(f"Could not find {basepath}")
+registry = Registry(retrieve=retrieve_local)
 
 
 class MyTestCase(unittest.TestCase):
@@ -64,8 +68,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_decision_point_validation(self):
         # path relative to top level of repo
-        schema_file = find_schema("data/schema/current/Decision_Point.schema.json")
-        schema = json.load(open(schema_file))
+        schema_url = "https://certcc.github.io/SSVC/data/schema/current/Decision_Point.schema.json"
 
         decision_points = list(REGISTERED_DECISION_POINTS)
         self.assertGreater(len(decision_points), 0)
@@ -76,7 +79,7 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                jsonschema.validate(loaded, schema)
+                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
@@ -86,21 +89,19 @@ class MyTestCase(unittest.TestCase):
             )
 
     def test_decision_point_group_validation(self):
-        schema_file = find_schema("data/schema/current/Decision_Point_Group.schema.json")
-        schema = json.load(open(schema_file))
-
+        schema_url = "https://certcc.github.io/SSVC/data/schema/current/Decision_Point_Group.schema.json"
         for dpg in self.dpgs:
             exp = None
             as_json = dpg.to_json()
             loaded = json.loads(as_json)
 
             try:
-                jsonschema.validate(loaded, schema)
+                Draft202012Validator({"$ref": schema_url},registry=registry).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
             self.assertIsNone(exp, f"Validation failed for {dpg.name} {dpg.version}")
-            self.logger.debug(f"Validation passed for {dpg.name} v{dpg.version}")
+            self.logger.debug(f"Validation passed for Decision Point Group {dpg.name} v{dpg.version}")
 
 
 if __name__ == "__main__":
