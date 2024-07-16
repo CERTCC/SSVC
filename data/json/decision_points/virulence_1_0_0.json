@@ -1,6 +1,7 @@
 {
   "namespace": "ssvc",
   "version": "1.0.0",
+  "schemaVersion": "1-0-1",
   "key": "V",
   "name": "Virulence",
   "description": "The speed at which the vulnerability can be exploited.",

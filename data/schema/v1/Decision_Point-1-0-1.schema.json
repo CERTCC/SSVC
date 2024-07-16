@@ -36,34 +36,38 @@
 	    "type": "object",
 	    "additionalProperties": false,
 	    "properties": {
-            "namespace": {
-		"type": "string",
-		"description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point"
-            },
-            "version": {
-		"type": "string",
-		"description": "Version (a semantic version string) that identifies this object"
-            },
-            "key": {
-		"type": "string",
-		"description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
-            },
-            "name": {
-		"type": "string",
-		"description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
-            },
-            "description": {
-		"type": "string",
-		"description": "q Description of the Decision Point or the Group of Decision Points as defined."
-            },
-            "values": {
-		"description": "Decision Point Values are valid results from a Decision Point",
-		"uniqueItems": true,
-		"type": "array",
-		"items": {
-		    "$ref": "#/definitions/decision_point_value"
+		"schemaVersion": {
+		    "$ref": "#/definitions/schemaVersion"
+		},
+		"namespace": {
+		    "type": "string",
+		    "description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point"
+		},
+		"version": {
+		    "type": "string",
+		    "description": "Version (a semantic version string) that identifies this object"
+		},
+		"key": {
+		    "type": "string",
+		    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+		},
+		"name": {
+		    "type": "string",
+		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+		},
+		"description": {
+		    "type": "string",
+		    "description": "q Description of the Decision Point or the Group of Decision Points as defined."
+		},
+		"values": {
+		    "description": "Decision Point Values are valid results from a Decision Point",
+		    "uniqueItems": true,
+		    "type": "array",
+		    "minItems": 1,
+		    "items": {
+			"$ref": "#/definitions/decision_point_value"
+		    }
 		}
-            }
 	    },
 	    "required": [
 		"namespace",
@@ -71,7 +75,8 @@
 		"key",
 		"name",
 		"description",
-		"values"
+		"values",
+		"schemaVersion"
 	    ]
 	}
     },

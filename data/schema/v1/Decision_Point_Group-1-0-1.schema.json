@@ -12,6 +12,9 @@
 	    "type": "object",
 	    "additionalProperties": false,
 	    "properties": {
+		"schemaVersion": {
+                    "$ref": "#/definitions/schemaVersion"
+                },
 		"version": {
 		    "type": "string",
 		    "description": "Version (a semantic version string) that identifies this object"
@@ -26,8 +29,9 @@
 		},
 		"decision_points": {
 		    "type": "array",
+		    "minItems": 1,
 		    "items": {
-			"$ref": "https://certcc.github.io/SSVC/data/schema/Decision_Point.schema.json"
+			"$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json"
 		    }
 		}
 	    },
@@ -35,7 +39,8 @@
 		"version",
 		"name",
 		"description",
-		"decision_points"
+		"decision_points",
+		"schemaVersion"
 	    ]
 	}
     },
