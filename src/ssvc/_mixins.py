@@ -22,6 +22,7 @@ from typing import Optional
 
 from dataclasses_json import config, dataclass_json
 
+from . import _schemaVersion
 
 @dataclass_json
 @dataclass(kw_only=True)
@@ -31,7 +32,7 @@ class _Versioned:
     """
 
     version: str = "0.0.0"
-
+    schemaVersion: str = _schemaVersion
 
 @dataclass_json
 @dataclass(kw_only=True)

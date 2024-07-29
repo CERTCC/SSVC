@@ -328,7 +328,7 @@ class PolicyGenerator:
 
 
 def main():
-    from ssvc.decision_points.automatable import AUTOMATABLE_1
+    from ssvc.decision_points.automatable import AUTOMATABLE_2
     from ssvc.decision_points.exploitation import EXPLOITATION_1
     from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
     from ssvc.decision_points.system_exposure import SYSTEM_EXPOSURE_1_0_1
@@ -347,7 +347,7 @@ def main():
         decision_points=[
             EXPLOITATION_1,
             SYSTEM_EXPOSURE_1_0_1,
-            AUTOMATABLE_1,
+            AUTOMATABLE_2,
             HUMAN_IMPACT_2,
         ],
     )
