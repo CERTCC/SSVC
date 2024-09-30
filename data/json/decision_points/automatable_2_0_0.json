@@ -1,6 +1,7 @@
 {
   "namespace": "ssvc",
   "version": "2.0.0",
+  "schemaVersion": "1-0-1",
   "key": "A",
   "name": "Automatable",
   "description": "Can an attacker reliably automate creating exploitation events for this vulnerability?",

@@ -1,6 +1,7 @@
 {
   "namespace": "ssvc",
   "version": "1.0.0",
+  "schemaVersion": "1-0-1",
   "key": "EXP",
   "name": "System Exposure",
   "description": "The Accessible Attack Surface of the Affected System or Service",
