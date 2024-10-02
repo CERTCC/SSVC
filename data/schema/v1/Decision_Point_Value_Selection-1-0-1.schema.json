@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Group_Selection-1-0-1.schema.json",
+    "$id": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json",
     "definitions": {
 	"id": {
             "type": "string",
