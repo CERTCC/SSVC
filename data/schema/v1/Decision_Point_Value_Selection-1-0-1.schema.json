@@ -62,40 +62,37 @@
 		"version"
 	    ],
 	    "additionalProperties": false
-	},
-	"SsvcdecisionpointgroupselectionSchema": {
-	    "properties": {
-		"id": {
-		    "$ref": "#/definitions/id"
-		},
-		"role": {
-		    "$ref": "#/definitions/role"
-		},
-		"schemaVersion": {
-		    "$ref": "#/definitions/schemaVersion"
-		},
-		"timestamp": {
-		    "$ref": "#/definitions/timestamp"
-		},
-		"selections": {
-		    "description" : "An array of Decision Points and their Values that were down-selected or evaluated ",
-		    "title": "selections",
-		    "type": "array",
-		    "minItems": 1,
-		    "items": {
-			"$ref": "#/definitions/SsvcdecisionpointselectionSchema"
-		    }
-		}
-	    },
-	    "type": "object",
-	    "required": [
-		"selections",
-		"id",
-		"timestamp",
-		"schemaVersion"
-	    ],
-	    "additionalProperties": false
 	}
     },
-    "$ref": "#/definitions/SsvcdecisionpointgroupselectionSchema"
+    "properties": {
+	"id": {
+	    "$ref": "#/definitions/id"
+	},
+	"role": {
+	    "$ref": "#/definitions/role"
+	},
+	"schemaVersion": {
+	    "$ref": "#/definitions/schemaVersion"
+	},
+	"timestamp": {
+	    "$ref": "#/definitions/timestamp"
+	},
+	"selections": {
+	    "description" : "An array of Decision Points and their Values that were down-selected or evaluated ",
+	    "title": "selections",
+	    "type": "array",
+	    "minItems": 1,
+	    "items": {
+		"$ref": "#/definitions/SsvcdecisionpointselectionSchema"
+	    }
+	}
+    }, 
+    "type": "object",
+    "required": [
+	"selections",
+	"id",
+	"timestamp",
+	"schemaVersion"
+    ],
+    "additionalProperties": false
 }
