@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json",
-    "definitions": {
+    "$defs": {
 	"id": {
             "type": "string",
             "description": "Identifier for a vulnerability could be CVE, CERT/CC VU#, OSV id, Bugtraq, GHSA etc.",
@@ -66,16 +66,16 @@
     },
     "properties": {
 	"id": {
-	    "$ref": "#/definitions/id"
+	    "$ref": "#/$defs/id"
 	},
 	"role": {
-	    "$ref": "#/definitions/role"
+	    "$ref": "#/$defs/role"
 	},
 	"schemaVersion": {
-	    "$ref": "#/definitions/schemaVersion"
+	    "$ref": "#/$defs/schemaVersion"
 	},
 	"timestamp": {
-	    "$ref": "#/definitions/timestamp"
+	    "$ref": "#/$defs/timestamp"
 	},
 	"selections": {
 	    "description" : "An array of Decision Points and their Values that were down-selected or evaluated ",
@@ -83,7 +83,7 @@
 	    "type": "array",
 	    "minItems": 1,
 	    "items": {
-		"$ref": "#/definitions/SsvcdecisionpointselectionSchema"
+		"$ref": "#/$defs/SsvcdecisionpointselectionSchema"
 	    }
 	}
     }, 
