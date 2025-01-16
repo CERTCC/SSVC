@@ -35,7 +35,7 @@
 		    "description": "SSVC Namespace that were used for defining the evaluated Decision Points",
 		    "title": "namespace",
 		    "type": "string",
-		    "examples": ["ssvc","cvvsv4"]
+		    "examples": ["ssvc","cvssv4"]
 		},
 		"values": {
 		    "description": "Evaluated values of the Decision Point",
