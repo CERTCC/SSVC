@@ -5,7 +5,7 @@
 	"id": {
             "type": "string",
             "description": "Identifier for a vulnerability could be CVE, CERT/CC VU#, OSV id, Bugtraq, GHSA etc.",
-            "examples": ["CVE-2024-101010","VU#11111","GHSA-11a1-22b2-33c3"]
+            "examples": ["CVE-1900-1234","VU#11111","GHSA-11a1-22b2-33c3"]
 	},	
 	"role": {
             "type": "string",
