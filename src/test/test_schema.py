@@ -32,7 +32,6 @@ from ssvc.dp_groups.cvss.collections import (
     CVSSv3,
     CVSSv4,
 )  # noqa
-
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
@@ -53,7 +52,6 @@ def retrieve_local(uri: str) -> Resource:
     with open(fileuri) as fh:
         schema = json.load(fh)
     return Resource.from_contents(schema)
-
 
 
 registry = Registry(retrieve=retrieve_local)
@@ -94,15 +92,13 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator(
-                    {"$ref": schema_url}, registry=registry
-                ).validate(loaded)
+                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(
+                    loaded
+                )
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
-            self.assertIsNone(
-                exp, f"Validation failed for {dp.name} {dp.version}"
-            )
+            self.assertIsNone(exp, f"Validation failed for {dp.name} {dp.version}")
             self.logger.debug(
                 f"Validation passed for Decision Point ({dp.namespace}) {dp.name} v{dp.version}"
             )
@@ -115,15 +111,13 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator(
-                    {"$ref": schema_url}, registry=registry
-                ).validate(loaded)
+                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(
+                    loaded
+                )
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
-            self.assertIsNone(
-                exp, f"Validation failed for {dpg.name} {dpg.version}"
-            )
+            self.assertIsNone(exp, f"Validation failed for {dpg.name} {dpg.version}")
             self.logger.debug(
                 f"Validation passed for Decision Point Group {dpg.name} v{dpg.version}"
             )
