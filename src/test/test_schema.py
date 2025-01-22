@@ -31,19 +31,22 @@ from ssvc.dp_groups.cvss.collections import CVSSv1, CVSSv2, CVSSv3, CVSSv4  # no
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
 
-def retrieve_local(uri):
+def retrieve_local(uri: str) -> Resource:
+    # retrieve_local gets called anytime we're trying to get a schema.
+    # Because our schemas refer to each other by https: uris, we need this function
+    # to load the schema from a local file instead of trying to download it from the internet
+
+    # here we compute the path to the data directory where the schemas are stored
     my_file_path = os.path.abspath(__file__)
     my_dir = os.path.dirname(my_file_path)
     data_path = os.path.join(my_dir, "..", "..", "data")
     data_path = os.path.abspath(data_path)
 
     fileuri = uri.replace("https://certcc.github.io/SSVC/data", data_path)
-    if os.path.exists(fileuri):
-        fh = open(fileuri)
+
+    with open(fileuri) as fh:
         schema = json.load(fh)
-        fh.close()
-        return Resource.from_contents(schema)
-    raise FileNotFoundError(f"Could not find DEBUG path issues {fileuri}")
+    return Resource.from_contents(schema)
 
 
 registry = Registry(retrieve=retrieve_local)
