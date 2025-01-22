@@ -87,7 +87,9 @@ class PolicyGenerator:
             # validate that the outcome weights sum to 1.0
             total = sum(outcome_weights)
             if not math.isclose(total, 1.0):
-                raise ValueError(f"Outcome weights must sum to 1.0, but sum to {total}")
+                raise ValueError(
+                    f"Outcome weights must sum to 1.0, but sum to {total}"
+                )
 
             self.outcome_weights = outcome_weights
         logger.debug(f"Outcome weights: {self.outcome_weights}")
@@ -203,7 +205,9 @@ class PolicyGenerator:
         logger.debug(f"Layer count: {len(layers)}")
         logger.debug(f"Layer sizes: {[len(layer) for layer in layers]}")
 
-        outcome_counts = [round(node_count * weight) for weight in self.outcome_weights]
+        outcome_counts = [
+            round(node_count * weight) for weight in self.outcome_weights
+        ]
 
         toposort = list(nx.topological_sort(self.G))
         logger.debug(f"Toposort: {toposort[:4]}...{toposort[-4:]}")
@@ -292,11 +296,15 @@ class PolicyGenerator:
         # all nodes must be in the graph
         for node in node_order:
             if node not in self.G.nodes:
-                raise ValueError(f"Node order contains node {node} not in the graph")
+                raise ValueError(
+                    f"Node order contains node {node} not in the graph"
+                )
 
         for node in self.G.nodes:
             if node not in node_order:
-                raise ValueError(f"Graph contains node {node} not in the node order")
+                raise ValueError(
+                    f"Graph contains node {node} not in the node order"
+                )
 
         node_idx = {node: i for i, node in enumerate(node_order)}
 
@@ -353,7 +361,9 @@ def main():
     )
 
     with PolicyGenerator(
-        dp_group=dpg, outcomes=DSOI, outcome_weights=[0.097, 0.583, 0.278, 0.042]
+        dp_group=dpg,
+        outcomes=DSOI,
+        outcome_weights=[0.097, 0.583, 0.278, 0.042],
     ) as pg:
         pg.emit_policy()
 

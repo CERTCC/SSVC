@@ -72,5 +72,6 @@ def main():
 
     print_versions_and_diffs(versions)
 
+
 if __name__ == "__main__":
     main()
