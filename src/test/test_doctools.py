@@ -42,7 +42,7 @@ _dp_dict = {
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.dp = SsvcDecisionPoint.from_dict(_dp_dict)
+        self.dp = SsvcDecisionPoint.model_validate(_dp_dict)
 
         # create a temp working dir
         self.tempdir = tempfile.TemporaryDirectory()
@@ -187,7 +187,7 @@ class MyTestCase(unittest.TestCase):
 
         # file is loadable json
         d = json.load(open(json_file))
-        for k, v in dp.to_dict().items():
+        for k, v in dp.model_dump().items():
             self.assertEqual(v, d[k])
 
         # should not overwrite the file

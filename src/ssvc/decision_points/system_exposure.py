@@ -79,8 +79,8 @@ SYSTEM_EXPOSURE_1_0_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(SYSTEM_EXPOSURE_1.to_json(indent=2))
-    print(SYSTEM_EXPOSURE_1_0_1.to_json(indent=2))
+    print(SYSTEM_EXPOSURE_1.model_dump_json(indent=2))
+    print(SYSTEM_EXPOSURE_1_0_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

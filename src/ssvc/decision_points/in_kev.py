@@ -42,7 +42,7 @@ IN_KEV_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(IN_KEV_1.to_json(indent=2))
+    print(IN_KEV_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

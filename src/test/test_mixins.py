@@ -37,7 +37,7 @@ class TestMixins(unittest.TestCase):
 
     def test_json_roundtrip(self):
         obj = self.obj
-        json = obj.to_json()
+        json = obj.model_dump_json()
         # is it a string?
         self.assertIsInstance(json, str)
         # does it look right?
@@ -48,7 +48,7 @@ class TestMixins(unittest.TestCase):
         self.assertEqual(json, '{"name": "quux", "description": "baz"}')
 
         # does it load?
-        obj2 = _Base.from_json(json)
+        obj2 = _Base.model_validate_json(json)
         self.assertEqual(obj2.name, "quux")
         self.assertEqual(obj2.description, "baz")
 
@@ -155,7 +155,7 @@ class TestMixins(unittest.TestCase):
                     self.assertEqual(getattr(obj, k), v)
 
                 # test json roundtrip
-                json = obj.to_json()
+                json = obj.model_dump_json()
                 # is it a string?
                 self.assertIsInstance(json, str)
                 # does it look right?
@@ -167,7 +167,7 @@ class TestMixins(unittest.TestCase):
                 json = json.replace("foo", "quux")
                 json = json.replace("baz", "fizz")
                 # does it load?
-                obj2 = Foo.from_json(json)
+                obj2 = Foo.model_validate_json(json)
                 self.assertEqual(obj2.name, "quux")
                 self.assertEqual(obj2.description, "fizz")
                 # make sure the args are set

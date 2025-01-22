@@ -88,7 +88,7 @@ class MyTestCase(unittest.TestCase):
 
         for dp in decision_points:
             exp = None
-            as_json = dp.to_json()
+            as_json = dp.model_dump_json()
             loaded = json.loads(as_json)
 
             try:
@@ -107,7 +107,7 @@ class MyTestCase(unittest.TestCase):
         schema_url = "https://certcc.github.io/SSVC/data/schema/current/Decision_Point_Group.schema.json"
         for dpg in self.dpgs:
             exp = None
-            as_json = dpg.to_json()
+            as_json = dpg.model_dump_json()
             loaded = json.loads(as_json)
 
             try:

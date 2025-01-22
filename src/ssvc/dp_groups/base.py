@@ -17,18 +17,15 @@ created_at: 9/20/23 4:47 PM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass
 from typing import Iterable
 
-from dataclasses_json import dataclass_json
+from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Versioned
 from ssvc.decision_points.base import SsvcDecisionPoint
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class SsvcDecisionPointGroup(_Base, _Versioned):
+class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
     """
     Models a group of decision points.
     """

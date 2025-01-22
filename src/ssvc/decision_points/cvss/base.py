@@ -2,8 +2,6 @@
 """
 Provides a base class for modeling CVSS vector metrics as SSVC decision points.
 """
-
-
 #  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -17,16 +15,12 @@ Provides a base class for modeling CVSS vector metrics as SSVC decision points.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass
-
-from dataclasses_json import dataclass_json
+from pydantic import BaseModel
 
 from ssvc.decision_points.base import SsvcDecisionPoint
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class CvssDecisionPoint(SsvcDecisionPoint):
+class CvssDecisionPoint(SsvcDecisionPoint, BaseModel):
     """
     Models a single CVSS decision point as a list of values.
     """

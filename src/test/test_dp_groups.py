@@ -77,12 +77,12 @@ class MyTestCase(unittest.TestCase):
         )
 
         # serialize the group to json
-        g_json = g.to_json()
+        g_json = g.model_dump_json()
 
         # deserialize the json to a new group
-        g2 = dpg.SsvcDecisionPointGroup.from_json(g_json)
+        g2 = dpg.SsvcDecisionPointGroup.model_validate_json(g_json)
         # assert that the new group is the same as the old group
-        self.assertEqual(g.to_dict(), g2.to_dict())
+        self.assertEqual(g.model_dump(), g2.model_dump())
 
 
 if __name__ == "__main__":

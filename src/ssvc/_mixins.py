@@ -17,17 +17,14 @@ created_at: 9/20/23 4:51 PM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass, field
 from typing import Optional
 
-from dataclasses_json import config, dataclass_json
+from pydantic import BaseModel, ConfigDict
 
 from . import _schemaVersion
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class _Versioned:
+class _Versioned(BaseModel):
     """
     Mixin class for versioned SSVC objects.
     """
@@ -36,9 +33,7 @@ class _Versioned:
     schemaVersion: str = _schemaVersion
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class _Namespaced:
+class _Namespaced(BaseModel):
     """
     Mixin class for namespaced SSVC objects.
     """
@@ -46,9 +41,7 @@ class _Namespaced:
     namespace: str = "ssvc"
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class _Keyed:
+class _Keyed(BaseModel):
     """
     Mixin class for keyed SSVC objects.
     """
@@ -60,21 +53,17 @@ def exclude_if_none(value):
     return value is None
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class _Commented:
+class _Commented(BaseModel):
     """
     Mixin class for commented SSVC objects.
     """
 
-    _comment: Optional[str] = field(
-        default=None, metadata=config(exclude=exclude_if_none)
-    )
+    _comment: Optional[str] = None
+
+    model_config = ConfigDict(json_encoders={Optional[str]: exclude_if_none})
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class _Base:
+class _Base(BaseModel):
     """
     Base class for SSVC objects.
     """
