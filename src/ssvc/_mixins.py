@@ -4,7 +4,7 @@ file: _basics
 author: adh
 created_at: 9/20/23 4:51 PM
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -24,6 +24,7 @@ from dataclasses_json import config, dataclass_json
 
 from . import _schemaVersion
 
+
 @dataclass_json
 @dataclass(kw_only=True)
 class _Versioned:
@@ -33,6 +34,7 @@ class _Versioned:
 
     version: str = "0.0.0"
     schemaVersion: str = _schemaVersion
+
 
 @dataclass_json
 @dataclass(kw_only=True)
