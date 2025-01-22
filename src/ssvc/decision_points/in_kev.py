@@ -2,7 +2,7 @@
 """
 Provides a decision point representing whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
