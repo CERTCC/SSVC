@@ -38,7 +38,9 @@ PUBLISH = OutcomeGroup(
     name="Publish, Do Not Publish",
     description="The publish outcome group.",
     outcomes=(
-        OutcomeValue(name="Do Not Publish", key="N", description="Do Not Publish"),
+        OutcomeValue(
+            name="Do Not Publish", key="N", description="Do Not Publish"
+        ),
         OutcomeValue(name="Publish", key="P", description="Publish"),
     ),
 )
@@ -159,7 +161,9 @@ VALUE_COMPLEXITY = OutcomeGroup(
     outcomes=(
         # drop, reconsider later, easy win, do first
         OutcomeValue(name="Drop", key="D", description="Drop"),
-        OutcomeValue(name="Reconsider Later", key="R", description="Reconsider Later"),
+        OutcomeValue(
+            name="Reconsider Later", key="R", description="Reconsider Later"
+        ),
         OutcomeValue(name="Easy Win", key="E", description="Easy Win"),
         OutcomeValue(name="Do First", key="F", description="Do First"),
     ),
@@ -173,7 +177,9 @@ THE_PARANOIDS = OutcomeGroup(
     description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
     outcomes=(
         OutcomeValue(name="Track 5", key="5", description="Track"),
-        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
+        OutcomeValue(
+            name="Track Closely 4", key="4", description="Track Closely"
+        ),
         OutcomeValue(name="Attend 3", key="3", description="Attend"),
         OutcomeValue(name="Attend 2", key="2", description="Attend"),
         OutcomeValue(name="Act 1", key="1", description="Act"),

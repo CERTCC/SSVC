@@ -194,7 +194,12 @@ ATTACK_VECTOR_3_0_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [ACCESS_VECTOR_1, ACCESS_VECTOR_2, ATTACK_VECTOR_3, ATTACK_VECTOR_3_0_1]
+versions = [
+    ACCESS_VECTOR_1,
+    ACCESS_VECTOR_2,
+    ATTACK_VECTOR_3,
+    ATTACK_VECTOR_3_0_1,
+]
 
 
 def main():

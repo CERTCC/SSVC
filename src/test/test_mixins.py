@@ -94,10 +94,20 @@ class TestMixins(unittest.TestCase):
         # We need to test all the combinations
         mixins = [
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
-            {"class": _Namespaced, "args": {"namespace": "buzz"}, "has_default": True},
-            {"class": _Versioned, "args": {"version": "1.2.3"}, "has_default": True},
+            {
+                "class": _Namespaced,
+                "args": {"namespace": "buzz"},
+                "has_default": True,
+            },
+            {
+                "class": _Versioned,
+                "args": {"version": "1.2.3"},
+                "has_default": True,
+            },
         ]
-        keys_with_defaults = [x["args"].keys() for x in mixins if x["has_default"]]
+        keys_with_defaults = [
+            x["args"].keys() for x in mixins if x["has_default"]
+        ]
         # flatten the list
         keys_with_defaults = [
             item for sublist in keys_with_defaults for item in sublist
@@ -129,7 +139,11 @@ class TestMixins(unittest.TestCase):
                         self.assertEqual(getattr(Foo, k), getattr(obj, k))
                     else:
                         self.assertRaises(
-                            TypeError, Foo, name="foo", description="baz", **args_copy
+                            TypeError,
+                            Foo,
+                            name="foo",
+                            description="baz",
+                            **args_copy,
                         )
 
                 # instantiate the object

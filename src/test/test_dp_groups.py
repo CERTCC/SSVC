@@ -27,9 +27,15 @@ class MyTestCase(unittest.TestCase):
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    SsvcDecisionPointValue(name="foo", key="FOO", description="foo"),
-                    SsvcDecisionPointValue(name="bar", key="BAR", description="bar"),
-                    SsvcDecisionPointValue(name="baz", key="BAZ", description="baz"),
+                    SsvcDecisionPointValue(
+                        name="foo", key="FOO", description="foo"
+                    ),
+                    SsvcDecisionPointValue(
+                        name="bar", key="BAR", description="bar"
+                    ),
+                    SsvcDecisionPointValue(
+                        name="baz", key="BAZ", description="baz"
+                    ),
                 ),
             )
             self.dps.append(dp)
@@ -40,7 +46,9 @@ class MyTestCase(unittest.TestCase):
     def test_iter(self):
         # add them to a decision point group
         g = dpg.SsvcDecisionPointGroup(
-            name="Test Group", description="Test Group", decision_points=self.dps
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
         )
 
         self.assertTrue(hasattr(g, "__iter__"))
@@ -52,7 +60,9 @@ class MyTestCase(unittest.TestCase):
     def test_len(self):
         # add them to a decision point group
         g = dpg.SsvcDecisionPointGroup(
-            name="Test Group", description="Test Group", decision_points=self.dps
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
         )
 
         self.assertEqual(len(self.dps), len(g.decision_points))
@@ -61,7 +71,9 @@ class MyTestCase(unittest.TestCase):
     def test_json_roundtrip(self):
         # add them to a decision point group
         g = dpg.SsvcDecisionPointGroup(
-            name="Test Group", description="Test Group", decision_points=self.dps
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
         )
 
         # serialize the group to json
