@@ -1,4 +1,4 @@
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -13,33 +13,41 @@
 
 import json
 import logging
+import os
 import unittest
 
 import jsonschema
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
-import os
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
-
 # importing these causes the decision points to register themselves
 from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
 from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
 from ssvc.decision_points.in_kev import IN_KEV_1
 from ssvc.dp_groups.cvss.collections import CVSSv1, CVSSv2, CVSSv3, CVSSv4  # noqa
-
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
-def retrieve_local(uri):
-    fileuri = uri.replace("https://certcc.github.io/SSVC", os.getcwd())
-    if os.path.exists(fileuri):
-        fh = open(fileuri)
+
+def retrieve_local(uri: str) -> Resource:
+    # retrieve_local gets called anytime we're trying to get a schema.
+    # Because our schemas refer to each other by https: uris, we need this function
+    # to load the schema from a local file instead of trying to download it from the internet
+
+    # here we compute the path to the data directory where the schemas are stored
+    my_file_path = os.path.abspath(__file__)
+    my_dir = os.path.dirname(my_file_path)
+    data_path = os.path.join(my_dir, "..", "..", "data")
+    data_path = os.path.abspath(data_path)
+
+    fileuri = uri.replace("https://certcc.github.io/SSVC/data", data_path)
+
+    with open(fileuri) as fh:
         schema = json.load(fh)
-        fh.close()
-        return Resource.from_contents(schema)
-    raise FileNotFoundError(f"Could not find DEBUG path issues {fileuri}")
+    return Resource.from_contents(schema)
+
 
 registry = Registry(retrieve=retrieve_local)
 
@@ -79,7 +87,9 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(loaded)
+                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(
+                    loaded
+                )
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
@@ -96,12 +106,16 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator({"$ref": schema_url},registry=registry).validate(loaded)
+                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(
+                    loaded
+                )
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
             self.assertIsNone(exp, f"Validation failed for {dpg.name} {dpg.version}")
-            self.logger.debug(f"Validation passed for Decision Point Group {dpg.name} v{dpg.version}")
+            self.logger.debug(
+                f"Validation passed for Decision Point Group {dpg.name} v{dpg.version}"
+            )
 
 
 if __name__ == "__main__":
