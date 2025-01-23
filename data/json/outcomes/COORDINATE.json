@@ -1,0 +1,1 @@
+{"version": "1.0.0", "schemaVersion": "1-0-1", "name": "Decline, Track, Coordinate", "description": "The coordinate outcome group.", "outcomes": [{"key": "D", "name": "Decline", "description": "Decline"}, {"key": "T", "name": "Track", "description": "Track"}, {"key": "C", "name": "Coordinate", "description": "Coordinate"}]}
