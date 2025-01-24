@@ -17,7 +17,7 @@ Provides outcome group and outcome value classes for SSVC.
 
 from pydantic import BaseModel
 
-from ssvc._mixins import _Base, _Keyed
+from ssvc._mixins import _Base, _Keyed, _Versioned
 
 
 class OutcomeValue(_Base, _Keyed, BaseModel):
@@ -26,7 +26,7 @@ class OutcomeValue(_Base, _Keyed, BaseModel):
     """
 
 
-class OutcomeGroup(_Base, BaseModel):
+class OutcomeGroup(_Base, _Versioned, BaseModel):
     """
     Models an outcome group.
     """
