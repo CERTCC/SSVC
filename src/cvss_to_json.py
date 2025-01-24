@@ -16,7 +16,7 @@ for mod in mods:
         #user_interaction USER_INTERACTION_2
             print(mod, dp)
             sdp = getattr(module, dp)
-            f = open(f"../data/json/decision_points/cvss/{dp.lower()}.json", "w")
-            f.write(sdp.to_json())
-            f.close()
+            with open(f"../data/json/decision_points/cvss/{dp.lower()}.json", "w") as f:
+                f.write(sdp.to_json())
+
     
