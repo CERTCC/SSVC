@@ -27,15 +27,9 @@ class MyTestCase(unittest.TestCase):
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    SsvcDecisionPointValue(
-                        name="foo", key="FOO", description="foo"
-                    ),
-                    SsvcDecisionPointValue(
-                        name="bar", key="BAR", description="bar"
-                    ),
-                    SsvcDecisionPointValue(
-                        name="baz", key="BAZ", description="baz"
-                    ),
+                    SsvcDecisionPointValue(name="foo", key="FOO", description="foo"),
+                    SsvcDecisionPointValue(name="bar", key="BAR", description="bar"),
+                    SsvcDecisionPointValue(name="baz", key="BAZ", description="baz"),
                 ),
             )
             self.dps.append(dp)
@@ -65,7 +59,8 @@ class MyTestCase(unittest.TestCase):
             decision_points=self.dps,
         )
 
-        self.assertEqual(len(self.dps), len(g.decision_points))
+        self.assertGreater(len(self.dps), 0)
+        self.assertEqual(len(self.dps), len(list(g.decision_points)))
         self.assertEqual(len(self.dps), len(g))
 
     def test_json_roundtrip(self):
@@ -82,7 +77,7 @@ class MyTestCase(unittest.TestCase):
         # deserialize the json to a new group
         g2 = dpg.SsvcDecisionPointGroup.model_validate_json(g_json)
         # assert that the new group is the same as the old group
-        self.assertEqual(g.model_dump(), g2.model_dump())
+        self.assertEqual(g_json, g2.model_dump_json())
 
 
 if __name__ == "__main__":
