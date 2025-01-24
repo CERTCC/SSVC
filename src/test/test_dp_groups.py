@@ -27,9 +27,15 @@ class MyTestCase(unittest.TestCase):
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    SsvcDecisionPointValue(name="foo", key="FOO", description="foo"),
-                    SsvcDecisionPointValue(name="bar", key="BAR", description="bar"),
-                    SsvcDecisionPointValue(name="baz", key="BAZ", description="baz"),
+                    SsvcDecisionPointValue(
+                        name="foo", key="FOO", description="foo"
+                    ),
+                    SsvcDecisionPointValue(
+                        name="bar", key="BAR", description="bar"
+                    ),
+                    SsvcDecisionPointValue(
+                        name="baz", key="BAZ", description="baz"
+                    ),
                 ),
             )
             self.dps.append(dp)
