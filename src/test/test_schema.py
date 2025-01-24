@@ -122,6 +122,11 @@ class MyTestCase(unittest.TestCase):
                 f"Validation passed for Decision Point Group {dpg.name} v{dpg.version}"
             )
 
+    @unittest.skip("Test not implemented")
+    def test_outcome_group_schema_validation(self):
+        # TODO: Implement test
+        self.fail()
+
 
 if __name__ == "__main__":
     unittest.main()
