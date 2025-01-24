@@ -1,1 +1,18 @@
-{"version": "1.0.0", "schemaVersion": "1-0-1", "name": "Yes, No", "description": "The Yes/No outcome group.", "outcomes": [{"key": "N", "name": "No", "description": "No"}, {"key": "Y", "name": "Yes", "description": "Yes"}]}
+{
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "name": "Yes, No",
+  "description": "The Yes/No outcome group.",
+  "outcomes": [
+    {
+      "key": "N",
+      "name": "No",
+      "description": "No"
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "description": "Yes"
+    }
+  ]
+}
