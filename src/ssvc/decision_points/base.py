@@ -18,7 +18,6 @@ created_at: 9/20/23 10:07 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 import logging
-from typing import List
 
 from pydantic import BaseModel
 
@@ -68,7 +67,7 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced, BaseModel):
     Models a single decision point as a list of values.
     """
 
-    values: List[SsvcDecisionPointValue] = []
+    values: list[SsvcDecisionPointValue] = []
 
     def __iter__(self):
         """

@@ -19,7 +19,6 @@ Provides a Policy Generator class for SSVC decision point groups.
 import itertools
 import logging
 import math
-from typing import List, Tuple
 
 import networkx as nx
 import pandas as pd
@@ -48,7 +47,7 @@ class PolicyGenerator:
         self,
         dp_group: SsvcDecisionPointGroup = None,
         outcomes: OutcomeGroup = None,
-        outcome_weights: List[float] = None,
+        outcome_weights: list[float] = None,
         validate: bool = False,
     ):
         """
@@ -87,17 +86,15 @@ class PolicyGenerator:
             # validate that the outcome weights sum to 1.0
             total = sum(outcome_weights)
             if not math.isclose(total, 1.0):
-                raise ValueError(
-                    f"Outcome weights must sum to 1.0, but sum to {total}"
-                )
+                raise ValueError(f"Outcome weights must sum to 1.0, but sum to {total}")
 
             self.outcome_weights = outcome_weights
         logger.debug(f"Outcome weights: {self.outcome_weights}")
 
         self.policy: pd.DataFrame = None
         self.G: nx.DiGraph = nx.DiGraph()
-        self.top: Tuple[int] = None
-        self.bottom: Tuple[int] = None
+        self.top: tuple[int] = None
+        self.bottom: tuple[int] = None
 
         self._enumerated_vec = None
         self._check_valid_paths = validate
@@ -205,9 +202,7 @@ class PolicyGenerator:
         logger.debug(f"Layer count: {len(layers)}")
         logger.debug(f"Layer sizes: {[len(layer) for layer in layers]}")
 
-        outcome_counts = [
-            round(node_count * weight) for weight in self.outcome_weights
-        ]
+        outcome_counts = [round(node_count * weight) for weight in self.outcome_weights]
 
         toposort = list(nx.topological_sort(self.G))
         logger.debug(f"Toposort: {toposort[:4]}...{toposort[-4:]}")
@@ -296,15 +291,11 @@ class PolicyGenerator:
         # all nodes must be in the graph
         for node in node_order:
             if node not in self.G.nodes:
-                raise ValueError(
-                    f"Node order contains node {node} not in the graph"
-                )
+                raise ValueError(f"Node order contains node {node} not in the graph")
 
         for node in self.G.nodes:
             if node not in node_order:
-                raise ValueError(
-                    f"Graph contains node {node} not in the node order"
-                )
+                raise ValueError(f"Graph contains node {node} not in the node order")
 
         node_idx = {node: i for i, node in enumerate(node_order)}
 
