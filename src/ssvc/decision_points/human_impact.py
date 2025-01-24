@@ -121,7 +121,11 @@ HUMAN_IMPACT_2_0_1 = SsvcDecisionPoint(
 
 
 def main():
-    versions = (MISSION_AND_WELL_BEING_IMPACT_1, HUMAN_IMPACT_2, HUMAN_IMPACT_2_0_1)
+    versions = (
+        MISSION_AND_WELL_BEING_IMPACT_1,
+        HUMAN_IMPACT_2,
+        HUMAN_IMPACT_2_0_1,
+    )
 
     print_versions_and_diffs(versions)
 

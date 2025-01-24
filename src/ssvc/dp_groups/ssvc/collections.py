@@ -16,10 +16,19 @@ Provides collections of decision points for each version of the SSVC.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 
-from ssvc.dp_groups.base import SsvcDecisionPointGroup, get_all_decision_points_from
-from ssvc.dp_groups.ssvc.coordinator_publication import COORDINATOR_PUBLICATION_1
+from ssvc.dp_groups.base import (
+    SsvcDecisionPointGroup,
+    get_all_decision_points_from,
+)
+from ssvc.dp_groups.ssvc.coordinator_publication import (
+    COORDINATOR_PUBLICATION_1,
+)
 from ssvc.dp_groups.ssvc.coordinator_triage import COORDINATOR_TRIAGE_1
-from ssvc.dp_groups.ssvc.deployer import DEPLOYER_2, DEPLOYER_3, PATCH_APPLIER_1
+from ssvc.dp_groups.ssvc.deployer import (
+    DEPLOYER_2,
+    DEPLOYER_3,
+    PATCH_APPLIER_1,
+)
 from ssvc.dp_groups.ssvc.supplier import PATCH_DEVELOPER_1, SUPPLIER_2
 
 
@@ -27,7 +36,9 @@ SSVCv1 = SsvcDecisionPointGroup(
     name="SSVCv1",
     description="The first version of the SSVC.",
     version="1.0.0",
-    decision_points=get_all_decision_points_from(PATCH_APPLIER_1, PATCH_DEVELOPER_1),
+    decision_points=get_all_decision_points_from(
+        PATCH_APPLIER_1, PATCH_DEVELOPER_1
+    ),
 )
 SSVCv2 = SsvcDecisionPointGroup(
     name="SSVCv2",

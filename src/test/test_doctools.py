@@ -150,7 +150,9 @@ class MyTestCase(unittest.TestCase):
         # should be a symlink
         self.assertTrue(os.path.islink(symlink))
         # should point to the include file
-        self.assertEqual(os.path.realpath(symlink), os.path.realpath(include_file))
+        self.assertEqual(
+            os.path.realpath(symlink), os.path.realpath(include_file)
+        )
 
         # should not overwrite the file
         overwrite = False

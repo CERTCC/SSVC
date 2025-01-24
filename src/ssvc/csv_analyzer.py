@@ -95,7 +95,9 @@ def _imp_df(column_names: list, importances: list) -> pd.DataFrame:
         a dataframe of feature importances
     """
     df = (
-        pd.DataFrame({"feature": column_names, "feature_importance": importances})
+        pd.DataFrame(
+            {"feature": column_names, "feature_importance": importances}
+        )
         .sort_values("feature_importance", ascending=False)
         .reset_index(drop=True)
     )
@@ -184,7 +186,9 @@ def _perm_feat_imp(model, x, y):
 
 def _parse_args(args) -> argparse.Namespace:
     # parse command line
-    parser = argparse.ArgumentParser(description="Analyze an SSVC tree csv file")
+    parser = argparse.ArgumentParser(
+        description="Analyze an SSVC tree csv file"
+    )
     parser.add_argument(
         "csvfile", metavar="csvfile", type=str, help="the csv file to analyze"
     )
@@ -371,8 +375,12 @@ def check_topological_order(df, target):
     for u in H.nodes:
         H.nodes[u]["outcome"] = G.nodes[u]["outcome"]
 
-    logger.debug(f"Original graph: {len(G.nodes)} nodes with {len(G.edges)} edges")
-    logger.debug(f"Reduced graph: {len(H.nodes)} nodes with {len(H.edges)} edges")
+    logger.debug(
+        f"Original graph: {len(G.nodes)} nodes with {len(G.edges)} edges"
+    )
+    logger.debug(
+        f"Reduced graph: {len(H.nodes)} nodes with {len(H.edges)} edges"
+    )
 
     problems = []
     # check if the outcome is topologically sorted

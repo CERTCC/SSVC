@@ -21,7 +21,10 @@ created_at: 9/21/23 11:40 AM
 from ssvc.decision_points.automatable import AUTOMATABLE_2
 from ssvc.decision_points.exploitation import EXPLOITATION_1
 from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
-from ssvc.decision_points.mission_impact import MISSION_IMPACT_1, MISSION_IMPACT_2
+from ssvc.decision_points.mission_impact import (
+    MISSION_IMPACT_1,
+    MISSION_IMPACT_2,
+)
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.system_exposure import (
     SYSTEM_EXPOSURE_1,

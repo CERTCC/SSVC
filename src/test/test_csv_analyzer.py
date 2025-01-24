@@ -26,7 +26,8 @@ class MyTestCase(unittest.TestCase):
         # fold to lowercase
         self.assertEqual(acsv._col_norm("Exploitation"), "exploitation")
         self.assertEqual(
-            acsv._col_norm("AbcdEfghIjklmnOpqrstUvwxYz"), "abcdefghijklmnopqrstuvwxyz"
+            acsv._col_norm("AbcdEfghIjklmnOpqrstUvwxYz"),
+            "abcdefghijklmnopqrstuvwxyz",
         )
 
         # replace strings of non-alphanumeric characters with underscores
@@ -40,7 +41,12 @@ class MyTestCase(unittest.TestCase):
         # imp_df should return a dataframe with the column names and feature importances
         # sorted in descending order by feature importance
 
-        column_names = ["exploitation", "human_impact", "automatable", "exposure"]
+        column_names = [
+            "exploitation",
+            "human_impact",
+            "automatable",
+            "exposure",
+        ]
         importances = [0.347222, 0.291667, 0.180556, 0.166667]
         df = acsv._imp_df(column_names, importances)
         self.assertEqual(df["feature"][0], "exploitation")
@@ -81,7 +87,9 @@ class MyTestCase(unittest.TestCase):
         )
 
     def test_split_data(self):
-        df = pd.DataFrame({"A": [1, 2, 3, 4], "B": [5, 6, 7, 8], "C": [9, 10, 11, 12]})
+        df = pd.DataFrame(
+            {"A": [1, 2, 3, 4], "B": [5, 6, 7, 8], "C": [9, 10, 11, 12]}
+        )
         x, y = acsv._split_data(df, "C")
 
         self.assertTrue(x.equals(df.drop("C", axis=1)))

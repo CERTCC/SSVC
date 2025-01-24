@@ -28,7 +28,9 @@ EFFICIENT_2 = SsvcDecisionPointValue(
 )
 
 LABORIOUS_2 = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Automatable:No AND Value Density:Diffuse"
+    name="Laborious",
+    key="L",
+    description="Automatable:No AND Value Density:Diffuse",
 )
 
 SUPER_EFFECTIVE = SsvcDecisionPointValue(
@@ -44,7 +46,9 @@ EFFICIENT = SsvcDecisionPointValue(
 )
 
 LABORIOUS = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Virulence:Slow and Value Density:Diffuse"
+    name="Laborious",
+    key="L",
+    description="Virulence:Slow and Value Density:Diffuse",
 )
 
 UTILITY_1 = SsvcDecisionPoint(

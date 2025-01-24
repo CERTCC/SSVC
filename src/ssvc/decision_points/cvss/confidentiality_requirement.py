@@ -17,7 +17,10 @@ Models the CVSS Confidentiality Requirement metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
-from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND, NOT_DEFINED_X
+from ssvc.decision_points.cvss._not_defined import (
+    NOT_DEFINED_ND,
+    NOT_DEFINED_X,
+)
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
