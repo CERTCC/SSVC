@@ -20,7 +20,7 @@ from typing import Iterable
 
 from dataclasses_json import dataclass_json
 
-from ssvc._mixins import _Base, _Keyed
+from ssvc._mixins import _Base, _Keyed, _Versioned
 
 
 @dataclass_json
@@ -33,7 +33,7 @@ class OutcomeValue(_Base, _Keyed):
 
 @dataclass_json
 @dataclass(kw_only=True)
-class OutcomeGroup(_Base):
+class OutcomeGroup(_Base, _Versioned):
     """
     Models an outcome group.
     """

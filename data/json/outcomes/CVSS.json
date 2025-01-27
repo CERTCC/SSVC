@@ -1,0 +1,1 @@
+{"version": "1.0.0", "schemaVersion": "1-0-1", "name": "CVSS Levels", "description": "The CVSS outcome group.", "outcomes": [{"key": "L", "name": "Low", "description": "Low"}, {"key": "M", "name": "Medium", "description": "Medium"}, {"key": "H", "name": "High", "description": "High"}, {"key": "C", "name": "Critical", "description": "Critical"}]}
