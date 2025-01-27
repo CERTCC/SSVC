@@ -65,7 +65,8 @@ class MyTestCase(unittest.TestCase):
             decision_points=self.dps,
         )
 
-        self.assertEqual(len(self.dps), len(g.decision_points))
+        self.assertGreater(len(self.dps), 0)
+        self.assertEqual(len(self.dps), len(list(g.decision_points)))
         self.assertEqual(len(self.dps), len(g))
 
     def test_json_roundtrip(self):
@@ -77,12 +78,12 @@ class MyTestCase(unittest.TestCase):
         )
 
         # serialize the group to json
-        g_json = g.to_json()
+        g_json = g.model_dump_json()
 
         # deserialize the json to a new group
-        g2 = dpg.SsvcDecisionPointGroup.from_json(g_json)
+        g2 = dpg.SsvcDecisionPointGroup.model_validate_json(g_json)
         # assert that the new group is the same as the old group
-        self.assertEqual(g.to_dict(), g2.to_dict())
+        self.assertEqual(g_json, g2.model_dump_json())
 
 
 if __name__ == "__main__":

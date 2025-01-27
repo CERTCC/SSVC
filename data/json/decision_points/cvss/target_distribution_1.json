@@ -1,1 +1,30 @@
-{"namespace": "cvss", "version": "1.0.0", "schemaVersion": "1-0-1", "key": "TD", "name": "Target Distribution", "description": "This metric measures the relative size of the field of target systems susceptible to the vulnerability. It is meant as an environment-specific indicator in order to approximate the percentage of systems within the environment that could be affected by the vulnerability.", "values": [{"key": "N", "name": "None", "description": "No target systems exist, or targets are so highly specialized that they only exist in a laboratory setting. Effectively 0% of the environment is at risk."}, {"key": "L", "name": "Low", "description": "Targets exist inside the environment, but on a small scale. Between 1% - 15% of the total environment is at risk."}, {"key": "M", "name": "Medium", "description": "Targets exist inside the environment, but on a medium scale. Between 16% - 49% of the total environment is at risk."}, {"key": "H", "name": "High", "description": "Targets exist inside the environment on a considerable scale. Between 50% - 100% of the total environment is considered at risk."}]}
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "TD",
+  "name": "Target Distribution",
+  "description": "This metric measures the relative size of the field of target systems susceptible to the vulnerability. It is meant as an environment-specific indicator in order to approximate the percentage of systems within the environment that could be affected by the vulnerability.",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No target systems exist, or targets are so highly specialized that they only exist in a laboratory setting. Effectively 0% of the environment is at risk."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Targets exist inside the environment, but on a small scale. Between 1% - 15% of the total environment is at risk."
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "Targets exist inside the environment, but on a medium scale. Between 16% - 49% of the total environment is at risk."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Targets exist inside the environment on a considerable scale. Between 50% - 100% of the total environment is considered at risk."
+    }
+  ]
+}

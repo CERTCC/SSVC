@@ -18,10 +18,8 @@ created_at: 9/20/23 10:07 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 import logging
-from dataclasses import dataclass
-from typing import Iterable
 
-from dataclasses_json import dataclass_json
+from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 
@@ -58,27 +56,18 @@ def _reset_registered():
     REGISTERED_DECISION_POINTS = []
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class SsvcDecisionPointValue(_Base, _Keyed):
+class SsvcDecisionPointValue(_Base, _Keyed, BaseModel):
     """
     Models a single value option for a decision point.
     """
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class SsvcDecisionPoint(
-    _Base,
-    _Keyed,
-    _Versioned,
-    _Namespaced,
-):
+class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced, BaseModel):
     """
     Models a single decision point as a list of values.
     """
 
-    values: Iterable[SsvcDecisionPointValue] = ()
+    values: list[SsvcDecisionPointValue] = []
 
     def __iter__(self):
         """
@@ -86,13 +75,12 @@ class SsvcDecisionPoint(
         """
         return iter(self.values)
 
-    def __post_init__(self):
+    def __init__(self, **data):
+        super().__init__(**data)
         register(self)
 
-        if isinstance(self.values[0], dict):
-            self.values = tuple(
-                SsvcDecisionPointValue.from_dict(v) for v in self.values
-            )
+    def __post_init__(self):
+        register(self)
 
 
 def main():
@@ -116,7 +104,7 @@ def main():
         version="1.0.0",
     )
 
-    print(dp.to_json(indent=2))
+    print(dp.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

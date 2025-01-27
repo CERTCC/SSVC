@@ -124,9 +124,9 @@ Changes from v2.0.0:
 
 
 def main():
-    print(PATCH_APPLIER_1.to_json(indent=2))
-    print(DEPLOYER_2.to_json(indent=2))
-    print(DEPLOYER_3.to_json(indent=2))
+    print(PATCH_APPLIER_1.model_dump_json(indent=2))
+    print(DEPLOYER_2.model_dump_json(indent=2))
+    print(DEPLOYER_3.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

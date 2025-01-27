@@ -60,7 +60,7 @@ SSVCv2_1 = SsvcDecisionPointGroup(
 
 def main():
     for dpg in [SSVCv1, SSVCv2, SSVCv2_1]:
-        print(dpg.to_json(indent=2))
+        print(dpg.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

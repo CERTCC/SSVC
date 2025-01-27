@@ -15,30 +15,23 @@ Provides outcome group and outcome value classes for SSVC.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass
-from typing import Iterable
-
-from dataclasses_json import dataclass_json
+from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Keyed, _Versioned
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class OutcomeValue(_Base, _Keyed):
+class OutcomeValue(_Base, _Keyed, BaseModel):
     """
     Models a single value option for an SSVC outcome.
     """
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class OutcomeGroup(_Base, _Versioned):
+class OutcomeGroup(_Base, _Versioned, BaseModel):
     """
     Models an outcome group.
     """
 
-    outcomes: Iterable[OutcomeValue]
+    outcomes: list[OutcomeValue]
 
     def __iter__(self):
         """
@@ -50,6 +43,8 @@ class OutcomeGroup(_Base, _Versioned):
         """
         Allow len() to be called on the group.
         """
-        return len(self.outcomes)
+        olist = list(self.outcomes)
+        l = len(olist)
+        return l
 
     # register all instances

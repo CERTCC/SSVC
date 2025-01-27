@@ -18,6 +18,7 @@ created_at: 3/23/21 3:23 PM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 import os
+
 import pandas as pd
 
 DATAPATH = "../data/csvs"
@@ -107,21 +108,21 @@ def main():
     df = lookup("coord_triage", query)
     print(query)
     print(df)
-    print(outcome_dist(df).round(decimals=3).to_dict())
+    print(outcome_dist(df).round(decimals=3).model_dump())
 
     print()
     query = {"Value added": "precedence"}
     df = lookup("coord_pub", query)
     print(query)
     print(df)
-    print(outcome_dist(df).round(decimals=3).to_dict())
+    print(outcome_dist(df).round(decimals=3).model_dump())
 
     print()
     query = {"Public-Safety Impact": "minimal"}
     df = lookup("supplier", query)
     print(query)
     print(df)
-    print(outcome_dist(df).round(decimals=3).to_dict())
+    print(outcome_dist(df).round(decimals=3).model_dump())
 
 
 if __name__ == "__main__":

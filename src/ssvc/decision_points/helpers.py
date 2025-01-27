@@ -134,10 +134,14 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
 
     # did the value keys change?
     for name in intersection:
-        v1 = {value["name"]: value["key"] for value in dp1.to_dict()["values"]}
+        v1 = {
+            value["name"]: value["key"] for value in dp1.model_dump()["values"]
+        }
         v1 = v1[name]
 
-        v2 = {value["name"]: value["key"] for value in dp2.to_dict()["values"]}
+        v2 = {
+            value["name"]: value["key"] for value in dp2.model_dump()["values"]
+        }
         v2 = v2[name]
 
         if v1 != v2:
@@ -154,13 +158,13 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
     for name in intersection:
         v1 = {
             value["name"]: value["description"]
-            for value in dp1.to_dict()["values"]
+            for value in dp1.model_dump()["values"]
         }
         v1 = v1[name]
 
         v2 = {
             value["name"]: value["description"]
-            for value in dp2.to_dict()["values"]
+            for value in dp2.model_dump()["values"]
         }
         v2 = v2[name]
 
@@ -225,7 +229,7 @@ def print_versions_and_diffs(versions: Sequence[SsvcDecisionPoint]) -> None:
         None
     """
     for version in versions:
-        print(version.to_json(indent=2))
+        print(version.model_dump_json(indent=2))
     show_diffs(versions)
 
 

@@ -45,7 +45,7 @@ It includes decision points:
 
 
 def main():
-    print(COORDINATOR_PUBLICATION_1.to_json(indent=2))
+    print(COORDINATOR_PUBLICATION_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
