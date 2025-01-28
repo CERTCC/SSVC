@@ -44,7 +44,7 @@ SUPPLIER_CONTACTED_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(SUPPLIER_CONTACTED_1.to_json(indent=2))
+    print(SUPPLIER_CONTACTED_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

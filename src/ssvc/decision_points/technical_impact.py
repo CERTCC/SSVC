@@ -44,7 +44,7 @@ TECHNICAL_IMPACT_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(TECHNICAL_IMPACT_1.to_json(indent=2))
+    print(TECHNICAL_IMPACT_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

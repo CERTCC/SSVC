@@ -91,8 +91,8 @@ Changes from Patch Developer v1:
 
 
 def main():
-    print(PATCH_DEVELOPER_1.to_json(indent=2))
-    print(SUPPLIER_2.to_json(indent=2))
+    print(PATCH_DEVELOPER_1.model_dump_json(indent=2))
+    print(SUPPLIER_2.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

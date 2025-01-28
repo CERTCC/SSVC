@@ -42,7 +42,7 @@ REPORT_PUBLIC_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(REPORT_PUBLIC_1.to_json(indent=2))
+    print(REPORT_PUBLIC_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

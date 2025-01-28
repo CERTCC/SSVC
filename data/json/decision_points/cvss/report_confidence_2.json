@@ -1,1 +1,30 @@
-{"namespace": "cvss", "version": "2.0.0", "schemaVersion": "1-0-1", "key": "RC", "name": "Report Confidence", "description": "This metric measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details.", "values": [{"key": "U", "name": "Unknown", "description": "There are reports of impacts that indicate a vulnerability is present. The reports indicate that the cause of the vulnerability is unknown, or reports may differ on the cause or impacts of the vulnerability. Reporters are uncertain of the true nature of the vulnerability, and there is little confidence in the validity of the reports or whether a static Base score can be applied given the differences described."}, {"key": "R", "name": "Reasonable", "description": "Significant details are published, but researchers either do not have full confidence in the root cause, or do not have access to source code to fully confirm all of the interactions that may lead to the result. Reasonable confidence exists, however, that the bug is reproducible and at least one impact is able to be verified (proof-of-concept exploits may provide this)."}, {"key": "C", "name": "Confirmed", "description": "Detailed reports exist, or functional reproduction is possible (functional exploits may provide this). Source code is available to independently verify the assertions of the research, or the author or vendor of the affected code has confirmed the presence of the vulnerability."}, {"key": "X", "name": "Not Defined", "description": "This metric value is not defined. See CVSS documentation for details."}]}
+{
+  "namespace": "cvss",
+  "version": "2.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "RC",
+  "name": "Report Confidence",
+  "description": "This metric measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details.",
+  "values": [
+    {
+      "key": "U",
+      "name": "Unknown",
+      "description": "There are reports of impacts that indicate a vulnerability is present. The reports indicate that the cause of the vulnerability is unknown, or reports may differ on the cause or impacts of the vulnerability. Reporters are uncertain of the true nature of the vulnerability, and there is little confidence in the validity of the reports or whether a static Base score can be applied given the differences described."
+    },
+    {
+      "key": "R",
+      "name": "Reasonable",
+      "description": "Significant details are published, but researchers either do not have full confidence in the root cause, or do not have access to source code to fully confirm all of the interactions that may lead to the result. Reasonable confidence exists, however, that the bug is reproducible and at least one impact is able to be verified (proof-of-concept exploits may provide this)."
+    },
+    {
+      "key": "C",
+      "name": "Confirmed",
+      "description": "Detailed reports exist, or functional reproduction is possible (functional exploits may provide this). Source code is available to independently verify the assertions of the research, or the author or vendor of the affected code has confirmed the presence of the vulnerability."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}

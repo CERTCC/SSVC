@@ -42,7 +42,7 @@ CRITICAL_SOFTWARE_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(CRITICAL_SOFTWARE_1.to_json(indent=2))
+    print(CRITICAL_SOFTWARE_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

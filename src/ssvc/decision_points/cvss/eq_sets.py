@@ -184,7 +184,7 @@ EQ6 = CvssDecisionPoint(
 
 def main():
     for dp in [EQ1, EQ2, EQ3, EQ4, EQ5, EQ6]:
-        print(dp.to_json(indent=2))
+        print(dp.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

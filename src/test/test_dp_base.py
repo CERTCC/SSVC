@@ -95,25 +95,25 @@ class MyTestCase(unittest.TestCase):
 
     def test_ssvc_value_json_roundtrip(self):
         for i, obj in enumerate(self.values):
-            json = obj.to_json()
+            json = obj.model_dump_json()
             self.assertIsInstance(json, str)
             self.assertGreater(len(json), 0)
 
-            obj2 = base.SsvcDecisionPointValue.from_json(json)
+            obj2 = base.SsvcDecisionPointValue.model_validate_json(json)
             self.assertEqual(obj, obj2)
 
     def test_ssvc_decision_point_json_roundtrip(self):
         obj = self.dp
 
-        json = obj.to_json()
+        json = obj.model_dump_json()
         self.assertIsInstance(json, str)
         self.assertGreater(len(json), 0)
 
-        obj2 = base.SsvcDecisionPoint.from_json(json)
+        obj2 = base.SsvcDecisionPoint.model_validate_json(json)
 
         # the objects should be equal
         self.assertEqual(obj, obj2)
-        self.assertEqual(obj.to_dict(), obj2.to_dict())
+        self.assertEqual(obj.model_dump(), obj2.model_dump())
 
 
 if __name__ == "__main__":

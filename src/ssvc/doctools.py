@@ -247,7 +247,7 @@ def dump_json(
     with EnsureDirExists(jsondir):
         try:
             with open(json_file, "x") as f:
-                f.write(dp.to_json(indent=2))
+                f.write(dp.model_dump_json(indent=2))
         except FileExistsError:
             logger.warning(
                 f"File {json_file} already exists, use --overwrite to replace"

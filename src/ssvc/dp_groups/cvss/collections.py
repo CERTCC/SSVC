@@ -375,7 +375,7 @@ def main():
         CVSSv4,
     ]:
         print(f"## {group.name} v{group.version}")
-        print(group.to_json(indent=2))
+        print(group.model_dump_json(indent=2))
         print()
 
 

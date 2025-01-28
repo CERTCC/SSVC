@@ -27,8 +27,6 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(ov.description, x)
 
     def test_outcome_group(self):
-        ALPHABET
-
         values = []
         for x in ALPHABET:
             values.append(OutcomeValue(key=x, name=x, description=x))
@@ -42,10 +40,11 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(len(og), len(ALPHABET))
 
+        og_outcomes = list(og.outcomes)
         for i, letter in enumerate(ALPHABET):
-            self.assertEqual(og.outcomes[i].key, letter)
-            self.assertEqual(og.outcomes[i].name, letter)
-            self.assertEqual(og.outcomes[i].description, letter)
+            self.assertEqual(og_outcomes[i].key, letter)
+            self.assertEqual(og_outcomes[i].name, letter)
+            self.assertEqual(og_outcomes[i].description, letter)
 
 
 if __name__ == "__main__":

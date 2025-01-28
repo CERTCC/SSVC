@@ -1,1 +1,28 @@
-{"version": "1.0.0", "schemaVersion": "1-0-1", "name": "Must, Should, Could, Won't", "description": "The Moscow outcome group.", "outcomes": [{"key": "W", "name": "Won't", "description": "Won't"}, {"key": "C", "name": "Could", "description": "Could"}, {"key": "S", "name": "Should", "description": "Should"}, {"key": "M", "name": "Must", "description": "Must"}]}
+{
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "name": "Must, Should, Could, Won't",
+  "description": "The Moscow outcome group.",
+  "outcomes": [
+    {
+      "key": "W",
+      "name": "Won't",
+      "description": "Won't"
+    },
+    {
+      "key": "C",
+      "name": "Could",
+      "description": "Could"
+    },
+    {
+      "key": "S",
+      "name": "Should",
+      "description": "Should"
+    },
+    {
+      "key": "M",
+      "name": "Must",
+      "description": "Must"
+    }
+  ]
+}
