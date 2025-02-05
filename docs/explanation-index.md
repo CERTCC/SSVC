@@ -55,7 +55,7 @@ Whereas a publication tree might have:
 
 ## How decision trees are designed
 
-All decision points and end decisions (priority categories) must be explainable to the non-expert. A decision point itself is not representative of risk, but the series of decisions help a stakeholder determine how risky a vulnerability is to their operation. We suggest use of Decision Trees as a visual model to aid explanation to non-experts and experts alike. While we encourage stakeholders to customize SSVC to their needs, we do not advise changing any of the following decision points, their definitions, nor their values because **WHY**; however, stakeholders are encouraged to set their responses based on their risk appetites.
+All decision points and end decisions (priority categories) must be explainable to the non-expert. A decision point itself is not representative of risk, but the series of decisions help a stakeholder determine how risky a vulnerability is to their operation. We suggest use of Decision Trees as a visual model to aid explanation to non-experts and experts alike. While we encourage stakeholders to customize SSVC to their needs, we do not advise changing any of the following decision points, their definitions, nor their values in order to enforce a common vocabulary; however, stakeholders are encouraged to set their responses based on their risk appetites.
 
 ### Supplier decision points
 
@@ -95,7 +95,7 @@ _Technical Impact_ refers to how much control of a system an attacker can gain. 
 - can the attacker trigger all the actions that the vulnerable component can perform?
 - does the attacker get an account with full privileges to the vulnerable component (administrator or root user accounts, for example)?
 
-If the answer is 'no' to all of the above questions, then the attack is presumed to gain _Partial_ control of the system. Examples of _Partial_ control include denial of service **AND**.
+If the answer is 'no' to all of the above questions, then the attack is presumed to gain _Partial_ control of the system. Examples of _Partial_ control include denial of service and memory address information leaks.
 
 | Value | Definition |
 |:-----|:-----------|
@@ -131,9 +131,10 @@ _Public Safety Impact_
 #### Exploitability
 
 _Exploitability_ is the same as for Supplier Exploitability.
+
 #### Exposure
 
-_Exposure_ refers to how much of a particular system is open to network access. This will vary with configurations and is therefore determined on a per-system basis. **SAY MORE ABOUT WHAT MAKES A SYSTEM 'OPEN'.**
+_Exposure_ refers to how much of a particular system is open to network access; in other words, the system provides service to the Internet. This will vary with configurations and is therefore determined on a per-system basis.
 
 If a system is not 'Open', we suggest the following questions to guide your decision:
 
