@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides the SSVC Report Public Decision Point
 """

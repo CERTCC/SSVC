@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+
 """
-file: supplier_cardinality
-author: adh
-created_at: 9/21/23 11:20 AM
+Provides the Supplier Cardinality decision point and its values.
 """
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors

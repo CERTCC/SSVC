@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-file: supplier_involvement
-author: adh
-created_at: 9/21/23 11:28 AM
+Provides the Supplier Involvement decision point and its values.
 """
 
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.

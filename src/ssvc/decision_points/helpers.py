@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides helper functions for working with SSVC decision points.
 """
