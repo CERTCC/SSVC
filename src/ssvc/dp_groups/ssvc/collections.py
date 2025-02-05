@@ -2,7 +2,7 @@
 """
 Provides collections of decision points for each version of the SSVC.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -16,10 +16,19 @@ Provides collections of decision points for each version of the SSVC.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 
-from ssvc.dp_groups.base import SsvcDecisionPointGroup, get_all_decision_points_from
-from ssvc.dp_groups.ssvc.coordinator_publication import COORDINATOR_PUBLICATION_1
+from ssvc.dp_groups.base import (
+    SsvcDecisionPointGroup,
+    get_all_decision_points_from,
+)
+from ssvc.dp_groups.ssvc.coordinator_publication import (
+    COORDINATOR_PUBLICATION_1,
+)
 from ssvc.dp_groups.ssvc.coordinator_triage import COORDINATOR_TRIAGE_1
-from ssvc.dp_groups.ssvc.deployer import DEPLOYER_2, DEPLOYER_3, PATCH_APPLIER_1
+from ssvc.dp_groups.ssvc.deployer import (
+    DEPLOYER_2,
+    DEPLOYER_3,
+    PATCH_APPLIER_1,
+)
 from ssvc.dp_groups.ssvc.supplier import PATCH_DEVELOPER_1, SUPPLIER_2
 
 
@@ -27,7 +36,9 @@ SSVCv1 = SsvcDecisionPointGroup(
     name="SSVCv1",
     description="The first version of the SSVC.",
     version="1.0.0",
-    decision_points=get_all_decision_points_from(PATCH_APPLIER_1, PATCH_DEVELOPER_1),
+    decision_points=get_all_decision_points_from(
+        PATCH_APPLIER_1, PATCH_DEVELOPER_1
+    ),
 )
 SSVCv2 = SsvcDecisionPointGroup(
     name="SSVCv2",
@@ -49,7 +60,7 @@ SSVCv2_1 = SsvcDecisionPointGroup(
 
 def main():
     for dpg in [SSVCv1, SSVCv2, SSVCv2_1]:
-        print(dpg.to_json(indent=2))
+        print(dpg.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ author: adh
 created_at: 9/21/23 11:40 AM
 """
 
-#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -21,7 +21,10 @@ created_at: 9/21/23 11:40 AM
 from ssvc.decision_points.automatable import AUTOMATABLE_2
 from ssvc.decision_points.exploitation import EXPLOITATION_1
 from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
-from ssvc.decision_points.mission_impact import MISSION_IMPACT_1, MISSION_IMPACT_2
+from ssvc.decision_points.mission_impact import (
+    MISSION_IMPACT_1,
+    MISSION_IMPACT_2,
+)
 from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.system_exposure import (
     SYSTEM_EXPOSURE_1,
@@ -121,9 +124,9 @@ Changes from v2.0.0:
 
 
 def main():
-    print(PATCH_APPLIER_1.to_json(indent=2))
-    print(DEPLOYER_2.to_json(indent=2))
-    print(DEPLOYER_3.to_json(indent=2))
+    print(PATCH_APPLIER_1.model_dump_json(indent=2))
+    print(DEPLOYER_2.model_dump_json(indent=2))
+    print(DEPLOYER_3.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

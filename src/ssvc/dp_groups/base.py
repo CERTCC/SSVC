@@ -4,7 +4,7 @@ file: base
 author: adh
 created_at: 9/20/23 4:47 PM
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -17,23 +17,18 @@ created_at: 9/20/23 4:47 PM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from dataclasses import dataclass
-from typing import Iterable
-
-from dataclasses_json import dataclass_json
+from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Versioned
 from ssvc.decision_points.base import SsvcDecisionPoint
 
 
-@dataclass_json
-@dataclass(kw_only=True)
-class SsvcDecisionPointGroup(_Base, _Versioned):
+class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
     """
     Models a group of decision points.
     """
 
-    decision_points: Iterable[SsvcDecisionPoint]
+    decision_points: list[SsvcDecisionPoint]
 
     def __iter__(self):
         """
@@ -45,11 +40,13 @@ class SsvcDecisionPointGroup(_Base, _Versioned):
         """
         Allow len() to be called on the group.
         """
-        return len(self.decision_points)
+        dplist = list(self.decision_points)
+        l = len(dplist)
+        return l
 
 
 def get_all_decision_points_from(
-    *groups: Iterable[SsvcDecisionPointGroup],
+    *groups: list[SsvcDecisionPointGroup],
 ) -> list[SsvcDecisionPoint]:
     """
     Given a list of SsvcDecisionPointGroup objects, return a list of all

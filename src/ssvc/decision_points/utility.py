@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -28,7 +28,9 @@ EFFICIENT_2 = SsvcDecisionPointValue(
 )
 
 LABORIOUS_2 = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Automatable:No AND Value Density:Diffuse"
+    name="Laborious",
+    key="L",
+    description="Automatable:No AND Value Density:Diffuse",
 )
 
 SUPER_EFFECTIVE = SsvcDecisionPointValue(
@@ -44,7 +46,9 @@ EFFICIENT = SsvcDecisionPointValue(
 )
 
 LABORIOUS = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Virulence:Slow and Value Density:Diffuse"
+    name="Laborious",
+    key="L",
+    description="Virulence:Slow and Value Density:Diffuse",
 )
 
 UTILITY_1 = SsvcDecisionPoint(

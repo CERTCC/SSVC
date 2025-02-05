@@ -2,7 +2,7 @@
 """
 Provides the Human Impact decision point and its values.
 """
-#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -121,7 +121,11 @@ HUMAN_IMPACT_2_0_1 = SsvcDecisionPoint(
 
 
 def main():
-    versions = (MISSION_AND_WELL_BEING_IMPACT_1, HUMAN_IMPACT_2, HUMAN_IMPACT_2_0_1)
+    versions = (
+        MISSION_AND_WELL_BEING_IMPACT_1,
+        HUMAN_IMPACT_2,
+        HUMAN_IMPACT_2_0_1,
+    )
 
     print_versions_and_diffs(versions)
 

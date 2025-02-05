@@ -3,7 +3,7 @@
 Models the CVSS Availability Impact metric as an SSVC decision point.
 """
 
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -127,7 +127,11 @@ AVAILABILITY_IMPACT_2_0_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [AVAILABILITY_IMPACT_1, AVAILABILITY_IMPACT_2, AVAILABILITY_IMPACT_2_0_1]
+versions = [
+    AVAILABILITY_IMPACT_1,
+    AVAILABILITY_IMPACT_2,
+    AVAILABILITY_IMPACT_2_0_1,
+]
 
 
 def main():

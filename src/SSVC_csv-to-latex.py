@@ -1,4 +1,18 @@
 #!/usr/bin/python
+
+#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
+#  - see ContributionInstructions.md for information on how you can Contribute to this project
+#  Stakeholder Specific Vulnerability Categorization (SSVC) is
+#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
+#  with this Software or contact permission@sei.cmu.edu for full terms.
+#  Created, in part, with funding and support from the United States Government
+#  (see Acknowledgments file). This program may include and/or can make use of
+#  certain third party source code, object code, documentation and other files
+#  (“Third Party Software”). See LICENSE.md for more details.
+#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
+#  U.S. Patent and Trademark Office by Carnegie Mellon University
+
 ##########
 ## put import statements here
 import optparse, sys, string, glob, re
@@ -224,7 +238,9 @@ outcome/.style={shape=isosceles triangle,, shape border rotate=180, minimum heig
 """
     )
     location.write(pri5string)
-    location.write("}\n")  # close the last tikzset; forestset is already closed
+    location.write(
+        "}\n"
+    )  # close the last tikzset; forestset is already closed
 
 
 def begin_forest(location):
@@ -334,7 +350,9 @@ def main():
             if path[i] not in dpoint_values[i]:
                 dpoint_values[i].append(path[i])
     for i in range(depth):
-        dpoint_values[i].sort(key=lambda j: sort_order[i].index(j), reverse=True)
+        dpoint_values[i].sort(
+            key=lambda j: sort_order[i].index(j), reverse=True
+        )
         # reverse because the latex will flip it again
         # loop twice so we don't sort every time we check a new path
 
@@ -366,7 +384,9 @@ def main():
                 del tmp_path[-1]
             i = i - 1
             ofile.write(latex_brace_close)  # close each latex brace
-            del tmp_path[-1]  # every time we close a brace, update the path to reflect
+            del tmp_path[
+                -1
+            ]  # every time we close a brace, update the path to reflect
         else:  # "Normal" case
             if counts[i] == len(dpoint_values[i]):
                 try:

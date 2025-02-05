@@ -2,7 +2,7 @@
 """
 CVSS v4 Equivalence Sets
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -184,7 +184,7 @@ EQ6 = CvssDecisionPoint(
 
 def main():
     for dp in [EQ1, EQ2, EQ3, EQ4, EQ5, EQ6]:
-        print(dp.to_json(indent=2))
+        print(dp.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

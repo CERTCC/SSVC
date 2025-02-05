@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -34,7 +34,10 @@ To regenerate the existing docs, use the following command:
 import logging
 import os
 
-from ssvc.decision_points.base import REGISTERED_DECISION_POINTS, SsvcDecisionPoint
+from ssvc.decision_points.base import (
+    REGISTERED_DECISION_POINTS,
+    SsvcDecisionPoint,
+)
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
 logger = logging.getLogger(__name__)
@@ -154,7 +157,9 @@ def dump_decision_point(
     """
     # - generate markdown table
     # make dp.name safe for use in a filename
-    basename = _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
+    basename = (
+        _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
+    )
     # - generate json example
     json_file = dump_json(basename, dp, jsondir, overwrite)
 
@@ -165,7 +170,11 @@ def dump_decision_point(
 
 
 def dump_markdown(
-    basename: str, dp: SsvcDecisionPoint, json_file: str, outdir: str, overwrite: bool
+    basename: str,
+    dp: SsvcDecisionPoint,
+    json_file: str,
+    outdir: str,
+    overwrite: bool,
 ) -> dict:
     """
     Generate the markdown table file for a decision point.
@@ -238,7 +247,7 @@ def dump_json(
     with EnsureDirExists(jsondir):
         try:
             with open(json_file, "x") as f:
-                f.write(dp.to_json(indent=2))
+                f.write(dp.model_dump_json(indent=2))
         except FileExistsError:
             logger.warning(
                 f"File {json_file} already exists, use --overwrite to replace"
@@ -266,7 +275,9 @@ def main():
         default=False,
     )
 
-    parser.add_argument("--outdir", help="output directory", default="./tmp/md_out")
+    parser.add_argument(
+        "--outdir", help="output directory", default="./tmp/md_out"
+    )
     parser.add_argument(
         "--jsondir", help="json output directory", default="./tmp/json_out"
     )

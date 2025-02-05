@@ -2,7 +2,7 @@
 """
 Models the CVSS Attack Vector (formerly known as Access Vector) metric as an SSVC decision point.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -194,7 +194,12 @@ ATTACK_VECTOR_3_0_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [ACCESS_VECTOR_1, ACCESS_VECTOR_2, ATTACK_VECTOR_3, ATTACK_VECTOR_3_0_1]
+versions = [
+    ACCESS_VECTOR_1,
+    ACCESS_VECTOR_2,
+    ATTACK_VECTOR_3,
+    ATTACK_VECTOR_3_0_1,
+]
 
 
 def main():

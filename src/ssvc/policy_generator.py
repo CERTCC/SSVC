@@ -3,7 +3,7 @@
 Provides a Policy Generator class for SSVC decision point groups.
 
 """
-#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -19,7 +19,6 @@ Provides a Policy Generator class for SSVC decision point groups.
 import itertools
 import logging
 import math
-from typing import List, Tuple
 
 import networkx as nx
 import pandas as pd
@@ -48,7 +47,7 @@ class PolicyGenerator:
         self,
         dp_group: SsvcDecisionPointGroup = None,
         outcomes: OutcomeGroup = None,
-        outcome_weights: List[float] = None,
+        outcome_weights: list[float] = None,
         validate: bool = False,
     ):
         """
@@ -94,8 +93,8 @@ class PolicyGenerator:
 
         self.policy: pd.DataFrame = None
         self.G: nx.DiGraph = nx.DiGraph()
-        self.top: Tuple[int] = None
-        self.bottom: Tuple[int] = None
+        self.top: tuple[int] = None
+        self.bottom: tuple[int] = None
 
         self._enumerated_vec = None
         self._check_valid_paths = validate
@@ -353,7 +352,9 @@ def main():
     )
 
     with PolicyGenerator(
-        dp_group=dpg, outcomes=DSOI, outcome_weights=[0.097, 0.583, 0.278, 0.042]
+        dp_group=dpg,
+        outcomes=DSOI,
+        outcome_weights=[0.097, 0.583, 0.278, 0.042],
     ) as pg:
         pg.emit_policy()
 

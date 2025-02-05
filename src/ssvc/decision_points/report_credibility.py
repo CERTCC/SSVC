@@ -3,7 +3,7 @@
 Provides the SSVC Report Credibility Decision Point
 """
 
-#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -43,7 +43,7 @@ REPORT_CREDIBILITY_1 = SsvcDecisionPoint(
 
 
 def main():
-    print(REPORT_CREDIBILITY_1.to_json(indent=2))
+    print(REPORT_CREDIBILITY_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

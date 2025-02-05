@@ -1,4 +1,4 @@
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -42,7 +42,7 @@ _dp_dict = {
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.dp = SsvcDecisionPoint.from_dict(_dp_dict)
+        self.dp = SsvcDecisionPoint.model_validate(_dp_dict)
 
         # create a temp working dir
         self.tempdir = tempfile.TemporaryDirectory()
@@ -150,7 +150,9 @@ class MyTestCase(unittest.TestCase):
         # should be a symlink
         self.assertTrue(os.path.islink(symlink))
         # should point to the include file
-        self.assertEqual(os.path.realpath(symlink), os.path.realpath(include_file))
+        self.assertEqual(
+            os.path.realpath(symlink), os.path.realpath(include_file)
+        )
 
         # should not overwrite the file
         overwrite = False
@@ -185,7 +187,7 @@ class MyTestCase(unittest.TestCase):
 
         # file is loadable json
         d = json.load(open(json_file))
-        for k, v in dp.to_dict().items():
+        for k, v in dp.model_dump().items():
             self.assertEqual(v, d[k])
 
         # should not overwrite the file
