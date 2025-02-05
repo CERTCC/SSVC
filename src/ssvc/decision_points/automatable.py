@@ -1,9 +1,9 @@
 #!/usr/bin/env python
+
 """
-file: automatable
-author: adh
-created_at: 9/21/23 10:37 AM
+Provides the Automatable decision point and its values.
 """
+
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project

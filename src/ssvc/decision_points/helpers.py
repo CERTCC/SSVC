@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+
 """
 Provides helper functions for working with SSVC decision points.
 """
+
 #  Copyright (c) 2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project

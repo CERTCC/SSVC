@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+
 """
 Provides the Human Impact decision point and its values.
 """
+
 #  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+
 """
 Models a high value asset as a decision point.
 """
+
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project

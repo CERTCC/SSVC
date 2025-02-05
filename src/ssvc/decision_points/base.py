@@ -1,9 +1,9 @@
 #!/usr/bin/env python
+
 """
-file: decisionpoints
-author: adh
-created_at: 9/20/23 10:07 AM
+Defines the formatting for SSVC Decision Points.
 """
+
 #  Copyright (c) 2023 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
