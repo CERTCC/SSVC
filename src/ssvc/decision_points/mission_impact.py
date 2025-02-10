@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+
 """
-file: mission_impact
-author: adh
-created_at: 9/21/23 10:20 AM
+Provides the Mission Impact decision point and its values.
 """
 
 #  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.

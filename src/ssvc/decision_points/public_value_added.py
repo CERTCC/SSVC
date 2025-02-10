@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 This module provides the Public Value Added decision point for the Stakeholder Specific Vulnerability Categorization (SSVC) framework.
 """

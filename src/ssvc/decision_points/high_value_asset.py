@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Models a high value asset as a decision point.
 """
