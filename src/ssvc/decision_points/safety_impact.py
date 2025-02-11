@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides the Safety Impact decision point and its values.
 """

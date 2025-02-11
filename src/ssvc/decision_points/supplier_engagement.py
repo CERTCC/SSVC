@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+
 """
-file: supplier_engagement
-author: adh
-created_at: 9/21/23 11:22 AM
+Provides the Supplier Engagement decision point and its values.
 """
 
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.

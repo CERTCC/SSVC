@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+"""
+Provides the Utility decision point and its values.
+"""
+
 #  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project

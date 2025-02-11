@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides an SSVC decision point for critical software designation.
 """

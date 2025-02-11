@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides the Public Safety Impact decision point and its values.
 """

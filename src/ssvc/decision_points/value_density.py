@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 """
-file: value_density
-author: adh
-created_at: 9/21/23 10:01 AM
+Provides the Value Density decision point and its values.
 """
-#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
+
+#  Copyright (c) 2024-2025  Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
