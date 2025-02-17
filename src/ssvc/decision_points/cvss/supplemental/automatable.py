@@ -45,11 +45,9 @@ AUTOMATABLE_1 = CvssDecisionPoint(
 
 
 def main():
-    versions = [
-        AUTOMATABLE_1,
-    ]
+    VERSIONS = (AUTOMATABLE_1,)
 
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

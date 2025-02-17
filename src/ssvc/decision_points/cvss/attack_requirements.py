@@ -47,13 +47,12 @@ ATTACK_REQUIREMENTS_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
-    ATTACK_REQUIREMENTS_1,
-]
+VERSIONS = (ATTACK_REQUIREMENTS_1,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

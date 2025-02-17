@@ -56,11 +56,9 @@ PROVIDER_URGENCY_1 = CvssDecisionPoint(
 
 
 def main():
-    versions = [
-        PROVIDER_URGENCY_1,
-    ]
+    VERSIONS = (PROVIDER_URGENCY_1,)
 
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

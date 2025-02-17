@@ -133,16 +133,17 @@ Defines LOW and HIGH values for CVSS Attack Complexity.
 """
 
 
-versions = [
+VERSIONS = (
     ACCESS_COMPLEXITY_1,
     ACCESS_COMPLEXITY_2,
     ATTACK_COMPLEXITY_3,
     ATTACK_COMPLEXITY_3_0_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":
