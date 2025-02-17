@@ -12,14 +12,9 @@
       "description": "This metric value is not defined. See CVSS documentation for details."
     },
     {
-      "key": "R",
-      "name": "Red",
-      "description": "Provider has assessed the impact of this vulnerability as having the highest urgency."
-    },
-    {
-      "key": "A",
-      "name": "Amber",
-      "description": "Provider has assessed the impact of this vulnerability as having a moderate urgency."
+      "key": "C",
+      "name": "Clear",
+      "description": "Provider has assessed the impact of this vulnerability as having no urgency (Informational)."
     },
     {
       "key": "G",
@@ -27,9 +22,14 @@
       "description": "Provider has assessed the impact of this vulnerability as having a reduced urgency."
     },
     {
-      "key": "C",
-      "name": "Clear",
-      "description": "Provider has assessed the impact of this vulnerability as having no urgency (Informational)."
+      "key": "A",
+      "name": "Amber",
+      "description": "Provider has assessed the impact of this vulnerability as having a moderate urgency."
+    },
+    {
+      "key": "R",
+      "name": "Red",
+      "description": "Provider has assessed the impact of this vulnerability as having the highest urgency."
     }
   ]
 }
