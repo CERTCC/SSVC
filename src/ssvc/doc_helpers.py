@@ -21,21 +21,6 @@ from ssvc.decision_points.base import SsvcDecisionPoint
 
 MD_TABLE_ROW_TEMPLATE = "| {value.name} | {value.description} |"
 
-# indent by 4 spaces to make it a code block
-MD_INCLUDE_TEMPLATE = """
-!!! note "{name} v{version}"
-     
-=== "Text"
-
-{table}
-
-=== "JSON"
-
-```json
-{json_obj}
-```
-"""
-
 
 def markdown_table(dp: SsvcDecisionPoint, indent: int = 0) -> str:
     """
