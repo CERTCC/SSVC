@@ -15,20 +15,17 @@
 Provides tools to assist with generating documentation for SSVC decision points.
 
 Writes the following files for each decision point:
-- a markdown table that can be used in the decision point documentation
 - a json example that can be used in the decision point documentation
-- a markdown file that builds an insert using mkdocs tabs to switch between the markdown description and the json
-  example
 
 Examples
 
 To generate the documentation for the decision points, use the following command:
 
-    python -m ssvc.doctools --overwrite --outdir ./tmp/md_out --jsondir ./tmp/json_out`
+    python -m ssvc.doctools --overwrite --jsondir ./tmp/json_out`
 
 To regenerate the existing docs, use the following command:
 
-    python -m ssvc.doctools --overwrite --outdir docs/_generated/decision_points --jsondir data/json/decision_points
+    python -m ssvc.doctools --overwrite --jsondir data/json/decision_points
 
 """
 import logging
@@ -137,9 +134,7 @@ def remove_if_exists(file):
         logger.debug(f"File {file} does not exist, nothing to remove")
 
 
-def dump_decision_point(
-    jsondir: str, outdir: str, dp: SsvcDecisionPoint, overwrite: bool
-) -> dict:
+def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) -> None:
     """
     Generate the markdown table, json example, and markdown table file for a decision point.
 
@@ -155,75 +150,10 @@ def dump_decision_point(
             - symlink: The path to the symlink that points to the markdown table file.
             - json_file: The path to the json example file.
     """
-    # - generate markdown table
     # make dp.name safe for use in a filename
-    basename = (
-        _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
-    )
+    basename = _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
     # - generate json example
-    json_file = dump_json(basename, dp, jsondir, overwrite)
-
-    # - generate markdown table file
-    r = dump_markdown(basename, dp, json_file, outdir, overwrite)
-    r["json_file"] = json_file
-    return r
-
-
-def dump_markdown(
-    basename: str,
-    dp: SsvcDecisionPoint,
-    json_file: str,
-    outdir: str,
-    overwrite: bool,
-) -> dict:
-    """
-    Generate the markdown table file for a decision point.
-
-    Args:
-        basename (str): The basename of the markdown table file.
-        dp (SsvcDecisionPoint): The decision point to generate documentation for.
-        json_file (str): The path to the json example file.
-        outdir (str): The directory to write the markdown table file to.
-        overwrite (bool): Whether to overwrite existing files.
-
-    Returns:
-        dict: A dictionary with the following keys:
-            - include_file: The path to the markdown table file.
-            - symlink: The path to the symlink that points to the markdown table file.
-    """
-    include_file = f"{outdir}/{basename}.md"
-
-    relative_json_file = os.path.relpath(json_file, outdir)
-
-    if overwrite:
-        remove_if_exists(include_file)
-    with EnsureDirExists(outdir):
-        try:
-            with open(include_file, "x") as f:
-                formatted_template = MD_INCLUDE_TEMPLATE.format(
-                    dp=dp,
-                    json_file=relative_json_file,
-                    table=(to_markdown_table(dp)),
-                )
-                f.write(formatted_template)
-        except FileExistsError:
-            logger.warning(
-                f"File {include_file} already exists, use --overwrite to replace"
-            )
-
-    # update the symlink
-    # because we don't want to have to edit each markdown file every time something changes
-    symlink = f"{outdir}/{_filename_friendly(dp.name)}.md"
-    remove_if_exists(symlink)
-    relative_md_file = os.path.relpath(include_file, outdir)
-    os.symlink(relative_md_file, symlink)
-
-    result = {
-        "include_file": include_file,
-        "symlink": symlink,
-    }
-
-    return result
+    dump_json(basename, dp, jsondir, overwrite)
 
 
 def dump_json(
@@ -276,20 +206,16 @@ def main():
     )
 
     parser.add_argument(
-        "--outdir", help="output directory", default="./tmp/md_out"
-    )
-    parser.add_argument(
         "--jsondir", help="json output directory", default="./tmp/json_out"
     )
     args = parser.parse_args()
 
     overwrite = args.overwrite
-    outdir = args.outdir
     jsondir = args.jsondir
 
     # for each decision point:
     for dp in REGISTERED_DECISION_POINTS:
-        dump_decision_point(jsondir, outdir, dp, overwrite)
+        dump_decision_point(jsondir, dp, overwrite)
 
 
 if __name__ == "__main__":
