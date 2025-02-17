@@ -31,11 +31,12 @@ To regenerate the existing docs, use the following command:
 import logging
 import os
 
+import ssvc.dp_groups.cvss.collections  # noqa
+import ssvc.dp_groups.ssvc.collections  # noqa
 from ssvc.decision_points.base import (
     REGISTERED_DECISION_POINTS,
     SsvcDecisionPoint,
 )
-from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
 logger = logging.getLogger(__name__)
 
@@ -171,7 +172,17 @@ def dump_json(
     Returns:
         str: The path to the json example file.
     """
-    json_file = f"{jsondir}/{basename}.json"
+    # if namespace is ssvc, it goes in jsondir
+    filename = f"{basename}.json"
+    parts = [
+        jsondir,
+    ]
+    if dp.namespace != "ssvc":
+        parts.append(_filename_friendly(dp.namespace))
+    parts.append(filename)
+
+    json_file = os.path.join(*parts)
+
     if overwrite:
         remove_if_exists(json_file)
     with EnsureDirExists(jsondir):

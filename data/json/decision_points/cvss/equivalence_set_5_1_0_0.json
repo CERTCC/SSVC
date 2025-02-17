@@ -1,0 +1,25 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "EQ5",
+  "name": "Equivalence Set 5",
+  "description": "E with 3 levels specified in Table 28",
+  "values": [
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "2: E:U"
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "1: E:P"
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "0: E:A"
+    }
+  ]
+}

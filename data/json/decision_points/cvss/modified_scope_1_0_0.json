@@ -1,0 +1,25 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "MS",
+  "name": "Modified Scope",
+  "description": "the ability for a vulnerability in one software component to impact resources beyond its means, or privileges",
+  "values": [
+    {
+      "key": "U",
+      "name": "Unchanged",
+      "description": "An exploited vulnerability can only affect resources managed by the same authority. In this case the vulnerable component and the impacted component are the same."
+    },
+    {
+      "key": "C",
+      "name": "Changed",
+      "description": "An exploited vulnerability can affect resources beyond the authorization privileges intended by the vulnerable component. In this case the vulnerable component and the impacted component are different."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}
