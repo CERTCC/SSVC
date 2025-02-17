@@ -92,7 +92,12 @@ data collection and analysis capabilities increase. We demonstrate this with the
     [Exploit Prediction Scoring System](https://www.first.org/epss/) ([EPSS](https://www.first.org/epss/))
     into their decision model.
 
-    {% include-markdown "../_generated/decision_points/exploitation_1_0_0.md" %}
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.exploitation import LATEST
+    from ssvc.doc_helpers import example_block
+
+    print(example_block(LATEST))
+    ```
 
     ### Improved Asset Management (Acuity Level 3)
 
@@ -100,7 +105,12 @@ data collection and analysis capabilities increase. We demonstrate this with the
     asset data to reflect the degree to which a system is exposed to the internet, allowing them to 
     incorporate the `SYSTEM_EXPOSURE_1_0_1` decision point into their decision model.
 
-    {% include-markdown "../_generated/decision_points/system_exposure_1_0_1.md" %}
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.system_exposure import LATEST
+    from ssvc.doc_helpers import example_block
+    
+    print(example_block(LATEST))
+    ```
 
     ### Improved Threat and Vulnerability Analysis (Acuity Level 4)
 
@@ -111,7 +121,12 @@ data collection and analysis capabilities increase. We demonstrate this with the
     [National Vulnerability Database](https://nvd.nist.gov/) ([NVD](https://nvd.nist.gov/))
     or by translating CVSS v3 or v4 scores into a value for this decision point.
 
-    {% include-markdown "../_generated/decision_points/automatable_2_0_0.md" %}
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.automatable import LATEST
+    from ssvc.doc_helpers import example_block
+    
+    print(example_block(LATEST))
+    ```
 
     ### Improved Mission and Safety Impact Understanding (Acuity Level 5)
 
@@ -119,8 +134,15 @@ data collection and analysis capabilities increase. We demonstrate this with the
     degree to which a vulnerability impacts both their mission and public safety, allowing them to incorporate the
     `MISSION_IMPACT_2` and `SAFETY_IMPACT_1` decision points into their decision model.
 
-    {% include-markdown "../_generated/decision_points/mission_impact_2_0_0.md" %}
-    {% include-markdown "../_generated/decision_points/safety_impact_1_0_0.md" %}
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.mission_impact import LATEST as MI
+    from ssvc.decision_points.safety_impact import LATEST as SI
+
+    from ssvc.doc_helpers import example_block
+    
+    print(example_block(MI))
+    print(example_block(SI))
+    ```
 
     In this way, the organization can grow into a more detailed decision model as their understanding and capabilities improve.
 
