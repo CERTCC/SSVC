@@ -17,36 +17,8 @@ CVSS v4 Equivalence Sets
 
 from ssvc.decision_points import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.cvss.equivalence_set_1 import EQ1
 
-
-# EQ1 → AV/PR/UI with 3 levels specified in Table 24
-# Levels	Constraints	Highest Severity Vector(s)
-# 0	AV:N and PR:N and UI:N	AV:N/PR:N/UI:N
-# 1	(AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P	AV:A/PR:N/UI:N or AV:N/PR:L/UI:N or AV:N/PR:N:/UI:P
-# 2	AV:P or not(AV:N or PR:N or UI:N)	AV:P/PR:N/UI:N or AV:A/PR:L/UI:P
-EQ1 = CvssDecisionPoint(
-    name="Equivalence Set 1",
-    key="EQ1",
-    description="AV/PR/UI with 3 levels specified in Table 24",
-    version="1.0.0",
-    values=[
-        SsvcDecisionPointValue(
-            name="Low",
-            key="L",
-            description="2: AV:P or not(AV:N or PR:N or UI:N)",
-        ),
-        SsvcDecisionPointValue(
-            name="Medium",
-            key="M",
-            description="1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P",
-        ),
-        SsvcDecisionPointValue(
-            name="High",
-            key="H",
-            description="0: AV:N and PR:N and UI:N",
-        ),
-    ],
-)
 
 # EQ2 → AC/AT with 2 levels specified in Table 25
 # Levels	Constraints	Highest Severity Vector(s)
