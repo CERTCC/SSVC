@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Provides an object representing the CVSS Equivalence Set 1 as a decision point.
+This module provides an object representing the CVSS Equivalence Set 6 as a decision point.
 """
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -19,48 +19,31 @@ from ssvc.decision_points import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-TWO = SsvcDecisionPointValue(
-    name="Low",
-    key="L",
-    description="2: AV:P or not(AV:N or PR:N or UI:N)",
-)
-
-ONE = SsvcDecisionPointValue(
-    name="Medium",
-    key="M",
-    description="1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P",
-)
-
-ZERO = SsvcDecisionPointValue(
-    name="High",
-    key="H",
-    description="0: AV:N and PR:N and UI:N",
-)
-
-# EQ1 → AV/PR/UI with 3 levels specified in Table 24
-# Levels	Constraints	Highest Severity Vector(s)
-# 0	AV:N and PR:N and UI:N	AV:N/PR:N/UI:N
-# 1	(AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P	AV:A/PR:N/UI:N or AV:N/PR:L/UI:N or AV:N/PR:N:/UI:P
-# 2	AV:P or not(AV:N or PR:N or UI:N)	AV:P/PR:N/UI:N or AV:A/PR:L/UI:P
-EQ1 = CvssDecisionPoint(
-    name="Equivalence Set 1",
-    key="EQ1",
-    description="AV/PR/UI with 3 levels specified in Table 24",
+# EQ6 → VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29
+# 0	(CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)	VC:H/VI:H/VA:H/CR:H/IR:H/AR:H
+# 1	not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)	VC:H/VI:H/VA:H/CR:M/IR:M/AR:M or VC:H/VI:H/VA:L/CR:M/IR:M/AR:H or VC:H/VI:L/VA:H/CR:M/IR:H/AR:M or VC:H/VI:L/VA:L/CR:M/IR:H/AR:H or VC:L/VI:H/VA:H/CR:H/IR:M/AR:M or VC:L/VI:H/VA:L/CR:H/IR:M/AR:H or VC:L/VI:L/VA:H/CR:H/IR:H/AR:M or VC:L/VI:L/VA:L/CR:H/IR:H/AR:H
+ONE = SsvcDecisionPointValue(name="Low", key="L",
+                             description="1: not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)", )
+ZERO = SsvcDecisionPointValue(name="High", key="H",
+                              description="0: (CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)", )
+EQ6 = CvssDecisionPoint(
+    name="Equivalence Set 6",
+    key="EQ6",
+    description="VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
     version="1.0.0",
     values=(
-        TWO,
         ONE,
         ZERO,
     ),
 )
 
-VERSIONS = (EQ1,)
-LATEST = EQ1
-
+VERSIONS = (EQ6,)
+LATEST = VERSIONS[-1]
 
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
+

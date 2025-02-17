@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Provides an object representing the CVSS Equivalence Set 1 as a decision point.
+This module provides an object representing the CVSS Equivalence Set 4 as a decision point.
 """
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -19,33 +19,29 @@ from ssvc.decision_points import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
+# EQ4 → SC/SI/SA with 3 levels specified in Table 27
+# 0	MSI:S or MSA:S	SC:H/SI:S/SA:S
+# 1	not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)	SC:H/SI:H/SA:H
+# 2	not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)	SC:L/SI:L/SA:L
 TWO = SsvcDecisionPointValue(
     name="Low",
     key="L",
-    description="2: AV:P or not(AV:N or PR:N or UI:N)",
+    description="2: not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)",
 )
-
 ONE = SsvcDecisionPointValue(
     name="Medium",
     key="M",
-    description="1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P",
+    description="1: not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)",
 )
-
 ZERO = SsvcDecisionPointValue(
     name="High",
     key="H",
-    description="0: AV:N and PR:N and UI:N",
+    description="0: MSI:S or MSA:S",
 )
-
-# EQ1 → AV/PR/UI with 3 levels specified in Table 24
-# Levels	Constraints	Highest Severity Vector(s)
-# 0	AV:N and PR:N and UI:N	AV:N/PR:N/UI:N
-# 1	(AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P	AV:A/PR:N/UI:N or AV:N/PR:L/UI:N or AV:N/PR:N:/UI:P
-# 2	AV:P or not(AV:N or PR:N or UI:N)	AV:P/PR:N/UI:N or AV:A/PR:L/UI:P
-EQ1 = CvssDecisionPoint(
-    name="Equivalence Set 1",
-    key="EQ1",
-    description="AV/PR/UI with 3 levels specified in Table 24",
+EQ4 = CvssDecisionPoint(
+    name="Equivalence Set 4",
+    key="EQ4",
+    description="SC/SI/SA with 3 levels specified in Table 27",
     version="1.0.0",
     values=(
         TWO,
@@ -54,8 +50,8 @@ EQ1 = CvssDecisionPoint(
     ),
 )
 
-VERSIONS = (EQ1,)
-LATEST = EQ1
+VERSIONS = (EQ4,)
+LATEST = VERSIONS[-1]
 
 
 def main():
