@@ -19,7 +19,13 @@ from ssvc.decision_points import SsvcDecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-
+NO = SsvcDecisionPointValue(name="No", key="N",
+                               description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for " \
+                                           "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.", )
+YES = SsvcDecisionPointValue(name="Yes", key="Y",
+                               description="Attackers can reliably automate all 4 steps of the kill chain. These steps are " \
+                                           "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is " \
+                                           '"wormable").', )
 AUTOMATABLE_1 = CvssDecisionPoint(
     name="Automatable",
     description='The "Automatable" metric captures the answer to the question "Can an attacker automate exploitation '
@@ -27,26 +33,15 @@ AUTOMATABLE_1 = CvssDecisionPoint(
     key="AU",
     version="1.0.0",
     values=(
-        SsvcDecisionPointValue(
-            name="No",
-            key="N",
-            description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
-            "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
-        ),
-        SsvcDecisionPointValue(
-            name="Yes",
-            key="Y",
-            description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
-            "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is "
-            '"wormable").',
-        ),
+        NO,
+        YES,
     ),
 )
 
+VERSIONS = (AUTOMATABLE_1,)
+LATEST = AUTOMATABLE_1
 
 def main():
-    VERSIONS = (AUTOMATABLE_1,)
-
     print_versions_and_diffs(VERSIONS)
 
 
