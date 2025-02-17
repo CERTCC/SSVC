@@ -1,6 +1,13 @@
 # Automatable
 
-{% include-markdown "../../_generated/decision_points/automatable.md" %}
+
+```python exec="true" idprefix=""
+from ssvc.decision_points.automatable import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 
 !!! tip "See also"
 
@@ -57,8 +64,15 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 
 ## Prior Versions
 
+```python exec="true" idprefix=""
+from ssvc.decision_points.automatable import VERSIONS
+from ssvc.doc_helpers import prior_version, example_block
 
-{% include-markdown "../../_generated/decision_points/virulence_1_0_0.md" %}
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```
 
 !!! warning "*Virulence* is Superseded by *Automatable*"
 

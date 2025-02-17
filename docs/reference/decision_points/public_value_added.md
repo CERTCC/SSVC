@@ -1,6 +1,12 @@
 # Public Value Added
 
-{% include-markdown "../../_generated/decision_points/public_value_added.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.public_value_added import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 
 The intent of the definition is that one rarely if ever transitions from _limited_ to _ampliative_ or _ampliative_ to _precedence_.
 A vulnerability could transition from _precedence_ to _ampliative_ and _ampliative_ to _limited_.

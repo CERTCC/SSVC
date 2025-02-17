@@ -1,6 +1,11 @@
 # Supplier Contacted
 
-{% include-markdown "../../_generated/decision_points/supplier_contacted.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.supplier_contacted import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 
 !!! tip "Quality Contact Method"
