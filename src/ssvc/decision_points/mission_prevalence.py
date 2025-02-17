@@ -52,7 +52,9 @@ MISSION_PREVALENCE = SsvcDecisionPoint(
     ),
 )
 
-if __name__ == "__main__":
-    versions = (MISSION_PREVALENCE,)
+VERSIONS = (MISSION_PREVALENCE,)
+LATEST = VERSIONS[-1]
 
-    print_versions_and_diffs(versions)
+if __name__ == "__main__":
+
+    print_versions_and_diffs(VERSIONS)

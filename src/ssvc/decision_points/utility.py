@@ -80,11 +80,12 @@ UTILITY_1_0_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (UTILITY_1, UTILITY_1_0_1)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (UTILITY_1, UTILITY_1_0_1)
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":
