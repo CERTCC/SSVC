@@ -16,6 +16,7 @@ Provides the CVSS supplemental metric Automatable
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -35,6 +36,7 @@ AUTOMATABLE_1 = CvssDecisionPoint(
     values=(
         NO,
         YES,
+        NOT_DEFINED_X,
     ),
 )
 

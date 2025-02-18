@@ -57,7 +57,7 @@ from ssvc.decision_points.cvss.confidentiality_requirement import (
     CONFIDENTIALITY_REQUIREMENT_1_1_1,
 )
 from ssvc.decision_points.cvss.eq_sets import EQ1, EQ2, EQ3, EQ4, EQ5, EQ6
-from ssvc.decision_points.cvss.exploitability import (
+from ssvc.decision_points.cvss.exploit_maturity import (
     EXPLOITABILITY_1,
     EXPLOITABILITY_1_1,
     EXPLOIT_CODE_MATURITY_1_2,
@@ -70,11 +70,8 @@ from ssvc.decision_points.cvss.integrity_impact import (
     INTEGRITY_IMPACT_2,
     INTEGRITY_IMPACT_2_0_1,
 )
-from ssvc.decision_points.cvss.integrity_requirement import (
-    INTEGRITY_REQUIREMENT_1,
-    INTEGRITY_REQUIREMENT_1_1,
-    INTEGRITY_REQUIREMENT_1_1_1,
-)
+from ssvc.decision_points.cvss.integrity_requirement import (INTEGRITY_REQUIREMENT_1, INTEGRITY_REQUIREMENT_1_0_1,
+                                                             INTEGRITY_REQUIREMENT_1_1)
 from ssvc.decision_points.cvss.privileges_required import (
     PRIVILEGES_REQUIRED_1,
     PRIVILEGES_REQUIRED_1_0_1,
@@ -282,7 +279,7 @@ _ENVIRONMENTAL_4 = [modify_4(dp) for dp in _BASE_4]
 _ENVIRONMENTAL_4.extend(
     [
         CONFIDENTIALITY_REQUIREMENT_1_1_1,
-        INTEGRITY_REQUIREMENT_1_1_1,
+        INTEGRITY_REQUIREMENT_1_0_1,
         AVAILABILITY_REQUIREMENT_1_1_1,
     ]
 )

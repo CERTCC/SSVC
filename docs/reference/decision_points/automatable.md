@@ -1,4 +1,4 @@
-# Automatable
+# Automatable (SSVC)
 
 
 ```python exec="true" idprefix=""
@@ -14,6 +14,7 @@ print(example_block(LATEST))
     Automatable combines with [Value Density](./value_density.md) to inform 
     [Utility](./utility.md)
 
+{% include-markdown "../../_includes/automatable_cvss_ssvc.md" %}
 
 *Automatable* captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?”
 

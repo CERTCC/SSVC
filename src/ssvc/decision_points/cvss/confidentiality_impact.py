@@ -137,11 +137,27 @@ CONFIDENTIALITY_IMPACT_2_0_1 = CvssDecisionPoint(
     ),
 )
 
+CONFIDENTIALITY_IMPACT_3_0_0 = CvssDecisionPoint(
+    name="Confidentiality Impact to the Vulnerable System",
+    description="This metric measures the impact to the confidentiality of the information managed by the system due "
+    "to a successfully exploited vulnerability. Confidentiality refers to limiting information access "
+    "and disclosure to only authorized users, as well as preventing access by, or disclosure to, "
+    "unauthorized ones.",
+    key="VC",
+    version="3.0.0",
+    values=(
+        _CI_NONE_3,
+        _LOW_1,
+        _HIGH_1,
+    ),
+)
+
 
 VERSIONS = (
     CONFIDENTIALITY_IMPACT_1,
     CONFIDENTIALITY_IMPACT_2,
     CONFIDENTIALITY_IMPACT_2_0_1,
+    CONFIDENTIALITY_IMPACT_3_0_0
 )
 LATEST = VERSIONS[-1]
 

@@ -125,7 +125,20 @@ INTEGRITY_IMPACT_2_0_1 = CvssDecisionPoint(
     ),
 )
 
-VERSIONS = (INTEGRITY_IMPACT_1, INTEGRITY_IMPACT_2, INTEGRITY_IMPACT_2_0_1)
+INTEGRITY_IMPACT_3_0_0 = CvssDecisionPoint(
+    name="Integrity Impact to the Vulnerable System",
+    description="This metric measures the impact to integrity of a successfully exploited vulnerability.",
+    key="VI",
+    version="3.0.0",
+    values=(
+        _II_NONE_3,
+        _II_LOW_2,
+        _II_HIGH_2,
+    ),
+)
+
+
+VERSIONS = (INTEGRITY_IMPACT_1, INTEGRITY_IMPACT_2, INTEGRITY_IMPACT_2_0_1, INTEGRITY_IMPACT_3_0_0)
 LATEST = VERSIONS[-1]
 
 
