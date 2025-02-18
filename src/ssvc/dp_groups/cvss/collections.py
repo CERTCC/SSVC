@@ -72,8 +72,8 @@ from ssvc.decision_points.cvss.integrity_impact import (
 )
 from ssvc.decision_points.cvss.integrity_requirement import (
     INTEGRITY_REQUIREMENT_1,
-    INTEGRITY_REQUIREMENT_1_0_1,
     INTEGRITY_REQUIREMENT_1_1,
+    INTEGRITY_REQUIREMENT_1_1_1,
 )
 from ssvc.decision_points.cvss.privileges_required import (
     PRIVILEGES_REQUIRED_1,
@@ -282,7 +282,7 @@ _ENVIRONMENTAL_4 = [modify_4(dp) for dp in _BASE_4]
 _ENVIRONMENTAL_4.extend(
     [
         CONFIDENTIALITY_REQUIREMENT_1_1_1,
-        INTEGRITY_REQUIREMENT_1_0_1,
+        INTEGRITY_REQUIREMENT_1_1_1,
         AVAILABILITY_REQUIREMENT_1_1_1,
     ]
 )
