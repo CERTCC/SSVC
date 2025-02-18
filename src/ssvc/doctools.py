@@ -92,7 +92,9 @@ def remove_if_exists(file):
         logger.debug(f"File {file} does not exist, nothing to remove")
 
 
-def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) -> None:
+def dump_decision_point(
+    jsondir: str, dp: SsvcDecisionPoint, overwrite: bool
+) -> None:
     """
     Generate the markdown table, json example, and markdown table file for a decision point.
 
@@ -109,7 +111,9 @@ def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) ->
             - json_file: The path to the json example file.
     """
     # make dp.name safe for use in a filename
-    basename = _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
+    basename = (
+        _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
+    )
     # - generate json example
     dump_json(basename, dp, jsondir, overwrite)
 

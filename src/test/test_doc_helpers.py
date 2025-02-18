@@ -26,8 +26,12 @@ class MyTestCase(unittest.TestCase):
             key="TK",
             version="1.0.0",
             values=(
-                SsvcDecisionPointValue(name="A", key="A", description="A Definition"),
-                SsvcDecisionPointValue(name="B", key="B", description="B Definition"),
+                SsvcDecisionPointValue(
+                    name="A", key="A", description="A Definition"
+                ),
+                SsvcDecisionPointValue(
+                    name="B", key="B", description="B Definition"
+                ),
             ),
         )
 

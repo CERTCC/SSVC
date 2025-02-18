@@ -33,6 +33,7 @@ import os
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
+
 def cutfname(fname):
     # foo_bar_1_0_0 -> foo_bar
     parts = fname.split("_")
@@ -45,7 +46,8 @@ def cutfname(fname):
 
     return "_".join(parts_)
 
-PAGE_TOP_TEMPLATE="""# {dp_name}
+
+PAGE_TOP_TEMPLATE = """# {dp_name}
 
 ```python exec="true" idprefix=""
 from ssvc.decision_points.cvss.{module} import LATEST
@@ -55,7 +57,7 @@ print(example_block(LATEST))
 ```
 """
 
-PAGE_BOTTOM_TEMPLATE="""## Previous Versions
+PAGE_BOTTOM_TEMPLATE = """## Previous Versions
 
 ```python exec="true" idprefix=""
 from ssvc.decision_points.cvss.{module} import VERSIONS
@@ -68,31 +70,36 @@ for version in versions:
 ```
 """
 
+
 def snake_to_title(s):
     return " ".join([w.capitalize() for w in s.split("_")])
+
 
 def main():
     # add overwrite command line argument
     import argparse
 
     parser = argparse.ArgumentParser(
-            description="Generate decision point documentation"
+        description="Generate decision point documentation"
     )
     parser.add_argument(
-            "--overwrite",
-            action="store_true",
-            help="overwrite existing files",
-            default=False,
+        "--overwrite",
+        action="store_true",
+        help="overwrite existing files",
+        default=False,
     )
 
     parser.add_argument(
-        "--outdir", help="output directory", default="../../docs/reference/decision_points/cvss"
+        "--outdir",
+        help="output directory",
+        default="../../docs/reference/decision_points/cvss",
     )
 
     parser.add_argument(
-        "--jsondir", help="json directory", default="../../data/json/decision_points/cvss"
+        "--jsondir",
+        help="json directory",
+        default="../../data/json/decision_points/cvss",
     )
-
 
     args = parser.parse_args()
 
@@ -109,7 +116,7 @@ def main():
     for dp_fname in dp_fnames:
 
         fname = dp_fname + ".md"
-        path  = os.path.join(md_dir, fname)
+        path = os.path.join(md_dir, fname)
 
         if os.path.exists(path):
             if not args.overwrite:
@@ -128,22 +135,20 @@ def main():
             print(f"Module {module} does not exist")
             continue
 
-
         with open(os.path.join(md_dir, fname), "w") as f:
-            f.write(PAGE_TOP_TEMPLATE.format(dp_name=snake_to_title(dp_fname),module=dp_fname))
+            f.write(
+                PAGE_TOP_TEMPLATE.format(
+                    dp_name=snake_to_title(dp_fname), module=dp_fname
+                )
+            )
             f.write("\n")
-            if len(mod.VERSIONS)>1:
+            if len(mod.VERSIONS) > 1:
                 f.write("\n")
                 f.write(PAGE_BOTTOM_TEMPLATE.format(module=dp_fname))
                 f.write("\n")
 
-
-
-
-
-
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
