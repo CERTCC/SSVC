@@ -18,6 +18,7 @@ Provides the SSVC Report Credibility Decision Point
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 NOT_CREDIBLE = SsvcDecisionPointValue(
     name="Not Credible",
@@ -42,9 +43,12 @@ REPORT_CREDIBILITY_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (REPORT_CREDIBILITY_1,)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(REPORT_CREDIBILITY_1.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -49,13 +49,12 @@ SCOPE_1 = CvssDecisionPoint(
 Defines Changed and Unchanged values for CVSS Scope.
 """
 
-versions = [
-    SCOPE_1,
-]
+VERSIONS = (SCOPE_1,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

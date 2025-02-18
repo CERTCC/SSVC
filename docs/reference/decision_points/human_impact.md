@@ -1,6 +1,11 @@
 # Human Impact
 
-{% include-markdown "../../_generated/decision_points/human_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.human_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
@@ -43,6 +48,12 @@ see [Guidance on Communicating Results](../../howto/bootstrap/use.md).
 
 ## Prior Versions
 
-{% include-markdown "../../_generated/decision_points/human_impact_2_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.human_impact import VERSIONS
+from ssvc.doc_helpers import prior_version, example_block
 
-{% include-markdown "../../_generated/decision_points/mission_and_well-being_impact_1_0_0.md" %}
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```

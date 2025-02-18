@@ -59,13 +59,12 @@ IMPACT_BIAS_1 = CvssDecisionPoint(
 Defines Normal, Confidentiality, Integrity, and Availability values for CVSS Impact Bias.
 """
 
-versions = [
-    IMPACT_BIAS_1,
-]
+VERSIONS = (IMPACT_BIAS_1,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -110,15 +110,16 @@ INTEGRITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
+VERSIONS = (
     INTEGRITY_REQUIREMENT_1,
     INTEGRITY_REQUIREMENT_1_1,
     INTEGRITY_REQUIREMENT_1_1_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

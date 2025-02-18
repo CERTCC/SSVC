@@ -85,13 +85,19 @@ The remaining five decision points are:
 
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
-{% include-markdown "../_generated/decision_points/report_public.md" %}
-{% include-markdown "../_generated/decision_points/supplier_contacted.md" %}
-{% include-markdown "../_generated/decision_points/report_credibility.md" %}
-{% include-markdown "../_generated/decision_points/supplier_cardinality.md" %}
-{% include-markdown "../_generated/decision_points/supplier_engagement.md" %}
-{% include-markdown "../_generated/decision_points/utility.md" %}
-{% include-markdown "../_generated/decision_points/public_safety_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.report_public import LATEST as RP
+from ssvc.decision_points.supplier_contacted import LATEST as SC
+from ssvc.decision_points.report_credibility import LATEST as RC
+from ssvc.decision_points.supplier_cardinality import LATEST as SI
+from ssvc.decision_points.supplier_engagement import LATEST as SE
+from ssvc.decision_points.utility import LATEST as U
+from ssvc.decision_points.public_safety_impact import LATEST as PSI
+from ssvc.doc_helpers import example_block
+
+for dp in [RP, SC, RC, SI, SE, U, PSI]:
+    print(example_block(dp))
+```
 
 ## Coordinator Triage Decision Model
 

@@ -139,7 +139,12 @@ If the analyst knows nothing, all states are possible.
 
     For example, [Utility](../../reference/decision_points/utility.md) may be [laborious](../../reference/decision_points/utility.md), [efficient](../../reference/decision_points/utility.md), or [super effective](../../reference/decision_points/system_exposure.md).
 
-    {% include-markdown "../../_generated/decision_points/utility.md" %}
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.utility import LATEST
+    from ssvc.doc_helpers import example_block
+    
+    print(example_block(LATEST))
+    ```
 
     The reason a stakeholder might publish a decision point with all its possible values is that doing so expresses that the analyst thought about [*Utility*](#utility) but does not have anything to communicate.
     A stakeholder might have information to communicate about some decision points but not others.
@@ -151,9 +156,19 @@ The merit in this “list all values” approach emerges when the stakeholder kn
 
     Extending the previous example, say the analyst knows that [*Value Density*](../../reference/decision_points/value_density.md) is [diffuse](../../reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
 
-    {% include-markdown "../../_generated/decision_points/value_density.md" %}
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.value_density import LATEST
+    from ssvc.doc_helpers import example_block
 
-    {% include-markdown "../../_generated/decision_points/automatable.md" %}
+    print(example_block(LATEST))
+    ```
+
+    ```python exec="true" idprefix=""
+    from ssvc.decision_points.automatable import LATEST
+    from ssvc.doc_helpers import example_block
+
+    print(example_block(LATEST))
+    ```
 
     Therefore they could rule out [super effective](../../reference/decision_points/utility.md) 
     for [Utility](../../reference/decision_points/utility.md)

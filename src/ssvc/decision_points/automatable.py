@@ -65,11 +65,13 @@ AUTOMATABLE_2 = SsvcDecisionPoint(
     values=(AUT_NO, AUT_YES),
 )
 
+# always append new VERSIONS to this list, do not remove old ones
+VERSIONS = (VIRULENCE_1, AUTOMATABLE_2)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (VIRULENCE_1, AUTOMATABLE_2)
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -20,7 +20,12 @@ from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-
+DIFFUSE = SsvcDecisionPointValue(name="Diffuse", key="D",
+                               description="The vulnerable system has limited resources. That is, the resources that the attacker will " \
+                                           "gain control over with a single exploitation event are relatively small.", )
+CONCENTRATED = SsvcDecisionPointValue(name="Concentrated", key="C",
+                               description="The vulnerable system is rich in resources. Heuristically, such systems are often the direct " \
+                                           'responsibility of "system operators" rather than users.', )
 VALUE_DENSITY_1 = CvssDecisionPoint(
     name="Value Density",
     description="Value Density describes the resources that the attacker will gain control over with a single "
@@ -29,28 +34,16 @@ VALUE_DENSITY_1 = CvssDecisionPoint(
     version="1.0.0",
     values=(
         NOT_DEFINED_X,
-        SsvcDecisionPointValue(
-            name="Diffuse",
-            key="D",
-            description="The vulnerable system has limited resources. That is, the resources that the attacker will "
-            "gain control over with a single exploitation event are relatively small.",
-        ),
-        SsvcDecisionPointValue(
-            name="Concentrated",
-            key="C",
-            description="The vulnerable system is rich in resources. Heuristically, such systems are often the direct "
-            'responsibility of "system operators" rather than users.',
-        ),
+        DIFFUSE,
+        CONCENTRATED,
     ),
 )
 
+VERSIONS = (VALUE_DENSITY_1,)
+LATEST = VERSIONS[-1]
 
 def main():
-    versions = [
-        VALUE_DENSITY_1,
-    ]
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

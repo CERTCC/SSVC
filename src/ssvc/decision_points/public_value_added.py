@@ -47,10 +47,12 @@ PUBLIC_VALUE_ADDED_1 = SsvcDecisionPoint(
 )
 
 
-def main():
-    versions = (PUBLIC_VALUE_ADDED_1,)
+VERSIONS = (PUBLIC_VALUE_ADDED_1,)
+LATEST = VERSIONS[-1]
 
-    print_versions_and_diffs(versions)
+
+def main():
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

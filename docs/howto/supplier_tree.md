@@ -71,10 +71,17 @@ The decision to create a patch is based on the following decision points:
 
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
-{% include-markdown "../_generated/decision_points/exploitation.md" %}
-{% include-markdown "../_generated/decision_points/utility.md" %}
-{% include-markdown "../_generated/decision_points/technical_impact.md" %}
-{% include-markdown "../_generated/decision_points/public_safety_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.exploitation import LATEST as EXP
+from ssvc.decision_points.utility import LATEST as U
+from ssvc.decision_points.technical_impact import LATEST as TI
+from ssvc.decision_points.public_safety_impact import LATEST as PSI
+
+from ssvc.doc_helpers import example_block
+
+for dp in [EXP, U, TI, PSI]:
+    print(example_block(dp))
+```
 
 !!! tip "Public Safety Impact is a notational convenience"
 

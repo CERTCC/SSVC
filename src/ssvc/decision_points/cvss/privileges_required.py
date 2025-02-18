@@ -101,11 +101,12 @@ PRIVILEGES_REQUIRED_1_0_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [PRIVILEGES_REQUIRED_1, PRIVILEGES_REQUIRED_1_0_1]
+VERSIONS = (PRIVILEGES_REQUIRED_1, PRIVILEGES_REQUIRED_1_0_1)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":
