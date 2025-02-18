@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Provides the Mission Prevalence decision point and its values."
+Provides the Mission Prevalence decision point and its values.
 """
 
 #  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.

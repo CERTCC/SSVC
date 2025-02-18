@@ -1,6 +1,7 @@
 # Automatable (SSVC)
 
 
+
 ```python exec="true" idprefix=""
 from ssvc.decision_points.automatable import LATEST
 from ssvc.doc_helpers import example_block
