@@ -1,11 +1,11 @@
 mkdocs==1.6.1
-mkdocs-bibtex==4.1.0
+mkdocs-bibtex==4.2.1
 mkdocs-include-markdown-plugin==7.1.4
 mkdocs-table-reader-plugin==3.1.0
-mkdocs-material==9.6.3
+mkdocs-material==9.6.4
 mkdocs-material-extensions==1.3.1
-mkdocstrings==0.28.0
-mkdocstrings-python==1.14.6
+mkdocstrings==0.28.1
+mkdocstrings-python==1.16.0
 mkdocs-print-site-plugin==2.6.0
 thefuzz==0.22.1
 pandas==2.2.3
