@@ -56,7 +56,12 @@ from ssvc.decision_points.cvss.confidentiality_requirement import (
     CONFIDENTIALITY_REQUIREMENT_1_1,
     CONFIDENTIALITY_REQUIREMENT_1_1_1,
 )
-from ssvc.decision_points.cvss.eq_sets import EQ1, EQ2, EQ3, EQ4, EQ5, EQ6
+from ssvc.decision_points.cvss.equivalence_set_1 import EQ1
+from ssvc.decision_points.cvss.equivalence_set_2 import EQ2
+from ssvc.decision_points.cvss.equivalence_set_3 import EQ3
+from ssvc.decision_points.cvss.equivalence_set_4 import EQ4
+from ssvc.decision_points.cvss.equivalence_set_5 import EQ5
+from ssvc.decision_points.cvss.equivalence_set_6 import EQ6
 from ssvc.decision_points.cvss.exploitability import (
     EXPLOITABILITY_1,
     EXPLOITABILITY_1_1,
