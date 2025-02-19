@@ -19,10 +19,9 @@ This ADR establishes the rules for versioning Decision Point Groups.
 - Decision Points change over time
 - The composition of decision point groups change over time
 - It is important that we can discriminate between versions of decision point groups
-- Although technically a Decision Point Group is fully defined by the set of 
-  pinned Decision Points it contains, we find it convenient to be able to 
+- Although technically a Decision Point Group is fully defined by the set of
+  pinned Decision Points it contains, we find it convenient to be able to
   refer to the group as a whole, and to be able to discriminate between different versions of the group.
-
 
 ## Considered Options
 
@@ -45,7 +44,7 @@ provides indication of compatibility expectations between versions.
 Implemented as follows:
 
 The core identity of a decision point group is derived from the pairing of the
-_stakeholder role_ and the specific _decision_ being modeled.
+*stakeholder role* and the specific *decision* being modeled.
 
 ### Create a new object when
 
@@ -79,8 +78,8 @@ version of the existing name according to the following rules.
 
 ### Examples
 
-Assume a decision point group (DPG) named _DPG v1.0.0_,
-containing decision points (DP) _A v1.0.0_ and _B v1.3.1_.
+Assume a decision point group (DPG) named *DPG v1.0.0*,
+containing decision points (DP) *A v1.0.0* and *B v1.3.1*.
 In the table below, we show how the Decision Point Group version number changes
 as the constituent Decision Points change.
 
@@ -101,11 +100,11 @@ In row 4, DP C undergoes a major version increment, which triggers a major versi
 - Maintaining version numbers for decision point groups will add a small burden to each decision point group.
 - Semantic versioning will make it easier to track changes to decision point groups over time.
 - Because we don't anticipate frequent changes to decision point groups, the burden of maintaining version numbers should be minimal.
-- We are deliberately avoiding using the _name_ of the Decision Point Group as part of the versioning scheme, as
+- We are deliberately avoiding using the *name* of the Decision Point Group as part of the versioning scheme, as
 in the motivating example in
 [ADR 0004](0004-ssvc-decision-point-groups-are-versioned.md) we shifted the
-group name from _Patch Applier_ to _Deployer_, but since the group is still
-intended to represent the same _stakeholder role_ and _decision_, we want
+group name from *Patch Applier* to *Deployer*, but since the group is still
+intended to represent the same *stakeholder role* and *decision*, we want
 to be able to treat name changes as aliases rather than versioning events.
 
 ## More Information

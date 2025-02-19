@@ -44,9 +44,6 @@ SSVC can be used in conjunction with other tools and methodologies to help prior
     This information can be used to inform the [Exploitation](../reference/decision_points/exploitation.md) decision point in the
     [Supplier](../howto/supplier_tree.md), [Deployer](../howto/deployer_tree.md), and [Coordinator Publication](../howto/publication_decision.md) decision models.
 
-
-
-
 ## Videos
 
 Provided below are videos that provide an overview of SSVC and the implementation of decision models.
@@ -71,6 +68,6 @@ We've collected a list of articles and blog posts that provide additional inform
 | SEI           | [Prioritizing Vulnerability Response with a Stakeholder-Specific Vulnerability Categorization](https://insights.sei.cmu.edu/blog/prioritizing-vulnerability-response-with-a-stakeholder-specific-vulnerability-categorization/)         |
 | CISA          | [Stakeholder-Specific Vulnerability Categorization (SSVC)](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc)                                                                                                 |
 | Qualys        | [Effective Vulnerability Management with Stakeholder Specific Vulnerability Categorization (SSVC) and Qualys TruRisk](https://blog.qualys.com/product-tech/2022/11/30/effective-vulnerability-management-with-ssvc-and-qualys-trurisk)  |
-| Vulcan Cyber  | [The SSVC risk prioritization method: what it is, when to use it, and alternatives](https://vulcan.io/blog/the-ssvc-risk-prioritization-method-what-it-is-when-to-use-it-and-alternatives/)                 |                              
+| Vulcan Cyber  | [The SSVC risk prioritization method: what it is, when to use it, and alternatives](https://vulcan.io/blog/the-ssvc-risk-prioritization-method-what-it-is-when-to-use-it-and-alternatives/)                 |
 
 Have a link to something we missed? Let us know in an [issue](https://github.com/CERTCC/SSVC/issues/new).

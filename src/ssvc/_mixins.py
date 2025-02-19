@@ -17,7 +17,8 @@ This module provides mixin classes for adding features to SSVC objects.
 
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
+from semver import Version
 
 from . import _schemaVersion
 
@@ -29,6 +30,23 @@ class _Versioned(BaseModel):
 
     version: str = "0.0.0"
     schemaVersion: str = _schemaVersion
+
+    @field_validator("version")
+    @classmethod
+    def validate_version(cls, value):
+        """
+        Validate the version field.
+        Args:
+            value: a string representing a version number
+
+        Returns:
+            a fully qualified version number
+
+        Raises:
+            ValueError: if the value is not a valid version number
+        """
+        version = Version.parse(value, optional_minor_and_patch=True)
+        return version.__str__()
 
 
 class _Namespaced(BaseModel):
