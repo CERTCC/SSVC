@@ -21,6 +21,12 @@ from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
+PRESENT = SsvcDecisionPointValue(name="Present", key="P",
+                               description="Consequences of the vulnerability meet definition of IEC 61508 consequence categories of " \
+                                           '"marginal," "critical," or "catastrophic."', )
+NEGLIGIBLE = SsvcDecisionPointValue(name="Negligible", key="N",
+                               description="Consequences of the vulnerability meet definition of IEC 61508 consequence category " \
+                                           '"negligible."', )
 SAFETY_1 = CvssDecisionPoint(
     name="Safety",
     description="The Safety decision point is a measure of the potential for harm to humans or the environment.",
@@ -28,29 +34,16 @@ SAFETY_1 = CvssDecisionPoint(
     version="1.0.0",
     values=(
         NOT_DEFINED_X,
-        # Present, Negligible
-        SsvcDecisionPointValue(
-            name="Present",
-            key="P",
-            description="Consequences of the vulnerability meet definition of IEC 61508 consequence categories of "
-            '"marginal," "critical," or "catastrophic."',
-        ),
-        SsvcDecisionPointValue(
-            name="Negligible",
-            key="N",
-            description="Consequences of the vulnerability meet definition of IEC 61508 consequence category "
-            '"negligible."',
-        ),
+        PRESENT,
+        NEGLIGIBLE,
     ),
 )
 
+VERSIONS = (SAFETY_1,)
+LATEST = SAFETY_1
 
 def main():
-    versions = [
-        SAFETY_1,
-    ]
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

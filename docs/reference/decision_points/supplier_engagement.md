@@ -1,3 +1,8 @@
 # Supplier Engagement
 
-{% include-markdown "../../_generated/decision_points/supplier_engagement.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.supplier_engagement import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```

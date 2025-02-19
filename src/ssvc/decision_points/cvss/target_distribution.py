@@ -87,14 +87,15 @@ TARGET_DISTRIBUTION_1_1 = CvssDecisionPoint(
 Introduces Not Defined value.
 """
 
-versions = [
+VERSIONS = (
     TARGET_DISTRIBUTION_1,
     TARGET_DISTRIBUTION_1_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

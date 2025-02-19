@@ -1,6 +1,11 @@
 # Utility
 
-{% include-markdown "../../_generated/decision_points/utility.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.utility import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
@@ -44,7 +49,15 @@ However, future work should look for and prevent large mismatches between the ou
 
 ## Previous Versions
 
-{% include-markdown "../../_generated/decision_points/utility_1_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.utility import VERSIONS
+from ssvc.doc_helpers import example_block
+
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```
 
 !!! tip "See also"
 

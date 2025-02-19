@@ -1,6 +1,12 @@
 # Report Credibility
 
-{% include-markdown "../../_generated/decision_points/report_credibility.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.report_credibility import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 
 An analyst should start with a presumption of credibility and proceed toward disqualification.
 The reason for this is that, as a coordinator, occasionally doing a bit of extra work on a bad report is preferable to rejecting legitimate reports.

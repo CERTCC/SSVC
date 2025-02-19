@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-file: _basics
-author: adh
-created_at: 9/20/23 4:51 PM
+This module provides mixin classes for adding features to SSVC objects.
 """
 #  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors

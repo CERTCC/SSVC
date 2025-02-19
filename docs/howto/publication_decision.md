@@ -136,10 +136,16 @@ and adds two new ones ([*Supplier Involvement*](../reference/decision_points/sup
 
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
-{% include-markdown "../_generated/decision_points/supplier_involvement.md" %}
-{% include-markdown "../_generated/decision_points/exploitation.md" %}
-{% include-markdown "../_generated/decision_points/public_value_added.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.supplier_involvement import LATEST as SI
+from ssvc.decision_points.exploitation import LATEST as EXP
+from ssvc.decision_points.public_value_added import LATEST as PVA
 
+from ssvc.doc_helpers import example_block
+
+for dp in [SI, EXP, PVA]:
+    print(example_block(dp))
+```
 
 ## Coordinator Publication Decision Model
 

@@ -112,15 +112,16 @@ AVAILABILITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
+VERSIONS = (
     AVAILABILITY_REQUIREMENT_1,
     AVAILABILITY_REQUIREMENT_1_1,
     AVAILABILITY_REQUIREMENT_1_1_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -89,11 +89,12 @@ USER_INTERACTION_2 = CvssDecisionPoint(
     ),
 )
 
-versions = [USER_INTERACTION_1, USER_INTERACTION_2]
+VERSIONS = (USER_INTERACTION_1, USER_INTERACTION_2)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

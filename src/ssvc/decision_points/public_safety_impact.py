@@ -109,14 +109,16 @@ PUBLIC_SAFETY_IMPACT_2_0_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (
+    PUBLIC_WELL_BEING_IMPACT_1,
+    PUBLIC_SAFETY_IMPACT_2,
+    PUBLIC_SAFETY_IMPACT_2_0_1,
+)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (
-        PUBLIC_WELL_BEING_IMPACT_1,
-        PUBLIC_SAFETY_IMPACT_2,
-        PUBLIC_SAFETY_IMPACT_2_0_1,
-    )
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

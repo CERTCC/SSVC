@@ -1,0 +1,20 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "EQ6",
+  "name": "Equivalence Set 6",
+  "description": "VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
+  "values": [
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "1: not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)"
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "0: (CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)"
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 # Public Safety Impact
 
-{% include-markdown "../../_generated/decision_points/public_safety_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.public_safety_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
@@ -17,6 +22,12 @@ Therefore we simplify the above into a binary categorization:
 
 ## Prior Versions
 
-{% include-markdown "../../_generated/decision_points/public_safety_impact_2_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.public_safety_impact import VERSIONS
+from ssvc.doc_helpers import example_block
 
-{% include-markdown "../../_generated/decision_points/public_well-being_impact_1_0_0.md" %}
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```

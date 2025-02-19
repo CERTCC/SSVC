@@ -79,15 +79,12 @@ AUTHENTICATION_2 = CvssDecisionPoint(
 Includes MULTIPLE, SINGLE, and AUTH_NONE values for CVSS Authentication.
 """
 
-
-versions = [
-    AUTHENTICATION_1,
-    AUTHENTICATION_2,
-]
+VERSIONS = (AUTHENTICATION_1, AUTHENTICATION_2)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

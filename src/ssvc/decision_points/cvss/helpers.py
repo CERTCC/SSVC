@@ -34,7 +34,7 @@ def _modify_3(dp: SsvcDecisionPoint):
     names = [v.name for v in values]
     if nd.name not in names:
         values.append(nd)
-    _dp.values = tuple(values)
+    _dp.values = list(values)
 
     return _dp
 
@@ -98,7 +98,7 @@ def _modify_4(dp: SsvcDecisionPoint):
         )
         values = list(_dp.values)
         values.append(_SAFETY)
-        _dp.values = tuple(values)
+        _dp.values = list(values)
 
     return _dp
 

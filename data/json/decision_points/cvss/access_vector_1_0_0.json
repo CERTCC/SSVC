@@ -1,0 +1,20 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AV",
+  "name": "Access Vector",
+  "description": "This metric measures whether or not the vulnerability is exploitable locally or remotely.",
+  "values": [
+    {
+      "key": "L",
+      "name": "Local",
+      "description": "The vulnerability is only exploitable locally (i.e., it requires physical access or authenticated login to the target system)"
+    },
+    {
+      "key": "R",
+      "name": "Remote",
+      "description": "The vulnerability is exploitable remotely."
+    }
+  ]
+}

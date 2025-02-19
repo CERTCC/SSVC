@@ -84,11 +84,12 @@ REMEDIATION_LEVEL_1_1 = CvssDecisionPoint(
 Adds Not Defined to the CVSS Remediation Level decision point.
 """
 
-versions = [REMEDIATION_LEVEL_1, REMEDIATION_LEVEL_1_1]
+VERSIONS = (REMEDIATION_LEVEL_1, REMEDIATION_LEVEL_1_1)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,35 @@
+{
+  "namespace": "cvss",
+  "version": "3.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "MAV",
+  "name": "Modified Attack Vector",
+  "description": "This metric reflects the context by which vulnerability exploitation is possible. ",
+  "values": [
+    {
+      "key": "P",
+      "name": "Physical",
+      "description": "A vulnerability exploitable with Physical access requires the attacker to physically touch or manipulate the vulnerable component. Physical interaction may be brief (e.g. evil maid attack [1]) or persistent."
+    },
+    {
+      "key": "L",
+      "name": "Local",
+      "description": "A vulnerability exploitable with Local access means that the vulnerable component is not bound to the network stack, and the attacker's path is via read/write/execute capabilities. In some cases, the attacker may be logged in locally in order to exploit the vulnerability, otherwise, she may rely on User Interaction to execute a malicious file."
+    },
+    {
+      "key": "A",
+      "name": "Adjacent",
+      "description": "A vulnerability exploitable with adjacent network access means the vulnerable component is bound to the network stack, however the attack is limited to the same shared physical (e.g. Bluetooth, IEEE 802.11), or logical (e.g. local IP subnet) network, and cannot be performed across an OSI layer 3 boundary (e.g. a router)."
+    },
+    {
+      "key": "N",
+      "name": "Network",
+      "description": "A vulnerability exploitable with network access means the vulnerable component is bound to the network stack and the attacker's path is through OSI layer 3 (the network layer). Such a vulnerability is often termed 'remotely exploitable' and can be thought of as an attack being exploitable one or more network hops away (e.g. across layer 3 boundaries from routers)."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}

@@ -80,11 +80,12 @@ MISSION_IMPACT_2 = SsvcDecisionPoint(
     values=(DEGRADED, MEF_CRIPPLED, MEF_FAILURE, MISSION_FAILURE),
 )
 
+VERSIONS = (MISSION_IMPACT_1, MISSION_IMPACT_2)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (MISSION_IMPACT_1, MISSION_IMPACT_2)
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

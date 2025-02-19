@@ -1,6 +1,11 @@
 # Technical Impact
 
-{% include-markdown "../../_generated/decision_points/technical_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.technical_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 When evaluating *Technical Impact*, recall the scope definition in the [Scope Section](../../topics/scope.md).
 Total control is relative to the affected component where the vulnerability resides.

@@ -1,0 +1,25 @@
+{
+  "namespace": "cvss",
+  "version": "2.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "I",
+  "name": "Integrity Impact",
+  "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "There is no impact to the integrity of the system."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is constrained. The data modification does not have a direct, serious impact on the impacted component."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "There is a total loss of integrity, or a complete loss of protection."
+    }
+  ]
+}

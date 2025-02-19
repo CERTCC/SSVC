@@ -1,6 +1,11 @@
 # Mission Impact
 
-{% include-markdown "../../_generated/decision_points/mission_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.mission_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
@@ -40,4 +45,12 @@ For example, if the [Utility](utility.md) is [*super effective*](utility.md), th
 
 ## Prior Versions
 
-{% include-markdown "../../_generated/decision_points/mission_impact_1_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.mission_impact import VERSIONS
+from ssvc.doc_helpers import example_block
+
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```

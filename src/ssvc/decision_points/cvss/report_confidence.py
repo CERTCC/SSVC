@@ -126,15 +126,16 @@ Replaces Unconfirmed and Uncorroborated with Unknown and Reasonable. Updated Con
 """
 
 
-versions = [
+VERSIONS = (
     REPORT_CONFIDENCE_1,
     REPORT_CONFIDENCE_1_1,
     REPORT_CONFIDENCE_2,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

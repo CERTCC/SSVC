@@ -1,6 +1,12 @@
 # System Exposure
 
-{% include-markdown "../../_generated/decision_points/system_exposure.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.system_exposure import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 
 Measuring the attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
 Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
@@ -38,4 +44,12 @@ If you have suggestions for further heuristics, or potential counterexamples to 
 
 ## Prior Versions
 
-{% include-markdown "../../_generated/decision_points/system_exposure_1_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.system_exposure import VERSIONS
+from ssvc.doc_helpers import example_block
+
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```

@@ -114,10 +114,16 @@ The Deployer Patch Deployment Priority decision model uses the following decisio
 
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
-{% include-markdown "../_generated/decision_points/exploitation.md" %}
-{% include-markdown "../_generated/decision_points/system_exposure.md" %}
-{% include-markdown "../_generated/decision_points/utility.md" %}
-{% include-markdown "../_generated/decision_points/human_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.exploitation import LATEST as EXP
+from ssvc.decision_points.system_exposure import LATEST as SE
+from ssvc.decision_points.utility import LATEST as U
+from ssvc.decision_points.human_impact import LATEST as HI
+from ssvc.doc_helpers import example_block
+
+for dp in [EXP, SE, U, HI]:
+    print(example_block(dp))
+```
 
 In the _Human Impact_ table above, *MEF* stands for Mission Essential Function.
 

@@ -1,0 +1,20 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AU",
+  "name": "Automatable",
+  "description": "The \"Automatable\" metric captures the answer to the question \"Can an attacker automate exploitation events for this vulnerability across multiple targets?\" based on steps 1-4 of the kill chain.",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "description": "Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation."
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "description": "Attackers can reliably automate all 4 steps of the kill chain. These steps are reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is \"wormable\")."
+    }
+  ]
+}

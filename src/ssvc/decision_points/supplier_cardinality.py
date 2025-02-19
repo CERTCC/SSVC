@@ -17,6 +17,7 @@ Provides the Supplier Cardinality decision point and its values.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 MULTIPLE = SsvcDecisionPointValue(
     name="Multiple",
@@ -41,9 +42,12 @@ SUPPLIER_CARDINALITY_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (SUPPLIER_CARDINALITY_1,)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(SUPPLIER_CARDINALITY_1.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":
