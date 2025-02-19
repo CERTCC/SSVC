@@ -1,0 +1,29 @@
+default: true
+# disable noisy rules
+# 0004 Unordered List style
+# Force dash style for unordered lists
+MD004:
+  style: "dash"
+# 013 Line length
+# Disabled because we have a lot of long lines. We should fix this eventually.
+MD013: false
+# 033 Inline HTML
+# Disabled because we use inline HTML (<br/> in table cells for example)
+MD033: false
+# MD040/fenced-code-language : Fenced code blocks should have a language specified : https://github.com/DavidAnson/markdownlint/blob/v0.37.4/doc/md040.md
+MD040: false
+# 041 First line in file should be a top level header
+# Disabled because we use `include-markdown` plugin for merging markdown files
+MD041: false
+# 046 Code block style
+# Disabled because mkdocs-material uses indented blocks for admonitions
+MD046: false
+# 049 emphasis style
+# Force asterisk style for emphasis
+MD049:
+  style: "asterisk"
+# 050 strong style
+# Force asterisk style for strong
+MD050:
+  style: "asterisk"
+

@@ -15,7 +15,7 @@ print(example_block(LATEST))
 Note: This is a compound decision point[^1], therefore it is a notational convenience.
 
 *Human Impact* is a combination of how a vulnerability can affect an organization's mission essential functions as well as
-safety considerations, whether for the organization's personnel or the public at large. 
+safety considerations, whether for the organization's personnel or the public at large.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
 Therefore we combine the two lesser mission impacts of degraded and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
@@ -30,9 +30,8 @@ The mapping is shown in the table above.
 [^1]: In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
 if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
 We therefore combine [Safety Impact](safety_impact.md) and
-[Mission Impact](mission_impact.md) for deployers into a single _Human Impact_ factor
+[Mission Impact](mission_impact.md) for deployers into a single *Human Impact* factor
 as a dimension reduction step.
-
 
 ## Safety and Mission Impact Decision Points for Industry Sectors
 
@@ -44,7 +43,6 @@ Information Sharing and Analysis Organizations (ISAOs), or Information Sharing a
 provide SSVC information tailored as appropriate to their constituency's safety and mission concerns.
 For considerations on how organizations might communicate SSVC information to their constituents,
 see [Guidance on Communicating Results](../../howto/bootstrap/use.md).
-
 
 ## Prior Versions
 

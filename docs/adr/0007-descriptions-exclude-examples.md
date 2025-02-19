@@ -7,9 +7,9 @@ deciders: adh, jspring
 
 ## Context and Problem Statement
 
-In written definitions of a Decision Point, Decision Point 
-Value, Outcome Group, Outcome Value, or other elements, it is common to 
-include examples in the text. In terms of documentation, this is a worthy 
+In written definitions of a Decision Point, Decision Point
+Value, Outcome Group, Outcome Value, or other elements, it is common to
+include examples in the text. In terms of documentation, this is a worthy
 practice to promote understanding.
 
 Examples are sometimes timely and need to be updated even though the
@@ -18,9 +18,9 @@ versioning of objects.
 
 ## Decision Drivers
 
-- In the course of modeling CVSS vectors across versions as SSVC decision 
+- In the course of modeling CVSS vectors across versions as SSVC decision
   points, we have found that concepts change less often than examples.
-- Our preference is to minimize version changes to objects unless the 
+- Our preference is to minimize version changes to objects unless the
   underlying concept has changed.
 
 ## Considered Options
@@ -30,19 +30,19 @@ versioning of objects.
 
 ## Decision Outcome
 
-Chosen option: "Exclude examples from descriptions of objects", because this 
+Chosen option: "Exclude examples from descriptions of objects", because this
 helps to minimize version changes to objects unless the underlying concept
 has changed.
 
-Examples may be included in the documentation text surrounding the object 
+Examples may be included in the documentation text surrounding the object
 definition, but not in the object definition itself.
 
 ### Consequences
 
-- Good, because it reduces the likelihood and frequency of version changes to 
+- Good, because it reduces the likelihood and frequency of version changes to
   objects.
 - Good, because it promotes the use of examples in documentation text.
-- Bad, because it may make it more difficult to understand the object 
+- Bad, because it may make it more difficult to understand the object
   definition solely from the object definition itself.
 
 ### Confirmation
@@ -50,8 +50,8 @@ definition, but not in the object definition itself.
 The implementation of this decision is confirmed by the absence of examples
 in the object definitions.
 
-When generating an object definition from a text description, object 
-creators should look out for phrases like "for example" and "an example of 
+When generating an object definition from a text description, object
+creators should look out for phrases like "for example" and "an example of
 this is" and exclude the example from the object definition.
 
 ## Pros and Cons of the Options
@@ -69,7 +69,7 @@ See [Decision Outcome](#decision-outcome).
 
 ## More Information
 
-- [ADR-0006](0006-ssvc-decision-point-versioning-rules.md) - SSVC Decision 
+- [ADR-0006](0006-ssvc-decision-point-versioning-rules.md) - SSVC Decision
   Point Versioning Rules
-- [ADR-0005](0005-ssvc-decision-point-group-versioning.md) - SSVC Decision 
+- [ADR-0005](0005-ssvc-decision-point-group-versioning.md) - SSVC Decision
   Point Group Versioning Rules

@@ -18,18 +18,17 @@ should be relatively infrequent after an initial period of refinement.
 Note: This decision addresses the fact that decision points are versioned, but does not address how the version number
 is used. We will address that in a separate decision.
 
-
 ## Decision Drivers
 
-* Decision points evolve over time
-  * new values (options) are added, modified, or removed
-  * descriptions are updated
+- Decision points evolve over time
+  - new values (options) are added, modified, or removed
+  - descriptions are updated
 
 ## Considered Options
 
-* No versioning
-* [Semantic versioning](https://semver.org/)
-* [CalVer](https://calver.org/)
+- No versioning
+- [Semantic versioning](https://semver.org/)
+- [CalVer](https://calver.org/)
 
 ## Decision Outcome
 
@@ -41,7 +40,6 @@ indication of compatibility expectations between versions.
 compatibility expectations between versions.
 - Semver makes sense for decision point versioning because we don't anticipate them changing much once they go 1.0
   - and typo fixes etc. could just bump the fix version e.g., 1.0.2 -> 1.0.3
-
 
 ### Consequences
 
@@ -56,6 +54,6 @@ compatibility expectations between versions.
 
 ## More Information
 
-- [Discussion #289](https://github.com/CERTCC/SSVC/discussions/289) in the SSVC project. 
+- [Discussion #289](https://github.com/CERTCC/SSVC/discussions/289) in the SSVC project.
 - [Semantic Versioning](https://semver.org/)
 - [CalVer](https://calver.org/)
