@@ -15,7 +15,7 @@ A stakeholder community may come together and, if there is broad consensus, add 
 
 ## Customizing a Decision Model
 
-Which decision points are involved in a vulnerability management team's 
+Which decision points are involved in a vulnerability management team's
 decision and the priority label for each resulting situation are, for all intents and purposes, totally at the discretion of the team.
 We have provided some examples for different stakeholder communities here.
 What decision points a team considers reflects what it cares about and the risks prioritizes.
@@ -27,7 +27,7 @@ The other aspect of risk management that SSVC allows a team to customize is its 
 
 A team's risk appetite is reflected directly by the priority labels for each combination of decision values.
 For example, a vulnerability with
-[no or minor](../reference/decision_points/public_safety_impact.md) 
+[no or minor](../reference/decision_points/public_safety_impact.md)
 [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md),
 [total](../reference/decision_points/technical_impact.md)
 [*Technical Impact*](../reference/decision_points/technical_impact.md),
@@ -57,10 +57,11 @@ To that end, we briefly examine the qualities for which decision tree measuremen
 
 ## Decision Tree Construction Concerns
 
-Decision tree construction methods must address five significant concerns: 
-- feature selection 
-- feature type 
-- overfitting 
+Decision tree construction methods must address five significant concerns:
+
+- feature selection
+- feature type
+- overfitting
 - parsimony
 - versioning
 
@@ -87,7 +88,7 @@ The use of ordinal features is a key assumption behind our use of the parsimony 
 When decision trees are used in a machine learning context, overfitting increases tree complexity by incorporating the noise in the training data set into the decision points in a tree.
 In our case, our “data” is just the set of outcomes as decided by humans, so overfitting is less of a concern, assuming the feature selection has been done with care.
 
-### Parsimony 
+### Parsimony
 
 Parsimony is, in essence, Occam's Razor applied to tree selection. Given the choice between two trees that have identical outputs, one should choose the tree with fewer decisions.
 One way to evaluate the parsimony of a tree is by applying the concept of feature importance to ensure that each feature is contributing adequately to the result.
@@ -106,9 +107,11 @@ More likely, however, is that some subset of features will be of relatively equa
 In this case, the lowest importance feature should be considered for refinement or elimination.
 It is possible that adjusting the definition of a feature or its available values (whether redefining, adding, or removing options) could increase its importance.
 Reasons to retain a low-importance feature include:
-* the feature is relevant to a small set of important circumstances that a tree without the feature would otherwise be unable to discriminate
-* the effort required to determine the correct value for the feature is relatively small, for example information that might be collected automatically
-* the feature enables other features to be defined more clearly
+
+- the feature is relevant to a small set of important circumstances that a tree without the feature would otherwise be unable to discriminate
+- the effort required to determine the correct value for the feature is relatively small, for example information that might be collected automatically
+- the feature enables other features to be defined more clearly
+
 Features that meet none of the above criteria may be good candidates for elimination.
 
 Customizing a tree by changing the outcome priority labels can also affect the importance of a feature.
@@ -126,12 +129,14 @@ SSVC trees should be identifiable by name and version. A tree name is simply a s
 
 Communities of shared interest may desire to share information about decision points or even create custom trees to share within their community.
 Examples include:
+
 - an Information Sharing and Analysis Organization (ISAO) within a critical infrastructure sector might want to define a custom decision point relevant to their constituents' regulatory compliance.
 - a corporate Computer Security Incident Response Team (CSIRT) might choose to adjust decision priorities for an existing tree for use by its subsidiaries.
 - a government department might define a separate tree using existing decision points to address a particular governance process within their constituent agencies.
-- a regional coordinator might want to produce decision point information as a product of its threat analysis work and provide this information to its constituency in an advisory. 
+- a regional coordinator might want to produce decision point information as a product of its threat analysis work and provide this information to its constituency in an advisory.
 
 In these and other scenarios, there are two scopes to consider:
+
 1. Decision Point Scope
 2. Decision Tree Scope
 
@@ -139,19 +144,21 @@ In these and other scenarios, there are two scopes to consider:
 
 Each decision point defined in this document has a characteristic scope, either *stakeholder-agnostic* or *stakeholder-specific*.
 
-- **Stakeholder-agnostic decision points** describe the state of the world outside the stakeholder's environment. 
+- **Stakeholder-agnostic decision points** describe the state of the world outside the stakeholder's environment.
 One might think of them as global facts that form the background context in which the stakeholder is making a prioritization decision.
-Nearly all stakeholders should agree on the assignment of specific values to these decision points. 
+Nearly all stakeholders should agree on the assignment of specific values to these decision points.
 - **Stakeholder-specific decision points** are expected to be contextual to some set of stakeholders.
 Information about a stakeholder-specific decision point can still be inherited by other stakeholders using the same tree.
 For example in the corporate CSIRT scenario above, the [*System Exposure*](../reference/decision_points/system_exposure.md) value might be consistent across all subsidiaries for a centrally managed service.
 
 We generally consider the following decision points to be *stakeholder-agnostic*:
+
 - [*Exploitation*](../reference/decision_points/exploitation.md)
 - [*Technical Impact*](../reference/decision_points/technical_impact.md)
 - [*Automatable*](../reference/decision_points/automatable.md)
 
 On the contrary, we consider the following decision points to be *stakeholder-specific*:
+
 - [*Value Density*](../reference/decision_points/value_density.md)
 - [Utility](../reference/decision_points/utility.md)
 - [*Safety Impact*](../reference/decision_points/safety_impact.md)
@@ -163,13 +170,14 @@ On the contrary, we consider the following decision points to be *stakeholder-sp
 
 We anticipate that most custom decision points created by stakeholders for themselves or a constituency will be of the *stakeholder-specific* variety.
 Examples of these sorts of custom decision points include
+
 - A decision point indicating whether a system or mission context is affected by regulatory oversight that might alter the decision priority.
 E.g., a healthcare-focused ISAO might define a decision point about whether a vulnerability affects patient data privacy protection.
 - A decision point that incorporates the concept of change risk to a deployer.
 E.g., a financial institution might have a very low tolerance for changes to a transaction clearing system.
 - A decision point that indicates whether the affected software belongs to a list of critical software for a specific constituency.
 E.g., an open-source consortium might want to prioritize fix development for a set of key projects.
- 
+
 ### Decision Tree Scope
 
 Two kinds of modifications are possible at the decision tree level.
@@ -178,7 +186,7 @@ Two kinds of modifications are possible at the decision tree level.
 For example, an organization with sufficient resources to efficiently deploy fixes might choose to defer fewer cases than the default tree would recommend.
 - *Tree Customization* can be done in one of three ways:
   1. incorporating an already-defined decision point into an existing tree that does not already contain it.
-  2. defining a new decision point and adding it to an existing tree. 
+  2. defining a new decision point and adding it to an existing tree.
 Note that adding or removing an option from an existing decision point should be treated as creating a new decision point.
 The new decision point should be given a distinct name as well.
   3. defining a new tree entirely from existing or new decision points.
@@ -188,4 +196,3 @@ Because tree customization changes the tree structure and implies the addition o
 Risk-shifted or customized trees can be shared among a community of interest, of course.
 Further customization within each stakeholder remains an option as well, although there is likely a diminishing return on more than a few layers of customization for the same basic decision.
 Of course, SSVC users might choose to construct other trees to inform other decisions.
-

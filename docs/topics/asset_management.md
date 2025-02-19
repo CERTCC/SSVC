@@ -37,4 +37,3 @@ If an organization does not have an asset management or risk management
 (see also [Gathering Information About Mission Impact](../reference/decision_points/mission_impact.md))
 plan and process in place, then SSVC provides some guidance as to what information is important to vulnerability
 management decisions and the organization should start capturing, storing, and managing.
-

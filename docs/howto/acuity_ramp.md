@@ -1,6 +1,6 @@
 # Acuity Ramp
 
-!!! question inline end "Why _Acuity_? Isn't this a _Maturity_ Model?"
+!!! question inline end "Why *Acuity*? Isn't this a *Maturity* Model?"
 
     The _acuity ramp_ concept is similar to the idea of a _maturity model_, but the term _maturity_ carries a sort of
     moral bias in the sense that it has an implied "good" direction from "immature" to "mature". 
@@ -12,7 +12,7 @@
     one that is most appropriate for both their decision and context. It is not inherently better to use a
     higher-resolution decision point, and it is not inherently worse to use a lower-resolution decision point.
 
-An SSVC _acuity ramp_ is a concept that describes a series of decision functions that are increasingly more detailed and
+An SSVC *acuity ramp* is a concept that describes a series of decision functions that are increasingly more detailed and
 complex while addressing the same decision. The idea is that a decision maker can start with a simple decision model and
 then, as their needs, resources, or abilities change, they can gather and analyze more or different data to understand
 their environment with more acuity.
@@ -21,37 +21,36 @@ their environment with more acuity.
 
 In Cybersecurity Threat and Vulnerability analysis, as with most decision-making processes, decision makers must
 balance trade-offs between the volume, quality, or detail of the information they use and the cost of gathering and
-analyzing that information. 
-There are many good reasons that decision makers might choose to use a lower resolution indicator that is readily 
+analyzing that information.
+There are many good reasons that decision makers might choose to use a lower resolution indicator that is readily
 available over a higher resolution indicator that comes at a high cost in terms of time, money, or effort.
 
 One way to think about the tradeoffs in acuity is to consider the cost or difficulty of gathering and analyzing data.
-Some vulnerability information is readily available for free as a public resource. 
+Some vulnerability information is readily available for free as a public resource.
 Other information is available for purchase, for example as a subscription to a threat intelligence feed.
 Still other information is only available if you set up a system to collect and manage it yourself, such as an internal
-asset management system. 
-For direct cost tradeoffs, one might conduct a cost-benefit analysis of whether the additional acuity provides value 
-more than its cost. Sometimes, tradeoffs are not directly cost-based. 
+asset management system.
+For direct cost tradeoffs, one might conduct a cost-benefit analysis of whether the additional acuity provides value
+more than its cost. Sometimes, tradeoffs are not directly cost-based.
 
 The quality and readiness for use of the information can also vary. Structured, low resolution public data might be
 easier to incorporate into a decision model than unstructured data that requires a lot of manual analysis.
-At the CERT/CC, we have observed otherwise high quality threat intelligence provided as PDF files with threat indicators 
+At the CERT/CC, we have observed otherwise high quality threat intelligence provided as PDF files with threat indicators
 embedded as screenshots of text, which would be difficult to extract and use in a decision model.
 
 Another tradeoff is that sometimes one decision point can serve as a close-enough proxy for another decision point that
-is more costly or difficult to acquire. For example, in a given deployment context, 
-[_Value Density_](../reference/decision_points/value_density.md) might be more readily discerned than
-[_Mission Impact_](../reference/decision_points/mission_impact.md) for some stakeholders because it's easier to 
+is more costly or difficult to acquire. For example, in a given deployment context,
+[*Value Density*](../reference/decision_points/value_density.md) might be more readily discerned than
+[*Mission Impact*](../reference/decision_points/mission_impact.md) for some stakeholders because it's easier to
 count how many of something there are than to estimate the impact of a loss of specific instances of the thing.
-Alternately, information about _Value Density_ might be available from another source, such as a CVSS v4 scoring provider,
-whereas _Mission Impact_ might require a more detailed understanding of the stakeholder's mission and environment.
-An organization might start with _Value Density_ as a proxy for _Mission Impact_ and then, as they develop a better
-understanding of their environment, they could replace _Value Density_ with _Mission Impact_ in their decision model.
-
+Alternately, information about *Value Density* might be available from another source, such as a CVSS v4 scoring provider,
+whereas *Mission Impact* might require a more detailed understanding of the stakeholder's mission and environment.
+An organization might start with *Value Density* as a proxy for *Mission Impact* and then, as they develop a better
+understanding of their environment, they could replace *Value Density* with *Mission Impact* in their decision model.
 
 ## An Acuity Ramp in Action
 
-The _acuity ramp_ idea is a way to show how a stakeholder could "grow into" their desired decision function as their
+The *acuity ramp* idea is a way to show how a stakeholder could "grow into" their desired decision function as their
 data collection and analysis capabilities increase. We demonstrate this with the following example.
 
 !!! example "An Acuity Ramp for a Growing System Deployer Organization"
@@ -146,16 +145,15 @@ data collection and analysis capabilities increase. We demonstrate this with the
 
     In this way, the organization can grow into a more detailed decision model as their understanding and capabilities improve.
 
-
 ## Conclusion
 
-The _acuity ramp_ concept is a way to show how a stakeholder could "grow into" their desired decision function as their
+The *acuity ramp* concept is a way to show how a stakeholder could "grow into" their desired decision function as their
 data collection and analysis capabilities improve. It is a way to show how a decision model can be adapted to the
 context of the decision maker, and how the decision maker can make trade-offs between the cost of gathering information
 and the quality of the decision they are able to make.
 
-The example above is just a single illustration of the _acuity ramp_ concept. There are many other ways that an
-organization might evolve their decision model from a simple starting point toward a more detailed decision model for 
+The example above is just a single illustration of the *acuity ramp* concept. There are many other ways that an
+organization might evolve their decision model from a simple starting point toward a more detailed decision model for
 any particular decision. Substituting one decision point for another, adding decision points over time, or even
 customizing decision points to better fit the organization's specific context are all ways that an organization might
 grow from a simple decision model to a more robust one.

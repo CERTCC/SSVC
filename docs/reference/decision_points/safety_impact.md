@@ -7,7 +7,6 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
-
 !!! tip "See also"
 
     - Safety Impact combines with [Mission Impact](./mission_impact.md) to 
@@ -46,7 +45,7 @@ If the stakeholder is contractually or legally responsible for safe operation of
 For software used in a wide variety of sectors and deployments, the stakeholder may need to estimate an aggregate safety impact.
 Aggregation suggests that the stakeholder’s response to this decision point cannot be less than the most severe credible safety impact, but we leave the specific aggregation method or function as a domain-specific extension for future work.
 
-### Gathering Information About Safety Impact
+## Gathering Information About Safety Impact
 
 The factors that influence the safety impact level are diverse.
 This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work.
@@ -57,7 +56,6 @@ For example, viable manual backup mechanisms are likely to be important in asses
 The decision values for safety impact are based on the hazard categories for aircraft software [@DO-178C; @faa2000safety, Section 3.3.2].
 To assign a value to [*Safety Impact*](safety_impact.md), at least one type of harm must reach that value. For example, for a [*Safety Impact*](safety_impact.md) of [*major*](safety_impact.md), at least one type of harm must reach [*major*](safety_impact.md) level.
 All types of harm do not need to rise to the level of [*major*](safety_impact.md), just one type of harm does.
-
 
 <!-- Literal HTML is only included by pandoc etc in HTML output, so the below is correct but not portable -->
 <!--
@@ -211,12 +209,10 @@ resiliency</td>
 </table>
 -->
 
-
 ### Situated Safety Impact
 
 Deployers are anticipated to have a more fine-grained perspective on the safety impacts broadly defined in *Safety Impact*.
 We defer this topic for now because we combine it with [*Mission Impact*](mission_impact.md) to simplify implementation for deployers.
-
 
 ## Prior Versions
 
@@ -229,4 +225,3 @@ for version in versions:
     print(example_block(version))
     print("\n---\n")
 ```
-
