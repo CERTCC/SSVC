@@ -85,21 +85,24 @@ but it worked well enough for what was needed at the time.
 
 Install prerequisites:
 
-### With Docker
+### Run Local Server With Docker
 
 The easiest way to get started is using make to build a docker image and run the site:
+
 ```bash
 make docs
 ```
-Then navigate to http://localhost:8765/ to see the site.
+
+Then navigate to <http://localhost:8765/> to see the site.
 
 Or, if make is not available:
+
 ```bash
 docker build --target docs --tag ssvc_docs .
 docker run --tty --rm -p 8765:8000 --volume .:/app ssvc_docs
 ```
 
-### Without Docker
+### Run Local Server Without Docker
 
 If you prefer to run the site locally without Docker, you can do so with mkdocs.
 
@@ -121,13 +124,14 @@ Navigate to <http://localhost:8001/> to see the site.
 
 We include a few tests for the `ssvc` module.
 
-### With Docker
+### Run Tests With Docker
 
 The easiest way to run tests is using make to build a docker image and run the tests:
 
 ```bash
 make docker_test
 ```
+
 Or, if make is not available:
 
 ```bash
@@ -135,13 +139,12 @@ docker build --target test --tag ssvc_test .
 docker run --tty --rm --volume .:/app ssvc_test
 ```
 
-### Without Docker
+### Run Tests Without Docker
 
 ```bash
 pip install pytest
 pytest src/test
 ```
-
 
 ## Contributing
 
