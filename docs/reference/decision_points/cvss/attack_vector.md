@@ -20,4 +20,3 @@ for version in versions:
     print(example_block(version))
     print("\n---\n")
 ```
-

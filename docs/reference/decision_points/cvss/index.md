@@ -11,7 +11,6 @@ decisions based on CVSS vector elements.
 
 ## Decision Points
 
-
 The following list of CVSS vector elements have been modeled as SSVC decision
 points for use in vulnerability response and security decision modeling.
 We have organized them into groups according to where they belong in the
@@ -23,7 +22,6 @@ We have organized them into groups according to where they belong in the
     Therefore, some decision points may have multiple versions as the concepts have
     been refined over different versions of the CVSS specification. These versions
     do _not_ correspond the CVSS specification versions (2.0, 3.0, 3.1, 4.0 etc.).
-
 
 ### Base Metrics
 
@@ -77,4 +75,3 @@ We have organized them into groups according to where they belong in the
 - [Scope](scope.md)
 - [Target Distribution](target_distribution.md)
 </div>
-

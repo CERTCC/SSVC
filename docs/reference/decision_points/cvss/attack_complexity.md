@@ -19,4 +19,3 @@ versions = VERSIONS[:-1]
 for version in versions:
     print(example_block(version))
 ```
-
