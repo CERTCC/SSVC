@@ -14,3 +14,4 @@ scikit-learn==1.6.1
 jsonschema==4.23.0
 networkx==3.4.2
 pydantic==2.10.6
+semver==3.0.2
