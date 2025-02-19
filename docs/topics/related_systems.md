@@ -107,7 +107,6 @@ CVSS is one-size-fits-all by design.
 These customization efforts struggle with adapting CVSS because it was not designed to be adaptable to different stakeholder considerations.
 The SSVC section [Tree Construction and Customization Guidance](../howto/tree_customization.md) explains how stakeholders or stakeholder communities can adapt SSVC in a reliable way that still promotes repeatability and communication.
 
-
 ## vPrioritizer
 
 vPrioritizer is an open-source project that attempts to integrate asset management and vulnerablity prioritization.
@@ -118,5 +117,3 @@ In that sense, it is compatible with any of methods mentioned above or SSVC.
 However, SSVC would be better suited to address vPrioritizer's broad spectrum asset management data.
 For example, vPrioritizer aims to collect data points on topics such as asset significance.
 Asset significance could be expressed through the SSVC decision points of  [*Mission Impact*](../reference/decision_points/mission_impact.md) and situated [*Well-being Impact*](../reference/decision_points/human_impact.md), but it does not have a ready expression in CVSS, EPSS, or VPR.
-
-

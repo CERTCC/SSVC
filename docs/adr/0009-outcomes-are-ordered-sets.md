@@ -13,23 +13,23 @@ rules about the interaction between decision point values and the outcomes of th
 
 ## Decision Drivers
 
-* The need to reason about the outcomes of a decision given a set of input values.
-* Desire to automate portions of the decision-making process.
-* Desire for rules to validate the interaction between decision point values and the outcomes of the decision.
+- The need to reason about the outcomes of a decision given a set of input values.
+- Desire to automate portions of the decision-making process.
+- Desire for rules to validate the interaction between decision point values and the outcomes of the decision.
 
 ## Considered Options
 
-* Outcome values are ordered sets.
-* Outcome values are unordered sets.
+- Outcome values are ordered sets.
+- Outcome values are unordered sets.
 
 ## Decision Outcome
 
 Chosen option: "Outcome values are ordered sets"
 
 Rationale: An ordered set implies that for an outcome set $C$ with $n$ values $c_1, c_2, \ldots, c_n$, we can
-assert the relationship $c_1 \leq c_2 \leq \ldots \leq c_n$. 
+assert the relationship $c_1 \leq c_2 \leq \ldots \leq c_n$.
 
-When combining outcomes with a set of decision points into a decision model and policy, we can use that relationship 
+When combining outcomes with a set of decision points into a decision model and policy, we can use that relationship
 to assert rules about the resulting policy.
 
 For example, if we have a decision model consisting of:
@@ -124,23 +124,22 @@ $Outcome(T_1)$ must be equal to or less than the outcome $Outcome(T_2)$ of any t
 
 $Outcome(T_1) \leq Outcome(T_2)$ when $T_1 \leq T_2$.
 
-This allows us to generate default policies that map decision values to outcomes following the graph structure of the 
+This allows us to generate default policies that map decision values to outcomes following the graph structure of the
 decision model.
 
 ### Consequences
 
-* (Good) This allows us to make inferences about the relationships between sets of decision point values
+- (Good) This allows us to make inferences about the relationships between sets of decision point values
   and the outcomes of the decision.
-* (Neutral) Does not fully order all possible decision point value combinations, leaving some relationship combinations
+- (Neutral) Does not fully order all possible decision point value combinations, leaving some relationship combinations
   undefined.
-* (Neutral) May require additional information to fully define the relationship between decision point values and outcomes
+- (Neutral) May require additional information to fully define the relationship between decision point values and outcomes
   into a policy
-* (Neutral) Requires each outcome set to have a "direction" (i.e., a way to order the values) which may not be
+- (Neutral) Requires each outcome set to have a "direction" (i.e., a way to order the values) which may not be
   intuitive in all cases. So far we have found that the natural direction is usually intuitive and most often it is
-  analogous to "less likely to act" &rarr; "more likely to act". 
-* (Good) Although a sense of direction is required, scaling the values is not. So "Defer, Scheduled, Out-of-Band, Immediate"
+  analogous to "less likely to act" &rarr; "more likely to act".
+- (Good) Although a sense of direction is required, scaling the values is not. So "Defer, Scheduled, Out-of-Band, Immediate"
   is just as valid as a more Service Level Expectation (SLE) oriented "1 hour, 1 day, 1 week, 1 month".
-
 
 ### Confirmation
 
@@ -158,4 +157,3 @@ However, we *can* evaluate new outcome sets as they are proposed to ensure that 
 - [ADR-0008](0008-decision-points-are-ordered-sets.md) - Decision Points are Ordered Sets
 - [Partially ordered sets](https://en.wikipedia.org/wiki/Partially_ordered_set)
 - [Hasse diagram](https://en.wikipedia.org/wiki/Hasse_diagram)
-

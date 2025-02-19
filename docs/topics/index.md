@@ -11,7 +11,6 @@
     [SSVC How-To](../howto/index.md) provides practical guidance for implementing SSVC in your organization.
     For technical reference, see [Reference](../reference/index.md).
 
-
 This documentation defines a testable Stakeholder-Specific Vulnerability Categorization (SSVC) for prioritizing actions during vulnerability management.
 The stakeholders in vulnerability management are diverse.
 This diversity must be accommodated in the main functionality, rather than squeezed into hard-to-use optional features.
@@ -23,7 +22,6 @@ As such, the modeling framework is important but difficult to pin down.
 We approach this problem as a satisficing process.
 We do not seek optimal formalisms, but an adequate formalism.
 
-
 ## Key Concepts in SSVC Decision Models
 
 SSVC models individual vulnerability management decisions. It is built around the following concepts:
@@ -34,13 +32,12 @@ SSVC models individual vulnerability management decisions. It is built around th
   are an ordered set of enumerated values. They are ordered because they are sortable in some dimension, usually
   having to do with priority or urgency. They are enumerated because they are finite and discrete.
 - **Outcomes** are the dependent variables that are relevant to the decision. Each outcome represents a different
-  possible result of the decision. 
-- **Outcome Values** are the possible values for an Outcome. Outcomes are similarly defined as an ordered set of 
+  possible result of the decision.
+- **Outcome Values** are the possible values for an Outcome. Outcomes are similarly defined as an ordered set of
   enumerated values, usually indicating a priority or urgency.
 - A **Policy** is a mapping from each combination of decision point values to the set of outcome values.
 - A **Decision Function** is a function that accepts a set of decision point values and returns an outcome value based
   on a policy.
-
 
 ```mermaid
 ---
@@ -69,7 +66,6 @@ flowchart LR
     Policy --> Outcomes
 ```
 
-
 !!! question "Where do the trees come in?"
 
     Our initial concept for SSVC's decision modeling was based on decision trees.
@@ -89,7 +85,7 @@ flowchart LR
     convenient way to visualize the decision function, but they are not a requirement of the model.
 
 ## Topics Overview
- 
+
 The remainder of this section is organized as follows:
 
 <div class="grid cards" markdown>
