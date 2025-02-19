@@ -2,7 +2,7 @@ default: true
 # disable noisy rules
 # 0004 Unordered List style
 # Force dash style for unordered lists
-MDOO4:
+MD004:
   style: "dash"
 # 013 Line length
 # Disabled because we have a lot of long lines. We should fix this eventually.
