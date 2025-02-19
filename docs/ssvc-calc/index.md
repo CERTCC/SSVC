@@ -1,4 +1,5 @@
 # SSVC Calculator
+
 <style>
 .sembed {
   min-width: 1200px;
@@ -11,7 +12,7 @@
 </style>
 
 <iframe src="findex.html" class="sembed" style="border: 0px"></iframe>
-    
+
 <script>
   console.log("Loaded");
 </script>

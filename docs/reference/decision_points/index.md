@@ -41,7 +41,7 @@ decision points.
     Sometimes this is a "better" or "worse" dimension, but it seems to generalize to
     a "more likely to act" or "less likely to act" of dimension.
 
-!!! question "Where are the _Unknown_ options?"
+!!! question "Where are the *Unknown* options?"
 
     One important omission from the values for each category is an *unknown* option.
     Instead, we recommend explicitly identifying an option that is a reasonable assumption based on prior events.
