@@ -83,7 +83,25 @@ but it worked well enough for what was needed at the time.
 
 ## Local development
 
-Install prerequisites:
+The simplest way to get started with local development is to use Docker.
+We provide a Dockerfile that builds an image with all the dependencies needed to build the site.
+We also provide a `Makefile` that simplifies the process of building the site and running a local server,
+so you don't have to remember the exact `docker build` and `docker run` commands
+to get started.
+
+### Make Commands
+
+To display the available `make` commands, run:
+
+```bash
+make help
+```
+
+To preview any `make` command without actually executing it, run:
+
+```bash
+make -n <command>
+```
 
 ### Run Local Server With Docker
 
