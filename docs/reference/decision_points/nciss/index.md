@@ -1,6 +1,6 @@
 # National Cybersecurity Incident Scoring System (NCISS) Decision Points
 
-The [National Cybersecurity Incident Scoring System (NCISS)](https://www.cisa.gov/sites/default/files/2023-01/cisa_national_cyber_incident_scoring_system_s508c.pdf)
+The [National Cyber Incident Scoring System (NCISS)](https://www.cisa.gov/sites/default/files/2023-01/cisa_national_cyber_incident_scoring_system_s508c.pdf)
 was developed by the Cybersecurity and Infrastructure Security Agency (CISA).
 
 Although the NCISS is implemented as a numerical scoring system, a number of
