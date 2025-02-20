@@ -16,16 +16,19 @@
                     "$ref": "#/$defs/schemaVersion"
                 },
 		"version": {
-		    "type": "string",
-		    "description": "Version (a semantic version string) that identifies this object"
+		    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/version"
 		},
 		"name": {
 		    "type": "string",
-		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points.",
+		    "minLength": 1,
+		    "examples": ["SSVC Supplier","Coordinator Triage", "SSVC Deployer"]
 		},
 		"description": {
 		    "type": "string",
-		    "description": "Description of the Decision Point or the Group of Decision Points."
+		    "description": "Description of the Decision Point or the Group of Decision Points.",
+		    "minLength": 1,
+		    "examples": ["The decision points used by the coordinator during publication"]
 		},
 		"decision_points": {
 		    "type": "array",

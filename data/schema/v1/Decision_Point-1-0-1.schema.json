@@ -15,15 +15,21 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+                    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way",
+		    "minLength": 1,
+		    "examples": ["P", "Y"]
                 },
                 "name": {
                     "type": "string",
-                    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+                    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points.",
+		    "minLength": 1,
+		    "examples": ["Public PoC", "Yes"]
                 },
                 "description": {
                     "type": "string",
-                    "description": "Description of the Decision Point Value"
+                    "description": "Description of the Decision Point Value",
+		    "minLength": 1,
+		    "examples": ["One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation.","Attackers can reliably automate steps 1-4 of the kill chain."]
                 }
             },
 	    "required" : [
@@ -31,7 +37,7 @@
 		"name",
 		"description"
 	    ]
-	},
+	}, 
 	"decision_point": {
 	    "type": "object",
 	    "additionalProperties": false,
@@ -41,23 +47,32 @@
 		},
 		"namespace": {
 		    "type": "string",
-		    "description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point"
+		    "description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point. See SSVC Documentation for details.",
+		    "pattern": "^[a-z]{3,4}[a-z/\\.]*$",
+		    "examples": ["ssvc", "cvss", "ssvc-jp", "ssvc/acme", "ssvc/example.com"]
 		},
 		"version": {
 		    "type": "string",
-		    "description": "Version (a semantic version string) that identifies this object"
+		    "description": "Version (a semantic version string) that identifies this object",
+		    "pattern": "^(?P<major>0|[1-9][0-9]*)\\.(?P<minor>0|[1-9][0-9]*)\\.(?P<patch>0|[1-9][0-9]*)(?:-(?P<prerelease>(?:0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+		    "examples": ["1.0.1", "1.0.1-alpha"]
 		},
 		"key": {
 		    "type": "string",
-		    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+		    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way",
+		    "minLength": 1,
+		    "examples": ["E", "A"]
 		},
 		"name": {
 		    "type": "string",
-		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points.",
+		    "minLength": 1,
+		    "examples": ["Exploitation", "Automatable"]
 		},
 		"description": {
 		    "type": "string",
-		    "description": "q Description of the Decision Point or the Group of Decision Points as defined."
+		    "description": "Description of the Decision Point or the Group of Decision Points as defined.",
+		    "minLength": 1
 		},
 		"values": {
 		    "description": "Decision Point Values are valid results from a Decision Point",
