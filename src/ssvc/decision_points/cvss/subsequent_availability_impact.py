@@ -44,7 +44,7 @@ _SA_NONE = SsvcDecisionPointValue(
 
 
 SUBSEQUENT_AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
-    name="Subsequent Availability Impact",
+    name="Availability Impact to the Subsequent System",
     description="This metric measures the impact on availability a successful exploit of the vulnerability will have "
     "on the Subsequent System.",
     key="SA",

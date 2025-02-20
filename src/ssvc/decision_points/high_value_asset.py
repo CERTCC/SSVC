@@ -45,6 +45,7 @@ HIGH_VALUE_ASSET_1 = SsvcDecisionPoint(
 VERSIONS = (HIGH_VALUE_ASSET_1,)
 LATEST = VERSIONS[-1]
 
+
 def main():
     print_versions_and_diffs(VERSIONS)
 
