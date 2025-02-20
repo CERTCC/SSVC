@@ -71,6 +71,41 @@ nav:
         - Human Impact: 'reference/decision_points/human_impact.md'
         - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
         - Utility: 'reference/decision_points/utility.md'
+      - CVSS-based decision points:
+          - 'reference/decision_points/cvss/index.md'
+          - Base Metrics:
+            - Attack Vector: 'reference/decision_points/cvss/attack_vector.md'
+            - Attack Complexity: 'reference/decision_points/cvss/attack_complexity.md'
+            - Attack Requirements: 'reference/decision_points/cvss/attack_requirements.md'
+            - Privileges Required: 'reference/decision_points/cvss/privileges_required.md'
+            - User Interaction: 'reference/decision_points/cvss/user_interaction.md'
+            - Confidentiality Impact: 'reference/decision_points/cvss/confidentiality_impact.md'
+            - Subsequent Confidentiality Impact: 'reference/decision_points/cvss/subsequent_confidentiality_impact.md'
+            - Integrity Impact: 'reference/decision_points/cvss/integrity_impact.md'
+            - Subsequent Integrity Impact: 'reference/decision_points/cvss/subsequent_integrity_impact.md'
+            - Availability Impact: 'reference/decision_points/cvss/availability_impact.md'
+            - Subsequent Availability Impact: 'reference/decision_points/cvss/subsequent_availability_impact.md'
+          - Threat Metrics:
+            - Exploit Maturity: 'reference/decision_points/cvss/exploit_maturity.md'
+          - Environmental Metrics:
+            - Confidentiality Requirement: 'reference/decision_points/cvss/confidentiality_requirement.md'
+            - Integrity Requirement: 'reference/decision_points/cvss/integrity_requirement.md'
+            - Availability Requirement: 'reference/decision_points/cvss/availability_requirement.md'
+          - Supplemental Metrics:
+            - Safety: 'reference/decision_points/cvss/safety.md'
+            - Automatable: 'reference/decision_points/cvss/automatable.md'
+            - Provider Urgency: 'reference/decision_points/cvss/provider_urgency.md'
+            - Recovery: 'reference/decision_points/cvss/recovery.md'
+            - Value Density: 'reference/decision_points/cvss/value_density.md'
+            - Vulnerability Response Effort: 'reference/decision_points/cvss/vulnerability_response_effort.md'
+          - Older Metrics:
+            - Authentication: 'reference/decision_points/cvss/authentication.md'
+            - Collateral Damage Potential: 'reference/decision_points/cvss/collateral_damage_potential.md'
+            - Impact Bias: 'reference/decision_points/cvss/impact_bias.md'
+            - Remediation Level: 'reference/decision_points/cvss/remediation_level.md'
+            - Report Confidence: 'reference/decision_points/cvss/report_confidence.md'
+            - Scope: 'reference/decision_points/cvss/scope.md'
+            - Target Distribution: 'reference/decision_points/cvss/target_distribution.md'
     - Code:
         - Intro: 'reference/code/index.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
