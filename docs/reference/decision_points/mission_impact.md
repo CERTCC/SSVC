@@ -33,14 +33,11 @@ In that sense they all function quite similarly within SSVC. Organizations shoul
 ## Gathering Information About Mission Impact
 
 The factors that influence the mission impact level are diverse.
-This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work.
+The material here does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work.
 At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission.
 There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 [@FCD2_2017] or OCTAVE FORTE [@tucker2018octave].
 This is part of risk management more broadly.
 It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
-
-As a heuristic, [Utility](utility.md) might constrain [*Mission Impact*](mission_impact.md) if both are not used in the same decision tree.
-For example, if the [Utility](utility.md) is [*super effective*](utility.md), then [*Mission Impact*](mission_impact.md) is at least [*MEF support crippled*](mission_impact.md).
 
 ## Prior Versions
 
