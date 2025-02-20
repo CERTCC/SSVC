@@ -71,6 +71,8 @@ nav:
         - Human Impact: 'reference/decision_points/human_impact.md'
         - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
         - Utility: 'reference/decision_points/utility.md'
+      - NCISS Decision Points:
+        - Incident Severity: 'reference/decision_points/nciss/incident_severity.md'
     - Code:
         - Intro: 'reference/code/index.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
