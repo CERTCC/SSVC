@@ -34,7 +34,7 @@ class MyTestCase(unittest.TestCase):
             key="bar",
             description="baz",
             version="1.0.0",
-            namespace="ns",
+            namespace="name1",
             values=tuple(self.values),
         )
 
