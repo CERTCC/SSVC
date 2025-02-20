@@ -93,7 +93,12 @@ The easiest way to get started is using make to build a docker image and run the
 make docs
 ```
 
-Then navigate to <http://localhost:8765/> to see the site.
+Then navigate to <http://localhost:8765/SSVC/> to see the site.
+
+Note that the docker container will display a message with the URL to visit, for
+example: `Serving on http://0.0.0.0:8000/SSVC/` in the output. However, that port
+is only available inside the container. The host port 8765 is mapped to the container's
+port 8000, so you should navigate to <http://localhost:8765/SSVC/> to see the site.
 
 Or, if make is not available:
 
@@ -118,6 +123,8 @@ Start a local server:
 mkdocs serve
 ```
 
+By default, the server will run on port 8001.
+This is configured in the `mkdocs.yml` file.
 Navigate to <http://localhost:8001/> to see the site.
 
 (Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8000`)
