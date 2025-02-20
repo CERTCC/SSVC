@@ -31,7 +31,7 @@ dockerbuild_docs:
 
 dockerrun_docs:
 	@echo "Running the docs Docker image..."
-	$(DOCKER_RUN) -p $(MKDOCS_PORT):8000 $(PROJECT_VOLUME) $(DOCS_IMAGE)
+	$(DOCKER_RUN) --publish $(MKDOCS_PORT):8000 $(PROJECT_VOLUME) $(DOCS_IMAGE)
 
 
 docs: dockerbuild_docs dockerrun_docs
