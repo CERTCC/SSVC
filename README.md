@@ -105,8 +105,10 @@ docker run --tty --rm -p 8765:8000 --volume .:/app ssvc_docs
 ### Run Local Server Without Docker
 
 If you prefer to run the site locally without Docker, you can do so with mkdocs.
+We recommend using a virtual environment to manage dependencies:
 
 ```bash
+python3 -m venv ssvc_venv
 pip install -r requirements.txt
 ```
 
