@@ -122,14 +122,14 @@ _CI_NONE_3 = SsvcDecisionPointValue(
     description="There is no loss of confidentiality within the impacted component.",
 )
 
-CONFIDENTIALITY_IMPACT_2_0_1 = CvssDecisionPoint(
-    name="Confidentiality Impact",
+CONFIDENTIALITY_IMPACT_3_0_0 = CvssDecisionPoint(
+    name="Confidentiality Impact to the Vulnerable System",
     description="This metric measures the impact to the confidentiality of the information managed by the system due "
     "to a successfully exploited vulnerability. Confidentiality refers to limiting information access "
     "and disclosure to only authorized users, as well as preventing access by, or disclosure to, "
     "unauthorized ones.",
-    key="C",
-    version="2.0.1",
+    key="VC",
+    version="3.0.0",
     values=(
         _CI_NONE_3,
         _LOW_1,
@@ -141,7 +141,7 @@ CONFIDENTIALITY_IMPACT_2_0_1 = CvssDecisionPoint(
 VERSIONS = (
     CONFIDENTIALITY_IMPACT_1,
     CONFIDENTIALITY_IMPACT_2,
-    CONFIDENTIALITY_IMPACT_2_0_1,
+    CONFIDENTIALITY_IMPACT_3_0_0,
 )
 LATEST = VERSIONS[-1]
 
