@@ -146,6 +146,17 @@ pip install pytest
 pytest src/test
 ```
 
+## Environment Variables
+
+If you encounter a problem with the `ssvc` module not being found, you may need to set the `PYTHONPATH` environment variable.
+The Dockerfile takes care of this in the Docker environment.
+When not running in Docker, make sure that the `src` directory is in your `PYTHONPATH`:
+
+```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+```
+
+
 ## Contributing
 
 - [SSVC Community Engagement](https://certcc.github.io/SSVC/about/contributing/) has more detail on how to contribute to the project.
