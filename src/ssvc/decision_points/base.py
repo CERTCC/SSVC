@@ -61,7 +61,7 @@ class SsvcDecisionPointValue(_Base, _Keyed, BaseModel):
     """
 
 
-class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced, _Valued, BaseModel):
+class SsvcDecisionPoint(_Valued, _Keyed, _Versioned, _Namespaced, _Base, BaseModel):
     """
     Models a single decision point as a list of values.
     """
