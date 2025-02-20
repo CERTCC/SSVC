@@ -13,5 +13,6 @@ included a few examples here.
 
 - [Incident Severity](incident_severity.md)
 - [Observed Location of Activity](observed_activity_location.md)
+- [Recoverability](recoverability.md)
 
 </div>
