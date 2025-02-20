@@ -73,6 +73,7 @@ nav:
         - Utility: 'reference/decision_points/utility.md'
       - NCISS Decision Points:
         - Incident Severity: 'reference/decision_points/nciss/incident_severity.md'
+        - Observed Activity Location: 'reference/decision_points/nciss/observed_activity_location.md'
     - Code:
         - Intro: 'reference/code/index.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
