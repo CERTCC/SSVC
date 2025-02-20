@@ -98,11 +98,12 @@ COLLATERAL_DAMAGE_POTENTIAL_2 = CvssDecisionPoint(
 Updates None description. Adds Low-Medium, Medium-High, and Not Defined value.
 """
 
-versions = [COLLATERAL_DAMAGE_POTENTIAL_1, COLLATERAL_DAMAGE_POTENTIAL_2]
+VERSIONS = (COLLATERAL_DAMAGE_POTENTIAL_1, COLLATERAL_DAMAGE_POTENTIAL_2)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

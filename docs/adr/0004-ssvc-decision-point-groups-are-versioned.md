@@ -11,9 +11,9 @@ deciders: adh, jspring, vssarvepalli, cgyarbrough, latyzenhaus, ehatleback
 Decision Point Groups are sets of decision points pinned to specific versions of those decision points.
 These groups may change over time.
 
-For example, the SSVC _Patch Applier_ and _Deployer_ trees have evolved as follows:
+For example, the SSVC *Patch Applier* and *Deployer* trees have evolved as follows:
 
-| _Patch Applier_ (SSVC v1) | _Deployer_ (SSVC v2)                                      |                   _Deployer_ (SSVC v2.1)                    |
+| *Patch Applier* (SSVC v1) | *Deployer* (SSVC v2)                                      |                   *Deployer* (SSVC v2.1)                    |
 |:-------------------------:|:--------------------------------------------------------:|:-----------------------------------------------------------:|
 | Exploitation 1.0.0        | Exploitation 1.0.0                                        |                     Exploitation 1.0.0                      |
 | System Exposure 1.0.0     | System Exposure 1.0.1                                     |                    System Exposure 1.0.1                    |

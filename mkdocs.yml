@@ -117,6 +117,7 @@ plugins:
       data_path: 'data/csvs'
   - bibtex:
       bib_file: 'doc/md_src_files/sources_ssvc.bib'
+  - markdown-exec
   - mkdocstrings:
       handlers:
         python:

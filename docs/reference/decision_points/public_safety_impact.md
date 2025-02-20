@@ -1,6 +1,11 @@
 # Public Safety Impact
 
-{% include-markdown "../../_generated/decision_points/public_safety_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.public_safety_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
@@ -11,12 +16,18 @@ This is a compound decision point, therefore it is a notational convenience.
 Suppliers necessarily have a rather coarse-grained perspective on the broadly defined [Safety Impact](safety_impact.md) Decision Point.
 Therefore we simplify the above into a binary categorization:
 
-- _Significant_ is when any impact meets the criteria for an impact of Marginal, Critical, or Catastrophic in the
+- *Significant* is when any impact meets the criteria for an impact of Marginal, Critical, or Catastrophic in the
   [Safety Impact](safety_impact.md) table.
-- _Minimal_ is when none do.
+- *Minimal* is when none do.
 
 ## Prior Versions
 
-{% include-markdown "../../_generated/decision_points/public_safety_impact_2_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.public_safety_impact import VERSIONS
+from ssvc.doc_helpers import example_block
 
-{% include-markdown "../../_generated/decision_points/public_well-being_impact_1_0_0.md" %}
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```

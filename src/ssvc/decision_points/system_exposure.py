@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+
 """
-file: exposure
-author: adh
-created_at: 9/21/23 10:16 AM
+Provides the System Exposure decision point and its values.
 """
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -18,6 +17,7 @@ created_at: 9/21/23 10:16 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 EXP_UNAVOIDABLE = SsvcDecisionPointValue(
     name="Unavoidable",
@@ -77,10 +77,12 @@ SYSTEM_EXPOSURE_1_0_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (SYSTEM_EXPOSURE_1, SYSTEM_EXPOSURE_1_0_1)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(SYSTEM_EXPOSURE_1.model_dump_json(indent=2))
-    print(SYSTEM_EXPOSURE_1_0_1.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

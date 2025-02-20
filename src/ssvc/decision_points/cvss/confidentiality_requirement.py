@@ -110,15 +110,16 @@ CONFIDENTIALITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
+VERSIONS = (
     CONFIDENTIALITY_REQUIREMENT_1,
     CONFIDENTIALITY_REQUIREMENT_1_1,
     CONFIDENTIALITY_REQUIREMENT_1_1_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

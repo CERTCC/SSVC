@@ -1,6 +1,11 @@
 # Value Density
 
-{% include-markdown "../../_generated/decision_points/value_density.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.value_density import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 

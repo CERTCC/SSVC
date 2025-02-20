@@ -14,7 +14,7 @@
     {
       "key": "C",
       "name": "Concentrated",
-      "description": "The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of \u201csystem operators\u201d rather than users."
+      "description": "The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users."
     }
   ]
 }

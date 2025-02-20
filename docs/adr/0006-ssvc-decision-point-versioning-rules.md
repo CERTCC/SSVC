@@ -20,10 +20,10 @@ Note: This decision addresses the rules for versioning, and depends on the decis
 
 ## Decision Drivers
 
-* Decision points evolve over time
-  * new values (options) are added, modified, or removed
-  * descriptions are updated
-* Semantic versioning is a well-known and well-understood standard, but we need to define how it applies to decision points.
+- Decision points evolve over time
+  - new values (options) are added, modified, or removed
+  - descriptions are updated
+- Semantic versioning is a well-known and well-understood standard, but we need to define how it applies to decision points.
 
 ## Considered Options
 
@@ -35,9 +35,9 @@ However, for future-proofing purposes we might want to include a key-value pair 
 
 We could establish rules such as
 
-* version 0.x is reserved for pre-support Decision Points and their shorthand key, labels, number of labels, ordering of labels, descriptions, semantics, etc. are all subject to change
-* version 1.0 freezes the Decision Point labels, number of labels, and their ordering
-* version 1.0.x for x > 0 would be limited to description changes
+- version 0.x is reserved for pre-support Decision Points and their shorthand key, labels, number of labels, ordering of labels, descriptions, semantics, etc. are all subject to change
+- version 1.0 freezes the Decision Point labels, number of labels, and their ordering
+- version 1.0.x for x > 0 would be limited to description changes
 
 ## Decision Outcome
 
@@ -45,9 +45,9 @@ Chosen option: "Semantic versioning":
 
 > Given a version number MAJOR.MINOR.PATCH, increment the:
 >
-> * MAJOR version when you make incompatible API changes
-> * MINOR version when you add functionality in a backward compatible manner
-> * PATCH version when you make backward compatible bug fixes
+> - MAJOR version when you make incompatible API changes
+> - MINOR version when you add functionality in a backward compatible manner
+> - PATCH version when you make backward compatible bug fixes
 >
 > Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
@@ -55,17 +55,17 @@ Applied as follows:
 
 ### Create a new object when
 
-* A different or new concept is being represented
+- A different or new concept is being represented
 
 **Note**: New objects SHOULD get new names and new keys
 
 ### Increment the Major Version when
 
-* Criteria for creating a new object are not met, _AND_
-  * existing values are removed, _OR_
-  * value semantics change in a way that older answers are no longer usable,
-    _OR_
-  * new values are added that divide previous value semantics ambiguously
+- Criteria for creating a new object are not met, *AND*
+  - existing values are removed, *OR*
+  - value semantics change in a way that older answers are no longer usable,
+    *OR*
+  - new values are added that divide previous value semantics ambiguously
 
 **Note**: The ability to map old to new semantics is encouraged but not required
 
@@ -73,21 +73,21 @@ Applied as follows:
 
 Minor version increments imply that existing value semantics are preserved.
 
-* Criteria for incrementing the Major Version are not met, _AND_
-  * new options are added, _OR_
-  * value names or keys are changed, _OR_
-  * the decision point name is changed
+- Criteria for incrementing the Major Version are not met, *AND*
+  - new options are added, *OR*
+  - value names or keys are changed, *OR*
+  - the decision point name is changed
 
 ### Increment the Patch Version when
 
 Patch version increments imply that existing value number and semantics are
 preserved.
 
-* Criteria for incrementing the Major or Minor Version are not met, _AND_
-  * typo fixes in option names or decision point name, _OR_
-  * the decision point description changes in a way that does not affect 
-    semantics, _OR_
-  * a value description changes in a way that does not affect semantics
+- Criteria for incrementing the Major or Minor Version are not met, *AND*
+  - typo fixes in option names or decision point name, *OR*
+  - the decision point description changes in a way that does not affect
+    semantics, *OR*
+  - a value description changes in a way that does not affect semantics
 
 ### Pre-Support Decision Points
 
@@ -103,7 +103,7 @@ In other words, a Minor version increment of a 0.x decision point may be used
 to indicate a change in semantics that is not backwards compatible.
 This is not the case for decision points with a Major Version of 1 or greater.
 
-The lowest _supported_ version of a decision point is 1.0.0.
+The lowest *supported* version of a decision point is 1.0.0.
 
 ### Examples
 
@@ -122,21 +122,21 @@ compatible, so the new version is 3.0.0.
 
 ### Consequences
 
-* Maintaining version numbers for decision points according to these rules will add a small burden to each decision point.
-* Semantic versioning will make it easier to track changes to decision points over time.
-* Because we don't anticipate frequent changes to decision points, the burden of maintaining version numbers should be minimal.
-* Decision point versions can move in either direction when used repeatedly in other versioned objects (E.g., a decision model could
+- Maintaining version numbers for decision points according to these rules will add a small burden to each decision point.
+- Semantic versioning will make it easier to track changes to decision points over time.
+- Because we don't anticipate frequent changes to decision points, the burden of maintaining version numbers should be minimal.
+- Decision point versions can move in either direction when used repeatedly in other versioned objects (E.g., a decision model could
 use use version 2.1 of a decision point at one time and later revert to using version 1.0 if the 2.1 was found to be problematic).
-* Multiple versions of decision points will be "live and available for use" by folks modeling decisions unless explicitly deprecated.
-* We think that Decision Points SHOULD have a way to indicate a deprecated status as a means to stave off future regrets.
-This implies the need for a way to denote the _status_ of a decision point in addition to its _version_.
-Decision Point _status_ will need to be addressed in a separate decision (or decisions) regarding decision point lifecycles.
+- Multiple versions of decision points will be "live and available for use" by folks modeling decisions unless explicitly deprecated.
+- We think that Decision Points SHOULD have a way to indicate a deprecated status as a means to stave off future regrets.
+This implies the need for a way to denote the *status* of a decision point in addition to its *version*.
+Decision Point *status* will need to be addressed in a separate decision (or decisions) regarding decision point lifecycles.
 
 ### Confirmation
 
-* The PR process will confirm that the decision point version number is updated according to these rules.
+- The PR process will confirm that the decision point version number is updated according to these rules.
 
 ## More Information
 
-* [Discussion #289](https://github.com/CERTCC/SSVC/discussions/289) in the SSVC project.
-* [Semantic Versioning](https://semver.org/)
+- [Discussion #289](https://github.com/CERTCC/SSVC/discussions/289) in the SSVC project.
+- [Semantic Versioning](https://semver.org/)

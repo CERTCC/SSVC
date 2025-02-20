@@ -1,12 +1,16 @@
 # Utility
 
-{% include-markdown "../../_generated/decision_points/utility.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.utility import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
     Utility is a combination of [Automatable](./automatable.md) and
     [Value Density](./value_density.md)
-
 
 This is a compound decision point, therefore it is a notational convenience.
 
@@ -25,7 +29,6 @@ This framing makes it easier to analytically derive these categories from a desc
 Roughly, *Utility* is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events.
 We define *Utility* as laborious, efficient, or super effective, as described in the table above.
 
-
 ## Alternative Utility Outputs
 
 Alternative heuristics can plausibly be used as proxies for adversary utility.
@@ -40,11 +43,17 @@ Price does not only track the [*Value Density*](value_density.md) of the system,
 Currently, we simplify the analysis and ignore these factors.
 However, future work should look for and prevent large mismatches between the outputs of the *Utility* decision point and the exploit markets.
 
-
-
 ## Previous Versions
 
-{% include-markdown "../../_generated/decision_points/utility_1_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.utility import VERSIONS
+from ssvc.doc_helpers import example_block
+
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```
 
 !!! tip "See also"
 

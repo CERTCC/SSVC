@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides the Safety Impact decision point and its values.
 """
@@ -158,10 +159,12 @@ SAFETY_IMPACT_2 = SsvcDecisionPoint(
 )
 
 
-def main():
-    versions = (SAFETY_IMPACT_1, SAFETY_IMPACT_2)
+VERSIONS = (SAFETY_IMPACT_1, SAFETY_IMPACT_2)
+LATEST = VERSIONS[-1]
 
-    print_versions_and_diffs(versions)
+
+def main():
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

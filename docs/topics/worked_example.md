@@ -43,7 +43,7 @@ use its installation to remotely identify targets.
 However, since most of the hospital’s clients have not installed the app, and for nearly all cases, physical proximity
 to the device is necessary; therefore, we select [*small*](../reference/decision_points/system_exposure.md) and move on to ask about mission impact.
 
-According to the fictional pilot scenario, 
+According to the fictional pilot scenario,
 
 > Our mission dictates that the first and foremost priority is to contribute to human welfare and to uphold the Hippocratic oath (do no harm).
 
