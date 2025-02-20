@@ -20,13 +20,22 @@ from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-AUTOMATIC = SsvcDecisionPointValue(name="Automatic", key="A",
-                               description="The system recovers services automatically after an attack has been performed.", )
-USER = SsvcDecisionPointValue(name="User", key="U",
-                               description="The system requires manual intervention by the user to recover services, after an attack has " \
-                                           "been performed.", )
-IRRECOVERABLE = SsvcDecisionPointValue(name="Irrecoverable", key="I",
-                               description="The system services are irrecoverable by the user, after an attack has been performed.", )
+AUTOMATIC = SsvcDecisionPointValue(
+    name="Automatic",
+    key="A",
+    description="The system recovers services automatically after an attack has been performed.",
+)
+USER = SsvcDecisionPointValue(
+    name="User",
+    key="U",
+    description="The system requires manual intervention by the user to recover services, after an attack has "
+    "been performed.",
+)
+IRRECOVERABLE = SsvcDecisionPointValue(
+    name="Irrecoverable",
+    key="I",
+    description="The system services are irrecoverable by the user, after an attack has been performed.",
+)
 RECOVERY_1 = CvssDecisionPoint(
     name="Recovery",
     description="The Recovery metric describes the resilience of a system to recover services, in terms of performance "
@@ -43,6 +52,7 @@ RECOVERY_1 = CvssDecisionPoint(
 
 VERSIONS = (RECOVERY_1,)
 LATEST = VERSIONS[-1]
+
 
 def main():
     print_versions_and_diffs(VERSIONS)

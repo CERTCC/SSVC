@@ -101,7 +101,7 @@ INTEGRITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     description="This metric enables the consumer to customize the assessment depending on the importance of the "
     "affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
     key="IR",
-    version="1.0.1",
+    version="1.1.1",
     values=(
         _LOW_2,
         _MEDIUM_2,
