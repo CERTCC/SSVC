@@ -183,7 +183,6 @@ When not running in Docker, make sure that the `src` directory is in your `PYTHO
 export PYTHONPATH=$PYTHONPATH:$(pwd)/src
 ```
 
-
 ## Contributing
 
 - [SSVC Community Engagement](https://certcc.github.io/SSVC/about/contributing/) has more detail on how to contribute to the project.
