@@ -1,10 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Decision Points Group schema definition",
+    "title": "Decision Points Group schema definition.",
     "$id": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Group-1-0-1.schema.json",
+    "description": "Decision Point Groups are sets of decision points pinned to specific versions of those decision points. These groups may change over time.",
     "$defs": {
 	"schemaVersion": {
-            "description": "Schema version used to represent Decision Point Group",
+            "description": "Schema version used to represent Decision Point Group.",
             "type": "string",
             "enum": ["1-0-1"]
         },
@@ -20,15 +21,15 @@
 		},
 		"name": {
 		    "type": "string",
-		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points.",
+		    "description": "A short label that captures the description of the Decision Point Group.",
 		    "minLength": 1,
 		    "examples": ["SSVC Supplier","Coordinator Triage", "SSVC Deployer"]
 		},
 		"description": {
 		    "type": "string",
-		    "description": "Description of the Decision Point or the Group of Decision Points.",
+		    "description": "A full description of the Decision Point Group.",
 		    "minLength": 1,
-		    "examples": ["The decision points used by the coordinator during publication"]
+		    "examples": ["These decision points used by the Coordinator during publication."]
 		},
 		"decision_points": {
 		    "type": "array",
