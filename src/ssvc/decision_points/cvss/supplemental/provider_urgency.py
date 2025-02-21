@@ -20,14 +20,26 @@ from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-RED = SsvcDecisionPointValue(name="Red", key="R",
-                               description="Provider has assessed the impact of this vulnerability as having the highest urgency.", )
-AMBER = SsvcDecisionPointValue(name="Amber", key="A",
-                               description="Provider has assessed the impact of this vulnerability as having a moderate urgency.", )
-GREEN = SsvcDecisionPointValue(name="Green", key="G",
-                               description="Provider has assessed the impact of this vulnerability as having a reduced urgency.", )
-CLEAR = SsvcDecisionPointValue(name="Clear", key="C",
-                               description="Provider has assessed the impact of this vulnerability as having no urgency (Informational).", )
+RED = SsvcDecisionPointValue(
+    name="Red",
+    key="R",
+    description="Provider has assessed the impact of this vulnerability as having the highest urgency.",
+)
+AMBER = SsvcDecisionPointValue(
+    name="Amber",
+    key="A",
+    description="Provider has assessed the impact of this vulnerability as having a moderate urgency.",
+)
+GREEN = SsvcDecisionPointValue(
+    name="Green",
+    key="G",
+    description="Provider has assessed the impact of this vulnerability as having a reduced urgency.",
+)
+CLEAR = SsvcDecisionPointValue(
+    name="Clear",
+    key="C",
+    description="Provider has assessed the impact of this vulnerability as having no urgency (Informational).",
+)
 PROVIDER_URGENCY_1 = CvssDecisionPoint(
     name="Provider Urgency",
     description="Many vendors currently provide supplemental severity ratings to consumers via product security "
@@ -47,6 +59,7 @@ PROVIDER_URGENCY_1 = CvssDecisionPoint(
 
 VERSIONS = (PROVIDER_URGENCY_1,)
 LATEST = PROVIDER_URGENCY_1
+
 
 def main():
     print_versions_and_diffs(VERSIONS)

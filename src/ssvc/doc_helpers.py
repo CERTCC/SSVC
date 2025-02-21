@@ -81,7 +81,9 @@ def example_block(dp: SsvcDecisionPoint, indent=4) -> str:
         rows.append(indent_ + row)
     rows.append("")
 
-    rows.append(indent_ + f'??? example "{dp.name} v{dp.version} JSON Example"')
+    rows.append(
+        indent_ + f'??? example "{dp.name} v{dp.version} JSON Example"'
+    )
     rows.append("")
     for row in json_example(dp, indent=4).splitlines():
         rows.append(indent_ + row)
