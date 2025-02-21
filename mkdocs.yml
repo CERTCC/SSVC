@@ -73,6 +73,7 @@ nav:
         - Utility: 'reference/decision_points/utility.md'
       - CVSS-based decision points:
           - 'reference/decision_points/cvss/index.md'
+          - Qualitative Severity: 'reference/decision_points/cvss/qualitative_severity.md'
           - Base Metrics:
             - Attack Vector: 'reference/decision_points/cvss/attack_vector.md'
             - Attack Complexity: 'reference/decision_points/cvss/attack_complexity.md'
