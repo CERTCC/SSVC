@@ -69,10 +69,12 @@ def example_block_tabbed(dp: SsvcDecisionPoint, indent=4) -> str:
     return "\n".join(rows)
 
 
-def example_block(dp: SsvcDecisionPoint, indent=4) -> str:
+def example_block(
+    dp: SsvcDecisionPoint, indent: int = 4, include_json: bool = True
+) -> str:
     """Given a decision point, return a markdown block that contains an example of the decision point."""
 
-    indent_ = " " * 4
+    indent_ = " " * indent
     rows = []
     rows.append(f'!!! note "{dp.name} v{dp.version}"')
     rows.append("")
@@ -81,12 +83,11 @@ def example_block(dp: SsvcDecisionPoint, indent=4) -> str:
         rows.append(indent_ + row)
     rows.append("")
 
-    rows.append(
-        indent_ + f'??? example "{dp.name} v{dp.version} JSON Example"'
-    )
-    rows.append("")
-    for row in json_example(dp, indent=4).splitlines():
-        rows.append(indent_ + row)
+    if include_json:
+        rows.append(indent_ + f'??? example "{dp.name} v{dp.version} JSON Example"')
+        rows.append("")
+        for row in json_example(dp, indent=4).splitlines():
+            rows.append(indent_ + row)
 
     return "\n".join(rows)
 
