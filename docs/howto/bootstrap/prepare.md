@@ -18,7 +18,6 @@ the information you need to make that decision, and the policy you want to use t
     bring to the decision making process is essential. SSVC adoption is not just a process for the security team or
     technical staff.
 
-
 Here is a diagram of the preparation process:
 
 ```mermaid
@@ -53,7 +52,7 @@ We will go through each step in detail.
 ## Choose a Decision to Model
 
 !!! example inline end
-    
+
     Decisions we have modeled with SSVC include:
    
     - [Patch Supplier Prioritization](../supplier_tree.md)
@@ -120,7 +119,7 @@ flowchart LR
     oss --> cos
 ```
 
-!!! example 
+!!! example
 
      Imagine two different Service Providers, each of which is responsible for managing vulnerabilities in their
      respective environments.
@@ -140,7 +139,7 @@ A single decision point enumerates a set of options for a particular aspect of t
 We have defined a number of decision points in the [SSVC documentation](../../reference/decision_points/index.md).
 You can choose from these decision points, or you can define your own decision points to meet your needs.
 
-Whether you choose from the existing decision points or define your own, the set of decision points you use to make a 
+Whether you choose from the existing decision points or define your own, the set of decision points you use to make a
 decision is called a Decision Point Set.
 
 ```mermaid
@@ -182,7 +181,6 @@ flowchart LR
      device safety regulations. So, the medical device manufacturer might define a decision point called _Regulated_ with
      the values _Regulated Device_, _Non-Regulated Device_, and _Support Service_.
 
-
 ## Define Policy
 
 So far, you have chosen a decision to model, defined the possible outcomes for that decision, and defined the information you need to make that decision.
@@ -223,14 +221,14 @@ flowchart LR
      example&mdash;that is, the mapping from decision point values to outcomes&mdash;is not appropriate for their needs
      because it has too few _Immediate_ outcomes to suit their policy.
      Therefore, the bank decides to reuse the same decision point set and outcome set but define their own policy.
-     
+
 ## Map Data to Model Inputs
 
 In SSVC, data mapping is the process of defining what data can be used to assign a value to each decision point.
 The resulting data map indicates which data sources are relevant to each decision point, and how to interpret the data
 from each data source to assign a value to the decision point.
 
-```mermaid 
+```mermaid
 ---
 title: Data Mapping Process
 ---
@@ -252,7 +250,7 @@ flowchart LR
     dd --> ddf
     ddf --> dp2d
     dp2d --> dpm
-```    
+```
 
 !!! example
 
@@ -269,7 +267,6 @@ flowchart LR
     They define a data map that indicates that the data source for the _Service Level_ decision point is the file 
     containing the SLA data, and document that the script they wrote will assign a value to the _Service Level_ decision
     point based on the SLA data.
-
 
 !!! tip inline end "CERT RMM on Vulnerability Analysis and Resolution"
 
@@ -291,11 +288,11 @@ flowchart LR
 ## Establish Governance
 
 The final step in preparing to use SSVC is to establish a governance process for the decision model.
-This process should ensure that the decision model remains relevant to the organization's needs and that the data 
+This process should ensure that the decision model remains relevant to the organization's needs and that the data
 used to make decisions is accurate and up-to-date.
 It need not be complex or burdensome.
 
-A lightweight governance process might resemble a review of this _Prepare_ step for each decision modeled using
+A lightweight governance process might resemble a review of this *Prepare* step for each decision modeled using
 SSVC. Each of the items we discussed above could be reviewed in turn, ensuring that:
 
 - The decision itself remains relevant to the organization
@@ -304,7 +301,7 @@ SSVC. Each of the items we discussed above could be reviewed in turn, ensuring t
 - The policy remains relevant to the organization's needs
 - The data sources remain relevant to informing the decision points
 
-Depending on the review, any necessary adjustments can be made to the outcomes, decision points, policy, data map, 
+Depending on the review, any necessary adjustments can be made to the outcomes, decision points, policy, data map,
 or operational processes.
 
 ```mermaid
@@ -368,6 +365,3 @@ um --> po
         - Are there new data sources we should consider?
         - Are there data sources we are using that are no longer relevant?
         - Is our data mapping still appropriate?
-
-
-

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 """
-file: value_density
-author: adh
-created_at: 9/21/23 10:01 AM
+Provides the Value Density decision point and its values.
 """
-#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
+
+#  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -18,6 +17,7 @@ created_at: 9/21/23 10:01 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 CONCENTRATED = SsvcDecisionPointValue(
     name="Concentrated",
@@ -42,9 +42,12 @@ VALUE_DENSITY_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (VALUE_DENSITY_1,)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(VALUE_DENSITY_1.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

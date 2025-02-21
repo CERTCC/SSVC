@@ -44,7 +44,7 @@ _SA_NONE = SsvcDecisionPointValue(
 
 
 SUBSEQUENT_AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
-    name="Subsequent Availability Impact",
+    name="Availability Impact to the Subsequent System",
     description="This metric measures the impact on availability a successful exploit of the vulnerability will have "
     "on the Subsequent System.",
     key="SA",
@@ -56,13 +56,12 @@ SUBSEQUENT_AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
-    SUBSEQUENT_AVAILABILITY_IMPACT_1,
-]
+VERSIONS = (SUBSEQUENT_AVAILABILITY_IMPACT_1,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

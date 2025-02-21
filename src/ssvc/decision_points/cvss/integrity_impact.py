@@ -113,11 +113,11 @@ _II_NONE_3 = SsvcDecisionPointValue(
 )
 
 
-INTEGRITY_IMPACT_2_0_1 = CvssDecisionPoint(
-    name="Integrity Impact",
+INTEGRITY_IMPACT_3_0_0 = CvssDecisionPoint(
+    name="Integrity Impact to the Vulnerable System",
     description="This metric measures the impact to integrity of a successfully exploited vulnerability.",
-    key="I",
-    version="2.0.1",
+    key="VI",
+    version="3.0.0",
     values=(
         _II_NONE_3,
         _II_LOW_2,
@@ -125,11 +125,13 @@ INTEGRITY_IMPACT_2_0_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [INTEGRITY_IMPACT_1, INTEGRITY_IMPACT_2, INTEGRITY_IMPACT_2_0_1]
+
+VERSIONS = (INTEGRITY_IMPACT_1, INTEGRITY_IMPACT_2, INTEGRITY_IMPACT_3_0_0)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

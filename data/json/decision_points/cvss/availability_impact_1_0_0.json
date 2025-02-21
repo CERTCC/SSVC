@@ -1,0 +1,25 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "A",
+  "name": "Availability Impact",
+  "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the target system.",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No impact on availability."
+    },
+    {
+      "key": "P",
+      "name": "Partial",
+      "description": "Considerable lag in or interruptions in resource availability. For example, a network-based flood attack that reduces available bandwidth to a web server farm to such an extent that only a small number of connections successfully complete."
+    },
+    {
+      "key": "C",
+      "name": "Complete",
+      "description": "Total shutdown of the affected resource. The attacker can render the resource completely unavailable."
+    }
+  ]
+}

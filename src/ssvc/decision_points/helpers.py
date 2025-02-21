@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 Provides helper functions for working with SSVC decision points.
 """
@@ -17,21 +18,9 @@ Provides helper functions for working with SSVC decision points.
 
 from typing import Sequence
 
+import semver
+
 from ssvc.decision_points import SsvcDecisionPoint
-
-
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 
 def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
@@ -126,45 +115,33 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
         major = True
 
     for name in dp2_names.difference(dp1_names):
-        diffs.append(
-            f"(major or minor) {dp2.name} v{dp2.version} adds value {name}"
-        )
+        diffs.append(f"(major or minor) {dp2.name} v{dp2.version} adds value {name}")
         maybe_major = True
         maybe_minor = True
 
     # did the value keys change?
     for name in intersection:
-        v1 = {
-            value["name"]: value["key"] for value in dp1.model_dump()["values"]
-        }
+        v1 = {value["name"]: value["key"] for value in dp1.model_dump()["values"]}
         v1 = v1[name]
 
-        v2 = {
-            value["name"]: value["key"] for value in dp2.model_dump()["values"]
-        }
+        v2 = {value["name"]: value["key"] for value in dp2.model_dump()["values"]}
         v2 = v2[name]
 
         if v1 != v2:
-            diffs.append(
-                f"(minor) {dp2.name} v{dp2.version} value {name} key changed"
-            )
+            diffs.append(f"(minor) {dp2.name} v{dp2.version} value {name} key changed")
             minor = True
         else:
-            diffs.append(
-                f"{dp2.name} v{dp2.version} value {name} key did not change"
-            )
+            diffs.append(f"{dp2.name} v{dp2.version} value {name} key did not change")
 
     # did the value descriptions change?
     for name in intersection:
         v1 = {
-            value["name"]: value["description"]
-            for value in dp1.model_dump()["values"]
+            value["name"]: value["description"] for value in dp1.model_dump()["values"]
         }
         v1 = v1[name]
 
         v2 = {
-            value["name"]: value["description"]
-            for value in dp2.model_dump()["values"]
+            value["name"]: value["description"] for value in dp2.model_dump()["values"]
         }
         v2 = v2[name]
 
@@ -178,12 +155,30 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
                 f"{dp2.name} v{dp2.version} value {name} description did not change"
             )
 
+    v1 = semver.VersionInfo.parse(dp1.version)
+    v2 = semver.VersionInfo.parse(dp2.version)
+
     if major:
         diffs.append(f"{dp2.name} v{dp2.version} appears to be a major change")
+        expected = v1.bump_major()
+        if v2 != expected:
+            diffs.append(
+                f"Expected version to be bumped to {expected}, but was bumped to {v2}"
+            )
     elif minor:
         diffs.append(f"{dp2.name} v{dp2.version} appears to be a minor change")
-    elif patch:
+        expected = v1.bump_minor()
+        if v2 != expected:
+            diffs.append(
+                f"Expected version to be bumped to {expected}, but was bumped to {v2}"
+            )
+    elif patch and not any([maybe_minor, maybe_major]):
         diffs.append(f"{dp2.name} v{dp2.version} appears to be a patch change")
+        expected = v1.bump_patch()
+        if v2 != expected:
+            diffs.append(
+                f"Expected version to be bumped to {expected}, but was bumped to {v2}"
+            )
 
     if maybe_new_obj:
         diffs.append(
@@ -192,13 +187,23 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
         )
 
     if not major:
+        check_possible = False
+        possible1 = v1.bump_major()
+        possible2 = v1.bump_minor()
         if maybe_major:
             diffs.append(
-                f"{dp2.name} v{dp2.version} could be a major change depending on context"
+                f"{dp2.name} v{dp2.version} could be a major change ({v1} -> {possible1}) depending on context"
             )
+            check_possible = True
         if maybe_minor:
             diffs.append(
-                f"{dp2.name} v{dp2.version} could be a minor change depending on context"
+                f"{dp2.name} v{dp2.version} could be a minor change ({v1} -> {possible2}) depending on context"
+            )
+            check_possible = True
+        # did one of possible1 or possible2 match v2?
+        if check_possible and v2 not in [possible1, possible2]:
+            diffs.append(
+                f"Expected version to be bumped to {possible1} or {possible2}, but was bumped to {v2}"
             )
 
     if not any([major, minor, patch, maybe_major, maybe_minor]):

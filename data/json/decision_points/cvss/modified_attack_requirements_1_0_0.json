@@ -1,0 +1,25 @@
+{
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "MAT",
+  "name": "Modified Attack Requirements",
+  "description": "This metric captures the prerequisite deployment and execution conditions or variables of the vulnerable system that enable the attack.",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
+    },
+    {
+      "key": "P",
+      "name": "Present",
+      "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 # Human Impact
 
-{% include-markdown "../../_generated/decision_points/human_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.human_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 !!! tip "See also"
 
@@ -10,7 +15,7 @@
 Note: This is a compound decision point[^1], therefore it is a notational convenience.
 
 *Human Impact* is a combination of how a vulnerability can affect an organization's mission essential functions as well as
-safety considerations, whether for the organization's personnel or the public at large. 
+safety considerations, whether for the organization's personnel or the public at large.
 We observe that the day-to-day operations of an organization often have already built in a degree of tolerance to small-scale variance in mission impacts.
 Thus in our opinion we need only concern ourselves with discriminating well at the upper end of the scale.
 Therefore we combine the two lesser mission impacts of degraded and MEF support crippled into a single category, while retaining the distinction between MEF Failure and Mission Failure at the extreme.
@@ -25,9 +30,8 @@ The mapping is shown in the table above.
 [^1]: In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
 if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
 We therefore combine [Safety Impact](safety_impact.md) and
-[Mission Impact](mission_impact.md) for deployers into a single _Human Impact_ factor
+[Mission Impact](mission_impact.md) for deployers into a single *Human Impact* factor
 as a dimension reduction step.
-
 
 ## Safety and Mission Impact Decision Points for Industry Sectors
 
@@ -40,9 +44,14 @@ provide SSVC information tailored as appropriate to their constituency's safety 
 For considerations on how organizations might communicate SSVC information to their constituents,
 see [Guidance on Communicating Results](../../howto/bootstrap/use.md).
 
-
 ## Prior Versions
 
-{% include-markdown "../../_generated/decision_points/human_impact_2_0_0.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.human_impact import VERSIONS
+from ssvc.doc_helpers import prior_version, example_block
 
-{% include-markdown "../../_generated/decision_points/mission_and_well-being_impact_1_0_0.md" %}
+versions = VERSIONS[:-1]
+for version in versions:
+    print(example_block(version))
+    print("\n---\n")
+```

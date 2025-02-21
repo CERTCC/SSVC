@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+
 """
-file: supplier_engagement
-author: adh
-created_at: 9/21/23 11:22 AM
+Provides the Supplier Engagement decision point and its values.
 """
 
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
@@ -19,6 +18,7 @@ created_at: 9/21/23 11:22 AM
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 UNRESPONSIVE = SsvcDecisionPointValue(
     name="Unresponsive",
@@ -43,9 +43,12 @@ SUPPLIER_ENGAGEMENT_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (SUPPLIER_ENGAGEMENT_1,)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(SUPPLIER_ENGAGEMENT_1.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

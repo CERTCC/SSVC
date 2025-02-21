@@ -1,7 +1,7 @@
 # Representing Information for Decisions About Vulnerabilities
 
 We propose that decisions about vulnerabilities—rather than their severity—are a more useful approach.
-Our design goals for the decision-making process are to 
+Our design goals for the decision-making process are to
 
 - clearly define whose decisions are involved
 - properly use evidentiary categories
@@ -35,15 +35,14 @@ Therefore, under a Gaussian error distribution, 8.9 is really 60\% high and 40\%
 SSVC decisions should be distinct and crisp, without such statistical overlaps.
 
 We avoid numerical representations for either inputs or outputs of a vulnerability management decision process.
-Quantified metrics are more useful when 
+Quantified metrics are more useful when
 
-1. data for decision making is available, and 
+1. data for decision making is available, and
 2. the stakeholders agree on how to measure.
 
 Vulnerability management does not yet meet either criterion.
 Furthermore, it is not clear to what extent measurements about a vulnerability can be informative about other vulnerabilities.
 Each vulnerability has a potentially unique relationship to the socio-technical system in which it exists, including the Internet.
-
 
 ## Be Based on Reliably Available Evidence
 
@@ -51,7 +50,7 @@ Vulnerability management decisions are often contextual: given what is known at 
 But what is known can change over time, which can and should influence the decision.
 The context of the vulnerability, and the systems it impacts, are inextricably linked to managing it.
 Some information about the context will be relatively static over time, such as the contribution of a system to an organization's mission.
-Other information can change rapidly as events occur, such as the public release of an exploit or observation of attacks. 
+Other information can change rapidly as events occur, such as the public release of an exploit or observation of attacks.
 Temporal and environmental considerations should be primary, not optional as they are in CVSS.
 We discuss the temporal aspects further in [Information Changes over Time](../howto/bootstrap/use.md).
 
@@ -65,9 +64,9 @@ Transparency should improve trust in the results.
 Finally, any result of a decision-making process should be **explainable**
 Explainable is defined and used with its common meaning, not as it is used in the research area of explainable artificial intelligence.
 An explanation should make the process intelligible to an interested, competent, non-expert person.
-There are at least two reasons common explainability is important: 
+There are at least two reasons common explainability is important:
 
-1. for troubleshooting and error correction and 
+1. for troubleshooting and error correction and
 2. for justifying proposed decisions.
 
 ## Summary
@@ -75,17 +74,16 @@ There are at least two reasons common explainability is important:
 To summarize, the following are our design goals for a vulnerability
 management process:
 
-  - Outputs are decisions.
+- Outputs are decisions.
 
-  - Pluralistic recommendations are made among a manageable number of
+- Pluralistic recommendations are made among a manageable number of
     stakeholder groups.
 
-  - Inputs are qualitative.
+- Inputs are qualitative.
 
-  - Outputs are qualitative, and there are no (unjustified) shifts to
+- Outputs are qualitative, and there are no (unjustified) shifts to
     quantitative calculations.
 
-  - Process justification is transparent.
+- Process justification is transparent.
 
-  - Results are explainable.
-
+- Results are explainable.
