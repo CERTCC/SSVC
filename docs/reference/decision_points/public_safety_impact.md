@@ -7,9 +7,7 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
-!!! tip "See also"
-
-    - [Safety Impact](./safety_impact.md)
+{% include-markdown "../../_includes/safety_cvss_ssvc.md" %}
 
 This is a compound decision point, therefore it is a notational convenience.
 

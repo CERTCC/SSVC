@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-Provides the CVSS supplemental metric Recovery
+Provides a decision point for the [CVSS Qualitative Severity Rating Scale](https://www.first.org/cvss/v4.0/specification-document#Qualitative-Severity-Rating-Scale).
 """
-#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -16,41 +16,52 @@ Provides the CVSS supplemental metric Recovery
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points import SsvcDecisionPointValue
-from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-AUTOMATIC = SsvcDecisionPointValue(
-    name="Automatic",
-    key="A",
-    description="The system recovers services automatically after an attack has been performed.",
+QS_NONE = SsvcDecisionPointValue(
+    name="None",
+    key="N",
+    description="No severity rating (0.0)",
 )
-USER = SsvcDecisionPointValue(
-    name="User",
-    key="U",
-    description="The system requires manual intervention by the user to recover services, after an attack has "
-    "been performed.",
+
+LOW = SsvcDecisionPointValue(
+    name="Low",
+    key="L",
+    description="Low (0.1 - 3.9)",
 )
-IRRECOVERABLE = SsvcDecisionPointValue(
-    name="Irrecoverable",
-    key="I",
-    description="The system services are irrecoverable by the user, after an attack has been performed.",
+MEDIUM = SsvcDecisionPointValue(
+    name="Medium",
+    key="M",
+    description="Medium (4.0 - 6.9)",
 )
-RECOVERY_1 = CvssDecisionPoint(
-    name="Recovery",
-    description="The Recovery metric describes the resilience of a system to recover services, in terms of performance "
-    "and availability, after an attack has been performed.",
-    key="R",
+HIGH = SsvcDecisionPointValue(
+    name="High",
+    key="H",
+    description="High (7.0 - 8.9)",
+)
+CRITICAL = SsvcDecisionPointValue(
+    name="Critical",
+    key="C",
+    description="Critical (9.0 - 10.0)",
+)
+
+QUALITATIVE_SEVERITY = CvssDecisionPoint(
+    name="CVSS Qualitative Severity Rating Scale",
+    key="QS",
+    description="The CVSS Qualitative Severity Rating Scale provides "
+    "a categorical representation of a CVSS Score.",
     version="1.0.0",
     values=(
-        NOT_DEFINED_X,
-        AUTOMATIC,
-        USER,
-        IRRECOVERABLE,
+        QS_NONE,
+        LOW,
+        MEDIUM,
+        HIGH,
+        CRITICAL,
     ),
 )
 
-VERSIONS = (RECOVERY_1,)
+VERSIONS = (QUALITATIVE_SEVERITY,)
 LATEST = VERSIONS[-1]
 
 
