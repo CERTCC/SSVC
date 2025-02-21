@@ -23,6 +23,12 @@ We have organized them into groups according to where they belong in the
     been refined over different versions of the CVSS specification. These versions
     do _not_ correspond the CVSS specification versions (2.0, 3.0, 3.1, 4.0 etc.).
 
+### Qualitative Severity
+
+<div class="grid cards" markdown>
+- [CVSS Qualitative Severity Rating Scale](qualitative_severity.md)
+</div>
+
 ### Base Metrics
 
 <div class="grid cards" markdown>
