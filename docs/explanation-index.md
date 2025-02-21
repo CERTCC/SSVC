@@ -61,15 +61,16 @@ All decision points and end decisions (priority categories) must be explainable 
 
 [image of supplier decision tree]
 
-#### Exploitability
+#### Exploitation
 
-_Exploitability_ is about how easy it would be to start an attack campaign or if one is already underway. The value refers to how much evidence currently exists that the vulnerability is being exploited. This value is mutable.
+_Exploitation_ refers to how much evidence currently exists that the vulnerability is being exploited. This value is mutable.
 
-| Value | Definition |
-|:-----|:-----------|
-| None | There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability. |
-| Public PoC | One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation. |
-| Active | Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting. |
+```python exec="true" idprefix=""
+from ssvc.decision_points.exploitation import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 #### Utility
 
@@ -79,13 +80,14 @@ _Value Density_ is described as "diffuse" (the system has limited resources) or 
 
 _Automability_ is a simple yes or no, can the attacker reliably automate all four steps (reconnaissance, weaponization, delivery, exploitation) of the kill chain? If the vulnerability allows remote code execution or command injection, the expected response should be 'yes.'
 
-We propose the following combinatorics to determine _Utility_ values:
+We define the following combinatorics to determine _Utility_ values:
 
-| Value | Definition |
-|:-----|:-----------|
-| Laborious | Automatable:No AND Value Density:Diffuse |
-| Efficient | (Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated) |
-| Super Effective | Automatable:Yes AND Value Density:Concentrated |
+```python exec="true" idprefix=""
+from ssvc.decision_points.utility import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 #### Technical Impact
 
@@ -97,10 +99,12 @@ _Technical Impact_ refers to how much control of a system an attacker can gain. 
 
 If the answer is 'no' to all of the above questions, then the attack is presumed to gain _Partial_ control of the system. Examples of _Partial_ control include denial of service and memory address information leaks.
 
-| Value | Definition |
-|:-----|:-----------|
-| Partial | The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control. |
-| Total | The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability. |
+```python exec="true" idprefix=""
+from ssvc.decision_points.technical_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 #### Public Safety Impact
 
@@ -110,27 +114,29 @@ _Safety Impact_ is expansive to include impacts of physical harm, operator resil
  
 _Safety Impact_ 
 
-| Value | Definition |
-|:-----|:-----------|
-| Negligible | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Minor injuries at worst (IEC 61508 Negligible).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard.<br/>- *System resiliency*: Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation.<br/>- *Environment*: Minor externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses, which are not readily absorbable, to multiple persons.<br/>- *Psychological*: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons. |
-| Marginal | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Major injuries to one or more persons (IEC 61508 Marginal).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard.<br/>- *System resiliency*: System safety margin effectively eliminated but no actual harm; OR failure of system functional capabilities that support safe operation.<br/>- *Environment*: Major externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses that likely lead to bankruptcy of multiple persons.<br/>- *Psychological*: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people. |
-| Critical | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Loss of life (IEC 61508 Critical).<br/>- *Operator resiliency*: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly.<br/>- *System resiliency*: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact.<br/>- *Environment*: Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties.<br/>- *Financial*: Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state.<br/>- *Psychological*: N/A. |
-| Catastrophic | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Multiple loss of life (IEC 61508 Catastrophic).<br/>- *Operator resiliency*: Operator incapacitated (includes fatality or otherwise incapacitated).<br/>- *System resiliency*: Total loss of whole cyber-physical system, of which the software is a part.<br/>- *Environment*: Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.<br/>- *Financial*: Social systems (elections, financial grid, etc.) supported by the software collapse.<br/>- *Psychological*: N/A. |
+```python exec="true" idprefix=""
+from ssvc.decision_points.safety_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 _Public Safety Impact_
 
-| Value | Definition |
-|:-----|:-----------|
-| Minimal | Safety Impact:Negligible |
-| Significant | Safety Impact:(Marginal OR Critical OR Catastrophic) |
+```python exec="true" idprefix=""
+from ssvc.decision_points.public_safety_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 ### Deployer decision points
 
 [image of deployer decision tree]
 
-#### Exploitability
+#### Exploitation
 
-_Exploitability_ is the same as for Supplier Exploitability.
+_Exploitation_ is the same as for Supplier Exploitation..
 
 #### Exposure
 
@@ -145,11 +151,12 @@ If a system is not 'Open', we suggest the following questions to guide your deci
 
 The Accessible Attack Surface of the Affected System or Service
 
-| Value | Definition |
-|:-----|:-----------|
-| Small | Local service or program; highly controlled network |
-| Controlled | Networked service with some access restrictions or mitigations already in place (whether locally or on the network). A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable both reliably and quickly enough to respond. Controlled covers the situation in which a vulnerability can be exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the attack path is relatively low; if the path is long enough that it is implausible for an adversary to reliably execute it, then exposure should be small. |
-| Open | Internet or another widely accessible network where access cannot plausibly be restricted or controlled (e.g., DNS servers, web servers, VOIP servers, email servers) |
+```python exec="true" idprefix=""
+from ssvc.decision_points.system_exposure import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 #### Automability
 
@@ -166,32 +173,30 @@ _Safety Impact_ is expansive to include impacts of physical harm, operator resil
  
 _Safety Impact_ 
 
-| Value | Definition |
-|:-----|:-----------|
-| Negligible | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Minor injuries at worst (IEC 61508 Negligible).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard.<br/>- *System resiliency*: Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation.<br/>- *Environment*: Minor externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses, which are not readily absorbable, to multiple persons.<br/>- *Psychological*: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons. |
-| Marginal | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Major injuries to one or more persons (IEC 61508 Marginal).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard.<br/>- *System resiliency*: System safety margin effectively eliminated but no actual harm; OR failure of system functional capabilities that support safe operation.<br/>- *Environment*: Major externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses that likely lead to bankruptcy of multiple persons.<br/>- *Psychological*: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people. |
-| Critical | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Loss of life (IEC 61508 Critical).<br/>- *Operator resiliency*: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly.<br/>- *System resiliency*: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact.<br/>- *Environment*: Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties.<br/>- *Financial*: Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state.<br/>- *Psychological*: N/A. |
-| Catastrophic | Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Multiple loss of life (IEC 61508 Catastrophic).<br/>- *Operator resiliency*: Operator incapacitated (includes fatality or otherwise incapacitated).<br/>- *System resiliency*: Total loss of whole cyber-physical system, of which the software is a part.<br/>- *Environment*: Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.<br/>- *Financial*: Social systems (elections, financial grid, etc.) supported by the software collapse.<br/>- *Psychological*: N/A. |
+```python exec="true" idprefix=""
+from ssvc.decision_points.safety_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 _Mission Impact_ is the impact on the Mission Essential Functions of the organization. A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1]. 
 
-Impact on Mission Essential Functions of the Organization
+```python exec="true" idprefix=""
+from ssvc.decision_points.mission_impact import LATEST
+from ssvc.doc_helpers import example_block
 
-| Value | Definition |
-|:-----|:-----------|
-| Degraded | Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions |
-| MEF Support Crippled | Activities that directly support essential functions are crippled; essential functions continue for a time |
-| MEF Failure | Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time |
-| Mission Failure | Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails |
+print(example_block(LATEST, include_json=False))
+```
 
-We propose the following combinatorics of _Safety Impact_ and _Mission Impact_ values to determine _Human Impact_ values:
+We define the following combinatorics of _Safety Impact_ and _Mission Impact_ values to determine _Human Impact_ values:
 
-| Value | Definition |
-|:-----|:-----------|
-| Low | Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled) |
-| Medium | (Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled)) |
-| High | (Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure) |
-| Very High | Safety Impact:Catastrophic OR Mission Impact:Mission Failure |
+```python exec="true" idprefix=""
+from ssvc.decision_points.human_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST, include_json=False))
+```
 
 ### Coordinator decision points for Triage
 
@@ -201,15 +206,15 @@ The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Dis
 
 Generally speaking, we believe in Supplier agency, and is why the first two questions are about damage control.
 
-- [Report Public](../reference/decision_points/report_public.md): If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
-- [Supplier Contacted](../reference/decision_points/supplier_contacted.md): If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md). 
+- [Report Public](reference/decision_points/report_public.md): If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](reference/decision_points/system_exposure.md) [Utility](reference/decision_points/utility.md), and [*significant*](reference/decision_points/public_safety_impact.md) [Public Safety Impact](reference/decision_points/public_safety_impact.md).
+- [Supplier Contacted](reference/decision_points/supplier_contacted.md): If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](reference/decision_points/system_exposure.md) [Utility](reference/decision_points/utility.md), and [*significant*](reference/decision_points/public_safety_impact.md) [Public Safety Impact](reference/decision_points/public_safety_impact.md). 
   In this case, CERT/CC may encourage the reporter to contact the supplier and submit a new case request if the supplier is unresponsive.
-- [Report Credibility](../reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
+- [Report Credibility](reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
 Please see the [CERT® Guide to Coordinated Vulnerability Disclosure](https://certcc.github.io/CERT-Guide-to-CVD/howto/coordination/_report_credibility/?h=credibilit) for more information about assessing credibility.
-- [Supplier Cardinality](../reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases. 
-- [Supplier Engagement](../reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
-- [Utility](../reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
-- [Public Safety Impact](../reference/decision_points/public_safety_impact.md): If the vulnerability has significant 
+- [Supplier Cardinality](reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases. 
+- [Supplier Engagement](reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
+- [Utility](reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
+- [Public Safety Impact](reference/decision_points/public_safety_impact.md): If the vulnerability has significant 
    public safety impact, then CERT/CC is more likely to coordinate the case.
 
 The last two questions, _Utility_ and _Public Safety Impact_, are the same as asked in the Supplier tree.
@@ -221,11 +226,11 @@ The last two questions, _Utility_ and _Public Safety Impact_, are the same as as
 A decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](https://certcc.github.io/SSVC/howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own rationales for publication.
 
 
-The publication decision reuses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) and [*Public Value Added*](../reference/decision_points/public_value_added.md)).
+The publication decision reuses the [*Exploitation*](reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](reference/decision_points/supplier_involvement.md) and [*Public Value Added*](reference/decision_points/public_value_added.md)).
 
-- [*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
-- [*Exploitation*](../reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish. Exploitation has the same values as Supplier Exploitability.
-- [*Public Value Added*](../reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish. 
+- [*Supplier Involvement*](reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
+- [*Exploitation*](reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish. Exploitation has the same values as Supplier Exploitability.
+- [*Public Value Added*](reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish. 
 
 
 ## Final notes
