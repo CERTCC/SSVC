@@ -60,6 +60,9 @@ class SsvcDecisionPointValue(_Base, _Keyed, BaseModel):
     Models a single value option for a decision point.
     """
 
+    def __str__(self):
+        return self.name
+
 
 class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced, BaseModel):
     """
