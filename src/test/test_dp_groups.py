@@ -27,15 +27,9 @@ class MyTestCase(unittest.TestCase):
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    SsvcDecisionPointValue(
-                        name="foo", key="FOO", description="foo"
-                    ),
-                    SsvcDecisionPointValue(
-                        name="bar", key="BAR", description="bar"
-                    ),
-                    SsvcDecisionPointValue(
-                        name="baz", key="BAZ", description="baz"
-                    ),
+                    SsvcDecisionPointValue(name="foo", key="FOO", description="foo"),
+                    SsvcDecisionPointValue(name="bar", key="BAR", description="bar"),
+                    SsvcDecisionPointValue(name="baz", key="BAZ", description="baz"),
                 ),
             )
             self.dps.append(dp)
@@ -68,6 +62,80 @@ class MyTestCase(unittest.TestCase):
         self.assertGreater(len(self.dps), 0)
         self.assertEqual(len(self.dps), len(list(g.decision_points)))
         self.assertEqual(len(self.dps), len(g))
+
+    def test_combinations(self):
+        # add them to a decision point group
+        g = dpg.SsvcDecisionPointGroup(
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
+        )
+
+        # get all the combinations
+        combos = list(g.combinations())
+
+        # assert that the number of combinations is the product of the number of values
+        # for each decision point
+        n_combos = 1
+        for dp in self.dps:
+            n_combos *= len(dp.values)
+        self.assertEqual(n_combos, len(combos))
+
+        # assert that each combination is a tuple
+        for combo in combos:
+            self.assertIsInstance(combo, tuple)
+            # assert that each value in the combination is a decision point value
+            for value in combo:
+                self.assertIsInstance(value, SsvcDecisionPointValue)
+
+            # foo, bar, and baz should be in each combination to some degree
+            foo_count = sum(1 for v in combo if v.name == "foo")
+            bar_count = sum(1 for v in combo if v.name == "bar")
+            baz_count = sum(1 for v in combo if v.name == "baz")
+            for count in (foo_count, bar_count, baz_count):
+                # each count should be greater than or equal to 0
+                self.assertGreaterEqual(count, 0)
+            # the total count of foo, bar, and baz should be the same as the length of the combination
+            # indicating that no other values are present
+            total = sum((foo_count, bar_count, baz_count))
+            self.assertEqual(len(combo), total)
+
+    def test_combo_strings(self):
+        # add them to a decision point group
+        g = dpg.SsvcDecisionPointGroup(
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
+        )
+
+        # get all the combinations
+        combos = list(g.combo_strings())
+
+        # assert that the number of combinations is the product of the number of values
+        # for each decision point
+        n_combos = 1
+        for dp in self.dps:
+            n_combos *= len(dp.values)
+        self.assertEqual(n_combos, len(combos))
+
+        # assert that each combination is a tuple
+        for combo in combos:
+            self.assertEqual(len(self.dps), len(combo))
+            self.assertIsInstance(combo, tuple)
+            # assert that each value in the combination is a string
+            for value in combo:
+                self.assertIsInstance(value, str)
+            # foo, bar, and baz should be in each combination to some degree
+            foo_count = sum(1 for v in combo if v == "foo")
+            bar_count = sum(1 for v in combo if v == "bar")
+            baz_count = sum(1 for v in combo if v == "baz")
+            for count in (foo_count, bar_count, baz_count):
+                # each count should be greater than or equal to 0
+                self.assertGreaterEqual(count, 0)
+            # the total count of foo, bar, and baz should be the same as the length of the combination
+            # indicating that no other values are present
+            total = sum((foo_count, bar_count, baz_count))
+            self.assertEqual(len(combo), total)
 
     def test_json_roundtrip(self):
         # add them to a decision point group

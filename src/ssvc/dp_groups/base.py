@@ -17,10 +17,13 @@ created_at: 9/20/23 4:47 PM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
+from itertools import product
+from typing import Generator
+
 from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Versioned
-from ssvc.decision_points.base import SsvcDecisionPoint
+from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
 
 
 class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
@@ -43,6 +46,29 @@ class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
         dplist = list(self.decision_points)
         l = len(dplist)
         return l
+
+    def combinations(
+        self,
+    ) -> Generator[tuple[SsvcDecisionPointValue, ...], None, None]:
+        # Generator[yield_type, send_type, return_type]
+        """
+        Produce all possible combinations of decision point values in the group.
+        """
+        # for each decision point, get the values
+        # then take the product of all the values
+        # and yield each combination
+        values_list: list[list[SsvcDecisionPointValue]] = [
+            dp.values for dp in self.decision_points
+        ]
+        for combination in product(*values_list):
+            yield combination
+
+    def combo_strings(self) -> Generator[tuple[str, ...], None, None]:
+        """
+        Produce all possible combinations of decision point values in the group as strings.
+        """
+        for combo in self.combinations():
+            yield tuple(str(v) for v in combo)
 
 
 def get_all_decision_points_from(
