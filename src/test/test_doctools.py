@@ -31,10 +31,10 @@ _dp_dict = {
     "key": "DPT",
     "name": "Decision Point Test",
     "description": "This is a test decision point.",
-    "values": [
+    "values": (
         {"key": "N", "name": "No", "description": "No means no"},
         {"key": "Y", "name": "Yes", "description": "Yes means yes"},
-    ],
+    ),
 }
 
 
@@ -120,9 +120,9 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists(json_file))
 
         # file is loadable json
-        d = json.load(open(json_file))
+        new_obj = SsvcDecisionPoint.model_validate(json.load(open(json_file)))
         for k, v in dp.model_dump().items():
-            self.assertEqual(v, d[k])
+            self.assertEqual(getattr(dp, k), getattr(new_obj, k))
 
         # should not overwrite the file
         overwrite = False
