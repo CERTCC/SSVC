@@ -43,11 +43,11 @@ Suppliers may also produce mitigations, such as recommended configuration change
 
 ## Supplier Decision Outcomes
 
-At a basic level, the decision at a software development organization is whether to issue a work order and what 
+At a basic level, the decision at a software development organization is whether to issue a work order and what
 resources to expend to remediate a vulnerability in the organization’s software.
 Prioritization is required because, at least in the current history of software engineering,
 the effort to patch all known vulnerabilities will exceed available resources.
-The organization considers several other factors to build the patch; refactoring a large portion of the code base may 
+The organization considers several other factors to build the patch; refactoring a large portion of the code base may
 be necessary for some patches, while others require relatively small changes.
 We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in the table below.
 
@@ -71,10 +71,17 @@ The decision to create a patch is based on the following decision points:
 
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
-{% include-markdown "../_generated/decision_points/exploitation.md" %}
-{% include-markdown "../_generated/decision_points/utility.md" %}
-{% include-markdown "../_generated/decision_points/technical_impact.md" %}
-{% include-markdown "../_generated/decision_points/public_safety_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.exploitation import LATEST as EXP
+from ssvc.decision_points.utility import LATEST as U
+from ssvc.decision_points.technical_impact import LATEST as TI
+from ssvc.decision_points.public_safety_impact import LATEST as PSI
+
+from ssvc.doc_helpers import example_block
+
+for dp in [EXP, U, TI, PSI]:
+    print(example_block(dp))
+```
 
 !!! tip "Public Safety Impact is a notational convenience"
 
@@ -83,12 +90,11 @@ More detail about each of these decision points is provided at the links above, 
 
 ## Supplier Decision Model
 
-The example supplier decision model below shows a prioritization policy for the supplier. 
-We display the decision model as a decision tree, which provides a compact representation of the policy, 
+The example supplier decision model below shows a prioritization policy for the supplier.
+We display the decision model as a decision tree, which provides a compact representation of the policy,
 showing the relative priority of different situations.
 
 {% include-markdown "../_includes/_tree_notation_tip.md" %}
-
 
 <embed src="../../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"

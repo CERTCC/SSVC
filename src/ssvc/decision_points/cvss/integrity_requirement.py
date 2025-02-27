@@ -3,7 +3,7 @@
 Models the CVSS Integrity Requirement metric as an SSVC decision point.
 """
 
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -17,7 +17,10 @@ Models the CVSS Integrity Requirement metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
-from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND, NOT_DEFINED_X
+from ssvc.decision_points.cvss._not_defined import (
+    NOT_DEFINED_ND,
+    NOT_DEFINED_X,
+)
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -98,7 +101,7 @@ INTEGRITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     description="This metric enables the consumer to customize the assessment depending on the importance of the "
     "affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
     key="IR",
-    version="1.0.1",
+    version="1.1.1",
     values=(
         _LOW_2,
         _MEDIUM_2,
@@ -107,15 +110,16 @@ INTEGRITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
+VERSIONS = (
     INTEGRITY_REQUIREMENT_1,
     INTEGRITY_REQUIREMENT_1_1,
     INTEGRITY_REQUIREMENT_1_1_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 """
 Provides the CVSS supplemental metric Provider Urgency as a SSVC decision point.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -20,6 +20,26 @@ from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
+RED = SsvcDecisionPointValue(
+    name="Red",
+    key="R",
+    description="Provider has assessed the impact of this vulnerability as having the highest urgency.",
+)
+AMBER = SsvcDecisionPointValue(
+    name="Amber",
+    key="A",
+    description="Provider has assessed the impact of this vulnerability as having a moderate urgency.",
+)
+GREEN = SsvcDecisionPointValue(
+    name="Green",
+    key="G",
+    description="Provider has assessed the impact of this vulnerability as having a reduced urgency.",
+)
+CLEAR = SsvcDecisionPointValue(
+    name="Clear",
+    key="C",
+    description="Provider has assessed the impact of this vulnerability as having no urgency (Informational).",
+)
 PROVIDER_URGENCY_1 = CvssDecisionPoint(
     name="Provider Urgency",
     description="Many vendors currently provide supplemental severity ratings to consumers via product security "
@@ -30,37 +50,19 @@ PROVIDER_URGENCY_1 = CvssDecisionPoint(
     version="1.0.0",
     values=(
         NOT_DEFINED_X,
-        # Red, Amber, Green, Clear
-        SsvcDecisionPointValue(
-            name="Red",
-            key="R",
-            description="Provider has assessed the impact of this vulnerability as having the highest urgency.",
-        ),
-        SsvcDecisionPointValue(
-            name="Amber",
-            key="A",
-            description="Provider has assessed the impact of this vulnerability as having a moderate urgency.",
-        ),
-        SsvcDecisionPointValue(
-            name="Green",
-            key="G",
-            description="Provider has assessed the impact of this vulnerability as having a reduced urgency.",
-        ),
-        SsvcDecisionPointValue(
-            name="Clear",
-            key="C",
-            description="Provider has assessed the impact of this vulnerability as having no urgency (Informational).",
-        ),
+        CLEAR,
+        GREEN,
+        AMBER,
+        RED,
     ),
 )
 
+VERSIONS = (PROVIDER_URGENCY_1,)
+LATEST = PROVIDER_URGENCY_1
+
 
 def main():
-    versions = [
-        PROVIDER_URGENCY_1,
-    ]
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
 Models the CVSS Availability Requirement metric as an SSVC decision point.
 """
 
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -17,7 +17,10 @@ Models the CVSS Availability Requirement metric as an SSVC decision point.
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
-from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND, NOT_DEFINED_X
+from ssvc.decision_points.cvss._not_defined import (
+    NOT_DEFINED_ND,
+    NOT_DEFINED_X,
+)
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -109,15 +112,16 @@ AVAILABILITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     ),
 )
 
-versions = [
+VERSIONS = (
     AVAILABILITY_REQUIREMENT_1,
     AVAILABILITY_REQUIREMENT_1_1,
     AVAILABILITY_REQUIREMENT_1_1_1,
-]
+)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

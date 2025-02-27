@@ -4,7 +4,7 @@ file: coordinator_triage
 author: adh
 created_at: 9/21/23 11:40 AM
 """
-#  Copyright (c) 2023-2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -66,7 +66,7 @@ It includes decision points:
 
 
 def main():
-    print(COORDINATOR_TRIAGE_1.to_json(indent=2))
+    print(COORDINATOR_TRIAGE_1.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

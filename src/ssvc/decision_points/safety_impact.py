@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+
 """
 Provides the Safety Impact decision point and its values.
 """
 
-#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -158,10 +159,12 @@ SAFETY_IMPACT_2 = SsvcDecisionPoint(
 )
 
 
-def main():
-    versions = (SAFETY_IMPACT_1, SAFETY_IMPACT_2)
+VERSIONS = (SAFETY_IMPACT_1, SAFETY_IMPACT_2)
+LATEST = VERSIONS[-1]
 
-    print_versions_and_diffs(versions)
+
+def main():
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

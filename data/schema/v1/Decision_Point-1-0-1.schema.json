@@ -5,7 +5,7 @@
     "description": "Decision points are the basic building blocks of SSVC decision functions. Individual decision points describe a single aspect of the input to a decision function.",
     "$defs":     {
 	"schemaVersion": {
-            "description": "Schema version used to represent this Decision Point",
+            "description": "Schema version used to represent this Decision Point.",
             "type": "string",
             "enum": ["1-0-1"]
         },
@@ -15,15 +15,21 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+                    "description": "A short, unique string (or key) used as a shorthand identifier for a Decision Point Value.",
+		    "minLength": 1,
+		    "examples": ["P", "Y"]
                 },
                 "name": {
                     "type": "string",
-                    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+                    "description": "A short label that identifies a Decision Point Value",
+		    "minLength": 1,
+		    "examples": ["Public PoC", "Yes"]
                 },
                 "description": {
                     "type": "string",
-                    "description": "Description of the Decision Point Value"
+                    "description": "A full description of the Decision Point Value.",
+		    "minLength": 1,
+		    "examples": ["One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation.","Attackers can reliably automate steps 1-4 of the kill chain."]
                 }
             },
 	    "required" : [
@@ -41,26 +47,36 @@
 		},
 		"namespace": {
 		    "type": "string",
-		    "description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point"
+		    "description": "Namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point. See SSVC Documentation for details.",
+		    "pattern": "^[a-z0-9-]{3,4}[a-z0-9/\\.-]*$",
+		    "examples": ["ssvc", "cvss", "ssvc-jp", "ssvc/acme", "ssvc/example.com"]
 		},
 		"version": {
 		    "type": "string",
-		    "description": "Version (a semantic version string) that identifies this object"
+		    "description": "Version (a semantic version string) that identifies the version of a Decision Point.",
+		    "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+		    "examples": ["1.0.1", "1.0.1-alpha"]
 		},
 		"key": {
 		    "type": "string",
-		    "description": "A key (a short, unique string) that can be used to identify the Decision Point/Decision Point value in a shorthand way"
+                    "description": "A short, unique string (or key) used as a shorthand identifier for a Decision Point.",
+
+		    "minLength": 1,
+		    "examples": ["E", "A"]
 		},
 		"name": {
 		    "type": "string",
-		    "description": "A short label that captures the description of the Decision Point or the Group of Decision Points."
+                    "description": "A short label that identifies a Decision Point.",
+		    "minLength": 1,
+		    "examples": ["Exploitation", "Automatable"]
 		},
 		"description": {
 		    "type": "string",
-		    "description": "q Description of the Decision Point or the Group of Decision Points as defined."
+                    "description": "A full description of the Decision Point, explaining what it represents and how it is used in SSVC.",
+		    "minLength": 1
 		},
 		"values": {
-		    "description": "Decision Point Values are valid results from a Decision Point",
+		    "description": "A set of possible answers for a given Decision Point",
 		    "uniqueItems": true,
 		    "type": "array",
 		    "minItems": 1,

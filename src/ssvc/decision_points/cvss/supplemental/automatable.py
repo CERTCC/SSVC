@@ -2,7 +2,7 @@
 """
 Provides the CVSS supplemental metric Automatable
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -16,10 +16,23 @@ Provides the CVSS supplemental metric Automatable
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-
+NO = SsvcDecisionPointValue(
+    name="No",
+    key="N",
+    description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
+    "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
+)
+YES = SsvcDecisionPointValue(
+    name="Yes",
+    key="Y",
+    description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
+    "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is "
+    '"wormable").',
+)
 AUTOMATABLE_1 = CvssDecisionPoint(
     name="Automatable",
     description='The "Automatable" metric captures the answer to the question "Can an attacker automate exploitation '
@@ -27,29 +40,18 @@ AUTOMATABLE_1 = CvssDecisionPoint(
     key="AU",
     version="1.0.0",
     values=(
-        SsvcDecisionPointValue(
-            name="No",
-            key="N",
-            description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
-            "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
-        ),
-        SsvcDecisionPointValue(
-            name="Yes",
-            key="Y",
-            description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
-            "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is "
-            '"wormable").',
-        ),
+        NO,
+        YES,
+        NOT_DEFINED_X,
     ),
 )
 
+VERSIONS = (AUTOMATABLE_1,)
+LATEST = AUTOMATABLE_1
+
 
 def main():
-    versions = [
-        AUTOMATABLE_1,
-    ]
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

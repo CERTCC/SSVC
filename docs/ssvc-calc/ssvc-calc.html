@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSVC Lookup Table</title>
+    <script>
+      const csv=`Exploitation,Exposure,Automatable,Human Impact,Priority
+none,small,no,low,defer
+none,small,no,medium,defer
+none,small,no,high,scheduled
+none,small,no,very high,scheduled
+none,small,yes,low,defer
+none,small,yes,medium,scheduled
+none,small,yes,high,scheduled
+none,small,yes,very high,scheduled
+none,controlled,no,low,defer
+none,controlled,no,medium,scheduled
+none,controlled,no,high,scheduled
+none,controlled,no,very high,scheduled
+none,controlled,yes,low,scheduled
+none,controlled,yes,medium,scheduled
+none,controlled,yes,high,scheduled
+none,controlled,yes,very high,scheduled
+none,open,no,low,defer
+none,open,no,medium,scheduled
+none,open,no,high,scheduled
+none,open,no,very high,scheduled
+none,open,yes,low,scheduled
+none,open,yes,medium,scheduled
+none,open,yes,high,scheduled
+none,open,yes,very high,out-of-cycle
+PoC,small,no,low,defer
+PoC,small,no,medium,scheduled
+PoC,small,no,high,scheduled
+PoC,small,no,very high,scheduled
+PoC,small,yes,low,scheduled
+PoC,small,yes,medium,scheduled
+PoC,small,yes,high,scheduled
+PoC,small,yes,very high,scheduled
+PoC,controlled,no,low,defer
+PoC,controlled,no,medium,scheduled
+PoC,controlled,no,high,scheduled
+PoC,controlled,no,very high,scheduled
+PoC,controlled,yes,low,scheduled
+PoC,controlled,yes,medium,scheduled
+PoC,controlled,yes,high,scheduled
+PoC,controlled,yes,very high,out-of-cycle
+PoC,open,no,low,scheduled
+PoC,open,no,medium,scheduled
+PoC,open,no,high,scheduled
+PoC,open,no,very high,out-of-cycle
+PoC,open,yes,low,scheduled
+PoC,open,yes,medium,scheduled
+PoC,open,yes,high,out-of-cycle
+PoC,open,yes,very high,out-of-cycle
+active,small,no,low,scheduled
+active,small,no,medium,scheduled
+active,small,no,high,out-of-cycle
+active,small,no,very high,out-of-cycle
+active,small,yes,low,scheduled
+active,small,yes,medium,out-of-cycle
+active,small,yes,high,out-of-cycle
+active,small,yes,very high,out-of-cycle
+active,controlled,no,low,scheduled
+active,controlled,no,medium,scheduled
+active,controlled,no,high,out-of-cycle
+active,controlled,no,very high,out-of-cycle
+active,controlled,yes,low,out-of-cycle
+active,controlled,yes,medium,out-of-cycle
+active,controlled,yes,high,out-of-cycle
+active,controlled,yes,very high,out-of-cycle
+active,open,no,low,scheduled
+active,open,no,medium,out-of-cycle
+active,open,no,high,out-of-cycle
+active,open,no,very high,immediate
+active,open,yes,low,out-of-cycle
+active,open,yes,medium,out-of-cycle
+active,open,yes,high,immediate
+active,open,yes,very high,immediate`;
+      const ssvcTable = [];
+      let outcomeTitle;
+      const lines = csv.split('\n');
+      const headers = lines.shift().split(',');
+      lines.forEach(function(line) {
+	  const cols = line.split(',');
+	  const row = {};
+	  headers.forEach(function(head,i) {
+	      row[head] = cols[i];
+	  });
+	  ssvcTable.push(row);
+      });
+      function renderCheckboxes() {
+	  const form = document.getElementById('form');
+	  form.style.display = "flex";
+	  form.style.verticalAlign = "top";
+	  headers.forEach(function(header, i) {
+              const div = document.createElement('div');
+	      div.style.padding = "0px";
+	      div.style.border = "1px solid cyan";
+	      const hdiv = document.createElement("div");
+	      hdiv.innerText = header;
+	      hdiv.style.padding = "4px";
+	      hdiv.style.borderBottom = "1px solid cyan";
+	      hdiv.style.fontWeight = "bold"
+	      div.style.display = "inline-block";
+      div.append(hdiv);
+	      [...new Set(ssvcTable.map(row => row[header]))].forEach(function(value ) {
+		  const inputDiv = document.createElement('div');
+		  inputDiv.style.padding = "4px";
+		  const input = document.createElement('input');
+		  input.type = "checkbox"
+		  input.name = header;
+		  const vlabel = document.createElement('label');
+		  vlabel.innerText = value;
+		  input.value = value; 
+		  if(i ==  headers.length -1 ) {
+		      /* Last column for results */
+		      inputDiv.setAttribute("data-result",value);
+		      outcomeTitle = header;
+		      inputDiv.style.fontWeight = "bolder";
+		      inputDiv.style.border = "1px solid green";
+		  } else {
+		      /* Add this except for last row
+			 Last row is our results row. */
+		      inputDiv.append(input);
+		  }
+		  inputDiv.append(vlabel);
+		  div.append(inputDiv);
+              });
+	      form.appendChild(div);
+	  });
+      }
+
+      function filterData() {
+	  const form = document.getElementById('form');
+	  form.querySelectorAll("[data-result]").forEach(function(result) {
+	      result.style.fontWeight = "normal";
+	      result.style.opacity = "0.6";
+	  });
+	  const selections = {};
+	  form.querySelectorAll("input:checked").forEach(function(input) {
+	      if(input.name in selections)
+		  selections[input.name].push(input.value);
+	      else
+		  selections[input.name] = [input.value];
+	  });
+	  console.log(selections);
+	  let rows = ssvcTable;
+	  Object.keys(selections).forEach(function(decision_point) {
+	      let chosen = selections[decision_point];
+	      rows = rows.filter(function(row) {
+		  if(chosen.includes(row[decision_point])){
+		      if(outcomeTitle in row) {
+			  return row;
+		      }
+		  }
+	      });
+	  });
+	  rows.forEach(function(row) {
+	      form.querySelectorAll("[data-result='"+row[outcomeTitle]+"']").forEach(function(result) {
+		  result.style.fontWeight = "bolder";
+		  result.style.opacity = "1.0";
+	      })
+	  })
+	  
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+	  renderCheckboxes();
+	  document.getElementById('form').addEventListener('change', filterData);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>SSVC Lookup Table</h1>
+    <form id="form">
+
+    </form>
+  </body>
+</html>
+

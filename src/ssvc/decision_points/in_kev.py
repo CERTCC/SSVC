@@ -2,7 +2,7 @@
 """
 Provides a decision point representing whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -16,6 +16,7 @@ Provides a decision point representing whether a vulnerability is in the CISA Kn
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
 YES = SsvcDecisionPointValue(
     name="Yes",
@@ -40,9 +41,12 @@ IN_KEV_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (IN_KEV_1,)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(IN_KEV_1.to_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

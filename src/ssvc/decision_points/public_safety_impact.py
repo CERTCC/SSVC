@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+
 """
 Provides the Public Safety Impact decision point and its values.
 """
 
-#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -108,14 +109,16 @@ PUBLIC_SAFETY_IMPACT_2_0_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (
+    PUBLIC_WELL_BEING_IMPACT_1,
+    PUBLIC_SAFETY_IMPACT_2,
+    PUBLIC_SAFETY_IMPACT_2_0_1,
+)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (
-        PUBLIC_WELL_BEING_IMPACT_1,
-        PUBLIC_SAFETY_IMPACT_2,
-        PUBLIC_SAFETY_IMPACT_2_0_1,
-    )
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

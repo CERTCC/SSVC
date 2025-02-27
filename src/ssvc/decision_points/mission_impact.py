@@ -1,11 +1,10 @@
 #!/usr/bin/env python
+
 """
-file: mission_impact
-author: adh
-created_at: 9/21/23 10:20 AM
+Provides the Mission Impact decision point and its values.
 """
 
-#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -81,11 +80,12 @@ MISSION_IMPACT_2 = SsvcDecisionPoint(
     values=(DEGRADED, MEF_CRIPPLED, MEF_FAILURE, MISSION_FAILURE),
 )
 
+VERSIONS = (MISSION_IMPACT_1, MISSION_IMPACT_2)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (MISSION_IMPACT_1, MISSION_IMPACT_2)
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

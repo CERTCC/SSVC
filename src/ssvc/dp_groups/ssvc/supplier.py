@@ -5,7 +5,7 @@ author: adh
 created_at: 9/21/23 11:41 AM
 """
 
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -91,8 +91,8 @@ Changes from Patch Developer v1:
 
 
 def main():
-    print(PATCH_DEVELOPER_1.to_json(indent=2))
-    print(SUPPLIER_2.to_json(indent=2))
+    print(PATCH_DEVELOPER_1.model_dump_json(indent=2))
+    print(SUPPLIER_2.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

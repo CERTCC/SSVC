@@ -1,10 +1,9 @@
 #!/usr/bin/env python
+
 """
-file: automatable
-author: adh
-created_at: 9/21/23 10:37 AM
+Provides the Automatable decision point and its values.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -66,11 +65,14 @@ AUTOMATABLE_2 = SsvcDecisionPoint(
     values=(AUT_NO, AUT_YES),
 )
 
+# always append new VERSIONS to this list, do not remove old ones
+VERSIONS = (VIRULENCE_1, AUTOMATABLE_2)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (VIRULENCE_1, AUTOMATABLE_2)
+    print_versions_and_diffs(VERSIONS)
 
-    print_versions_and_diffs(versions)
 
 if __name__ == "__main__":
     main()

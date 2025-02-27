@@ -1,6 +1,10 @@
 #!/usr/bin/env python
-#  Copyright (c) 2024 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
+
+"""
+Provides the Utility decision point and its values.
+"""
+
+#  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
 #  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
@@ -28,7 +32,9 @@ EFFICIENT_2 = SsvcDecisionPointValue(
 )
 
 LABORIOUS_2 = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Automatable:No AND Value Density:Diffuse"
+    name="Laborious",
+    key="L",
+    description="Automatable:No AND Value Density:Diffuse",
 )
 
 SUPER_EFFECTIVE = SsvcDecisionPointValue(
@@ -44,7 +50,9 @@ EFFICIENT = SsvcDecisionPointValue(
 )
 
 LABORIOUS = SsvcDecisionPointValue(
-    name="Laborious", key="L", description="Virulence:Slow and Value Density:Diffuse"
+    name="Laborious",
+    key="L",
+    description="Virulence:Slow and Value Density:Diffuse",
 )
 
 UTILITY_1 = SsvcDecisionPoint(
@@ -71,11 +79,12 @@ UTILITY_1_0_1 = SsvcDecisionPoint(
     ),
 )
 
+VERSIONS = (UTILITY_1, UTILITY_1_0_1)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    versions = (UTILITY_1, UTILITY_1_0_1)
-
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

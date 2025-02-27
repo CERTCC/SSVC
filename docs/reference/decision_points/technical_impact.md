@@ -1,6 +1,11 @@
 # Technical Impact
 
-{% include-markdown "../../_generated/decision_points/technical_impact.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_points.technical_impact import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
 
 When evaluating *Technical Impact*, recall the scope definition in the [Scope Section](../../topics/scope.md).
 Total control is relative to the affected component where the vulnerability resides.
@@ -10,7 +15,6 @@ As mentioned in [Current State of Practice](../../topics/state_of_practice.md), 
 Our definition of **vulnerability** is based on the determination that some security policy is violated.
 We consider a security policy violation to be a technical impact—or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
-
 
 !!! tip "Gathering Information About Technical Impact"
 
@@ -28,4 +32,3 @@ Therefore, if there is a vulnerability then there must be some technical impact.
     If you find a vulnerability that should have *total* *Technical Impact* but that does not answer yes to any of 
     these questions, please describe the example and what question we might add to this list in an issue on the
     [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
-

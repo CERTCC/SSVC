@@ -2,7 +2,7 @@
 """
 Model the CVSS Impact Bias as an SSVC decision point.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -59,13 +59,12 @@ IMPACT_BIAS_1 = CvssDecisionPoint(
 Defines Normal, Confidentiality, Integrity, and Availability values for CVSS Impact Bias.
 """
 
-versions = [
-    IMPACT_BIAS_1,
-]
+VERSIONS = (IMPACT_BIAS_1,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(versions)
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

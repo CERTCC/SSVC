@@ -2,7 +2,7 @@
 """
 Provides helpers for working with CVSS decision points.
 """
-#  Copyright (c) 2023 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -34,7 +34,7 @@ def _modify_3(dp: SsvcDecisionPoint):
     names = [v.name for v in values]
     if nd.name not in names:
         values.append(nd)
-    _dp.values = tuple(values)
+    _dp.values = list(values)
 
     return _dp
 
@@ -98,7 +98,7 @@ def _modify_4(dp: SsvcDecisionPoint):
         )
         values = list(_dp.values)
         values.append(_SAFETY)
-        _dp.values = tuple(values)
+        _dp.values = list(values)
 
     return _dp
 

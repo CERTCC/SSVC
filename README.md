@@ -10,7 +10,7 @@ SSVC aims to avoid one-size-fits-all solutions in favor of a modular decision-ma
 SSVC is mostly conceptual tools for vulnerability management.
 These conceptual tools (how to make decisions, what should go into a decision, how to document and communicate decisions clearly, etc.) are described here.
 
-**Note:** This repository contains the _content_ for the main SSVC documentation hosted at
+**Note:** This repository contains the *content* for the main SSVC documentation hosted at
 
 ## [https://certcc.github.io/SSVC/](https://certcc.github.io/SSVC/)
 
@@ -18,7 +18,6 @@ These conceptual tools (how to make decisions, what should go into a decision, h
 - If you are interested in contributing to the SSVC documentation, you are in the right place.
 
 ---
-
 
 # What's here
 
@@ -34,7 +33,7 @@ See [`project_docs/README.md`](project_docs/README.md) for more info.
 Directory with SSVC calculator using D3 graph.
 See [`ssvc-calc/README.md`](docs/ssvc-calc/README.md) for more info.
 
-A demo version of `ssvc-calc` can be found at https://certcc.github.io/SSVC/ssvc-calc/
+A demo version of `ssvc-calc` can be found at <https://certcc.github.io/SSVC/ssvc-calc/>
 
 ## `/pdfs/*`
 
@@ -82,12 +81,57 @@ The two methods just loop through their respective lookup tables until
 they hit a match, then return the outcome. Maybe not the best implementation,
 but it worked well enough for what was needed at the time.
 
-
 ## Local development
 
-Install prerequisites:
+The simplest way to get started with local development is to use Docker.
+We provide a Dockerfile that builds an image with all the dependencies needed to build the site.
+We also provide a `Makefile` that simplifies the process of building the site and running a local server,
+so you don't have to remember the exact `docker build` and `docker run` commands
+to get started.
+
+### Make Commands
+
+To display the available `make` commands, run:
 
 ```bash
+make help
+```
+
+To preview any `make` command without actually executing it, run:
+
+```bash
+make -n <command>
+```
+
+### Run Local Server With Docker
+
+The easiest way to get started is using make to build a docker image and run the site:
+
+```bash
+make docs
+```
+
+Then navigate to <http://localhost:8765/SSVC/> to see the site.
+
+Note that the docker container will display a message with the URL to visit, for
+example: `Serving on http://0.0.0.0:8000/SSVC/` in the output. However, that port
+is only available inside the container. The host port 8765 is mapped to the container's
+port 8000, so you should navigate to <http://localhost:8765/SSVC/> to see the site.
+
+Or, if make is not available:
+
+```bash
+docker build --target docs --tag ssvc_docs .
+docker run --tty --rm -p 8765:8000 --volume .:/app ssvc_docs
+```
+
+### Run Local Server Without Docker
+
+If you prefer to run the site locally without Docker, you can do so with mkdocs.
+We recommend using a virtual environment to manage dependencies:
+
+```bash
+python3 -m venv ssvc_venv
 pip install -r requirements.txt
 ```
 
@@ -97,32 +141,47 @@ Start a local server:
 mkdocs serve
 ```
 
-Navigate to http://localhost:8001/ to see the site.
+By default, the server will run on port 8001.
+This is configured in the `mkdocs.yml` file.
+Navigate to <http://localhost:8001/> to see the site.
 
 (Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8000`)
 
-## Run tests 
+## Run tests
 
 We include a few tests for the `ssvc` module.
 
-### With Docker
+### Run Tests With Docker
+
+The easiest way to run tests is using make to build a docker image and run the tests:
 
 ```bash
-
-docker build -t ssvc_test .
-docker run -it --rm ssvc_test
+make docker_test
 ```
 
-### Without Docker
+Or, if make is not available:
 
 ```bash
-pip install pytest  # if you haven't already
-
-pytest # should find tests in src/test/*
+docker build --target test --tag ssvc_test .
+docker run --tty --rm --volume .:/app ssvc_test
 ```
 
+### Run Tests Without Docker
 
+```bash
+pip install pytest
+pytest src/test
+```
 
+## Environment Variables
+
+If you encounter a problem with the `ssvc` module not being found, you may need to set the `PYTHONPATH` environment variable.
+The Dockerfile takes care of this in the Docker environment.
+When not running in Docker, make sure that the `src` directory is in your `PYTHONPATH`:
+
+```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+```
 
 ## Contributing
 
@@ -147,5 +206,5 @@ To reference SSVC in an academic publication, please refer to the version presen
 
 ## References
 
-1. Spring, J., Hatleback, E., Householder, A., Manion, A., and Shick, D. "Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization." White Paper, Software Engineering Institute, Carnegie Mellon University (2019). https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=636379
-2. Spring, J., Hatleback, E., Householder, A., Manion, A., and Shick, D. "Towards Improving CVSS." White Paper, Software Engineering Institute, Carnegie Mellon University (2018). https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=538368
+1. Spring, J., Hatleback, E., Householder, A., Manion, A., and Shick, D. "Prioritizing Vulnerability Response: A Stakeholder-Specific Vulnerability Categorization." White Paper, Software Engineering Institute, Carnegie Mellon University (2019). <https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=636379>
+2. Spring, J., Hatleback, E., Householder, A., Manion, A., and Shick, D. "Towards Improving CVSS." White Paper, Software Engineering Institute, Carnegie Mellon University (2018). <https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=538368>
