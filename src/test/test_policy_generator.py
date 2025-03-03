@@ -33,9 +33,9 @@ class MyTestCase(unittest.TestCase):
         self.og = OutcomeGroup(
             name="test",
             description="test",
+            key="TEST",
             outcomes=[
-                OutcomeValue(key=c, name=c, description=c)
-                for c in self.og_names
+                OutcomeValue(key=c, name=c, description=c) for c in self.og_names
             ],
         )
         self.dpg = SsvcDecisionPointGroup(
@@ -318,12 +318,8 @@ class MyTestCase(unittest.TestCase):
 
         self.assertIsNone(pg._confirm_topological_order([0, 1, 2, 3, 4, 5]))
         self.assertIsNone(pg._confirm_topological_order([0, 1, 3, 2, 4, 5]))
-        self.assertRaises(
-            ValueError, pg._confirm_topological_order, [0, 1, 2, 4, 3, 5]
-        )
-        self.assertRaises(
-            ValueError, pg._confirm_topological_order, [0, 1, 2, 3, 5]
-        )
+        self.assertRaises(ValueError, pg._confirm_topological_order, [0, 1, 2, 4, 3, 5])
+        self.assertRaises(ValueError, pg._confirm_topological_order, [0, 1, 2, 3, 5])
 
 
 if __name__ == "__main__":

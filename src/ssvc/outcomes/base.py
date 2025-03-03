@@ -26,12 +26,12 @@ class OutcomeValue(_Base, _Keyed, BaseModel):
     """
 
 
-class OutcomeGroup(_Base, _Versioned, BaseModel):
+class OutcomeGroup(_Base, _Keyed, _Versioned, BaseModel):
     """
     Models an outcome group.
     """
 
-    outcomes: list[OutcomeValue]
+    outcomes: tuple[OutcomeValue, ...]
 
     def __iter__(self):
         """

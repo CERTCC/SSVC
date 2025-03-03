@@ -32,10 +32,14 @@ class MyTestCase(unittest.TestCase):
             values.append(OutcomeValue(key=x, name=x, description=x))
 
         og = OutcomeGroup(
-            name="og", description="an outcome group", outcomes=tuple(values)
+            name="Outcome Group",
+            key="OG",
+            description="an outcome group",
+            outcomes=tuple(values),
         )
 
-        self.assertEqual(og.name, "og")
+        self.assertEqual(og.name, "Outcome Group")
+        self.assertEqual(og.key, "OG")
         self.assertEqual(og.description, "an outcome group")
 
         self.assertEqual(len(og), len(ALPHABET))

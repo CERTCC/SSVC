@@ -22,6 +22,7 @@ from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
 
 DSOI = OutcomeGroup(
     name="Defer, Scheduled, Out-of-Cycle, Immediate",
+    key="DSOI",
     description="The original SSVC outcome group.",
     version="1.0.0",
     outcomes=(
@@ -37,12 +38,11 @@ The original SSVC outcome group.
 
 PUBLISH = OutcomeGroup(
     name="Publish, Do Not Publish",
+    key="PUBLISH",
     description="The publish outcome group.",
     version="1.0.0",
     outcomes=(
-        OutcomeValue(
-            name="Do Not Publish", key="N", description="Do Not Publish"
-        ),
+        OutcomeValue(name="Do Not Publish", key="N", description="Do Not Publish"),
         OutcomeValue(name="Publish", key="P", description="Publish"),
     ),
 )
@@ -52,6 +52,7 @@ The publish outcome group.
 
 COORDINATE = OutcomeGroup(
     name="Decline, Track, Coordinate",
+    key="COORDINATE",
     description="The coordinate outcome group.",
     version="1.0.0",
     outcomes=(
@@ -66,6 +67,7 @@ The coordinate outcome group.
 
 MOSCOW = OutcomeGroup(
     name="Must, Should, Could, Won't",
+    key="MOSCOW",
     description="The Moscow outcome group.",
     version="1.0.0",
     outcomes=(
@@ -81,6 +83,7 @@ The MoSCoW outcome group.
 
 EISENHOWER = OutcomeGroup(
     name="Do, Schedule, Delegate, Delete",
+    key="EISENHOWER",
     description="The Eisenhower outcome group.",
     version="1.0.0",
     outcomes=(
@@ -96,6 +99,7 @@ The Eisenhower outcome group.
 
 CVSS = OutcomeGroup(
     name="CVSS Levels",
+    key="CVSS",
     description="The CVSS outcome group.",
     version="1.0.0",
     outcomes=(
@@ -111,6 +115,7 @@ The CVSS outcome group.
 
 CISA = OutcomeGroup(
     name="CISA Levels",
+    key="CISA",
     description="The CISA outcome group. "
     "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
     version="1.0.0",
@@ -152,6 +157,7 @@ See https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc
 
 YES_NO = OutcomeGroup(
     name="Yes, No",
+    key="YES_NO",
     description="The Yes/No outcome group.",
     version="1.0.0",
     outcomes=(
@@ -165,14 +171,13 @@ The Yes/No outcome group.
 
 VALUE_COMPLEXITY = OutcomeGroup(
     name="Value, Complexity",
+    key="VALUE_COMPLEXITY",
     description="The Value/Complexity outcome group.",
     version="1.0.0",
     outcomes=(
         # drop, reconsider later, easy win, do first
         OutcomeValue(name="Drop", key="D", description="Drop"),
-        OutcomeValue(
-            name="Reconsider Later", key="R", description="Reconsider Later"
-        ),
+        OutcomeValue(name="Reconsider Later", key="R", description="Reconsider Later"),
         OutcomeValue(name="Easy Win", key="E", description="Easy Win"),
         OutcomeValue(name="Do First", key="F", description="Do First"),
     ),
@@ -183,13 +188,12 @@ The Value/Complexity outcome group.
 
 THE_PARANOIDS = OutcomeGroup(
     name="theParanoids",
+    key="PARANOIDS",
     description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
     version="1.0.0",
     outcomes=(
         OutcomeValue(name="Track 5", key="5", description="Track"),
-        OutcomeValue(
-            name="Track Closely 4", key="4", description="Track Closely"
-        ),
+        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
         OutcomeValue(name="Attend 3", key="3", description="Attend"),
         OutcomeValue(name="Attend 2", key="2", description="Attend"),
         OutcomeValue(name="Act 1", key="1", description="Act"),
