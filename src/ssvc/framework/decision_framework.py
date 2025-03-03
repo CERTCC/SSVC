@@ -20,7 +20,7 @@ from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Namespaced, _Versioned
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
+from ssvc.outcomes.base import OutcomeGroup
 from ssvc.policy_generator import PolicyGenerator
 
 
@@ -37,12 +37,19 @@ class DecisionFramework(_Versioned, _Namespaced, _Base, BaseModel):
 
     decision_point_group: SsvcDecisionPointGroup
     outcome_group: OutcomeGroup
-    mapping: dict[tuple[tuple[str, str], ...], OutcomeValue]
+    mapping: dict[str, str]
 
-    def populate_mapping(self):
+    def __init__(self, **data):
+        super().__init__(**data)
+
+        if not self.mapping:
+            self.mapping = self.generate_mapping()
+
+    def generate_mapping(self) -> dict[str, str]:
         """
         Populate the mapping with all possible combinations of decision points.
         """
+        mapping = {}
         dp_lookup = {
             dp.name.lower(): dp for dp in self.decision_point_group.decision_points
         }
@@ -84,13 +91,18 @@ class DecisionFramework(_Versioned, _Namespaced, _Base, BaseModel):
                 dp = dp_lookup[col]
                 val = value_lookup[val]
 
-                k = (f"{dp.name}:{dp.version}", f"{val.name}")
+                key_delim = ":"
+                k = key_delim.join([dp.namespace, dp.key, val.key])
                 dp_values.append(k)
 
-            key = tuple(dp_values)
-            self.mapping[key] = outcome
+            key = ",".join([str(k) for k in dp_values])
 
-        return self.mapping
+            outcome_group = self.outcome_group
+            outcome_str = ":".join([outcome_group.key, outcome.key])
+
+            mapping[key] = outcome_str
+
+        return mapping
 
 
 # convenience alias
@@ -98,7 +110,18 @@ Policy = DecisionFramework
 
 
 def main():
-    pass
+    from ssvc.dp_groups.ssvc.supplier import LATEST as dpg
+    from ssvc.outcomes.groups import MOSCOW as og
+
+    dfw = DecisionFramework(
+        name="Example Decision Framework",
+        description="The description for an Example Decision Framework",
+        version="1.0.0",
+        decision_point_group=dpg,
+        outcome_group=og,
+        mapping={},
+    )
+    print(dfw.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

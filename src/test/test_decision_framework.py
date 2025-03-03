@@ -18,7 +18,6 @@ from ssvc.decision_points.safety_impact import LATEST as safety_dp
 from ssvc.decision_points.system_exposure import LATEST as exposure_dp
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.framework.decision_framework import DecisionFramework
-from ssvc.outcomes.base import OutcomeGroup
 from ssvc.outcomes.groups import DSOI as dsoi_og
 
 
@@ -33,11 +32,7 @@ class MyTestCase(unittest.TestCase):
                 description="Test Decision Point Group Description",
                 decision_points=[exploitation_dp, exposure_dp, safety_dp],
             ),
-            outcome_group=OutcomeGroup(
-                name="Test Outcome Group",
-                description="Test Outcome Group Description",
-                outcomes=dsoi_og,
-            ),
+            outcome_group=dsoi_og,
             mapping={},
         )
 
@@ -51,7 +46,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(3, len(self.framework.decision_point_group))
 
     def test_populate_mapping(self):
-        result = self.framework.populate_mapping()
+        result = self.framework.generate_mapping()
 
         # there should be one row in result for each combination of decision points
         combo_count = len(list(self.framework.decision_point_group.combinations()))
@@ -59,14 +54,20 @@ class MyTestCase(unittest.TestCase):
 
         # the length of each key should be the number of decision points
         for key in result.keys():
-            self.assertEqual(len(key), 3)
-            for i, (dp_name_version, dp_value_name) in enumerate(key):
-                dp = self.framework.decision_point_group.decision_points[i]
-                name_version = f"{dp.name}:{dp.version}"
-                self.assertEqual(name_version, dp_name_version)
+            parts = key.split(",")
+            self.assertEqual(len(parts), 3)
+            for i, keypart in enumerate(parts):
+                dp_namespace, dp_key, dp_value_key = keypart.split(":")
 
-                value_names = [v.name for v in dp.values]
-                self.assertIn(dp_value_name, value_names)
+                dp = self.framework.decision_point_group.decision_points[i]
+                self.assertEqual(dp_namespace, dp.namespace)
+                self.assertEqual(dp_key, dp.key)
+                value_keys = [v.key for v in dp.values]
+                self.assertIn(dp_value_key, value_keys)
+
+        print()
+        print()
+        print(self.framework.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
