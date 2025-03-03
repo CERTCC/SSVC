@@ -13,6 +13,8 @@
 
 import unittest
 
+import pandas as pd
+
 from ssvc.decision_points.exploitation import LATEST as exploitation_dp
 from ssvc.decision_points.safety_impact import LATEST as safety_dp
 from ssvc.decision_points.system_exposure import LATEST as exposure_dp
@@ -66,6 +68,30 @@ class MyTestCase(unittest.TestCase):
                 self.assertEqual(dp_key, dp.key)
                 value_keys = [v.key for v in dp.values]
                 self.assertIn(dp_value_key, value_keys)
+
+    def test_mapping_to_table(self):
+        d = {
+            "ssvc:One:A,ssvc:Two:B,ssvc:Three:C": "og:One",
+            "ssvc:One:A,ssvc:Two:B,ssvc:Three:D": "og:Two",
+        }
+        table = self.framework.mapping_to_table(d)
+
+        # is it a DataFrame?
+        self.assertIsInstance(table, pd.DataFrame)
+        self.assertEqual(2, len(table))
+        self.assertEqual(4, len(table.columns))
+
+        # does it have the right columns?
+        self.assertEqual(["one", "two", "three", "og"], list(table.columns))
+        # does it have the right values?
+        for i, (k, v) in enumerate(d.items()):
+            k = k.lower()
+            v = v.lower()
+
+            parts = k.split(",")
+            for part in parts:
+                (ns, dp, val) = part.split(":")
+                self.assertEqual(val, table.iloc[i][dp])
 
 
 if __name__ == "__main__":
