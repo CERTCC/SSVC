@@ -31,7 +31,7 @@ class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
     Models a group of decision points.
     """
 
-    decision_points: list[SsvcDecisionPoint]
+    decision_points: tuple[SsvcDecisionPoint, ...]
 
     def __iter__(self):
         """
