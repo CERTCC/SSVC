@@ -15,13 +15,18 @@
 """
 Provides a Decision Framework class that can be used to model decisions in SSVC
 """
+import logging
+
 import pandas as pd
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from ssvc._mixins import _Base, _Namespaced, _Versioned
+from ssvc.csv_analyzer import check_topological_order
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 from ssvc.policy_generator import PolicyGenerator
+
+logger = logging.getLogger(__name__)
 
 
 class DecisionFramework(_Versioned, _Namespaced, _Base, BaseModel):
@@ -43,7 +48,53 @@ class DecisionFramework(_Versioned, _Namespaced, _Base, BaseModel):
         super().__init__(**data)
 
         if not self.mapping:
-            self.mapping = self.generate_mapping()
+            mapping = self.generate_mapping()
+            self.__class__.validate_mapping(mapping)
+            self.mapping = mapping
+
+    # stub for validating mapping
+    @field_validator("mapping", mode="before")
+    @classmethod
+    def validate_mapping(cls, data):
+        """
+        Placeholder for validating the mapping.
+        """
+        if len(data) == 0:
+            return data
+
+        # extract column names from keys
+        values = {}
+        target = None
+
+        for key, value in data.items():
+            key = key.lower()
+            value = value.lower()
+
+            parts = key.split(",")
+            for part in parts:
+                (ns, dp, val) = part.split(":")
+                if dp not in values:
+                    values[dp] = []
+                values[dp].append(val)
+
+            (og_key, og_valkey) = value.split(":")
+            if og_key not in values:
+                values[og_key] = []
+
+            values[og_key].append(og_valkey)
+            target = og_key
+
+        # now values is a dict of columnar data
+        df = pd.DataFrame(values)
+
+        problems: list = check_topological_order(df, target)
+
+        if problems:
+            raise ValueError(f"Mapping has problems: {problems}")
+        else:
+            logger.debug("Mapping passes topological order check")
+
+        return data
 
     def generate_mapping(self) -> dict[str, str]:
         """
@@ -112,6 +163,10 @@ Policy = DecisionFramework
 def main():
     from ssvc.dp_groups.ssvc.supplier import LATEST as dpg
     from ssvc.outcomes.groups import MOSCOW as og
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(logging.StreamHandler())
 
     dfw = DecisionFramework(
         name="Example Decision Framework",
