@@ -73,7 +73,7 @@ class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
 
 def get_all_decision_points_from(
     *groups: list[SsvcDecisionPointGroup],
-) -> list[SsvcDecisionPoint]:
+) -> tuple[SsvcDecisionPoint, ...]:
     """
     Given a list of SsvcDecisionPointGroup objects, return a list of all
     the unique SsvcDecisionPoint objects contained in those groups.
@@ -100,7 +100,7 @@ def get_all_decision_points_from(
             dps.append(dp)
             seen.add(key)
 
-    return list(dps)
+    return tuple(dps)
 
 
 def main():

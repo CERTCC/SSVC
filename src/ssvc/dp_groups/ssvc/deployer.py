@@ -38,12 +38,12 @@ PATCH_APPLIER_1 = SsvcDecisionPointGroup(
     name="SSVC Patch Applier",
     description="The decision points used by the patch applier.",
     version="1.0.0",
-    decision_points=[
+    decision_points=(
         EXPLOITATION_1,
         SYSTEM_EXPOSURE_1,
         MISSION_IMPACT_1,
         SAFETY_IMPACT_1,
-    ],
+    ),
 )
 """
 In SSVC v1, Patch Applier v1 represents the decision points used by the patch applier.
@@ -64,7 +64,7 @@ DEPLOYER_2 = SsvcDecisionPointGroup(
     name="SSVC Deployer",
     description="The decision points used by the deployer.",
     version="2.0.0",
-    decision_points=[
+    decision_points=(
         EXPLOITATION_1,
         SYSTEM_EXPOSURE_1_0_1,
         MISSION_IMPACT_1,
@@ -73,7 +73,7 @@ DEPLOYER_2 = SsvcDecisionPointGroup(
         AUTOMATABLE_2,
         VALUE_DENSITY_1,
         HUMAN_IMPACT_2,
-    ],
+    ),
 )
 """
 Deployer v2.0.0 is renamed from Patch Applier v1.0.0.
@@ -124,6 +124,7 @@ Changes from v2.0.0:
 
 VERSIONS = (PATCH_APPLIER_1, DEPLOYER_2, DEPLOYER_3)
 LATEST = VERSIONS[-1]
+
 
 def main():
     for version in VERSIONS:

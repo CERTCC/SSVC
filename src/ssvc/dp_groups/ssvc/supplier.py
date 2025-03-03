@@ -60,14 +60,14 @@ SUPPLIER_2 = SsvcDecisionPointGroup(
     name="SSVC Supplier",
     description="The decision points used by the supplier.",
     version="2.0.0",
-    decision_points=[
+    decision_points=(
         EXPLOITATION_1,
         UTILITY_1_0_1,
         TECHNICAL_IMPACT_1,
         AUTOMATABLE_2,
         VALUE_DENSITY_1,
         SAFETY_IMPACT_1,
-    ],
+    ),
 )
 """
 In SSVC v2, Supplier v2 represents the decision points used by the supplier.
@@ -91,6 +91,7 @@ Changes from Patch Developer v1:
 
 VERSIONS = (PATCH_DEVELOPER_1, SUPPLIER_2)
 LATEST = VERSIONS[-1]
+
 
 def main():
     for version in VERSIONS:
