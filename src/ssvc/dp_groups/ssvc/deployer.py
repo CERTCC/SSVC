@@ -122,11 +122,12 @@ Changes from v2.0.0:
 - Mission Impact v1.0.0 -> v2.0.0
 """
 
+VERSIONS = (PATCH_APPLIER_1, DEPLOYER_2, DEPLOYER_3)
+LATEST = VERSIONS[-1]
 
 def main():
-    print(PATCH_APPLIER_1.model_dump_json(indent=2))
-    print(DEPLOYER_2.model_dump_json(indent=2))
-    print(DEPLOYER_3.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

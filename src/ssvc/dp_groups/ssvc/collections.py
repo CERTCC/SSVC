@@ -57,10 +57,12 @@ SSVCv2_1 = SsvcDecisionPointGroup(
     ),
 )
 
+VERSIONS = (SSVCv1, SSVCv2, SSVCv2_1)
+LATEST = VERSIONS[-1]
 
 def main():
-    for dpg in [SSVCv1, SSVCv2, SSVCv2_1]:
-        print(dpg.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

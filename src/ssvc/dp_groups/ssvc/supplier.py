@@ -89,10 +89,12 @@ Changes from Patch Developer v1:
 - Public Safety Impact v1.0.0 added, which subsumes Safety Impact v1.0.0
 """
 
+VERSIONS = (PATCH_DEVELOPER_1, SUPPLIER_2)
+LATEST = VERSIONS[-1]
 
 def main():
-    print(PATCH_DEVELOPER_1.model_dump_json(indent=2))
-    print(SUPPLIER_2.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

@@ -64,9 +64,14 @@ It includes decision points:
     - Safety Impact v1.0.0
 """
 
+VERSIONS = (
+    COORDINATOR_TRIAGE_1,
+)
+LATEST = VERSIONS[-1]
 
 def main():
-    print(COORDINATOR_TRIAGE_1.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
