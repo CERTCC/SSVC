@@ -52,6 +52,48 @@ class DecisionFramework(_Versioned, _Namespaced, _Base, BaseModel):
             self.__class__.validate_mapping(mapping)
             self.mapping = mapping
 
+    @classmethod
+    def mapping_to_table(cls, data: dict) -> pd.DataFrame:
+        """
+        Convert the mapping to a pandas DataFrame.
+        """
+        # extract column names from keys
+        values = {}
+
+        cols = []
+        for key in data.keys():
+            parts = key.split(",")
+            for part in parts:
+                (_, dp, _) = part.split(":")
+                cols.append(dp)
+
+        # add the outcome column
+        first_value = list(data.values())[0]
+        (okey, _) = first_value.split(":")
+        cols.append(okey)
+
+        # set up the lists for the columns
+        for col in cols:
+            col = col.lower()
+            values[col] = []
+
+        for key, value in data.items():
+            key = key.lower()
+            value = value.lower()
+
+            parts = key.split(",")
+            for part in parts:
+                (ns, dp, val) = part.split(":")
+                values[dp].append(val)
+
+            (og_key, og_valkey) = value.split(":")
+            values[og_key].append(og_valkey)
+
+        # now values is a dict of columnar data
+        df = pd.DataFrame(values)
+        # the last column is the outcome
+        return df
+
     # stub for validating mapping
     @field_validator("mapping", mode="before")
     @classmethod
@@ -62,30 +104,8 @@ class DecisionFramework(_Versioned, _Namespaced, _Base, BaseModel):
         if len(data) == 0:
             return data
 
-        # extract column names from keys
-        values = {}
-        target = None
-
-        for key, value in data.items():
-            key = key.lower()
-            value = value.lower()
-
-            parts = key.split(",")
-            for part in parts:
-                (ns, dp, val) = part.split(":")
-                if dp not in values:
-                    values[dp] = []
-                values[dp].append(val)
-
-            (og_key, og_valkey) = value.split(":")
-            if og_key not in values:
-                values[og_key] = []
-
-            values[og_key].append(og_valkey)
-            target = og_key
-
-        # now values is a dict of columnar data
-        df = pd.DataFrame(values)
+        df = cls.mapping_to_table(data)
+        target = df.columns[-1]
 
         problems: list = check_topological_order(df, target)
 

@@ -44,8 +44,10 @@ class MyTestCase(unittest.TestCase):
     def test_create(self):
         self.assertEqual(self.framework.name, "Test Decision Framework")
         self.assertEqual(3, len(self.framework.decision_point_group))
+        # mapping should not be empty
+        self.assertGreater(len(self.framework.mapping), 0)
 
-    def test_populate_mapping(self):
+    def test_generate_mapping(self):
         result = self.framework.generate_mapping()
 
         # there should be one row in result for each combination of decision points
@@ -64,10 +66,6 @@ class MyTestCase(unittest.TestCase):
                 self.assertEqual(dp_key, dp.key)
                 value_keys = [v.key for v in dp.values]
                 self.assertIn(dp_value_key, value_keys)
-
-        print()
-        print()
-        print(self.framework.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
