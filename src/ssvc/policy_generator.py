@@ -343,12 +343,12 @@ def main():
         name="Dummy Decision Point Group",
         description="Dummy decision point group",
         version="1.0.0",
-        decision_points=[
+        decision_points=(
             EXPLOITATION_1,
             SYSTEM_EXPOSURE_1_0_1,
             AUTOMATABLE_2,
             HUMAN_IMPACT_2,
-        ],
+        ),
     )
 
     with PolicyGenerator(
