@@ -49,7 +49,7 @@ jobs:
 
       - name: Build Site
         run: |
-          export PYTHONPATH=./src;$PYTHONPATH
+          export PYTHONPATH=src:$PYTHONPATH
           mkdocs build --verbose --clean --config-file mkdocs.yml       
 
       - name: Upload artifact
