@@ -16,7 +16,7 @@ However, if there is a category of information source we have not captured, plea
 ## Exploitation
 
 Various vendors provide paid feeds of vulnerabilities that are currently exploited by attacker groups.
-Any of these could be used to indicate that [*active*](../../reference/decision_points/exploitation/#cwe-ids-for-poc) is true for a vulnerability.
+Any of these could be used to indicate that [*active*](../reference/decision_points/exploitation.md/#cwe-ids-for-poc) is true for a vulnerability.
 Although the lists are all different, we expect they are all valid information sources; the difficulty is matching a list's scope and vantage with a compatible scope and vantage of the consumer.
 We are not aware of a comparative study of the different lists of active exploits; however, we expect they have similar properties to block lists of network touchpoints [@metcalf2015blocklist] and malware [@kuhrer2014paint].
 Namely, each list has a different view and vantage on the problem, which makes them appear to be different, but each list accurately represents its particular vantage at a point in time.
@@ -91,7 +91,7 @@ As mentioned in the discussion of [*Exploitation*](../reference/decision_points/
 For some classes of vulnerabilities, the proof of concept is well known because the method of exploitation is already part of open-source tools.
 An example of this is on-path attacker scenarios for intercepting TLS certificates.
 These scenarios are a cluster of related vulnerabilities.
-We provide a non-exhaustive [list of CWE-IDs with known proofs of concept](../../reference/decision_points/exploitation/#cwe-ids-for-poc). This is list is non-exhaustive becuase there are other conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
+We provide a non-exhaustive [list of CWE-IDs with known proofs of concept](../reference/decision_points/exploitation.md/#cwe-ids-for-poc). This is list is non-exhaustive becuase there are other conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
 If paired with automatic searches for exploit code in public repositories, these checks would cover many scenarios.
 If paired with active exploitation feeds discussed above, then the value of  [*Exploitation*](../reference/decision_points/exploitation.md) could be determined almost entirely from available information without direct analyst involvement at each organization.
 
