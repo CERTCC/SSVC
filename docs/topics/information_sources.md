@@ -91,7 +91,7 @@ As mentioned in the discussion of [*Exploitation*](../reference/decision_points/
 For some classes of vulnerabilities, the proof of concept is well known because the method of exploitation is already part of open-source tools.
 An example of this is on-path attacker scenarios for intercepting TLS certificates.
 These scenarios are a cluster of related vulnerabilities.
-We provide a non-exhaustive [list of CWE-IDs with known proofs of concept](../reference/decision_points/exploitation/#cwe-ids-for-poc). This is list is non-exhaustive becuase there are other conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
+We provide a non-exhaustive [list of CWE-IDs with known proofs of concept](../../reference/decision_points/exploitation/#cwe-ids-for-poc). This is list is non-exhaustive becuase there are other conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
 If paired with automatic searches for exploit code in public repositories, these checks would cover many scenarios.
 If paired with active exploitation feeds discussed above, then the value of  [*Exploitation*](../reference/decision_points/exploitation.md) could be determined almost entirely from available information without direct analyst involvement at each organization.
 
