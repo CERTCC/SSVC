@@ -19,15 +19,15 @@ from ssvc.decision_points.exploitation import LATEST as exploitation_dp
 from ssvc.decision_points.safety_impact import LATEST as safety_dp
 from ssvc.decision_points.system_exposure import LATEST as exposure_dp
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.framework.decision_framework import DecisionFramework
+from ssvc.framework.prioritization_framework import PrioritizationFramework
 from ssvc.outcomes.groups import DSOI as dsoi_og
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.framework = DecisionFramework(
-            name="Test Decision Framework",
-            description="Test Decision Framework Description",
+        self.framework = PrioritizationFramework(
+            name="Test Prioritization Framework",
+            description="Test Prioritization Framework Description",
             version="1.0.0",
             decision_point_group=SsvcDecisionPointGroup(
                 name="Test Decision Point Group",
@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
         pass
 
     def test_create(self):
-        self.assertEqual(self.framework.name, "Test Decision Framework")
+        self.assertEqual(self.framework.name, "Test Prioritization Framework")
         self.assertEqual(3, len(self.framework.decision_point_group))
         # mapping should not be empty
         self.assertGreater(len(self.framework.mapping), 0)
