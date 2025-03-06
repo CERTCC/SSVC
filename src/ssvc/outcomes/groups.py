@@ -165,7 +165,7 @@ CISA = OutcomeGroup(
             name="Monitor",
             key="M",
             description="The vulnerability contains specific characteristics that may require closer monitoring for changes. "
-            "CISA recommends remediating Track* vulnerabilities within standard update timelines.",
+            "CISA recommends remediating Monitor vulnerabilities within standard update timelines.",
         ),
         OutcomeValue(
             name="Attend",

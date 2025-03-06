@@ -12,7 +12,7 @@
     {
       "key": "M",
       "name": "Monitor",
-      "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
+      "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Monitor vulnerabilities within standard update timelines."
     },
     {
       "key": "A",
