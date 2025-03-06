@@ -16,7 +16,7 @@ However, if there is a category of information source we have not captured, plea
 ## Exploitation
 
 Various vendors provide paid feeds of vulnerabilities that are currently exploited by attacker groups.
-Any of these could be used to indicate that [*active*](../reference/decision_points/exploitation.md) is true for a vulnerability.
+Any of these could be used to indicate that [*active*](../../reference/decision_points/exploitation/#cwe-ids-for-poc) is true for a vulnerability.
 Although the lists are all different, we expect they are all valid information sources; the difficulty is matching a list's scope and vantage with a compatible scope and vantage of the consumer.
 We are not aware of a comparative study of the different lists of active exploits; however, we expect they have similar properties to block lists of network touchpoints [@metcalf2015blocklist] and malware [@kuhrer2014paint].
 Namely, each list has a different view and vantage on the problem, which makes them appear to be different, but each list accurately represents its particular vantage at a point in time.
