@@ -13,7 +13,7 @@
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 """
-Provides a Prioritization Framework class that can be used to model decisions in SSVC
+Provides a DecisionTable class that can be used to model decisions in SSVC
 """
 import logging
 
@@ -29,9 +29,9 @@ from ssvc.policy_generator import PolicyGenerator
 logger = logging.getLogger(__name__)
 
 
-class PrioritizationFramework(_Versioned, _Namespaced, _Base, BaseModel):
+class DecisionTable(_Versioned, _Namespaced, _Base, BaseModel):
     """
-    The PrioritizationFramework class is a model for decisions in SSVC.
+    The DecisionTable class is a model for decisions in SSVC.
 
     It is a collection of decision points and outcomes, and a mapping of decision points to outcomes.
 
@@ -177,7 +177,7 @@ class PrioritizationFramework(_Versioned, _Namespaced, _Base, BaseModel):
 
 
 # convenience alias
-Policy = PrioritizationFramework
+Policy = DecisionTable
 
 
 def main():
@@ -188,7 +188,7 @@ def main():
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
 
-    dfw = PrioritizationFramework(
+    dfw = DecisionTable(
         name="Example Prioritization Framework",
         description="The description for an Example Prioritization Framework",
         version="1.0.0",
@@ -202,7 +202,7 @@ def main():
     print("### JSON SCHEMA ###")
     import json
 
-    print(json.dumps(PrioritizationFramework.model_json_schema(), indent=2))
+    print(json.dumps(DecisionTable.model_json_schema(), indent=2))
 
 
 if __name__ == "__main__":

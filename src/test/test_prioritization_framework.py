@@ -18,14 +18,14 @@ import pandas as pd
 from ssvc.decision_points.exploitation import LATEST as exploitation_dp
 from ssvc.decision_points.safety_impact import LATEST as safety_dp
 from ssvc.decision_points.system_exposure import LATEST as exposure_dp
+from ssvc.decision_tables.base import DecisionTable
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.framework.prioritization_framework import PrioritizationFramework
 from ssvc.outcomes.groups import DSOI as dsoi_og
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.framework = PrioritizationFramework(
+        self.framework = DecisionTable(
             name="Test Prioritization Framework",
             description="Test Prioritization Framework Description",
             version="1.0.0",
