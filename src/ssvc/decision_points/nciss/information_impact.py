@@ -52,7 +52,7 @@ CLASSIFIED = SsvcDecisionPointValue(
     description="The confidentiality of classified information was compromised.",
 )
 
-
+# based on https://www.cisa.gov/sites/default/files/publications/Federal_Incident_Notification_Guidelines_2015.pdf
 INFORMATION_IMPACT_1 = NcissDecisionPoint(
     key="II",
     name="Information Impact",
@@ -112,6 +112,7 @@ DESTRUCTION_OF_CRITICAL_SYSTEM = SsvcDecisionPointValue(
     description="Destructive techniques, such as MBR overwrite; have been used against a critical system.",
 )
 
+# based on https://www.cisa.gov/sites/default/files/publications/Federal_Incident_Notification_Guidelines.pdf
 INFORMATION_IMPACT_2 = NcissDecisionPoint(
     key="II",
     name="Information Impact",

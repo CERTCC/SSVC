@@ -43,6 +43,7 @@ HIGH = SsvcDecisionPointValue(
     description="Organization has lost the ability to provide all critical services to all system users.",
 )
 
+## based on https://www.cisa.gov/sites/default/files/publications/Federal_Incident_Notification_Guidelines_2015.pdf
 FUNCTIONAL_IMPACT_1 = NcissDecisionPoint(
     key="FI",
     name="Functional Impact",
@@ -104,7 +105,7 @@ DENIAL_OF_CRITICAL_SERVICES_LOSS_OF_CONTROL = SsvcDecisionPointValue(
     description="A critical system has been rendered unavailable.",
 )
 
-
+# based on https://www.cisa.gov/sites/default/files/publications/Federal_Incident_Notification_Guidelines.pdf
 FUNCTIONAL_IMPACT_2 = NcissDecisionPoint(
     key="FI",
     name="Functional Impact",
@@ -122,12 +123,16 @@ FUNCTIONAL_IMPACT_2 = NcissDecisionPoint(
     ),
 )
 
-VERSIONS = (FUNCTIONAL_IMPACT_1,FUNCTIONAL_IMPACT_2,)
+VERSIONS = (
+    FUNCTIONAL_IMPACT_1,
+    FUNCTIONAL_IMPACT_2,
+)
 LATEST = VERSIONS[-1]
+
 
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
