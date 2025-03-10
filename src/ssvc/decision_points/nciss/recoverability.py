@@ -42,7 +42,7 @@ EXTENDED = SsvcDecisionPointValue(
 NOT_RECOVERABLE = SsvcDecisionPointValue(
     name="Not Recoverable",
     key="N",
-    description="Recovery from the incident is not possible (e.g., sensitive data was exfiltrated and posted publicly, investigation launched).",
+    description="Recovery from the incident is not possible.",
 )
 
 RECOVERABILITY = NcissDecisionPoint(
