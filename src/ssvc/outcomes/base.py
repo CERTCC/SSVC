@@ -31,7 +31,7 @@ class OutcomeGroup(_Base, _Versioned, BaseModel):
     Models an outcome group.
     """
 
-    outcomes: tuple[OutcomeValue, ...]
+    outcomes: list[OutcomeValue]
 
     def __iter__(self):
         """
