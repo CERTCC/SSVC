@@ -40,7 +40,9 @@ PUBLISH = OutcomeGroup(
     description="The publish outcome group.",
     version="1.0.0",
     outcomes=(
-        OutcomeValue(name="Do Not Publish", key="N", description="Do Not Publish"),
+        OutcomeValue(
+            name="Do Not Publish", key="N", description="Do Not Publish"
+        ),
         OutcomeValue(name="Publish", key="P", description="Publish"),
     ),
 )
@@ -107,7 +109,7 @@ CVSS = OutcomeGroup(
 The CVSS outcome group.
 """
 
-CISA_1 = OutcomeGroup(
+CISA = OutcomeGroup(
     name="CISA Levels",
     description="The CISA outcome group. "
     "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
@@ -122,7 +124,7 @@ CISA_1 = OutcomeGroup(
         ),
         OutcomeValue(
             name="Track*",
-            key="R",
+            key="T*",
             description="The vulnerability contains specific characteristics that may require closer monitoring for changes. "
             "CISA recommends remediating Track* vulnerabilities within standard update timelines.",
         ),
@@ -135,48 +137,7 @@ CISA_1 = OutcomeGroup(
         ),
         OutcomeValue(
             name="Act",
-            key="C",
-            description="The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. "
-            "Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. "
-            "Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. "
-            "CISA recommends remediating Act vulnerabilities as soon as possible.",
-        ),
-    ),
-)
-"""
-The CISA outcome group. Based on CISA's customizations of the SSVC model.
-See https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc
-"""
-
-CISA = OutcomeGroup(
-    name="CISA Levels",
-    description="The CISA outcome group. "
-    "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Monitor, Attend, and Act.",
-    version="1.1.0",
-    outcomes=(
-        OutcomeValue(
-            name="Track",
-            key="T",
-            description="The vulnerability does not require action at this time. "
-            "The organization would continue to track the vulnerability and reassess it if new information becomes available. "
-            "CISA recommends remediating Track vulnerabilities within standard update timelines.",
-        ),
-        OutcomeValue(
-            name="Monitor",
-            key="M",
-            description="The vulnerability contains specific characteristics that may require closer monitoring for changes. "
-            "CISA recommends remediating Monitor vulnerabilities within standard update timelines.",
-        ),
-        OutcomeValue(
-            name="Attend",
             key="A",
-            description="The vulnerability requires attention from the organization's internal, supervisory-level individuals. "
-            "Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. "
-            "CISA recommends remediating Attend vulnerabilities sooner than standard update timelines.",
-        ),
-        OutcomeValue(
-            name="Act",
-            key="C",
             description="The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. "
             "Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. "
             "Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. "
@@ -188,7 +149,6 @@ CISA = OutcomeGroup(
 The CISA outcome group. Based on CISA's customizations of the SSVC model.
 See https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc
 """
-
 
 YES_NO = OutcomeGroup(
     name="Yes, No",
@@ -210,7 +170,9 @@ VALUE_COMPLEXITY = OutcomeGroup(
     outcomes=(
         # drop, reconsider later, easy win, do first
         OutcomeValue(name="Drop", key="D", description="Drop"),
-        OutcomeValue(name="Reconsider Later", key="R", description="Reconsider Later"),
+        OutcomeValue(
+            name="Reconsider Later", key="R", description="Reconsider Later"
+        ),
         OutcomeValue(name="Easy Win", key="E", description="Easy Win"),
         OutcomeValue(name="Do First", key="F", description="Do First"),
     ),
@@ -225,7 +187,9 @@ THE_PARANOIDS = OutcomeGroup(
     version="1.0.0",
     outcomes=(
         OutcomeValue(name="Track 5", key="5", description="Track"),
-        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
+        OutcomeValue(
+            name="Track Closely 4", key="4", description="Track Closely"
+        ),
         OutcomeValue(name="Attend 3", key="3", description="Attend"),
         OutcomeValue(name="Attend 2", key="2", description="Attend"),
         OutcomeValue(name="Act 1", key="1", description="Act"),
