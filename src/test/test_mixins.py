@@ -15,7 +15,7 @@ import unittest
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
 
 
 class TestMixins(unittest.TestCase):
@@ -88,6 +88,22 @@ class TestMixins(unittest.TestCase):
 
         self.assertRaises(ValidationError, _Keyed)
 
+    def test_valued_create(self):
+        values = ("foo", "bar", "baz", "quux")
+        obj = _Valued(values=values)
+
+        # length
+        self.assertEqual(len(obj), len(values))
+
+        # iteration
+        for i, v in enumerate(obj):
+            self.assertEqual(v, values[i])
+
+        # values
+        self.assertEqual(obj.values, values)
+
+        self.assertRaises(ValidationError, _Valued)
+
     def test_mixin_combos(self):
         # We need to test all the combinations
         mixins = [
@@ -103,9 +119,7 @@ class TestMixins(unittest.TestCase):
                 "has_default": True,
             },
         ]
-        keys_with_defaults = [
-            x["args"].keys() for x in mixins if x["has_default"]
-        ]
+        keys_with_defaults = [x["args"].keys() for x in mixins if x["has_default"]]
         # flatten the list
         keys_with_defaults = [
             item for sublist in keys_with_defaults for item in sublist
