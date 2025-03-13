@@ -120,9 +120,14 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists(json_file))
 
         # file is loadable json
-        new_obj = SsvcDecisionPoint.model_validate(json.load(open(json_file)))
+        d = json.load(open(json_file))
         for k, v in dp.model_dump().items():
-            self.assertEqual(getattr(dp, k), getattr(new_obj, k))
+            # on reload, the tuples are lists, but they should be the same
+            reloaded_value = d[k]
+            if isinstance(reloaded_value, list):
+                reloaded_value = tuple(reloaded_value)
+
+            self.assertEqual(v, reloaded_value)
 
         # should not overwrite the file
         overwrite = False

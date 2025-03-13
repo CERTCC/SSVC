@@ -1,10 +1,10 @@
 {
+  "name": "Provider Urgency",
+  "description": "Many vendors currently provide supplemental severity ratings to consumers via product security advisories. Other vendors publish Qualitative Severity Ratings from the CVSS Specification Document in their advisories. To facilitate a standardized method to incorporate additional provider-supplied assessment, an optional \"pass-through\" Supplemental Metric called Provider Urgency is available.",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "U",
-  "name": "Provider Urgency",
-  "description": "Many vendors currently provide supplemental severity ratings to consumers via product security advisories. Other vendors publish Qualitative Severity Ratings from the CVSS Specification Document in their advisories. To facilitate a standardized method to incorporate additional provider-supplied assessment, an optional \"pass-through\" Supplemental Metric called Provider Urgency is available.",
   "values": [
     {
       "key": "X",
