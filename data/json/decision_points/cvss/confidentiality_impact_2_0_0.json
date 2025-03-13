@@ -1,10 +1,10 @@
 {
+  "name": "Confidentiality Impact",
+  "description": "This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.",
   "namespace": "cvss",
   "version": "2.0.0",
   "schemaVersion": "1-0-1",
   "key": "C",
-  "name": "Confidentiality Impact",
-  "description": "This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.",
   "values": [
     {
       "key": "N",

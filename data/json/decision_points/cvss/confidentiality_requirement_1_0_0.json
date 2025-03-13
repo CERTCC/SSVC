@@ -1,10 +1,10 @@
 {
+  "name": "Confidentiality Requirement",
+  "description": "This metric measures the impact to the confidentiality of a successfully exploited vulnerability.",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "CR",
-  "name": "Confidentiality Requirement",
-  "description": "This metric measures the impact to the confidentiality of a successfully exploited vulnerability.",
   "values": [
     {
       "key": "L",
