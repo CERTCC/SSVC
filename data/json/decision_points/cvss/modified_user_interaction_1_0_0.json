@@ -1,10 +1,10 @@
 {
+  "name": "Modified User Interaction",
+  "description": "This metric captures the requirement for a user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "MUI",
-  "name": "Modified User Interaction",
-  "description": "This metric captures the requirement for a user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
   "values": [
     {
       "key": "R",

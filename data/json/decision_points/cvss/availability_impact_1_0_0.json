@@ -1,10 +1,10 @@
 {
+  "name": "Availability Impact",
+  "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the target system.",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "A",
-  "name": "Availability Impact",
-  "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the target system.",
   "values": [
     {
       "key": "N",

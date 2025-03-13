@@ -1,10 +1,10 @@
 {
+  "name": "User Interaction",
+  "description": "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable system. This metric determines whether the vulnerability can be exploited solely at the will of the attacker, or whether a separate user (or user-initiated process) must participate in some manner. The resulting score is greatest when no user interaction is required.",
   "namespace": "cvss",
   "version": "2.0.0",
   "schemaVersion": "1-0-1",
   "key": "UI",
-  "name": "User Interaction",
-  "description": "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable system. This metric determines whether the vulnerability can be exploited solely at the will of the attacker, or whether a separate user (or user-initiated process) must participate in some manner. The resulting score is greatest when no user interaction is required.",
   "values": [
     {
       "key": "A",

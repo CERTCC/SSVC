@@ -1,10 +1,10 @@
 {
+  "name": "Equivalence Set 4",
+  "description": "SC/SI/SA with 3 levels specified in Table 27",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "EQ4",
-  "name": "Equivalence Set 4",
-  "description": "SC/SI/SA with 3 levels specified in Table 27",
   "values": [
     {
       "key": "L",

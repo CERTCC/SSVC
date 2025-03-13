@@ -1,10 +1,10 @@
 {
+  "name": "Remediation Level",
+  "description": "This metric measures the remediation status of a vulnerability.",
   "namespace": "cvss",
   "version": "1.1.0",
   "schemaVersion": "1-0-1",
   "key": "RL",
-  "name": "Remediation Level",
-  "description": "This metric measures the remediation status of a vulnerability.",
   "values": [
     {
       "key": "OF",
