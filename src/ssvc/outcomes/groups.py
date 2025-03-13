@@ -25,7 +25,7 @@ DSOI = OutcomeGroup(
     key="DSOI",
     description="The original SSVC outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Defer", key="D", description="Defer"),
         OutcomeValue(name="Scheduled", key="S", description="Scheduled"),
         OutcomeValue(name="Out-of-Cycle", key="O", description="Out-of-Cycle"),
@@ -41,7 +41,7 @@ PUBLISH = OutcomeGroup(
     key="PUBLISH",
     description="The publish outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Do Not Publish", key="N", description="Do Not Publish"),
         OutcomeValue(name="Publish", key="P", description="Publish"),
     ),
@@ -55,7 +55,7 @@ COORDINATE = OutcomeGroup(
     key="COORDINATE",
     description="The coordinate outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Decline", key="D", description="Decline"),
         OutcomeValue(name="Track", key="T", description="Track"),
         OutcomeValue(name="Coordinate", key="C", description="Coordinate"),
@@ -70,7 +70,7 @@ MOSCOW = OutcomeGroup(
     key="MOSCOW",
     description="The Moscow outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Won't", key="W", description="Won't"),
         OutcomeValue(name="Could", key="C", description="Could"),
         OutcomeValue(name="Should", key="S", description="Should"),
@@ -86,7 +86,7 @@ EISENHOWER = OutcomeGroup(
     key="EISENHOWER",
     description="The Eisenhower outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Delete", key="D", description="Delete"),
         OutcomeValue(name="Delegate", key="G", description="Delegate"),
         OutcomeValue(name="Schedule", key="S", description="Schedule"),
@@ -102,7 +102,7 @@ CVSS = OutcomeGroup(
     key="CVSS",
     description="The CVSS outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Low", key="L", description="Low"),
         OutcomeValue(name="Medium", key="M", description="Medium"),
         OutcomeValue(name="High", key="H", description="High"),
@@ -119,7 +119,7 @@ CISA = OutcomeGroup(
     description="The CISA outcome group. "
     "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(
             name="Track",
             key="T",
@@ -160,7 +160,7 @@ YES_NO = OutcomeGroup(
     key="YES_NO",
     description="The Yes/No outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="No", key="N", description="No"),
         OutcomeValue(name="Yes", key="Y", description="Yes"),
     ),
@@ -174,7 +174,7 @@ VALUE_COMPLEXITY = OutcomeGroup(
     key="VALUE_COMPLEXITY",
     description="The Value/Complexity outcome group.",
     version="1.0.0",
-    outcomes=(
+    values=(
         # drop, reconsider later, easy win, do first
         OutcomeValue(name="Drop", key="D", description="Drop"),
         OutcomeValue(name="Reconsider Later", key="R", description="Reconsider Later"),
@@ -191,7 +191,7 @@ THE_PARANOIDS = OutcomeGroup(
     key="PARANOIDS",
     description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
     version="1.0.0",
-    outcomes=(
+    values=(
         OutcomeValue(name="Track 5", key="5", description="Track"),
         OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
         OutcomeValue(name="Attend 3", key="3", description="Attend"),

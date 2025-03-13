@@ -125,7 +125,7 @@ class DecisionTable(_Versioned, _Namespaced, _Base, BaseModel):
             dp.name.lower(): dp for dp in self.decision_point_group.decision_points
         }
         outcome_lookup = {
-            outcome.name.lower(): outcome for outcome in self.outcome_group.outcomes
+            outcome.name.lower(): outcome for outcome in self.outcome_group.values
         }
 
         dp_value_lookup = {}

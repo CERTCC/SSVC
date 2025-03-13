@@ -170,7 +170,7 @@ class PolicyGenerator:
                 row[col2] = node[i]
 
             oc_idx = self.G.nodes[node]["outcome"]
-            row["outcome"] = self.outcomes.outcomes[oc_idx].name
+            row["outcome"] = self.outcomes.values[oc_idx].name
 
             row["idx_outcome"] = oc_idx
             rows.append(row)
@@ -195,7 +195,7 @@ class PolicyGenerator:
 
     def _assign_outcomes(self):
         node_count = len(self.G.nodes)
-        outcomes = [outcome.name for outcome in self.outcomes.outcomes]
+        outcomes = [outcome.name for outcome in self.outcomes.values]
         logger.debug(f"Outcomes: {outcomes}")
 
         layers = list(nx.topological_generations(self.G))
@@ -208,7 +208,7 @@ class PolicyGenerator:
         logger.debug(f"Toposort: {toposort[:4]}...{toposort[-4:]}")
 
         outcome_idx = 0
-        assigned_counts = [0 for _ in self.outcomes.outcomes]
+        assigned_counts = [0 for _ in self.outcomes.values]
         for node in toposort:
             # step through the nodes in topological order
             # and assign outcomes to each node

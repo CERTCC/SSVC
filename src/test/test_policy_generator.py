@@ -34,9 +34,7 @@ class MyTestCase(unittest.TestCase):
             name="test",
             description="test",
             key="TEST",
-            outcomes=[
-                OutcomeValue(key=c, name=c, description=c) for c in self.og_names
-            ],
+            values=[OutcomeValue(key=c, name=c, description=c) for c in self.og_names],
         )
         self.dpg = SsvcDecisionPointGroup(
             name="test",
@@ -57,7 +55,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_pg_init(self):
         self.assertEqual(4, len(self.dpg.decision_points))
-        self.assertEqual(4, len(self.og.outcomes))
+        self.assertEqual(4, len(self.og.values))
 
         pg = PolicyGenerator(dp_group=self.dpg, outcomes=self.og)
         for w in pg.outcome_weights:
@@ -234,7 +232,7 @@ class MyTestCase(unittest.TestCase):
 
             for dpg in pg.dpg.decision_points:
                 self.assertIn(dpg.name, stdout)
-            for og in pg.outcomes.outcomes:
+            for og in pg.outcomes.values:
                 self.assertIn(og.name.lower(), stdout)
 
     def test_create_policy(self):

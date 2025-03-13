@@ -31,19 +31,19 @@ class OutcomeGroup(_Base, _Keyed, _Versioned, BaseModel):
     Models an outcome group.
     """
 
-    outcomes: tuple[OutcomeValue, ...]
+    values: tuple[OutcomeValue, ...]
 
     def __iter__(self):
         """
         Allow iteration over the outcomes in the group.
         """
-        return iter(self.outcomes)
+        return iter(self.values)
 
     def __len__(self):
         """
         Allow len() to be called on the group.
         """
-        olist = list(self.outcomes)
+        olist = list(self.values)
         l = len(olist)
         return l
 

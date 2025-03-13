@@ -35,7 +35,7 @@ class MyTestCase(unittest.TestCase):
             name="Outcome Group",
             key="OG",
             description="an outcome group",
-            outcomes=tuple(values),
+            values=tuple(values),
         )
 
         self.assertEqual(og.name, "Outcome Group")
@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(len(og), len(ALPHABET))
 
-        og_outcomes = list(og.outcomes)
+        og_outcomes = list(og.values)
         for i, letter in enumerate(ALPHABET):
             self.assertEqual(og_outcomes[i].key, letter)
             self.assertEqual(og_outcomes[i].name, letter)
