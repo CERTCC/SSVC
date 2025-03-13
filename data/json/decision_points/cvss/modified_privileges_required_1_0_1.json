@@ -1,10 +1,10 @@
 {
+  "name": "Modified Privileges Required",
+  "description": "This metric describes the level of privileges an attacker must possess prior to successfully exploiting the vulnerability. The method by which the attacker obtains privileged credentials prior to the attack (e.g., free trial accounts), is outside the scope of this metric. Generally, self-service provisioned accounts do not constitute a privilege requirement if the attacker can grant themselves privileges as part of the attack.",
   "namespace": "cvss",
   "version": "1.0.1",
   "schemaVersion": "1-0-1",
   "key": "MPR",
-  "name": "Modified Privileges Required",
-  "description": "This metric describes the level of privileges an attacker must possess prior to successfully exploiting the vulnerability. The method by which the attacker obtains privileged credentials prior to the attack (e.g., free trial accounts), is outside the scope of this metric. Generally, self-service provisioned accounts do not constitute a privilege requirement if the attacker can grant themselves privileges as part of the attack.",
   "values": [
     {
       "key": "H",

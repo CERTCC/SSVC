@@ -1,10 +1,10 @@
 {
+  "name": "Confidentiality Impact to the Vulnerable System",
+  "description": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones.",
   "namespace": "cvss",
   "version": "3.0.0",
   "schemaVersion": "1-0-1",
   "key": "VC",
-  "name": "Confidentiality Impact to the Vulnerable System",
-  "description": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones.",
   "values": [
     {
       "key": "N",

@@ -1,10 +1,10 @@
 {
+  "name": "Availability Requirement",
+  "description": "This metric measures the impact to the availability of a successfully exploited vulnerability.",
   "namespace": "cvss",
   "version": "1.1.0",
   "schemaVersion": "1-0-1",
   "key": "AR",
-  "name": "Availability Requirement",
-  "description": "This metric measures the impact to the availability of a successfully exploited vulnerability.",
   "values": [
     {
       "key": "L",
