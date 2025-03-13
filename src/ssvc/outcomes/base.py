@@ -17,7 +17,7 @@ Provides outcome group and outcome value classes for SSVC.
 
 from pydantic import BaseModel
 
-from ssvc._mixins import _Base, _Keyed, _Versioned
+from ssvc._mixins import _Base, _Keyed, _Valued, _Versioned
 
 
 class OutcomeValue(_Base, _Keyed, BaseModel):
@@ -26,25 +26,11 @@ class OutcomeValue(_Base, _Keyed, BaseModel):
     """
 
 
-class OutcomeGroup(_Base, _Keyed, _Versioned, BaseModel):
+class OutcomeGroup(_Valued, _Base, _Keyed, _Versioned, BaseModel):
     """
     Models an outcome group.
     """
 
     values: tuple[OutcomeValue, ...]
-
-    def __iter__(self):
-        """
-        Allow iteration over the outcomes in the group.
-        """
-        return iter(self.values)
-
-    def __len__(self):
-        """
-        Allow len() to be called on the group.
-        """
-        olist = list(self.values)
-        l = len(olist)
-        return l
 
     # register all instances
