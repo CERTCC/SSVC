@@ -11,7 +11,10 @@ included a few examples here.
 
 <div class="grid cards" markdown>
 
+- [Functional Impact](functional_impact.md)
 - [Incident Severity](incident_severity.md)
+- [Information Impact](information_impact.md)
+- [Observed Activity](observed_activity.md)
 - [Observed Location of Activity](observed_activity_location.md)
 - [Recoverability](recoverability.md)
 

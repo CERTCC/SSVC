@@ -1,7 +1,6 @@
-# Observed Location of Activity
-
+# Functional Impact
 ```python exec="true" idprefix=""
-from ssvc.decision_points.nciss.observed_activity_location import LATEST
+from ssvc.decision_points.nciss.functional_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
