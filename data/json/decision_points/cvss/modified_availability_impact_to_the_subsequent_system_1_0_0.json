@@ -9,7 +9,7 @@
     {
       "key": "N",
       "name": "Negligible",
-      "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+      "description": "There is negligible impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
     },
     {
       "key": "L",

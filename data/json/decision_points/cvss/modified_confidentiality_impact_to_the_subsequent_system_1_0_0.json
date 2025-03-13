@@ -9,7 +9,7 @@
     {
       "key": "N",
       "name": "Negligible",
-      "description": "There is no loss of confidentiality within the Subsequent System or all confidentiality impact is constrained to the Vulnerable System."
+      "description": "There is negligible loss of confidentiality within the Subsequent System or all confidentiality impact is constrained to the Vulnerable System."
     },
     {
       "key": "L",

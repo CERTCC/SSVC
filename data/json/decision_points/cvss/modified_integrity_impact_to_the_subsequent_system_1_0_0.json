@@ -9,7 +9,7 @@
     {
       "key": "N",
       "name": "Negligible",
-      "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+      "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
     },
     {
       "key": "L",
