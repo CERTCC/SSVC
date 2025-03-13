@@ -20,7 +20,7 @@ import logging
 import pandas as pd
 from pydantic import BaseModel, field_validator
 
-from ssvc._mixins import _Base, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Commented, _Namespaced, _Versioned
 from ssvc.csv_analyzer import check_topological_order
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
@@ -29,7 +29,7 @@ from ssvc.policy_generator import PolicyGenerator
 logger = logging.getLogger(__name__)
 
 
-class DecisionTable(_Versioned, _Namespaced, _Base, BaseModel):
+class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
     """
     The DecisionTable class is a model for decisions in SSVC.
 
