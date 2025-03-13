@@ -18,9 +18,9 @@ Defines the formatting for SSVC Decision Points.
 
 import logging
 
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc._mixins import _Base, _Commented, _Keyed, _Namespaced, _Valued, _Versioned
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ def _reset_registered():
     REGISTERED_DECISION_POINTS = []
 
 
-class SsvcDecisionPointValue(_Base, _Keyed, BaseModel):
+class SsvcDecisionPointValue(_Base, _Keyed, _Commented, BaseModel):
     """
     Models a single value option for a decision point.
     """
@@ -64,19 +64,22 @@ class SsvcDecisionPointValue(_Base, _Keyed, BaseModel):
         return self.name
 
 
-class SsvcDecisionPoint(_Valued, _Keyed, _Versioned, _Namespaced, _Base, BaseModel):
+class SsvcDecisionPoint(
+    _Valued, _Keyed, _Versioned, _Namespaced, _Base, _Commented, BaseModel
+):
     """
     Models a single decision point as a list of values.
     """
 
     values: tuple[SsvcDecisionPointValue, ...]
 
-    def __init__(self, **data):
-        super().__init__(**data)
+    @model_validator(mode="after")
+    def _register(self):
+        """
+        Register the decision point.
+        """
         register(self)
-
-    def __post_init__(self):
-        register(self)
+        return self
 
 
 def main():
