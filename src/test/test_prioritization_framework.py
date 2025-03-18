@@ -50,7 +50,7 @@ class MyTestCase(unittest.TestCase):
         self.assertGreater(len(self.framework.mapping), 0)
 
     def test_generate_mapping(self):
-        result = self.framework.generate_mapping()
+        result = self.framework.generate_df()
 
         # there should be one row in result for each combination of decision points
         combo_count = len(list(self.framework.decision_point_group.combinations()))

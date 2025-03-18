@@ -48,7 +48,7 @@ def fake_ms_impacts() -> list[CvssDecisionPoint]:
     return dps
 
 
-class MyTestCase(unittest.TestCase):
+class TestCvssHelpers(unittest.TestCase):
     def setUp(self) -> None:
         self.dps = []
         for i in range(3):
@@ -81,7 +81,13 @@ class MyTestCase(unittest.TestCase):
             self.assertTrue(modified.name.startswith("Modified"))
 
             self.assertIn("Not Defined", [v.name for v in modified.values])
-            self.assertIn("X", [v.key for v in modified.values])
+
+            found = False
+            for v in modified.values:
+                if v.key.endswith(":X"):
+                    found = True
+                    break
+            self.assertTrue(found)
 
     def test_modify_4(self):
         # _modify 4 assumes you've already done the Modify 3 step

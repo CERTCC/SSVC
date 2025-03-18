@@ -66,7 +66,7 @@ The coordinate outcome group.
 """
 
 MOSCOW = OutcomeGroup(
-    name="Must, Should, Could, Won't",
+    name="MoSCoW",
     key="MOSCOW",
     description="The Moscow outcome group.",
     version="1.0.0",

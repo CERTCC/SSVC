@@ -81,7 +81,7 @@ def _modify_4(dp: SsvcDecisionPoint):
     key = _dp_dict["key"]
     if key in ["MSC", "MSI", "MSA"]:
         for v in _dp_dict["values"]:
-            if v["key"] == "N":
+            if v["key"].endswith(":N"):
                 v["name"] = "Negligible"
                 v["description"] = v["description"].replace(" no ", " negligible ")
                 break

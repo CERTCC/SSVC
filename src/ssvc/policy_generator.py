@@ -179,7 +179,10 @@ class PolicyGenerator:
 
     def clean_policy(self) -> pd.DataFrame:
         df = self.policy.copy()
+        # rename "outcome" column to outcome group name
+        df = df.rename(columns={"outcome": self.outcomes.name})
         print_cols = [c for c in df.columns if not c.startswith("idx_")]
+
         for c in print_cols:
             df[c] = df[c].str.lower()
 

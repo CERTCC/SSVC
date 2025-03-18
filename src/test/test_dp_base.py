@@ -84,7 +84,7 @@ class MyTestCase(unittest.TestCase):
         for i, obj in enumerate(self.values):
             # should have name, key, description
             self.assertEqual(obj.name, f"foo{i}")
-            self.assertEqual(obj.key, f"bar{i}")
+            self.assertTrue(obj.key.endswith(f"_bar{i}"))
             self.assertEqual(obj.description, f"baz{i}")
 
             # should not have namespace, version

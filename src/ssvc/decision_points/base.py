@@ -74,6 +74,14 @@ class SsvcDecisionPoint(
     values: tuple[SsvcDecisionPointValue, ...]
 
     @model_validator(mode="after")
+    def _prepend_value_keys(self):
+        delim = ":"
+        for value in self.values:
+            if delim not in value.key:
+                value.key = delim.join((self.namespace, self.key, value.key))
+        return self
+
+    @model_validator(mode="after")
     def _register(self):
         """
         Register the decision point.

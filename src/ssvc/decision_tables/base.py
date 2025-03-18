@@ -16,17 +16,26 @@
 Provides a DecisionTable class that can be used to model decisions in SSVC
 """
 import logging
+from typing import Self
 
 import pandas as pd
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _Versioned
 from ssvc.csv_analyzer import check_topological_order
+from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.outcomes.base import OutcomeGroup
+from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
 from ssvc.policy_generator import PolicyGenerator
 
 logger = logging.getLogger(__name__)
+
+
+def name_to_key(name: str) -> str:
+    """
+    Convert a name to a key by converting to lowercase and replacing spaces with underscores.
+    """
+    return name.lower().replace(" ", "_")
 
 
 class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -42,70 +51,62 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
 
     decision_point_group: SsvcDecisionPointGroup
     outcome_group: OutcomeGroup
-    mapping: dict[str, str]
+    mapping: list = None
+    _df: pd.DataFrame = None
 
-    def __init__(self, **data):
-        super().__init__(**data)
-
-        if not self.mapping:
-            mapping = self.generate_mapping()
-            self.__class__.validate_mapping(mapping)
-            self.mapping = mapping
-
-    @classmethod
-    def mapping_to_table(cls, data: dict) -> pd.DataFrame:
+    @property
+    def outcome_lookup(self) -> dict[str, OutcomeValue]:
         """
-        Convert the mapping to a pandas DataFrame.
+        Return a lookup table for outcomes.
+
+        Returns:
+            dict: A dictionary of outcomes keyed by outcome value name
         """
-        # extract column names from keys
-        values = {}
+        return {
+            name_to_key(outcome.name): outcome for outcome in self.outcome_group.values
+        }
 
-        cols = []
-        for key in data.keys():
-            parts = key.split(",")
-            for part in parts:
-                (_, dp, _) = part.split(":")
-                cols.append(dp)
+    @property
+    def dp_lookup(self) -> dict[str, SsvcDecisionPoint]:
+        """
+        Return a lookup table for decision points.
 
-        # add the outcome column
-        first_value = list(data.values())[0]
-        (okey, _) = first_value.split(":")
-        cols.append(okey)
+        Returns:
+            dict: A dictionary of decision points keyed by decision point name
+        """
+        return {
+            name_to_key(dp.name): dp for dp in self.decision_point_group.decision_points
+        }
 
-        # set up the lists for the columns
-        for col in cols:
-            col = col.lower()
-            values[col] = []
+    @property
+    def dp_value_lookup(self) -> dict[str, dict[str, SsvcDecisionPointValue]]:
+        """
+        Return a lookup table for decision point values.
+        Returns:
+            dict: A dictionary of decision point values keyed by decision point name and value name
+        """
+        dp_value_lookup = {}
+        for dp in self.decision_point_group.decision_points:
+            key1 = name_to_key(dp.name)
+            dp_value_lookup[key1] = {}
+            for dp_value in dp.values:
+                key2 = name_to_key(dp_value.name)
+                dp_value_lookup[key1][key2] = dp_value
+        return dp_value_lookup
 
-        for key, value in data.items():
-            key = key.lower()
-            value = value.lower()
+    @model_validator(mode="after")
+    def _populate_df(self) -> Self:
+        if self._df is None:
+            self._df = self.generate_df()
+        return self
 
-            parts = key.split(",")
-            for part in parts:
-                (ns, dp, val) = part.split(":")
-                values[dp].append(val)
-
-            (og_key, og_valkey) = value.split(":")
-            values[og_key].append(og_valkey)
-
-        # now values is a dict of columnar data
-        df = pd.DataFrame(values)
-        # the last column is the outcome
-        return df
-
-    # stub for validating mapping
-    @field_validator("mapping", mode="before")
-    @classmethod
-    def validate_mapping(cls, data):
+    @model_validator(mode="after")
+    def validate_mapping(self):
         """
         Placeholder for validating the mapping.
         """
-        if len(data) == 0:
-            return data
-
-        df = cls.mapping_to_table(data)
-        target = df.columns[-1]
+        df = self._df
+        target = df.columns[-1].lower().replace(" ", "_")
 
         problems: list = check_topological_order(df, target)
 
@@ -114,66 +115,76 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
         else:
             logger.debug("Mapping passes topological order check")
 
-        return data
+        return self
 
-    def generate_mapping(self) -> dict[str, str]:
+    @model_validator(mode="after")
+    def _populate_mapping(self) -> Self:
+        """
+        Populate the mapping if it is not provided.
+        Args:
+            data:
+
+        Returns:
+
+        """
+        if not self.mapping:
+            mapping = self.table_to_mapping(self._df)
+            self.mapping = mapping
+        return self
+
+    def as_csv(self) -> str:
+        """
+        Convert the mapping to a CSV string.
+        """
+        raise NotImplementedError
+
+    def as_df(self) -> pd.DataFrame:
+        """
+        Convert the mapping to a pandas DataFrame.
+        """
+        return self.generate_df()
+
+    # stub for validating mapping
+    def generate_df(self) -> pd.DataFrame:
         """
         Populate the mapping with all possible combinations of decision points.
         """
-        mapping = {}
-        dp_lookup = {
-            dp.name.lower(): dp for dp in self.decision_point_group.decision_points
-        }
-        outcome_lookup = {
-            outcome.name.lower(): outcome for outcome in self.outcome_group.values
-        }
-
-        dp_value_lookup = {}
-        for dp in self.decision_point_group.decision_points:
-            key1 = dp.name.lower()
-            dp_value_lookup[key1] = {}
-            for dp_value in dp.values:
-                key2 = dp_value.name.lower()
-                dp_value_lookup[key1][key2] = dp_value
-
         with PolicyGenerator(
             dp_group=self.decision_point_group,
             outcomes=self.outcome_group,
         ) as policy:
-            table: pd.DataFrame = policy.clean_policy()
+            df: pd.DataFrame = policy.clean_policy()
 
-        # the table is a pandas DataFrame
-        # the columns are the decision points, with the last column being the outcome
-        # the rows are the possible combinations of decision points
-        # we need to convert this back to specific decision points and outcomes
-        for row in table.itertuples():
-            outcome_name = row[-1].lower()
-            outcome = outcome_lookup[outcome_name]
+        return df
 
-            dp_value_names = row[1:-1]
-            dp_value_names = [dp_name.lower() for dp_name in dp_value_names]
+    def table_to_mapping(self, df: pd.DataFrame) -> list[tuple[str, ...]]:
+        # copy dataframe
+        df = pd.DataFrame(df)
 
-            columns = [col.lower() for col in table.columns]
+        columns = [name_to_key(col) for col in df.columns]
+        df.columns = columns
+        data = []
+        for index, row in df.iterrows():
+            row_data = []
+            for column in columns:
+                value = None
+                ovalue = None
+                value_name = name_to_key(row[column])
+                try:
+                    value = self.dp_value_lookup[column][value_name]
+                except KeyError:
+                    ovalue = self.outcome_lookup[value_name]
 
-            # construct the key for the mapping
-            dp_values = []
-            for col, val in zip(columns, dp_value_names):
-                value_lookup = dp_value_lookup[col]
-                dp = dp_lookup[col]
-                val = value_lookup[val]
+                if value is not None:
+                    row_data.append(value.key)
 
-                key_delim = ":"
-                k = key_delim.join([dp.namespace, dp.key, val.key])
-                dp_values.append(k)
+            if ovalue is None:
+                raise ValueError("Outcome value not found")
+            row_data = tuple(row_data)
+            t = tuple([row_data, ovalue.key])
 
-            key = ",".join([str(k) for k in dp_values])
-
-            outcome_group = self.outcome_group
-            outcome_str = ":".join([outcome_group.key, outcome.key])
-
-            mapping[key] = outcome_str
-
-        return mapping
+            data.append(t)
+        return data
 
 
 # convenience alias
@@ -194,15 +205,10 @@ def main():
         version="1.0.0",
         decision_point_group=dpg,
         outcome_group=og,
-        mapping={},
     )
     print(dfw.model_dump_json(indent=2))
-    print()
-    print()
-    print("### JSON SCHEMA ###")
-    import json
 
-    print(json.dumps(DecisionTable.model_json_schema(), indent=2))
+    print(dfw._df)
 
 
 if __name__ == "__main__":
