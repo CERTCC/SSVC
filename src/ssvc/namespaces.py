@@ -23,6 +23,10 @@ X_PFX = "x_"
 
 
 class NameSpace(StrEnum):
+    """
+    Defines the official namespaces for SSVC.
+    """
+
     # auto() is used to automatically assign values to the members.
     # when used in a StrEnum, auto() assigns the lowercase name of the member as the value
     SSVC = auto()
@@ -34,6 +38,19 @@ class NamespaceValidator:
 
     @classmethod
     def validate(cls, value: str) -> str:
+        """
+        Validate the namespace value. The value must be one of the official namespaces or start with 'x_'.
+
+        Args:
+            value: a string representing a namespace
+
+        Returns:
+            the validated namespace value
+
+        Raises:
+            ValueError: if the value is not a valid namespace
+
+        """
         if value in NameSpace.__members__.values():
             return value
         if value.startswith(X_PFX):

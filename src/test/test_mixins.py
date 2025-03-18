@@ -70,21 +70,22 @@ class TestMixins(unittest.TestCase):
         self.assertEqual(obj2.name, "quux")
         self.assertEqual(obj2.description, "baz")
 
-    def test_namespaced_create(self):
+    def test_namespaced_create_errors(self):
         # error if no namespace given
         with self.assertRaises(ValidationError):
             _Namespaced()
-
-        # use the official namespace values
-        for ns in NameSpace:
-            obj = _Namespaced(namespace=ns)
-            self.assertEqual(obj.namespace, ns)
 
         # error if namespace is not in the enum
         # and it doesn't start with x_
         self.assertNotIn("quux", NameSpace)
         with self.assertRaises(ValidationError):
             _Namespaced(namespace="quux")
+
+    def test_namespaced_create(self):
+        # use the official namespace values
+        for ns in NameSpace:
+            obj = _Namespaced(namespace=ns)
+            self.assertEqual(obj.namespace, ns)
 
         # custom namespaces are allowed as long as they start with x_
         for _ in range(100):
