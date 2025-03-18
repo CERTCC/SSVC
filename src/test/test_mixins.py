@@ -16,8 +16,8 @@ from random import randint
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
 from ssvc.namespaces import NameSpace
+from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
 
 
 class TestMixins(unittest.TestCase):
@@ -106,6 +106,22 @@ class TestMixins(unittest.TestCase):
         self.assertEqual(obj.key, "foo")
 
         self.assertRaises(ValidationError, _Keyed)
+
+    def test_valued_create(self):
+        values = ("foo", "bar", "baz", "quux")
+        obj = _Valued(values=values)
+
+        # length
+        self.assertEqual(len(obj), len(values))
+
+        # iteration
+        for i, v in enumerate(obj):
+            self.assertEqual(v, values[i])
+
+        # values
+        self.assertEqual(obj.values, values)
+
+        self.assertRaises(ValidationError, _Valued)
 
     def test_mixin_combos(self):
         # We need to test all the combinations

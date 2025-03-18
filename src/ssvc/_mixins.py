@@ -84,6 +84,12 @@ class _Valued(BaseModel):
         """
         return iter(self.values)
 
+    def __len__(self):
+        """
+        Allow len() to be called on the object.
+        """
+        return len(self.values)
+
 
 def exclude_if_none(value):
     return value is None
