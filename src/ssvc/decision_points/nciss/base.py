@@ -18,6 +18,7 @@ Provides a base class for decision points modeled after the US National Cyber In
 from pydantic import BaseModel
 
 from ssvc.decision_points import SsvcDecisionPoint
+from ssvc.namespaces import NameSpace
 
 
 class NcissDecisionPoint(SsvcDecisionPoint, BaseModel):
@@ -25,7 +26,7 @@ class NcissDecisionPoint(SsvcDecisionPoint, BaseModel):
     Models a single NCISS decision point as a list of values.
     """
 
-    namespace: str = "nciss"
+    namespace: str = NameSpace.NCISS
 
 
 def main():
