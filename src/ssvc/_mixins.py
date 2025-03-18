@@ -20,6 +20,7 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict, field_validator
 from semver import Version
 
+from ssvc.namespaces import NamespaceValidator
 from . import _schemaVersion
 
 
@@ -54,7 +55,12 @@ class _Namespaced(BaseModel):
     Mixin class for namespaced SSVC objects.
     """
 
-    namespace: str = "ssvc"
+    namespace: str
+
+    @field_validator("namespace", mode="before")
+    @classmethod
+    def validate_namespace(cls, value):
+        return NamespaceValidator.validate(value)
 
 
 class _Keyed(BaseModel):

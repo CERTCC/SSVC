@@ -12,10 +12,12 @@
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 import unittest
+from random import randint
 
 from pydantic import BaseModel, ValidationError
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
+from ssvc.namespaces import NameSpace
 
 
 class TestMixins(unittest.TestCase):
@@ -68,12 +70,29 @@ class TestMixins(unittest.TestCase):
         self.assertEqual(obj2.name, "quux")
         self.assertEqual(obj2.description, "baz")
 
-    def test_namespaced_create(self):
-        obj = _Namespaced()
-        self.assertEqual(obj.namespace, "ssvc")
+    def test_namespaced_create_errors(self):
+        # error if no namespace given
+        with self.assertRaises(ValidationError):
+            _Namespaced()
 
-        obj = _Namespaced(namespace="quux")
-        self.assertEqual(obj.namespace, "quux")
+        # error if namespace is not in the enum
+        # and it doesn't start with x_
+        self.assertNotIn("quux", NameSpace)
+        with self.assertRaises(ValidationError):
+            _Namespaced(namespace="quux")
+
+    def test_namespaced_create(self):
+        # use the official namespace values
+        for ns in NameSpace:
+            obj = _Namespaced(namespace=ns)
+            self.assertEqual(obj.namespace, ns)
+
+        # custom namespaces are allowed as long as they start with x_
+        for _ in range(100):
+            # we're just fuzzing some random strings here
+            ns = f"x_{randint(1000,1000000)}"
+            obj = _Namespaced(namespace=ns)
+            self.assertEqual(obj.namespace, ns)
 
     def test_versioned_create(self):
         obj = _Versioned()
@@ -94,8 +113,8 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "buzz"},
-                "has_default": True,
+                "args": {"namespace": "x_test"},
+                "has_default": False,
             },
             {
                 "class": _Versioned,
@@ -103,9 +122,7 @@ class TestMixins(unittest.TestCase):
                 "has_default": True,
             },
         ]
-        keys_with_defaults = [
-            x["args"].keys() for x in mixins if x["has_default"]
-        ]
+        keys_with_defaults = [x["args"].keys() for x in mixins if x["has_default"]]
         # flatten the list
         keys_with_defaults = [
             item for sublist in keys_with_defaults for item in sublist
