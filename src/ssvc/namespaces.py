@@ -25,13 +25,12 @@ X_PFX = "x_"
 # pattern to match
 # `^(x_)`: `x_` prefix is optional
 # `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
-# `([a-z0-9]+[/.-]?[a-z0-9]*)*[a-z0-9]`: remainder can contain alphanumeric characters,
-# periods, hyphens, and forward slashes
 # `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
-# `[a-z0-9]*`: but an arbitrary number of alphanumeric characters can be between punctuation characters
-# `([a-z0-9]+[/.-]?[a-z0-9]*)*` and the total number of punctuation characters is not limited
-# `[a-z0-9]$`: the string must end with an alphanumeric character
-NS_PATTERN = re.compile(r"^(x_)?[a-z0-9]{3,4}([a-z0-9]*[/.-]?[a-z0-9]*[a-z0-9])*$")
+# `[a-z0-9]+`: at least one alphanumeric character is required after the punctuation character
+#  `([/.-]?[a-z0-9]+)*`: zero or more occurrences of the punctuation character followed by at least one alphanumeric character
+# `$`: end of the string
+# last character must be alphanumeric
+NS_PATTERN = re.compile(r"^(x_)?[a-z0-9]{3,4}([/.-]?[a-z0-9]+)*$")
 
 
 class NameSpace(StrEnum):
