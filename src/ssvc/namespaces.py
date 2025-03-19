@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """
-Provides a namespace enum
+SSVC objects use namespaces to distinguish between objects that arise from different
+stakeholders or analytical category sources. This module defines the official namespaces
+for SSVC and provides a method to validate namespace values.
 """
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
@@ -18,10 +20,8 @@ Provides a namespace enum
 import re
 from enum import StrEnum, auto
 
-# extensions / experimental namespaces should start with the following prefix
-# this is to avoid conflicts with official namespaces
 X_PFX = "x_"
-
+"""The prefix for extension namespaces. Extension namespaces must start with this prefix."""
 
 # pattern to match
 # `(?=.{3,25}$)`: 3-25 characters long
@@ -32,7 +32,20 @@ X_PFX = "x_"
 # `([/.-]?[a-z0-9]+){0,22}`: zero to 22 occurrences of the punctuation character followed by at least one alphanumeric character
 # (note that the total limit will kick in at or before this point)
 # `$`: end of the string
-NS_PATTERN = re.compile(r"^(?=.{3,25}$)(x_)?[a-z0-9]{3,4}([/.-]?[a-z0-9]+){0,22}$")
+NS_PATTERN = re.compile(r"^(?=.{3,25}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,22}$")
+"""The regular expression pattern for validating namespaces.
+
+Note: 
+    Namespace values must 
+    
+    - be 3-25 characters long
+    - contain only lowercase alphanumeric characters and limited punctuation characters (`/`,`.` and `-`)
+    - have only one punctuation character in a row
+    - start with 3-4 alphanumeric characters after the optional extension prefix
+    - end with an alphanumeric character
+    
+    See examples in the `NameSpace` enum.
+"""
 
 
 class NameSpace(StrEnum):
@@ -43,7 +56,8 @@ class NameSpace(StrEnum):
     Namespaces must be 3-25 lowercase characters long and must start with 3-4 alphanumeric characters after the optional prefix.
     Limited punctuation characters (/.-) are allowed between alphanumeric characters, but only one at a time.
 
-    Examples:
+    Example:
+        Following are examples of valid and invalid namespace values:
 
         - `ssvc` is *valid* because it is present in the enum
         - `custom` is *invalid* because it does not start with the experimental prefix and is not in the enum
@@ -61,9 +75,10 @@ class NameSpace(StrEnum):
     CVSS = auto()
 
     @classmethod
-    def validate(cls, value):
+    def validate(cls, value: str) -> str:
         """
-        Validate the namespace value.
+        Validate the namespace value. Valid values are members of the enum or start with the experimental prefix and
+        meet the specified pattern requirements.
 
         Args:
             value: the namespace value to validate
