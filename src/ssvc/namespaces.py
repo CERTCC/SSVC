@@ -15,11 +15,23 @@ Provides a namespace enum
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
+import re
 from enum import StrEnum, auto
 
 # extensions / experimental namespaces should start with the following prefix
 # this is to avoid conflicts with official namespaces
 X_PFX = "x_"
+
+# pattern to match
+# `^(x_)`: `x_` prefix is optional
+# `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
+# `([a-z0-9]+[/.-]?[a-z0-9]*)*[a-z0-9]`: remainder can contain alphanumeric characters,
+# periods, hyphens, and forward slashes
+# `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
+# `[a-z0-9]*`: but an arbitrary number of alphanumeric characters can be between punctuation characters
+# `([a-z0-9]+[/.-]?[a-z0-9]*)*` and the total number of punctuation characters is not limited
+# `[a-z0-9]$`: the string must end with an alphanumeric character
+NS_PATTERN = re.compile(r"^(x_)?[a-z0-9]{3,4}([a-z0-9]*[/.-]?[a-z0-9]*[a-z0-9])*$")
 
 
 class NameSpace(StrEnum):
@@ -33,17 +45,13 @@ class NameSpace(StrEnum):
     CVSS = auto()
     NCISS = auto()
 
-
-class NamespaceValidator:
-    """Custom type for validating namespaces."""
-
     @classmethod
-    def validate(cls, value: str) -> str:
+    def validate(cls, value):
         """
-        Validate the namespace value. The value must be one of the official namespaces or start with 'x_'.
+        Validate the namespace value.
 
         Args:
-            value: a string representing a namespace
+            value: the namespace value to validate
 
         Returns:
             the validated namespace value
@@ -52,16 +60,13 @@ class NamespaceValidator:
             ValueError: if the value is not a valid namespace
 
         """
-        if value in NameSpace.__members__.values():
+        if value in cls.__members__.values():
             return value
-        if value.startswith(X_PFX):
+        if value.startswith(X_PFX) and NS_PATTERN.match(value):
             return value
         raise ValueError(
-            f"Invalid namespace: {value}. Must be one of {[ns.value for ns in NameSpace]} or start with '{X_PFX}'."
+            f"Invalid namespace: {value}. Must be one of {[ns.value for ns in cls]} or start with '{X_PFX}'."
         )
-
-    def __get_validators__(cls):
-        yield cls.validate
 
 
 def main():
