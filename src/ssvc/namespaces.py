@@ -38,6 +38,21 @@ NS_PATTERN = re.compile(r"^(?=.{3,25}$)(x_)?[a-z0-9]{3,4}([/.-]?[a-z0-9]+){0,22}
 class NameSpace(StrEnum):
     """
     Defines the official namespaces for SSVC.
+
+    The namespace value must be one of the members of this enum or start with the prefix specified in X_PFX.
+    Namespaces must be 3-25 lowercase characters long and must start with 3-4 alphanumeric characters after the optional prefix.
+    Limited punctuation characters (/.-) are allowed between alphanumeric characters, but only one at a time.
+
+    Examples:
+
+        - `ssvc` is *valid* because it is present in the enum
+        - `custom` is *invalid* because it does not start with the experimental prefix and is not in the enum
+        - `x_custom` is *valid* because it starts with the experimental prefix and meets the pattern requirements
+        - `x_custom/extension` is *valid* because it starts with the experimental prefix and meets the pattern requirements
+        - `x_custom/extension/with/multiple/segments` is *invalid* because it exceeds the maximum length
+        - `x_custom//extension` is *invalid* because it has multiple punctuation characters in a row
+        - `x_custom.extension.` is *invalid* because it does not end with an alphanumeric character
+        - `x_custom.extension.9` is *valid* because it meets the pattern requirements
     """
 
     # auto() is used to automatically assign values to the members.
