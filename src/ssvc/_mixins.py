@@ -57,7 +57,7 @@ class _Namespaced(BaseModel):
 
     # the field definition enforces the pattern for namespaces
     # additional validation is performed in the field_validator immediately after the pattern check
-    namespace: str = Field(pattern=NS_PATTERN)
+    namespace: str = Field(pattern=NS_PATTERN, min_length=3, max_length=25)
 
     @field_validator("namespace", mode="before")
     @classmethod

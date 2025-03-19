@@ -22,15 +22,17 @@ from enum import StrEnum, auto
 # this is to avoid conflicts with official namespaces
 X_PFX = "x_"
 
+
 # pattern to match
+# `(?=.{3,25}$)`: 3-25 characters long
 # `^(x_)`: `x_` prefix is optional
 # `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
 # `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
 # `[a-z0-9]+`: at least one alphanumeric character is required after the punctuation character
-#  `([/.-]?[a-z0-9]+)*`: zero or more occurrences of the punctuation character followed by at least one alphanumeric character
+# `([/.-]?[a-z0-9]+){0,22}`: zero to 22 occurrences of the punctuation character followed by at least one alphanumeric character
+# (note that the total limit will kick in at or before this point)
 # `$`: end of the string
-# last character must be alphanumeric
-NS_PATTERN = re.compile(r"^(x_)?[a-z0-9]{3,4}([/.-]?[a-z0-9]+)*$")
+NS_PATTERN = re.compile(r"^(?=.{3,25}$)(x_)?[a-z0-9]{3,4}([/.-]?[a-z0-9]+){0,22}$")
 
 
 class NameSpace(StrEnum):
