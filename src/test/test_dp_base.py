@@ -34,7 +34,7 @@ class MyTestCase(unittest.TestCase):
             key="bar",
             description="baz",
             version="1.0.0",
-            namespace="name1",
+            namespace="x_test",
             values=tuple(self.values),
         )
 
@@ -42,6 +42,14 @@ class MyTestCase(unittest.TestCase):
         # restore the original registry
         base._reset_registered()
 
+    def test_decision_point_basics(self):
+        from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+
+        # inherits from mixins
+        mixins = [_Valued, _Base, _Keyed, _Versioned, _Namespaced]
+        for mixin in mixins:
+            self.assertIsInstance(self.dp, mixin)
+
     def test_registry(self):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
@@ -64,7 +72,7 @@ class MyTestCase(unittest.TestCase):
             key="asdfasdf",
             description="asdfasdf",
             version="1.33.1",
-            namespace="asdfasdf",
+            namespace="x_test",
             values=self.values,
         )
 
@@ -90,7 +98,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj.key, "bar")
         self.assertEqual(obj.description, "baz")
         self.assertEqual(obj.version, "1.0.0")
-        self.assertEqual(obj.namespace, "name1")
+        self.assertEqual(obj.namespace, "x_test")
         self.assertEqual(len(self.values), len(obj.values))
 
     def test_ssvc_value_json_roundtrip(self):

@@ -1,10 +1,10 @@
 {
+  "name": "Equivalence Set 2",
+  "description": "AC/AT with 2 levels specified in Table 25",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "EQ2",
-  "name": "Equivalence Set 2",
-  "description": "AC/AT with 2 levels specified in Table 25",
   "values": [
     {
       "key": "L",
