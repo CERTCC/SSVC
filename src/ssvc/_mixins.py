@@ -17,7 +17,7 @@ This module provides mixin classes for adding features to SSVC objects.
 
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from semver import Version
 
 from ssvc.namespaces import NamespaceValidator
@@ -55,7 +55,9 @@ class _Namespaced(BaseModel):
     Mixin class for namespaced SSVC objects.
     """
 
-    namespace: str
+    # the field definition enforces the pattern for namespaces
+    # additional validation is performed in the field_validator immediately after the pattern check
+    namespace: str = Field(pattern=NS_PATTERN)
 
     @field_validator("namespace", mode="before")
     @classmethod
