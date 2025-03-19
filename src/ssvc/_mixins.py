@@ -20,7 +20,7 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from semver import Version
 
-from ssvc.namespaces import NamespaceValidator
+from ssvc.namespaces import NS_PATTERN, NameSpace
 from . import _schemaVersion
 
 
@@ -62,7 +62,22 @@ class _Namespaced(BaseModel):
     @field_validator("namespace", mode="before")
     @classmethod
     def validate_namespace(cls, value):
-        return NamespaceValidator.validate(value)
+        """
+        Validate the namespace field.
+        The value will have already been checked against the pattern in the field definition.
+        The value must be one of the official namespaces or start with 'x_'.
+
+        Args:
+            value: a string representing a namespace
+
+        Returns:
+            the validated namespace value
+
+        Raises:
+            ValueError: if the value is not a valid namespace
+        """
+
+        return NameSpace.validate(value)
 
 
 class _Keyed(BaseModel):
