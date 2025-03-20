@@ -17,6 +17,10 @@ DOCS_IMAGE = $(PFX)_docs
 
 all: help
 
+mdlint_fix:
+	@echo "Running markdownlint..."
+	markdownlint --config .markdownlint.yml --fix .
+
 dockerbuild_test:
 	@echo "Building the test Docker image..."
 	$(DOCKER_BUILD) --target $(TEST_DOCKER_TARGET) --tag $(TEST_IMAGE) .
@@ -46,6 +50,7 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo " all         - Display this help message"
+	@echo " mdlint_fix  - Run markdownlint with --fix"
 	@echo " docs        - Build and run the docs Docker image"
 	@echo " docker_test - Build and run the test Docker image"
 	@echo ""
