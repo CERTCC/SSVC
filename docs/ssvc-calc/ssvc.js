@@ -21,7 +21,7 @@ var diagonal,tree,svg,duration,root
 var treeData = []
 /* Deefault color array of possible color options */
 var acolors = ["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
-var lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
+var lcolors = {"Track":"#28a745","Monitor":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
 var ssvc_short_keys = {};
 /* These variables are for decision tree schema JSON aka SSVC Provision Schema */
 var export_schema = {decision_points: [],decisions_table: [], lang: "en",
