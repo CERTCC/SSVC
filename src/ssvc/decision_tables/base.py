@@ -16,6 +16,7 @@
 Provides a DecisionTable class that can be used to model decisions in SSVC
 """
 import logging
+import re
 from typing import Self
 
 import pandas as pd
@@ -35,7 +36,9 @@ def name_to_key(name: str) -> str:
     """
     Convert a name to a key by converting to lowercase and replacing spaces with underscores.
     """
-    return name.lower().replace(" ", "_")
+    # replace non-alphanumeric characters with underscores
+    new_name = re.sub(r"[^a-z0-9]+", "_", name.lower())
+    return new_name
 
 
 class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -106,7 +109,7 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
         Placeholder for validating the mapping.
         """
         df = self._df
-        target = df.columns[-1].lower().replace(" ", "_")
+        target = name_to_key(df.columns[-1])
 
         problems: list = check_topological_order(df, target)
 
