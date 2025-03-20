@@ -112,6 +112,7 @@ nav:
         - CSV Analyzer: 'reference/code/analyze_csv.md'
         - Policy Generator: 'reference/code/policy_generator.md'
         - Outcomes: 'reference/code/outcomes.md'
+        - Namespaces: 'reference/code/namespaces.md'
         - Doctools: 'reference/code/doctools.md'
   - Calculator: 'ssvc-calc/index.md'
   - About:
