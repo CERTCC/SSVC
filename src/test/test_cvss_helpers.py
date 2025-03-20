@@ -81,13 +81,7 @@ class TestCvssHelpers(unittest.TestCase):
             self.assertTrue(modified.name.startswith("Modified"))
 
             self.assertIn("Not Defined", [v.name for v in modified.values])
-
-            found = False
-            for v in modified.values:
-                if v.key.endswith(":X"):
-                    found = True
-                    break
-            self.assertTrue(found)
+            self.assertIn("X", [v.key for v in modified.values])
 
     def test_modify_4(self):
         # _modify 4 assumes you've already done the Modify 3 step

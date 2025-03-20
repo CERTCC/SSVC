@@ -18,7 +18,7 @@ Defines the formatting for SSVC Decision Points.
 
 import logging
 
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Keyed, _Namespaced, _Valued, _Versioned
 from ssvc.namespaces import NameSpace
@@ -74,13 +74,14 @@ class SsvcDecisionPoint(
 
     namespace: str = NameSpace.SSVC
     values: tuple[SsvcDecisionPointValue, ...]
+    value_dict: dict = Field(default_factory=dict, exclude=True)
 
     @model_validator(mode="after")
-    def _prepend_value_keys(self):
+    def _assign_value_dict(self):
         delim = ":"
         for value in self.values:
-            if delim not in value.key:
-                value.key = delim.join((self.namespace, self.key, value.key))
+            dict_key = delim.join((self.namespace, self.key, value.key))
+            self.value_dict[dict_key] = value
         return self
 
     @model_validator(mode="after")
