@@ -101,6 +101,23 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj.namespace, "x_test")
         self.assertEqual(len(self.values), len(obj.values))
 
+    def test_ssvc_decision_point_value_dict(self):
+        obj = self.dp
+        # should have values_dict
+        self.assertTrue(hasattr(obj, "value_dict"))
+        self.assertEqual(len(obj.value_dict), len(self.values))
+        # keys of value dict should be namespace:key:value.key
+        for value in self.values:
+            key = f"{obj.namespace}:{obj.key}:{value.key}"
+            self.assertIn(key, obj.value_dict)
+            self.assertEqual(obj.value_dict[key], value)
+
+        # values_dict should NOT appear in serialization
+        # not in the data structure
+        self.assertNotIn("value_dict", obj.model_dump())
+        # not in the json
+        self.assertNotIn("value_dict", obj.model_dump_json())
+
     def test_ssvc_value_json_roundtrip(self):
         for i, obj in enumerate(self.values):
             json = obj.model_dump_json()
