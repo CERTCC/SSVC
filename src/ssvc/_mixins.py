@@ -88,6 +88,26 @@ class _Keyed(BaseModel):
     key: str
 
 
+class _Valued(BaseModel):
+    """
+    Mixin class for valued SSVC objects.
+    """
+
+    values: tuple
+
+    def __iter__(self):
+        """
+        Allow iteration over the values in the object.
+        """
+        return iter(self.values)
+
+    def __len__(self):
+        """
+        Allow len() to be called on the object.
+        """
+        return len(self.values)
+
+
 def exclude_if_none(value):
     return value is None
 

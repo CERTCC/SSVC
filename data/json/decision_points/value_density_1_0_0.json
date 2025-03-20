@@ -1,10 +1,10 @@
 {
+  "name": "Value Density",
+  "description": "The concentration of value in the target",
   "namespace": "ssvc",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "VD",
-  "name": "Value Density",
-  "description": "The concentration of value in the target",
   "values": [
     {
       "key": "D",
