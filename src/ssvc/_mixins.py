@@ -34,7 +34,7 @@ class _Versioned(BaseModel):
 
     @field_validator("version")
     @classmethod
-    def validate_version(cls, value):
+    def validate_version(cls, value: str) -> str:
         """
         Validate the version field.
         Args:
@@ -61,7 +61,7 @@ class _Namespaced(BaseModel):
 
     @field_validator("namespace", mode="before")
     @classmethod
-    def validate_namespace(cls, value):
+    def validate_namespace(cls, value: str) -> str:
         """
         Validate the namespace field.
         The value will have already been checked against the pattern in the field definition.

@@ -16,8 +16,8 @@ from random import randint
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc.namespaces import NameSpace
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc.namespaces import NameSpace
 
 
 class TestMixins(unittest.TestCase):
