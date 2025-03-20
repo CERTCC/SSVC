@@ -29,13 +29,14 @@ class MyTestCase(unittest.TestCase):
             name="Test Prioritization Framework",
             description="Test Prioritization Framework Description",
             version="1.0.0",
+            namespace="x_test",
             decision_point_group=SsvcDecisionPointGroup(
                 name="Test Decision Point Group",
                 description="Test Decision Point Group Description",
                 decision_points=[exploitation_dp, exposure_dp, safety_dp],
             ),
             outcome_group=dsoi_og,
-            mapping={},
+            mapping=[],
         )
 
         pass

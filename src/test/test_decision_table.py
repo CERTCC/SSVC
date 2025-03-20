@@ -43,7 +43,7 @@ class MyTestCase(unittest.TestCase):
                 key=f"DP{i}",
                 description=f"Decision Point {i} Description",
                 version="1.0.0",
-                namespace="name1",
+                namespace="x_test",
                 values=tuple(dpvs),
             )
             dps.append(dp)
@@ -73,6 +73,7 @@ class MyTestCase(unittest.TestCase):
         self.dt = base.DecisionTable(
             name="foo",
             description="foo description",
+            namespace="x_test",
             decision_point_group=self.dpg,
             outcome_group=self.og,
         )
