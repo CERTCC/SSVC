@@ -12,10 +12,12 @@
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 import unittest
+from random import randint
 
 from pydantic import BaseModel, ValidationError
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc.namespaces import NameSpace
 
 
 class TestMixins(unittest.TestCase):
@@ -68,12 +70,47 @@ class TestMixins(unittest.TestCase):
         self.assertEqual(obj2.name, "quux")
         self.assertEqual(obj2.description, "baz")
 
-    def test_namespaced_create(self):
-        obj = _Namespaced()
-        self.assertEqual(obj.namespace, "ssvc")
+    def test_namespaced_create_errors(self):
+        # error if no namespace given
+        with self.assertRaises(ValidationError):
+            _Namespaced()
 
-        obj = _Namespaced(namespace="quux")
-        self.assertEqual(obj.namespace, "quux")
+        # error if namespace is not in the enum
+        # and it doesn't start with x_
+        self.assertNotIn("quux", NameSpace)
+        with self.assertRaises(ValidationError):
+            _Namespaced(namespace="quux")
+
+        # error if namespace starts with x_ but is too short
+        with self.assertRaises(ValidationError):
+            _Namespaced(namespace="x_")
+
+        # error if namespace starts with x_ but is too long
+        for i in range(100):
+            shortest = "x_aaa"
+            ns = shortest + "a" * i
+            with self.subTest(ns=ns):
+                # length limit set in the NS_PATTERN regex
+                if len(ns) <= 25:
+                    # expect success on shorter than limit
+                    _Namespaced(namespace=ns)
+                else:
+                    # expect failure on longer than limit
+                    with self.assertRaises(ValidationError):
+                        _Namespaced(namespace=ns)
+
+    def test_namespaced_create(self):
+        # use the official namespace values
+        for ns in NameSpace:
+            obj = _Namespaced(namespace=ns)
+            self.assertEqual(obj.namespace, ns)
+
+        # custom namespaces are allowed as long as they start with x_
+        for _ in range(100):
+            # we're just fuzzing some random strings here
+            ns = f"x_{randint(1000,1000000)}"
+            obj = _Namespaced(namespace=ns)
+            self.assertEqual(obj.namespace, ns)
 
     def test_versioned_create(self):
         obj = _Versioned()
@@ -110,8 +147,8 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "buzz"},
-                "has_default": True,
+                "args": {"namespace": "x_test"},
+                "has_default": False,
             },
             {
                 "class": _Versioned,
