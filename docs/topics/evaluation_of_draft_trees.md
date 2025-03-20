@@ -1,5 +1,4 @@
 
-
 # Evaluation of the Draft Trees
 
 We conducted a pilot test on the adequacy of the hypothesized decision trees.
@@ -39,13 +38,13 @@ In some domains, namely exploit availability, we have started that work in paral
 
 The structure of the pilot test is as follows. The next table provides an example of the information provided to each analyst. The supplier portfolio details use ~~strikeout font~~ because this decision item was removed after the pilot. The decision procedure for each case is as follows: for each analyst, for each vulnerability, for each stakeholder group, do the following.
 
-1.  Start at the root node of the relevant decision tree (deployer or supplier).
+1. Start at the root node of the relevant decision tree (deployer or supplier).
 
-2.  Document the decision branch that matches the vulnerability for this stakeholder context.
+2. Document the decision branch that matches the vulnerability for this stakeholder context.
 
-3.  Document the evidence that supports that decision.
+3. Document the evidence that supports that decision.
 
-4.  Repeat this decision-and-evidence process until the analyst reaches a leaf node in the tree.
+4. Repeat this decision-and-evidence process until the analyst reaches a leaf node in the tree.
 
 Table: Example of Scenario Information Provided to Analysts (Using
 [CVE-2019-9042](https://nvd.nist.gov/vuln/detail/CVE-2019-9042) as the Example)
@@ -130,7 +129,6 @@ This solution identifies another difficulty of Fleiss’ kappa, namely that it d
 
 Nonetheless, *k* provides some way to measure improvement on this a conceptual engineering task. The pilot evaluation can be repeated, with more diverse groups of stakeholders after the descriptions have been refined by stakeholder input, to measure fit to this goal. For a standard to be reliably applied across different analyst backgrounds, skill sets, and cultures, a set of decision point descriptions should ideally achieve *k* of 1 for each item in multiple studies with diverse participants. Such a high level of agreement would be difficult to achieve, but it would ensure that when two analysts assign a priority with the system that they get the same answer. Such agreement is not the norm with CVSS currently [@allodi2018effect].
 
-
 Table: SSVC pilot scores compared with the CVSS base scores for the vulnerabilities provided by NVD.
 
 | CVE-ID                                                            | Representative SSVC decision values  | SSVC recommendation (supplier, deployer)  | NVD’s CVSS base score  |
@@ -153,19 +151,19 @@ Based on these results, we made about ten changes, some bigger than others. We d
 
 The following changes were reflected in the version 1 Section "Decision Trees for Vulnerability Management."
 
-  - Technical impact: We clarified that partial/total is decided regarding the system scope definition, which considers a database or a web server program as the “whole” system. Furthermore, “total” also includes any technical impact that exposes authentication credentials to the adversary, if those credentials are to the whole system.
+- Technical impact: We clarified that partial/total is decided regarding the system scope definition, which considers a database or a web server program as the “whole” system. Furthermore, “total” also includes any technical impact that exposes authentication credentials to the adversary, if those credentials are to the whole system.
 
-  - We added advice for information gathering to answer safety impact and mission impact questions. This change is needed because of the particularly wide variety of background assumptions analysts made that influenced results and agreement.
+- We added advice for information gathering to answer safety impact and mission impact questions. This change is needed because of the particularly wide variety of background assumptions analysts made that influenced results and agreement.
 
-  - We clarified that “MEF failure” refers to any **one** essential function failing, not failure of all of them. We changed most severe mission impact to “mission failure” to better reflect the relationship between MEFs and the organization’s mission.
+- We clarified that “MEF failure” refers to any **one** essential function failing, not failure of all of them. We changed most severe mission impact to “mission failure” to better reflect the relationship between MEFs and the organization’s mission.
 
-  - We removed the “supplier portfolio value” question since it had poor agreement, and there is no clear way to correct it. We replaced this question with *Utility*, which better captures the relevant kinds of value (namely, to the adversary) of the affected component while remaining amenable to pragmatic analysis.
+- We removed the “supplier portfolio value” question since it had poor agreement, and there is no clear way to correct it. We replaced this question with *Utility*, which better captures the relevant kinds of value (namely, to the adversary) of the affected component while remaining amenable to pragmatic analysis.
 
-  - We clarified that “proof of concept” (see *Exploitation*) includes cases in which existing tooling counts as a PoC. The examples listed are suggestive, not exhaustive.
+- We clarified that “proof of concept” (see *Exploitation*) includes cases in which existing tooling counts as a PoC. The examples listed are suggestive, not exhaustive.
 
-  - We reorganized the decision trees based on which items are easier to gather information for or which ones have a widely verifiable state. This change moved *exploitation* to the first question.
+- We reorganized the decision trees based on which items are easier to gather information for or which ones have a widely verifiable state. This change moved *exploitation* to the first question.
 
-  - We changed the decision tree results such that if exposure is “small,” then the resulting priority is lower than before the pilot study. That is, “small” exposure has a stronger effect on reducing urgency.
+- We changed the decision tree results such that if exposure is “small,” then the resulting priority is lower than before the pilot study. That is, “small” exposure has a stronger effect on reducing urgency.
 
 ### Questions Removed as Ineffective
 

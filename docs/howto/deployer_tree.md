@@ -18,7 +18,7 @@ in their infrastructure.
 Deployers are usually in the position of receiving remediations or mitigations from their [Suppliers](supplier_tree.md)
 for products they have deployed.
 They must then decide whether to deploy the remediation or mitigation to a particular instance (or not).
-Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the 
+Whether they have the option of deploying only part of a remediation such as a fix bundle depends on whether the
 Supplier has engineered their release process to permit that degree of flexibility.
 For example, if service packs are fix bundles, the Supplier might choose to release individually deployable fixes as well.
 
@@ -35,12 +35,11 @@ The vulnerability management process for deployers has at its core the collation
 The first must be collected by the Deployer, while the latter two most often originate from the product Supplier.
 Managing this information is generally called **asset management**.
 
-
-In turn, Deployers must resolve this information into specific actions in which a remediation or mitigation is slated 
+In turn, Deployers must resolve this information into specific actions in which a remediation or mitigation is slated
 for deployment to replace or modify a particular instance of the product.
-The Deployer model described below considers the mission and safety risks inherent to the category of systems to which those 
+The Deployer model described below considers the mission and safety risks inherent to the category of systems to which those
 deployed instances belong.
-For this reason, we recommend that the pairing of remediation or mitigation to a product version instance constitutes 
+For this reason, we recommend that the pairing of remediation or mitigation to a product version instance constitutes
 the unit of work most appropriate for the Deployer.
 
 ## Deployer Decision Outcomes
@@ -58,16 +57,15 @@ While we've used the same priority names, the meaning of the priority may have d
     | Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
     | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
-
-When remediation is available, usually the action is to apply it. 
+When remediation is available, usually the action is to apply it.
 When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability
 (e.g., shutting down services or applying additional security controls) or accepting the risk of not mitigating the vulnerability.
 
-Applying mitigations may change the value of decision points. 
-A mitigation that successfully changes the value of a decision point may shift the priority of further action to a 
-reduced state. 
-If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation if it later 
-becomes available. 
+Applying mitigations may change the value of decision points.
+A mitigation that successfully changes the value of a decision point may shift the priority of further action to a
+reduced state.
+If applying a mitigation reduces the priority to *defer*, the deployer may not need to apply a remediation if it later
+becomes available.
 
 !!! example "Mitigation Examples"
 
@@ -125,7 +123,7 @@ for dp in [EXP, SE, U, HI]:
     print(example_block(dp))
 ```
 
-In the _Human Impact_ table above, *MEF* stands for Mission Essential Function.
+In the *Human Impact* table above, *MEF* stands for Mission Essential Function.
 
 ## Deployer Decision Model
 
@@ -137,7 +135,6 @@ Below we provide an example deployer prioritization policy that maps the decisio
 
     - An [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
     - A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](../reference/decision_points/human_impact.md) is [_very high_](../reference/decision_points/human_impact.md), resulting in an *out-of-cycle* priority.
-
 
 {% include-markdown "../_includes/_tree_notation_tip.md" %}
 

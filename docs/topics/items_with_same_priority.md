@@ -31,5 +31,3 @@ The priority is equivalent.
     fine-grained priorities within qualitative categories anyway.
 
 With our system, organizations can be more deliberate about conveniently organizing work that is of equivalent priority.
-
-

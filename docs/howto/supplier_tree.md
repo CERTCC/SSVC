@@ -43,11 +43,11 @@ Suppliers may also produce mitigations, such as recommended configuration change
 
 ## Supplier Decision Outcomes
 
-At a basic level, the decision at a software development organization is whether to issue a work order and what 
+At a basic level, the decision at a software development organization is whether to issue a work order and what
 resources to expend to remediate a vulnerability in the organization’s software.
 Prioritization is required because, at least in the current history of software engineering,
 the effort to patch all known vulnerabilities will exceed available resources.
-The organization considers several other factors to build the patch; refactoring a large portion of the code base may 
+The organization considers several other factors to build the patch; refactoring a large portion of the code base may
 be necessary for some patches, while others require relatively small changes.
 We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in the table below.
 
@@ -90,12 +90,11 @@ for dp in [EXP, U, TI, PSI]:
 
 ## Supplier Decision Model
 
-The example supplier decision model below shows a prioritization policy for the supplier. 
-We display the decision model as a decision tree, which provides a compact representation of the policy, 
+The example supplier decision model below shows a prioritization policy for the supplier.
+We display the decision model as a decision tree, which provides a compact representation of the policy,
 showing the relative priority of different situations.
 
 {% include-markdown "../_includes/_tree_notation_tip.md" %}
-
 
 <embed src="../../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"

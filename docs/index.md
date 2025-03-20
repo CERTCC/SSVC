@@ -1,9 +1,8 @@
 # Stakeholder-Specific Vulnerability Categorization
 
-SSVC stands for A Stakeholder-Specific Vulnerability Categorization. 
+SSVC stands for A Stakeholder-Specific Vulnerability Categorization.
 It is a methodology for prioritizing vulnerabilities based on the needs of the stakeholders involved in the vulnerability management process.
 SSVC is designed to be used by any stakeholder in the vulnerability management process, including finders, vendors, coordinators, deployers, and others.
-
 
 ## Where to go from here
 
@@ -11,7 +10,7 @@ We have organized the SSVC documentation into four main sections:
 
 <div class="grid cards" markdown>
 
-- :material-television-shimmer:{ .lg .middle } __Get Started with SSVC__
+- :material-television-shimmer:{ .lg .middle } **Get Started with SSVC**
 
     ---
 
@@ -20,7 +19,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: Learning SSVC](tutorials/index.md)
 
-- :material-clipboard-check:{ .lg .middle } __SSVC How To__
+- :material-clipboard-check:{ .lg .middle } **SSVC How To**
 
     ---
 
@@ -29,7 +28,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: SSVC How To](howto/index.md)
 
-- :fontawesome-solid-book:{ .lg .middle } __Learn More about SSVC__
+- :fontawesome-solid-book:{ .lg .middle } **Learn More about SSVC**
 
     ---
 
@@ -38,7 +37,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: Understanding SSVC](topics/index.md)
 
-- :material-book-open-page-variant:{ .lg .middle } __SSVC Reference__
+- :material-book-open-page-variant:{ .lg .middle } **SSVC Reference**
 
     ---
 
@@ -48,6 +47,5 @@ We have organized the SSVC documentation into four main sections:
     [:octicons-arrow-right-24: Reference](reference/index.md)
 
 </div>
-
 
 {% include-markdown "_includes/helping_out.md" heading-offset=1 %}

@@ -21,6 +21,7 @@ import logging
 from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Versioned
+from ssvc.namespaces import NameSpace
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +67,7 @@ class SsvcDecisionPoint(_Base, _Keyed, _Versioned, _Namespaced, BaseModel):
     Models a single decision point as a list of values.
     """
 
+    namespace: str = NameSpace.SSVC
     values: list[SsvcDecisionPointValue] = []
 
     def __iter__(self):

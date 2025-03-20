@@ -1,5 +1,4 @@
 
-
 # Current state of practice
 
 **Vulnerability management** covers “the discovery, analysis, and handling of new or reported security vulnerabilities in information systems \[and\] the detection of and response to known vulnerabilities in order to prevent them from being exploited” [@csirtservices_v2].

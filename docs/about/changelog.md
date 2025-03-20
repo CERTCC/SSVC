@@ -9,29 +9,29 @@ In the 2024.3 release of the Stakeholder-Specific Vulnerability Classification (
 This release debuts the [certcc.github.io/SSVC](https://certcc.github.io/SSVC) web site to serve as the front-door for all things SSVC.
 
 - **Diátaxis Framework** - We adopted the [Diátaxis Framework](https://diataxis.fr/) as a document organization framework for SSVC documentation. High level content categories are: tutorials, how-to, topics, and reference. What used to be a linear paper format is now sectioned off into more digestible pieces.
-- **More call-outs and examples** - With our adoption of [_Material for MkDocs_](https://squidfunk.github.io/mkdocs-material/) as the underlying toolkit to construct our web site, we were able to better highlight examples, tips, and sidebar topics through the use of call-out boxes throughout the site.
+- **More call-outs and examples** - With our adoption of [*Material for MkDocs*](https://squidfunk.github.io/mkdocs-material/) as the underlying toolkit to construct our web site, we were able to better highlight examples, tips, and sidebar topics through the use of call-out boxes throughout the site.
 
-## New and Revised Content 
+## New and Revised Content
 
 - **Expanded Content** - We've included more examples of Decision Points and the like directly inline where they're mentioned so readers don't need to keep flipping back and forth to their definitions for reference.
-- **Bootstrapping advice** - Added a _Getting Started with SSVC_ process to help organizations go from being _potential_ SSVC users to being _actual_ SSVC users. This process is based on both our own experience helping organizations adopt SSVC as well as a few field reports of SSVC adoption from the community.
-- **Putting the Pieces Together** - _Added a Putting the Pieces Together_ page explaining some of our philosophy regarding how to use SSVC to model decisions. SSVC provides you with the pieces and some instructions on how to assemble them, but you can customize it however you like.
-- **Acuity Ramp** - Added an _Acuity Ramp_ explainer to show how an organization can grow into a decision model over time.
+- **Bootstrapping advice** - Added a *Getting Started with SSVC* process to help organizations go from being *potential* SSVC users to being *actual* SSVC users. This process is based on both our own experience helping organizations adopt SSVC as well as a few field reports of SSVC adoption from the community.
+- **Putting the Pieces Together** - *Added a Putting the Pieces Together* page explaining some of our philosophy regarding how to use SSVC to model decisions. SSVC provides you with the pieces and some instructions on how to assemble them, but you can customize it however you like.
+- **Acuity Ramp** - Added an *Acuity Ramp* explainer to show how an organization can grow into a decision model over time.
 - **Community Engagement** - Included in the new web site are a number of suggested ways for the community to interact with and contribute to the SSVC.
 
 ## Versioned Objects
 
-- **Semantic Versioning for Decision Points and Decision Point Groups** - Introduced Semantic Versioning (SemVer) for _Decision Points_ and _Decision Point Groups_ to improve communication around decision points and decision models
-- **Calendar Versioning for SSVC as a whole** - With the introduction of SemVer for _Decision Points_ and _Decision Point Groups_, it started to make less sense for us to talk in terms of "SSVC v2.2", especially as we were simultaneously moving away from a PDF document-focused development model towards a more flexible web-based documentation model. Beginning with this version, we anticipate that future tagged releases will use Calendar Versioning (CalVer) instead of SemVer.
+- **Semantic Versioning for Decision Points and Decision Point Groups** - Introduced Semantic Versioning (SemVer) for *Decision Points* and *Decision Point Groups* to improve communication around decision points and decision models
+- **Calendar Versioning for SSVC as a whole** - With the introduction of SemVer for *Decision Points* and *Decision Point Groups*, it started to make less sense for us to talk in terms of "SSVC v2.2", especially as we were simultaneously moving away from a PDF document-focused development model towards a more flexible web-based documentation model. Beginning with this version, we anticipate that future tagged releases will use Calendar Versioning (CalVer) instead of SemVer.
 
 ## Experimental & Emerging Features
 
 There are a few improvements we've begun but have not yet fully finished, and that are largely undocumented. Most of these in the current release are python-centric. Here's a brief overview for those who want to poke around at code.
 
-- **SSVC Python module** - This release introduces the `ssvc` python module to allow us to more easily work with _Decision Points_, _Decision Point Groups_, _Outcomes_, and _Policies_ that map from _Decision Points_ to _Outcomes_. We expect to have more to say about this module in the future, but for now it's geared towards helping us produce the site documentation.
-- **Policy Generator** - We're prototyping a Python tool that can generate a starting policy given any combination of a _Decision Point Group_  and _Outcomes_. It's not ready for prime-time yet, but folks with a bit of python skill might be in a position to try it out.
+- **SSVC Python module** - This release introduces the `ssvc` python module to allow us to more easily work with *Decision Points*, *Decision Point Groups*, *Outcomes*, and *Policies* that map from *Decision Points* to *Outcomes*. We expect to have more to say about this module in the future, but for now it's geared towards helping us produce the site documentation.
+- **Policy Generator** - We're prototyping a Python tool that can generate a starting policy given any combination of a *Decision Point Group*  and *Outcomes*. It's not ready for prime-time yet, but folks with a bit of python skill might be in a position to try it out.
 - **More Decision Points and Outcomes** - In the process of exercising our Semantic Versioning rules for decision points and groups, we needed some examples of versioning events for discussion purposes. As a result, the `ssvc.decision_points.cvss` and `ssvc.dp_groups.cvss` modules contain python implementations of CVSS vector elements from CVSS v1, v2, v3, v3.1, and v4. We anticipate some of these coming in handy in the future as we look toward modeling other decisions potentially based on CVSS vector elements as well as other decision points from SSVC and elsewhere. We also included decision points and groups from [CISA's customized SSVC implementation](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc).
- 
+
 ## Other project infrastructure improvements
 
 - Shifted from PDF-oriented to web-oriented workflow
@@ -55,8 +55,8 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Improved consistency of *Public Safety Impact* usage throughout the document and tooling
 - Improved consistency of *Human Impact* usage throughout the document
 - Clarified that known default passwords are an example of *Exploitation*:PoC
-- Clarified that unreachable code (as in unused library features) are _System Exposure_:small
-- Mention DoD MEF definition in _Mission Impact_
+- Clarified that unreachable code (as in unused library features) are *System Exposure*:small
+- Mention DoD MEF definition in *Mission Impact*
 - Updated references to EPSS to reflect recent publications
 - Refactored markdown files to better track chapter and section numbering, improving findability when editing
 - Automated HTML and PDF generation into a Github Workflow
@@ -64,7 +64,6 @@ The details of what changes were made can be viewed on the SSVC Github under the
 - Consolidated the SSVC document style guide into a single file in the repository
 - Miscellaneous typo fixes and readability improvements (e.g., headings, bulleted lists)
   
-
 ## Version 2 (2021.5) Changelog
 
 This section summarizes the changes between SSVC version 2 and SSVC version 1.1 as published at the Workshop on the Ecnomics of Information Security (WEIS 2020).
@@ -112,7 +111,6 @@ The intuition behind this change is that if a person is going to die OR the orga
 Either situation is sufficient to increase the priority, and there do not appear to be situations where a low  *Mission Impact* would mitigate a high *Situated Safety Impact* or vice versa.
 On the other hand, a low *Utility* or *System Exposure* may mitigate a high mission or well-being impact.
 So the Version 2 recommended tree is more usable than the Version 1 tree, thanks to these changes.
-
 
 ### Tree management and communication tools
 

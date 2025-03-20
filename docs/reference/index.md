@@ -11,17 +11,16 @@
 In this section, we provide reference documentation for SSVC.
 We have organized the reference documentation into two main sections:
 
-
 <div class="grid cards" markdown>
 
--    :material-arrow-decision-outline: [**Decision Points**](decision_points/index.md)
+- :material-arrow-decision-outline: [**Decision Points**](decision_points/index.md)
 
      ---
-      
+
      A list of all the decision points, values, and versions.
 
--    :material-language-python: [**Code Documentation**](code/index.md)
-    
+- :material-language-python: [**Code Documentation**](code/index.md)
+
      ---
   
      Documentation for the SSVC Python modules.

@@ -12,8 +12,6 @@ Some decision makers may have different responsibilities in relation to differen
     - A web browser developer makes decisions about applying patches to DNS lookup libraries and transport layer security (TLS) libraries.
     - A video game developer makes decisions about applying patches released to the Unreal Engine.
     - A medical device developer makes decisions about applying patches to the Linux kernel.
-   
-
 
 One might view applying patches as including some development and distribution of the updated product.
 Or one might take the converse view, that development includes updating libraries.
@@ -32,7 +30,6 @@ SSVC models the decision of
 “With what priority should the organization take action on a given vulnerability management work unit?”
 to be agnostic to whether or not a patch is available.
 If their decisions are explicit, then the decision makers can use the recommendations from this documentation that are relevant to them.
-
 
 !!! tip "The Stakeholder Role / Decision Identity"
 
@@ -57,7 +54,6 @@ If their decisions are explicit, then the decision makers can use the recommenda
     - [Coordinator deciding whether to coordinate a case](../howto/coordination_triage_decision.md)
     - [Coordinator deciding whether to publish about a case](../howto/publication_decision.md)
 
-    
 ## Enumerating Vulnerability Management Units of Work
 
 !!! example inline end "Stakeholder Units of Work"
@@ -80,9 +76,9 @@ Coordinators might make triage decisions on individual reports, but then make pu
 
 ### Aggregation of SSVC Across Units of Work
 
-SSVC users should answer the suggested questions for whatever discrete unit of work they are considering. 
-There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent 
-vulnerabilities. 
+SSVC users should answer the suggested questions for whatever discrete unit of work they are considering.
+There is not necessarily a reliable function to aggregate a recommendation about remediation out of its constituent
+vulnerabilities.
 For the sake of simplicity of examples, we treat the remediation as a patch of one vulnerability, and comment on any
 difficulty in generalizing our advice to a more complex patch where appropriate.
 
@@ -98,8 +94,6 @@ difficulty in generalizing our advice to a more complex patch where appropriate.
     Examples of remediation include applying patches, fixes and upgrades; or removing the vulnerable software or system from operation.
     Mitigating actions may include software configuration changes, adding firewall ACLs, or otherwise limiting the system's
     exposure to reduce the risk of the impact of the vulnerability; or accepting the risk.
-
-
 
 ## Enumerating Action Priority
 
@@ -120,9 +114,8 @@ lead to different priorities.
 
 For example, some suppliers might need to map their vulnerability response decisions onto a specific set of service
 level expectations (SLEs) set by their contractual obligations to their customers. Similarly, deployers might need to integrate
-their decisions into a broader risk management framework or 
+their decisions into a broader risk management framework or
 [IT Service Management](https://en.wikipedia.org/wiki/IT_service_management) (ITSM) process.
-
 
 !!! example "SSVC, Vulnerability Response, and Risk Management Processes"
 
@@ -137,6 +130,3 @@ their decisions into a broader risk management framework or
 
     SSVC implementers in organizations subject to requirements like these may need to adapt their decision models to
     ensure that they are consistent with the requirements of the organization's broader risk management and ITSM processes.
-
-
-

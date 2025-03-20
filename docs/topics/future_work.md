@@ -2,7 +2,7 @@
 
 We intend SSVC to offer a workable baseline from which to improve and refine a vulnerability-prioritization methodology.
 We are working to improve SSVC.
-Several of the future work items in this section have issues associated with them on the SSVC GitHub page (https://github.com/CERTCC/SSVC/issues), which is a good place to go to check on progress or help.
+Several of the future work items in this section have issues associated with them on the SSVC GitHub page (<https://github.com/CERTCC/SSVC/issues>), which is a good place to go to check on progress or help.
 Plans for future work focus on further requirements gathering, analysis of types of risk, and further testing of the reliability of the decision process.
 
 ## Requirements Gathering via Sociological Research
@@ -10,9 +10,9 @@ Plans for future work focus on further requirements gathering, analysis of types
 The community should know what users of a vulnerability prioritization system want.
 To explore their needs, it is important to understand how people actually use CVSS and what they think it tells them.
 In general, such empirical, grounded evidence about what practitioners and decision makers want from vulnerability scoring is lacking.
-We have based SSVC’s methodology on multiple decades of professional experience and myriad informal conversations with practitioners. 
-Such evidence is not a bad place to start, but it does not lend itself to examination and validation by others. 
-The purpose of understanding practitioner expectations is to inform what a vulnerability-prioritization methodology should actually provide by matching it to what people need or expect. 
+We have based SSVC’s methodology on multiple decades of professional experience and myriad informal conversations with practitioners.
+Such evidence is not a bad place to start, but it does not lend itself to examination and validation by others.
+The purpose of understanding practitioner expectations is to inform what a vulnerability-prioritization methodology should actually provide by matching it to what people need or expect.
 The method this future work should take is long-form, structured interviews.
 We do not expect anyone to have access to enough consumers of CVSS to get statistically valid results out of a short survey, nor to pilot a long survey.
 
@@ -42,7 +42,6 @@ For deployers, a work item is often applying a patch that addresses multiple vul
 The “credible effects” to consider are those of all vulnerabilities remediated by the patch.
 How exactly to aggregate these different effects is not currently specified except to say that the unit of analysis is the whole work item.
 Future work should provide some examples of how this holistic analysis of multiple vulnerabilities remediated in one patch should be conducted.
-
 
 ## Further Decision Tree Testing
 

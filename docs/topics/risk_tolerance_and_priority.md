@@ -21,11 +21,10 @@ A successful vulnerability management practice must balance at least two risks:
    problems that could arise from making changes to production systems.
 2. **Vulnerability risk**: the potential costs of incidents resulting from exploitation of vulnerable systems
 
-
 In developing the decision trees in this document, we had in mind stakeholders with a moderate tolerance for risk. The resulting trees reflect that assumption. Organizations may of course be more or less conservative in their own vulnerability management practices, and we cannot presume to determine how an organization should balance their risk.
 
 We therefore remind our readers that the labels on the trees (defer, immediate, etc.) can and should be customized to
-suit the needs of individual stakeholders wherever necessary and appropriate. 
+suit the needs of individual stakeholders wherever necessary and appropriate.
 
 <!-- hr for vertical space -->
 ---
@@ -37,5 +36,3 @@ suit the needs of individual stakeholders wherever necessary and appropriate.
     the most urgent response.
     - On the other hand, an organization with a high aversion to vulnerability risk could elevate the priority of many 
     branches to ensure fixes are deployed quickly.
-
-

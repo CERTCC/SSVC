@@ -92,7 +92,8 @@ def remove_if_exists(file):
         logger.debug(f"File {file} does not exist, nothing to remove")
 
 
-def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) -> None:
+def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool
+) -> None:
     """
     Generate the markdown table, json example, and markdown table file for a decision point.
 

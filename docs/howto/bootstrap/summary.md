@@ -8,42 +8,41 @@ We covered each of these in the previous sections, see the links in the table ab
 
 The diagram below shows the complete process of using SSVC.
 
-
 ```mermaid
 flowchart TD
 start([Start])
 subgraph prep [Prepare to use SSVC]
-	dcd{{Choose Decision to Model}}
-	d[/Decision/]
+ dcd{{Choose Decision to Model}}
+ d[/Decision/]
     l4((1))
-	subgraph outcomes [Define Outcomes]
-		oc1[/Use available<br/>outcome sets?\]
-		dos{{Define Outcome Sets}}
-		oss[\Outcome Sets/]
-		cos{{Choose Outcome Set}}
-		os[/Outcome Set/]
-	end
+ subgraph outcomes [Define Outcomes]
+  oc1[/Use available<br/>outcome sets?\]
+  dos{{Define Outcome Sets}}
+  oss[\Outcome Sets/]
+  cos{{Choose Outcome Set}}
+  os[/Outcome Set/]
+ end
     l5((1))
-	subgraph decisionpoints [Define Inputs]
-		dp1[/Use available<br/>decision points?\]
-		ddp{{Define Decision Points}}
-		dpt[\Decision Points/]
-		cdp{{Choose Decision Points}}
-		dps[/Decision Point Set/]
-	end
+ subgraph decisionpoints [Define Inputs]
+  dp1[/Use available<br/>decision points?\]
+  ddp{{Define Decision Points}}
+  dpt[\Decision Points/]
+  cdp{{Choose Decision Points}}
+  dps[/Decision Point Set/]
+ end
     l6((1))
-	subgraph dataeng [Data Mapping]
-		dd1[/Use existing data?\]
-		dpm[/Data Map/]
-		dp2d{{Map Decision Points to Data}}
-		dd{{Define Data}}
-		ddf[/Data Definition/]
-	end
+ subgraph dataeng [Data Mapping]
+  dd1[/Use existing data?\]
+  dpm[/Data Map/]
+  dp2d{{Map Decision Points to Data}}
+  dd{{Define Data}}
+  ddf[/Data Definition/]
+ end
     l7((1))
-	subgraph policy [Policy Development]
-		dfp{{Define Policy}}
-		p[/Policy/]
-	end
+ subgraph policy [Policy Development]
+  dfp{{Define Policy}}
+  p[/Policy/]
+ end
     subgraph gov [Governance]
         eg{{Establish Governance Process}}
         gp[[Governance Process]]
@@ -52,17 +51,17 @@ subgraph prep [Prepare to use SSVC]
 
 end
 subgraph dataops [Data Operations]
-	cd[Collect Data]
-	vd[/Vulnerability Data/]
-	ed[/Environment Data/]
+ cd[Collect Data]
+ vd[/Vulnerability Data/]
+ ed[/Environment Data/]
     dt[\Available Data/]
 
 end
 subgraph runtime [Use SSVC]
-	mdp[[Apply Decision Point Mapping to Data]]
-	dp[/Decision Point Values/]
-	ap[[Apply Policy]]
-	oc[/Outcome/]
+ mdp[[Apply Decision Point Mapping to Data]]
+ dp[/Decision Point Values/]
+ ap[[Apply Policy]]
+ oc[/Outcome/]
 end
 r[Vulnerability Response]
 start --> dcd
@@ -115,4 +114,3 @@ r --> l1((2))
 l2((2)) --> cd
 l6 --> dd1
 ```
-

@@ -45,4 +45,3 @@ We use decision trees in the tradition of decision analysis, not ML.
 | *Other ML*                   | :x: | Maybe | :x: | :x: | :x: | :x: |
 | *Boolean First Order Logics* | Maybe | Maybe | :white_check_mark: | :white_check_mark: | :white_check_mark: | Maybe |
 | *Decision Trees*             | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-

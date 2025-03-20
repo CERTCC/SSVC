@@ -200,6 +200,7 @@ VERSIONS = (
     ATTACK_VECTOR_3,
     ATTACK_VECTOR_3_0_1,
 )
+LATEST = VERSIONS[-1]
 
 
 def main():

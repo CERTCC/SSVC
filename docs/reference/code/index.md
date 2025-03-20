@@ -6,4 +6,5 @@ These include:
 - [CSV Analyzer](analyze_csv.md)
 - [Policy Generator](policy_generator.md)
 - [Outcomes](outcomes.md)
+- [Namespaces](namespaces.md)
 - [Doctools](doctools.md)

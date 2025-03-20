@@ -15,25 +15,25 @@ rules about the interaction between decision point values and the outcomes of th
 
 ## Decision Drivers
 
-* The need to reason about the outcomes of a decision given a set of input values.
-* Desire to automate portions of the decision-making process.
-* Desire for rules to validate the interaction between decision point values and the outcomes of the decision.
+- The need to reason about the outcomes of a decision given a set of input values.
+- Desire to automate portions of the decision-making process.
+- Desire for rules to validate the interaction between decision point values and the outcomes of the decision.
 
 ## Considered Options
 
-* Decision Point values are ordered sets.
-* Decision Point values are unordered sets.
+- Decision Point values are ordered sets.
+- Decision Point values are unordered sets.
 
 ## Decision Outcome
 
 Chosen option: "Decision Point values are ordered sets"
 
 Rationale: An ordered set implies that for a decision set $D$ with $n$ values $d_1, d_2, \ldots, d_n$, we can
-assert the relationship $d_1 \leq d_2 \leq \ldots \leq d_n$. 
+assert the relationship $d_1 \leq d_2 \leq \ldots \leq d_n$.
 
 When combining decision points into a decision model, we can use that relationship to assert rules about the
 interaction between decision points. For example, if we have a decision point $D_a$ with values $a_1, a_2, a_3$
-and a decision point $D_b$ with values $b_1, b_2, b_3$, we know that 
+and a decision point $D_b$ with values $b_1, b_2, b_3$, we know that
 
 - $a_1 \leq a_2 \leq a_3$
 - $b_1 \leq b_2 \leq b_3$
@@ -94,20 +94,19 @@ default policies that map decision values to outcomes following the graph struct
 
 ### Consequences
 
-* (Good) This allows us to make inferences about the relationships between sets of decision point values
+- (Good) This allows us to make inferences about the relationships between sets of decision point values
   and the outcomes of the decision.
-* (Neutral) Does not fully order all possible decision point value combinations, leaving some relationship combinations
+- (Neutral) Does not fully order all possible decision point value combinations, leaving some relationship combinations
   undefined.
-* (Neutral) May require additional information to fully define the relationship between decision point values and outcomes
+- (Neutral) May require additional information to fully define the relationship between decision point values and outcomes
   into a policy
-* (Neutral) Requires each decision point to have a "direction" (i.e., a way to order the values) which may not be
+- (Neutral) Requires each decision point to have a "direction" (i.e., a way to order the values) which may not be
   intuitive in all cases. So far we have found that the natural direction is usually intuitive and most often it is
-  analogous to "less likely to act" &rarr; "more likely to act". 
-* (Good) Although a sense of direction is required, scaling the values is not. So "None, Few, Many" is just as valid as
+  analogous to "less likely to act" &rarr; "more likely to act".
+- (Good) Although a sense of direction is required, scaling the values is not. So "None, Few, Many" is just as valid as
   a more defined interval scale like "0-4, 4-7, 7-9, 9-10" or a more abstract scale like "Low, Medium, High, Critical"[^1].
 
 [^1]: The latter two examples were inspired by CVSS scoring.
-
 
 ### Confirmation
 
@@ -125,4 +124,3 @@ However, we *can* evaluate new decision points as they are proposed to ensure th
 - [ADR-0009](0009-outcomes-are-ordered-sets.md) - Outcomes are Ordered Sets
 - [Partially ordered sets](https://en.wikipedia.org/wiki/Partially_ordered_set)
 - [Hasse diagram](https://en.wikipedia.org/wiki/Hasse_diagram)
-

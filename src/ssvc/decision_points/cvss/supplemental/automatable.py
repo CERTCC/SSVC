@@ -16,16 +16,23 @@ Provides the CVSS supplemental metric Automatable
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
 from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-NO = SsvcDecisionPointValue(name="No", key="N",
-                               description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for " \
-                                           "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.", )
-YES = SsvcDecisionPointValue(name="Yes", key="Y",
-                               description="Attackers can reliably automate all 4 steps of the kill chain. These steps are " \
-                                           "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is " \
-                                           '"wormable").', )
+NO = SsvcDecisionPointValue(
+    name="No",
+    key="N",
+    description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
+    "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
+)
+YES = SsvcDecisionPointValue(
+    name="Yes",
+    key="Y",
+    description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
+    "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is "
+    '"wormable").',
+)
 AUTOMATABLE_1 = CvssDecisionPoint(
     name="Automatable",
     description='The "Automatable" metric captures the answer to the question "Can an attacker automate exploitation '
@@ -35,11 +42,13 @@ AUTOMATABLE_1 = CvssDecisionPoint(
     values=(
         NO,
         YES,
+        NOT_DEFINED_X,
     ),
 )
 
 VERSIONS = (AUTOMATABLE_1,)
 LATEST = AUTOMATABLE_1
+
 
 def main():
     print_versions_and_diffs(VERSIONS)

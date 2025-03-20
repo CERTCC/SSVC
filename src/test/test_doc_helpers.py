@@ -20,7 +20,7 @@ from ssvc.doc_helpers import example_block, markdown_table
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.dp = SsvcDecisionPoint(
-            namespace="test",
+            namespace="x_test",
             name="test name",
             description="test description",
             key="TK",

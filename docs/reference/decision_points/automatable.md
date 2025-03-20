@@ -1,5 +1,4 @@
-# Automatable
-
+# Automatable (SSVC)
 
 ```python exec="true" idprefix=""
 from ssvc.decision_points.automatable import LATEST
@@ -8,12 +7,12 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
-
 !!! tip "See also"
 
     Automatable combines with [Value Density](./value_density.md) to inform 
     [Utility](./utility.md)
 
+{% include-markdown "../../_includes/automatable_cvss_ssvc.md" %}
 
 *Automatable* captures the answer to the question “Can an attacker reliably automate creating exploitation events for this vulnerability?”
 
@@ -29,12 +28,10 @@ print(example_block(LATEST))
     2. weaponization may require human direction for each target
     3. delivery may require channels that widely deployed network security configurations block
     4. exploitation is not reliable, due to exploit-prevention techniques (e.g., ASLR) enabled by default
-    
 
 !!! question "When is Automatable *yes*?"
 
     If the vulnerability allows remote code execution or command injection, the expected response should be yes.
-
 
 Due to vulnerability chaining, there is some nuance as to whether reconnaissance can be automated.
 
@@ -78,4 +75,3 @@ for version in versions:
 
     *Virulence* is superseded by *Automatable*, which clarified the concept we 
     we were attempting to capture. 
-    

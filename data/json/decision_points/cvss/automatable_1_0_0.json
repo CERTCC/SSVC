@@ -15,6 +15,11 @@
       "key": "Y",
       "name": "Yes",
       "description": "Attackers can reliably automate all 4 steps of the kill chain. These steps are reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is \"wormable\")."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

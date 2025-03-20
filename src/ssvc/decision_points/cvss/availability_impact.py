@@ -114,12 +114,12 @@ _NONE_3 = SsvcDecisionPointValue(
 )
 
 
-AVAILABILITY_IMPACT_2_0_1 = CvssDecisionPoint(
-    name="Availability Impact",
+AVAILABILITY_IMPACT_3_0_0 = CvssDecisionPoint(
+    name="Availability Impact to the Vulnerable System",
     description="This metric measures the impact to the availability of the impacted system resulting from a "
     "successfully exploited vulnerability.",
-    key="A",
-    version="2.0.1",
+    key="VA",
+    version="3.0.0",
     values=(
         _NONE_3,
         _LOW_2,
@@ -127,7 +127,12 @@ AVAILABILITY_IMPACT_2_0_1 = CvssDecisionPoint(
     ),
 )
 
-VERSIONS = (AVAILABILITY_IMPACT_1, AVAILABILITY_IMPACT_2, AVAILABILITY_IMPACT_2_0_1)
+
+VERSIONS = (
+    AVAILABILITY_IMPACT_1,
+    AVAILABILITY_IMPACT_2,
+    AVAILABILITY_IMPACT_3_0_0,
+)
 LATEST = VERSIONS[-1]
 
 

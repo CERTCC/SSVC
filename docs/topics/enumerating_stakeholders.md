@@ -36,5 +36,3 @@ In [Enumerating Decisions](./enumerating_decisions.md), we describe the decision
     While C-level executives and public policy professionals often make, shape, or incentivize decisions about managing information systems, they are not the target audience, either.
     To the extent that decision trees for vulnerability management help higher level policy decisions, we believe the best way to help policy makers is by making technical decisions more transparent and explainable.
     Policy makers may see indirect benefits, but they are not our primary audience and we are not designing an approach for them directly.
-
-

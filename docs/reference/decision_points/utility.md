@@ -12,7 +12,6 @@ print(example_block(LATEST))
     Utility is a combination of [Automatable](./automatable.md) and
     [Value Density](./value_density.md)
 
-
 This is a compound decision point, therefore it is a notational convenience.
 
 *Utility* estimates an adversary's benefit compared to their effort based on the assumption that they can exploit the vulnerability.
@@ -30,7 +29,6 @@ This framing makes it easier to analytically derive these categories from a desc
 Roughly, *Utility* is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events.
 We define *Utility* as laborious, efficient, or super effective, as described in the table above.
 
-
 ## Alternative Utility Outputs
 
 Alternative heuristics can plausibly be used as proxies for adversary utility.
@@ -44,8 +42,6 @@ How equivalently [*Automatable*](automatable.md) exploits for different systems 
 Price does not only track the [*Value Density*](value_density.md) of the system, but presumably also the existing supply of exploits and the installation distribution among the targets of Zerodium’s customers.
 Currently, we simplify the analysis and ignore these factors.
 However, future work should look for and prevent large mismatches between the outputs of the *Utility* decision point and the exploit markets.
-
-
 
 ## Previous Versions
 

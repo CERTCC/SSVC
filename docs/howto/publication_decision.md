@@ -11,7 +11,6 @@ While other stakeholders may also have to make a publication decision, here we f
     the combination of the stakeholder and the decision being modeled. In this case, the stakeholder is the 
     **Coordinator** and the decision is **whether to publish an advisory about the vulnerability**.
 
-
 ## Policy Constraints and Publication Decisions
 
 !!! tip inline end "Other Stakeholders' Publication Decisions"
@@ -22,7 +21,7 @@ While other stakeholders may also have to make a publication decision, here we f
     A vulnerability finder may have to decide whether to publish information about a vulnerability they have discovered.
     Each of these decisions is likely to be different from the coordinator's decision.
 
-The decision to publish information about a vulnerability is a policy choice, and is likely to differ from organization 
+The decision to publish information about a vulnerability is a policy choice, and is likely to differ from organization
 to organization.
 Two points where CERT/CC policy clearly influences the publication decision are embargo periods and scope.
 
@@ -30,9 +29,9 @@ Two points where CERT/CC policy clearly influences the publication decision are 
 
 As a matter of policy, CERT/CC will support an embargo from the public of information about a vulnerability through its
 choice not to publish that information while a number of conditions hold:
-   
-  - A negotiated embargo timer has not expired. The CERT/CC default embargo period is [45 days](https://certcc.github.io/CERT-Guide-to-CVD/reference/certcc_disclosure_policy/).
-  - Other exceptions have not been met, including active exploitation of the vulnerability in the wild or other public
+
+- A negotiated embargo timer has not expired. The CERT/CC default embargo period is [45 days](https://certcc.github.io/CERT-Guide-to-CVD/reference/certcc_disclosure_policy/).
+- Other exceptions have not been met, including active exploitation of the vulnerability in the wild or other public
     discussion of the vulnerability details.
 
 Regardless, the decision described in this section assumes the embargo period is over, one way or another.
@@ -43,10 +42,8 @@ The second point is related to the [Coordination Triage Decision](coordination_t
 CERT/CC only expects to publish about vulnerabilities with a [*coordinate*](coordination_triage_decision.md) status.
 While an issue that is tracked or declined may be reevaluated at a later date and status changed to [*coordinate*](coordination_triage_decision.md),
 unless that happens we would not publish about the vulnerability.
-Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision 
+Other organizations, such as [NVD](https://nvd.nist.gov/), would have different publication criteria and may want to include decision
 points or the decision itself from the [Coordination Triage Decision](coordination_triage_decision.md) in their publication decision.
-
-
 
 ## Coordinator Publication Units of Work
 
@@ -57,11 +54,11 @@ points or the decision itself from the [Coordination Triage Decision](coordinati
 
 In the CERT/CC's vulnerability coordination practice, a single report leads to a single coordination case which leads to a
 single publication. Therefore the unit of work for the publication decision is often the same as the unit of work for the
-[coordination triage decision](coordination_triage_decision.md). 
+[coordination triage decision](coordination_triage_decision.md).
 
-That is sometimes not the case, however. For example, there could be multiple reports of multiple vulnerabilities and 
-the coordinator might choose to publish a single advisory covering all of them if the vulnerabilities are variations on 
-a central theme and have a common set of affected products. 
+That is sometimes not the case, however. For example, there could be multiple reports of multiple vulnerabilities and
+the coordinator might choose to publish a single advisory covering all of them if the vulnerabilities are variations on
+a central theme and have a common set of affected products.
 
 !!! example "Multiple Reports, Single Advisory"
 
@@ -74,7 +71,7 @@ a central theme and have a common set of affected products.
 
 Another possibility is that a single report could lead to multiple advisories, for example if
 the product is a library that is used in multiple other products, and the coordinator chooses to publish separate advisories
-based on some other criteria. 
+based on some other criteria.
 
 !!! example "Single Report, Multiple Advisories"
 
@@ -122,17 +119,16 @@ For the CERT/CC, the publication decision is binary: publish or do not publish.
     a single decision with multiple outcomes, each of which would lead to a different publication vehicle. This is an example
     of how SSVC can be customized to the needs of the organization using it.
 
-
 ## Coordinator Publication Decision Points
 
-The publication decision reuses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point 
-and adds two new ones ([*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) and 
+The publication decision reuses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point
+and adds two new ones ([*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) and
 [*Public Value Added*](../reference/decision_points/public_value_added.md)).
 
 - [*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
 - [*Exploitation*](../reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
 - [*Public Value Added*](../reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be
-  much for the CERT/CC to add, making us less likely to publish. 
+  much for the CERT/CC to add, making us less likely to publish.
 
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
@@ -149,14 +145,13 @@ for dp in [SI, EXP, PVA]:
 
 ## Coordinator Publication Decision Model
 
-An example coordinator publication decision model is shown below. The policy described by the model is based on CERT/CC 
+An example coordinator publication decision model is shown below. The policy described by the model is based on CERT/CC
 publication decisions. Other organizations may have different publication criteria and may want to include other decision points
 in their publication decision model.
 
 <embed src="../../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
 style="width: 100%;"
 height = "600" />
-
 
 <!--
 adh note 20240221:
@@ -267,6 +262,7 @@ flowchart LR
     va9 -->|precedence| p25
     va9 -->|ampliative| p26
     va9 -->|limited| p27
+
 ```
 --> 
 
@@ -274,4 +270,3 @@ flowchart LR
 
 <!-- relative to /data/csvs/ -->
 {{ read_csv('coord-publish-options.csv') }}
-

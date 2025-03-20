@@ -16,11 +16,10 @@ However, if there is a category of information source we have not captured, plea
 ## Exploitation
 
 Various vendors provide paid feeds of vulnerabilities that are currently exploited by attacker groups.
-Any of these could be used to indicate that [*active*](../reference/decision_points/exploitation.md) is true for a vulnerability.
+Any of these could be used to indicate that [*active*](../reference/decision_points/exploitation.md/#cwe-ids-for-poc) is true for a vulnerability.
 Although the lists are all different, we expect they are all valid information sources; the difficulty is matching a list's scope and vantage with a compatible scope and vantage of the consumer.
 We are not aware of a comparative study of the different lists of active exploits; however, we expect they have similar properties to block lists of network touchpoints [@metcalf2015blocklist] and malware [@kuhrer2014paint].
 Namely, each list has a different view and vantage on the problem, which makes them appear to be different, but each list accurately represents its particular vantage at a point in time.
-
 
 ## System Exposure
 
@@ -30,6 +29,7 @@ Such scans do not find all [*open*](../reference/decision_points/system_exposure
 Scanning software, such as the open-source tool Nessus, could be used to scan for connectivity inside an organization to catalogue what devices should be scored [*controlled*](../reference/decision_points/system_exposure.md) if, say, the scan finds them on an internal network where devices regularly connect to the Internet.
 
 ---
+
 ## Adapting other Information Sources
 
 Some information sources that were not designed with SSVC in mind can be adapted to work with it.
@@ -54,16 +54,16 @@ The interpretation is different for CVSS version 3 than version 4.
 
     That is, if the vulnerability leads to a high impact on the confidentiality and integrity of the vulnerable system, then that is equivalent to total technical impact on the system.
 
-The following considerations are accounted for in this recommendation. 
+The following considerations are accounted for in this recommendation.
 
 1. A denial of service condition is modeled as a *partial* [*Technical Impact*](../reference/decision_points/technical_impact.md).
 Therefore, a high availability impact to the vulnerable system should not be mapped to *total* [*Technical Impact*](../reference/decision_points/technical_impact.md) on its own.
-2. There may be situations in which a high confidentiality impact is sufficient for total technical impact; for example, disclosure of the root or administrative password for the system leads to total technical control of the system. 
-So this suggested mapping is a useful heuristic, but there may be exceptions, depending on exactly what the CVSS v4 metric value assignment norms are and become for these situations. 
+2. There may be situations in which a high confidentiality impact is sufficient for total technical impact; for example, disclosure of the root or administrative password for the system leads to total technical control of the system.
+So this suggested mapping is a useful heuristic, but there may be exceptions, depending on exactly what the CVSS v4 metric value assignment norms are and become for these situations.
 3. While the Subsequent System impact metric group in CVSS v4 is useful, those concepts are not captured by [*Technical Impact*](../reference/decision_points/technical_impact.md).
-Subsequent System impacts are captured, albeit in different framings, by decision points such as [*Situated Safety Impact*](../reference/decision_points/safety_impact.md), [*Mission Impact*](../reference/decision_points/mission_impact.md), and [*Value Density*](../reference/decision_points/value_density.md). 
-There is not a direct mapping between the subsequent system impact metric group and these decision points, except in the case of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) and the CVSS v4 environmental metrics for Safety Impact in the subsequent system metric group. 
-In that case, both definitions map back to the same safety impact standard for definitions (IEC 61508) and so are easily mapped to each other. 
+Subsequent System impacts are captured, albeit in different framings, by decision points such as [*Situated Safety Impact*](../reference/decision_points/safety_impact.md), [*Mission Impact*](../reference/decision_points/mission_impact.md), and [*Value Density*](../reference/decision_points/value_density.md).
+There is not a direct mapping between the subsequent system impact metric group and these decision points, except in the case of [*Public Safety Impact*](../reference/decision_points/public_safety_impact.md) and the CVSS v4 environmental metrics for Safety Impact in the subsequent system metric group.
+In that case, both definitions map back to the same safety impact standard for definitions (IEC 61508) and so are easily mapped to each other.
 
 #### CVSS v3 and Technical Impact
 
@@ -72,10 +72,10 @@ For CVSS v3, the impact metric group cannot be directly mapped to [*Technical Im
 If the CVSS version 3 value of “Scope” is “Unchanged,” then the recommendation is the same as that for CVSS v4, above, as the impact metric group is information exclusively about the vulnerable system.
 If the CVSS version 3 value of “Scope” is “Changed,” then the impact metrics may be about either the vulnerable system or the subsequent systems, based on whichever makes the final score higher.
 Since [*Technical Impact*](../reference/decision_points/technical_impact.md) is based only on the vulnerable system impacts, if "Scope" is "Changed" then the ambiguity between vulnerable and subsequent system impacts is not documented in the vector string.
-This ambiguity makes it impossible to cleanly map the [*Technical Impact*](../reference/decision_points/technical_impact.md) value in this case. 
+This ambiguity makes it impossible to cleanly map the [*Technical Impact*](../reference/decision_points/technical_impact.md) value in this case.
 
 !!! tip "Mapping CVSS v3 to Technical Impact"
-    
+
     Summarizing the discussion above, the mapping between CVSS v3 and [*Technical Impact*](../reference/decision_points/technical_impact.md) is
 
     | CVSS Scope | Confidentiality<br/>(C) | Integrity<br/>(I) | Availability<br/>(A) | [*Technical Impact*](../reference/decision_points/technical_impact.md) |
@@ -85,16 +85,13 @@ This ambiguity makes it impossible to cleanly map the [*Technical Impact*](../re
     | Unchanged  | Low (L) or None (N)    | High (H)           | *any*                 | Partial                                                                |
     | Changed    | *any*                  | *any*              | *any*                 | (ambiguous)                                                            |
 
-
 ### CWE and Exploitation
 
 As mentioned in the discussion of [*Exploitation*](../reference/decision_points/exploitation.md), [CWE](https://cwe.mitre.org/) could be used to inform one of the conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
 For some classes of vulnerabilities, the proof of concept is well known because the method of exploitation is already part of open-source tools.
-For example, on-path attacker scenarios for intercepting TLS certificates.
+An example of this is on-path attacker scenarios for intercepting TLS certificates.
 These scenarios are a cluster of related vulnerabilities.
-Since CWE classifies clusters of related vulnerabilities, the community could likely curate a list of CWE-IDs for which this condition of well known exploit technique is satisfied.
-Once that list were curated, it could be used to automatically populate a CVE-ID as [*proof of concept*](../reference/decision_points/exploitation.md) if the CWE-ID of which it is an instance is on the list.
-Such a check could not be exhaustive, since there are other conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
+We provide a non-exhaustive [list of CWE-IDs with known proofs of concept](../reference/decision_points/exploitation.md/#cwe-ids-for-poc). This is list is non-exhaustive becuase there are other conditions that satisfy [*proof of concept*](../reference/decision_points/exploitation.md).
 If paired with automatic searches for exploit code in public repositories, these checks would cover many scenarios.
 If paired with active exploitation feeds discussed above, then the value of  [*Exploitation*](../reference/decision_points/exploitation.md) could be determined almost entirely from available information without direct analyst involvement at each organization.
 

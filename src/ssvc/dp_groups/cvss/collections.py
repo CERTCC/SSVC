@@ -35,7 +35,7 @@ from ssvc.decision_points.cvss.authentication import (
 from ssvc.decision_points.cvss.availability_impact import (
     AVAILABILITY_IMPACT_1,
     AVAILABILITY_IMPACT_2,
-    AVAILABILITY_IMPACT_2_0_1,
+    AVAILABILITY_IMPACT_3_0_0,
 )
 from ssvc.decision_points.cvss.availability_requirement import (
     AVAILABILITY_REQUIREMENT_1,
@@ -49,7 +49,7 @@ from ssvc.decision_points.cvss.collateral_damage_potential import (
 from ssvc.decision_points.cvss.confidentiality_impact import (
     CONFIDENTIALITY_IMPACT_1,
     CONFIDENTIALITY_IMPACT_2,
-    CONFIDENTIALITY_IMPACT_2_0_1,
+    CONFIDENTIALITY_IMPACT_3_0_0,
 )
 from ssvc.decision_points.cvss.confidentiality_requirement import (
     CONFIDENTIALITY_REQUIREMENT_1,
@@ -62,7 +62,7 @@ from ssvc.decision_points.cvss.equivalence_set_3 import EQ3
 from ssvc.decision_points.cvss.equivalence_set_4 import EQ4
 from ssvc.decision_points.cvss.equivalence_set_5 import EQ5
 from ssvc.decision_points.cvss.equivalence_set_6 import EQ6
-from ssvc.decision_points.cvss.exploitability import (
+from ssvc.decision_points.cvss.exploit_maturity import (
     EXPLOITABILITY_1,
     EXPLOITABILITY_1_1,
     EXPLOIT_CODE_MATURITY_1_2,
@@ -73,7 +73,7 @@ from ssvc.decision_points.cvss.impact_bias import IMPACT_BIAS_1
 from ssvc.decision_points.cvss.integrity_impact import (
     INTEGRITY_IMPACT_1,
     INTEGRITY_IMPACT_2,
-    INTEGRITY_IMPACT_2_0_1,
+    INTEGRITY_IMPACT_3_0_0,
 )
 from ssvc.decision_points.cvss.integrity_requirement import (
     INTEGRITY_REQUIREMENT_1,
@@ -273,9 +273,9 @@ _EXPLOITABILITY_4 = [
     USER_INTERACTION_2,
 ]
 _IMPACT_4 = [
-    CONFIDENTIALITY_IMPACT_2_0_1,
-    INTEGRITY_IMPACT_2_0_1,
-    AVAILABILITY_IMPACT_2_0_1,
+    CONFIDENTIALITY_IMPACT_3_0_0,
+    INTEGRITY_IMPACT_3_0_0,
+    AVAILABILITY_IMPACT_3_0_0,
     SUBSEQUENT_CONFIDENTIALITY_IMPACT_1,
     SUBSEQUENT_INTEGRITY_IMPACT_1,
     SUBSEQUENT_AVAILABILITY_IMPACT_1,

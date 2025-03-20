@@ -25,16 +25,16 @@ This is not a calculation of any kind, just an assignment of a label which may m
 Of course, these labels are dangerous, as they may be misused as numbers.
 Therefore, we prefer the use *defer*, *scheduled*, etc., as listed in
 [Enumerating Vulnerability Management Actions](../howto/deployer_tree.md).
- 
+
 ## Expanded Context
 
 We incorporated a wider variety of inputs from contexts beyond the affected component.
 Some organizations are not prepared or configured to reliably produce such data (e.g., around mission impact or safety impact). There is adequate guidance for how to elicit and curate this type information from various risk management frameworks, including OCTAVE [@caralli2007octave]. Not every organization is going to have sufficiently mature risk management functions to apply SSVC.\
-    
+
 This second limitation should be approached with two strategies:
 
 1. Organizations should be encouraged and enabled to mature their risk management capabilities
-2. In the meantime, organizations such as NIST could consider developing default advice. 
+2. In the meantime, organizations such as NIST could consider developing default advice.
    The most practical framing of this approach might be for the NIST NVD to produce scores from the perspective of a
-   new stakeholder&mdash;something like “national security” or “public well-being” that is explicitly a sort of default 
+   new stakeholder&mdash;something like “national security” or “public well-being” that is explicitly a sort of default
    advice for otherwise uninformed organizations that can then explicitly account for national priorities, such as critical infrastructure.

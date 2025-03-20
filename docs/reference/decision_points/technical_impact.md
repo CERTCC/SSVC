@@ -16,7 +16,6 @@ Our definition of **vulnerability** is based on the determination that some secu
 We consider a security policy violation to be a technical impact—or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
 
-
 !!! tip "Gathering Information About Technical Impact"
 
     Assessing *Technical Impact* amounts to assessing the degree of control over the vulnerable component the attacker stands to gain by exploiting the vulnerability.
@@ -33,4 +32,3 @@ Therefore, if there is a vulnerability then there must be some technical impact.
     If you find a vulnerability that should have *total* *Technical Impact* but that does not answer yes to any of 
     these questions, please describe the example and what question we might add to this list in an issue on the
     [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
-

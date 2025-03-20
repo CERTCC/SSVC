@@ -31,7 +31,7 @@ At its core are the concepts of:
 - [**Stakeholder Roles**](../topics/enumerating_stakeholders.md): Different participants in the vulnerability response process have different needs and priorities.
   Roles can include patch suppliers, deployers, coordinators, and others.
 - [**Decisions**](../topics/enumerating_decisions.md): Each stakeholder role has a set of decisions to make about how to respond to vulnerabilities.
-  For a supplier, the decision might be about how to prioritize the creation of patches. For a deployer, the 
+  For a supplier, the decision might be about how to prioritize the creation of patches. For a deployer, the
   decision might be about how to prioritize the deployment of patches. Coordinators usually need to decide whether
   to coordinate a response, and whether to publish information about a vulnerability they've coordinated.
 - [**Decision Points**](../reference/decision_points/index.md): Each decision is made based on a set of inputs, or decision points. These are the factors
@@ -41,18 +41,18 @@ At its core are the concepts of:
   For example, a decision about whether to deploy a patch might have outcomes like "immediate", "scheduled", "deferred",
   and "out-of-cycle".
 
-Given these concepts, we can combine them into decision models to help stakeholders make decisions about the priority 
+Given these concepts, we can combine them into decision models to help stakeholders make decisions about the priority
 with which to act.
 The definition of choices can take a logical form, such as:
 
- - IF
-    
-     - ([*Exploitation*](../reference/decision_points/exploitation.md) IS *Public PoC*) AND
-     - ([*System Exposure*](../reference/decision_points/system_exposure.md) IS *controlled*) AND
-     - ([*Automatable*](../reference/decision_points/automatable.md) IS *no*) AND
-     - ([*Human Impact*](../reference/decision_points/human_impact.md) IS *medium*)
+- IF
 
- - THEN priority is *scheduled*.
+  - ([*Exploitation*](../reference/decision_points/exploitation.md) IS *Public PoC*) AND
+  - ([*System Exposure*](../reference/decision_points/system_exposure.md) IS *controlled*) AND
+  - ([*Automatable*](../reference/decision_points/automatable.md) IS *no*) AND
+  - ([*Human Impact*](../reference/decision_points/human_impact.md) IS *medium*)
+
+- THEN priority is *scheduled*.
 
 <!-- csv file has a header row, so the line numbers and row numbers are off by one. -->
 This example logical statement is captured in [row 34 of the deployer `.csv` file](https://github.com/CERTCC/SSVC/blob/main/data/csvs/deployer-options.csv#L35).

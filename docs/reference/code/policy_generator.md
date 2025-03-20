@@ -5,5 +5,4 @@ policy (a decision tree) from a set of input parameters.
 
 It is intended to be used as a library, for example within a Jupyter notebook.
 
-
 ::: ssvc.policy_generator

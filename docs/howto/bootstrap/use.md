@@ -30,9 +30,8 @@ flowchart LR
     ap --> oc
 ```
 
-
 !!! example
-    
+
     A government agency has a need to prioritize vulnerability response as part of their vulnerability management process.
     Certain vulnerabilities require special handling as a matter of government policy, and the agency wants to make sure
     that they are not overlooked.
@@ -90,7 +89,7 @@ Not every stakeholder will use the decision points to make comparable decisions.
 [Suppliers](../supplier_tree.md) and [deployers](../deployer_tree.md) make interdependent decisions, but the actions of one group are not strictly dependent on the other.
 Recall that one reason for this is that SSVC is about prioritizing a vulnerability response action in general, not specifically applying a patch that a supplier produced.
 [Coordinators](../coordination_intro.md) are particularly interested in facilitating communication because that is their core function.
-This section handles three aspects of this challenge: 
+This section handles three aspects of this challenge:
 
 - formats for communicating SSVC
 - how to handle partial or incomplete information
@@ -106,7 +105,7 @@ This section discusses the situation where one stakeholder, usually a supplier o
 We provide a structured communication format for SSVC information using JSON schemas.
 The goal of this format is to capture all the context and details about a decision or work item in a clear and machine-readable way.
 
-- The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision.schema.json) is equivalent to a decision model and documents the full set of logical statements that a 
+- The [provision schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Provision.schema.json) is equivalent to a decision model and documents the full set of logical statements that a
 stakeholder uses to make decisions.
 - The [computed schema](https://github.com/CERTCC/SSVC/blob/main/data/schema/SSVC_Computed.schema.json) expresses a set of information about a work item or vulnerability at a point in time.
 A computed schema should identify the provision schema used, so the options from which the information was computed are specified.
@@ -123,8 +122,7 @@ A computed schema should identify the provision schema used, so the options from
 
     The `value` term is derived the same way as `decision point` except start with the value name as given in the relevant decision point subsection of [Likely Decision Points and Relevant Data](../../reference/decision_points/index.md).
 
-
-### Partial or Incomplete Information    
+### Partial or Incomplete Information
 
 What an analyst knows about a vulnerability may not be complete.
 However, the vulnerability management community may still benefit from partial information.
@@ -217,14 +215,13 @@ Risk tolerance and risk appetite are primarily reflected in the priority labels 
 | [*Utility*](../../reference/decision_points/utility.md)                           | every 6 months |
 | [*Public Safety Impact*](../../reference/decision_points/public_safety_impact.md) | every 1 year |
 
-
 ### Decision Points Under Direct Control
 
 The following decision points are usually in the control of the organization running SSVC and should be re-evaluated when a relevant change is made or during annual reviews of assets.
 
- - [*Situated Safety Impact*](../../reference/decision_points/safety_impact.md)
- - [*Mission Impact*](../../reference/decision_points/mission_impact.md)
- - [*System Exposure*](../../reference/decision_points/system_exposure.md)
+- [*Situated Safety Impact*](../../reference/decision_points/safety_impact.md)
+- [*Mission Impact*](../../reference/decision_points/mission_impact.md)
+- [*System Exposure*](../../reference/decision_points/system_exposure.md)
 
 ### Timestamping SSVC Information
 

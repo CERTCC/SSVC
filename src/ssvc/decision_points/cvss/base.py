@@ -18,6 +18,7 @@ Provides a base class for modeling CVSS vector metrics as SSVC decision points.
 from pydantic import BaseModel
 
 from ssvc.decision_points.base import SsvcDecisionPoint
+from ssvc.namespaces import NameSpace
 
 
 class CvssDecisionPoint(SsvcDecisionPoint, BaseModel):
@@ -25,4 +26,4 @@ class CvssDecisionPoint(SsvcDecisionPoint, BaseModel):
     Models a single CVSS decision point as a list of values.
     """
 
-    namespace: str = "cvss"
+    namespace: NameSpace = NameSpace.CVSS

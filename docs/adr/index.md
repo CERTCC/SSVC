@@ -1,6 +1,6 @@
 # SSVC Decision Records
 
-We have adopted the use of [Markdown Any Decision Records](https://adr.github.io/madr/) 
+We have adopted the use of [Markdown Any Decision Records](https://adr.github.io/madr/)
 to document significant decisions made in the development of SSVC. Below is a list of all
 the decision records that have been made.
 
