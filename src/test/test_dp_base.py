@@ -30,7 +30,7 @@ class MyTestCase(unittest.TestCase):
                 )
             )
 
-        self.dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+        self.dp = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
             name="foo",
             key="bar",
             description="baz",
@@ -55,7 +55,7 @@ class MyTestCase(unittest.TestCase):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
 
-        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+        dp2 = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
             name="asdfad",
             key="asdfasdf",
             description="asdfasdf",
@@ -68,7 +68,7 @@ class MyTestCase(unittest.TestCase):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
 
-        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+        dp2 = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
             name="asdfad",
             key="asdfasdf",
             description="asdfasdf",
@@ -118,7 +118,7 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(json, str)
         self.assertGreater(len(json), 0)
 
-        obj2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint.model_validate_json(
+        obj2 = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint.model_validate_json(
             json
         )
 

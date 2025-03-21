@@ -34,7 +34,7 @@ import os
 import ssvc.dp_groups.cvss.collections  # noqa
 import ssvc.dp_groups.ssvc.collections  # noqa
 from ssvc.decision_points.base import (
-    REGISTERED_DECISION_POINTS,
+    DecisionPoint, REGISTERED_DECISION_POINTS,
 )
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
@@ -115,7 +115,7 @@ def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) ->
 
 
 def dump_json(
-    basename: str, dp: SsvcDecisionPoint, jsondir: str, overwrite: bool
+    basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool
 ) -> str:
     """
     Generate the json example for a decision point.
@@ -135,13 +135,15 @@ def dump_json(
         jsondir,
     ]
     parts.append(_filename_friendly(dp.namespace))
+    dirname = os.path.join(*parts)
+
     parts.append(filename)
 
     json_file = os.path.join(*parts)
 
     if overwrite:
         remove_if_exists(json_file)
-    with EnsureDirExists(jsondir):
+    with EnsureDirExists(dirname):
         try:
             with open(json_file, "x") as f:
                 f.write(dp.model_dump_json(indent=2))

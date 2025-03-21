@@ -44,6 +44,7 @@ class MyTestCase(unittest.TestCase):
                     name=c,
                     description=c,
                     key=c,
+                    namespace='x_test',
                     values=[
                         DecisionPointValue(name=v, key=v, description=v)
                         for v in self.dp_values

@@ -24,7 +24,8 @@ from pydantic import BaseModel, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
 from ssvc.csv_analyzer import check_topological_order
-from ssvc.decision_points.base import DecisionPointValue, SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
 from ssvc.policy_generator import PolicyGenerator

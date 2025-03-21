@@ -25,7 +25,8 @@ class MyTestCase(unittest.TestCase):
             key="test_dp",
             description="This is a test decision point",
             version="1.0.0",
-            values=[
+            namespace='x_test',
+            values=(
                 DecisionPointValue(
                     name="Yes",
                     key="yes",
@@ -36,7 +37,7 @@ class MyTestCase(unittest.TestCase):
                     key="no",
                     description="No",
                 ),
-            ],
+            ),
         )
         self.dp2 = deepcopy(self.dp1)
 

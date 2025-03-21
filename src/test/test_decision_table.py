@@ -39,7 +39,7 @@ class MyTestCase(unittest.TestCase):
                 )
                 dpvs.append(dpv)
 
-            dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+            dp = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
                 name=f"Decision Point {i}",
                 key=f"DP{i}",
                 description=f"Decision Point {i} Description",

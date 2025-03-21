@@ -22,7 +22,7 @@ class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.dps = []
         for i in range(10):
-            dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+            dp = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
                 name=f"Decision Point {i}",
                 key=f"DP_{i}",
                 description=f"Description of Decision Point {i}",
