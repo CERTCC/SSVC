@@ -1,10 +1,10 @@
 {
+  "name": "Safety",
+  "description": "The Safety decision point is a measure of the potential for harm to humans or the environment.",
   "namespace": "cvss",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
   "key": "S",
-  "name": "Safety",
-  "description": "The Safety decision point is a measure of the potential for harm to humans or the environment.",
   "values": [
     {
       "key": "X",

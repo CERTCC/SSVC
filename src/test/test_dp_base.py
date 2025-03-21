@@ -42,6 +42,14 @@ class MyTestCase(unittest.TestCase):
         # restore the original registry
         base._reset_registered()
 
+    def test_decision_point_basics(self):
+        from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+
+        # inherits from mixins
+        mixins = [_Valued, _Base, _Keyed, _Versioned, _Namespaced]
+        for mixin in mixins:
+            self.assertIsInstance(self.dp, mixin)
+
     def test_registry(self):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)

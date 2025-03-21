@@ -31,10 +31,10 @@ _dp_dict = {
     "key": "DPT",
     "name": "Decision Point Test",
     "description": "This is a test decision point.",
-    "values": [
+    "values": (
         {"key": "N", "name": "No", "description": "No means no"},
         {"key": "Y", "name": "Yes", "description": "Yes means yes"},
-    ],
+    ),
 }
 
 
@@ -122,7 +122,12 @@ class MyTestCase(unittest.TestCase):
         # file is loadable json
         d = json.load(open(json_file))
         for k, v in dp.model_dump().items():
-            self.assertEqual(v, d[k])
+            # on reload, the tuples are lists, but they should be the same
+            reloaded_value = d[k]
+            if isinstance(reloaded_value, list):
+                reloaded_value = tuple(reloaded_value)
+
+            self.assertEqual(v, reloaded_value)
 
         # should not overwrite the file
         overwrite = False
