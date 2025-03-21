@@ -16,16 +16,17 @@ Provides an SSVC decision point for critical software designation.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
-YES = SsvcDecisionPointValue(
+YES = DecisionPointValue(
     name="Yes",
     key="Y",
     description="System meets a critical software definition.",
 )
 
-NO = SsvcDecisionPointValue(
+NO = DecisionPointValue(
     name="No",
     key="N",
     description="System does not meet a critical software definition.",

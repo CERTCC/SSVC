@@ -16,16 +16,17 @@ Provides the Supplier Cardinality decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-MULTIPLE = SsvcDecisionPointValue(
+MULTIPLE = DecisionPointValue(
     name="Multiple",
     key="M",
     description="There are multiple suppliers of the vulnerable component.",
 )
 
-ONE = SsvcDecisionPointValue(
+ONE = DecisionPointValue(
     name="One",
     key="O",
     description="There is only one supplier of the vulnerable component.",

@@ -16,17 +16,18 @@ Provides the System Exposure decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-EXP_UNAVOIDABLE = SsvcDecisionPointValue(
+EXP_UNAVOIDABLE = DecisionPointValue(
     name="Unavoidable",
     key="U",
     description="Internet or another widely accessible network where access cannot plausibly be restricted or "
     "controlled (e.g., DNS servers, web servers, VOIP servers, email servers)",
 )
 
-EXP_CONTROLLED = SsvcDecisionPointValue(
+EXP_CONTROLLED = DecisionPointValue(
     name="Controlled",
     key="C",
     description="Networked service with some access restrictions or mitigations already in place (whether locally or on the network). "
@@ -37,7 +38,7 @@ EXP_CONTROLLED = SsvcDecisionPointValue(
     "execute it, then exposure should be small.",
 )
 
-EXP_SMALL = SsvcDecisionPointValue(
+EXP_SMALL = DecisionPointValue(
     name="Small",
     key="S",
     description="Local service or program; highly controlled network",
@@ -57,7 +58,7 @@ SYSTEM_EXPOSURE_1 = SsvcDecisionPoint(
 )
 
 # EXP_OPEN is just a rename of EXP_UNAVOIDABLE
-EXP_OPEN = SsvcDecisionPointValue(
+EXP_OPEN = DecisionPointValue(
     name="Open",
     key="O",
     description="Internet or another widely accessible network where access cannot plausibly be restricted or "

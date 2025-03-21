@@ -15,17 +15,17 @@ Models the CVSS Attack Vector (formerly known as Access Vector) metric as an SSV
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_REMOTE = SsvcDecisionPointValue(
+_REMOTE = DecisionPointValue(
     name="Remote",
     key="R",
     description="The vulnerability is exploitable remotely.",
 )
 
-_LOCAL = SsvcDecisionPointValue(
+_LOCAL = DecisionPointValue(
     name="Local",
     key="L",
     description="The vulnerability is only exploitable locally (i.e., it requires physical access or authenticated "
@@ -46,7 +46,7 @@ ACCESS_VECTOR_1 = CvssDecisionPoint(
 Defines LOCAL and REMOTE values for CVSS Access Vector.
 """
 
-_NETWORK = SsvcDecisionPointValue(
+_NETWORK = DecisionPointValue(
     name="Network",
     key="N",
     description="A vulnerability exploitable with network access means the vulnerable software is bound to the "
@@ -54,14 +54,14 @@ _NETWORK = SsvcDecisionPointValue(
     "vulnerability is often termed 'remotely exploitable'.",
 )
 
-_ADJACENT = SsvcDecisionPointValue(
+_ADJACENT = DecisionPointValue(
     name="Adjacent Network",
     key="A",
     description="A vulnerability exploitable with adjacent network access requires the attacker to have access to "
     "either the broadcast or collision domain of the vulnerable software.",
 )
 
-_LOCAL_2 = SsvcDecisionPointValue(
+_LOCAL_2 = DecisionPointValue(
     name="Local",
     key="L",
     description="A vulnerability exploitable with only local access requires the attacker to have either physical "
@@ -85,7 +85,7 @@ Updates LOCAL definition for CVSS Access Vector. Adds ADJACENT and NETWORK value
 """
 
 
-_NETWORK_2 = SsvcDecisionPointValue(
+_NETWORK_2 = DecisionPointValue(
     name="Network",
     key="N",
     description="A vulnerability exploitable with network access means the vulnerable component is bound to the "
@@ -94,7 +94,7 @@ _NETWORK_2 = SsvcDecisionPointValue(
     "exploitable one or more network hops away (e.g. across layer 3 boundaries from routers).",
 )
 
-_ADJACENT_2 = SsvcDecisionPointValue(
+_ADJACENT_2 = DecisionPointValue(
     name="Adjacent",
     key="A",
     description="A vulnerability exploitable with adjacent network access means the vulnerable component is bound to "
@@ -103,7 +103,7 @@ _ADJACENT_2 = SsvcDecisionPointValue(
     "3 boundary (e.g. a router).",
 )
 
-_LOCAL_3 = SsvcDecisionPointValue(
+_LOCAL_3 = DecisionPointValue(
     name="Local",
     key="L",
     description="A vulnerability exploitable with Local access means that the vulnerable component is not bound to "
@@ -112,7 +112,7 @@ _LOCAL_3 = SsvcDecisionPointValue(
     "on User Interaction to execute a malicious file.",
 )
 
-_PHYSICAL_2 = SsvcDecisionPointValue(
+_PHYSICAL_2 = DecisionPointValue(
     name="Physical",
     key="P",
     description="A vulnerability exploitable with Physical access requires the attacker to physically touch or "
@@ -138,7 +138,7 @@ Defines PHYSICAL, LOCAL, ADJACENT, and NETWORK values for CVSS Attack Vector.
 
 
 # CVSS v4 Attack Vector
-_NETWORK_3 = SsvcDecisionPointValue(
+_NETWORK_3 = DecisionPointValue(
     name="Network",
     key="N",
     description="The vulnerable system is bound to the network stack and the set of possible attackers extends beyond "
@@ -147,7 +147,7 @@ _NETWORK_3 = SsvcDecisionPointValue(
     "protocol level one or more network hops away (e.g., across one or more routers).",
 )
 
-_ADJACENT_3 = SsvcDecisionPointValue(
+_ADJACENT_3 = DecisionPointValue(
     name="Adjacent",
     key="A",
     description="The vulnerable system is bound to a protocol stack, but the attack is limited at the protocol level "
@@ -157,7 +157,7 @@ _ADJACENT_3 = SsvcDecisionPointValue(
     "administrative network zone).",
 )
 
-_LOCAL_4 = SsvcDecisionPointValue(
+_LOCAL_4 = DecisionPointValue(
     name="Local",
     key="L",
     description="The vulnerable system is not bound to the network stack and the attacker’s path is via "
@@ -168,7 +168,7 @@ _LOCAL_4 = SsvcDecisionPointValue(
     "malicious document).",
 )
 
-_PHYSICAL_3 = SsvcDecisionPointValue(
+_PHYSICAL_3 = DecisionPointValue(
     name="Physical",
     key="P",
     description="The attack requires the attacker to physically touch or manipulate the vulnerable system. Physical "

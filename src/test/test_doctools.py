@@ -16,7 +16,6 @@ import os
 import tempfile
 import unittest
 
-from ssvc.decision_points import SsvcDecisionPoint
 from ssvc.doctools import (
     EnsureDirExists,
     _filename_friendly,

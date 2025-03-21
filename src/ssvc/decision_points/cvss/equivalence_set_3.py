@@ -15,7 +15,7 @@ This module provides an object representing the CVSS Equivalence Set 3 as a deci
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -24,17 +24,17 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 # 0	VC:H and VI:H	VC:H/VI:H/VA:H
 # 1	not (VC:H and VI:H) and (VC:H or VI:H or VA:H)	VC:L/VI:H/VA:H or VC:H/VI:L/VA:H
 # 2	not (VC:H or VI:H or VA:H)	VC:L/VI:L/VA:L
-TWO = SsvcDecisionPointValue(
+TWO = DecisionPointValue(
     name="Low",
     key="L",
     description="2: not (VC:H or VI:H or VA:H)",
 )
-ONE = SsvcDecisionPointValue(
+ONE = DecisionPointValue(
     name="Medium",
     key="M",
     description="1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)",
 )
-ZERO = SsvcDecisionPointValue(
+ZERO = DecisionPointValue(
     name="High",
     key="H",
     description="0: VC:H and VI:H",

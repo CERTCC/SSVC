@@ -20,8 +20,8 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from semver import Version
 
+from ssvc import _schemaVersion
 from ssvc.namespaces import NS_PATTERN, NameSpace
-from . import _schemaVersion
 
 
 class _Versioned(BaseModel):
@@ -30,7 +30,6 @@ class _Versioned(BaseModel):
     """
 
     version: str = "0.0.0"
-    schemaVersion: str = _schemaVersion
 
     @field_validator("version")
     @classmethod
@@ -48,6 +47,14 @@ class _Versioned(BaseModel):
         """
         version = Version.parse(value, optional_minor_and_patch=True)
         return version.__str__()
+
+
+class _SchemaVersioned(_Versioned, BaseModel):
+    """
+    Mixin class for version
+    """
+
+    schemaVersion: str = _schemaVersion
 
 
 class _Namespaced(BaseModel):

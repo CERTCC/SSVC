@@ -16,22 +16,23 @@ Provides the Supplier Involvement decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-UNCOOPERATIVE = SsvcDecisionPointValue(
+UNCOOPERATIVE = DecisionPointValue(
     name="Uncooperative/Unresponsive",
     key="UU",
     description="The supplier has not responded, declined to generate a remediation, or no longer exists.",
 )
 
-COOPERATIVE = SsvcDecisionPointValue(
+COOPERATIVE = DecisionPointValue(
     name="Cooperative",
     key="C",
     description="The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.",
 )
 
-FIX_READY = SsvcDecisionPointValue(
+FIX_READY = DecisionPointValue(
     name="Fix Ready",
     key="FR",
     description="The supplier has provided a patch or fix.",

@@ -15,18 +15,18 @@ Provides the CVSS supplemental metric Value Density
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-DIFFUSE = SsvcDecisionPointValue(
+DIFFUSE = DecisionPointValue(
     name="Diffuse",
     key="D",
     description="The vulnerable system has limited resources. That is, the resources that the attacker will "
     "gain control over with a single exploitation event are relatively small.",
 )
-CONCENTRATED = SsvcDecisionPointValue(
+CONCENTRATED = DecisionPointValue(
     name="Concentrated",
     key="C",
     description="The vulnerable system is rich in resources. Heuristically, such systems are often the direct "

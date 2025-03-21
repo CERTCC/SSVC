@@ -15,16 +15,17 @@ Provides a decision point representing whether a vulnerability is in the CISA Kn
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
-YES = SsvcDecisionPointValue(
+YES = DecisionPointValue(
     name="Yes",
     key="Y",
     description="Vulnerability is listed in KEV.",
 )
 
-NO = SsvcDecisionPointValue(
+NO = DecisionPointValue(
     name="No",
     key="N",
     description="Vulnerability is not listed in KEV.",

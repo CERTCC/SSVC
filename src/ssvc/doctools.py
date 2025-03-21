@@ -33,9 +33,9 @@ import os
 
 import ssvc.dp_groups.cvss.collections  # noqa
 import ssvc.dp_groups.ssvc.collections  # noqa
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.decision_points.base import (
     REGISTERED_DECISION_POINTS,
-    SsvcDecisionPoint,
 )
 
 logger = logging.getLogger(__name__)

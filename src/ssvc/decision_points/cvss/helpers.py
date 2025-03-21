@@ -17,11 +17,12 @@ Provides helpers for working with CVSS decision points.
 
 from copy import deepcopy
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
+from ssvc.decision_points.cvss.base import CvssDecisionPoint as DecisionPoint
 
 
-def _modify_3(dp: SsvcDecisionPoint):
+def _modify_3(dp: DecisionPoint):
     _dp_dict = deepcopy(dp.model_dump())
     _dp_dict["name"] = "Modified " + _dp_dict["name"]
     _dp_dict["key"] = "M" + _dp_dict["key"]
@@ -35,12 +36,12 @@ def _modify_3(dp: SsvcDecisionPoint):
         values.append(nd)
     _dp_dict["values"] = tuple(values)
 
-    _dp = SsvcDecisionPoint(**_dp_dict)
+    _dp = DecisionPoint(**_dp_dict)
 
     return _dp
 
 
-def modify_3(dp: SsvcDecisionPoint):
+def modify_3(dp: DecisionPoint):
     """
     Prepends "Modified " to the name and "M" to the key of the given object. Also adds a value of "Not Defined" to the
     values list.
@@ -55,7 +56,7 @@ def modify_3(dp: SsvcDecisionPoint):
     return _dp
 
 
-def modify_4(dp: SsvcDecisionPoint):
+def modify_4(dp: DecisionPoint):
     """
     Modifies a CVSS v4 Base Metric decision point object.
 
@@ -72,7 +73,7 @@ def modify_4(dp: SsvcDecisionPoint):
     return _dp
 
 
-def _modify_4(dp: SsvcDecisionPoint):
+def _modify_4(dp: DecisionPoint):
     # note:
     # this method was split out for testing purposes
     # assumes you've already done the 3.0 modifications
@@ -89,7 +90,7 @@ def _modify_4(dp: SsvcDecisionPoint):
     # Note: For MSI, There is also a highest severity level, Safety (S), in addition to the same values as the
     # corresponding Base Metric (High, Medium, Low).
     if key == "MSI":
-        _SAFETY = SsvcDecisionPointValue(
+        _SAFETY = DecisionPointValue(
             name="Safety",
             key="S",
             description="The Safety metric value measures the impact regarding the Safety of a human actor or "
@@ -99,7 +100,7 @@ def _modify_4(dp: SsvcDecisionPoint):
         values.append(_SAFETY)
         _dp_dict["values"] = tuple(values)
 
-    _dp = SsvcDecisionPoint(**_dp_dict)
+    _dp = DecisionPoint(**_dp_dict)
 
     return _dp
 

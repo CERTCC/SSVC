@@ -14,24 +14,24 @@
 import unittest
 from copy import deepcopy
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_points.helpers import dp_diff
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.dp1 = SsvcDecisionPoint(
+        self.dp1 = DecisionPoint(
             name="Test DP",
             key="test_dp",
             description="This is a test decision point",
             version="1.0.0",
             values=[
-                SsvcDecisionPointValue(
+                DecisionPointValue(
                     name="Yes",
                     key="yes",
                     description="Yes",
                 ),
-                SsvcDecisionPointValue(
+                DecisionPointValue(
                     name="No",
                     key="no",
                     description="No",
@@ -89,7 +89,7 @@ class MyTestCase(unittest.TestCase):
         # add one
         self.dp2.values = list(self.dp1.values)
         self.dp2.values.append(
-            SsvcDecisionPointValue(
+            DecisionPointValue(
                 name="Maybe",
                 key="maybe",
                 description="Maybe",
@@ -107,7 +107,7 @@ class MyTestCase(unittest.TestCase):
         # add one
         self.dp2.values = list(self.dp1.values)
         self.dp2.values.append(
-            SsvcDecisionPointValue(
+            DecisionPointValue(
                 name="Maybe",
                 key="maybe",
                 description="Maybe",

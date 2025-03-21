@@ -15,11 +15,11 @@ Models the CVSS Confidentiality Impact metric as an SSVC decision point.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="There is total loss of confidentiality, resulting in all resources within the impacted component "
@@ -28,7 +28,7 @@ _HIGH = SsvcDecisionPointValue(
     "steals the administrator's password, or private encryption keys of a web server.",
 )
 
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="There is some loss of confidentiality. Access to some restricted information is obtained, "
@@ -37,13 +37,13 @@ _LOW = SsvcDecisionPointValue(
     "impacted component.",
 )
 
-_CI_NONE_2 = SsvcDecisionPointValue(
+_CI_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no loss of confidentiality within the impacted component.",
 )
 
-_COMPLETE = SsvcDecisionPointValue(
+_COMPLETE = DecisionPointValue(
     name="Complete",
     key="C",
     description="A total compromise of critical system information. A complete loss of system protection resulting in "
@@ -51,7 +51,7 @@ _COMPLETE = SsvcDecisionPointValue(
     "system's data (memory, files, etc).",
 )
 
-_PARTIAL = SsvcDecisionPointValue(
+_PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
     description="There is considerable informational disclosure. Access to critical system files is possible. There "
@@ -59,7 +59,7 @@ _PARTIAL = SsvcDecisionPointValue(
     "the scope of the loss is constrained.",
 )
 
-_CI_NONE = SsvcDecisionPointValue(
+_CI_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="No impact on confidentiality.",
@@ -98,7 +98,7 @@ Updates None. Removes Partial and Complete. Adds Low and High values for CVSS Co
 """
 
 
-_HIGH_1 = SsvcDecisionPointValue(
+_HIGH_1 = DecisionPointValue(
     name="High",
     key="H",
     description="There is total loss of confidentiality, resulting in all resources within the impacted component "
@@ -107,7 +107,7 @@ _HIGH_1 = SsvcDecisionPointValue(
     "steals the administrator's password, or private encryption keys of a web server.",
 )
 
-_LOW_1 = SsvcDecisionPointValue(
+_LOW_1 = DecisionPointValue(
     name="Low",
     key="L",
     description="There is some loss of confidentiality. Access to some restricted information is obtained, "
@@ -116,7 +116,7 @@ _LOW_1 = SsvcDecisionPointValue(
     "impacted component.",
 )
 
-_CI_NONE_3 = SsvcDecisionPointValue(
+_CI_NONE_3 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no loss of confidentiality within the impacted component.",

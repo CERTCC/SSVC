@@ -16,18 +16,18 @@ Models CVSS Scope as an SSVC decision point.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_CHANGED = SsvcDecisionPointValue(
+_CHANGED = DecisionPointValue(
     name="Changed",
     key="C",
     description="An exploited vulnerability can affect resources beyond the authorization privileges intended by the "
     "vulnerable component. In this case the vulnerable component and the impacted component are different.",
 )
 
-_UNCHANGED = SsvcDecisionPointValue(
+_UNCHANGED = DecisionPointValue(
     name="Unchanged",
     key="U",
     description="An exploited vulnerability can only affect resources managed by the same authority. In this case the "

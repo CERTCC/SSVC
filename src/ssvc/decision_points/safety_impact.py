@@ -17,10 +17,11 @@ Provides the Safety Impact decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-CATASTROPHIC = SsvcDecisionPointValue(
+CATASTROPHIC = DecisionPointValue(
     name="Catastrophic",
     key="C",
     description="Any one or more of these conditions hold. "
@@ -32,7 +33,7 @@ CATASTROPHIC = SsvcDecisionPointValue(
     "Psychological: N/A.",
 )
 
-HAZARDOUS = SsvcDecisionPointValue(
+HAZARDOUS = DecisionPointValue(
     name="Hazardous",
     key="H",
     description="Any one or more of these conditions hold. "
@@ -44,7 +45,7 @@ HAZARDOUS = SsvcDecisionPointValue(
     "Psychological: N/A.",
 )
 
-MAJOR = SsvcDecisionPointValue(
+MAJOR = DecisionPointValue(
     name="Major",
     key="J",
     description="Any one or more of these conditions hold. "
@@ -57,7 +58,7 @@ MAJOR = SsvcDecisionPointValue(
     "Psychological: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people.",
 )
 
-MINOR = SsvcDecisionPointValue(
+MINOR = DecisionPointValue(
     name="Minor",
     key="M",
     description="Any one or more of these conditions hold. "
@@ -70,7 +71,7 @@ MINOR = SsvcDecisionPointValue(
     "Psychological: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons.",
 )
 
-SAF_NONE = SsvcDecisionPointValue(
+SAF_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="The effect is below the threshold for all aspects described in Minor.",
@@ -79,7 +80,7 @@ SAF_NONE = SsvcDecisionPointValue(
 ## Based on the IEC 61508 standard
 ## Catastrophic, Critical, Marginal, Negligible
 
-CATASTROPHIC_2 = SsvcDecisionPointValue(
+CATASTROPHIC_2 = DecisionPointValue(
     name="Catastrophic",
     key="C",
     description="Any one or more of these conditions hold.<br/><br/>"
@@ -91,7 +92,7 @@ CATASTROPHIC_2 = SsvcDecisionPointValue(
     "- *Psychological*: N/A.",
 )
 
-CRITICAL = SsvcDecisionPointValue(
+CRITICAL = DecisionPointValue(
     name="Critical",
     key="R",
     description="Any one or more of these conditions hold.<br/><br/>"
@@ -103,7 +104,7 @@ CRITICAL = SsvcDecisionPointValue(
     "- *Psychological*: N/A.",
 )
 
-MARGINAL = SsvcDecisionPointValue(
+MARGINAL = DecisionPointValue(
     name="Marginal",
     key="M",
     description="Any one or more of these conditions hold.<br/><br/>"
@@ -116,7 +117,7 @@ MARGINAL = SsvcDecisionPointValue(
     "- *Psychological*: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people.",
 )
 
-NEGLIGIBLE = SsvcDecisionPointValue(
+NEGLIGIBLE = DecisionPointValue(
     name="Negligible",
     key="N",
     description="Any one or more of these conditions hold.<br/><br/>"

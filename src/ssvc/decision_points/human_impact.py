@@ -16,65 +16,66 @@ Provides the Human Impact decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-LOW_1 = SsvcDecisionPointValue(
+LOW_1 = DecisionPointValue(
     name="Low",
     key="L",
     description="Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal",
 )
 
-LOW_2 = SsvcDecisionPointValue(
+LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
     description="Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
-LOW_3 = SsvcDecisionPointValue(
+LOW_3 = DecisionPointValue(
     name="Low",
     key="L",
     description="Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
-MEDIUM_1 = SsvcDecisionPointValue(
+MEDIUM_1 = DecisionPointValue(
     name="Medium",
     key="M",
     description="Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)",
 )
 
-MEDIUM_2 = SsvcDecisionPointValue(
+MEDIUM_2 = DecisionPointValue(
     name="Medium",
     key="M",
     description="(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
-MEDIUM_3 = SsvcDecisionPointValue(
+MEDIUM_3 = DecisionPointValue(
     name="Medium",
     key="M",
     description="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
-HIGH_1 = SsvcDecisionPointValue(
+HIGH_1 = DecisionPointValue(
     name="High",
     key="H",
     description="Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)",
 )
 
 
-HIGH_2 = SsvcDecisionPointValue(
+HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
     description="(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)",
 )
 
-HIGH_3 = SsvcDecisionPointValue(
+HIGH_3 = DecisionPointValue(
     name="High",
     key="H",
     description="(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
 )
 
-VERY_HIGH_1 = SsvcDecisionPointValue(
+VERY_HIGH_1 = DecisionPointValue(
     name="Very High",
     key="VH",
     description="Safety Impact:Catastrophic OR Mission Impact:Mission Failure",

@@ -16,7 +16,7 @@ Models the CVSS Report Confidence metric as an SSVC decision point.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import (
     NOT_DEFINED_ND,
     NOT_DEFINED_X,
@@ -24,7 +24,7 @@ from ssvc.decision_points.cvss._not_defined import (
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_CONFIRMED_2 = SsvcDecisionPointValue(
+_CONFIRMED_2 = DecisionPointValue(
     name="Confirmed",
     key="C",
     description="Detailed reports exist, or functional reproduction is possible (functional exploits may provide "
@@ -32,7 +32,7 @@ _CONFIRMED_2 = SsvcDecisionPointValue(
     "or the author or vendor of the affected code has confirmed the presence of the vulnerability.",
 )
 
-_REASONABLE = SsvcDecisionPointValue(
+_REASONABLE = DecisionPointValue(
     name="Reasonable",
     key="R",
     description="Significant details are published, but researchers either do not have full confidence in the root "
@@ -41,7 +41,7 @@ _REASONABLE = SsvcDecisionPointValue(
     "impact is able to be verified (proof-of-concept exploits may provide this).",
 )
 
-_UNKNOWN = SsvcDecisionPointValue(
+_UNKNOWN = DecisionPointValue(
     name="Unknown",
     key="U",
     description="There are reports of impacts that indicate a vulnerability is present. The reports indicate that the "
@@ -51,7 +51,7 @@ _UNKNOWN = SsvcDecisionPointValue(
     "differences described.",
 )
 
-_CONFIRMED = SsvcDecisionPointValue(
+_CONFIRMED = DecisionPointValue(
     name="Confirmed",
     key="C",
     description="Vendor or author of the affected technology has acknowledged that the vulnerability exists. This "
@@ -60,7 +60,7 @@ _CONFIRMED = SsvcDecisionPointValue(
     "widespread exploitation.",
 )
 
-_UNCORROBORATED = SsvcDecisionPointValue(
+_UNCORROBORATED = DecisionPointValue(
     name="Uncorroborated",
     key="UR",
     description="Multiple non-official sources; possibily including independent security companies or research "
@@ -68,7 +68,7 @@ _UNCORROBORATED = SsvcDecisionPointValue(
     "ambiguity.",
 )
 
-_UNCONFIRMED = SsvcDecisionPointValue(
+_UNCONFIRMED = DecisionPointValue(
     name="Unconfirmed",
     key="UC",
     description="A single unconfirmed source or possibly several conflicting reports. There is little confidence in "

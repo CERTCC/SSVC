@@ -15,11 +15,11 @@ CVSS Attack Requirements
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_AT_NONE = SsvcDecisionPointValue(
+_AT_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="The successful attack does not depend on the deployment and execution conditions of the vulnerable "
@@ -28,7 +28,7 @@ _AT_NONE = SsvcDecisionPointValue(
 )
 
 
-_PRESENT = SsvcDecisionPointValue(
+_PRESENT = DecisionPointValue(
     name="Present",
     key="P",
     description="The successful attack depends on the presence of specific deployment and execution conditions of "

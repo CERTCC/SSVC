@@ -14,7 +14,7 @@
 import unittest
 
 import ssvc.decision_points.cvss.helpers as h
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
 
@@ -27,17 +27,17 @@ def fake_ms_impacts() -> list[CvssDecisionPoint]:
             version="1.0.0",
             key=key,
             values=(
-                SsvcDecisionPointValue(
+                DecisionPointValue(
                     name="None",
                     key="N",
                     description="No impact",
                 ),
-                SsvcDecisionPointValue(
+                DecisionPointValue(
                     name="Low",
                     key="L",
                     description="Low impact",
                 ),
-                SsvcDecisionPointValue(
+                DecisionPointValue(
                     name="High",
                     key="H",
                     description="High impact",
@@ -58,12 +58,12 @@ class TestCvssHelpers(unittest.TestCase):
                 version="1.0",
                 key=f"TDP{i}",
                 values=(
-                    SsvcDecisionPointValue(
+                    DecisionPointValue(
                         name=f"yes_{i}",
                         description=f"yes_{i}",
                         key=f"Y{i}",
                     ),
-                    SsvcDecisionPointValue(
+                    DecisionPointValue(
                         name=f"no_{i}",
                         description=f"no_{i}",
                         key=f"N{i}",

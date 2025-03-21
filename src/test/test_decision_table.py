@@ -16,6 +16,7 @@ from itertools import product
 
 import pandas as pd
 
+import ssvc.decision_points.ssvc_.base
 from ssvc.decision_tables import base
 from ssvc.decision_tables.base import name_to_key
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
@@ -31,14 +32,14 @@ class MyTestCase(unittest.TestCase):
         for i in range(3):
             dpvs = []
             for j in range(3):
-                dpv = base.SsvcDecisionPointValue(
+                dpv = base.DecisionPointValue(
                     name=f"Value {i}{j}",
                     key=f"DP{i}V{j}",
                     description=f"Decision Point {i} Value {j} Description",
                 )
                 dpvs.append(dpv)
 
-            dp = base.SsvcDecisionPoint(
+            dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
                 name=f"Decision Point {i}",
                 key=f"DP{i}",
                 description=f"Decision Point {i} Description",
@@ -138,7 +139,7 @@ class MyTestCase(unittest.TestCase):
 
         with self.subTest("problems"):
             # set one of the outcomes out of order
-            self.dt._df.iloc[0, -1] = "ov2"
+            self.dt._df.iloc[0, -1] = self.og.values[-1].name
             with self.assertRaises(ValueError):
                 self.dt.validate_mapping()
 

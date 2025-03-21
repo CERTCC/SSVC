@@ -13,23 +13,24 @@
 
 import unittest
 
+import ssvc.decision_points.ssvc_.base
 import ssvc.dp_groups.base as dpg
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.dps = []
         for i in range(10):
-            dp = dpg.SsvcDecisionPoint(
+            dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
                 name=f"Decision Point {i}",
                 key=f"DP_{i}",
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    SsvcDecisionPointValue(name="foo", key="FOO", description="foo"),
-                    SsvcDecisionPointValue(name="bar", key="BAR", description="bar"),
-                    SsvcDecisionPointValue(name="baz", key="BAZ", description="baz"),
+                    DecisionPointValue(name="foo", key="FOO", description="foo"),
+                    DecisionPointValue(name="bar", key="BAR", description="bar"),
+                    DecisionPointValue(name="baz", key="BAZ", description="baz"),
                 ),
             )
             self.dps.append(dp)
@@ -63,43 +64,6 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(self.dps), len(list(g.decision_points)))
         self.assertEqual(len(self.dps), len(g))
 
-    def test_combinations(self):
-        # add them to a decision point group
-        g = dpg.SsvcDecisionPointGroup(
-            name="Test Group",
-            description="Test Group",
-            decision_points=self.dps,
-        )
-
-        # get all the combinations
-        combos = list(g.combinations())
-
-        # assert that the number of combinations is the product of the number of values
-        # for each decision point
-        n_combos = 1
-        for dp in self.dps:
-            n_combos *= len(dp.values)
-        self.assertEqual(n_combos, len(combos))
-
-        # assert that each combination is a tuple
-        for combo in combos:
-            self.assertIsInstance(combo, tuple)
-            # assert that each value in the combination is a decision point value
-            for value in combo:
-                self.assertIsInstance(value, SsvcDecisionPointValue)
-
-            # foo, bar, and baz should be in each combination to some degree
-            foo_count = sum(1 for v in combo if v.name == "foo")
-            bar_count = sum(1 for v in combo if v.name == "bar")
-            baz_count = sum(1 for v in combo if v.name == "baz")
-            for count in (foo_count, bar_count, baz_count):
-                # each count should be greater than or equal to 0
-                self.assertGreaterEqual(count, 0)
-            # the total count of foo, bar, and baz should be the same as the length of the combination
-            # indicating that no other values are present
-            total = sum((foo_count, bar_count, baz_count))
-            self.assertEqual(len(combo), total)
-
     def test_combo_strings(self):
         # add them to a decision point group
         g = dpg.SsvcDecisionPointGroup(
@@ -109,7 +73,7 @@ class MyTestCase(unittest.TestCase):
         )
 
         # get all the combinations
-        combos = list(g.combo_strings())
+        combos = list(g.combination_strings())
 
         # assert that the number of combinations is the product of the number of values
         # for each decision point
@@ -126,12 +90,14 @@ class MyTestCase(unittest.TestCase):
             for value in combo:
                 self.assertIsInstance(value, str)
             # foo, bar, and baz should be in each combination to some degree
-            foo_count = sum(1 for v in combo if v == "foo")
-            bar_count = sum(1 for v in combo if v == "bar")
-            baz_count = sum(1 for v in combo if v == "baz")
+            foo_count = sum(1 for v in combo if v.endswith("FOO"))
+            bar_count = sum(1 for v in combo if v.endswith("BAR"))
+            baz_count = sum(1 for v in combo if v.endswith("BAZ"))
             for count in (foo_count, bar_count, baz_count):
                 # each count should be greater than or equal to 0
                 self.assertGreaterEqual(count, 0)
+                # each count should be less than or equal to the length of the combination
+                self.assertLessEqual(count, len(combo))
             # the total count of foo, bar, and baz should be the same as the length of the combination
             # indicating that no other values are present
             total = sum((foo_count, bar_count, baz_count))

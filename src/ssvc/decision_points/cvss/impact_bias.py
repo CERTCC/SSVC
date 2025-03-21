@@ -15,29 +15,29 @@ Model the CVSS Impact Bias as an SSVC decision point.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_AVAILABILITY = SsvcDecisionPointValue(
+_AVAILABILITY = DecisionPointValue(
     name="Availability",
     key="A",
     description="Availability Impact is assigned greater weight than Confidentiality Impact or Integrity Impact.",
 )
 
-_INTEGRITY = SsvcDecisionPointValue(
+_INTEGRITY = DecisionPointValue(
     name="Integrity",
     key="I",
     description="Integrity Impact is assigned greater weight than Confidentiality Impact or Availability Impact.",
 )
 
-_CONFIDENTIALITY = SsvcDecisionPointValue(
+_CONFIDENTIALITY = DecisionPointValue(
     name="Confidentiality",
     key="C",
     description="Confidentiality impact is assigned greater weight than Integrity Impact or Availability Impact.",
 )
 
-_NORMAL = SsvcDecisionPointValue(
+_NORMAL = DecisionPointValue(
     name="Normal",
     key="N",
     description="Confidentiality Impact, Integrity Impact, and Availability Impact are all assigned the same weight.",

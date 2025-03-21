@@ -17,22 +17,23 @@ This module provides the Public Value Added decision point for the Stakeholder S
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-LIMITED = SsvcDecisionPointValue(
+LIMITED = DecisionPointValue(
     name="Limited",
     key="L",
     description="Minimal value added to the existing public information because existing information is already high quality and in multiple outlets.",
 )
 
-AMPLIATIVE = SsvcDecisionPointValue(
+AMPLIATIVE = DecisionPointValue(
     name="Ampliative",
     key="A",
     description="Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.",
 )
 
-PRECEDENCE = SsvcDecisionPointValue(
+PRECEDENCE = DecisionPointValue(
     name="Precedence",
     key="P",
     description="The publication would be the first publicly available, or be coincident with the first publicly available.",

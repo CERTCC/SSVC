@@ -15,16 +15,17 @@ Provides the Supplier Engagement decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-YES = SsvcDecisionPointValue(
+YES = DecisionPointValue(
     name="Yes",
     key="Y",
     description="The supplier has been contacted.",
 )
 
-NO = SsvcDecisionPointValue(
+NO = DecisionPointValue(
     name="No",
     key="N",
     description="The supplier has not been contacted.",

@@ -16,18 +16,18 @@ Provides CVSS v4 Supplemental Metric for Safety
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-PRESENT = SsvcDecisionPointValue(
+PRESENT = DecisionPointValue(
     name="Present",
     key="P",
     description="Consequences of the vulnerability meet definition of IEC 61508 consequence categories of "
     '"marginal," "critical," or "catastrophic."',
 )
-NEGLIGIBLE = SsvcDecisionPointValue(
+NEGLIGIBLE = DecisionPointValue(
     name="Negligible",
     key="N",
     description="Consequences of the vulnerability meet definition of IEC 61508 consequence category "

@@ -15,16 +15,16 @@ Provides a generic Not Define decision point value for CVSS decision points.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 
 
-NOT_DEFINED_ND = SsvcDecisionPointValue(
+NOT_DEFINED_ND = DecisionPointValue(
     name="Not Defined",
     key="ND",
     description="This metric value is not defined. See CVSS documentation for details.",
 )
 
-NOT_DEFINED_X = SsvcDecisionPointValue(
+NOT_DEFINED_X = DecisionPointValue(
     name="Not Defined",
     key="X",
     description="This metric value is not defined. See CVSS documentation for details.",

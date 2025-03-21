@@ -17,16 +17,17 @@ Provides the Public Safety Impact decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-MINIMAL_1 = SsvcDecisionPointValue(
+MINIMAL_1 = DecisionPointValue(
     name="Minimal",
     description="The effect is below the threshold for all aspects described in material. ",
     key="M",
 )
 
-MATERIAL = SsvcDecisionPointValue(
+MATERIAL = DecisionPointValue(
     name="Material",
     description="Any one or more of these conditions hold. "
     "Physical harm: Does one or more of the following: "
@@ -41,7 +42,7 @@ MATERIAL = SsvcDecisionPointValue(
     key="M",
 )
 
-IRREVERSIBLE = SsvcDecisionPointValue(
+IRREVERSIBLE = DecisionPointValue(
     name="Irreversible",
     description="Any one or more of these conditions hold. "
     "Physical harm: One or both of the following are true: (a) Multiple fatalities are likely."
@@ -54,23 +55,23 @@ IRREVERSIBLE = SsvcDecisionPointValue(
     key="I",
 )
 
-SIGNIFICANT = SsvcDecisionPointValue(
+SIGNIFICANT = DecisionPointValue(
     name="Significant",
     description="Safety Impact:(Major OR Hazardous OR Catastrophic)",
     key="S",
 )
 
-MINIMAL_2 = SsvcDecisionPointValue(
+MINIMAL_2 = DecisionPointValue(
     name="Minimal", description="Safety Impact:(None OR Minor)", key="M"
 )
 
-SIGNIFICANT_1 = SsvcDecisionPointValue(
+SIGNIFICANT_1 = DecisionPointValue(
     name="Significant",
     description="Safety Impact:(Marginal OR Critical OR Catastrophic)",
     key="S",
 )
 
-MINIMAL_3 = SsvcDecisionPointValue(
+MINIMAL_3 = DecisionPointValue(
     name="Minimal", description="Safety Impact:Negligible", key="M"
 )
 

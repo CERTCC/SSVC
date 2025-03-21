@@ -18,7 +18,7 @@ from itertools import product
 import networkx as nx
 import pandas as pd
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
 from ssvc.policy_generator import PolicyGenerator
@@ -40,12 +40,12 @@ class MyTestCase(unittest.TestCase):
             name="test",
             description="test",
             decision_points=[
-                SsvcDecisionPoint(
+                DecisionPoint(
                     name=c,
                     description=c,
                     key=c,
                     values=[
-                        SsvcDecisionPointValue(name=v, key=v, description=v)
+                        DecisionPointValue(name=v, key=v, description=v)
                         for v in self.dp_values
                     ],
                 )

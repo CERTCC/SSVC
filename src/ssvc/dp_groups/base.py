@@ -22,16 +22,19 @@ from typing import Generator
 
 from pydantic import BaseModel
 
-from ssvc._mixins import _Base, _Versioned
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc._mixins import _Base, _SchemaVersioned
+from ssvc.decision_points.base import (
+    DecisionPoint, ValueSummary,
+)
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
 
-class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
+class SsvcDecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
     """
     Models a group of decision points.
     """
 
-    decision_points: tuple[SsvcDecisionPoint, ...]
+    decision_points: tuple[DecisionPoint, ...]
 
     def __iter__(self):
         """
@@ -47,28 +50,26 @@ class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
         l = len(dplist)
         return l
 
-    def combinations(
-        self,
-    ) -> Generator[tuple[SsvcDecisionPointValue, ...], None, None]:
-        # Generator[yield_type, send_type, return_type]
-        """
-        Produce all possible combinations of decision point values in the group.
-        """
-        # for each decision point, get the values
-        # then take the product of all the values
-        # and yield each combination
-        values_list: list[list[SsvcDecisionPointValue]] = [
-            dp.values for dp in self.decision_points
-        ]
-        for combination in product(*values_list):
+    def combination_summaries(self) -> Generator[tuple[ValueSummary, ...], None, None]:
+        # get the value summaries for each decision point
+        value_summaries = [dp.value_summaries for dp in self.decision_points]
+
+        for combination in product(*value_summaries):
             yield combination
 
-    def combo_strings(self) -> Generator[tuple[str, ...], None, None]:
+    def combination_strings(self) -> Generator[tuple[str, ...], None, None]:
         """
         Produce all possible combinations of decision point values in the group as strings.
         """
-        for combo in self.combinations():
+        for combo in self.combination_summaries():
             yield tuple(str(v) for v in combo)
+
+    def combination_dicts(self):
+        """
+        Produce all possible combinations of decision point values in the group as a dictionary.
+        """
+        for combo in self.combination_summaries():
+            yield tuple(v.model_dump() for v in combo)
 
 
 def get_all_decision_points_from(

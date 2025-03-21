@@ -16,16 +16,17 @@ Provides the Automatable decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-RAPID = SsvcDecisionPointValue(
+RAPID = DecisionPointValue(
     name="Rapid",
     key="R",
     description="Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows remote "
     "code execution or command injection, the default response should be rapid.",
 )
-SLOW = SsvcDecisionPointValue(
+SLOW = DecisionPointValue(
     name="Slow",
     key="S",
     description="Steps 1-4 of the kill chain cannot be reliably automated for this vulnerability for some reason. "
@@ -44,13 +45,13 @@ VIRULENCE_1 = SsvcDecisionPoint(
 )
 
 
-AUT_NO = SsvcDecisionPointValue(
+AUT_NO = DecisionPointValue(
     name="No",
     key="N",
     description="Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. "
     "These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation.",
 )
-AUT_YES = SsvcDecisionPointValue(
+AUT_YES = DecisionPointValue(
     name="Yes",
     key="Y",
     description="Attackers can reliably automate steps 1-4 of the kill chain.",

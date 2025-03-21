@@ -20,10 +20,10 @@ from typing import Sequence
 
 import semver
 
-from ssvc.decision_points import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPoint
 
 
-def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
+def dp_diff(dp1: DecisionPoint, dp2: DecisionPoint) -> list[str]:
     """
     Compares two decision points and returns a list of differences.
 
@@ -212,7 +212,7 @@ def dp_diff(dp1: SsvcDecisionPoint, dp2: SsvcDecisionPoint) -> list[str]:
     return diffs
 
 
-def show_diffs(versions: Sequence[SsvcDecisionPoint]) -> None:
+def show_diffs(versions: Sequence[DecisionPoint]) -> None:
     if len(versions) < 2:
         print("Not enough versions to compare")
         return
@@ -223,7 +223,7 @@ def show_diffs(versions: Sequence[SsvcDecisionPoint]) -> None:
         print()
 
 
-def print_versions_and_diffs(versions: Sequence[SsvcDecisionPoint]) -> None:
+def print_versions_and_diffs(versions: Sequence[DecisionPoint]) -> None:
     """
     Prints the json representation of each version and then shows the diffs between each version.
 

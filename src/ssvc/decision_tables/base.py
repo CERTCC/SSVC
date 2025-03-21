@@ -22,9 +22,9 @@ from typing import Self
 import pandas as pd
 from pydantic import BaseModel, model_validator
 
-from ssvc._mixins import _Base, _Commented, _Namespaced, _Versioned
+from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
 from ssvc.csv_analyzer import check_topological_order
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue, SsvcDecisionPoint
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
 from ssvc.policy_generator import PolicyGenerator
@@ -41,7 +41,7 @@ def name_to_key(name: str) -> str:
     return new_name
 
 
-class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
+class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
     """
     The DecisionTable class is a model for decisions in SSVC.
 
@@ -54,7 +54,8 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
 
     decision_point_group: SsvcDecisionPointGroup
     outcome_group: OutcomeGroup
-    mapping: list = None
+    mapping: list[dict[str, str]] = None
+
     _df: pd.DataFrame = None
 
     @property
@@ -82,7 +83,7 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
         }
 
     @property
-    def dp_value_lookup(self) -> dict[str, dict[str, SsvcDecisionPointValue]]:
+    def dp_value_lookup(self) -> dict[str, dict[str, DecisionPointValue]]:
         """
         Return a lookup table for decision point values.
         Returns:
@@ -145,7 +146,7 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
         """
         Convert the mapping to a pandas DataFrame.
         """
-        return self.generate_df()
+        raise NotImplementedError
 
     # stub for validating mapping
     def generate_df(self) -> pd.DataFrame:
@@ -160,33 +161,29 @@ class DecisionTable(_Versioned, _Namespaced, _Base, _Commented, BaseModel):
 
         return df
 
-    def table_to_mapping(self, df: pd.DataFrame) -> list[tuple[str, ...]]:
+    def table_to_mapping(self, df: pd.DataFrame) -> list[dict[str, str]]:
         # copy dataframe
         df = pd.DataFrame(df)
+        columns = [dp.key for dp in self.decision_point_group.decision_points]
+        columns.append(self.outcome_group.key)
 
-        columns = [name_to_key(col) for col in df.columns]
         df.columns = columns
         data = []
-        for index, row in df.iterrows():
-            row_data = []
+        for _, row in df.iterrows():
+            row_data = {}
+            outcome_value = None
             for column in columns:
-                value = None
-                ovalue = None
-                value_name = name_to_key(row[column])
+                value_name = row[column]
                 try:
                     value = self.dp_value_lookup[column][value_name]
+                    row_data[column] = value.key
                 except KeyError:
-                    ovalue = self.outcome_lookup[value_name]
-
-                if value is not None:
-                    row_data.append(value.key)
-
-            if ovalue is None:
+                    outcome_value = self.outcome_lookup[value_name]
+            if outcome_value is None:
                 raise ValueError("Outcome value not found")
-            row_data = tuple(row_data)
-            t = tuple([row_data, ovalue.key])
 
-            data.append(t)
+            row_data["outcome"] = outcome_value.key
+            data.append(row_data)
         return data
 
 
@@ -202,16 +199,17 @@ def main():
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
 
-    dfw = DecisionTable(
+    dt = DecisionTable(
         name="Example Prioritization Framework",
         description="The description for an Example Prioritization Framework",
+        namespace="x_test",
         version="1.0.0",
         decision_point_group=dpg,
         outcome_group=og,
     )
-    print(dfw.model_dump_json(indent=2))
+    print(dt.model_dump_json(indent=2))
 
-    print(dfw._df)
+    print(dt._df)
 
 
 if __name__ == "__main__":

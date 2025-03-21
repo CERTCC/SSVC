@@ -17,23 +17,23 @@ Provides the Mission Prevalence decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue, SsvcDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-MINIMAL = SsvcDecisionPointValue(
+MINIMAL = DecisionPointValue(
     name="Minimal",
     key="M",
     description="Neither Support nor Essential apply. "
     "The vulnerable component may be used within the entities, but it is not used as a mission-essential component, nor does it provide impactful support to mission-essential functions.",
 )
 
-SUPPORT = SsvcDecisionPointValue(
+SUPPORT = DecisionPointValue(
     name="Support",
     key="S",
     description="The vulnerable component only supports MEFs for two or more entities.",
 )
 
-ESSENTIAL = SsvcDecisionPointValue(
+ESSENTIAL = DecisionPointValue(
     name="Essential",
     key="E",
     description="The vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity; component failure may (but does not necessarily) lead to overall mission failure.",

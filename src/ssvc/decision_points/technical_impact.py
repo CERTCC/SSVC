@@ -17,16 +17,17 @@ Provides the Technical Impact decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-TOTAL = SsvcDecisionPointValue(
+TOTAL = DecisionPointValue(
     name="Total",
     key="T",
     description="The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability.",
 )
 
-PARTIAL = SsvcDecisionPointValue(
+PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
     description="The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control.",

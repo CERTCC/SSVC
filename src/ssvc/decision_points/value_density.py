@@ -16,16 +16,17 @@ Provides the Value Density decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-CONCENTRATED = SsvcDecisionPointValue(
+CONCENTRATED = DecisionPointValue(
     name="Concentrated",
     key="C",
     description="The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users.",
 )
 
-DIFFUSE = SsvcDecisionPointValue(
+DIFFUSE = DecisionPointValue(
     name="Diffuse",
     key="D",
     description="The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small.",

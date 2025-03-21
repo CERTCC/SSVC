@@ -14,6 +14,7 @@
 import unittest
 
 import ssvc.decision_points.base as base
+import ssvc.decision_points.ssvc_.base
 
 
 class MyTestCase(unittest.TestCase):
@@ -24,12 +25,12 @@ class MyTestCase(unittest.TestCase):
         self.values = []
         for i in range(3):
             self.values.append(
-                base.SsvcDecisionPointValue(
+                base.DecisionPointValue(
                     name=f"foo{i}", key=f"bar{i}", description=f"baz{i}"
                 )
             )
 
-        self.dp = base.SsvcDecisionPoint(
+        self.dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="foo",
             key="bar",
             description="baz",
@@ -54,7 +55,7 @@ class MyTestCase(unittest.TestCase):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
 
-        dp2 = base.SsvcDecisionPoint(
+        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="asdfad",
             key="asdfasdf",
             description="asdfasdf",
@@ -67,7 +68,7 @@ class MyTestCase(unittest.TestCase):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
 
-        dp2 = base.SsvcDecisionPoint(
+        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="asdfad",
             key="asdfasdf",
             description="asdfasdf",
@@ -101,30 +102,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj.namespace, "x_test")
         self.assertEqual(len(self.values), len(obj.values))
 
-    def test_ssvc_decision_point_value_dict(self):
-        obj = self.dp
-        # should have values_dict
-        self.assertTrue(hasattr(obj, "value_dict"))
-        self.assertEqual(len(obj.value_dict), len(self.values))
-        # keys of value dict should be namespace:key:value.key
-        for value in self.values:
-            key = f"{obj.namespace}:{obj.key}:{value.key}"
-            self.assertIn(key, obj.value_dict)
-            self.assertEqual(obj.value_dict[key], value)
-
-        # values_dict should NOT appear in serialization
-        # not in the data structure
-        self.assertNotIn("value_dict", obj.model_dump())
-        # not in the json
-        self.assertNotIn("value_dict", obj.model_dump_json())
-
     def test_ssvc_value_json_roundtrip(self):
         for i, obj in enumerate(self.values):
             json = obj.model_dump_json()
             self.assertIsInstance(json, str)
             self.assertGreater(len(json), 0)
 
-            obj2 = base.SsvcDecisionPointValue.model_validate_json(json)
+            obj2 = base.DecisionPointValue.model_validate_json(json)
             self.assertEqual(obj, obj2)
 
     def test_ssvc_decision_point_json_roundtrip(self):
@@ -134,7 +118,9 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(json, str)
         self.assertGreater(len(json), 0)
 
-        obj2 = base.SsvcDecisionPoint.model_validate_json(json)
+        obj2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint.model_validate_json(
+            json
+        )
 
         # the objects should be equal
         self.assertEqual(obj, obj2)

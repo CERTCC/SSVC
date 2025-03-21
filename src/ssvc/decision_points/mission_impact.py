@@ -17,40 +17,39 @@ Provides the Mission Impact decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-MISSION_FAILURE = SsvcDecisionPointValue(
+MISSION_FAILURE = DecisionPointValue(
     name="Mission Failure",
     key="MF",
     description="Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails",
 )
 
-MEF_FAILURE = SsvcDecisionPointValue(
+MEF_FAILURE = DecisionPointValue(
     name="MEF Failure",
     key="MEF",
     description="Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time",
 )
 
-MEF_CRIPPLED = SsvcDecisionPointValue(
+MEF_CRIPPLED = DecisionPointValue(
     name="MEF Support Crippled",
     key="MSC",
     description="Activities that directly support essential functions are crippled; essential functions continue for a time",
 )
 
 
-MI_NED = SsvcDecisionPointValue(
+MI_NED = DecisionPointValue(
     name="Non-Essential Degraded",
     key="NED",
     description="Degradation of non-essential functions; chronic degradation would eventually harm essential functions",
 )
 
-MI_NONE = SsvcDecisionPointValue(
-    name="None", key="N", description="Little to no impact"
-)
+MI_NONE = DecisionPointValue(name="None", key="N", description="Little to no impact")
 
 # combine MI_NONE and MI_NED into a single value
-DEGRADED = SsvcDecisionPointValue(
+DEGRADED = DecisionPointValue(
     name="Degraded",
     key="D",
     description="Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions",

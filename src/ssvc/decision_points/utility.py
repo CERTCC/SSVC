@@ -5,6 +5,7 @@ Provides the Utility decision point and its values.
 """
 
 #  Copyright (c) 2024-2025 Carnegie Mellon University and Contributors.
+#  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
 #  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
@@ -16,40 +17,41 @@ Provides the Utility decision point and its values.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.base import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-SUPER_EFFECTIVE_2 = SsvcDecisionPointValue(
+SUPER_EFFECTIVE_2 = DecisionPointValue(
     name="Super Effective",
     key="S",
     description="Automatable:Yes AND Value Density:Concentrated",
 )
 
-EFFICIENT_2 = SsvcDecisionPointValue(
+EFFICIENT_2 = DecisionPointValue(
     name="Efficient",
     key="E",
     description="(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)",
 )
 
-LABORIOUS_2 = SsvcDecisionPointValue(
+LABORIOUS_2 = DecisionPointValue(
     name="Laborious",
     key="L",
     description="Automatable:No AND Value Density:Diffuse",
 )
 
-SUPER_EFFECTIVE = SsvcDecisionPointValue(
+SUPER_EFFECTIVE = DecisionPointValue(
     name="Super Effective",
     key="S",
     description="Virulence:Rapid and Value Density:Concentrated",
 )
 
-EFFICIENT = SsvcDecisionPointValue(
+EFFICIENT = DecisionPointValue(
     name="Efficient",
     key="E",
     description="Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated",
 )
 
-LABORIOUS = SsvcDecisionPointValue(
+LABORIOUS = DecisionPointValue(
     name="Laborious",
     key="L",
     description="Virulence:Slow and Value Density:Diffuse",
