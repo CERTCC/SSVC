@@ -17,9 +17,9 @@ created_at: 9/21/23 11:40 AM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.exploitation import EXPLOITATION_1
-from ssvc.decision_points.public_value_added import PUBLIC_VALUE_ADDED_1
-from ssvc.decision_points.supplier_involvement import SUPPLIER_INVOLVEMENT_1
+from ssvc.decision_points.ssvc_.exploitation import EXPLOITATION_1
+from ssvc.decision_points.ssvc_.public_value_added import PUBLIC_VALUE_ADDED_1
+from ssvc.decision_points.ssvc_.supplier_involvement import SUPPLIER_INVOLVEMENT_1
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 
 

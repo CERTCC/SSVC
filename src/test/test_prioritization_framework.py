@@ -15,9 +15,9 @@ import unittest
 
 import pandas as pd
 
-from ssvc.decision_points.exploitation import LATEST as exploitation_dp
-from ssvc.decision_points.safety_impact import LATEST as safety_dp
-from ssvc.decision_points.system_exposure import LATEST as exposure_dp
+from ssvc.decision_points.ssvc_.exploitation import LATEST as exploitation_dp
+from ssvc.decision_points.ssvc_.safety_impact import LATEST as safety_dp
+from ssvc.decision_points.ssvc_.system_exposure import LATEST as exposure_dp
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
 from ssvc.outcomes.groups import DSOI as dsoi_og

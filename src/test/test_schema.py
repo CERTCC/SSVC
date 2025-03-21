@@ -22,18 +22,16 @@ from referencing import Registry, Resource
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
-
 # importing these causes the decision points to register themselves
-from ssvc.decision_points.critical_software import CRITICAL_SOFTWARE_1  # noqa
-from ssvc.decision_points.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
-from ssvc.decision_points.in_kev import IN_KEV_1
+from ssvc.decision_points.ssvc_.critical_software import CRITICAL_SOFTWARE_1  # noqa
+from ssvc.decision_points.ssvc_.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
+from ssvc.decision_points.ssvc_.in_kev import IN_KEV_1
 from ssvc.dp_groups.cvss.collections import (
     CVSSv1,
     CVSSv2,
     CVSSv3,
     CVSSv4,
 )  # noqa
-
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 

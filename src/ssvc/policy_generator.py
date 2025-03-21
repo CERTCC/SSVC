@@ -330,10 +330,10 @@ class PolicyGenerator:
 
 
 def main():
-    from ssvc.decision_points.automatable import AUTOMATABLE_2
-    from ssvc.decision_points.exploitation import EXPLOITATION_1
-    from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
-    from ssvc.decision_points.system_exposure import SYSTEM_EXPOSURE_1_0_1
+    from ssvc.decision_points.ssvc_.automatable import AUTOMATABLE_2
+    from ssvc.decision_points.ssvc_.exploitation import EXPLOITATION_1
+    from ssvc.decision_points.ssvc_.human_impact import HUMAN_IMPACT_2
+    from ssvc.decision_points.ssvc_.system_exposure import SYSTEM_EXPOSURE_1_0_1
     from ssvc.outcomes.groups import DSOI
 
     # set up logging

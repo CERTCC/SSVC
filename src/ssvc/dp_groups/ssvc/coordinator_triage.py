@@ -17,18 +17,17 @@ created_at: 9/21/23 11:40 AM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from ssvc.decision_points.automatable import AUTOMATABLE_2
-from ssvc.decision_points.public_safety_impact import PUBLIC_SAFETY_IMPACT_2
-from ssvc.decision_points.report_credibility import REPORT_CREDIBILITY_1
-from ssvc.decision_points.report_public import REPORT_PUBLIC_1
-from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
-from ssvc.decision_points.supplier_cardinality import SUPPLIER_CARDINALITY_1
-from ssvc.decision_points.supplier_contacted import SUPPLIER_CONTACTED_1
-from ssvc.decision_points.supplier_engagement import SUPPLIER_ENGAGEMENT_1
-from ssvc.decision_points.utility import UTILITY_1_0_1
-from ssvc.decision_points.value_density import VALUE_DENSITY_1
+from ssvc.decision_points.ssvc_.automatable import AUTOMATABLE_2
+from ssvc.decision_points.ssvc_.public_safety_impact import PUBLIC_SAFETY_IMPACT_2
+from ssvc.decision_points.ssvc_.report_credibility import REPORT_CREDIBILITY_1
+from ssvc.decision_points.ssvc_.report_public import REPORT_PUBLIC_1
+from ssvc.decision_points.ssvc_.safety_impact import SAFETY_IMPACT_1
+from ssvc.decision_points.ssvc_.supplier_cardinality import SUPPLIER_CARDINALITY_1
+from ssvc.decision_points.ssvc_.supplier_contacted import SUPPLIER_CONTACTED_1
+from ssvc.decision_points.ssvc_.supplier_engagement import SUPPLIER_ENGAGEMENT_1
+from ssvc.decision_points.ssvc_.utility import UTILITY_1_0_1
+from ssvc.decision_points.ssvc_.value_density import VALUE_DENSITY_1
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-
 
 COORDINATOR_TRIAGE_1 = SsvcDecisionPointGroup(
     name="Coordinator Triage",

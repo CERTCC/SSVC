@@ -1,7 +1,7 @@
 # Report Credibility
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.report_credibility import LATEST
+from ssvc.decision_points.ssvc_.report_credibility import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
