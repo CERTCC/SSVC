@@ -33,10 +33,10 @@ import os
 
 import ssvc.dp_groups.cvss.collections  # noqa
 import ssvc.dp_groups.ssvc.collections  # noqa
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.decision_points.base import (
     REGISTERED_DECISION_POINTS,
 )
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
 logger = logging.getLogger(__name__)
 
@@ -134,8 +134,7 @@ def dump_json(
     parts = [
         jsondir,
     ]
-    if dp.namespace != "ssvc":
-        parts.append(_filename_friendly(dp.namespace))
+    parts.append(_filename_friendly(dp.namespace))
     parts.append(filename)
 
     json_file = os.path.join(*parts)
