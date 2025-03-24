@@ -17,15 +17,11 @@ created_at: 9/20/23 4:47 PM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
-from itertools import product
-from typing import Generator
-
 from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _SchemaVersioned
 from ssvc.decision_points.base import (
     DecisionPoint,
-    ValueSummary,
 )
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
@@ -47,9 +43,7 @@ class SsvcDecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         """
         Allow len() to be called on the group.
         """
-        dplist = list(self.decision_points)
-        l = len(dplist)
-        return l
+        return len(self.decision_points)
 
     @property
     def decision_points_dict(self) -> dict[str, DecisionPoint]:
@@ -65,30 +59,9 @@ class SsvcDecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         """
         return list(self.decision_points_dict.keys())
 
-    def combination_summaries(self) -> Generator[tuple[ValueSummary, ...], None, None]:
-        # get the value summaries for each decision point
-        value_summaries = [dp.value_summaries for dp in self.decision_points]
-
-        for combination in product(*value_summaries):
-            yield combination
-
-    def combination_strings(self) -> Generator[tuple[str, ...], None, None]:
-        """
-        Produce all possible combinations of decision point values in the group as strings.
-        """
-        for combo in self.combination_summaries():
-            yield tuple(str(v) for v in combo)
-
-    def combination_dicts(self):
-        """
-        Produce all possible combinations of decision point values in the group as a dictionary.
-        """
-        for combo in self.combination_summaries():
-            yield tuple(v.model_dump() for v in combo)
-
 
 def get_all_decision_points_from(
-    *groups: list[SsvcDecisionPointGroup],
+    *groups: list[DecisionPointGroup],
 ) -> tuple[SsvcDecisionPoint, ...]:
     """
     Given a list of SsvcDecisionPointGroup objects, return a list of all
