@@ -20,7 +20,6 @@ import pandas as pd
 
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
 from ssvc.policy_generator import PolicyGenerator
 
 
@@ -30,28 +29,38 @@ class MyTestCase(unittest.TestCase):
         self.dp_values = ["Yes", "No"]
         self.dp_names = ["Who", "What", "When", "Where"]
 
-        self.og = OutcomeGroup(
+        self.og = DecisionPoint(
             name="test",
             description="test",
             key="TEST",
-            values=[OutcomeValue(key=c, name=c, description=c) for c in self.og_names],
+            namespace="x_test",
+            values=tuple(
+                [
+                    DecisionPointValue(key=c, name=c, description=c)
+                    for c in self.og_names
+                ]
+            ),
         )
         self.dpg = SsvcDecisionPointGroup(
             name="test",
             description="test",
-            decision_points=[
-                DecisionPoint(
-                    name=c,
-                    description=c,
-                    key=c,
-                    namespace='x_test',
-                    values=[
-                        DecisionPointValue(name=v, key=v, description=v)
-                        for v in self.dp_values
-                    ],
-                )
-                for c in self.dp_names
-            ],
+            decision_points=tuple(
+                [
+                    DecisionPoint(
+                        name=c,
+                        description=c,
+                        key=c,
+                        namespace="x_test",
+                        values=tuple(
+                            [
+                                DecisionPointValue(name=v, key=v, description=v)
+                                for v in self.dp_values
+                            ]
+                        ),
+                    )
+                    for c in self.dp_names
+                ]
+            ),
         )
 
     def test_pg_init(self):

@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-"""
-Provides a set of outcome groups for use in SSVC.
-"""
-#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
@@ -14,133 +11,78 @@ Provides a set of outcome groups for use in SSVC.
 #  (“Third Party Software”). See LICENSE.md for more details.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
+"""
+Provides a set of outcome groups for use in SSVC.
+"""
 
-from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
+from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
+from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+
 
 # Note: Outcome Groups must be defined in ascending order.
 
 
-DSOI = OutcomeGroup(
-    name="Defer, Scheduled, Out-of-Cycle, Immediate",
-    key="DSOI",
-    description="The original SSVC outcome group.",
-    version="1.0.0",
-    values=(
-        OutcomeValue(name="Defer", key="D", description="Defer"),
-        OutcomeValue(name="Scheduled", key="S", description="Scheduled"),
-        OutcomeValue(name="Out-of-Cycle", key="O", description="Out-of-Cycle"),
-        OutcomeValue(name="Immediate", key="I", description="Immediate"),
-    ),
-)
-"""
-The original SSVC outcome group.
-"""
-
-PUBLISH = OutcomeGroup(
-    name="Publish, Do Not Publish",
-    key="PUBLISH",
-    description="The publish outcome group.",
-    version="1.0.0",
-    values=(
-        OutcomeValue(name="Do Not Publish", key="N", description="Do Not Publish"),
-        OutcomeValue(name="Publish", key="P", description="Publish"),
-    ),
-)
-"""
-The publish outcome group.
-"""
-
-COORDINATE = OutcomeGroup(
-    name="Decline, Track, Coordinate",
-    key="COORDINATE",
-    description="The coordinate outcome group.",
-    version="1.0.0",
-    values=(
-        OutcomeValue(name="Decline", key="D", description="Decline"),
-        OutcomeValue(name="Track", key="T", description="Track"),
-        OutcomeValue(name="Coordinate", key="C", description="Coordinate"),
-    ),
-)
-"""
-The coordinate outcome group.
-"""
-
-MOSCOW = OutcomeGroup(
+MOSCOW = SsvcDecisionPoint(
     name="MoSCoW",
-    key="MOSCOW",
-    description="The Moscow outcome group.",
+    key="MSCW",
+    description="The MoSCoW (Must, Should, Could, Won't) outcome group.",
     version="1.0.0",
     values=(
-        OutcomeValue(name="Won't", key="W", description="Won't"),
-        OutcomeValue(name="Could", key="C", description="Could"),
-        OutcomeValue(name="Should", key="S", description="Should"),
-        OutcomeValue(name="Must", key="M", description="Must"),
+        DecisionPointValue(name="Won't", key="W", description="Won't"),
+        DecisionPointValue(name="Could", key="C", description="Could"),
+        DecisionPointValue(name="Should", key="S", description="Should"),
+        DecisionPointValue(name="Must", key="M", description="Must"),
     ),
 )
 """
 The MoSCoW outcome group.
 """
 
-EISENHOWER = OutcomeGroup(
+EISENHOWER = SsvcDecisionPoint(
     name="Do, Schedule, Delegate, Delete",
     key="EISENHOWER",
     description="The Eisenhower outcome group.",
     version="1.0.0",
     values=(
-        OutcomeValue(name="Delete", key="D", description="Delete"),
-        OutcomeValue(name="Delegate", key="G", description="Delegate"),
-        OutcomeValue(name="Schedule", key="S", description="Schedule"),
-        OutcomeValue(name="Do", key="O", description="Do"),
+        DecisionPointValue(name="Delete", key="D", description="Delete"),
+        DecisionPointValue(name="Delegate", key="G", description="Delegate"),
+        DecisionPointValue(name="Schedule", key="S", description="Schedule"),
+        DecisionPointValue(name="Do", key="O", description="Do"),
     ),
 )
 """
 The Eisenhower outcome group.
 """
 
-CVSS = OutcomeGroup(
-    name="CVSS Levels",
-    key="CVSS",
-    description="The CVSS outcome group.",
-    version="1.0.0",
-    values=(
-        OutcomeValue(name="Low", key="L", description="Low"),
-        OutcomeValue(name="Medium", key="M", description="Medium"),
-        OutcomeValue(name="High", key="H", description="High"),
-        OutcomeValue(name="Critical", key="C", description="Critical"),
-    ),
-)
-"""
-The CVSS outcome group.
-"""
 
-CISA = OutcomeGroup(
+CISA = SsvcDecisionPoint(
     name="CISA Levels",
     key="CISA",
     description="The CISA outcome group. "
     "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
     version="1.0.0",
     values=(
-        OutcomeValue(
+        DecisionPointValue(
             name="Track",
             key="T",
             description="The vulnerability does not require action at this time. "
             "The organization would continue to track the vulnerability and reassess it if new information becomes available. "
             "CISA recommends remediating Track vulnerabilities within standard update timelines.",
         ),
-        OutcomeValue(
+        DecisionPointValue(
             name="Track*",
             key="T*",
             description="The vulnerability contains specific characteristics that may require closer monitoring for changes. "
             "CISA recommends remediating Track* vulnerabilities within standard update timelines.",
         ),
-        OutcomeValue(
+        DecisionPointValue(
             name="Attend",
             key="A",
             description="The vulnerability requires attention from the organization's internal, supervisory-level individuals. "
             "Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. "
             "CISA recommends remediating Attend vulnerabilities sooner than standard update timelines.",
         ),
-        OutcomeValue(
+        DecisionPointValue(
             name="Act",
             key="A",
             description="The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. "
@@ -155,49 +97,53 @@ The CISA outcome group. Based on CISA's customizations of the SSVC model.
 See https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc
 """
 
-YES_NO = OutcomeGroup(
+YES_NO = SsvcDecisionPoint(
     name="Yes, No",
     key="YES_NO",
     description="The Yes/No outcome group.",
     version="1.0.0",
     values=(
-        OutcomeValue(name="No", key="N", description="No"),
-        OutcomeValue(name="Yes", key="Y", description="Yes"),
+        DecisionPointValue(name="No", key="N", description="No"),
+        DecisionPointValue(name="Yes", key="Y", description="Yes"),
     ),
 )
 """
 The Yes/No outcome group.
 """
 
-VALUE_COMPLEXITY = OutcomeGroup(
+VALUE_COMPLEXITY = SsvcDecisionPoint(
     name="Value, Complexity",
     key="VALUE_COMPLEXITY",
     description="The Value/Complexity outcome group.",
     version="1.0.0",
     values=(
         # drop, reconsider later, easy win, do first
-        OutcomeValue(name="Drop", key="D", description="Drop"),
-        OutcomeValue(name="Reconsider Later", key="R", description="Reconsider Later"),
-        OutcomeValue(name="Easy Win", key="E", description="Easy Win"),
-        OutcomeValue(name="Do First", key="F", description="Do First"),
+        DecisionPointValue(name="Drop", key="D", description="Drop"),
+        DecisionPointValue(
+            name="Reconsider Later", key="R", description="Reconsider Later"
+        ),
+        DecisionPointValue(name="Easy Win", key="E", description="Easy Win"),
+        DecisionPointValue(name="Do First", key="F", description="Do First"),
     ),
 )
 """
 The Value/Complexity outcome group.
 """
 
-THE_PARANOIDS = OutcomeGroup(
+THE_PARANOIDS = SsvcDecisionPoint(
     name="theParanoids",
     key="PARANOIDS",
     description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
     version="1.0.0",
     values=(
-        OutcomeValue(name="Track 5", key="5", description="Track"),
-        OutcomeValue(name="Track Closely 4", key="4", description="Track Closely"),
-        OutcomeValue(name="Attend 3", key="3", description="Attend"),
-        OutcomeValue(name="Attend 2", key="2", description="Attend"),
-        OutcomeValue(name="Act 1", key="1", description="Act"),
-        OutcomeValue(name="Act ASAP 0", key="0", description="Act ASAP"),
+        DecisionPointValue(name="Track 5", key="5", description="Track"),
+        DecisionPointValue(
+            name="Track Closely 4", key="4", description="Track Closely"
+        ),
+        DecisionPointValue(name="Attend 3", key="3", description="Attend"),
+        DecisionPointValue(name="Attend 2", key="2", description="Attend"),
+        DecisionPointValue(name="Act 1", key="1", description="Act"),
+        DecisionPointValue(name="Act ASAP 0", key="0", description="Act ASAP"),
     ),
 )
 """
