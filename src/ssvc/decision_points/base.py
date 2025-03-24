@@ -29,6 +29,7 @@ from ssvc._mixins import (
     _Valued,
     _Versioned,
 )
+from ssvc.namespaces import NameSpace
 
 logger = logging.getLogger(__name__)
 
