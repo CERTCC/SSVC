@@ -24,7 +24,8 @@ from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _SchemaVersioned
 from ssvc.decision_points.base import (
-    DecisionPoint, ValueSummary,
+    DecisionPoint,
+    ValueSummary,
 )
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
@@ -49,6 +50,20 @@ class SsvcDecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         dplist = list(self.decision_points)
         l = len(dplist)
         return l
+
+    @property
+    def decision_points_dict(self) -> dict[str, DecisionPoint]:
+        """
+        Return a dictionary of decision points keyed by their name.
+        """
+        return {dp.str: dp for dp in self.decision_points}
+
+    @property
+    def decision_points_str(self) -> list[str]:
+        """
+        Return a list of decision point names.
+        """
+        return list(self.decision_points_dict.keys())
 
     def combination_summaries(self) -> Generator[tuple[ValueSummary, ...], None, None]:
         # get the value summaries for each decision point

@@ -119,6 +119,40 @@ class MyTestCase(unittest.TestCase):
         # assert that the new group is the same as the old group
         self.assertEqual(g_json, g2.model_dump_json())
 
+    def test_decision_points_dict(self):
+        # add them to a decision point group
+        g = dpg.SsvcDecisionPointGroup(
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
+        )
+
+        # get the decision points as a dictionary
+        dp_dict = g.decision_points_dict
+
+        # assert that the dictionary is the correct length
+        self.assertEqual(len(self.dps), len(dp_dict))
+
+        # assert that each decision point is in the dictionary
+        for dp in self.dps:
+            self.assertIn(dp.str, dp_dict)
+            self.assertEqual(dp, dp_dict[dp.str])
+
+    def test_decision_points_str(self):
+        g = dpg.SsvcDecisionPointGroup(
+            name="Test Group",
+            description="Test Group",
+            decision_points=self.dps,
+        )
+        dp_str = g.decision_points_str
+        self.assertEqual(len(self.dps), len(dp_str))
+
+        for i, dp in enumerate(self.dps):
+            self.assertIn(dp.str, dp_str)
+            # check that the string is the same as the decision point's string representation
+            # and they are in the same order
+            self.assertEqual(dp.str, dp_str[i])
+
 
 if __name__ == "__main__":
     unittest.main()
