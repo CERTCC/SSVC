@@ -35,6 +35,7 @@ logger = logging.getLogger(__name__)
 
 _RDP = {}
 REGISTERED_DECISION_POINTS = []
+FIELD_DELIMITER = ":"
 
 
 def register(dp):
@@ -89,8 +90,19 @@ class ValueSummary(_Versioned, _Keyed, _Namespaced, BaseModel):
     value: str
 
     def __str__(self):
-        s = ":".join([self.namespace, self.key, self.version, self.value])
+        s = FIELD_DELIMITER.join([self.namespace, self.key, self.version, self.value])
         return s
+
+    @property
+    def str(self):
+        """
+        Return the ValueSummary as a string.
+
+        Returns:
+            str: A string representation of the ValueSummary, in the format "namespace:key:version:value".
+
+        """
+        return self.__str__()
 
 
 class DecisionPoint(
@@ -111,6 +123,20 @@ class DecisionPoint(
 
     values: tuple[DecisionPointValue, ...]
 
+    def __str__(self):
+        return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
+
+    @property
+    def str(self) -> str:
+        """
+        Return the DecisionPoint represented as a short string.
+
+        Returns:
+            str: A string representation of the DecisionPoint, in the format "namespace:key:version".
+
+        """
+        return self.__str__()
+
     @model_validator(mode="after")
     def _register(self):
         """
@@ -124,7 +150,14 @@ class DecisionPoint(
         """
         Return a list of value summaries.
         """
-        summaries = []
+        return list(self.value_summaries_dict.values())
+
+    @property
+    def value_summaries_dict(self) -> dict[str, ValueSummary]:
+        """
+        Return a dictionary of value summaries keyed by the value key.
+        """
+        summaries = {}
         for value in self.values:
             summary = ValueSummary(
                 key=self.key,
@@ -132,8 +165,21 @@ class DecisionPoint(
                 namespace=self.namespace,
                 value=value.key,
             )
-            summaries.append(summary)
+            key = summary.str
+            summaries[key] = summary
+
         return summaries
+
+    @property
+    def value_summaries_str(self):
+        """
+        Return a list of value summaries as strings.
+
+        Returns:
+            list: A list of strings, each representing a value summary in the format "namespace:key:version:value".
+
+        """
+        return list(self.value_summaries_dict.keys())
 
 
 def main():
