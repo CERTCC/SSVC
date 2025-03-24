@@ -13,7 +13,7 @@
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 """
-Provides a set of outcome groups for use in SSVC.
+Provides the Eisenhower outcome group for the `x_basic` namespace.
 """
 
 from ssvc.decision_points.base import (
@@ -22,39 +22,37 @@ from ssvc.decision_points.base import (
 )
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-# Note: Outcome Groups must be defined in ascending order.
+_DELETE = DecisionPointValue(name="Delete", key="D", description="Delete")
 
+_DELEGATE = DecisionPointValue(name="Delegate", key="G", description="Delegate")
 
-THE_PARANOIDS = DecisionPoint(
-    name="theParanoids",
-    key="PARANOIDS",
-    description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
-    namespace="x_community",
+_SCHEDULE = DecisionPointValue(name="Schedule", key="S", description="Schedule")
+
+_DO = DecisionPointValue(name="Do", key="O", description="Do")
+
+EISENHOWER = DecisionPoint(
+    name="Do, Schedule, Delegate, Delete",
+    key="IKE",
+    description="The Eisenhower outcome group.",
+    namespace="x_basic",
     version="1.0.0",
     values=(
-        DecisionPointValue(name="Track 5", key="5", description="Track"),
-        DecisionPointValue(
-            name="Track Closely 4", key="4", description="Track Closely"
-        ),
-        DecisionPointValue(name="Attend 3", key="3", description="Attend"),
-        DecisionPointValue(name="Attend 2", key="2", description="Attend"),
-        DecisionPointValue(name="Act 1", key="1", description="Act"),
-        DecisionPointValue(name="Act ASAP 0", key="0", description="Act ASAP"),
+        _DELETE,
+        _DELEGATE,
+        _SCHEDULE,
+        _DO,
     ),
 )
 """
-Outcome group based on TheParanoids' PrioritizedRiskRemediation.
-Their model is a 6-point scale, with 0 being the most urgent and 5 being the least.
-See https://github.com/theparanoids/PrioritizedRiskRemediation
+The Eisenhower outcome group.
 """
+
+VERSIONS = (EISENHOWER,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(
-        [
-            THE_PARANOIDS,
-        ]
-    )
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -12,9 +11,6 @@
 #  (“Third Party Software”). See LICENSE.md for more details.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
-"""
-Provides a set of outcome groups for use in SSVC.
-"""
 
 from ssvc.decision_points.base import (
     DecisionPoint,
@@ -22,39 +18,31 @@ from ssvc.decision_points.base import (
 )
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-# Note: Outcome Groups must be defined in ascending order.
+_NO = DecisionPointValue(name="No", key="N", description="No")
 
+_YES = DecisionPointValue(name="Yes", key="Y", description="Yes")
 
-THE_PARANOIDS = DecisionPoint(
-    name="theParanoids",
-    key="PARANOIDS",
-    description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
-    namespace="x_community",
+YES_NO = DecisionPoint(
+    name="Yes, No",
+    key="YN",
+    description="The Yes/No outcome group.",
     version="1.0.0",
+    namespace="x_basic",
     values=(
-        DecisionPointValue(name="Track 5", key="5", description="Track"),
-        DecisionPointValue(
-            name="Track Closely 4", key="4", description="Track Closely"
-        ),
-        DecisionPointValue(name="Attend 3", key="3", description="Attend"),
-        DecisionPointValue(name="Attend 2", key="2", description="Attend"),
-        DecisionPointValue(name="Act 1", key="1", description="Act"),
-        DecisionPointValue(name="Act ASAP 0", key="0", description="Act ASAP"),
+        _NO,
+        _YES,
     ),
 )
 """
-Outcome group based on TheParanoids' PrioritizedRiskRemediation.
-Their model is a 6-point scale, with 0 being the most urgent and 5 being the least.
-See https://github.com/theparanoids/PrioritizedRiskRemediation
+The Yes/No outcome group.
 """
+
+VERSIONS = (YES_NO,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(
-        [
-            THE_PARANOIDS,
-        ]
-    )
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

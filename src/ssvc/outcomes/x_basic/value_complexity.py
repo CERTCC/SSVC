@@ -13,7 +13,7 @@
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 """
-Provides a set of outcome groups for use in SSVC.
+Provides the Value/Complexity outcome group for the `x_basic` namespace.
 """
 
 from ssvc.decision_points.base import (
@@ -22,39 +22,39 @@ from ssvc.decision_points.base import (
 )
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-# Note: Outcome Groups must be defined in ascending order.
+_DROP = DecisionPointValue(name="Drop", key="D", description="Drop")
 
+_RECONSIDER = DecisionPointValue(
+    name="Reconsider Later", key="R", description="Reconsider Later"
+)
 
-THE_PARANOIDS = DecisionPoint(
-    name="theParanoids",
-    key="PARANOIDS",
-    description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
-    namespace="x_community",
+_EASY_WIN = DecisionPointValue(name="Easy Win", key="E", description="Easy Win")
+
+_DO_FIRST = DecisionPointValue(name="Do First", key="F", description="Do First")
+
+VALUE_COMPLEXITY = DecisionPoint(
+    name="Value, Complexity",
+    key="VALUE_COMPLEXITY",
+    description="The Value/Complexity outcome group.",
     version="1.0.0",
+    namespace="x_basic",
     values=(
-        DecisionPointValue(name="Track 5", key="5", description="Track"),
-        DecisionPointValue(
-            name="Track Closely 4", key="4", description="Track Closely"
-        ),
-        DecisionPointValue(name="Attend 3", key="3", description="Attend"),
-        DecisionPointValue(name="Attend 2", key="2", description="Attend"),
-        DecisionPointValue(name="Act 1", key="1", description="Act"),
-        DecisionPointValue(name="Act ASAP 0", key="0", description="Act ASAP"),
+        _DROP,
+        _RECONSIDER,
+        _EASY_WIN,
+        _DO_FIRST,
     ),
 )
 """
-Outcome group based on TheParanoids' PrioritizedRiskRemediation.
-Their model is a 6-point scale, with 0 being the most urgent and 5 being the least.
-See https://github.com/theparanoids/PrioritizedRiskRemediation
+The Value/Complexity outcome group.
 """
+
+VERSIONS = (VALUE_COMPLEXITY,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    print_versions_and_diffs(
-        [
-            THE_PARANOIDS,
-        ]
-    )
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":
