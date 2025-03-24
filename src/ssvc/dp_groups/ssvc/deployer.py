@@ -32,9 +32,9 @@ from ssvc.decision_points.ssvc_.system_exposure import (
 )
 from ssvc.decision_points.ssvc_.utility import UTILITY_1_0_1
 from ssvc.decision_points.ssvc_.value_density import VALUE_DENSITY_1
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import DecisionPointGroup
 
-PATCH_APPLIER_1 = SsvcDecisionPointGroup(
+PATCH_APPLIER_1 = DecisionPointGroup(
     name="SSVC Patch Applier",
     description="The decision points used by the patch applier.",
     version="1.0.0",
@@ -60,7 +60,7 @@ It includes decision points:
 DEPLOYER_1 = PATCH_APPLIER_1
 
 # SSVC v2
-DEPLOYER_2 = SsvcDecisionPointGroup(
+DEPLOYER_2 = DecisionPointGroup(
     name="SSVC Deployer",
     description="The decision points used by the deployer.",
     version="2.0.0",
@@ -94,7 +94,7 @@ Changes from Patch Applier v1.0.0:
 - Human Impact v1.0.0 is added, which depends on Mission Impact v1.0.0 and Safety Impact v1.0.0
 """
 
-DEPLOYER_3 = SsvcDecisionPointGroup(
+DEPLOYER_3 = DecisionPointGroup(
     name="SSVC Deployer",
     description="The decision points used by the deployer.",
     version="3.0.0",

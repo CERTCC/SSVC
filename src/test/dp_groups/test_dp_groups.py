@@ -40,7 +40,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_iter(self):
         # add them to a decision point group
-        g = dpg.SsvcDecisionPointGroup(
+        g = dpg.DecisionPointGroup(
             name="Test Group",
             description="Test Group",
             decision_points=self.dps,
@@ -54,7 +54,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_len(self):
         # add them to a decision point group
-        g = dpg.SsvcDecisionPointGroup(
+        g = dpg.DecisionPointGroup(
             name="Test Group",
             description="Test Group",
             decision_points=self.dps,
@@ -66,7 +66,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_combo_strings(self):
         # add them to a decision point group
-        g = dpg.SsvcDecisionPointGroup(
+        g = dpg.DecisionPointGroup(
             name="Test Group",
             description="Test Group",
             decision_points=self.dps,
@@ -105,7 +105,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_json_roundtrip(self):
         # add them to a decision point group
-        g = dpg.SsvcDecisionPointGroup(
+        g = dpg.DecisionPointGroup(
             name="Test Group",
             description="Test Group",
             decision_points=self.dps,
@@ -115,13 +115,13 @@ class MyTestCase(unittest.TestCase):
         g_json = g.model_dump_json()
 
         # deserialize the json to a new group
-        g2 = dpg.SsvcDecisionPointGroup.model_validate_json(g_json)
+        g2 = dpg.DecisionPointGroup.model_validate_json(g_json)
         # assert that the new group is the same as the old group
         self.assertEqual(g_json, g2.model_dump_json())
 
     def test_decision_points_dict(self):
         # add them to a decision point group
-        g = dpg.SsvcDecisionPointGroup(
+        g = dpg.DecisionPointGroup(
             name="Test Group",
             description="Test Group",
             decision_points=self.dps,
@@ -139,7 +139,7 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(dp, dp_dict[dp.str])
 
     def test_decision_points_str(self):
-        g = dpg.SsvcDecisionPointGroup(
+        g = dpg.DecisionPointGroup(
             name="Test Group",
             description="Test Group",
             decision_points=self.dps,

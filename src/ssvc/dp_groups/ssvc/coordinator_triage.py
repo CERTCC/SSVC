@@ -27,9 +27,9 @@ from ssvc.decision_points.ssvc_.supplier_contacted import SUPPLIER_CONTACTED_1
 from ssvc.decision_points.ssvc_.supplier_engagement import SUPPLIER_ENGAGEMENT_1
 from ssvc.decision_points.ssvc_.utility import UTILITY_1_0_1
 from ssvc.decision_points.ssvc_.value_density import VALUE_DENSITY_1
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import DecisionPointGroup
 
-COORDINATOR_TRIAGE_1 = SsvcDecisionPointGroup(
+COORDINATOR_TRIAGE_1 = DecisionPointGroup(
     name="Coordinator Triage",
     description="The decision points used by the coordinator during triage.",
     version="1.0.0",

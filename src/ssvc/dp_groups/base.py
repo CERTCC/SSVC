@@ -26,7 +26,7 @@ from ssvc.decision_points.base import (
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
 
-class SsvcDecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
+class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
     """
     Models a group of decision points.
     """

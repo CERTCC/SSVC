@@ -24,9 +24,9 @@ from ssvc.decision_points.ssvc_.safety_impact import SAFETY_IMPACT_1
 from ssvc.decision_points.ssvc_.technical_impact import TECHNICAL_IMPACT_1
 from ssvc.decision_points.ssvc_.utility import UTILITY_1, UTILITY_1_0_1
 from ssvc.decision_points.ssvc_.value_density import VALUE_DENSITY_1
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import DecisionPointGroup
 
-PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
+PATCH_DEVELOPER_1 = DecisionPointGroup(
     name="SSVC Patch Developer",
     description="The decision points used by the patch developer.",
     version="1.0.0",
@@ -56,7 +56,7 @@ It includes decision points:
 SUPPLIER_1 = PATCH_DEVELOPER_1
 
 # SSVC v2 renamed to SSVC Supplier
-SUPPLIER_2 = SsvcDecisionPointGroup(
+SUPPLIER_2 = DecisionPointGroup(
     name="SSVC Supplier",
     description="The decision points used by the supplier.",
     version="2.0.0",

@@ -24,7 +24,7 @@ import networkx as nx
 import pandas as pd
 
 from ssvc import csv_analyzer
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
 logger = logging.getLogger(__name__)
@@ -45,7 +45,7 @@ class PolicyGenerator:
 
     def __init__(
         self,
-        dp_group: SsvcDecisionPointGroup,
+        dp_group: DecisionPointGroup,
         outcomes: OutcomeGroup,
         outcome_weights: list[float] = None,
         validate: bool = False,
@@ -66,7 +66,7 @@ class PolicyGenerator:
         if dp_group is None:
             raise ValueError("dp_group is required")
         else:
-            self.dpg: SsvcDecisionPointGroup = dp_group
+            self.dpg: DecisionPointGroup = dp_group
 
         if outcomes is None:
             raise ValueError("outcomes is required")
@@ -342,7 +342,7 @@ def main():
     hdlr = logging.StreamHandler()
     logger.addHandler(hdlr)
 
-    dpg = SsvcDecisionPointGroup(
+    dpg = DecisionPointGroup(
         name="Dummy Decision Point Group",
         description="Dummy decision point group",
         version="1.0.0",

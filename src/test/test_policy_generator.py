@@ -19,7 +19,7 @@ import networkx as nx
 import pandas as pd
 
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.policy_generator import PolicyGenerator
 
 
@@ -41,7 +41,7 @@ class MyTestCase(unittest.TestCase):
                 ]
             ),
         )
-        self.dpg = SsvcDecisionPointGroup(
+        self.dpg = DecisionPointGroup(
             name="test",
             description="test",
             decision_points=tuple(
