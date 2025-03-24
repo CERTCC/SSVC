@@ -13,3 +13,4 @@
 """
 Provides SSVC outcome groups for the cisa namespace
 """
+from .scoring import LATEST as CISA_SCORING

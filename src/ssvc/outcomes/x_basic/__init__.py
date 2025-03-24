@@ -14,5 +14,7 @@
 Provides SSVC outcome groups for the `x_basic` namespace
 """
 
-from .mscw import MSCW
-from .yn import YES_NO
+from .ike import LATEST as EISENHOWER
+from .mscw import LATEST as MSCW
+from .value_complexity import LATEST as VALUE_COMPLEXITY
+from .yn import LATEST as YES_NO

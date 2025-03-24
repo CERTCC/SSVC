@@ -10,3 +10,15 @@
 #  (“Third Party Software”). See LICENSE.md for more details.
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
+"""
+Provides SSVC outcome group objects.
+
+SSVC outcome groups are functionally equivalent to Decision Points.
+The only difference is that Outcome Groups are primarily intended to be used
+as the outputs of a decision, whereas Decision Points are the inputs to a decision.
+However, there are use cases where an outcome of one decision may feed into another
+decision, so the distinction is somewhat arbitrary. Hence, we chose to use the same
+data structure for both.
+
+Outcome groups are organized by namespace.
+"""

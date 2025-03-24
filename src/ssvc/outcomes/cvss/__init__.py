@@ -13,3 +13,4 @@
 """
 Provides outcome group objects in the cvss namespace
 """
+from .lmhc import LATEST as LMHC
