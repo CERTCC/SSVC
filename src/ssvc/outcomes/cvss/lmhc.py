@@ -14,11 +14,15 @@ from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-CVSS_NONE = DecisionPointValue(name="None", key="N", description="None (0.0)")
-CVSS_LOW = DecisionPointValue(name="Low", key="L", description="Low (0.1-3.9)")
-CVSS_MEDIUM = DecisionPointValue(name="Medium", key="M", description="Medium (4.0-6.9)")
-CVSS_HIGH = DecisionPointValue(name="High", key="H", description="High (7.0-8.9)")
-CVSS_CRITICAL = DecisionPointValue(
+_NONE = DecisionPointValue(name="None", key="N", description="None (0.0)")
+
+_LOW = DecisionPointValue(name="Low", key="L", description="Low (0.1-3.9)")
+
+_MEDIUM = DecisionPointValue(name="Medium", key="M", description="Medium (4.0-6.9)")
+
+_HIGH = DecisionPointValue(name="High", key="H", description="High (7.0-8.9)")
+
+_CRITICAL = DecisionPointValue(
     name="Critical", key="C", description="Critical (9.0-10.0)"
 )
 
@@ -28,11 +32,11 @@ LMHC = CvssDecisionPoint(
     description="The CVSS Qualitative Severity Rating Scale group.",
     version="1.0.0",
     values=(
-        CVSS_NONE,
-        CVSS_LOW,
-        CVSS_MEDIUM,
-        CVSS_HIGH,
-        CVSS_CRITICAL,
+        _NONE,
+        _LOW,
+        _MEDIUM,
+        _HIGH,
+        _CRITICAL,
     ),
 )
 """

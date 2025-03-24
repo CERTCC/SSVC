@@ -19,6 +19,15 @@ from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
+_DEFER = DecisionPointValue(name="Defer", key="D", description="Defer")
+
+_SCHEDULED = DecisionPointValue(name="Scheduled", key="S", description="Scheduled")
+
+_OUT_OF_CYCLE = DecisionPointValue(
+    name="Out-of-Cycle", key="O", description="Out-of-Cycle"
+)
+
+_IMMEDIATE = DecisionPointValue(name="Immediate", key="I", description="Immediate")
 
 DSOI = SsvcDecisionPoint(
     name="Defer, Scheduled, Out-of-Cycle, Immediate",
@@ -26,10 +35,10 @@ DSOI = SsvcDecisionPoint(
     description="The original SSVC outcome group.",
     version="1.0.0",
     values=(
-        DecisionPointValue(name="Defer", key="D", description="Defer"),
-        DecisionPointValue(name="Scheduled", key="S", description="Scheduled"),
-        DecisionPointValue(name="Out-of-Cycle", key="O", description="Out-of-Cycle"),
-        DecisionPointValue(name="Immediate", key="I", description="Immediate"),
+        _DEFER,
+        _SCHEDULED,
+        _OUT_OF_CYCLE,
+        _IMMEDIATE,
     ),
 )
 """

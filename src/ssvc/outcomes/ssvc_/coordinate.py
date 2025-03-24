@@ -14,15 +14,21 @@ from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
+_DECLINE = DecisionPointValue(name="Decline", key="D", description="Decline")
+
+_TRACK = DecisionPointValue(name="Track", key="T", description="Track")
+
+_COORDINATE = DecisionPointValue(name="Coordinate", key="C", description="Coordinate")
+
 COORDINATE = SsvcDecisionPoint(
     name="Decline, Track, Coordinate",
     key="COORDINATE",
     description="The coordinate outcome group.",
     version="1.0.0",
     values=(
-        DecisionPointValue(name="Decline", key="D", description="Decline"),
-        DecisionPointValue(name="Track", key="T", description="Track"),
-        DecisionPointValue(name="Coordinate", key="C", description="Coordinate"),
+        _DECLINE,
+        _TRACK,
+        _COORDINATE,
     ),
 )
 """

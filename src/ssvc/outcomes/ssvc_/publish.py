@@ -17,6 +17,11 @@ from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
+_DO_NOT_PUBLISH = DecisionPointValue(
+    name="Do Not Publish", key="N", description="Do Not Publish"
+)
+
+_PUBLISH = DecisionPointValue(name="Publish", key="P", description="Publish")
 
 PUBLISH = SsvcDecisionPoint(
     name="Publish, Do Not Publish",
@@ -24,10 +29,8 @@ PUBLISH = SsvcDecisionPoint(
     description="The publish outcome group.",
     version="1.0.0",
     values=(
-        DecisionPointValue(
-            name="Do Not Publish", key="N", description="Do Not Publish"
-        ),
-        DecisionPointValue(name="Publish", key="P", description="Publish"),
+        _DO_NOT_PUBLISH,
+        _PUBLISH,
     ),
 )
 """
