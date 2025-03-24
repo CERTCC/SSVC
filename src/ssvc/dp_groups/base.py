@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-"""
-file: base
-author: adh
-created_at: 9/20/23 4:47 PM
-"""
+
 #  Copyright (c) 2025 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
@@ -17,13 +13,19 @@ created_at: 9/20/23 4:47 PM
 #  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
 #  U.S. Patent and Trademark Office by Carnegie Mellon University
 
+"""
+Provides a DecisionPointGroup object for use in SSVC.
+"""
+
+import itertools
+from typing import Generator
+
 from pydantic import BaseModel
 
 from ssvc._mixins import _Base, _SchemaVersioned
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 
 
 class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
@@ -59,13 +61,21 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         """
         return list(self.decision_points_dict.keys())
 
+    def combination_strings(self) -> Generator[tuple[str, ...], None, None]:
+        """
+        Return a list of tuples of the value short strings for all combinations of the decision points.
+        """
+        value_tuples = [dp.value_summaries_str for dp in self.decision_points]
+        for combo in itertools.product(*value_tuples):
+            yield combo
+
 
 def get_all_decision_points_from(
     *groups: list[DecisionPointGroup],
-) -> tuple[SsvcDecisionPoint, ...]:
+) -> tuple[DecisionPoint, ...]:
     """
-    Given a list of SsvcDecisionPointGroup objects, return a list of all
-    the unique SsvcDecisionPoint objects contained in those groups.
+    Given a list of DecisionPointGroup objects, return a list of all
+    the unique DecisionPoint objects contained in those groups.
 
     Args:
         groups (list): A list of SsvcDecisionPointGroup objects.
