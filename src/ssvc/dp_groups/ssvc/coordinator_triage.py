@@ -63,10 +63,9 @@ It includes decision points:
     - Safety Impact v1.0.0
 """
 
-VERSIONS = (
-    COORDINATOR_TRIAGE_1,
-)
+VERSIONS = (COORDINATOR_TRIAGE_1,)
 LATEST = VERSIONS[-1]
+
 
 def main():
     for version in VERSIONS:

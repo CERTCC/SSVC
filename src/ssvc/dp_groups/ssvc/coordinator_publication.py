@@ -43,9 +43,7 @@ It includes decision points:
 - Public Value Added v1.0.0
 """
 
-VERSIONS = (
-    COORDINATOR_PUBLICATION_1,
-)
+VERSIONS = (COORDINATOR_PUBLICATION_1,)
 LATEST = VERSIONS[-1]
 
 
