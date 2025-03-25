@@ -3,18 +3,24 @@
 Provides a Policy Generator class for SSVC decision point groups.
 
 """
-#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
+#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
 
 import itertools
 import logging
@@ -163,14 +169,14 @@ class PolicyGenerator:
             row = {}
             for i in range(len(node)):
                 # turn the numerical indexes back into decision point names
-                col1 = f"{self.dpg.decision_points[i].name}"
-                row[col1] = self.dpg.decision_points[i].values[node[i]].name
+                col1 = f"{self.dpg.decision_points[i].str}"
+                row[col1] = self.dpg.decision_points[i].value_summaries_str[node[i]]
                 # numerical values
-                col2 = f"idx_{self.dpg.decision_points[i].name}"
+                col2 = f"idx_{self.dpg.decision_points[i].str}"
                 row[col2] = node[i]
 
             oc_idx = self.G.nodes[node]["outcome"]
-            row["outcome"] = self.outcomes.values[oc_idx].name
+            row["outcome"] = self.outcomes.value_summaries_str[oc_idx]
 
             row["idx_outcome"] = oc_idx
             rows.append(row)
@@ -183,8 +189,8 @@ class PolicyGenerator:
         df = df.rename(columns={"outcome": self.outcomes.name})
         print_cols = [c for c in df.columns if not c.startswith("idx_")]
 
-        for c in print_cols:
-            df[c] = df[c].str.lower()
+        # for c in print_cols:
+        #     df[c] = df[c].str.lower()
 
         return pd.DataFrame(df[print_cols])
 
