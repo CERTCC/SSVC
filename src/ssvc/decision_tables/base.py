@@ -1,39 +1,38 @@
 #!/usr/bin/env python
 
-#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
+#  Copyright (c) 2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
 """
 Provides a DecisionTable class that can be used to model decisions in SSVC
 """
 import logging
-import re
+from typing import Optional
 
-from pydantic import BaseModel
+import pandas as pd
+from pydantic import BaseModel, Field
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
 from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
+from ssvc.policy_generator import PolicyGenerator
 
 logger = logging.getLogger(__name__)
-
-
-def name_to_key(name: str) -> str:
-    """
-    Convert a name to a key by converting to lowercase and replacing spaces with underscores.
-    """
-    # replace non-alphanumeric characters with underscores
-    new_name = re.sub(r"[^a-z0-9]+", "_", name.lower())
-    return new_name
 
 
 class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -49,10 +48,70 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
 
     decision_point_group: DecisionPointGroup
     outcome_group: OutcomeGroup
+    mapping: list[tuple[tuple[str, ...], tuple[str, ...]]] = Field(default_factory=list)
 
-    def combinations(self):
-        """Generate possible decision point values"""
-        return self.decision_point_group.combination_strings()
+    def get_mapping_df(self, weights: Optional[list[float]] = None) -> pd.DataFrame:
+        # create a policy generator object and extract a mapping from it
+        with PolicyGenerator(
+            dp_group=self.decision_point_group,
+            outcomes=self.outcome_group,
+            outcome_weights=weights,
+        ) as pg:
+            df = pg.clean_policy()
+
+        return df
+
+    def dataframe_to_tuple_list(
+        self, df: pd.DataFrame, n_outcols: int = 1
+    ) -> list[tuple[tuple[str, ...], tuple[str, ...]]]:
+        """
+        Converts a DataFrame into a list of tuples where each tuple contains:
+        - A tuple of input values (all columns except the last n_outcols)
+        - A tuple containing the outcome value (last n_outcols columns)
+
+        Note:
+            In every decision we've modeled to date, there is only one outcome column.
+            We have not yet encountered a decision with multiple outcome columns,
+            however, it has come up in some discussions, so we're allowing for it here as
+            a future-proofing measure.
+
+        Attributes:
+            df: pandas DataFrame
+            n_outcols: int, default=1
+
+        Returns:
+            list[tuple[tuple[str,...],tuple[str,...]]]: A list of tuples
+
+        """
+        input_columns = df.columns[:-n_outcols]  # All columns except the last one
+        output_column = df.columns[-n_outcols]  # The last column
+
+        return [
+            (tuple(row[input_columns]), (row[output_column],))
+            for _, row in df.iterrows()
+        ]
+
+    def set_mapping(
+        self, df: pd.DataFrame
+    ) -> list[tuple[tuple[str, ...], tuple[str, ...]]]:
+        """
+        Sets the mapping attribute to the output of dataframe_to_tuple_list
+
+        :param df: pandas DataFrame
+        """
+        self.mapping = self.dataframe_to_tuple_list(df)
+        return self.mapping
+
+    def generate_mapping(self) -> list[tuple[tuple[str, ...], tuple[str, ...]]]:
+        """
+        Generates a mapping from the decision point group to the outcome group using the PolicyGenerator class
+        and sets the mapping attribute to the output of dataframe_to_tuple_list
+
+        Returns:
+            list[tuple[tuple[str,...],tuple[str,...]]]: The generated mapping
+        """
+        df = self.get_mapping_df()
+        return self.set_mapping(df)
 
 
 # convenience alias
@@ -75,9 +134,11 @@ def main():
         decision_point_group=dpg,
         outcome_group=og,
     )
-    print(dt.model_dump_json(indent=2))
 
-    print(list(dt.combinations()))
+    df = dt.get_mapping_df()
+    dt.set_mapping(df)
+
+    print(dt.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
