@@ -29,28 +29,37 @@ from ssvc._mixins import (
     _Valued,
     _Versioned,
 )
-from ssvc.namespaces import NameSpace
 
 logger = logging.getLogger(__name__)
 
 
-_RDP = {}
+_DECISION_POINT_REGISTRY = {}
+
 REGISTERED_DECISION_POINTS = []
+
 FIELD_DELIMITER = ":"
+
+_VALUES_REGISTRY = {}
 
 
 def register(dp):
     """
     Register a decision point.
     """
-    global _RDP
+    global _DECISION_POINT_REGISTRY
 
-    key = (dp.namespace, dp.name, dp.key, dp.version)
+    key = dp.str
 
-    if key in _RDP:
+    for value_str, value_summary in dp.value_summaries_dict.items():
+        if value_str in _VALUES_REGISTRY:
+            logger.warning(f"Duplicate value summary {value_str}")
+
+        _VALUES_REGISTRY[value_str] = value_summary
+
+    if key in _DECISION_POINT_REGISTRY:
         logger.warning(f"Duplicate decision point {key}")
 
-    _RDP[key] = dp
+    _DECISION_POINT_REGISTRY[key] = dp
     REGISTERED_DECISION_POINTS.append(dp)
 
 
@@ -58,10 +67,13 @@ def _reset_registered():
     """
     Reset the registered decision points.
     """
-    global _RDP
+    global _DECISION_POINT_REGISTRY
     global REGISTERED_DECISION_POINTS
 
-    _RDP = {}
+    global _VALUES_REGISTRY
+
+    _DECISION_POINT_REGISTRY = {}
+    _VALUES_REGISTRY = {}
     REGISTERED_DECISION_POINTS = []
 
 
