@@ -22,9 +22,9 @@ import unittest
 from pandas import DataFrame
 
 from ssvc.decision_points.base import (
+    DP_REGISTRY,
     DecisionPoint,
     DecisionPointValue,
-    _DECISION_POINT_REGISTRY,
 )
 from ssvc.decision_tables import base
 from ssvc.dp_groups.base import DecisionPointGroup
@@ -35,6 +35,8 @@ class TestDecisionTable(unittest.TestCase):
     def setUp(self):
         self.tempdir = tempfile.TemporaryDirectory()
         self.tempdir_path = self.tempdir.name
+
+        DP_REGISTRY.clear()
 
         dps = []
         for i in range(3):
@@ -102,16 +104,32 @@ class TestDecisionTable(unittest.TestCase):
     def test_get_mapping_df(self):
         df = self.dt.get_mapping_df()
         self.assertIsInstance(df, DataFrame)
-        # columns are the decision point strings and the outcome group string
-        for dp in self.dpg.decision_points:
-            self.assertIn(dp.str, df.columns[:-1])
+
+        # df is not empty
+        self.assertFalse(df.empty)
+        # df has some rows
+        self.assertGreater(len(df), 0)
+        # df has the same number of rows as the product of the number of decision points and their values
+        combos = list(self.dpg.combination_strings())
+        self.assertGreater(len(combos), 0)
+        self.assertEqual(len(df), len(combos))
+
+        # column names are the decision point strings and the outcome group string
+        for i, dp in enumerate(self.dpg.decision_points):
+            self.assertEqual(dp.str, df.columns[i])
         self.assertEqual(self.og.str, df.columns[-1])
 
         for col in df.columns:
-            dp = _DECISION_POINT_REGISTRY[col]
+            # col is in the registry
+            self.assertIn(col, DP_REGISTRY)
+
+            dp = DP_REGISTRY[col]
+
+            uniq = df[col].unique()
+
             # all values in the decision point should be in the column at least once
             for vsum in dp.value_summaries_str:
-                self.assertIn(vsum, df[col].unique())
+                self.assertIn(vsum, uniq)
 
 
 if __name__ == "__main__":

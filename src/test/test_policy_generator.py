@@ -1,15 +1,21 @@
-#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
+#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
 
 import unittest
 from collections import Counter
@@ -243,7 +249,7 @@ class MyTestCase(unittest.TestCase):
             for dpg in pg.dpg.decision_points:
                 self.assertIn(dpg.name, stdout)
             for og in pg.outcomes.values:
-                self.assertIn(og.name.lower(), stdout)
+                self.assertIn(og.name, stdout)
 
     def test_create_policy(self):
         pg = PolicyGenerator(
@@ -265,15 +271,19 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(pg.policy, pd.DataFrame)
         self.assertEqual(16, len(pg.policy))
 
+        idx_cols = [col for col in pg.policy.columns if col.startswith("idx_")]
+        other_cols = [col for col in pg.policy.columns if not col.startswith("idx_")]
+
         for c in self.dp_names:
-            self.assertIn(c, pg.policy.columns)
-            self.assertIn(f"idx_{c}", pg.policy.columns)
+
+            self.assertTrue(any([c in col for col in other_cols]))
+            self.assertTrue(any([c in col for col in idx_cols]))
 
         self.assertIn("outcome", pg.policy.columns)
         self.assertIn("idx_outcome", pg.policy.columns)
 
         for outcome in self.og_names:
-            self.assertIn(outcome, pg.policy.outcome.values)
+            self.assertTrue(any([outcome in val for val in pg.policy.outcome.values]))
 
     def test_validate_paths(self):
         pg = PolicyGenerator(

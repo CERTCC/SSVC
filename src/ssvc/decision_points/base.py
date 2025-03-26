@@ -3,22 +3,28 @@
 """
 Defines the formatting for SSVC Decision Points.
 """
-#  Copyright (c) 2023-2025 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
+#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
 
 import logging
 
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import (
     _Base,
@@ -33,33 +39,63 @@ from ssvc._mixins import (
 logger = logging.getLogger(__name__)
 
 
-_DECISION_POINT_REGISTRY = {}
-
 REGISTERED_DECISION_POINTS = []
-
 FIELD_DELIMITER = ":"
 
-_VALUES_REGISTRY = {}
+
+class Registry(BaseModel):
+    registry: dict[str, object] = Field(default_factory=dict)
+
+    def __iter__(self):
+        return iter(self.registry.values())
+
+    def __getitem__(self, key: str) -> object:
+        return self.registry[key]
+
+    def __setitem__(self, key: str, value: object):
+        if key in self.registry:
+            logger.warning(f"Duplicate key {key}")
+
+        self.registry[key] = value
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.registry
+
+    def reset_registry(self):
+        self.registry = {}
+
+    # convenience alias
+    def clear(self):
+        self.reset_registry()
+
+
+class DecisionPointRegistry(Registry, BaseModel):
+    """
+    A dictionary of decision points.
+    """
+
+    registry: dict[str, "DecisionPoint"] = Field(default_factory=dict)
+
+
+class DecisionPointValueRegistry(Registry, BaseModel):
+    """
+    A dictionary of decision point values.
+    """
+
+    registry: dict[str, "DecisionPointValue"] = Field(default_factory=dict)
 
 
 def register(dp):
     """
     Register a decision point.
     """
-    global _DECISION_POINT_REGISTRY
+
+    # register the values
+    for value_str, value_summary in dp.value_summaries_dict.items():
+        DPV_REGISTRY[value_str] = value_summary
 
     key = dp.str
-
-    for value_str, value_summary in dp.value_summaries_dict.items():
-        if value_str in _VALUES_REGISTRY:
-            logger.warning(f"Duplicate value summary {value_str}")
-
-        _VALUES_REGISTRY[value_str] = value_summary
-
-    if key in _DECISION_POINT_REGISTRY:
-        logger.warning(f"Duplicate decision point {key}")
-
-    _DECISION_POINT_REGISTRY[key] = dp
+    DP_REGISTRY[key] = dp
     REGISTERED_DECISION_POINTS.append(dp)
 
 
@@ -67,13 +103,12 @@ def _reset_registered():
     """
     Reset the registered decision points.
     """
-    global _DECISION_POINT_REGISTRY
+    global DPV_REGISTRY
+    global DP_REGISTRY
     global REGISTERED_DECISION_POINTS
 
-    global _VALUES_REGISTRY
-
-    _DECISION_POINT_REGISTRY = {}
-    _VALUES_REGISTRY = {}
+    DPV_REGISTRY.reset_registry()
+    DP_REGISTRY.reset_registry()
     REGISTERED_DECISION_POINTS = []
 
 
@@ -193,6 +228,10 @@ class DecisionPoint(
 
         """
         return list(self.value_summaries_dict.keys())
+
+
+DP_REGISTRY = DecisionPointRegistry()
+DPV_REGISTRY = DecisionPointRegistry()
 
 
 def main():
