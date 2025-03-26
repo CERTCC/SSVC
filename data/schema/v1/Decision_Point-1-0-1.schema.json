@@ -48,7 +48,7 @@
 		"namespace": {
 		    "type": "string",
 		    "description": "Namespace (a short, unique string): The value must be one of the official namespaces, currenlty \"ssvc\", \"cvss\" OR can start with 'x_' for private namespaces. See SSVC Documentation for details.",
-		    "pattern": "^(?=.{3,25}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,22}$",
+		    "pattern": "^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$",
 		    "examples": ["ssvc", "cvss", "x_custom","x_custom/extension"]
 		},
 		"version": {
