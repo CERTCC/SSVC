@@ -8,7 +8,7 @@
             "description": "Identifier for the vulnerability that was evaluation, such as CVE, CERT/CC VU#, OSV id, Bugtraq, GHSA etc.",
             "examples": ["CVE-1900-1234","VU#11111","GHSA-11a1-22b2-33c3"],
             "minLength": 1
-        },    
+        },
         "role": {
             "type": "string",
             "description": "The role of the stakeholder performing the evaluation (e.g., Supplier, Deployer, Coordinator). See SSVC documentation for a currently identified list: https://certcc.github.io/SSVC/topics/enumerating_stakeholders/",
@@ -24,10 +24,10 @@
             "description": "A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.",
             "properties": {
                 "name": {
-                    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/name"             
+                    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/name"
                 },
                 "namespace": {
-                    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/namespace"            
+                    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/namespace"
                 },
                 "values": {
                     "description": "One or more Decision Point Values that were selected for this Decision Point. If the evaluation is uncertain, multiple values may be listed to reflect the potential range of possibilities.",
@@ -39,7 +39,7 @@
                     }
                 },
                 "version": {
-                    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/version"            
+                    "$ref": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point-1-0-1.schema.json#/$defs/decision_point/properties/version"
                 }
             },
             "type": "object",
@@ -74,7 +74,7 @@
                 "$ref": "#/$defs/SsvcdecisionpointselectionSchema"
             }
         }
-    }, 
+    },
     "type": "object",
     "required": [
         "selections",

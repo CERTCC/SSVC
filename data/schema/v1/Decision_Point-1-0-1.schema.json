@@ -11,7 +11,7 @@
         },
         "decision_point_value": {
             "type": "object",
-            "additionalProperties": false,        
+            "additionalProperties": false,
             "properties": {
                 "key": {
                     "type": "string",
