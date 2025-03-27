@@ -127,8 +127,8 @@ def main():
     logger.addHandler(logging.StreamHandler())
 
     dt = DecisionTable(
-        name="Example Prioritization Framework",
-        description="The description for an Example Prioritization Framework",
+        name="Example Decision Table",
+        description="The description for an Example Decision Table",
         namespace="x_test",
         version="1.0.0",
         decision_point_group=dpg,
