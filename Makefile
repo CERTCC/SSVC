@@ -37,6 +37,9 @@ dockerrun_docs:
 	@echo "Running the docs Docker image..."
 	$(DOCKER_RUN) --publish $(MKDOCS_PORT):8000 $(PROJECT_VOLUME) $(DOCS_IMAGE)
 
+.PHONY: test
+test:
+	pytest -v src/test
 
 docs: dockerbuild_docs dockerrun_docs
 docker_test: dockerbuild_test dockerrun_test
@@ -51,8 +54,9 @@ help:
 	@echo "Targets:"
 	@echo " all         - Display this help message"
 	@echo " mdlint_fix  - Run markdownlint with --fix"
+	@echo " test        - Run the tests in a local shell"
 	@echo " docs        - Build and run the docs Docker image"
-	@echo " docker_test - Build and run the test Docker image"
+	@echo " docker_test - Build and run the tests in a Docker image"
 	@echo ""
 	@echo " dockerbuild_test - Build the test Docker image"
 	@echo " dockerrun_test   - Run the test Docker image"
