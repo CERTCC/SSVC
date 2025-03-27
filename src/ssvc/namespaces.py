@@ -4,18 +4,24 @@ SSVC objects use namespaces to distinguish between objects that arise from diffe
 stakeholders or analytical category sources. This module defines the official namespaces
 for SSVC and provides a method to validate namespace values.
 """
-#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
+#  Copyright (c) 2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
 
 import re
 from enum import StrEnum, auto
@@ -24,7 +30,7 @@ X_PFX = "x_"
 """The prefix for extension namespaces. Extension namespaces must start with this prefix."""
 
 # pattern to match
-# `(?=.{3,25}$)`: 3-25 characters long
+# `(?=.{3,100}$)`: 3-25 characters long
 # `^(x_)`: `x_` prefix is optional
 # `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
 # `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
@@ -32,7 +38,7 @@ X_PFX = "x_"
 # `([/.-]?[a-z0-9]+){0,22}`: zero to 22 occurrences of the punctuation character followed by at least one alphanumeric character
 # (note that the total limit will kick in at or before this point)
 # `$`: end of the string
-NS_PATTERN = re.compile(r"^(?=.{3,25}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,22}$")
+NS_PATTERN = re.compile(r"^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$")
 """The regular expression pattern for validating namespaces.
 
 Note: 
