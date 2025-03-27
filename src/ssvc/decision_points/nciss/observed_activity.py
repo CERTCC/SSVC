@@ -2,18 +2,24 @@
 """
 Provides the NCISS Observed Activity Decision Point.
 """
-#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
-#  - see Contributors.md for a full list of Contributors
-#  - see ContributionInstructions.md for information on how you can Contribute to this project
-#  Stakeholder Specific Vulnerability Categorization (SSVC) is
-#  licensed under a MIT (SEI)-style license, please see LICENSE.md distributed
-#  with this Software or contact permission@sei.cmu.edu for full terms.
-#  Created, in part, with funding and support from the United States Government
-#  (see Acknowledgments file). This program may include and/or can make use of
-#  certain third party source code, object code, documentation and other files
-#  (“Third Party Software”). See LICENSE.md for more details.
-#  Carnegie Mellon®, CERT® and CERT Coordination Center® are registered in the
-#  U.S. Patent and Trademark Office by Carnegie Mellon University
+#  Copyright (c) 2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
 
 from ssvc.decision_points.base import SsvcDecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
@@ -23,34 +29,34 @@ PREPARE = SsvcDecisionPointValue(
     key="P",
     name="Prepare",
     description="Prepare actions are actions taken to establish objectives, intent, and strategy; "
-                "identify potential targets and attack vectors; "
-                "identify resource requirements; "
-                "and develop capabilities.",
+    "identify potential targets and attack vectors; "
+    "identify resource requirements; "
+    "and develop capabilities.",
 )
 
 ENGAGE = SsvcDecisionPointValue(
     key="E",
     name="Engage",
     description="Engage activities are actions taken against a specific target or target set prior to gaining, "
-                "but with the intent to gain access to the victim's physical or virtual computer or information systems, "
-                "networks, and data stores.",
+    "but with the intent to gain access to the victim's physical or virtual computer or information systems, "
+    "networks, and data stores.",
 )
 
 PRESENCE = SsvcDecisionPointValue(
     key="R",
     name="Presence",
-        description="Presence is the set of actions taken by the threat actor once access to the target physical or "
-                    "virtual computer or information system has been achieved. "
-                    "These actions establish and maintain conditions for the threat actor to perform intended actions "
-                    "or operate at will against the host physical or virtual computer or information system, network, "
-                    "or data stores.",
+    description="Presence is the set of actions taken by the threat actor once access to the target physical or "
+    "virtual computer or information system has been achieved. "
+    "These actions establish and maintain conditions for the threat actor to perform intended actions "
+    "or operate at will against the host physical or virtual computer or information system, network, "
+    "or data stores.",
 )
 
 EFFECT = SsvcDecisionPointValue(
     key="F",
     name="Effect",
     description="Effects are outcomes of a threat actor’s actions "
-                "on a victim’s physical or virtual computer or information systems, networks, and data stores.",
+    "on a victim’s physical or virtual computer or information systems, networks, and data stores.",
 )
 
 
@@ -64,9 +70,10 @@ OBSERVED_ACTIVITY = NcissDecisionPoint(
 VERSIONS = (OBSERVED_ACTIVITY,)
 LATEST = VERSIONS[-1]
 
+
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
