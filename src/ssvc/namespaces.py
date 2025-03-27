@@ -30,7 +30,7 @@ X_PFX = "x_"
 """The prefix for extension namespaces. Extension namespaces must start with this prefix."""
 
 # pattern to match
-# `(?=.{3,25}$)`: 3-25 characters long
+# `(?=.{3,100}$)`: 3-25 characters long
 # `^(x_)`: `x_` prefix is optional
 # `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
 # `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
@@ -38,7 +38,7 @@ X_PFX = "x_"
 # `([/.-]?[a-z0-9]+){0,22}`: zero to 22 occurrences of the punctuation character followed by at least one alphanumeric character
 # (note that the total limit will kick in at or before this point)
 # `$`: end of the string
-NS_PATTERN = re.compile(r"^(?=.{3,25}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,22}$")
+NS_PATTERN = re.compile(r"^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$")
 """The regular expression pattern for validating namespaces.
 
 Note: 
