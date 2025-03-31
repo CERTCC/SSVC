@@ -353,6 +353,13 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
 
         return pd.DataFrame(rows, columns=columns).to_csv(index=False)
 
+    def load_from_csv_str(self, csv_str: str):
+        """
+        Loads the mapping from a CSV string
+        """
+        # TODO add a mechanism to read a mapping from a CSV file and create a DecisionTable object from it
+        raise NotImplementedError
+
 
 # convenience alias
 Policy = DecisionTable
