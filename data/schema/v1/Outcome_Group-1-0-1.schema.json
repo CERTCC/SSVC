@@ -4,14 +4,14 @@
     "$id": "https://certcc.github.io/SSVC/data/schema/v1/Outcome-1-0-1.schema.json",
     "description": "An outcome is the result of making a decision. Outcomes are often tailored specifically to the stakeholder context in which the decision is being made. We call the set of possible outcomes for a decision an Outcome Set.",
     "$defs":     {
-	"schemaVersion": {
+        "schemaVersion": {
             "description": "Schema version used to represent this Outcome Group",
             "type": "string",
             "enum": ["1-0-1"]
         },
-	"outcome_value": {
+        "outcome_value": {
             "type": "object",
-	    "additionalProperties": false,	    
+            "additionalProperties": false,
             "properties": {
                 "key": {
                     "type": "string",
@@ -26,49 +26,49 @@
                     "description": "Description of the Decision Point Value"
                 }
             },
-	    "required" : [
-		"key",
-		"name",
-		"description"
-	    ]
-	},
-	"outcome_group": {
-	    "type": "object",
-	    "additionalProperties": false,
-	    "properties": {
-		"schemaVersion": {
-		    "$ref": "#/$defs/schemaVersion"
-		},
-		"version": {
-		    "type": "string",
-		    "description": "Version (a semantic version string) that identifies this object"
-		},
-		"name": {
-		    "type": "string",
-		    "description": "A short label that captures the description of the group of Outcomes"
-		},
-		"description": {
-		    "type": "string",
-		    "description": " Description of the of group of Outcomes."
-		},		
-		"outcomes": {
-		    "description": "Collection Set of Outcomes.",
-		    "uniqueItems": true,
-		    "type": "array",
-		    "minItems": 2,
-		    "items": {
-			"$ref": "#/$defs/outcome_value"
-		    }
-		}
-	    },
-	    "required": [
-		"version",
-		"name",
-		"description",
-		"outcomes",
-		"schemaVersion"
-	    ]
-	}
+            "required" : [
+                "key",
+                "name",
+                "description"
+            ]
+        },
+        "outcome_group": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "schemaVersion": {
+                    "$ref": "#/$defs/schemaVersion"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Version (a semantic version string) that identifies this object"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A short label that captures the description of the group of Outcomes"
+                },
+                "description": {
+                    "type": "string",
+                    "description": " Description of the of group of Outcomes."
+                },
+                "outcomes": {
+                    "description": "Collection Set of Outcomes.",
+                    "uniqueItems": true,
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "$ref": "#/$defs/outcome_value"
+                    }
+                }
+            },
+            "required": [
+                "version",
+                "name",
+                "description",
+                "outcomes",
+                "schemaVersion"
+            ]
+        }
     },
     "$ref": "#/$defs/outcome_group"
 }
