@@ -41,13 +41,13 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
 
     decision_points: tuple[DecisionPoint, ...]
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[DecisionPoint, None, None]:
         """
         Allow iteration over the decision points in the group.
         """
         return iter(self.decision_points)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Allow len() to be called on the group.
         """

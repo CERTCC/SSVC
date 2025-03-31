@@ -46,13 +46,13 @@ FIELD_DELIMITER = ":"
 class Registry(BaseModel):
     registry: dict[str, object] = Field(default_factory=dict)
 
-    def __iter__(self):
+    def __iter__(self) -> object:
         return iter(self.registry.values())
 
     def __getitem__(self, key: str) -> object:
         return self.registry[key]
 
-    def __setitem__(self, key: str, value: object):
+    def __setitem__(self, key: str, value: object) -> None:
         if key in self.registry:
             logger.warning(f"Duplicate key {key}")
 
@@ -61,11 +61,11 @@ class Registry(BaseModel):
     def __contains__(self, key: str) -> bool:
         return key in self.registry
 
-    def reset_registry(self):
+    def reset_registry(self) -> None:
         self.registry = {}
 
     # convenience alias
-    def clear(self):
+    def clear(self) -> None:
         self.reset_registry()
 
 
@@ -228,6 +228,13 @@ class DecisionPoint(
 
         """
         return list(self.value_summaries_dict.keys())
+
+    @property
+    def enumerated_values(self) -> dict[int, str]:
+        """
+        Return a list of enumerated values.
+        """
+        return {i: v.str for i, v in enumerate(self.value_summaries)}
 
 
 DP_REGISTRY = DecisionPointRegistry()
