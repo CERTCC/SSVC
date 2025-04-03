@@ -2,9 +2,6 @@ site_name: "SSVC: Stakeholder-Specific Vulnerability Categorization"
 site_url: 'https://certcc.github.io/SSVC/'
 site_description: 'SSVC is a framework for prioritizing vulnerabilities based on stakeholder needs.'
 site_author: 'CERT Coordination Center'
-copyright: >
-  Copyright &copy; 2019-2024 Carnegie Mellon University.
-  <br/><a href="#__consent">Change cookie settings</a>
 nav:
   - Home: 'https://certcc.github.io/'
   - SSVC: 'index.md'
@@ -122,14 +119,14 @@ nav:
     - Decision Records: 'adr/index.md'
     - Acknowledgements: 'about/acknowledgements.md'
     - Change log: 'about/changelog.md'
-    - Copyright: 'about/copyright.md'
     - Contact: 'about/contact_us.md'
 not_in_nav: |
   _*.md
   _*/**/*.md
 theme:
-  logo: 'assets/cert_seal.svg'
+  logo: 'assets/Software_Engineering_Institute_Unitmark_White.svg'
   name: 'material'
+  custom_dir: 'overrides'
   features:
     - content.tabs.link
     - navigation.footer
