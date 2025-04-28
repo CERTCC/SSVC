@@ -76,12 +76,6 @@ class SsvcDecisionPoint(_Valued, _Keyed, _Versioned, _Namespaced, _Base, BaseMod
     namespace: str = NameSpace.SSVC
     values: tuple[SsvcDecisionPointValue, ...]
 
-    def __iter__(self):
-        """
-        Allow iteration over the decision points in the group.
-        """
-        return iter(self.values)
-
     def __init__(self, **data):
         super().__init__(**data)
         register(self)
