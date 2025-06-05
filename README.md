@@ -61,6 +61,19 @@ These json files are generated examples from the python `ssvc` module.
 
 These files are used by the `ssvc-calc` module.
 
+## `/docker/*`
+
+The `docker` directory contains Dockerfiles and related configurations for to
+create images that can run the SSVC documentation site and unit tests.
+
+Example:
+
+```bash
+cd docker
+docker-compose up test
+docker-compose up docs
+```
+
 ## `/src/*`
 
 This directory holds helper scripts that can make managing or using SSVC easier.
@@ -103,7 +116,7 @@ To preview any `make` command without actually executing it, run:
 make -n <command>
 ```
 
-### Run Local Server With Docker
+### Run Local Docs Server With Docker
 
 The easiest way to get started is using make to build a docker image and run the site:
 
@@ -111,18 +124,12 @@ The easiest way to get started is using make to build a docker image and run the
 make docs
 ```
 
-Then navigate to <http://localhost:8765/SSVC/> to see the site.
-
-Note that the docker container will display a message with the URL to visit, for
-example: `Serving on http://0.0.0.0:8000/SSVC/` in the output. However, that port
-is only available inside the container. The host port 8765 is mapped to the container's
-port 8000, so you should navigate to <http://localhost:8765/SSVC/> to see the site.
+Then navigate to <http://localhost:8000/SSVC/> to see the site.
 
 Or, if make is not available:
 
 ```bash
-docker build --target docs --tag ssvc_docs .
-docker run --tty --rm -p 8765:8000 --volume .:/app ssvc_docs
+cd docker && docker-compose up docs
 ```
 
 ### Run Local Server Without Docker
@@ -162,8 +169,7 @@ make docker_test
 Or, if make is not available:
 
 ```bash
-docker build --target test --tag ssvc_test .
-docker run --tty --rm --volume .:/app ssvc_test
+cd docker && docker-compose up test
 ```
 
 ### Run Tests Without Docker
