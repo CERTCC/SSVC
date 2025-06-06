@@ -8,7 +8,7 @@ copyright: >
 nav:
   - Home: 'https://certcc.github.io/'
   - SSVC: 'index.md'
-  - SSVC Overview: 'explanation.md'
+  - SSVC Overview: 'ssvc_overview.md'
   - SSVC How-To:
     - Overview: 'howto/index.md'
     - Getting Started with SSVC:

@@ -17,7 +17,7 @@ We have organized the SSVC documentation into four main sections:
     A beginner's guide to SSVC.
     This section is for people who have never heard of SSVC.
 
-    [:octicons-arrow-right-24: An Overview of SSVC](explanation.md)
+    [:octicons-arrow-right-24: An Overview of SSVC](ssvc_overview.md)
 
 - :material-clipboard-check:{ .lg .middle } **SSVC How To**
 

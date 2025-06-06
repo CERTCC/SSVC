@@ -29,7 +29,7 @@ All three stakeholders, even if within the same organization, will have differen
 
 ## How vulnerabilities are categorized in SSVC
 
-SSVC categorizes vulnerabilities by priority based on risk that varies among stakeholders. These categories reflect the timeliness of action to be taken. Suppliers and Deployers have different end-categories than Coordinators because they are making different decisions at different points in their responses. [Decision Trees](topics/decision_trees/) are used when asking the series of questions to categorize a vulnerability's priority. There will be more information on decision points (tree nodes) in the next section.
+SSVC categorizes vulnerabilities by priority based on risk that varies among stakeholders. These categories reflect the timeliness of action to be taken. Suppliers and Deployers have different end-categories than Coordinators because they are making different decisions at different points in their responses. [Decision Trees](../topics/decision_trees/) are used when asking the series of questions to categorize a vulnerability's priority. There will be more information on decision points (tree nodes) in the next section.
 
 ### Prioritization categories for Suppliers and Deployers
 
@@ -44,7 +44,7 @@ Many Suppliers and Deployers will want to resolve *Defer* vulnerabilities in due
 
 ### Prioritization categories for Coordinators
 
-Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](howto/coordination_triage_decision/#coordinator-triage-units-of-work). Because we make separate decisions for triage and publication, we provide separate example trees, each of which has different prioritizations at the end. These trees represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
+Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work). Because we make separate decisions for triage and publication, we provide separate example trees, each of which has different prioritizations at the end. These trees represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
 
 A triage tree might have:
 
@@ -263,6 +263,6 @@ Coordinators will be especially concerned with communicating information about v
 
 ### Further reading
 
-[Reference material](reference/index)
+[Reference material](../reference/)
 
-[Guidance for customizing a Decision Tree](howto/tree_customization)
+[Guidance for customizing a Decision Tree](../howto/tree_customization)
