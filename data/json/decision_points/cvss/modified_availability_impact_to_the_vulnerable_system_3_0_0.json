@@ -1,0 +1,30 @@
+{
+  "name": "Modified Availability Impact to the Vulnerable System",
+  "description": "This metric measures the impact to the availability of the impacted system resulting from a successfully exploited vulnerability.",
+  "namespace": "cvss",
+  "version": "3.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "MVA",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "There is no impact to availability within the Vulnerable System."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "There is reduced performance or interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the Vulnerable System are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the Vulnerable System."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "There is total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}

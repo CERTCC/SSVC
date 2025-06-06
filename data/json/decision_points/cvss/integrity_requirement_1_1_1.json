@@ -1,0 +1,30 @@
+{
+  "name": "Integrity Requirement",
+  "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
+  "namespace": "cvss",
+  "version": "1.1.1",
+  "schemaVersion": "1-0-1",
+  "key": "IR",
+  "values": [
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Loss of integrity is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "Loss of integrity is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Loss of integrity is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}

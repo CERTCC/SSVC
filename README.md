@@ -83,9 +83,55 @@ but it worked well enough for what was needed at the time.
 
 ## Local development
 
-Install prerequisites:
+The simplest way to get started with local development is to use Docker.
+We provide a Dockerfile that builds an image with all the dependencies needed to build the site.
+We also provide a `Makefile` that simplifies the process of building the site and running a local server,
+so you don't have to remember the exact `docker build` and `docker run` commands
+to get started.
+
+### Make Commands
+
+To display the available `make` commands, run:
 
 ```bash
+make help
+```
+
+To preview any `make` command without actually executing it, run:
+
+```bash
+make -n <command>
+```
+
+### Run Local Server With Docker
+
+The easiest way to get started is using make to build a docker image and run the site:
+
+```bash
+make docs
+```
+
+Then navigate to <http://localhost:8765/SSVC/> to see the site.
+
+Note that the docker container will display a message with the URL to visit, for
+example: `Serving on http://0.0.0.0:8000/SSVC/` in the output. However, that port
+is only available inside the container. The host port 8765 is mapped to the container's
+port 8000, so you should navigate to <http://localhost:8765/SSVC/> to see the site.
+
+Or, if make is not available:
+
+```bash
+docker build --target docs --tag ssvc_docs .
+docker run --tty --rm -p 8765:8000 --volume .:/app ssvc_docs
+```
+
+### Run Local Server Without Docker
+
+If you prefer to run the site locally without Docker, you can do so with mkdocs.
+We recommend using a virtual environment to manage dependencies:
+
+```bash
+python3 -m venv ssvc_venv
 pip install -r requirements.txt
 ```
 
@@ -95,6 +141,8 @@ Start a local server:
 mkdocs serve
 ```
 
+By default, the server will run on port 8001.
+This is configured in the `mkdocs.yml` file.
 Navigate to <http://localhost:8001/> to see the site.
 
 (Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8000`)
@@ -103,20 +151,36 @@ Navigate to <http://localhost:8001/> to see the site.
 
 We include a few tests for the `ssvc` module.
 
-### With Docker
+### Run Tests With Docker
+
+The easiest way to run tests is using make to build a docker image and run the tests:
 
 ```bash
-
-docker build -t ssvc_test .
-docker run -it --rm ssvc_test
+make docker_test
 ```
 
-### Without Docker
+Or, if make is not available:
 
 ```bash
-pip install pytest  # if you haven't already
+docker build --target test --tag ssvc_test .
+docker run --tty --rm --volume .:/app ssvc_test
+```
 
-pytest # should find tests in src/test/*
+### Run Tests Without Docker
+
+```bash
+pip install pytest
+pytest src/test
+```
+
+## Environment Variables
+
+If you encounter a problem with the `ssvc` module not being found, you may need to set the `PYTHONPATH` environment variable.
+The Dockerfile takes care of this in the Docker environment.
+When not running in Docker, make sure that the `src` directory is in your `PYTHONPATH`:
+
+```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
 ```
 
 ## Contributing
