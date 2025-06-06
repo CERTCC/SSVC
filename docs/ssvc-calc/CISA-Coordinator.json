@@ -209,8 +209,8 @@
 		    "color": "#28a745"
 		},
 		{
-		    "label": "Track*",
-		    "key": "R",
+		    "label": "Monitor",
+		    "key": "M",
 		    "description": "Track these closely, especially if mitigation is unavailable or difficult. Recommended that analyst discuss with other ana-lysts and get a second opinion.",
 		    "color": "#ffc107"
 		},
@@ -266,7 +266,7 @@
 	    "Mission & Well-being": "medium"
 	},
 	{
-	    "Decision": "Track*",
+	    "Decision": "Monitor",
 	    "Exploitation": "none",
 	    "Automatable": "no",
 	    "Technical Impact": "total",
@@ -329,7 +329,7 @@
 	    "Mission & Well-being": "medium"
 	},
 	{
-	    "Decision": "Track*",
+	    "Decision": "Monitor",
 	    "Exploitation": "poc",
 	    "Automatable": "no",
 	    "Technical Impact": "partial",
@@ -343,7 +343,7 @@
 	    "Mission & Well-being": "low"
 	},
 	{
-	    "Decision": "Track*",
+	    "Decision": "Monitor",
 	    "Exploitation": "poc",
 	    "Automatable": "no",
 	    "Technical Impact": "total",
@@ -385,7 +385,7 @@
 	    "Mission & Well-being": "low"
 	},
 	{
-	    "Decision": "Track*",
+	    "Decision": "Monitor",
 	    "Exploitation": "poc",
 	    "Automatable": "yes",
 	    "Technical Impact": "total",
