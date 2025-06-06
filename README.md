@@ -133,12 +133,12 @@ Then navigate to <http://localhost:8000/SSVC/> to see the site.
 We include a few tests for the `ssvc` module.
 Options for running the test suite are provided below.
 
-| Environment | Command |
-|-------------|---------|
-| Make, Docker | `make docker_test` |
-| ~~Make~~, Docker | `cd docker && docker-compose run -rm test` |
-| Make, ~~Docker~~ | `make test` |
-| ~~Make~~, ~~Docker~~ | `pytest src/test` |
+| Environment | Command | Comment |
+|-------------|---------|---------|
+| Make, Docker | `make docker_test` | runs in docker container |
+| ~~Make~~, Docker | `cd docker && docker-compose run -rm test` | runs in docker container |
+| Make, ~~Docker~~ | `make test` | runs in host OS |
+| ~~Make~~, ~~Docker~~ | `pytest src/test` | runs in host OS |
 
 
 ## Environment Variables
