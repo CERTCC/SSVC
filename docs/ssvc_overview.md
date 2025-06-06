@@ -231,7 +231,7 @@ The last two questions, *Utility* and *Public Safety Impact*, are the same as as
 style="width: 100%;"
 height = "600" />
 
-At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own rationales for publication based on their missions.
+At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own rationales for publication based on their missions.
 
 The publication decision reuses the [*Exploitation*](reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](reference/decision_points/supplier_involvement.md) and [*Public Value Added*](reference/decision_points/public_value_added.md)).
 
