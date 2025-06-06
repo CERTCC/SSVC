@@ -208,7 +208,7 @@ print(example_block(LATEST, include_json=False))
 style="width: 100%;"
 height = "700" />
 
-The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Disclosure (CVD) practice](howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own criteria for Triage.
+The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Disclosure (CVD) practice](../howto/coordination_triage_decision/#coordinator-triage-decision-outcomes), but we encourage Coordinators to define their own criteria for Triage.
 
 The first two questions help the CERT/CC determine if our help is required.
 
