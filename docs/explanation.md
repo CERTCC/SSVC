@@ -59,7 +59,7 @@ Whereas a publication tree might have:
 
 ## How decision models are designed
 
-All decision points and decision outcomes (priority categories) must be explainable to the non-expert. A decision point itself is not representative of risk, but the series of decisions point values help a stakeholder determine how risky a vulnerability is to their operation. We suggest the use of Decision Trees as a visual model to aid explanation to non-experts and experts alike. 
+All decision points and decision outcomes (priority categories) must be explainable to the non-expert. A decision point itself is not representative of risk, but the series of decisions point values help a stakeholder determine how risky a vulnerability is to their operation. We suggest the use of Decision Trees as a visual model to aid explanation to non-experts and experts alike.
 While we encourage stakeholders to customize SSVC to their needs, in the interest of preserving a common vocabulary, we discourage stakeholders from modifying existing decision points; however, stakeholders are encouraged to set their responses based on their risk appetites.
 
 ### Supplier decision points
@@ -217,7 +217,7 @@ The first two questions help the CERT/CC determine if our help is required.
   In this case, CERT/CC may encourage the reporter to contact the supplier and submit a new case request if the supplier is unresponsive.
 - [Report Credibility](reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
 Please see the [CERT® Guide to Coordinated Vulnerability Disclosure](https://certcc.github.io/CERT-Guide-to-CVD/howto/coordination/_report_credibility) for more information about assessing credibility.
-- [Supplier Cardinality](reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases. 
+- [Supplier Cardinality](reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases.
 - [Supplier Engagement](reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
 - [Utility](reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
 - [Public Safety Impact](reference/decision_points/public_safety_impact.md): If the vulnerability has significant
@@ -242,7 +242,7 @@ The publication decision reuses the [*Exploitation*](reference/decision_points/e
 - [Supplier Involvement](reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
 - [Exploitation](reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
 
-- [Public Value Added](reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish. 
+- [Public Value Added](reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish.
 
 !!! note "What is the difference between *Supplier Engagement* and *Supplier Involvement*?"
 
