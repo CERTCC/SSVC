@@ -2,7 +2,7 @@
 
 ## Intro
 
-Risk exists on a continuum, and different stakeholders have different threat models and risk appetites.
+Risk exists on a continuum, and different stakeholders have different threat models and risk appetites. Cybersecurity risk is no exception.
 
 Imagine you're a software developer, and you just found out about a vulnerability in a library upon which your product depends. You are now concerned that your software is also vulnerable. Upon investigation, you learn that your software does not use the vulnerable part of the imported library. Is your software, in its current state, at risk of this vulnerability? You likely answered, "probably not."
 
