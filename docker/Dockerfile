@@ -5,10 +5,10 @@ WORKDIR /app
 FROM base AS dependencies
 
 # install requirements
-COPY requirements.txt .
+COPY ../requirements.txt .
 RUN pip install -r requirements.txt
 # Copy the files we need
-COPY . /app
+COPY .. /app
 # Set the environment variable
 ENV PYTHONPATH=/app/src
 
