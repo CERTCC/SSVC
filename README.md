@@ -116,68 +116,29 @@ To preview any `make` command without actually executing it, run:
 make -n <command>
 ```
 
-### Run Local Docs Server With Docker
+### Run Local Docs Server
 
-The easiest way to get started is using make to build a docker image and run the site:
+The easiest way to get started is using make to build a docker image and run the site. However, we provide a few other options below.
 
-```bash
-make docs
-```
+| Environment | Command |
+|-------------|---------|
+| Make, Docker | `make docs` |
+| ~~Make~~, Docker | `cd docker && docker-compose up docs` |
+| ~~Make~~, ~~Docker~~ | `mkdocs serve` |
 
 Then navigate to <http://localhost:8000/SSVC/> to see the site.
-
-Or, if make is not available:
-
-```bash
-cd docker && docker-compose up docs
-```
-
-### Run Local Server Without Docker
-
-If you prefer to run the site locally without Docker, you can do so with mkdocs.
-We recommend using a virtual environment to manage dependencies:
-
-```bash
-python3 -m venv ssvc_venv
-pip install -r requirements.txt
-```
-
-Start a local server:
-
-```bash
-mkdocs serve
-```
-
-By default, the server will run on port 8001.
-This is configured in the `mkdocs.yml` file.
-Navigate to <http://localhost:8001/> to see the site.
-
-(Hint: You can use the `--dev-addr` argument with mkdocs to change the port, e.g. `mkdocs serve --dev-addr localhost:8000`)
 
 ## Run tests
 
 We include a few tests for the `ssvc` module.
+Options for running the test suite are provided below.
 
-### Run Tests With Docker
-
-The easiest way to run tests is using make to build a docker image and run the tests:
-
-```bash
-make docker_test
-```
-
-Or, if make is not available:
-
-```bash
-cd docker && docker-compose up test
-```
-
-### Run Tests Without Docker
-
-```bash
-pip install pytest
-pytest src/test
-```
+| Environment | Command | Comment |
+|-------------|---------|---------|
+| Make, Docker | `make docker_test` | runs in docker container |
+| ~~Make~~, Docker | `cd docker && docker-compose run -rm test` | runs in docker container |
+| Make, ~~Docker~~ | `make test` | runs in host OS |
+| ~~Make~~, ~~Docker~~ | `pytest src/test` | runs in host OS |
 
 ## Environment Variables
 
