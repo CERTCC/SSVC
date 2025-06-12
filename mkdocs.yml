@@ -8,6 +8,13 @@ nav:
   - SSVC Overview: 'ssvc_overview.md'
   - SSVC How-To:
     - Overview: 'howto/index.md'
+    - Gathering Info about Decision Points:
+      - Automatable: howto/gathering_info/automatable.md
+      - Exploitation: howto/gathering_info/exploitation.md
+      - Mission Impact: howto/gathering_info/mission_impact.md
+      - System Exposure: howto/gathering_info/system_exposure.md
+      - Technical Impact: howto/gathering_info/technical_impact.md
+      - Value Density: howto/gathering_info/value_density.md
     - Getting Started with SSVC:
       - Intro: 'howto/bootstrap/index.md'
       - Prepare: 'howto/bootstrap/prepare.md'
