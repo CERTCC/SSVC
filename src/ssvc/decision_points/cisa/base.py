@@ -23,7 +23,8 @@ Provides a base class for CISA-specific decision points.
 from pydantic import BaseModel
 
 from ssvc.decision_points.base import DecisionPoint
+from ssvc.namespaces import NameSpace
 
 
 class CisaDecisionPoint(DecisionPoint, BaseModel):
-    namespace: str = "cisa"
+    namespace: str = NameSpace.CISA
