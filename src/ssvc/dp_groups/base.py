@@ -31,6 +31,7 @@ from pydantic import BaseModel
 from ssvc._mixins import _Base, _SchemaVersioned
 from ssvc.decision_points.base import (
     DecisionPoint,
+    ValueSummary,
 )
 
 
@@ -71,7 +72,14 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         """
         Return a list of tuples of the value short strings for all combinations of the decision points.
         """
-        value_tuples = [dp.value_summaries_str for dp in self.decision_points]
+        for combo in self.combinations():
+            yield tuple(str(x) for x in combo)
+
+    def combinations(self) -> Generator[tuple[ValueSummary, ...], None, None]:
+        """
+        Return a list of tuples of the value summaries for all combinations of the decision points.
+        """
+        value_tuples = [dp.value_summaries for dp in self.decision_points]
         for combo in itertools.product(*value_tuples):
             yield combo
 
