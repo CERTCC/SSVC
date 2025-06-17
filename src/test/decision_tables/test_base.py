@@ -23,7 +23,7 @@ import unittest
 import pandas as pd
 
 from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_tables.base import DecisionTableBase, MappingRow
+from ssvc.decision_tables.base import DecisionTable, MappingRow
 from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
@@ -87,7 +87,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.tmpdir.cleanup()
 
     def test_init(self):
-        dt = DecisionTableBase(
+        dt = DecisionTable(
             name="Test Table",
             namespace="x_test",
             description="",
@@ -111,7 +111,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # correctly. The mappings will be tested in more detail in other tests.
 
     def test_to_csv(self):
-        dt = DecisionTableBase(
+        dt = DecisionTable(
             name="Test Table",
             namespace="x_test",
             description="",
@@ -143,7 +143,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.assertTrue(all(col in df.columns for col in expected_columns))
 
     def test_model_dump_json(self):
-        dt = DecisionTableBase(
+        dt = DecisionTable(
             name="Test Table",
             namespace="x_test",
             description="",

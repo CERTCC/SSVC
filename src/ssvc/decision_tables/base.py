@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-DecisionTableBase: A flexible, serializable SSVC decision table model.
+DecisionTable: A flexible, serializable SSVC decision table model.
 """
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -45,9 +45,9 @@ class MappingRow(BaseModel):
     outcome: Optional[ValueSummary]
 
 
-class DecisionTableBase(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
+class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
     """
-    DecisionTableBase: A flexible, serializable SSVC decision table model.
+    DecisionTable: A flexible, serializable SSVC decision table model.
     """
 
     decision_point_group: DecisionPointGroup
@@ -138,7 +138,7 @@ class DecisionTableBase(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseMo
             self.mapping = distribute_outcomes_evenly(outcome_values)
 
 
-def generate_full_mapping(decision_table: "DecisionTableBase") -> list[MappingRow]:
+def generate_full_mapping(decision_table: "DecisionTable") -> list[MappingRow]:
     """
     Generate a full mapping for the decision table, with every possible combination of decision point values.
     Each MappingRow will have a ValueCombo of ValueSummary objects, and outcome=None.
@@ -201,7 +201,7 @@ def main() -> None:
     from ssvc.dp_groups.ssvc.coordinator_triage import LATEST as dpg
     from ssvc.outcomes.x_basic.mscw import LATEST as outcomes
 
-    table = DecisionTableBase(
+    table = DecisionTable(
         name="Test Table",
         description="A test decision table",
         namespace="x_test",
