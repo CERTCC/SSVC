@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-
-"""
-Models a high value asset as a decision point.
-"""
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -21,41 +16,10 @@ Models a high value asset as a decision point.
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+"""
+Provides outcome group objects in the ssvc namespace
+"""
 
-from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
-
-YES = DecisionPointValue(
-    name="Yes",
-    key="Y",
-    description="System meets a high value asset definition.",
-)
-
-NO = DecisionPointValue(
-    name="No",
-    key="N",
-    description="System does not meet a high value asset definition.",
-)
-
-HIGH_VALUE_ASSET_1 = SsvcDecisionPoint(
-    name="High Value Asset",
-    description="Denotes whether a system meets a high value asset definition.",
-    key="HVA",
-    version="1.0.0",
-    values=(
-        NO,
-        YES,
-    ),
-)
-
-VERSIONS = (HIGH_VALUE_ASSET_1,)
-LATEST = VERSIONS[-1]
-
-
-def main():
-    print_versions_and_diffs(VERSIONS)
-
-
-if __name__ == "__main__":
-    main()
+from .coordinate import LATEST as COORDINATE
+from .dsoi import LATEST as DSOI
+from .publish import LATEST as PUBLISH

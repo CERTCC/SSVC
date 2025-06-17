@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-
-"""
-Provides the SSVC Report Public Decision Point
-"""
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -21,41 +16,6 @@ Provides the SSVC Report Public Decision Point
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
-from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_points.helpers import print_versions_and_diffs
-
-YES = DecisionPointValue(
-    name="Yes",
-    key="Y",
-    description="A public report of the vulnerability exists.",
-)
-
-NO = DecisionPointValue(
-    name="No",
-    key="N",
-    description="No public report of the vulnerability exists.",
-)
-
-REPORT_PUBLIC_1 = SsvcDecisionPoint(
-    name="Report Public",
-    description="Is a viable report of the details of the vulnerability already publicly available?",
-    key="RP",
-    version="1.0.0",
-    values=(
-        YES,
-        NO,
-    ),
-)
-
-VERSIONS = (REPORT_PUBLIC_1,)
-LATEST = VERSIONS[-1]
-
-
-def main():
-    print_versions_and_diffs(VERSIONS)
-
-
-if __name__ == "__main__":
-    main()
+"""
+This package contains SSVC decision points belonging to the `ssvc` namespace.
+"""

@@ -72,10 +72,10 @@ The decision to create a patch is based on the following decision points:
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.ssvc_.exploitation import LATEST as EXP
-from ssvc.decision_points.ssvc_.utility import LATEST as U
-from ssvc.decision_points.ssvc_.technical_impact import LATEST as TI
-from ssvc.decision_points.ssvc_.public_safety_impact import LATEST as PSI
+from ssvc.decision_points.ssvc.exploitation import LATEST as EXP
+from ssvc.decision_points.ssvc.utility import LATEST as U
+from ssvc.decision_points.ssvc.technical_impact import LATEST as TI
+from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PSI
 
 from ssvc.doc_helpers import example_block
 

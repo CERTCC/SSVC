@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
 """
-Provides the Technical Impact decision point and its values.
+Provides the Supplier Cardinality decision point and its values.
 """
-
-#  Copyright (c) 2024-2025 Carnegie Mellon University.
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -23,34 +22,34 @@ Provides the Technical Impact decision point and its values.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-TOTAL = DecisionPointValue(
-    name="Total",
-    key="T",
-    description="The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability.",
+MULTIPLE = DecisionPointValue(
+    name="Multiple",
+    key="M",
+    description="There are multiple suppliers of the vulnerable component.",
 )
 
-PARTIAL = DecisionPointValue(
-    name="Partial",
-    key="P",
-    description="The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control.",
+ONE = DecisionPointValue(
+    name="One",
+    key="O",
+    description="There is only one supplier of the vulnerable component.",
 )
 
-TECHNICAL_IMPACT_1 = SsvcDecisionPoint(
-    name="Technical Impact",
-    description="The technical impact of the vulnerability.",
-    key="TI",
+SUPPLIER_CARDINALITY_1 = SsvcDecisionPoint(
+    name="Supplier Cardinality",
+    description="How many suppliers are responsible for the vulnerable component and its remediation or mitigation plan?",
+    key="SC",
     version="1.0.0",
     values=(
-        PARTIAL,
-        TOTAL,
+        ONE,
+        MULTIPLE,
     ),
 )
 
-VERSIONS = (TECHNICAL_IMPACT_1,)
+VERSIONS = (SUPPLIER_CARDINALITY_1,)
 LATEST = VERSIONS[-1]
 
 

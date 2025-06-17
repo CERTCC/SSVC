@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-
-"""
-Provides the Supplier Engagement decision point and its values.
-"""
-
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -22,35 +16,32 @@ Provides the Supplier Engagement decision point and its values.
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
-from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-UNRESPONSIVE = DecisionPointValue(
-    name="Unresponsive",
-    key="U",
-    description="The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort.",
-)
+_DECLINE = DecisionPointValue(name="Decline", key="D", description="Decline")
 
-ACTIVE = DecisionPointValue(
-    name="Active",
-    key="A",
-    description="The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort.",
-)
+_TRACK = DecisionPointValue(name="Track", key="T", description="Track")
 
-SUPPLIER_ENGAGEMENT_1 = SsvcDecisionPoint(
-    name="Supplier Engagement",
-    description="Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
-    key="SE",
+_COORDINATE = DecisionPointValue(name="Coordinate", key="C", description="Coordinate")
+
+COORDINATE = SsvcDecisionPoint(
+    name="Decline, Track, Coordinate",
+    key="COORDINATE",
+    description="The coordinate outcome group.",
     version="1.0.0",
     values=(
-        ACTIVE,
-        UNRESPONSIVE,
+        _DECLINE,
+        _TRACK,
+        _COORDINATE,
     ),
 )
+"""
+The coordinate outcome group.
+"""
 
-VERSIONS = (SUPPLIER_ENGAGEMENT_1,)
+VERSIONS = (COORDINATE,)
 LATEST = VERSIONS[-1]
 
 

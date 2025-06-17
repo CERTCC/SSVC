@@ -23,16 +23,16 @@ created_at: 9/21/23 11:40 AM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.automatable import AUTOMATABLE_2
-from ssvc.decision_points.ssvc_.public_safety_impact import PUBLIC_SAFETY_IMPACT_2
-from ssvc.decision_points.ssvc_.report_credibility import REPORT_CREDIBILITY_1
-from ssvc.decision_points.ssvc_.report_public import REPORT_PUBLIC_1
-from ssvc.decision_points.ssvc_.safety_impact import SAFETY_IMPACT_1
-from ssvc.decision_points.ssvc_.supplier_cardinality import SUPPLIER_CARDINALITY_1
-from ssvc.decision_points.ssvc_.supplier_contacted import SUPPLIER_CONTACTED_1
-from ssvc.decision_points.ssvc_.supplier_engagement import SUPPLIER_ENGAGEMENT_1
-from ssvc.decision_points.ssvc_.utility import UTILITY_1_0_1
-from ssvc.decision_points.ssvc_.value_density import VALUE_DENSITY_1
+from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2
+from ssvc.decision_points.ssvc.public_safety_impact import PUBLIC_SAFETY_IMPACT_2
+from ssvc.decision_points.ssvc.report_credibility import REPORT_CREDIBILITY_1
+from ssvc.decision_points.ssvc.report_public import REPORT_PUBLIC_1
+from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_1
+from ssvc.decision_points.ssvc.supplier_cardinality import SUPPLIER_CARDINALITY_1
+from ssvc.decision_points.ssvc.supplier_contacted import SUPPLIER_CONTACTED_1
+from ssvc.decision_points.ssvc.supplier_engagement import SUPPLIER_ENGAGEMENT_1
+from ssvc.decision_points.ssvc.utility import UTILITY_1_0_1
+from ssvc.decision_points.ssvc.value_density import VALUE_DENSITY_1
 from ssvc.dp_groups.base import DecisionPointGroup
 
 COORDINATOR_TRIAGE_1 = DecisionPointGroup(

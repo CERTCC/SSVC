@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-"""
-Provides the Supplier Cardinality decision point and its values.
-"""
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -22,34 +19,31 @@ Provides the Supplier Cardinality decision point and its values.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
-from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-MULTIPLE = DecisionPointValue(
-    name="Multiple",
-    key="M",
-    description="There are multiple suppliers of the vulnerable component.",
+_DO_NOT_PUBLISH = DecisionPointValue(
+    name="Do Not Publish", key="N", description="Do Not Publish"
 )
 
-ONE = DecisionPointValue(
-    name="One",
-    key="O",
-    description="There is only one supplier of the vulnerable component.",
-)
+_PUBLISH = DecisionPointValue(name="Publish", key="P", description="Publish")
 
-SUPPLIER_CARDINALITY_1 = SsvcDecisionPoint(
-    name="Supplier Cardinality",
-    description="How many suppliers are responsible for the vulnerable component and its remediation or mitigation plan?",
-    key="SC",
+PUBLISH = SsvcDecisionPoint(
+    name="Publish, Do Not Publish",
+    key="PUBLISH",
+    description="The publish outcome group.",
     version="1.0.0",
     values=(
-        ONE,
-        MULTIPLE,
+        _DO_NOT_PUBLISH,
+        _PUBLISH,
     ),
 )
+"""
+The publish outcome group.
+"""
 
-VERSIONS = (SUPPLIER_CARDINALITY_1,)
+VERSIONS = (PUBLISH,)
 LATEST = VERSIONS[-1]
 
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
+
 """
-Provides a decision point representing whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.
+Provides an SSVC decision point for critical software designation.
 """
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -23,24 +24,24 @@ Provides a decision point representing whether a vulnerability is in the CISA Kn
 
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="Vulnerability is listed in KEV.",
+    description="System meets a critical software definition.",
 )
 
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="Vulnerability is not listed in KEV.",
+    description="System does not meet a critical software definition.",
 )
 
-IN_KEV_1 = SsvcDecisionPoint(
-    name="In KEV",
-    description="Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
-    key="KEV",
+CRITICAL_SOFTWARE_1 = SsvcDecisionPoint(
+    name="Critical Software",
+    description="Denotes whether a system meets a critical software definition.",
+    key="CS",
     version="1.0.0",
     values=(
         NO,
@@ -48,7 +49,7 @@ IN_KEV_1 = SsvcDecisionPoint(
     ),
 )
 
-VERSIONS = (IN_KEV_1,)
+VERSIONS = (CRITICAL_SOFTWARE_1,)
 LATEST = VERSIONS[-1]
 
 

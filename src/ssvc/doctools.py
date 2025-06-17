@@ -34,17 +34,46 @@ To regenerate the existing docs, use the following command:
     python -m ssvc.doctools --overwrite --jsondir data/json/decision_points
 
 """
+import importlib
 import logging
 import os
 
-import ssvc.dp_groups.cvss.collections  # noqa
-import ssvc.dp_groups.ssvc.collections  # noqa
 from ssvc.decision_points.base import (
-    DecisionPoint, REGISTERED_DECISION_POINTS,
+    DecisionPoint,
+    REGISTERED_DECISION_POINTS,
 )
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 logger = logging.getLogger(__name__)
+
+
+def find_modules_to_import(
+    directory: str = "../decision_points", package: str = "ssvc.decision_points"
+) -> bool:
+    """
+    Find all modules that contain decision points and import them.
+
+    This is necessary to ensure that all decision points are registered.
+    """
+    imported_modules = []
+    for root, _, files in os.walk(os.path.abspath(directory)):
+        for file in files:
+            if file.endswith(".py") and not file.startswith("__"):
+                # build the module name relative to the package
+                relative_path = os.path.relpath(root, directory)
+                module_name = os.path.join(relative_path, file[:-3]).replace(
+                    os.sep, "."
+                )
+
+                full_module_name = f"{package}.{module_name}"
+                # import the module
+                try:
+                    logger.info(f"Importing module {full_module_name}")
+                    module = importlib.import_module(full_module_name)
+                    imported_modules.append(module)
+                except ImportError as e:
+                    logger.error(f"Failed to import {full_module_name}: {e}")
+    return imported_modules
 
 
 def _filename_friendly(name: str) -> str:
@@ -120,9 +149,7 @@ def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) ->
     dump_json(basename, dp, jsondir, overwrite)
 
 
-def dump_json(
-    basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool
-) -> str:
+def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -> str:
     """
     Generate the json example for a decision point.
 
@@ -188,6 +215,11 @@ def main():
 
     overwrite = args.overwrite
     jsondir = args.jsondir
+
+    find_modules_to_import("./decision_points", "ssvc.decision_points")
+    find_modules_to_import("./outcomes", "ssvc.outcomes")
+    from ssvc.dp_groups.ssvc import collections  # noqa: E402
+    from ssvc.dp_groups.cvss import collections  # noqa: E402
 
     # for each decision point:
     for dp in REGISTERED_DECISION_POINTS:

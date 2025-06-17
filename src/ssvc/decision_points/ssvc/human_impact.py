@@ -22,9 +22,9 @@ Provides the Human Impact decision point and its values.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 LOW_1 = DecisionPointValue(
     name="Low",

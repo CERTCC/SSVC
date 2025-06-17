@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
 """
-Provides the SSVC Report Credibility Decision Point
+Models a high value asset as a decision point.
 """
-
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -23,34 +22,34 @@ Provides the SSVC Report Credibility Decision Point
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-NOT_CREDIBLE = DecisionPointValue(
-    name="Not Credible",
-    key="NC",
-    description="The report is not credible.",
+YES = DecisionPointValue(
+    name="Yes",
+    key="Y",
+    description="System meets a high value asset definition.",
 )
 
-CREDIBLE = DecisionPointValue(
-    name="Credible",
-    key="C",
-    description="The report is credible.",
+NO = DecisionPointValue(
+    name="No",
+    key="N",
+    description="System does not meet a high value asset definition.",
 )
 
-REPORT_CREDIBILITY_1 = SsvcDecisionPoint(
-    name="Report Credibility",
-    description="Is the report credible?",
-    key="RC",
+HIGH_VALUE_ASSET_1 = SsvcDecisionPoint(
+    name="High Value Asset",
+    description="Denotes whether a system meets a high value asset definition.",
+    key="HVA",
     version="1.0.0",
     values=(
-        NOT_CREDIBLE,
-        CREDIBLE,
+        NO,
+        YES,
     ),
 )
 
-VERSIONS = (REPORT_CREDIBILITY_1,)
+VERSIONS = (HIGH_VALUE_ASSET_1,)
 LATEST = VERSIONS[-1]
 
 

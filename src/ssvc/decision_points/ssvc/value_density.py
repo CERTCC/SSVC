@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-
 """
-This module provides the Public Value Added decision point for the Stakeholder Specific Vulnerability Categorization (SSVC) framework.
+Provides the Value Density decision point and its values.
 """
 
 #  Copyright (c) 2024-2025 Carnegie Mellon University.
@@ -23,38 +22,34 @@ This module provides the Public Value Added decision point for the Stakeholder S
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-LIMITED = DecisionPointValue(
-    name="Limited",
-    key="L",
-    description="Minimal value added to the existing public information because existing information is already high quality and in multiple outlets.",
+CONCENTRATED = DecisionPointValue(
+    name="Concentrated",
+    key="C",
+    description="The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users.",
 )
 
-AMPLIATIVE = DecisionPointValue(
-    name="Ampliative",
-    key="A",
-    description="Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.",
+DIFFUSE = DecisionPointValue(
+    name="Diffuse",
+    key="D",
+    description="The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small.",
 )
 
-PRECEDENCE = DecisionPointValue(
-    name="Precedence",
-    key="P",
-    description="The publication would be the first publicly available, or be coincident with the first publicly available.",
-)
-
-PUBLIC_VALUE_ADDED_1 = SsvcDecisionPoint(
-    name="Public Value Added",
-    description="How much value would a publication from the coordinator benefit the broader community?",
-    key="PVA",
+VALUE_DENSITY_1 = SsvcDecisionPoint(
+    name="Value Density",
+    description="The concentration of value in the target",
+    key="VD",
     version="1.0.0",
-    values=(LIMITED, AMPLIATIVE, PRECEDENCE),
+    values=(
+        DIFFUSE,
+        CONCENTRATED,
+    ),
 )
 
-
-VERSIONS = (PUBLIC_VALUE_ADDED_1,)
+VERSIONS = (VALUE_DENSITY_1,)
 LATEST = VERSIONS[-1]
 
 

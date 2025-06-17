@@ -1,10 +1,6 @@
 #!/usr/bin/env python
-"""
-file: coordinator_publication
-author: adh
-created_at: 9/21/23 11:40 AM
-"""
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -22,40 +18,46 @@ created_at: 9/21/23 11:40 AM
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+"""
+Provides the defer, scheduled, out-of-cycle, immediate outcome group for use in SSVC.
+"""
+from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
+from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1
-from ssvc.decision_points.ssvc.public_value_added import PUBLIC_VALUE_ADDED_1
-from ssvc.decision_points.ssvc.supplier_involvement import SUPPLIER_INVOLVEMENT_1
-from ssvc.dp_groups.base import DecisionPointGroup
+_DEFER = DecisionPointValue(name="Defer", key="D", description="Defer")
 
+_SCHEDULED = DecisionPointValue(name="Scheduled", key="S", description="Scheduled")
 
-COORDINATOR_PUBLICATION_1 = DecisionPointGroup(
-    name="Coordinator Publication",
-    description="The decision points used by the coordinator during publication.",
+_OUT_OF_CYCLE = DecisionPointValue(
+    name="Out-of-Cycle", key="O", description="Out-of-Cycle"
+)
+
+_IMMEDIATE = DecisionPointValue(name="Immediate", key="I", description="Immediate")
+
+DSOI = SsvcDecisionPoint(
+    name="Defer, Scheduled, Out-of-Cycle, Immediate",
+    key="DSOI",
+    description="The original SSVC outcome group.",
     version="1.0.0",
-    decision_points=(
-        SUPPLIER_INVOLVEMENT_1,
-        EXPLOITATION_1,
-        PUBLIC_VALUE_ADDED_1,
+    values=(
+        _DEFER,
+        _SCHEDULED,
+        _OUT_OF_CYCLE,
+        _IMMEDIATE,
     ),
 )
 """
-Added in SSVC v2, the Coordinator Publication v1.0.0 decision points are used by the coordinator during the publication process.
-
-It includes decision points:
-
-- Supplier Involvement v1.0.0
-- Exploitation v1.0.0
-- Public Value Added v1.0.0
+The original SSVC outcome group.
 """
 
-VERSIONS = (COORDINATOR_PUBLICATION_1,)
+
+VERSIONS = (DSOI,)
 LATEST = VERSIONS[-1]
 
 
 def main():
-    for version in VERSIONS:
-        print(version.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":
