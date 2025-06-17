@@ -39,6 +39,12 @@ logger = logging.getLogger(__name__)
 class ValueCombo(BaseModel):
     values: tuple[ValueSummary, ...]
 
+    def __len__(self) -> int:
+        """
+        Return the number of values in the combo.
+        """
+        return len(self.values)
+
 
 class MappingRow(BaseModel):
     decision_point_values: ValueCombo
@@ -80,6 +86,17 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
         Export the mapping to a CSV string. Columns: one per decision point (by name), one for outcome.
         Indiviual decision point and outcome values are represented as a colon-separated tuple
         consisting of the namespace, decision point key, decision point version, and value key.
+
+        Example:
+            Table values might look like:
+            ```
+            dp1ns:dp1k:1.0:dp1v1, dp2ns:dp2k:1.0:dp2v1, outcomens:outcomek:1.0:outcomev1
+            dp1ns:dp1k:1.0:dp1v1, dp2ns:dp2k:1.0:dp2v2, outcomens:outcomek:1.0:outcomev2
+            ```
+            etc.
+
+        Returns:
+            str: CSV string representation of the decision table mapping.
         """
         if not self.mapping:
             raise ValueError("No mapping to export.")
@@ -126,22 +143,25 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
             else:
                 logger.info("Overwriting existing mapping with new distribution.")
 
-        self.generate_full_mapping()
-
         outcome_values = getattr(self.outcome_group, "value_summaries", None)
         if outcome_values is None:
             raise ValueError(
                 "Outcome group must have value_summaries to distribute outcomes."
             )
 
-        if mapping is None:
-            self.mapping = distribute_outcomes_evenly(outcome_values)
+        self.mapping = distribute_outcomes_evenly(self.mapping, outcome_values)
 
 
 def generate_full_mapping(decision_table: "DecisionTable") -> list[MappingRow]:
     """
     Generate a full mapping for the decision table, with every possible combination of decision point values.
     Each MappingRow will have a ValueCombo of ValueSummary objects, and outcome=None.
+
+    Args:
+        decision_table (DecisionTable): The decision table to generate the mapping for.
+    Returns:
+        list[MappingRow]: A list of MappingRow objects representing the full mapping. Note that the outcome field will be None.
+
     """
     dp_group = decision_table.decision_point_group
     # For each decision point, get its value summaries
@@ -170,9 +190,16 @@ def distribute_outcomes_evenly(
 ) -> list[MappingRow]:
     """
     Distribute the given outcome_values across the mapping rows in sorted order.
+    Overwrites the outcome field in each MappingRow with the corresponding outcome value.
     The earliest mappings get the lowest outcome, the latest get the highest.
     If the mapping count is not divisible by the number of outcomes, the last outcome(s) get the remainder.
     Returns a new list of MappingRow with outcomes assigned.
+
+    Args:
+        mapping (list[MappingRow]): The mapping rows to distribute outcomes across.
+        outcome_values (list[ValueSummary]): The outcome values to distribute.
+    Returns:
+        list[MappingRow]: A new list of MappingRow with outcomes assigned.
     """
     if not outcome_values:
         raise ValueError("No outcome values provided for distribution.")
