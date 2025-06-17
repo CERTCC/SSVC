@@ -3,7 +3,7 @@ MKDOCS_PORT=8765
 DOCKER_DIR=docker
 
 # Targets
-.PHONY: all test docs docker_test clean help
+.PHONY: all test docs docker_test clean help mdlint_fix up down
 
 all: help
 
@@ -40,9 +40,13 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo " all         - Display this help message"
-	@echo " mdlint_fix  - Run markdownlint with --fix"
-	@echo " test        - Run the tests in a local shell"
-	@echo " docs        - Build and run the docs Docker service"
-	@echo " docker_test - Run the tests in a Docker container"
-	@echo " clean       - Remove Docker containers and images"
-	@echo " help        - Display this help message"
+	@echo " mdlint_fix  - Run markdownlint with fix"
+	@echo " test       - Run tests locally"
+	@echo " docker_test - Run tests in Docker"
+	@echo " docs       - Build and run documentation in Docker"
+	@echo " up         - Start Docker services"
+	@echo " down       - Stop Docker services"
+	@echo " clean      - Clean up Docker resources"
+	@echo " help       - Display this help message"
+
+
