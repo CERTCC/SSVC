@@ -1,9 +1,11 @@
 {
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
   "name": "Do, Schedule, Delegate, Delete",
   "description": "The Eisenhower outcome group.",
-  "outcomes": [
+  "namespace": "x_basic",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "IKE",
+  "values": [
     {
       "key": "D",
       "name": "Delete",

@@ -1,9 +1,11 @@
 {
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
   "name": "Defer, Scheduled, Out-of-Cycle, Immediate",
   "description": "The original SSVC outcome group.",
-  "outcomes": [
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "DSOI",
+  "values": [
     {
       "key": "D",
       "name": "Defer",

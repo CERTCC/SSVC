@@ -1,9 +1,11 @@
 {
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
   "name": "theParanoids",
   "description": "PrioritizedRiskRemediation outcome group based on TheParanoids.",
-  "outcomes": [
+  "namespace": "x_community",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "PARANOIDS",
+  "values": [
     {
       "key": "5",
       "name": "Track 5",
