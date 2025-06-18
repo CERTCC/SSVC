@@ -47,7 +47,7 @@ FIX_READY = DecisionPointValue(
 SUPPLIER_INVOLVEMENT_1 = SsvcDecisionPoint(
     name="Supplier Involvement",
     description="What is the state of the supplier’s work on addressing the vulnerability?",
-    key="SI",
+    key="SINV",
     version="1.0.0",
     values=(
         FIX_READY,

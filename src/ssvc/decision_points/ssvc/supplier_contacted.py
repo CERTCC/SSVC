@@ -40,7 +40,7 @@ NO = DecisionPointValue(
 SUPPLIER_CONTACTED_1 = SsvcDecisionPoint(
     name="Supplier Contacted",
     description="Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?",
-    key="SC",
+    key="SCON",
     version="1.0.0",
     values=(
         NO,

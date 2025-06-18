@@ -42,7 +42,7 @@ NEGLIGIBLE = DecisionPointValue(
 SAFETY_1 = CvssDecisionPoint(
     name="Safety",
     description="The Safety decision point is a measure of the potential for harm to humans or the environment.",
-    key="S",
+    key="SF",
     version="1.0.0",
     values=(
         NOT_DEFINED_X,
