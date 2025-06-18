@@ -20,11 +20,14 @@
 import unittest
 
 import ssvc.decision_points.base as base
-import ssvc.decision_points.ssvc_.base
+import ssvc.decision_points.ssvc.base
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
+        base.DP_REGISTRY.reset_registry()
+        base.DPV_REGISTRY.reset_registry()
+
         self.original_registry = base.REGISTERED_DECISION_POINTS.copy()
 
         # add multiple values
@@ -36,7 +39,7 @@ class MyTestCase(unittest.TestCase):
                 )
             )
 
-        self.dp = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
+        self.dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="foo",
             key="bar",
             description="baz",
@@ -61,7 +64,7 @@ class MyTestCase(unittest.TestCase):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
 
-        dp2 = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
+        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="asdfad",
             key="asdfasdf",
             description="asdfasdf",
@@ -69,12 +72,61 @@ class MyTestCase(unittest.TestCase):
             namespace="asdfasdf",
             values=tuple(self.values),
         )
+        self.assertIn(dp2, base.REGISTERED_DECISION_POINTS)
+
+    def test_registry_errors_on_duplicate_key(self):
+        # dp should already be registered from setUp
+        self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
+
+        # create a new decision point with the same key
+        with self.assertRaises(KeyError):
+            # the registry key is a combination of namespace, key, and version
+
+            dp2 = ssvc.decision_points.ssvc.base.DecisionPoint(
+                name="asdfad",
+                description="asdfasdf",
+                namespace=self.dp.namespace,
+                key=self.dp.key,  # same key as self.dp
+                version=self.dp.version,  # same version as self.dp
+                values=tuple(self.values),
+            )
+
+        # should not be a problem if namespace, key or version are different
+        dp3 = ssvc.decision_points.ssvc.base.DecisionPoint(
+            name="asdfad",
+            description="asdfasdf",
+            namespace="x_test-extra",  # different namespace
+            key=self.dp.key,  # same key
+            version=self.dp.version,  # same version
+            values=tuple(self.values),
+        )
+        self.assertIn(dp3, base.REGISTERED_DECISION_POINTS)
+        # should not be a problem if key is different
+        dp4 = ssvc.decision_points.ssvc.base.DecisionPoint(
+            name="asdfad",
+            description="asdfasdf",
+            namespace=self.dp.namespace,  # same namespace
+            key="different_key",  # different key
+            version=self.dp.version,  # same version
+            values=tuple(self.values),
+        )
+        self.assertIn(dp4, base.REGISTERED_DECISION_POINTS)
+        # should not be a problem if version is different
+        dp5 = ssvc.decision_points.ssvc.base.DecisionPoint(
+            name="asdfad",
+            description="asdfasdf",
+            namespace=self.dp.namespace,  # same namespace
+            key=self.dp.key,  # same key
+            version="2.0.0",  # different version
+            values=tuple(self.values),
+        )
+        self.assertIn(dp5, base.REGISTERED_DECISION_POINTS)
 
     def test_registry(self):
         # just by creating the objects, they should be registered
         self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
 
-        dp2 = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint(
+        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="asdfad",
             key="asdfasdf",
             description="asdfasdf",
@@ -124,7 +176,7 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(json, str)
         self.assertGreater(len(json), 0)
 
-        obj2 = ssvc.decision_points.ssvc_.base.SsvcDecisionPoint.model_validate_json(
+        obj2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint.model_validate_json(
             json
         )
 

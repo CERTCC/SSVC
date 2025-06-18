@@ -24,12 +24,12 @@ created_at: 9/21/23 11:41 AM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc_.automatable import AUTOMATABLE_2, VIRULENCE_1
-from ssvc.decision_points.ssvc_.exploitation import EXPLOITATION_1
-from ssvc.decision_points.ssvc_.safety_impact import SAFETY_IMPACT_1
-from ssvc.decision_points.ssvc_.technical_impact import TECHNICAL_IMPACT_1
-from ssvc.decision_points.ssvc_.utility import UTILITY_1, UTILITY_1_0_1
-from ssvc.decision_points.ssvc_.value_density import VALUE_DENSITY_1
+from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2, VIRULENCE_1
+from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1
+from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_1
+from ssvc.decision_points.ssvc.technical_impact import TECHNICAL_IMPACT_1
+from ssvc.decision_points.ssvc.utility import UTILITY_1, UTILITY_1_0_1
+from ssvc.decision_points.ssvc.value_density import VALUE_DENSITY_1
 from ssvc.dp_groups.base import DecisionPointGroup
 
 PATCH_DEVELOPER_1 = DecisionPointGroup(

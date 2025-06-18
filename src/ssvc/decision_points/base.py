@@ -24,7 +24,7 @@ Defines the formatting for SSVC Decision Points.
 
 import logging
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ssvc._mixins import (
     _Base,
@@ -53,8 +53,19 @@ class Registry(BaseModel):
         return self.registry[key]
 
     def __setitem__(self, key: str, value: object) -> None:
+
         if key in self.registry:
-            logger.warning(f"Duplicate key {key}")
+            # are the values the same?
+            registered = self.registry[key].model_dump_json()
+            value_dumped = value.model_dump_json()
+            if registered == value_dumped:
+                logger.warning(f"Duplicate key {key} with the same value, ignoring.")
+                return
+
+            logger.warning(f"Duplicate key {key}:")
+            logger.warning(f"\t{registered}")
+            logger.warning(f"\t{value_dumped}")
+            raise KeyError(f"Duplicate key {key}")
 
         self.registry[key] = value
 
@@ -170,6 +181,8 @@ class DecisionPoint(
     """
 
     values: tuple[DecisionPointValue, ...]
+
+    model_config = ConfigDict(revalidate_instances="always")
 
     def __str__(self):
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])

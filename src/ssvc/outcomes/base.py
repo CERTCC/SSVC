@@ -23,7 +23,7 @@ Provides outcome group and outcome value classes for SSVC.
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_points.cisa.base import CisaDecisionPoint
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.ssvc_.base import SsvcDecisionPoint
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 OutcomeValue = DecisionPointValue
 OutcomeGroup = DecisionPoint

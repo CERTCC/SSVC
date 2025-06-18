@@ -1,0 +1,30 @@
+{
+  "name": "Value, Complexity",
+  "description": "The Value/Complexity outcome group.",
+  "namespace": "x_basic",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "VALUE_COMPLEXITY",
+  "values": [
+    {
+      "key": "D",
+      "name": "Drop",
+      "description": "Drop"
+    },
+    {
+      "key": "R",
+      "name": "Reconsider Later",
+      "description": "Reconsider Later"
+    },
+    {
+      "key": "E",
+      "name": "Easy Win",
+      "description": "Easy Win"
+    },
+    {
+      "key": "F",
+      "name": "Do First",
+      "description": "Do First"
+    }
+  ]
+}

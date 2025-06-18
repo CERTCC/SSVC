@@ -1,0 +1,35 @@
+{
+  "name": "CVSS Qualitative Severity Rating Scale",
+  "description": "The CVSS Qualitative Severity Rating Scale group.",
+  "namespace": "cvss",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "CVSS",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "None (0.0)"
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Low (0.1-3.9)"
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "Medium (4.0-6.9)"
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "High (7.0-8.9)"
+    },
+    {
+      "key": "C",
+      "name": "Critical",
+      "description": "Critical (9.0-10.0)"
+    }
+  ]
+}
