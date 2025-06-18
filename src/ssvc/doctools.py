@@ -223,8 +223,8 @@ def main():
     overwrite = args.overwrite
     jsondir = args.jsondir
 
-    find_modules_to_import("./decision_points", "ssvc.decision_points")
-    find_modules_to_import("./outcomes", "ssvc.outcomes")
+    find_modules_to_import("./src/ssvc/decision_points", "ssvc.decision_points")
+    find_modules_to_import("./src/ssvc/outcomes", "ssvc.outcomes")
 
     # import collections to ensure they are registered too
     import ssvc.dp_groups.ssvc.collections  # noqa: F401
