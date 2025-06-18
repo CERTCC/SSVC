@@ -23,6 +23,8 @@ Provides helpers for working with CVSS decision points.
 
 from copy import deepcopy
 
+import semver
+
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint as DecisionPoint
@@ -30,8 +32,8 @@ from ssvc.decision_points.cvss.base import CvssDecisionPoint as DecisionPoint
 
 def _modify_3(dp: DecisionPoint):
     _dp_dict = deepcopy(dp.model_dump())
-    _dp_dict["name"] = "Modified " + _dp_dict["name"]
-    _dp_dict["key"] = "M" + _dp_dict["key"]
+    _dp_dict["name"] = f"Modified {_dp_dict["name"]}"
+    _dp_dict["key"] = f"M{_dp_dict["key"]}"
 
     # if there is no value named "Not Defined" value, add it
     nd = NOT_DEFINED_X
@@ -59,6 +61,7 @@ def modify_3(dp: DecisionPoint):
     """
 
     _dp = _modify_3(dp)
+    DecisionPoint.model_validate(_dp)  # validate the modified object
     return _dp
 
 
@@ -75,6 +78,7 @@ def modify_4(dp: DecisionPoint):
 
     _dp = _modify_3(dp)
     _dp = _modify_4(_dp)
+    DecisionPoint.model_validate(_dp)  # validate the modified object
 
     return _dp
 
@@ -91,6 +95,8 @@ def _modify_4(dp: DecisionPoint):
             if v["key"] == "N":
                 v["name"] = "Negligible"
                 v["description"] = v["description"].replace(" no ", " negligible ")
+                # we need to bump the version for this change
+                _dp_dict["version"] = semver.bump_patch(_dp_dict["version"])
                 break
 
     # Note: For MSI, There is also a highest severity level, Safety (S), in addition to the same values as the

@@ -37,6 +37,7 @@ To regenerate the existing docs, use the following command:
 import importlib
 import logging
 import os
+import re
 
 from ssvc.decision_points.base import (
     DecisionPoint,
@@ -86,7 +87,13 @@ def _filename_friendly(name: str) -> str:
     Returns:
         str: A version of the string that is friendly for use in a filename.
     """
-    return name.lower().replace(" ", "_").replace(".", "_")
+    # replace all non-alphanumeric characters with underscores and convert to lowercase
+    name = re.sub(r"[^a-zA-Z0-9]", "_", name)
+    name = name.lower()
+    # replace any sequence of underscores with a single underscore
+    name = re.sub(r"_+", "_", name)
+
+    return name
 
 
 # create a runtime context that ensures that dir exists
@@ -218,8 +225,10 @@ def main():
 
     find_modules_to_import("./decision_points", "ssvc.decision_points")
     find_modules_to_import("./outcomes", "ssvc.outcomes")
-    from ssvc.dp_groups.ssvc import collections  # noqa: E402
-    from ssvc.dp_groups.cvss import collections  # noqa: E402
+
+    # import collections to ensure they are registered too
+    import ssvc.dp_groups.ssvc.collections  # noqa: F401
+    import ssvc.dp_groups.cvss.collections  # noqa: F401
 
     # for each decision point:
     for dp in REGISTERED_DECISION_POINTS:
