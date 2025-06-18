@@ -21,18 +21,18 @@ CVSS Subsequent System Confidentiality Impact
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-NEGLIGIBLE = SsvcDecisionPointValue(
+NEGLIGIBLE = DecisionPointValue(
     name="Negligible",
     key="N",
     description="There is no loss of confidentiality within the Subsequent System or all confidentiality impact is "
     "constrained to the Vulnerable System.",
 )
 
-LOW = SsvcDecisionPointValue(
+LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="There is some loss of confidentiality. Access to some restricted information is obtained, but the "
@@ -40,7 +40,7 @@ LOW = SsvcDecisionPointValue(
     "limited. The information disclosure does not cause a direct, serious loss to the Subsequent System.",
 )
 
-HIGH = SsvcDecisionPointValue(
+HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="There is a total loss of confidentiality, resulting in all resources within the Subsequent System "

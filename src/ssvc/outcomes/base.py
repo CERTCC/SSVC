@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-"""
-Provides outcome group and outcome value classes for SSVC.
-"""
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -20,37 +16,17 @@ Provides outcome group and outcome value classes for SSVC.
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+"""
+Provides outcome group and outcome value classes for SSVC.
+"""
 
-from pydantic import BaseModel
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+from ssvc.decision_points.cisa.base import CisaDecisionPoint
+from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-from ssvc._mixins import _Base, _Keyed, _Versioned
-
-
-class OutcomeValue(_Base, _Keyed, BaseModel):
-    """
-    Models a single value option for an SSVC outcome.
-    """
-
-
-class OutcomeGroup(_Base, _Versioned, BaseModel):
-    """
-    Models an outcome group.
-    """
-
-    outcomes: list[OutcomeValue]
-
-    def __iter__(self):
-        """
-        Allow iteration over the outcomes in the group.
-        """
-        return iter(self.outcomes)
-
-    def __len__(self):
-        """
-        Allow len() to be called on the group.
-        """
-        olist = list(self.outcomes)
-        l = len(olist)
-        return l
-
-    # register all instances
+OutcomeValue = DecisionPointValue
+OutcomeGroup = DecisionPoint
+SsvcOutcomeGroup = SsvcDecisionPoint
+CvssOutcomeGroup = CvssDecisionPoint
+CisaOutcomeGroup = CisaDecisionPoint

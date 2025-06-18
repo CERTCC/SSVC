@@ -1,7 +1,7 @@
 # Human Impact
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.human_impact import LATEST
+from ssvc.decision_points.ssvc.human_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -47,7 +47,7 @@ see [Guidance on Communicating Results](../../howto/bootstrap/use.md).
 ## Prior Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.human_impact import VERSIONS
+from ssvc.decision_points.ssvc.human_impact import VERSIONS
 from ssvc.doc_helpers import prior_version, example_block
 
 versions = VERSIONS[:-1]

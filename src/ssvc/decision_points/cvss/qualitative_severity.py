@@ -21,32 +21,32 @@ Provides a decision point for the [CVSS Qualitative Severity Rating Scale](https
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-QS_NONE = SsvcDecisionPointValue(
+QS_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="No severity rating (0.0)",
 )
 
-LOW = SsvcDecisionPointValue(
+LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="Low (0.1 - 3.9)",
 )
-MEDIUM = SsvcDecisionPointValue(
+MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
     description="Medium (4.0 - 6.9)",
 )
-HIGH = SsvcDecisionPointValue(
+HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="High (7.0 - 8.9)",
 )
-CRITICAL = SsvcDecisionPointValue(
+CRITICAL = DecisionPointValue(
     name="Critical",
     key="C",
     description="Critical (9.0 - 10.0)",

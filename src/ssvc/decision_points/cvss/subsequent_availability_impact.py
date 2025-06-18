@@ -21,11 +21,11 @@ CVSS Subsequent system availability impact decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_SA_HIGH = SsvcDecisionPointValue(
+_SA_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="There is a total loss of availability, resulting in the attacker being able to fully deny access to "
@@ -33,7 +33,7 @@ _SA_HIGH = SsvcDecisionPointValue(
     "deliver the attack) or persistent (the condition persists even after the attack has completed).",
 )
 
-_SA_LOW = SsvcDecisionPointValue(
+_SA_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="Performance is reduced or there are interruptions in resource availability. Even if repeated "
@@ -41,7 +41,7 @@ _SA_LOW = SsvcDecisionPointValue(
     "deny service to legitimate users.",
 )
 
-_SA_NONE = SsvcDecisionPointValue(
+_SA_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="There is no impact to availability within the Subsequent System or all availability impact is "

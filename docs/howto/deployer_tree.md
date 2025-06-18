@@ -113,10 +113,10 @@ The Deployer Patch Deployment Priority decision model uses the following decisio
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.exploitation import LATEST as EXP
-from ssvc.decision_points.system_exposure import LATEST as SE
-from ssvc.decision_points.utility import LATEST as U
-from ssvc.decision_points.human_impact import LATEST as HI
+from ssvc.decision_points.ssvc.exploitation import LATEST as EXP
+from ssvc.decision_points.ssvc.system_exposure import LATEST as SE
+from ssvc.decision_points.ssvc.utility import LATEST as U
+from ssvc.decision_points.ssvc.human_impact import LATEST as HI
 from ssvc.doc_helpers import example_block
 
 for dp in [EXP, SE, U, HI]:

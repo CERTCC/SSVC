@@ -140,7 +140,6 @@ Options for running the test suite are provided below.
 | Make, ~~Docker~~ | `make test` | runs in host OS |
 | ~~Make~~, ~~Docker~~ | `pytest src/test` | runs in host OS |
 
-
 ## Environment Variables
 
 If you encounter a problem with the `ssvc` module not being found, you may need to set the `PYTHONPATH` environment variable.

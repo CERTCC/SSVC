@@ -1,0 +1,20 @@
+{
+  "name": "Supplier Contacted",
+  "description": "Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?",
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "SCON",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "description": "The supplier has not been contacted."
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "description": "The supplier has been contacted."
+    }
+  ]
+}

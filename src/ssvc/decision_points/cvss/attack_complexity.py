@@ -21,17 +21,17 @@ Models the CVSS Attack Complexity (formerly known as Access Complexity) metric a
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_HIGH_3 = SsvcDecisionPointValue(
+_HIGH_3 = DecisionPointValue(
     name="High",
     key="H",
     description="A successful attack depends on conditions beyond the attacker's control.",
 )
 
-_LOW_3 = SsvcDecisionPointValue(
+_LOW_3 = DecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist. An attacker can expect "
@@ -39,20 +39,20 @@ _LOW_3 = SsvcDecisionPointValue(
 )
 
 
-_HIGH_2 = SsvcDecisionPointValue(
+_HIGH_2 = DecisionPointValue(
     name="High", key="H", description="Specialized access conditions exist."
 )
-_MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
     description="The access conditions are somewhat specialized.",
 )
-_LOW_2 = SsvcDecisionPointValue(
+_LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist.",
 )
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="Specialized access conditions exist; for example: the system is exploitable during specific windows "
@@ -60,7 +60,7 @@ _HIGH = SsvcDecisionPointValue(
     "configurations), or the system is exploitable with victim interaction (vulnerability exploitable "
     "only if user opens e-mail)",
 )
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="Specialized access conditions or extenuating circumstances do not exist; the system is always "
@@ -106,7 +106,7 @@ ATTACK_COMPLEXITY_3 = CvssDecisionPoint(
 Defines LOW and HIGH values for CVSS Attack Complexity.
 """
 
-LOW_4 = SsvcDecisionPointValue(
+LOW_4 = DecisionPointValue(
     name="Low",
     key="L",
     description="The attacker must take no measurable action to exploit the vulnerability. The attack requires no "
@@ -114,7 +114,7 @@ LOW_4 = SsvcDecisionPointValue(
     "success against the vulnerable system. ",
 )
 
-HIGH_4 = SsvcDecisionPointValue(
+HIGH_4 = DecisionPointValue(
     name="High",
     key="H",
     description="The successful attack depends on the evasion or circumvention of security-enhancing "

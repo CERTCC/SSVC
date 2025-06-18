@@ -19,21 +19,21 @@
 
 import unittest
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.doc_helpers import example_block, markdown_table
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.dp = SsvcDecisionPoint(
+        self.dp = DecisionPoint(
             namespace="x_test",
             name="test name",
             description="test description",
             key="TK",
             version="1.0.0",
             values=(
-                SsvcDecisionPointValue(name="A", key="A", description="A Definition"),
-                SsvcDecisionPointValue(name="B", key="B", description="B Definition"),
+                DecisionPointValue(name="A", key="A", description="A Definition"),
+                DecisionPointValue(name="B", key="B", description="B Definition"),
             ),
         )
 

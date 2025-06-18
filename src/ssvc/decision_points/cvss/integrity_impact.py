@@ -22,18 +22,18 @@ Models the CVSS Integrity Impact metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_II_HIGH = SsvcDecisionPointValue(
+_II_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="There is a total loss of integrity, or a complete loss of protection.",
 )
 
-_II_LOW = SsvcDecisionPointValue(
+_II_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="Modification of data is possible, but the attacker does not have control over the consequence of a "
@@ -41,19 +41,19 @@ _II_LOW = SsvcDecisionPointValue(
     "direct, serious impact on the impacted component.",
 )
 
-_II_NONE_2 = SsvcDecisionPointValue(
+_II_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no impact to the integrity of the system.",
 )
-_COMPLETE = SsvcDecisionPointValue(
+_COMPLETE = DecisionPointValue(
     name="Complete",
     key="C",
     description="A total compromise of system integrity. There is a complete loss of system protection resulting in "
     "the entire system being compromised. The attacker has sovereign control to modify any system files.",
 )
 
-_PARTIAL = SsvcDecisionPointValue(
+_PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
     description="Considerable breach in integrity. Modification of critical system files or information is possible, "
@@ -62,7 +62,7 @@ _PARTIAL = SsvcDecisionPointValue(
     "but at random or in a limited context or scope.",
 )
 
-_II_NONE = SsvcDecisionPointValue(
+_II_NONE = DecisionPointValue(
     name="None", key="N", description="No impact on integrity."
 )
 
@@ -97,13 +97,13 @@ INTEGRITY_IMPACT_2 = CvssDecisionPoint(
 Updates None. Removes Partial and Complete. Adds Low and High values for CVSS Integrity Impact.
 """
 
-_II_HIGH_2 = SsvcDecisionPointValue(
+_II_HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
     description="There is a total loss of integrity, or a complete loss of protection.",
 )
 
-_II_LOW_2 = SsvcDecisionPointValue(
+_II_LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
     description="Modification of data is possible, but the attacker does not have control over the consequence of a "
@@ -112,7 +112,7 @@ _II_LOW_2 = SsvcDecisionPointValue(
 )
 
 
-_II_NONE_3 = SsvcDecisionPointValue(
+_II_NONE_3 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no loss of integrity within the Vulnerable System.",

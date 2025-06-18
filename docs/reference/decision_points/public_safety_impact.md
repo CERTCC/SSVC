@@ -1,7 +1,7 @@
 # Public Safety Impact
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.public_safety_impact import LATEST
+from ssvc.decision_points.ssvc.public_safety_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -21,7 +21,7 @@ Therefore we simplify the above into a binary categorization:
 ## Prior Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.public_safety_impact import VERSIONS
+from ssvc.decision_points.ssvc.public_safety_impact import VERSIONS
 from ssvc.doc_helpers import example_block
 
 versions = VERSIONS[:-1]
