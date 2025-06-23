@@ -1,0 +1,35 @@
+{
+  "name": "Modified Integrity Impact to the Subsequent System",
+  "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
+  "namespace": "cvss",
+  "version": "1.0.1",
+  "schemaVersion": "1-0-1",
+  "key": "MSI",
+  "values": [
+    {
+      "key": "N",
+      "name": "Negligible",
+      "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    },
+    {
+      "key": "S",
+      "name": "Safety",
+      "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
+    }
+  ]
+}

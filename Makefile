@@ -1,19 +1,9 @@
 # Project-specific vars
-PFX=ssvc
-DOCKER=docker
-DOCKER_BUILD=$(DOCKER) build
-DOCKER_RUN=$(DOCKER) run --tty --rm
-PROJECT_VOLUME=--volume $(shell pwd):/app
 MKDOCS_PORT=8765
-
-# docker names
-TEST_DOCKER_TARGET=test
-TEST_IMAGE = $(PFX)_test
-DOCS_DOCKER_TARGET=docs
-DOCS_IMAGE = $(PFX)_docs
+DOCKER_DIR=docker
 
 # Targets
-.PHONY: all dockerbuild_test dockerrun_test dockerbuild_docs dockerrun_docs docs docker_test clean help
+.PHONY: all test docs docker_test clean help mdlint_fix up down regenerate_json
 
 all: help
 
@@ -21,46 +11,48 @@ mdlint_fix:
 	@echo "Running markdownlint..."
 	markdownlint --config .markdownlint.yml --fix .
 
-dockerbuild_test:
-	@echo "Building the test Docker image..."
-	$(DOCKER_BUILD) --target $(TEST_DOCKER_TARGET) --tag $(TEST_IMAGE) .
+test:
+	@echo "Running tests locally..."
+	pytest -v src/test
 
-dockerrun_test:
-	@echo "Running the test Docker image..."
-	$(DOCKER_RUN) $(PROJECT_VOLUME) $(TEST_IMAGE)
+docker_test:
+	@echo "Running tests in Docker..."
+	pushd $(DOCKER_DIR) && docker-compose run --rm test
 
-dockerbuild_docs:
-	@echo "Building the docs Docker image..."
-	$(DOCKER_BUILD) --target $(DOCS_DOCKER_TARGET) --tag $(DOCS_IMAGE) .
+docs:
+	@echo "Building and running docs in Docker..."
+	pushd $(DOCKER_DIR) && docker-compose up docs
 
-dockerrun_docs:
-	@echo "Running the docs Docker image..."
-	$(DOCKER_RUN) --publish $(MKDOCS_PORT):8000 $(PROJECT_VOLUME) $(DOCS_IMAGE)
+up:
+	@echo "Starting Docker services..."
+	pushd $(DOCKER_DIR) && docker-compose up -d
 
+down:
+	@echo "Stopping Docker services..."
+	pushd $(DOCKER_DIR) && docker-compose down
 
-docs: dockerbuild_docs dockerrun_docs
-docker_test: dockerbuild_test dockerrun_test
+regenerate_json:
+	@echo "Regenerating JSON files..."
+	rm -rf data/json/decision_points
+	export PYTHONPATH=$(PWD)/src && ./src/ssvc/doctools.py --jsondir=./data/json/decision_points --overwrite
 
 clean:
-	@echo "Cleaning up..."
-	$(DOCKER) rmi $(TEST_IMAGE) $(DOCS_IMAGE) || true
+	@echo "Cleaning up Docker resources..."
+	pushd $(DOCKER_DIR) && docker-compose down --rmi local || true
 
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
 	@echo " all         - Display this help message"
-	@echo " mdlint_fix  - Run markdownlint with --fix"
-	@echo " docs        - Build and run the docs Docker image"
-	@echo " docker_test - Build and run the test Docker image"
-	@echo ""
-	@echo " dockerbuild_test - Build the test Docker image"
-	@echo " dockerrun_test   - Run the test Docker image"
-	@echo " dockerbuild_docs - Build the docs Docker image"
-	@echo " dockerrun_docs   - Run the docs Docker image"
-	@echo ""
-	@echo " clean - Remove the Docker images"
-	@echo " help  - Display this help message"
-
+	@echo " mdlint_fix  - Run markdownlint with fix"
+	@echo " test       - Run tests locally"
+	@echo " docker_test - Run tests in Docker"
+	@echo " docs       - Build and run documentation in Docker"
+	@echo " up         - Start Docker services"
+	@echo " down       - Stop Docker services"
+	@echo " regenerate_json - Regenerate JSON files from python modules"
+	@echo " clean      - Clean up Docker resources"
+	@echo " help       - Display this help message"
 
 

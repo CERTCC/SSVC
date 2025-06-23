@@ -3,3 +3,29 @@
   --md-primary-fg-color--light: #E0E0E0;
   --md-primary-fg-color--dark:  #6D6E71;
 }
+
+.md-typeset h1 .md-tag {
+  font-size: 20px;
+}
+
+.md-header__title {
+	font-size: 18px;
+	line-height: 2.5rem;
+}
+
+.md-main {
+	margin-top: -15px;
+}
+
+.md-header__inner {
+	height: 18px;
+	padding-top: 1rem;
+	margin-bottom: 10px;
+}
+
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+	fill: currentcolor;
+  display: block;
+  height: 1rem;
+  width: auto;
+

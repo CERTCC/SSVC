@@ -8,7 +8,7 @@
   "values": [
     {
       "key": "N",
-      "name": "Negligible",
+      "name": "None",
       "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
     },
     {

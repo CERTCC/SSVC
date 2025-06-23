@@ -22,35 +22,35 @@ Models the CVSS Authentication metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_AUTH_NONE = SsvcDecisionPointValue(
+_AUTH_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="Authentication is not required to exploit the vulnerability.",
 )
 
-_SINGLE = SsvcDecisionPointValue(
+_SINGLE = DecisionPointValue(
     name="Single",
     key="S",
     description="The vulnerability requires an attacker to be logged into the system (such as at a command line or via a desktop session or web interface).",
 )
 
-_MULTIPLE = SsvcDecisionPointValue(
+_MULTIPLE = DecisionPointValue(
     name="Multiple",
     key="M",
     description="Exploiting the vulnerability requires that the attacker authenticate two or more times, even if the same credentials are used each time.",
 )
 
-_REQUIRED = SsvcDecisionPointValue(
+_REQUIRED = DecisionPointValue(
     name="Required",
     key="R",
     description="Authentication is required to access and exploit the vulnerability.",
 )
 
-_NOT_REQUIRED = SsvcDecisionPointValue(
+_NOT_REQUIRED = DecisionPointValue(
     name="Not Required",
     key="N",
     description="Authentication is not required to access or exploit the vulnerability.",
