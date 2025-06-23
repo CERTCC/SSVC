@@ -28,14 +28,6 @@ from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
 
-class DummyDecisionPoint(DecisionPoint):
-    pass
-
-
-class DummyOutcomeGroup(OutcomeGroup):
-    pass
-
-
 class TestDecisionTableBase(unittest.TestCase):
     def setUp(self):
         # create a temporary directory for testing
@@ -46,8 +38,9 @@ class TestDecisionTableBase(unittest.TestCase):
         self.dp1v2 = DecisionPointValue(name="b", key="b", description="B value")
         self.dp2v1 = DecisionPointValue(name="x", key="x", description="X value")
         self.dp2v2 = DecisionPointValue(name="y", key="y", description="Y value")
+
         # Create dummy decision points and group
-        self.dp1 = DummyDecisionPoint(
+        self.dp1 = DecisionPoint(
             name="dp1",
             description="",
             version="1.0",
@@ -55,7 +48,7 @@ class TestDecisionTableBase(unittest.TestCase):
             key="dp1",
             values=(self.dp1v1, self.dp1v2),
         )
-        self.dp2 = DummyDecisionPoint(
+        self.dp2 = DecisionPoint(
             name="dp2",
             description="",
             version="1.0",
@@ -73,7 +66,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # Create dummy outcome group
         self.ogv1 = DecisionPointValue(name="o1", key="o1", description="Outcome 1")
         self.ogv2 = DecisionPointValue(name="o2", key="o2", description="Outcome 2")
-        self.og = DummyOutcomeGroup(
+        self.og = OutcomeGroup(
             name="outcome",
             description="",
             version="1.0",
