@@ -1,0 +1,30 @@
+{
+  "name": "Modified Confidentiality Impact to the Subsequent System",
+  "description": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones. The resulting score is greatest when the loss to the system is highest.",
+  "namespace": "cvss",
+  "version": "1.0.1",
+  "schemaVersion": "1-0-1",
+  "key": "MSC",
+  "values": [
+    {
+      "key": "N",
+      "name": "Negligible",
+      "description": "There is negligible loss of confidentiality within the Subsequent System or all confidentiality impact is constrained to the Vulnerable System."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the Subsequent System."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "There is a total loss of confidentiality, resulting in all resources within the Subsequent System being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact."
+    },
+    {
+      "key": "X",
+      "name": "Not Defined",
+      "description": "This metric value is not defined. See CVSS documentation for details."
+    }
+  ]
+}

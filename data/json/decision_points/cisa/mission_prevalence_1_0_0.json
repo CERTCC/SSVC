@@ -1,0 +1,25 @@
+{
+  "name": "Mission Prevalence",
+  "description": "Prevalence of the mission essential functions",
+  "namespace": "cisa",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "MP",
+  "values": [
+    {
+      "key": "M",
+      "name": "Minimal",
+      "description": "Neither Support nor Essential apply. The vulnerable component may be used within the entities, but it is not used as a mission-essential component, nor does it provide impactful support to mission-essential functions."
+    },
+    {
+      "key": "S",
+      "name": "Support",
+      "description": "The vulnerable component only supports MEFs for two or more entities."
+    },
+    {
+      "key": "E",
+      "name": "Essential",
+      "description": "The vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity; component failure may (but does not necessarily) lead to overall mission failure."
+    }
+  ]
+}

@@ -24,15 +24,15 @@ created_at: 9/21/23 11:41 AM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.automatable import AUTOMATABLE_2, VIRULENCE_1
-from ssvc.decision_points.exploitation import EXPLOITATION_1
-from ssvc.decision_points.safety_impact import SAFETY_IMPACT_1
-from ssvc.decision_points.technical_impact import TECHNICAL_IMPACT_1
-from ssvc.decision_points.utility import UTILITY_1, UTILITY_1_0_1
-from ssvc.decision_points.value_density import VALUE_DENSITY_1
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2, VIRULENCE_1
+from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1
+from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_1
+from ssvc.decision_points.ssvc.technical_impact import TECHNICAL_IMPACT_1
+from ssvc.decision_points.ssvc.utility import UTILITY_1, UTILITY_1_0_1
+from ssvc.decision_points.ssvc.value_density import VALUE_DENSITY_1
+from ssvc.dp_groups.base import DecisionPointGroup
 
-PATCH_DEVELOPER_1 = SsvcDecisionPointGroup(
+PATCH_DEVELOPER_1 = DecisionPointGroup(
     name="SSVC Patch Developer",
     description="The decision points used by the patch developer.",
     version="1.0.0",
@@ -62,18 +62,18 @@ It includes decision points:
 SUPPLIER_1 = PATCH_DEVELOPER_1
 
 # SSVC v2 renamed to SSVC Supplier
-SUPPLIER_2 = SsvcDecisionPointGroup(
+SUPPLIER_2 = DecisionPointGroup(
     name="SSVC Supplier",
     description="The decision points used by the supplier.",
     version="2.0.0",
-    decision_points=[
+    decision_points=(
         EXPLOITATION_1,
         UTILITY_1_0_1,
         TECHNICAL_IMPACT_1,
         AUTOMATABLE_2,
         VALUE_DENSITY_1,
         SAFETY_IMPACT_1,
-    ],
+    ),
 )
 """
 In SSVC v2, Supplier v2 represents the decision points used by the supplier.
@@ -95,10 +95,13 @@ Changes from Patch Developer v1:
 - Public Safety Impact v1.0.0 added, which subsumes Safety Impact v1.0.0
 """
 
+VERSIONS = (PATCH_DEVELOPER_1, SUPPLIER_2)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(PATCH_DEVELOPER_1.model_dump_json(indent=2))
-    print(SUPPLIER_2.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

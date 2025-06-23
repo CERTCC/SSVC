@@ -23,29 +23,33 @@ Provides helpers for working with CVSS decision points.
 
 from copy import deepcopy
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+import semver
+
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
+from ssvc.decision_points.cvss.base import CvssDecisionPoint as DecisionPoint
 
 
-def _modify_3(dp: SsvcDecisionPoint):
-    _dp = deepcopy(dp)
-    _dp.name = "Modified " + _dp.name
-    _dp.key = "M" + _dp.key
+def _modify_3(dp: DecisionPoint):
+    _dp_dict = deepcopy(dp.model_dump())
+    _dp_dict["name"] = f"Modified {_dp_dict["name"]}"
+    _dp_dict["key"] = f"M{_dp_dict["key"]}"
 
     # if there is no value named "Not Defined" value, add it
     nd = NOT_DEFINED_X
 
-    values = list(_dp.values)
-
-    names = [v.name for v in values]
+    values = list(_dp_dict["values"])
+    names = [v["name"] for v in values]
     if nd.name not in names:
         values.append(nd)
-    _dp.values = list(values)
+    _dp_dict["values"] = tuple(values)
+
+    _dp = DecisionPoint(**_dp_dict)
 
     return _dp
 
 
-def modify_3(dp: SsvcDecisionPoint):
+def modify_3(dp: DecisionPoint):
     """
     Prepends "Modified " to the name and "M" to the key of the given object. Also adds a value of "Not Defined" to the
     values list.
@@ -57,11 +61,11 @@ def modify_3(dp: SsvcDecisionPoint):
     """
 
     _dp = _modify_3(dp)
-    _dp.__post_init__()  # call post-init to update the key & register
+    DecisionPoint.model_validate(_dp)  # validate the modified object
     return _dp
 
 
-def modify_4(dp: SsvcDecisionPoint):
+def modify_4(dp: DecisionPoint):
     """
     Modifies a CVSS v4 Base Metric decision point object.
 
@@ -74,37 +78,41 @@ def modify_4(dp: SsvcDecisionPoint):
 
     _dp = _modify_3(dp)
     _dp = _modify_4(_dp)
-    _dp.__post_init__()  # call post-init to update the key & register
+    DecisionPoint.model_validate(_dp)  # validate the modified object
 
     return _dp
 
 
-def _modify_4(dp: SsvcDecisionPoint):
+def _modify_4(dp: DecisionPoint):
     # note:
     # this method was split out for testing purposes
     # assumes you've already done the 3.0 modifications
 
-    _dp = deepcopy(dp)
-    # Note: For MSC, MSI, and MSA, the lowest metric value is “Negligible” (N), not “None” (N).
-    if _dp.key in ["MSC", "MSI", "MSA"]:
-        for v in _dp.values:
-            if v.key == "N":
-                v.name = "Negligible"
-                v.description.replace(" no ", " negligible ")
+    _dp_dict = deepcopy(dp.model_dump())
+    key = _dp_dict["key"]
+    if key in ["MSC", "MSI", "MSA"]:
+        for v in _dp_dict["values"]:
+            if v["key"] == "N":
+                v["name"] = "Negligible"
+                v["description"] = v["description"].replace(" no ", " negligible ")
+                # we need to bump the version for this change
+                _dp_dict["version"] = semver.bump_patch(_dp_dict["version"])
                 break
 
     # Note: For MSI, There is also a highest severity level, Safety (S), in addition to the same values as the
     # corresponding Base Metric (High, Medium, Low).
-    if _dp.key == "MSI":
-        _SAFETY = SsvcDecisionPointValue(
+    if key == "MSI":
+        _SAFETY = DecisionPointValue(
             name="Safety",
             key="S",
             description="The Safety metric value measures the impact regarding the Safety of a human actor or "
             "participant that can be predictably injured as a result of the vulnerability being exploited.",
         )
-        values = list(_dp.values)
+        values = list(_dp_dict["values"])
         values.append(_SAFETY)
-        _dp.values = list(values)
+        _dp_dict["values"] = tuple(values)
+
+    _dp = DecisionPoint(**_dp_dict)
 
     return _dp
 

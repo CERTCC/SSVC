@@ -23,7 +23,7 @@ created_at: 2/14/25 2:54 PM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPoint
+from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 MD_TABLE_ROW_TEMPLATE = "| {value.name} | {value.description} |"
 

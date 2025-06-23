@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-"""
-file: base
-author: adh
-created_at: 9/20/23 4:47 PM
-"""
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -23,40 +19,77 @@ created_at: 9/20/23 4:47 PM
 #  subject to its own license.
 #  DM24-0278
 
+"""
+Provides a DecisionPointGroup object for use in SSVC.
+"""
+
+import itertools
+from typing import Generator
+
 from pydantic import BaseModel
 
-from ssvc._mixins import _Base, _Versioned
-from ssvc.decision_points.base import SsvcDecisionPoint
+from ssvc._mixins import _Base, _SchemaVersioned
+from ssvc.decision_points.base import (
+    DecisionPoint,
+    ValueSummary,
+)
 
 
-class SsvcDecisionPointGroup(_Base, _Versioned, BaseModel):
+class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
     """
     Models a group of decision points.
     """
 
-    decision_points: list[SsvcDecisionPoint]
+    decision_points: tuple[DecisionPoint, ...]
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[DecisionPoint, None, None]:
         """
         Allow iteration over the decision points in the group.
         """
         return iter(self.decision_points)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Allow len() to be called on the group.
         """
-        dplist = list(self.decision_points)
-        l = len(dplist)
-        return l
+        return len(self.decision_points)
+
+    @property
+    def decision_points_dict(self) -> dict[str, DecisionPoint]:
+        """
+        Return a dictionary of decision points keyed by their name.
+        """
+        return {dp.str: dp for dp in self.decision_points}
+
+    @property
+    def decision_points_str(self) -> list[str]:
+        """
+        Return a list of decision point names.
+        """
+        return list(self.decision_points_dict.keys())
+
+    def combination_strings(self) -> Generator[tuple[str, ...], None, None]:
+        """
+        Return a list of tuples of the value short strings for all combinations of the decision points.
+        """
+        for combo in self.combinations():
+            yield tuple(str(x) for x in combo)
+
+    def combinations(self) -> Generator[tuple[ValueSummary, ...], None, None]:
+        """
+        Return a list of tuples of the value summaries for all combinations of the decision points.
+        """
+        value_tuples = [dp.value_summaries for dp in self.decision_points]
+        for combo in itertools.product(*value_tuples):
+            yield combo
 
 
 def get_all_decision_points_from(
-    *groups: list[SsvcDecisionPointGroup],
-) -> list[SsvcDecisionPoint]:
+    *groups: list[DecisionPointGroup],
+) -> tuple[DecisionPoint, ...]:
     """
-    Given a list of SsvcDecisionPointGroup objects, return a list of all
-    the unique SsvcDecisionPoint objects contained in those groups.
+    Given a list of DecisionPointGroup objects, return a list of all
+    the unique DecisionPoint objects contained in those groups.
 
     Args:
         groups (list): A list of SsvcDecisionPointGroup objects.
@@ -80,7 +113,7 @@ def get_all_decision_points_from(
             dps.append(dp)
             seen.add(key)
 
-    return list(dps)
+    return tuple(dps)
 
 
 def main():

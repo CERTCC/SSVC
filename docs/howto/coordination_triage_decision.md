@@ -82,13 +82,13 @@ The remaining five decision points are:
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.report_public import LATEST as RP
-from ssvc.decision_points.supplier_contacted import LATEST as SC
-from ssvc.decision_points.report_credibility import LATEST as RC
-from ssvc.decision_points.supplier_cardinality import LATEST as SI
-from ssvc.decision_points.supplier_engagement import LATEST as SE
-from ssvc.decision_points.utility import LATEST as U
-from ssvc.decision_points.public_safety_impact import LATEST as PSI
+from ssvc.decision_points.ssvc.report_public import LATEST as RP
+from ssvc.decision_points.ssvc.supplier_contacted import LATEST as SC
+from ssvc.decision_points.ssvc.report_credibility import LATEST as RC
+from ssvc.decision_points.ssvc.supplier_cardinality import LATEST as SI
+from ssvc.decision_points.ssvc.supplier_engagement import LATEST as SE
+from ssvc.decision_points.ssvc.utility import LATEST as U
+from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PSI
 from ssvc.doc_helpers import example_block
 
 for dp in [RP, SC, RC, SI, SE, U, PSI]:
