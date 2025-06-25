@@ -100,17 +100,31 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
         """
         if not self.mapping:
             raise ValueError("No mapping to export.")
-        dp_names = [dp.name for dp in self.decision_point_group.decision_points]
-        outcome_name = self.outcome_group.name
-        rows = []
+
+        column_names = []
+        for dp in self.decision_point_group.decision_points:
+            col_name = f"{dp.namespace}:{dp.key}:{dp.version}"
+            column_names.append(col_name)
+        outcome_col_name = f"{self.outcome_group.namespace}:{self.outcome_group.key}:{self.outcome_group.version}"
+        column_names.append(outcome_col_name)
+
+        data = []
         for row in self.mapping:
-            row_dict = {
-                name: str(val)
-                for name, val in zip(dp_names, row.decision_point_values.values)
-            }
-            row_dict[outcome_name] = str(row.outcome) if row.outcome else ""
-            rows.append(row_dict)
-        df = pd.DataFrame(rows, columns=dp_names + [outcome_name])
+            # row is a MappingRow
+            # with attributes: decision_point_values (ValueCombo), outcome (ValueSummary or None)
+            row_data = {}
+            for vc in row.decision_point_values.values:
+                key = f"{vc.namespace}:{vc.key}:{vc.version}"
+                row_data[key] = str(vc.value)
+            if row.outcome:
+                outcome_key = (
+                    f"{row.outcome.namespace}:{row.outcome.key}:{row.outcome.version}"
+                )
+                row_data[outcome_col_name] = str(row.outcome.value)
+            else:
+                row_data[outcome_col_name] = ""
+            data.append(row_data)
+        df = pd.DataFrame(data, columns=column_names)
         return df.to_csv(index=False)
 
     def generate_full_mapping(self) -> List[MappingRow]:
@@ -225,7 +239,7 @@ def distribute_outcomes_evenly(
 
 
 def main() -> None:
-    from ssvc.dp_groups.ssvc.coordinator_triage import LATEST as dpg
+    from ssvc.dp_groups.ssvc.coordinator_publication import LATEST as dpg
     from ssvc.outcomes.x_basic.mscw import LATEST as outcomes
 
     table = DecisionTable(
@@ -239,6 +253,8 @@ def main() -> None:
     table.mapping = distribute_outcomes_evenly(table.mapping, outcomes.value_summaries)
     csv_str = table.to_csv()
     print(csv_str)
+
+    # print(table.mapping)
 
 
 if __name__ == "__main__":
