@@ -169,14 +169,14 @@ class PolicyGenerator:
             row = {}
             for i in range(len(node)):
                 # turn the numerical indexes back into decision point names
-                col1 = f"{self.dpg.decision_points[i].str}"
-                row[col1] = self.dpg.decision_points[i].value_summaries_str[node[i]]
+                col1 = f"{self.dpg.decision_points[i].id}"
+                row[col1] = self.dpg.decision_points[i].value_summaries[node[i]]
                 # numerical values
                 col2 = f"idx_{self.dpg.decision_points[i].str}"
                 row[col2] = node[i]
 
             oc_idx = self.G.nodes[node]["outcome"]
-            row["outcome"] = self.outcomes.value_summaries_str[oc_idx]
+            row["outcome"] = self.outcomes.value_summaries[oc_idx]
 
             row["idx_outcome"] = oc_idx
             rows.append(row)

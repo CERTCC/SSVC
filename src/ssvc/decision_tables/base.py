@@ -22,33 +22,22 @@ DecisionTable: A flexible, serializable SSVC decision table model.
 #  DM24-0278
 
 import logging
-from itertools import product
 from typing import List, Optional
 
 import pandas as pd
 from pydantic import BaseModel, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
-from ssvc.decision_points.base import ValueSummary
+from ssvc.decision_points.base import DPV_REGISTRY
 from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
 logger = logging.getLogger(__name__)
 
 
-class ValueCombo(BaseModel):
-    values: tuple[ValueSummary, ...]
-
-    def __len__(self) -> int:
-        """
-        Return the number of values in the combo.
-        """
-        return len(self.values)
-
-
 class MappingRow(BaseModel):
-    decision_point_values: ValueCombo
-    outcome: Optional[ValueSummary]
+    decision_point_values: list[str]
+    outcome: Optional[str]
 
 
 class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -81,22 +70,30 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
             self.mapping = mapping
         return self
 
-    def to_csv(self) -> str:
+    def to_df(self) -> pd.DataFrame:
         """
-        Export the mapping to a CSV string. Columns: one per decision point (by name), one for outcome.
-        Indiviual decision point and outcome values are represented as a colon-separated tuple
-        consisting of the namespace, decision point key, decision point version, and value key.
+        Export the mapping to pandas DataFrame.
+        Columns: one per decision point, one for outcome. Column names are namespace:key:version.
+        Individual decision point and outcome values are represented by their value key.
 
         Example:
             Table values might look like:
-            ```
-            dp1ns:dp1k:1.0:dp1v1, dp2ns:dp2k:1.0:dp2v1, outcomens:outcomek:1.0:outcomev1
-            dp1ns:dp1k:1.0:dp1v1, dp2ns:dp2k:1.0:dp2v2, outcomens:outcomek:1.0:outcomev2
+
+            ```csv
+            ssvc:SINV:1.0.0,ssvc:E:1.0.0,ssvc:PVA:1.0.0,x_basic:MSCW:1.0.0
+            FR,N,L,W
+            FR,N,A,W
+            FR,N,P,W
+            FR,P,L,W
+            FR,P,A,W
+            FR,P,P,W
+            FR,A,L,W
+            FR,A,A,C
             ```
             etc.
 
         Returns:
-            str: CSV string representation of the decision table mapping.
+            df: pd.DataFrame: The mapping as a pandas DataFrame.
         """
         if not self.mapping:
             raise ValueError("No mapping to export.")
@@ -105,6 +102,7 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
         for dp in self.decision_point_group.decision_points:
             col_name = f"{dp.namespace}:{dp.key}:{dp.version}"
             column_names.append(col_name)
+
         outcome_col_name = f"{self.outcome_group.namespace}:{self.outcome_group.key}:{self.outcome_group.version}"
         column_names.append(outcome_col_name)
 
@@ -113,18 +111,29 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
             # row is a MappingRow
             # with attributes: decision_point_values (ValueCombo), outcome (ValueSummary or None)
             row_data = {}
-            for vc in row.decision_point_values.values:
-                key = f"{vc.namespace}:{vc.key}:{vc.version}"
-                row_data[key] = str(vc.value)
+            for vc in row.decision_point_values:
+                (ns, dpk, dpv, vk) = vc.split(":")
+
+                col_name = f"{ns}:{dpk}:{dpv}"
+
+                row_data[col_name] = vk
             if row.outcome:
-                outcome_key = (
-                    f"{row.outcome.namespace}:{row.outcome.key}:{row.outcome.version}"
-                )
-                row_data[outcome_col_name] = str(row.outcome.value)
+                # outcome is a value_key too
+                (ns, ok, ov, ovk) = row.outcome.split(":")
+                row_data[outcome_col_name] = ovk
             else:
                 row_data[outcome_col_name] = ""
             data.append(row_data)
         df = pd.DataFrame(data, columns=column_names)
+        return df
+
+    def to_csv(self) -> str:
+        """Wrapper around to_df to export to CSV string.
+
+        Returns:
+            str: The mapping table as a CSV string.
+        """
+        df = self.to_df()
         return df.to_csv(index=False)
 
     def generate_full_mapping(self) -> List[MappingRow]:
@@ -178,29 +187,19 @@ def generate_full_mapping(decision_table: "DecisionTable") -> list[MappingRow]:
 
     """
     dp_group = decision_table.decision_point_group
-    # For each decision point, get its value summaries
-    value_lists = [
-        [
-            ValueSummary(
-                key=dp.key,
-                version=dp.version,
-                namespace=dp.namespace,
-                value=val.key,
-            )
-            for val in dp.values
-        ]
-        for dp in dp_group.decision_points
-    ]
-    all_combos = product(*value_lists)
-    mapping = [
-        MappingRow(decision_point_values=ValueCombo(values=combo), outcome=None)
-        for combo in all_combos
-    ]
+
+    combos = dp_group.combination_strings()
+
+    mapping = []
+    for combo in combos:
+        row = MappingRow(decision_point_values=combo, outcome=None)
+        mapping.append(row)
+
     return mapping
 
 
 def distribute_outcomes_evenly(
-    mapping: list[MappingRow], outcome_values: list[ValueSummary]
+    mapping: list[MappingRow], outcome_values: list[str]
 ) -> list[MappingRow]:
     """
     Distribute the given outcome_values across the mapping rows in sorted order.
@@ -217,6 +216,7 @@ def distribute_outcomes_evenly(
     """
     if not outcome_values:
         raise ValueError("No outcome values provided for distribution.")
+
     n = len(mapping)
     k = len(outcome_values)
     base = n // k
@@ -254,7 +254,8 @@ def main() -> None:
     csv_str = table.to_csv()
     print(csv_str)
 
-    # print(table.mapping)
+    for element in DPV_REGISTRY:
+        print(element)
 
 
 if __name__ == "__main__":

@@ -21,12 +21,14 @@ import unittest
 
 import ssvc.decision_points.base as base
 import ssvc.decision_points.ssvc.base
+import ssvc.registry
+from ssvc.decision_points.base import FIELD_DELIMITER
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        base.DP_REGISTRY.reset_registry()
-        base.DPV_REGISTRY.reset_registry()
+        ssvc.decision_points.base.DP_REGISTRY.reset_registry()
+        ssvc.decision_points.base.DPV_REGISTRY.reset_registry()
 
         self.original_registry = base.REGISTERED_DECISION_POINTS.copy()
 
@@ -50,7 +52,7 @@ class MyTestCase(unittest.TestCase):
 
     def tearDown(self) -> None:
         # restore the original registry
-        base._reset_registered()
+        ssvc.decision_points.base._reset_registered()
 
     def test_decision_point_basics(self):
         from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
@@ -184,70 +186,35 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj, obj2)
         self.assertEqual(obj.model_dump(), obj2.model_dump())
 
-    def test_value_summaries_dict(self):
+    def test_value_dict(self):
         obj = self.dp
-        summaries = obj.value_summaries_dict
 
-        # should be a dictionary
-        self.assertIsInstance(summaries, dict)
-        self.assertEqual(len(summaries), len(obj.values))
+        value_dict = obj.value_dict
 
-        # the summaries dict should have str(ValueSummary) as the key
-        # and the ValueSummary as the value
-        for key, summary in summaries.items():
-            # confirm the key is the string representation of the ValueSummary
-            self.assertEqual(key, str(summary))
+        self.assertIsInstance(value_dict, dict)
+        self.assertEqual(len(value_dict), len(obj.values))
 
-            # confirm the attributes of the ValueSummary
-            # key, version, and namespace come from the decision point
-            self.assertEqual(summary.key, obj.key)
-            self.assertEqual(summary.version, obj.version)
-            self.assertEqual(summary.namespace, obj.namespace)
-            # value comes from the list of values, and should be a key to one of the values
-            value_keys = [v.key for v in obj.values]
-            self.assertIn(summary.value, value_keys)
-
-    def test_value_summaries_str(self):
-        obj = self.dp
-        summaries = obj.value_summaries_str
-
-        # should be a list
-        self.assertIsInstance(summaries, list)
-        self.assertEqual(len(summaries), len(obj.values))
-
-        # the summaries list should have str(ValueSummary) as the key
-        for key in summaries:
-            # confirm the key is the string representation of the ValueSummary
-            self.assertIsInstance(key, str)
-
-            # parse the key into its parts
-            (ns, k, v, val) = key.split(":")
-            # ns, k, v should come from the decision point
-            self.assertEqual(ns, obj.namespace)
-            self.assertEqual(k, obj.key)
-            self.assertEqual(v, obj.version)
-            # val should be a key to one of the values
-            value_keys = [v.key for v in obj.values]
-            self.assertIn(val, value_keys)
+        # the value_dict should have the dp.id:v.key as the key
+        # and the DecisionPointValue as the value
+        for value in obj.values:
+            expected_key = FIELD_DELIMITER.join((obj.id, value.key))
+            self.assertIn(expected_key, value_dict)
+            self.assertEqual(value_dict[expected_key], value)
 
     def test_value_summaries(self):
         obj = self.dp
+        # summaries are just the keys of the value_dict
         summaries = obj.value_summaries
 
         # should be a list
         self.assertIsInstance(summaries, list)
         self.assertEqual(len(summaries), len(obj.values))
 
-        # the summaries list should be ValueSummary objects
         for summary in summaries:
-            self.assertIsInstance(summary, base.ValueSummary)
-            # key, version, and namespace come from the decision point
-            self.assertEqual(summary.key, obj.key)
-            self.assertEqual(summary.version, obj.version)
-            self.assertEqual(summary.namespace, obj.namespace)
-            # value comes from the list of values, and should be a key to one of the values
-            value_keys = [v.key for v in obj.values]
-            self.assertIn(summary.value, value_keys)
+            # each summary should be a string
+            self.assertIsInstance(summary, str)
+            # each summary should be the key of a value
+            self.assertIn(summary, obj.value_dict)
 
 
 if __name__ == "__main__":

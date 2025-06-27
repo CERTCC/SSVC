@@ -94,8 +94,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # default should be to populate mapping if not provided
         self.assertIsNotNone(dt.mapping)
         # mapping length should match product of decision point values
-        combos = list(self.dpg.combinations())
-        expected_length = len(combos)
+        expected_length = len(self.dp1.values) * len(self.dp2.values)
         self.assertEqual(len(dt.mapping), expected_length)
         # Check if mapping is a list of MappingRow objects
         for row in dt.mapping:
@@ -128,12 +127,9 @@ class TestDecisionTableBase(unittest.TestCase):
         self.assertEqual(len(df), expected_lines)
         # Check if the DataFrame has the expected columns
 
-        expected_columns = [
-            "dp1",
-            "dp2",
-            "outcome",
-        ]
-        self.assertTrue(all(col in df.columns for col in expected_columns))
+        expected_columns = [dp.id for dp in self.dpg.decision_points] + [self.og.id]
+        for expected in expected_columns:
+            self.assertIn(expected, df.columns, f"Expected column {expected} not found")
 
     def test_model_dump_json(self):
         dt = DecisionTable(
