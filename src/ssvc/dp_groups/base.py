@@ -22,8 +22,7 @@
 """
 Provides a DecisionPointGroup object for use in SSVC.
 """
-
-import itertools
+from itertools import product
 from typing import Generator
 
 from pydantic import BaseModel
@@ -31,7 +30,6 @@ from pydantic import BaseModel
 from ssvc._mixins import _Base, _SchemaVersioned
 from ssvc.decision_points.base import (
     DecisionPoint,
-    ValueSummary,
 )
 
 
@@ -59,29 +57,30 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         """
         Return a dictionary of decision points keyed by their name.
         """
-        return {dp.str: dp for dp in self.decision_points}
+        return {dp.id: dp for dp in self.decision_points}
 
     @property
     def decision_points_str(self) -> list[str]:
         """
         Return a list of decision point names.
         """
-        return list(self.decision_points_dict.keys())
+        return [dp.id for dp in self.decision_points]
 
-    def combination_strings(self) -> Generator[tuple[str, ...], None, None]:
+    def combination_strings(self) -> list[tuple[str, ...]]:
         """
-        Return a list of tuples of the value short strings for all combinations of the decision points.
+        Generate all combinations of decision point values as strings.
+        Each combination is a tuple of value keys, one for each decision point.
         """
-        for combo in self.combinations():
-            yield tuple(str(x) for x in combo)
+        value_lists = []
+        for dp in self.decision_points:
+            if not dp.values:
+                raise ValueError(
+                    f"Decision point {dp.key} has no values defined, cannot generate combinations."
+                )
+            value_keys = list(dp.value_dict.keys())
+            value_lists.append(value_keys)
 
-    def combinations(self) -> Generator[tuple[ValueSummary, ...], None, None]:
-        """
-        Return a list of tuples of the value summaries for all combinations of the decision points.
-        """
-        value_tuples = [dp.value_summaries for dp in self.decision_points]
-        for combo in itertools.product(*value_tuples):
-            yield combo
+        return list(product(*value_lists))
 
 
 def get_all_decision_points_from(
