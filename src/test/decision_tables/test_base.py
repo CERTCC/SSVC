@@ -42,8 +42,10 @@ class TestDecisionTableBase(unittest.TestCase):
         # Create dummy decision point values
         self.dp1v1 = DecisionPointValue(name="a", key="a", description="A value")
         self.dp1v2 = DecisionPointValue(name="b", key="b", description="B value")
+
         self.dp2v1 = DecisionPointValue(name="x", key="x", description="X value")
         self.dp2v2 = DecisionPointValue(name="y", key="y", description="Y value")
+        self.dp2v3 = DecisionPointValue(name="z", key="z", description="Z value")
 
         # Create dummy decision points and group
         self.dp1 = DecisionPoint(
@@ -60,7 +62,7 @@ class TestDecisionTableBase(unittest.TestCase):
             version="1.0",
             namespace="x_test",
             key="dp2",
-            values=(self.dp2v1, self.dp2v2),
+            values=(self.dp2v1, self.dp2v2, self.dp2v3),
         )
         self.dpg = DecisionPointGroup(
             name="dpg",
@@ -72,13 +74,15 @@ class TestDecisionTableBase(unittest.TestCase):
         # Create dummy outcome group
         self.ogv1 = DecisionPointValue(name="o1", key="o1", description="Outcome 1")
         self.ogv2 = DecisionPointValue(name="o2", key="o2", description="Outcome 2")
+        self.ogv3 = DecisionPointValue(name="o3", key="o3", description="Outcome 3")
+
         self.og = OutcomeGroup(
             name="outcome",
             description="",
             version="1.0",
             namespace="x_test",
             key="outcome",
-            values=(self.ogv1, self.ogv2),
+            values=(self.ogv1, self.ogv2, self.ogv3),
         )
 
     def tearDown(self):
