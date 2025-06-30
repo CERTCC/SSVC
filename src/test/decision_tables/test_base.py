@@ -23,7 +23,12 @@ import unittest
 import pandas as pd
 
 from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_tables.base import DecisionTable, MappingRow
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    MappingRow,
+    decision_table_to_csv,
+    generate_full_mapping,
+)
 from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
@@ -111,7 +116,7 @@ class TestDecisionTableBase(unittest.TestCase):
             outcome_group=self.og,
             mapping=None,
         )
-        csv_str = dt.to_csv()
+        csv_str = decision_table_to_csv(dt=dt)
 
         # write csv to a temporary file
         csvfile = os.path.join(self.tmpdir.name, "test_table.csv")
@@ -154,7 +159,7 @@ class TestDecisionTableBase(unittest.TestCase):
             outcome_group=self.og,
             mapping=None,
         )
-        mapping = dt.generate_full_mapping()
+        mapping = generate_full_mapping(dt=dt)
         # length should match product of decision point values
         expected_length = len(self.dp1.values) * len(self.dp2.values)
         self.assertEqual(len(mapping), expected_length)
@@ -166,10 +171,8 @@ class TestDecisionTableBase(unittest.TestCase):
             self.assertEqual(
                 len(row.decision_point_values), len(dt.decision_point_group)
             )
-            # ensure outcome is not None
-            self.assertIsNotNone(
-                row.outcome, "Outcome should not be None after generation"
-            )
+            # ensure outcome is None
+            self.assertIsNone(row.outcome, "Outcome should be None after generation")
 
     def test_generate_full_mapping_function(self):
         from ssvc.decision_tables.base import generate_full_mapping
@@ -229,9 +232,6 @@ class TestDecisionTableBase(unittest.TestCase):
                 row.outcome, "Outcome should not be None after population"
             )
 
-    def test_distribute_outcomes_evenly_object_method(self):
-        pass
-
     def test_distribute_outcomes_evenly_function(self):
         from ssvc.decision_tables.base import distribute_outcomes_evenly
 
@@ -243,7 +243,7 @@ class TestDecisionTableBase(unittest.TestCase):
             outcome_group=self.og,
             mapping=None,
         )
-        mapping = dt.generate_full_mapping()
+        mapping = generate_full_mapping(dt=dt)
 
         # Distribute outcomes evenly
         outcome_values = self.og.value_summaries
