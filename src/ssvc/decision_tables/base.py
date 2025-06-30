@@ -107,8 +107,28 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
                     "MappingRow does not have the correct number of decision point values."
                 )
 
-        # TODO: Check the consistency of the Hasse diagram graph
-        # This is a placeholder for future validation logic, based on what appears in the Policy Generator module.
+        # Verify the topological order of the decision points (if u<v then u_outcome <= v_outcome)
+        problems = check_topological_order(self)
+        if len(problems) > 0:
+            logger.warning("Topological order check found problems:")
+            for problem in problems:
+                logger.warning(f"Problem: {problem}")
+            raise ValueError("Topological order check failed. See logs for details.")
+        else:
+            logger.debug("Topological order check passed with no problems.")
+
+        # reject if any irrelevant columns are present in the mapping
+        fi = feature_importance(self)
+        irrelevant_features = fi[fi["feature_importance"] <= 0]
+        if not irrelevant_features.empty:
+            logger.warning(
+                "Mapping contains irrelevant features: "
+                f"{', '.join(irrelevant_features['feature'].tolist())}"
+            )
+            raise ValueError(
+                "Mapping contains irrelevant features. "
+                "Please remove them before proceeding."
+            )
 
         return self
 
@@ -306,7 +326,7 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
             df[col] = newcol
 
     # lowercase all cell values
-    df = df.applymap(lambda x: x.lower() if isinstance(x, str) else x)
+    df = df.apply(lambda col: col.map(lambda x: x.lower() if isinstance(x, str) else x))
 
     # Rename columns using DP_REGISTRY
 
@@ -359,6 +379,130 @@ def _rename_column(col: str) -> str:
     return f"{new_col} ({dp.namespace})"
 
 
+def _get_target_column_name(colname: str) -> str:
+    """
+    Helper function to convert a column name to a target column name for use with older csv_analyzer functions.
+    This function converts the column name to lowercase and replaces non-alphanumeric characters with underscores.
+    """
+    colname = colname.lower()
+    colname = "".join(c if c.isalnum() else "_" for c in colname)
+    return colname
+
+
+def feature_importance(dt: DecisionTable) -> pd.DataFrame:
+    """
+    Calculate feature importance for the decision table.
+    Args:
+        dt:
+
+    Returns:
+
+    """
+    from ssvc.csv_analyzer import drop_col_feature_importance
+
+    logger.debug("Calculating feature importance for the decision table.")
+
+    df = decision_table_to_shortform_df(dt)
+    # target is the last column in the DataFrame, which is the outcome column
+    target = _get_target_column_name(df.columns[-1])
+
+    return drop_col_feature_importance(df, target=target)
+
+
+def interpret_feature_importance(dt: DecisionTable) -> pd.DataFrame:
+    """
+    Interpret the feature importance for the decision table.
+    This function is a wrapper around the feature_importance function to provide a more user-friendly output.
+    It sorts the features by importance and adds a commentary column that describes the importance of each feature,
+    calling out the most important features, those above median importance, low to medium importance features,
+    low importance features, and irrelevant features. The commentary is based on the computed feature importance scores.
+
+    This function is useful for understanding which decision points and their values are most influential in the decision-making process of the table,
+    and can help in identifying which features can be considered for removal or further investigation.
+
+    Args:
+        dt (DecisionTable): The decision table to analyze.
+    Returns:
+        pd.DataFrame: A DataFrame containing the feature importance scores.
+    """
+
+    fi_df = feature_importance(dt)
+
+    logger.debug("Interpreting feature importance for the decision table.")
+    col = "feature_importance"
+    fi_df = fi_df.sort_values(by=col, ascending=False)
+    # add a column for commentary
+    # low importance are those with importance< 0.1 * max(importance)
+    # irrelevant features are those with importance <= 0
+    max_importance = fi_df[col].max()
+    logger.debug(f"Max importance: {max_importance}")
+    median_importance = fi_df[col].median()
+    logger.debug(f"Median importance: {median_importance}")
+    low_threshold = 0.1 * fi_df[col].max()
+    logger.debug(f"Low threshold: {low_threshold}")
+    irrelevant_threshold = 0.0
+
+    def _label_importance(importance: float) -> str:
+        """
+        Label the importance of a feature based on its importance score.
+        The values are computed in relation to the
+        Args:
+            importance:
+
+        Returns:
+
+        """
+        comments = []
+
+        if importance == max_importance:
+            comments.append("Most important feature")
+        elif importance > median_importance:
+            comments.append("Medium-high importance feature")
+        elif importance == median_importance:
+            comments.append("Median importance feature")
+        elif low_threshold <= importance < median_importance:
+            comments.append("Low-medium importance feature")
+        elif irrelevant_threshold < importance < low_threshold:
+            comments.append("Low importance feature")
+        elif importance <= irrelevant_threshold:
+            comments.append("Irrelevant feature")
+
+        return "; ".join(comments)
+
+    logger.debug("Adding feature importance commentary.")
+    fi_df["Commentary"] = fi_df[col].apply(_label_importance)
+
+    return fi_df.reset_index(drop=True)
+
+
+def check_topological_order(dt: DecisionTable) -> list[dict]:
+    """
+    Check the topological order of the decision table.
+    This function uses the `check_topological_order` function from the csv_analyzer module to verify the topological order of the decision table.
+    It returns a list of dictionaries containing any problems found in the topological order check.
+
+    Args:
+        dt: DecisionTable: The decision table to check.
+
+    Returns:
+        list[dict]: A list of dictionaries containing any problems found in the topological order check.
+        Problems are defined as any pair of mappings `(u,v)` where `u < v` but `u_outcome > v_outcome`.
+
+        Each dictionary contains the following keys:
+        "u": The lower decision point value
+        "v": The higher decision point value
+        "u_outcome": The outcome of the lower decision point value
+        "v_outcome": The outcome of the higher decision point value
+
+    """
+    from ssvc.csv_analyzer import check_topological_order
+
+    logger.debug("Checking topological order of the decision table.")
+    df = decision_table_to_shortform_df(dt)
+    target = _get_target_column_name(df.columns[-1])
+    return check_topological_order(df, target=target)
+
+
 def main() -> None:
     from ssvc.dp_groups.ssvc.coordinator_publication import LATEST as dpg
     from ssvc.outcomes.x_basic.mscw import LATEST as outcomes
@@ -378,11 +522,15 @@ def main() -> None:
 
     table.mapping = generate_full_mapping(table)
     table.mapping = distribute_outcomes_evenly(table.mapping, outcomes.value_summaries)
-    csv_str = decision_table_to_csv(table)
+    csv_str = decision_table_to_csv(table, index=False)
     print(csv_str)
 
     converted_df = decision_table_to_longform_df(table)
     print(converted_df.to_csv(index=True, index_label="row"))
+
+    print(feature_importance(table))
+    print(interpret_feature_importance(table))
+    print(check_topological_order(table))
 
 
 if __name__ == "__main__":
