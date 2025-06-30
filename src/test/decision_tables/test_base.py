@@ -27,6 +27,7 @@ from ssvc.decision_tables.base import (
     DecisionTable,
     MappingRow,
     decision_table_to_csv,
+    decision_table_to_longform_df,
     generate_full_mapping,
 )
 from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
@@ -261,6 +262,32 @@ class TestDecisionTableBase(unittest.TestCase):
         self.assertEqual(new_mapping[0].outcome, outcome_values[0])
         # last outcome should be assigned to last mapping row
         self.assertEqual(new_mapping[-1].outcome, outcome_values[-1])
+
+    def test_decision_table_to_longform_df(self):
+        dt = DecisionTable(
+            name="Test Table",
+            namespace="x_test",
+            description="",
+            decision_point_group=self.dpg,
+            outcome_group=self.og,
+            mapping=None,
+        )
+        df = decision_table_to_longform_df(dt)
+        self.assertIsInstance(df, pd.DataFrame)
+        # Should have as many rows as mapping
+        self.assertEqual(len(df), len(dt.mapping))
+        # Should have as many columns as decision points + 1 (outcome)
+        expected_num_cols = len(self.dpg.decision_points) + 1
+        self.assertEqual(len(df.columns), expected_num_cols)
+        # All values should be lowercase strings
+        for col in df.columns:
+            for val in df[col]:
+                if isinstance(val, str):
+                    self.assertEqual(val, val.lower())
+        # Column names should contain decision point names and version
+        for dp in self.dpg.decision_points:
+            self.assertTrue(any(dp.name in c for c in df.columns))
+        self.assertTrue(any(self.og.name in c for c in df.columns))
 
 
 if __name__ == "__main__":
