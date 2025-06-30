@@ -326,7 +326,7 @@ def permute_feature_importance(df: pd.DataFrame, target: str) -> pd.DataFrame:
     return imp
 
 
-def check_topological_order(df, target):
+def check_topological_order(df: pd.DataFrame, target: str) -> list[dict]:
     # split df into features and target
     X, y = _prepare_data(df, target)
 
