@@ -1,0 +1,35 @@
+{
+  "name": "Nonadversarial Occurrence Likelihood",
+  "description": "Likelihood of threat event occurrence (non-adversarial)",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "NOL",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "Error, accident, or act of nature is highly unlikely to occur; or occurs less than once every 10 years."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Error, accident, or act of nature is unlikely to occur; or occurs less than once a year, but more than once every 10 years."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "Error, accident, or act of nature is somewhat likely to occur; or occurs between 1-10 times a year."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Error, accident, or act of nature is highly likely to occur; or occurs between 10-100 times a year."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "Error, accident, or act of nature is almost certain to occur; or occurs more than 100 times a year."
+    }
+  ]
+}

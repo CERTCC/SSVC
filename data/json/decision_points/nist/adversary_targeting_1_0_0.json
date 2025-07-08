@@ -1,0 +1,35 @@
+{
+  "name": "Adversary Targeting",
+  "description": "Characteristics of adversary targeting",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AT",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "The adversary may or may not target any specific organizations or classes of organizations."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "The adversary uses publicly available information to target a class of high-value organizations or information, and seeks targets of opportunity within that class."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "The adversary analyzes publicly available information to target persistently specific high-value organizations (and key positions, such as Chief Information Officer), programs, or information."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "The adversary analyzes information obtained via reconnaissance to target persistently a specific organization, enterprise, program, mission or business function, focusing on specific high-value or mission-critical information, resources, supply flows, or functions, specific employees supporting those functions, or key positions."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "The adversary analyzes information obtained via reconnaissance and attacks to target persistently a specific organization, enterprise, program, mission or business function, focusing on specific high-value or mission-critical information, resources, supply flows, or functions; specific employees or positions; supporting infrastructure providers/suppliers; or partnering organizations."
+    }
+  ]
+}

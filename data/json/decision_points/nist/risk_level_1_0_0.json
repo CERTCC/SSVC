@@ -1,0 +1,35 @@
+{
+  "name": "Risk Level",
+  "description": "Assessment scale for level of risk based on NIST SP 800-30 Revision 1",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "RL",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "Very low risk means that a threat event could be expected to have a negligible adverse effect on organizational operations, organizational assets, individuals, other organizations, or the Nation."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Low risk means that a threat event could be expected to have a limited adverse effect on organizational operations, organizational assets, individuals, other organizations, or the Nation."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "Moderate risk means that a threat event could be expected to have a serious adverse effect on organizational operations, organizational assets, individuals, other organizations, or the Nation."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "High risk means that a threat event could be expected to have a severe or catastrophic adverse effect on organizational operations, organizational assets, individuals, other organizations, or the Nation."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "Very high risk means that a threat event could be expected to have multiple severe or catastrophic adverse effects on organizational operations, organizational assets, individuals, other organizations, or the Nation."
+    }
+  ]
+}

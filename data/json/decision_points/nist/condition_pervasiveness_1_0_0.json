@@ -1,0 +1,35 @@
+{
+  "name": "Condition Pervasiveness",
+  "description": "Pervasiveness of predisposing conditions",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "CP",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "Applies to few organizational missions/business functions (Tier 1), mission/business processes (Tier 2), or information systems (Tier 3)"
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Applies to some organizational missions/business functions (Tier 1), mission/business processes (Tier 2), or information systems (Tier 3)."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "Applies to many organizational missions/business functions (Tier 1), mission/business processes (Tier 2), or information systems (Tier 3)."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Applies to most organizational missions/business functions (Tier 1), mission/business processes (Tier 2), or information systems (Tier 3)."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "Applies to all organizational missions/business functions (Tier 1), mission/business processes (Tier 2), or information systems (Tier 3)."
+    }
+  ]
+}

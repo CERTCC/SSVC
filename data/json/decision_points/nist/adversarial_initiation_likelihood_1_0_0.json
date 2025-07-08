@@ -1,0 +1,35 @@
+{
+  "name": "Adversarial Initiation Likelihood",
+  "description": "Likelihood of threat event initiation (adversarial)",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AIL",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "Adversary is highly unlikely to initiate the threat event."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Adversary is unlikely to initiate the threat event."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "Adversary is somewhat likely to initiate the treat event."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Adversary is highly likely to initiate the threat event."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "Adversary is almost certain to initiate the threat event."
+    }
+  ]
+}

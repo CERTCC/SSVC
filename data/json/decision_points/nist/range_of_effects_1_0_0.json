@@ -1,0 +1,35 @@
+{
+  "name": "Range of Effects",
+  "description": "Range of effects for non-adversarial threat sources",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "RE",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "The effects of the error, accident, or act of nature are minimal, involving few if any of the cyber resources of the [Tier 3: information systems; Tier 2: mission/business processes or EA segments, common infrastructure, or support services; Tier 1: organization/governance structure], and involving no critical resources."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "The effects of the error, accident, or act of nature are limited, involving some of the cyber resources of the [Tier 3: information systems; Tier 2: mission/business processes or EA segments, common infrastructure, or support services; Tier 1: organization/governance structure], but involving no critical resources."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "The effects of the error, accident, or act of nature are wide-ranging, involving a significant portion of the cyber resources of the [Tier 3: information systems; Tier 2: mission/business processes or EA segments, common infrastructure, or support services; Tier 1: organization/governance structure], including some critical resources."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "The effects of the error, accident, or act of nature are extensive, involving most of the cyber resources of the [Tier 3: information systems; Tier 2: mission/business processes or EA segments, common infrastructure, or support services; Tier 1: organization/governance structure], including many critical resources."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "The effects of the error, accident, or act of nature are sweeping, involving almost all of the cyber resources of the [Tier 3: information systems; Tier 2: mission/business processes or EA segments, common infrastructure, or support services; Tier 1: organization/governance structure]."
+    }
+  ]
+}

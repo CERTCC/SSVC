@@ -1,0 +1,40 @@
+{
+  "name": "Threat Event Relevance",
+  "description": "Relevance of threat events",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "TER",
+  "values": [
+    {
+      "key": "NA",
+      "name": "N/A",
+      "description": "The threat event or TTP is not currently applicable. For example, a threat event or TTP could assume specific technologies, architectures, or processes that are not present in the organization, mission/business process, EA segment, or information system; or predisposing conditions that are not present (e.g., location in a flood plain). Alternately, if the organization is using detailed or specific threat information, a threat event or TTP could be deemed inapplicable because information indicates that no adversary is expected to initiate the threat event or use the TTP."
+    },
+    {
+      "key": "PS",
+      "name": "Possible",
+      "description": "The threat event or TTP has been described by a somewhat credible source."
+    },
+    {
+      "key": "P",
+      "name": "Predicted",
+      "description": "The threat event or TTP has been predicted by a trusted source."
+    },
+    {
+      "key": "A",
+      "name": "Anticipated",
+      "description": "The threat event or TTP has been reported by a trusted source."
+    },
+    {
+      "key": "E",
+      "name": "Expected",
+      "description": "The threat event or TTP has been seen by the organization’s peers or partners."
+    },
+    {
+      "key": "C",
+      "name": "Confirmed",
+      "description": "The threat event or TTP has been seen by the organization."
+    }
+  ]
+}

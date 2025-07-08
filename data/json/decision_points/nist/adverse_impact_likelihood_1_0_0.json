@@ -1,0 +1,35 @@
+{
+  "name": "Adverse Impact Likelihood",
+  "description": "Likelihood of threat event resulting in adverse impacts",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AILI",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "If the threat event is initiated or occurs, it is highly unlikely to have adverse impacts."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "If the threat event is initiated or occurs, it is unlikely to have adverse impacts."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "If the threat event is initiated or occurs, it is somewhat likely to have adverse impacts."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "If the threat event is initiated or occurs, it is highly likely to have adverse impacts."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "If the threat event is initiated or occurs, it is almost certain to have adverse impacts."
+    }
+  ]
+}

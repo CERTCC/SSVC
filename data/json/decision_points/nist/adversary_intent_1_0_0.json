@@ -1,0 +1,35 @@
+{
+  "name": "Adversary Intent",
+  "description": "Characteristics of adversary intent",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AI",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "The adversary seeks to usurp, disrupt, or deface the organization’s cyber resources, and does so without concern about attack detection/disclosure of tradecraft."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "The adversary actively seeks to obtain critical or sensitive information or to usurp/disrupt the organization’s cyber resources, and does so without concern about attack detection/disclosure of tradecraft."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "The adversary seeks to obtain or modify specific critical or sensitive information or usurp/disrupt the organization’s cyber resources by establishing a foothold in the organization’s information systems or infrastructure. The adversary is concerned about minimizing attack detection/disclosure of tradecraft, particularly when carrying out attacks over long time periods. The adversary is willing to impede aspects of the organization’s missions/business functions to achieve these ends."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "The adversary seeks to undermine/impede critical aspects of a core mission or business function, program, or enterprise, or place itself in a position to do so in the future, by maintaining a presence in the organization’s information systems or infrastructure. The adversary is very concerned about minimizing attack detection/disclosure of tradecraft, particularly while preparing for future attacks."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "The adversary seeks to undermine, severely impede, or destroy a core mission or business function, program, or enterprise by exploiting a presence in the organization’s information systems or infrastructure. The adversary is concerned about disclosure of tradecraft only to the extent that it would impede its ability to complete stated goals."
+    }
+  ]
+}

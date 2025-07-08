@@ -1,0 +1,35 @@
+{
+  "name": "Adversary Capability",
+  "description": "Characteristics of adversary capability",
+  "namespace": "nist",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "AC",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "description": "The adversary has very limited resources, expertise, and opportunities to support a successful attack."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "The adversary has limited resources, expertise, and opportunities to support a successful attack."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "description": "The adversary has moderate resources, expertise, and opportunities to support multiple successful attacks."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "The adversary has a sophisticated level of expertise, with significant resources and opportunities to support multiple successful coordinated attacks."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "description": "The adversary has a very sophisticated level of expertise, is well-resourced, and can generate opportunities to support multiple successful, continuous, and coordinated attacks."
+    }
+  ]
+}
