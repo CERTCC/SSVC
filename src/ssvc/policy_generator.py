@@ -30,8 +30,8 @@ import networkx as nx
 import pandas as pd
 
 from ssvc import csv_analyzer
+from ssvc.decision_points.base import DecisionPoint as OutcomeGroup
 from ssvc.dp_groups.base import DecisionPointGroup
-from ssvc.outcomes.base import OutcomeGroup
 
 logger = logging.getLogger(__name__)
 

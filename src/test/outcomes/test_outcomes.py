@@ -19,7 +19,10 @@
 
 import unittest
 
-from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
+from ssvc.decision_points.base import (
+    DecisionPoint as OutcomeGroup,
+    DecisionPointValue as OutcomeValue,
+)
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
