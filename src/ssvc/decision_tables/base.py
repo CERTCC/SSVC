@@ -523,14 +523,28 @@ def main() -> None:
     table.mapping = generate_full_mapping(table)
     table.mapping = distribute_outcomes_evenly(table.mapping, outcomes.value_summaries)
     csv_str = decision_table_to_csv(table, index=False)
+    print("## Shortform CSV representation of the decision table:")
+    print()
+    print("```csv")
     print(csv_str)
+    print("```")
 
     converted_df = decision_table_to_longform_df(table)
+    print("## Longform DataFrame representation of the decision table:")
+    print()
+    print("```csv")
     print(converted_df.to_csv(index=True, index_label="row"))
+    print("```")
 
     print(feature_importance(table))
     print(interpret_feature_importance(table))
     print(check_topological_order(table))
+
+    print("## JSON representation of the decision table:")
+    print()
+    print("```json")
+    print(table.model_dump_json(indent=2))
+    print("```")
 
 
 if __name__ == "__main__":

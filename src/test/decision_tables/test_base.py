@@ -19,6 +19,7 @@
 import os
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -27,6 +28,7 @@ from ssvc.decision_tables.base import (
     DecisionTable,
     MappingRow,
     decision_table_to_csv,
+    decision_table_to_df,
     decision_table_to_longform_df,
     generate_full_mapping,
 )
@@ -112,7 +114,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # We aren't testing the actual values here, just that they are created
         # correctly. The mappings will be tested in more detail in other tests.
 
-    def test_to_csv(self):
+    def test_decision_table_to_csv(self):
         dt = DecisionTable(
             name="Test Table",
             namespace="x_test",
@@ -292,6 +294,41 @@ class TestDecisionTableBase(unittest.TestCase):
         for dp in self.dpg.decision_points:
             self.assertTrue(any(dp.name in c for c in df.columns))
         self.assertTrue(any(self.og.name in c for c in df.columns))
+
+    @patch("ssvc.decision_tables.base.decision_table_to_longform_df")
+    @patch("ssvc.decision_tables.base.decision_table_to_shortform_df")
+    def test_decision_table_to_df(self, mock_longform, mock_shortform):
+        dt = DecisionTable(
+            name="Test Table",
+            namespace="x_test",
+            description="",
+            decision_point_group=self.dpg,
+            outcome_group=self.og,
+            mapping=None,
+        )
+
+        mock_longform.return_value = "longform"
+        mock_shortform.return_value = "shortform"
+        # Test longform
+        df_long = decision_table_to_df(dt, longform=True)
+        self.assertEqual(df_long, "longform")
+        mock_longform.assert_called_once_with(dt)
+
+        # Test shortform
+        mock_longform.reset_mock()
+        df_short = decision_table_to_df(dt, longform=False)
+        self.assertEqual(df_short, "shortform")
+        mock_shortform.assert_called_once_with(dt)
+        mock_longform.assert_not_called()
+
+        # default should be shortform
+        # reset mocks
+        mock_longform.reset_mock()
+        mock_shortform.reset_mock()
+        df_default = decision_table_to_df(dt)
+        self.assertEqual(df_default, "shortform")
+        mock_shortform.assert_called_with(dt)
+        mock_longform.assert_not_called()
 
 
 if __name__ == "__main__":
