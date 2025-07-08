@@ -27,33 +27,6 @@ from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.decision_points.nist.base import NistDecisionPoint
 
-# TABLE D-4: ASSESSMENT SCALE – CHARACTERISTICS OF ADVERSARY INTENT
-# Qualitative
-# Values
-# Semi-Quantitative
-# Values Description
-# Very High 96-100 10
-# The adversary seeks to undermine, severely impede, or destroy a core mission or business
-# function, program, or enterprise by exploiting a presence in the organization’s information systems
-# or infrastructure. The adversary is concerned about disclosure of tradecraft only to the extent that it
-# would impede its ability to complete stated goals.
-# High 80-95 8
-# The adversary seeks to undermine/impede critical aspects of a core mission or business function,
-# program, or enterprise, or place itself in a position to do so in the future, by maintaining a presence
-# in the organization’s information systems or infrastructure. The adversary is very concerned about
-# minimizing attack detection/disclosure of tradecraft, particularly while preparing for future attacks.
-# Moderate 21-79 5
-# The adversary seeks to obtain or modify specific critical or sensitive information or usurp/disrupt
-# the organization’s cyber resources by establishing a foothold in the organization’s information
-# systems or infrastructure. The adversary is concerned about minimizing attack detection/disclosure
-# of tradecraft, particularly when carrying out attacks over long time periods. The adversary is willing
-# to impede aspects of the organization’s missions/business functions to achieve these ends.
-# Low 5-20 2
-# The adversary actively seeks to obtain critical or sensitive information or to usurp/disrupt the
-# organization’s cyber resources, and does so without concern about attack detection/disclosure of
-# tradecraft.
-# Very Low 0-4 0 The adversary seeks to usurp, disrupt, or deface the organization’s cyber resources, and does so
-# without concern about attack detection/disclosure of tradecraft.
 
 VERY_LOW = DecisionPointValue(
     name="Very Low",
