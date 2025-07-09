@@ -22,6 +22,7 @@
 """
 Provides a DecisionPointGroup object for use in SSVC.
 """
+import secrets
 from collections.abc import MutableMapping
 from itertools import product
 
@@ -85,6 +86,37 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel, MutableMapping):
 
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
+
+    def obfuscate(self) -> tuple["DecisionPointGroup", dict[str, str]]:
+        """
+        Returns a new DecisionPointGroup object, with the keys of the decision points dict obfuscated.
+
+        Returns:
+            tuple: A tuple containing the new DecisionPointGroup and a dictionary mapping old keys to new obfuscated keys.
+        """
+        token_len = 4
+        new_dict = {}
+        translator = {}
+        for old_key in self.decision_points.keys():
+            while True:
+                new_key = secrets.token_hex(token_len)
+                # make the new key match NNNN-NNNN...
+                new_key = "-".join(
+                    new_key[i : i + token_len]
+                    for i in range(0, len(new_key), token_len)
+                )
+                # uppercase the new key
+                new_key = new_key.upper()
+                if new_key not in translator:
+                    break
+            # got a unique new_key
+            translator[old_key] = new_key
+            new_dict[new_key] = self.decision_points[old_key]
+
+        new_group = self.copy(deep=True)
+        new_group.decision_points = new_dict
+
+        return (new_group, translator)
 
     def combination_strings(self) -> list[tuple[str, ...]]:
         """

@@ -166,6 +166,26 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
 
         return self
 
+    def obfuscate(self) -> "DecisionTable":
+        """
+        Obfuscate the decision table by renaming the dict keys.
+        """
+        obfuscated_dpg, translator = self.decision_point_group.obfuscate()
+
+        new_table = self.copy(deep=True)
+        new_table.decision_point_group = obfuscated_dpg
+        new_table.outcome = translator.get(self.outcome, self.outcome)
+        # replace all the keys in mapping dicts
+        new_table.mapping = []
+        for row in self.mapping:
+            new_row = {}
+            for key in row.keys():
+                new_key = translator[key]
+                new_row[new_key] = row[key]
+            new_table.mapping.append(new_row)
+
+        return new_table
+
 
 def decision_table_to_df(dt: DecisionTable, longform=False) -> pd.DataFrame:
     """
@@ -530,6 +550,10 @@ def main() -> None:
     print("```json")
     print(table.model_dump_json(indent=2))
     print("```")
+
+    print("## Obfuscated JSON representation of the decision table:")
+    obfuscated = table.obfuscate()
+    print(obfuscated.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
