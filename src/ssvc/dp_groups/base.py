@@ -23,9 +23,9 @@
 Provides a DecisionPointGroup object for use in SSVC.
 """
 from itertools import product
-from typing import Generator
+from typing import Iterator
 
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 from ssvc._mixins import _Base, _SchemaVersioned
 from ssvc.decision_points.base import (
@@ -38,13 +38,24 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
     Models a group of decision points.
     """
 
-    decision_points: tuple[DecisionPoint, ...]
+    decision_points: dict[str, DecisionPoint]
 
-    def __iter__(self) -> Generator[DecisionPoint, None, None]:
+    @model_validator(mode="before")
+    def transform_decision_points(cls, data):
+        if isinstance(data, dict) and "decision_points" in data:
+            # If decision_points is a list/tuple, convert to dictionary
+            # this allows us to handle the older way of defining decision point groups
+            dp_value = data["decision_points"]
+            if isinstance(dp_value, (list, tuple)):
+                data["decision_points"] = {dp.id: dp for dp in dp_value}
+        return data
+
+    # iterator to allow iteration over the decision points
+    def __iter__(self) -> Iterator[DecisionPoint]:
         """
         Allow iteration over the decision points in the group.
         """
-        return iter(self.decision_points)
+        return iter(self.decision_points.values())
 
     def __len__(self) -> int:
         """
@@ -52,19 +63,49 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         """
         return len(self.decision_points)
 
+    def __getitem__(self, key: str) -> DecisionPoint:
+        """
+        Allow access to decision points by their key.
+        """
+        return self.decision_points[key]
+
+    def __contains__(self, key: str) -> bool:
+        """
+        Allow checking if a decision point exists in the group by its key.
+        """
+        return key in self.decision_points
+
+    def add(self, decision_point: DecisionPoint) -> None:
+        """
+        Add a decision point to the group.
+        """
+        if decision_point.id in self.decision_points:
+            # are they the same?
+            existing_dp = self.decision_points[decision_point.id]
+            if existing_dp == decision_point:
+                # this is a no-op, they are the same
+                return
+            # otherwise, raise an error
+            raise ValueError(
+                f"Decision point {decision_point.id} already exists in the group."
+            )
+
+        # set the decision point in the dictionary
+        self.decision_points[decision_point.id] = decision_point
+
     @property
     def decision_points_dict(self) -> dict[str, DecisionPoint]:
         """
         Return a dictionary of decision points keyed by their name.
         """
-        return {dp.id: dp for dp in self.decision_points}
+        return self.decision_points
 
     @property
     def decision_points_str(self) -> list[str]:
         """
         Return a list of decision point names.
         """
-        return [dp.id for dp in self.decision_points]
+        return list(self.decision_points.keys())
 
     def combination_strings(self) -> list[tuple[str, ...]]:
         """
@@ -72,7 +113,7 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         Each combination is a tuple of value keys, one for each decision point.
         """
         value_lists = []
-        for dp in self.decision_points:
+        for dp in self.decision_points.values():
             if not dp.values:
                 raise ValueError(
                     f"Decision point {dp.key} has no values defined, cannot generate combinations."
@@ -81,6 +122,29 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
             value_lists.append(value_keys)
 
         return list(product(*value_lists))
+
+    def combination_dict(self) -> list[dict[str, str]]:
+        """
+        Generate all combinations of decision point values as dictionaries.
+        Each combination is a dictionary with decision point IDs as keys and value keys as values.
+        """
+        dpg_vals = []
+        for dp in self.decision_points.values():
+            vals = []
+            for value in dp.values:
+                row = {dp.id: value.key}
+                vals.append(row)
+            dpg_vals.append(vals)
+
+        # now we have a list of lists of dicts, we need to the combinations
+        combos = []
+        for prod in product(*dpg_vals):
+            # prod is a tuple of dicts, we need to merge them
+            merged = {}
+            for d in prod:
+                merged.update(d)
+            combos.append(merged)
+        return combos
 
 
 def get_all_decision_points_from(
@@ -100,7 +164,7 @@ def get_all_decision_points_from(
     seen = set()
 
     for group in groups:
-        for dp in group.decision_points:
+        for dp in group.decision_points.values():
             if dp in dps:
                 # skip duplicates
                 continue
