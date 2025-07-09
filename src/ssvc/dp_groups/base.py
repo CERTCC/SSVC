@@ -22,8 +22,8 @@
 """
 Provides a DecisionPointGroup object for use in SSVC.
 """
+from collections.abc import MutableMapping
 from itertools import product
-from typing import Iterator
 
 from pydantic import BaseModel, model_validator
 
@@ -33,9 +33,9 @@ from ssvc.decision_points.base import (
 )
 
 
-class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
+class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel, MutableMapping):
     """
-    Models a group of decision points.
+    Models a group of decision points as a dictionary, keyed by their ID.
     """
 
     decision_points: dict[str, DecisionPoint]
@@ -50,30 +50,23 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
                 data["decision_points"] = {dp.id: dp for dp in dp_value}
         return data
 
-    # iterator to allow iteration over the decision points
-    def __iter__(self) -> Iterator[DecisionPoint]:
-        """
-        Allow iteration over the decision points in the group.
-        """
-        return iter(self.decision_points.values())
-
-    def __len__(self) -> int:
-        """
-        Allow len() to be called on the group.
-        """
-        return len(self.decision_points)
-
-    def __getitem__(self, key: str) -> DecisionPoint:
-        """
-        Allow access to decision points by their key.
-        """
+    # dunder methods to allow dict-like access in conjunction with MutableMapping abstract base class
+    def __getitem__(self, key):
         return self.decision_points[key]
 
-    def __contains__(self, key: str) -> bool:
-        """
-        Allow checking if a decision point exists in the group by its key.
-        """
-        return key in self.decision_points
+    def __setitem__(self, key, value):
+        if not isinstance(value, DecisionPoint):
+            raise TypeError("Value must be a DecisionPoint")
+        self.decision_points[key] = value
+
+    def __delitem__(self, key):
+        del self.decision_points[key]
+
+    def __iter__(self):
+        return iter(self.decision_points)
+
+    def __len__(self):
+        return len(self.decision_points)
 
     def add(self, decision_point: DecisionPoint) -> None:
         """
@@ -93,20 +86,6 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
 
-    @property
-    def decision_points_dict(self) -> dict[str, DecisionPoint]:
-        """
-        Return a dictionary of decision points keyed by their name.
-        """
-        return self.decision_points
-
-    @property
-    def decision_points_str(self) -> list[str]:
-        """
-        Return a list of decision point names.
-        """
-        return list(self.decision_points.keys())
-
     def combination_strings(self) -> list[tuple[str, ...]]:
         """
         Generate all combinations of decision point values as strings.
@@ -123,13 +102,16 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
 
         return list(product(*value_lists))
 
-    def combination_dict(self) -> list[dict[str, str]]:
+    def combination_list(self,exclude=str) -> list[dict[str, str]]:
         """
         Generate all combinations of decision point values as dictionaries.
         Each combination is a dictionary with decision point IDs as keys and value keys as values.
         """
         dpg_vals = []
         for dp in self.decision_points.values():
+            if dp.id in exclude:
+                # skip this decision point if it is in the exclude list
+                continue
             vals = []
             for value in dp.values:
                 row = {dp.id: value.key}

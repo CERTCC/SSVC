@@ -22,22 +22,15 @@ DecisionTable: A flexible, serializable SSVC decision table model.
 #  DM24-0278
 
 import logging
-from typing import List, Optional
 
 import pandas as pd
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
-from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY
+from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY, DecisionPoint
 from ssvc.dp_groups.base import DecisionPointGroup
-from ssvc.outcomes.base import OutcomeGroup
 
 logger = logging.getLogger(__name__)
-
-
-class MappingRow(BaseModel):
-    decision_point_values: list[str]
-    outcome: Optional[str]
 
 
 class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -49,41 +42,81 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
     of the decision table.
 
     Attributes:
-        decision_point_group (DecisionPointGroup): The group of decision points that this table uses.
-        outcome_group (OutcomeGroup): The group of outcomes that this table maps to.
-        mapping (Optional[List[MappingRow]]): A list of MappingRow objects representing the mapping of decision point values to outcomes.
-            If not provided or `None`, it will be populated automatically after validation.
     """
 
     decision_point_group: DecisionPointGroup
-    outcome_group: OutcomeGroup
-    mapping: Optional[List[MappingRow]] = None
+    outcome: str
+    # default to empty mapping list
+    mapping: list[dict[str, str]] = Field(
+        default_factory=list,
+        description="Mapping of decision point values to outcomes.",
+    )
 
     @model_validator(mode="after")
-    def populate_mapping_if_none(self):
+    def populate_mapping_if_empty(self):
         """
         Populate the mapping if it is not already set.
 
         Returns:
             self: The DecisionTable instance with the mapping populated if it was not set. If the mapping is already set, it returns the instance unchanged.
         """
-
-        if self.mapping is not None:
-            # short-circuit if mapping is already set
+        # short-circuit if mapping is already set
+        if self.mapping:
+            # mapping is already set, no need to populate
+            logger.debug("Mapping is already set, skipping population.")
             return self
 
-        dpg = self.decision_point_group
-        og = self.outcome_group
+        outcome_key = self.outcome
+        mapping = self.decision_point_group.combination_list(
+            exclude=[
+                outcome_key,
+            ]
+        )
+        # mapping is a list of dicts
+        # but mapping doesn't have the outcome key yet
+        # add the key with None as the value
+        for row in mapping:
+            # row is a dict with decision point values
+            # we need to add the outcome key
+            if outcome_key in row:
+                # if the outcome key is already in the row, we should not overwrite it
+                logger.warning(
+                    f"Outcome key '{outcome_key}' already exists in row, skipping."
+                )
+            row[outcome_key] = None
 
-        if dpg is None or og is None:
-            raise ValueError(
-                "DecisionTable must have both decision_point_group and outcome_group set."
-            )
-        empty_mapping = generate_full_mapping(dt=self)
-        mapping = distribute_outcomes_evenly(empty_mapping, og.value_summaries)
+        # distribute outcomes evenly across the mapping
+        og: DecisionPoint = self.decision_point_group[outcome_key]
+
+        mapping = distribute_outcomes_evenly(mapping, og)
 
         # set the mapping
         self.mapping = mapping
+        return self
+
+    @model_validator(mode="after")
+    def check_mapping_keys(self):
+        """
+        Validate that each item in the mapping has the correct keys.
+        Keys for each item should match the keys of the decision point group.
+
+        Returns:
+            self: The DecisionTable instance with validated mapping keys.
+        Raises:
+            TypeError: If any item in the mapping is not a dictionary.
+            ValueError: If any item in the mapping does not have the expected keys.
+        """
+        # we expect the keys of each item in the mapping to match the decision point group keys
+        expected = set(self.decision_point_group.keys())
+
+        for i, d in enumerate(self.mapping):
+            if not isinstance(d, dict):
+                raise TypeError(f"Item {i} is not a dict")
+            actual_keys = set(d.keys())
+            if actual_keys != expected:
+                raise ValueError(
+                    f"Item {i} has keys {actual_keys}, expected {expected}"
+                )
         return self
 
     @model_validator(mode="after")
@@ -97,14 +130,15 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
         Returns:
             self: The DecisionTable instance with validated mapping.
         """
-        if self.mapping is None:
+        if not self.mapping:
             raise ValueError("Mapping must be set before validation.")
 
         # Check that each MappingRow has the correct number of decision point values
         for row in self.mapping:
-            if len(row.decision_point_values) != len(self.decision_point_group):
+            if set(row.keys()) != set(self.decision_point_group.keys()):
                 raise ValueError(
-                    "MappingRow does not have the correct number of decision point values."
+                    "MappingRow does not have the correct keys. "
+                    "Keys must match the decision point group keys."
                 )
 
         # Verify the topological order of the decision points (if u<v then u_outcome <= v_outcome)
@@ -180,37 +214,10 @@ def decision_table_to_shortform_df(dt: DecisionTable) -> pd.DataFrame:
     Raises:
         ValueError: If the decision table has no mapping to export.
     """
-    if dt.mapping is None:
+    if not dt.mapping:
         raise ValueError("Decision Table has no mapping to export.")
 
-    column_names = []
-    for dp in dt.decision_point_group.decision_points:
-        col_name = f"{dp.namespace}:{dp.key}:{dp.version}"
-        column_names.append(col_name)
-
-    outcome_col_name = f"{dt.outcome_group.namespace}:{dt.outcome_group.key}:{dt.outcome_group.version}"
-    column_names.append(outcome_col_name)
-
-    data = []
-    for row in dt.mapping:
-        # row is a MappingRow
-        # with attributes: decision_point_values (ValueCombo), outcome (ValueSummary or None)
-        row_data = {}
-        for vc in row.decision_point_values:
-            (ns, dpk, dpv, vk) = vc.split(":")
-
-            col_name = f"{ns}:{dpk}:{dpv}"
-
-            row_data[col_name] = vk
-        if row.outcome:
-            # outcome is a value_key too
-            (ns, ok, ov, ovk) = row.outcome.split(":")
-            row_data[outcome_col_name] = ovk
-        else:
-            row_data[outcome_col_name] = ""
-        data.append(row_data)
-
-    df = pd.DataFrame(data, columns=column_names)
+    df = pd.DataFrame(dt.mapping)
     return df
 
 
@@ -226,47 +233,28 @@ def decision_table_to_csv(dt: DecisionTable, **kwargs) -> str:
     return decision_table_to_df(dt).to_csv(**kwargs)
 
 
-def generate_full_mapping(dt: DecisionTable) -> list[MappingRow]:
-    """
-    Generate a full mapping for the decision table, with every possible combination of decision point values.
-    Each MappingRow will have a list of strings, and outcome=None.
-
-    Args:
-        dt (DecisionTable): The decision table to generate the mapping for.
-    Returns:
-        list[MappingRow]: A list of MappingRow objects representing the full mapping. Note that the outcome field will be None.
-
-    """
-    dp_group = dt.decision_point_group
-
-    combos = dp_group.combination_strings()
-
-    mapping = []
-    for combo in combos:
-        row = MappingRow(decision_point_values=combo, outcome=None)
-        mapping.append(row)
-
-    return mapping
-
-
 def distribute_outcomes_evenly(
-    mapping: list[MappingRow], outcome_values: list[str]
-) -> list[MappingRow]:
+    mapping: list[dict[str, str]], outcome_group: DecisionPoint
+) -> list[dict[str, str]]:
     """
-    Distribute the given outcome_values across the mapping rows in sorted order.
-    Overwrites the outcome field in each MappingRow with the corresponding outcome value.
-    The earliest mappings get the lowest outcome, the latest get the highest.
+    Distribute the given outcome_values across the mapping item dicts in sorted order.
+    Overwrites the outcome value in each mapping dict item with the corresponding outcome value.
+    The earliest mappings get the lowest outcome value, the latest get the highest.
     If the mapping count is not divisible by the number of outcomes, the last outcome(s) get the remainder.
-    Returns a new list of MappingRow with outcomes assigned.
+    Returns a new list of dicts with outcome values assigned.
 
     Args:
-        mapping (list[MappingRow]): The mapping rows to distribute outcomes across.
-        outcome_values (list[str]): The outcome values to distribute.
+        mapping (list[dict[str,str]]): The mapping to distribute outcomes across.
+        outcome_values (list[str]): The list of outcome values to distribute.
     Returns:
-        list[MappingRow]: A new list of MappingRow with outcomes assigned.
+        list[dict[str,str]]: A new list of dicts with outcome values assigned.
     """
+    outcome_values = [ov.key for ov in outcome_group.values]
+
     if not outcome_values:
         raise ValueError("No outcome values provided for distribution.")
+
+    og_id = outcome_group.id
 
     n = len(mapping)
     k = len(outcome_values)
@@ -280,11 +268,8 @@ def distribute_outcomes_evenly(
             if idx >= n:
                 break
             row = mapping[idx]
-            new_mapping.append(
-                MappingRow(
-                    decision_point_values=row.decision_point_values, outcome=outcome
-                )
-            )
+            row[og_id] = outcome
+            new_mapping.append(row)
             idx += 1
     return new_mapping
 
@@ -512,16 +497,16 @@ def main() -> None:
     hdlr = logging.StreamHandler()
     rootlogger.addHandler(hdlr)
 
+    dpg.add(outcomes)
+
     table = DecisionTable(
         name="Test Table",
         description="A test decision table",
         namespace="x_test",
         decision_point_group=dpg,
-        outcome_group=outcomes,
+        outcome=outcomes.id,
     )
 
-    table.mapping = generate_full_mapping(table)
-    table.mapping = distribute_outcomes_evenly(table.mapping, outcomes.value_summaries)
     csv_str = decision_table_to_csv(table, index=False)
     print("## Shortform CSV representation of the decision table:")
     print()

@@ -16,6 +16,7 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+import json
 import os
 import tempfile
 import unittest
@@ -26,11 +27,9 @@ import pandas as pd
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_tables.base import (
     DecisionTable,
-    MappingRow,
     decision_table_to_csv,
     decision_table_to_df,
     decision_table_to_longform_df,
-    generate_full_mapping,
 )
 from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
@@ -66,13 +65,6 @@ class TestDecisionTableBase(unittest.TestCase):
             key="dp2",
             values=(self.dp2v1, self.dp2v2, self.dp2v3),
         )
-        self.dpg = DecisionPointGroup(
-            name="dpg",
-            description="",
-            version="1.0",
-            namespace="x_test",
-            decision_points=(self.dp1, self.dp2),
-        )
         # Create dummy outcome group
         self.ogv1 = DecisionPointValue(name="o1", key="o1", description="Outcome 1")
         self.ogv2 = DecisionPointValue(name="o2", key="o2", description="Outcome 2")
@@ -87,42 +79,46 @@ class TestDecisionTableBase(unittest.TestCase):
             values=(self.ogv1, self.ogv2, self.ogv3),
         )
 
+        self.dpg = DecisionPointGroup(
+            name="dpg",
+            description="",
+            version="1.0",
+            namespace="x_test",
+            decision_points=(self.dp1, self.dp2, self.og),
+        )
+        self.dt = DecisionTable(
+            name="Test Table",
+            namespace="x_test",
+            description="Describes the test table",
+            decision_point_group=self.dpg,
+            outcome=self.og.id,
+        )
+
     def tearDown(self):
         # clean up the temporary directory
         self.tmpdir.cleanup()
 
     def test_init(self):
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
+        dt = self.dt
+
         self.assertEqual(dt.decision_point_group, self.dpg)
-        self.assertEqual(dt.outcome_group, self.og)
+        self.assertEqual(dt.outcome, self.og.id)
 
         # default should be to populate mapping if not provided
         self.assertIsNotNone(dt.mapping)
         # mapping length should match product of decision point values
         expected_length = len(self.dp1.values) * len(self.dp2.values)
-        self.assertEqual(len(dt.mapping), expected_length)
-        # Check if mapping is a list of MappingRow objects
+
+        self.assertEqual(len(dt.mapping), expected_length),
+        # Check if mapping is a list of dicts
         for row in dt.mapping:
-            self.assertIsInstance(row, MappingRow)
+            self.assertIsInstance(row, dict)
         # We aren't testing the actual values here, just that they are created
         # correctly. The mappings will be tested in more detail in other tests.
 
     def test_decision_table_to_csv(self):
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
+        dt = self.dt
+
         csv_str = decision_table_to_csv(dt=dt)
 
         # write csv to a temporary file
@@ -139,95 +135,63 @@ class TestDecisionTableBase(unittest.TestCase):
         self.assertEqual(len(df), expected_lines)
         # Check if the DataFrame has the expected columns
 
-        expected_columns = [dp.id for dp in self.dpg.decision_points] + [self.og.id]
-        for expected in expected_columns:
-            self.assertIn(expected, df.columns, f"Expected column {expected} not found")
+        expected_columns = set(self.dpg.decision_points.keys())
+        colset = set(df.columns)
+
+        # everything in expected_columns should be in colset
+        # (colset might have more columns, like a row index, but that's okay)
+        self.assertTrue(
+            expected_columns.issubset(colset),
+            "Expected columns are not a subset of DataFrame columns",
+        )
 
     def test_model_dump_json(self):
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
+        dt = self.dt
+
         json_str = dt.model_dump_json()
+
         self.assertIn("decision_point_group", json_str)
-        self.assertIn("outcome_group", json_str)
+        self.assertIn("outcome", json_str)
         self.assertIn("mapping", json_str)
 
-    def test_generate_full_mapping_object_method(self):
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
+        # load it as a dict to check structure
+        d = json.loads(json_str)
+        self.assertIn("decision_point_group", d)
+        self.assertIn("outcome", d)
+        self.assertIn("mapping", d)
+        # check that outcome is a string corresponding to a key in decsion point group
+        self.assertIsInstance(d["outcome"], str)
+        self.assertIn(d["outcome"], d["decision_point_group"]["decision_points"])
+        # Check if mapping is a list of dicts
+        self.assertIsInstance(d["mapping"], list)
+        self.assertTrue(
+            all(isinstance(row, dict) for row in d["mapping"]),
         )
-        mapping = generate_full_mapping(dt=dt)
-        # length should match product of decision point values
-        expected_length = len(self.dp1.values) * len(self.dp2.values)
-        self.assertEqual(len(mapping), expected_length)
-
-        # ensure each row is a  MappingRow
-        for row in mapping:
-            self.assertIsInstance(row, MappingRow)
-            # ensure each row has the correct number of decision point values
+        # and that the keys of each dict match the keys of decision points
+        expect_keys = set(d["decision_point_group"]["decision_points"].keys())
+        for row in d["mapping"]:
+            row_keys = set(row.keys())
             self.assertEqual(
-                len(row.decision_point_values), len(dt.decision_point_group)
+                row_keys, expect_keys, "Row keys do not match expected decision points"
             )
-            # ensure outcome is None
-            self.assertIsNone(row.outcome, "Outcome should be None after generation")
-
-    def test_generate_full_mapping_function(self):
-        from ssvc.decision_tables.base import generate_full_mapping
-
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
-        mapping = generate_full_mapping(dt)
-        # length should match product of decision point values
-        expected_length = len(self.dp1.values) * len(self.dp2.values)
-        self.assertEqual(len(mapping), expected_length)
-
-        # ensure each row is a  MappingRow
-        for row in mapping:
-            self.assertIsInstance(row, MappingRow)
-            # ensure each row has the correct number of decision point values
-            self.assertEqual(
-                len(row.decision_point_values), len(dt.decision_point_group)
-            )
-            self.assertIsNone(row.outcome, "Outcome should be None before distribution")
 
     def test_populate_mapping_if_none(self):
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
+        dt = self.dt
 
         # Set an empty list to simulate no mapping
-        dt.mapping = []
-        dt.populate_mapping_if_none()
+        dt.mapping = ["a", "b", "c"]
+        dt.populate_mapping_if_empty()
         self.assertEqual(
-            [], dt.mapping, "Mapping should not change if already populated"
+            ["a", "b", "c"],
+            dt.mapping,
+            "Mapping should not change if already populated",
         )
 
         # Now set mapping to None to trigger population
         dt.mapping = None
 
         # Populate the mapping
-        dt.populate_mapping_if_none()
+        dt.populate_mapping_if_empty()
 
         # Check if mapping is populated
         self.assertIsNotNone(dt.mapping)
@@ -236,54 +200,49 @@ class TestDecisionTableBase(unittest.TestCase):
         # Check if each MappingRow has an outcome assigned
         for row in dt.mapping:
             self.assertIsNotNone(
-                row.outcome, "Outcome should not be None after population"
+                row[dt.outcome], "Outcome should not be None after population"
             )
 
     def test_distribute_outcomes_evenly_function(self):
         from ssvc.decision_tables.base import distribute_outcomes_evenly
 
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
-        mapping = generate_full_mapping(dt=dt)
+        dt = self.dt
 
         # Distribute outcomes evenly
-        outcome_values = self.og.value_summaries
-        new_mapping = distribute_outcomes_evenly(mapping, outcome_values)
+        outcome_key = dt.outcome
+        og = dt.decision_point_group[outcome_key]
+        outcome_values = [v.key for v in og.values]
+
+        # unset the mapping to test distribution
+        for row in dt.mapping:
+            row[outcome_key] = None
+
+        self.assertTrue(all(row[outcome_key] is None for row in dt.mapping))
+
+        new_mapping = distribute_outcomes_evenly(dt.mapping, og)
 
         # Check if the new mapping has outcomes assigned
         for row in new_mapping:
             self.assertIsNotNone(
-                row.outcome, "Outcome should not be None after distribution"
+                row[outcome_key], "Outcome should not be None after distribution"
             )
 
         # Check if the length of new mapping matches original mapping
-        self.assertEqual(len(new_mapping), len(mapping))
+        self.assertEqual(len(new_mapping), len(dt.mapping))
         # first outcome should be assigned to first mapping row
-        self.assertEqual(new_mapping[0].outcome, outcome_values[0])
+        self.assertEqual(new_mapping[0][outcome_key], outcome_values[0])
         # last outcome should be assigned to last mapping row
-        self.assertEqual(new_mapping[-1].outcome, outcome_values[-1])
+        self.assertEqual(new_mapping[-1][outcome_key], outcome_values[-1])
 
     def test_decision_table_to_longform_df(self):
-        dt = DecisionTable(
-            name="Test Table",
-            namespace="x_test",
-            description="",
-            decision_point_group=self.dpg,
-            outcome_group=self.og,
-            mapping=None,
-        )
+        dt = self.dt
+
         df = decision_table_to_longform_df(dt)
         self.assertIsInstance(df, pd.DataFrame)
         # Should have as many rows as mapping
         self.assertEqual(len(df), len(dt.mapping))
-        # Should have as many columns as decision points + 1 (outcome)
-        expected_num_cols = len(self.dpg.decision_points) + 1
+        # Should have as many columns as decision points (including outcome)
+        expected_num_cols = len(self.dpg.decision_points)
         self.assertEqual(len(df.columns), expected_num_cols)
         # All values should be lowercase strings
         for col in df.columns:
@@ -291,7 +250,7 @@ class TestDecisionTableBase(unittest.TestCase):
                 if isinstance(val, str):
                     self.assertEqual(val, val.lower())
         # Column names should contain decision point names and version
-        for dp in self.dpg.decision_points:
+        for dp in self.dpg.decision_points.values():
             self.assertTrue(any(dp.name in c for c in df.columns))
         self.assertTrue(any(self.og.name in c for c in df.columns))
 
