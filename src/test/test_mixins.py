@@ -133,6 +133,7 @@ class TestMixins(unittest.TestCase):
 
     def test_valued_create(self):
         values = ("foo", "bar", "baz", "quux")
+
         obj = _Valued(values=values)
 
         # length

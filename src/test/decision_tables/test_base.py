@@ -51,7 +51,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # Create dummy decision points and group
         self.dp1 = DecisionPoint(
             name="dp1",
-            description="",
+            description="description for dp1",
             version="1.0",
             namespace="x_test",
             key="dp1",
@@ -59,7 +59,7 @@ class TestDecisionTableBase(unittest.TestCase):
         )
         self.dp2 = DecisionPoint(
             name="dp2",
-            description="",
+            description="description for dp2",
             version="1.0",
             namespace="x_test",
             key="dp2",
@@ -72,7 +72,7 @@ class TestDecisionTableBase(unittest.TestCase):
 
         self.og = OutcomeGroup(
             name="outcome",
-            description="",
+            description="description for outcome",
             version="1.0",
             namespace="x_test",
             key="outcome",
@@ -81,7 +81,7 @@ class TestDecisionTableBase(unittest.TestCase):
 
         self.dpg = DecisionPointGroup(
             name="dpg",
-            description="",
+            description="description for dpg",
             version="1.0",
             namespace="x_test",
             decision_points=(self.dp1, self.dp2, self.og),

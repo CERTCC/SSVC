@@ -35,7 +35,12 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: str = "0.0.0"
+    version: str = Field(
+        default="0.0.0",
+        description="Version of the SSVC object as a semantic version string",
+        # pattern="^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+        examples=["1.0.1", "1.0.1-alpha"],
+    )
 
     @field_validator("version")
     @classmethod
@@ -60,7 +65,9 @@ class _SchemaVersioned(_Versioned, BaseModel):
     Mixin class for version
     """
 
-    schemaVersion: str = _schemaVersion
+    schemaVersion: str = Field(
+        _schemaVersion, description="Schema version of the SSVC object"
+    )
 
 
 class _Namespaced(BaseModel):
@@ -70,7 +77,14 @@ class _Namespaced(BaseModel):
 
     # the field definition enforces the pattern for namespaces
     # additional validation is performed in the field_validator immediately after the pattern check
-    namespace: str = Field(pattern=NS_PATTERN, min_length=3, max_length=100)
+    namespace: str = Field(
+        ...,
+        description="Namespace (a short, unique string) of the SSVC object. The value must be one of the official namespaces or start with 'x_'.",
+        pattern=NS_PATTERN,
+        min_length=3,
+        max_length=100,
+        examples=["ssvc", "cvss", "x_custom", "x_custom/extension"],
+    )
 
     @field_validator("namespace", mode="before")
     @classmethod
@@ -98,7 +112,14 @@ class _Keyed(BaseModel):
     Mixin class for keyed SSVC objects.
     """
 
-    key: str
+    # should start with uppercase alphanumeric followed by any case alphanumeric or underscores, no spaces
+    key: str = Field(
+        ...,
+        description="Key of the SSVC object",
+        pattern=r"^[a-zA-Z0-9_*]+$",
+        min_length=1,
+        examples=["E", "A", "SI"],
+    )
 
 
 class _Valued(BaseModel):
@@ -140,8 +161,15 @@ class _Base(BaseModel):
     Base class for SSVC objects.
     """
 
-    name: str
-    description: str
+    name: str = Field(
+        ...,
+        description="Name of the SSVC object",
+        min_length=1,
+        examples=["Exploitation", "Automatable"],
+    )
+    description: str = Field(
+        ..., description="Description of the SSVC object", min_length=1
+    )
 
 
 def main():
