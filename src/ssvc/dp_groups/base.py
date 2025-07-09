@@ -134,7 +134,7 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel, MutableMapping):
 
         return list(product(*value_lists))
 
-    def combination_list(self,exclude=str) -> list[dict[str, str]]:
+    def combination_list(self, exclude=str) -> list[dict[str, str]]:
         """
         Generate all combinations of decision point values as dictionaries.
         Each combination is a dictionary with decision point IDs as keys and value keys as values.
