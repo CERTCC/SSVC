@@ -41,6 +41,7 @@ class MyTestCase(unittest.TestCase):
                 ),
             )
             self.dps.append(dp)
+        self.dp_ids = [dp.id for dp in self.dps]
 
     def tearDown(self) -> None:
         pass
@@ -57,7 +58,7 @@ class MyTestCase(unittest.TestCase):
 
         # iterate over the group
         for dp in g:
-            self.assertIn(dp, self.dps)
+            self.assertIn(dp, self.dp_ids)
 
     def test_len(self):
         # add them to a decision point group
@@ -134,8 +135,12 @@ class MyTestCase(unittest.TestCase):
             decision_points=self.dps,
         )
 
+        # after init, g.decision_points should be a dict
+
         # get the decision points as a dictionary
-        dp_dict = g.decision_points_dict
+
+        dp_dict = g.decision_points
+        self.assertIsInstance(dp_dict, dict)
 
         # assert that the dictionary is the correct length
         self.assertEqual(len(self.dps), len(dp_dict))
@@ -144,21 +149,6 @@ class MyTestCase(unittest.TestCase):
         for dp in self.dps:
             self.assertIn(dp.str, dp_dict)
             self.assertEqual(dp, dp_dict[dp.str])
-
-    def test_decision_points_str(self):
-        g = dpg.DecisionPointGroup(
-            name="Test Group",
-            description="Test Group",
-            decision_points=self.dps,
-        )
-        dp_str = g.decision_points_str
-        self.assertEqual(len(self.dps), len(dp_str))
-
-        for i, dp in enumerate(self.dps):
-            self.assertIn(dp.str, dp_str)
-            # check that the string is the same as the decision point's string representation
-            # and they are in the same order
-            self.assertEqual(dp.str, dp_str[i])
 
 
 if __name__ == "__main__":

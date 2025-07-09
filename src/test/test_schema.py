@@ -28,7 +28,6 @@ from referencing import Registry, Resource
 
 import ssvc.decision_points  # noqa F401
 from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
-
 # importing these causes the decision points to register themselves
 from ssvc.decision_points.ssvc.critical_software import CRITICAL_SOFTWARE_1  # noqa
 from ssvc.decision_points.ssvc.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
@@ -39,7 +38,6 @@ from ssvc.dp_groups.cvss.collections import (
     CVSSv3,
     CVSSv4,
 )  # noqa
-
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 
@@ -80,7 +78,7 @@ class MyTestCase(unittest.TestCase):
         self.assertGreater(len(dps), 0)
 
         for dpg in self.dpgs:
-            for dp in dpg:
+            for dp in dpg.values():
                 self.assertIn(dp, REGISTERED_DECISION_POINTS)
 
         extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1, IN_KEV_1]
