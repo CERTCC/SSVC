@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Provides an SSVC selection object and functions to faciliate transition from an SSVC decision point to a selection.
+Provides an SSVC selection object and functions to facilitate transition from an SSVC decision point to a selection.
 """
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -114,7 +114,13 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
     return MinimalSelection(**data)
 
 
-def main():
+def main() -> None:
+    """
+    Prints example selections and their schema in JSON format.
+
+    Returns:
+        None
+    """
     from ssvc.decision_points.ssvc.automatable import LATEST as dp1
     from ssvc.decision_points.ssvc.safety_impact import LATEST as dp2
     import json
@@ -131,19 +137,22 @@ def main():
 
     # add schema extras
     schema.pop("title")
-    schema["$schema"] = ("https://json-schema.org/draft/2020-12/schema",)
+    schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
     schema["$id"] = (
-        "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json",
+        "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json"
     )
     schema["description"] = (
-        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
+        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available."
     )
 
     print(json.dumps(schema, indent=2))
 
-    with open(
-        "../../data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json", "w"
-    ) as f:
+    schema_path = (
+        "../../data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
+    )
+
+    with open(schema_path, "w") as f:
+        print(f"Writing schema to {schema_path}")
         json.dump(schema, f, indent=2)
 
 
