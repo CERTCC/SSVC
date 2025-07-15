@@ -54,7 +54,7 @@ class MinimalSelection(BaseModel):
     )
     version: VersionField
 
-    selection: list[str] = Field(
+    values: list[str] = Field(
         ...,
         description="A list of selected values keys from the decision point values.",
         min_length=1,
@@ -63,9 +63,12 @@ class MinimalSelection(BaseModel):
 
 class MinimalSelectionList(BaseModel):
     """
-    A list of minimal selection objects.
-    This is used to hold multiple selections made from different decision points.
+    A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
+
+    schemaVersion: str = Field(
+        "2.0.0", description="The schema version of this selection list."
+    )
 
     vulnerability_id: Optional[str] = Field(
         default=None,
@@ -105,7 +108,7 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
         "namespace": decision_point.namespace,
         "key": decision_point.key,
         "version": decision_point.version,
-        "selection": [val.key for val in decision_point.values],
+        "values": [val.key for val in decision_point.values],
     }
 
     return MinimalSelection(**data)
@@ -124,8 +127,24 @@ def main():
     print(selections.model_dump_json(indent=2, exclude_none=True))
 
     print("# Schema for MinimalSelectionList")
-    schema = MinimalSelection.model_json_schema()
+    schema = MinimalSelectionList.model_json_schema()
+
+    # add schema extras
+    schema.pop("title")
+    schema["$schema"] = ("https://json-schema.org/draft/2020-12/schema",)
+    schema["$id"] = (
+        "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json",
+    )
+    schema["description"] = (
+        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
+    )
+
     print(json.dumps(schema, indent=2))
+
+    with open(
+        "../../data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json", "w"
+    ) as f:
+        json.dump(schema, f, indent=2)
 
 
 if __name__ == "__main__":
