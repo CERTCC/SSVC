@@ -36,10 +36,6 @@ class MinimalSelection(BaseModel):
     This is used to transition from an SSVC decision point to a selection.
     """
 
-    decision_point_id: str = Field(
-        ...,
-        description="The ID (namespace:key:version) of the decision point from which the selection was made.",
-    )
     namespace: str = Field(
         ...,
         description="The namespace of the decision point.",
@@ -103,7 +99,6 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
         MinimalSelection: The resulting minimal selection object.
     """
     data = {
-        "decision_point_id": decision_point.id,
         "namespace": decision_point.namespace,
         "key": decision_point.key,
         "version": decision_point.version,
