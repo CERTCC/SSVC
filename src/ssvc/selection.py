@@ -43,13 +43,13 @@ class MinimalSelection(BaseModel):
     namespace: str = Field(
         ...,
         description="The namespace of the decision point.",
-        examples="ssvc, cisa, x_private, etc.",
+        examples=["ssvc", "cisa", "certcc"],
         min_length=3,
     )
     key: str = Field(
         ...,
         description="The decision point key.",
-        examples="E, A, MI, PSI, etc.",
+        examples=["E", "A", "MI", "PSI"],
         min_length=1,
     )
     version: VersionField
@@ -73,7 +73,7 @@ class MinimalSelectionList(BaseModel):
     vulnerability_id: Optional[str] = Field(
         default=None,
         description="Optional vulnerability ID associated with the selections.",
-        examples="CVE-2025-0000, VU#999999, GHSA-0123-4567-89ab, etc.",
+        examples=["CVE-2025-0000", "VU#999999", "GHSA-0123-4567-89ab"],
     )
     selections: list[MinimalSelection] = Field(
         default_factory=list,

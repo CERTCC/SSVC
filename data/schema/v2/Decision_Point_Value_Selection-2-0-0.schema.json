@@ -10,20 +10,28 @@
         },
         "namespace": {
           "description": "The namespace of the decision point.",
-          "examples": "ssvc, cisa, x_private, etc.",
+          "examples": [
+            "ssvc",
+            "cisa",
+            "certcc"
+          ],
           "minLength": 3,
           "title": "Namespace",
           "type": "string"
         },
         "key": {
           "description": "The decision point key.",
-          "examples": "E, A, MI, PSI, etc.",
+          "examples": [
+            "E",
+            "A",
+            "MI",
+            "PSI"
+          ],
           "minLength": 1,
           "title": "Key",
           "type": "string"
         },
         "version": {
-          "default": "0.0.0",
           "description": "The version of the SSVC object. This should be a valid semantic version string.",
           "examples": [
             "1.0.0",
@@ -75,7 +83,11 @@
       ],
       "default": null,
       "description": "Optional vulnerability ID associated with the selections.",
-      "examples": "CVE-2025-0000, VU#999999, GHSA-0123-4567-89ab, etc.",
+      "examples": [
+        "CVE-2025-0000",
+        "VU#999999",
+        "GHSA-0123-4567-89ab"
+      ],
       "title": "Vulnerability Id"
     },
     "selections": {
