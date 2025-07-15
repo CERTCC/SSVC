@@ -1877,7 +1877,7 @@ function createPDF(vulnerability,cveinfo) {
     for(var i = 0; i < t.length; i++) {
 	if(ynow > 280) {
 	    doc.addPage("a4");
-	    ynow = 20
+	    ynow = 20;
         }
 	if(steps[i] in ischild) {
 	    continue;
@@ -1915,7 +1915,7 @@ function createPDF(vulnerability,cveinfo) {
 	doc.text("=> "+f[0],xOffset+q*5,ynow);
 	if(t[i].length<= f[0].length) {
 	    ynow = ynow + 10;
-            continue
+            continue;
 	}	
 	//console.log(t[i].substr(f[0].length));
 	f = t[i].substr(f[0].length).match(/.{1,65}(\s|$)/g);
@@ -1924,8 +1924,8 @@ function createPDF(vulnerability,cveinfo) {
 	    ynow = ynow + 5;
             if(ynow > 280) {
 		doc.addPage("a4");
-		ynow = 20
-            }	
+		ynow = 20;
+            }
 	    doc.text(f[j],xOffset,ynow);
 	}
 	ynow = ynow +10;
@@ -1937,10 +1937,12 @@ function createPDF(vulnerability,cveinfo) {
     var safetime = ts.toGMTString().replace(/[^a-z0-9]+/ig,'-');
     var fulltree = includetree ? "-with-full-tree" : ""
     var dfilename = "SSVC-"+role+"-"+vulid+"-"+safetime+fulltree+".pdf";
-    if(includetree)
-	appendtree(doc,dfilename)
-    else 
+    if(includetree) {
+	doc.text("*** Decision Tree included in next page ***", xOffset, ynow+10);
+	appendtree(doc,dfilename);
+    } else  {
 	doc.save(dfilename);
+    }
     $('.Exporter').css({'pointer-events':'all'});
 }
 function sigmoid(flen) {
