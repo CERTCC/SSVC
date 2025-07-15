@@ -22,7 +22,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  DM24-0278
 
 from datetime import datetime
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -51,8 +51,12 @@ class MinimalSelection(BaseModel):
     version: VersionField
     values: list[str] = Field(
         ...,
-        description="A list of selected values keys from the decision point values.",
+        description="A list of selected value keys from the decision point values.",
         min_length=1,
+        examples=[
+            ["N", "Y"],
+            ["A", "B", "C"],
+        ],  # Example values
     )
 
 
@@ -61,21 +65,26 @@ class MinimalSelectionList(BaseModel):
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
 
-    schemaVersion: str = Field(
-        "2.0.0", description="The schema version of this selection list."
+    schemaVersion: Literal["2.0.0"] = Field(
+        default="2.0.0",
+        description="The schema version of this selection list.",
     )
 
     vulnerability_id: Optional[str] = Field(
         default=None,
         description="Optional vulnerability ID associated with the selections.",
         examples=["CVE-2025-0000", "VU#999999", "GHSA-0123-4567-89ab"],
+        min_length=1,
     )
     selections: list[MinimalSelection] = Field(
-        default_factory=list,
+        ...,
         description="List of minimal selections made from decision points.",
+        min_length=1,
     )
     timestamp: Optional[datetime] = Field(
-        default=None, description="Timestamp of when the selections were made."
+        ...,
+        description="Timestamp of when the selections were made, in ISO 8601 format.",
+        examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45Z"],
     )
 
     def add_selection(self, selection: MinimalSelection) -> None:
@@ -119,9 +128,11 @@ def main() -> None:
     from ssvc.decision_points.ssvc.safety_impact import LATEST as dp2
     import json
 
-    selections = MinimalSelectionList()
-    selections.add_selection(selection_from_decision_point(dp1))
-    selections.add_selection(selection_from_decision_point(dp2))
+    a1 = selection_from_decision_point(dp1)
+    a2 = selection_from_decision_point(dp2)
+    selections = MinimalSelectionList(
+        schemaVersion="2.0.0", selections=[a1, a2], timestamp=datetime.now()
+    )
     selections.timestamp = datetime.now()
 
     print(selections.model_dump_json(indent=2, exclude_none=True))
@@ -133,11 +144,14 @@ def main() -> None:
     schema.pop("title")
     schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
     schema["$id"] = (
-        "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json"
+        "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
     )
     schema["description"] = (
         "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available."
     )
+    # force the schema version to be included in the required fields
+    # even though we set a default value
+    schema["required"].insert(0, "schemaVersion")
 
     print(json.dumps(schema, indent=2))
 

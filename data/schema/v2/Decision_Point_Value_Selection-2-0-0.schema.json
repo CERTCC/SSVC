@@ -38,7 +38,18 @@
           "type": "string"
         },
         "values": {
-          "description": "A list of selected values keys from the decision point values.",
+          "description": "A list of selected value keys from the decision point values.",
+          "examples": [
+            [
+              "N",
+              "Y"
+            ],
+            [
+              "A",
+              "B",
+              "C"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -60,6 +71,7 @@
   "description": "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
   "properties": {
     "schemaVersion": {
+      "const": "2.0.0",
       "default": "2.0.0",
       "description": "The schema version of this selection list.",
       "title": "Schemaversion",
@@ -68,6 +80,7 @@
     "vulnerability_id": {
       "anyOf": [
         {
+          "minLength": 1,
           "type": "string"
         },
         {
@@ -88,6 +101,7 @@
       "items": {
         "$ref": "#/$defs/MinimalSelection"
       },
+      "minItems": 1,
       "title": "Selections",
       "type": "array"
     },
@@ -101,12 +115,20 @@
           "type": "null"
         }
       ],
-      "default": null,
-      "description": "Timestamp of when the selections were made.",
+      "description": "Timestamp of when the selections were made, in ISO 8601 format.",
+      "examples": [
+        "2025-01-01T12:00:00Z",
+        "2025-01-02T15:30:45Z"
+      ],
       "title": "Timestamp"
     }
   },
+  "required": [
+    "schemaVersion",
+    "selections",
+    "timestamp"
+  ],
   "type": "object",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://certcc.github.io/SSVC/data/schema/v1/Decision_Point_Value_Selection-1-0-1.schema.json"
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
 }
