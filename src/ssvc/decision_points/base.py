@@ -188,6 +188,10 @@ class DecisionPoint(
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
 
     @property
+    def id(self):
+        return ":".join([self.namespace, self.key, self.version])
+
+    @property
     def str(self) -> str:
         """
         Return the DecisionPoint represented as a short string.
