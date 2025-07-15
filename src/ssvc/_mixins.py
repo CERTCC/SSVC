@@ -32,7 +32,6 @@ from ssvc.namespaces import NS_PATTERN, NameSpace
 VersionField = Annotated[
     str,
     Field(
-        default="0.0.0",
         description="The version of the SSVC object. This should be a valid semantic version string.",
         examples=["1.0.0", "2.1.3"],
         pattern=r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
@@ -46,7 +45,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: VersionField
+    version: VersionField = Field(default="0.0.0")
 
     @field_validator("version")
     @classmethod

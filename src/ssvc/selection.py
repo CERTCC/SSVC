@@ -53,7 +53,6 @@ class MinimalSelection(BaseModel):
         min_length=1,
     )
     version: VersionField
-
     values: list[str] = Field(
         ...,
         description="A list of selected values keys from the decision point values.",
