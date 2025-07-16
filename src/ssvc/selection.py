@@ -28,6 +28,7 @@ from pydantic import BaseModel, Field
 
 from ssvc._mixins import VersionField
 from ssvc.decision_points.base import DecisionPoint
+from ssvc.namespaces import NamespaceString
 
 SCHEMA_VERSION = "2.0.0"
 
@@ -38,11 +39,9 @@ class MinimalSelection(BaseModel):
     This is used to transition from an SSVC decision point to a selection.
     """
 
-    namespace: str = Field(
+    namespace: NamespaceString = Field(
         ...,
         description="The namespace of the decision point.",
-        examples=["ssvc", "cisa", "certcc"],
-        min_length=3,
     )
     key: str = Field(
         ...,
