@@ -23,7 +23,7 @@ from random import randint
 from pydantic import BaseModel, ValidationError
 
 from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
-from ssvc.namespaces import NameSpace
+from ssvc.namespaces import MAX_NS_LENGTH, NameSpace
 
 
 class TestMixins(unittest.TestCase):
@@ -92,12 +92,12 @@ class TestMixins(unittest.TestCase):
             _Namespaced(namespace="x_")
 
         # error if namespace starts with x_ but is too long
-        for i in range(150):
+        for i in range(MAX_NS_LENGTH + 50):
             shortest = "x_aaa"
             ns = shortest + "a" * i
             with self.subTest(ns=ns):
                 # length limit set in the NS_PATTERN regex
-                if len(ns) <= 100:
+                if len(ns) <= MAX_NS_LENGTH:
                     # expect success on shorter than limit
                     _Namespaced(namespace=ns)
                 else:

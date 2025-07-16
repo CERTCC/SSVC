@@ -27,14 +27,17 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from semver import Version
 
 from ssvc import _schemaVersion
-from ssvc.namespaces import NS_PATTERN, NameSpace
+from ssvc.namespaces import NameSpace, NamespaceString
+
+VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
+
 
 VersionField = Annotated[
     str,
     Field(
         description="The version of the SSVC object. This should be a valid semantic version string.",
         examples=["1.0.0", "2.1.3"],
-        pattern=r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
+        pattern=VERSION_PATTERN,
         min_length=5,
     ),
 ]
@@ -80,7 +83,7 @@ class _Namespaced(BaseModel):
 
     # the field definition enforces the pattern for namespaces
     # additional validation is performed in the field_validator immediately after the pattern check
-    namespace: str = Field(pattern=NS_PATTERN, min_length=3, max_length=100)
+    namespace: NamespaceString
 
     @field_validator("namespace", mode="before")
     @classmethod
