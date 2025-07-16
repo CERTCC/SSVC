@@ -9,7 +9,7 @@ mkdocstrings-python==1.16.12
 mkdocs-print-site-plugin==2.7.3
 markdown-exec==1.11.0
 thefuzz==0.22.1
-pandas==2.3.0
+pandas==2.3.1
 scikit-learn==1.6.1
 jsonschema==4.24.0
 networkx==3.4.2
