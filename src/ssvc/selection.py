@@ -157,9 +157,15 @@ def main() -> None:
 
     print(json.dumps(schema, indent=2))
 
+    # find local path to this file
+    import os
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # construct the path to the schema file
     schema_path = (
         "../../data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
     )
+    schema_path = os.path.abspath(os.path.join(current_dir, schema_path))
 
     with open(schema_path, "w") as f:
         print(f"Writing schema to {schema_path}")
