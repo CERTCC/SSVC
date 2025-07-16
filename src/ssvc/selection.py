@@ -29,6 +29,8 @@ from pydantic import BaseModel, Field
 from ssvc._mixins import VersionField
 from ssvc.decision_points.base import DecisionPoint
 
+SCHEMA_VERSION = "2.0.0"
+
 
 class MinimalSelection(BaseModel):
     """
@@ -65,8 +67,8 @@ class MinimalSelectionList(BaseModel):
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
 
-    schemaVersion: Literal["2.0.0"] = Field(
-        default="2.0.0",
+    schemaVersion: Literal[SCHEMA_VERSION] = Field(
+        default=SCHEMA_VERSION,
         description="The schema version of this selection list.",
     )
 
