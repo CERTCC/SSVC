@@ -86,7 +86,7 @@ class MinimalSelectionList(BaseModel):
     timestamp: Optional[datetime] = Field(
         ...,
         description="Timestamp of when the selections were made, in ISO 8601 format.",
-        examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45Z"],
+        examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
 
     def add_selection(self, selection: MinimalSelection) -> None:
@@ -133,9 +133,8 @@ def main() -> None:
     a1 = selection_from_decision_point(dp1)
     a2 = selection_from_decision_point(dp2)
     selections = MinimalSelectionList(
-        schemaVersion="2.0.0", selections=[a1, a2], timestamp=datetime.now()
+        schemaVersion=SCHEMA_VERSION, selections=[a1, a2], timestamp=datetime.now()
     )
-    selections.timestamp = datetime.now()
 
     print(selections.model_dump_json(indent=2, exclude_none=True))
 

@@ -118,7 +118,7 @@
       "description": "Timestamp of when the selections were made, in ISO 8601 format.",
       "examples": [
         "2025-01-01T12:00:00Z",
-        "2025-01-02T15:30:45Z"
+        "2025-01-02T15:30:45-04:00"
       ],
       "title": "Timestamp"
     }
