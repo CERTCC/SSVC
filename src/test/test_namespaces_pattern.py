@@ -47,6 +47,7 @@ class TestNamespacePattern(unittest.TestCase):
             "x_custom//extension",  # double slash is okay when it's the first segment
             "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes
             "x_test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
+            "foo.bar//baz.quux",  # valid namespace with x_ prefix and mixed segments
         ]
         self.expect_fail = [
             "999",  # invalid namespace, numeric only

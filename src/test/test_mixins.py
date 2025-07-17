@@ -114,7 +114,7 @@ class TestMixins(unittest.TestCase):
         # custom namespaces are allowed as long as they start with x_
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_{randint(1000,1000000)}"
+            ns = f"x_a{randint(1000,1000000)}"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
