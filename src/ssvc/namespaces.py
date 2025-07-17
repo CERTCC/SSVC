@@ -36,21 +36,40 @@ MIN_NS_LENGTH = 3
 MAX_NS_LENGTH = 1000
 NS_LENGTH_INTERVAL = MAX_NS_LENGTH - MIN_NS_LENGTH
 
+
+# from https://docs.oasis-open.org/csaf/csaf/v2.0/os/csaf-v2.0-os.html
+BCP_47_PATTERN = r"(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,8})(-[A-Za-z]{4})?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-[A-WY-Za-wy-z0-9](-[A-Za-z0-9]{2,8})+)*(-[Xx](-[A-Za-z0-9]{1,8})+)?|[Xx](-[A-Za-z0-9]{1,8})+|[Ii]-[Dd][Ee][Ff][Aa][Uu][Ll][Tt]|[Ii]-[Mm][Ii][Nn][Gg][Oo])"
+
 LENGTH_CHECK_PATTERN = rf"(?=.{{{MIN_NS_LENGTH},{MAX_NS_LENGTH}}}$)"
 """Ensures the string is between MIN_NS_LENGTH and MAX_NS_LENGTH characters long."""
 
-PREFIX_CHECK_PATTERN = rf"(x_)?[a-z0-9]{{{MIN_NS_LENGTH}}}"
-"""Ensures the string starts with an optional prefix followed by at least 3 alphanumeric characters."""
+# Base namespace part (before any extensions) allows . and - with restrictions
+BASE_PATTERN = (
+    r"(?!.*[.-]{2,})"  # no consecutive separators
+    r"[a-z][a-z0-9]{2,}"  # first part starts with a letter, followed by one or more alphanumeric characters
+    r"(?:[.-][a-z0-9]+)*"  # remaining parts can have alphanumeric characters and single . or - separators
+)
 
-REMAINDER_CHECK_PATTERN = rf"([/.-]?[a-z0-9]+){{0,{NS_LENGTH_INTERVAL}}}$"
-"""Ensures that the string contains only lowercase alphanumeric characters and limited punctuation characters (`/`, `.`, `-`),"""
+X_PFX = "x_"
+EXPERIMENTAL_BASE = rf"{X_PFX}{BASE_PATTERN}"
+BASE_NS_PATTERN = rf"({EXPERIMENTAL_BASE}|{BASE_PATTERN})"
 
+# Extension segment pattern (alphanumeric + limited punctuation, no consecutive punctuation, ends with alphanumeric)
+EXT_SEGMENT_PATTERN = (
+    r"(?!.*[.-]{2,})"  # no consecutive separators
+    r"[a-zA-Z0-9]+"  # first part starts with a letter, followed by one or more alphanumeric characters
+    r"(?:[.-][a-zA-Z0-9]+)*"  # remaining parts can have alphanumeric characters and single ., -, / separators
+)
 
-# pattern to match
-# NOTE: be careful with this regex. We're using f-strings to insert the min and max lengths, so we need to ensure that
-# literal { and } characters are escaped properly (doubled up) so they appear in as single braces in the final regex.
+# Language extension pattern (BCP-47 or empty for //)
+LANG_EXT_PATTERN = rf"(/({BCP_47_PATTERN})|/)"
+
+# Subsequent extension segments
+SUBSEQUENT_EXT_PATTERN = rf"(/{EXT_SEGMENT_PATTERN})*"
+
+# Complete pattern with length validation
 NS_PATTERN = re.compile(
-    rf"^{LENGTH_CHECK_PATTERN}{PREFIX_CHECK_PATTERN}{REMAINDER_CHECK_PATTERN}$"
+    rf"^{LENGTH_CHECK_PATTERN}{BASE_NS_PATTERN}({LANG_EXT_PATTERN}{SUBSEQUENT_EXT_PATTERN})?$"
 )
 f"""The regular expression pattern for validating namespaces.
 
@@ -59,10 +78,20 @@ f"""The regular expression pattern for validating namespaces.
     Namespace values must 
     
     - be {MIN_NS_LENGTH}-{MAX_NS_LENGTH} characters long
-    - contain only lowercase alphanumeric characters and limited punctuation characters (`/`,`.` and `-`)
-    - have only one punctuation character in a row
-    - start with 3 alphanumeric characters after the optional extension prefix
-    - end with an alphanumeric character
+    - optionally start with the experimental/private prefix `{X_PFX}`
+    - after the optional experimental/private prefix, they must:
+        - start with a letter
+        - contain at least 3 alphanumeric characters (longer is permitted)
+        - contain only lowercase alphanumeric characters and limited punctuation characters (`.`, `-`)
+    - extensions are supported and optional, and are delineated by slashes (`/`)
+    - more than one extension segment is allowed, however:
+        - the first extension segment, if present, is reserved for a BCP-47 language tag, otherwise it must be empty
+        - if no BCP-47 tag is present, the first extension segment must be empty (i.e., `//`)
+        - double slashes (`//`) are *only* permitted in the *first segment* to indicate no BCP-47 tag
+    - beyond the first extension segment, subsequent segments must:
+        - contain only alphanumeric characters and limited punctuation characters (`.`, `-`)
+        - have only one punctuation character in a row (no double dashes or dots)
+        - end with an alphanumeric character
     
 """
 
