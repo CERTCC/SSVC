@@ -159,7 +159,7 @@ namespaces.
 ## Namespace Extensions
 
 We allow users to extend the SSVC namespaces to clarify existing decision
-points or to add new decision points that are compatible with the SSVC framework.
+points.
 The intent of an extension is to allow clarification of the application of 
 decision points and their values to specific constituencies.
 
@@ -170,6 +170,12 @@ decision points and their values to specific constituencies.
 - Extensions may reduce the set of values for a decision point in the parent
   namespace, but must not add new values.
 
+!!! warning "Extensions are not for new decision points"
+
+    Extensions are not intended to be used to create new decision points.
+    If you want to create a new decision point, please use a 
+    private/experimental namespace as described above
+    instead of an extension.
 
 !!! info "Namespace Extension Syntax and Structure"
 
