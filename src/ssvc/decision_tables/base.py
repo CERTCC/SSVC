@@ -565,7 +565,9 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
     logger.debug("Checking topological order of the decision table.")
     df = decision_table_to_shortform_df(dt)
     target = _get_target_column_name(df.columns[-1])
-    return check_topological_order(df, target=target)
+    target_values = dt.decision_points[dt.outcome].values
+    target_value_order = [v.key for v in target_values]
+    return check_topological_order(df, target=target, target_value_order=target_value_order)
 
 
 def main() -> None:

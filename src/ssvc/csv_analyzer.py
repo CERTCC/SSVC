@@ -326,12 +326,17 @@ def permute_feature_importance(df: pd.DataFrame, target: str) -> pd.DataFrame:
     return imp
 
 
-def check_topological_order(df: pd.DataFrame, target: str) -> list[dict]:
+def check_topological_order(df: pd.DataFrame, target: str, target_value_order: list[str]=None) -> list[dict]:
     # split df into features and target
     X, y = _prepare_data(df, target)
 
-    # convert outcome to numeric codes
-    codes = list(enumerate(y.unique()))
+    if target_value_order is None:
+        # convert outcome to numeric codes
+        codes = list(enumerate(y.unique()))
+    else:
+        # use the provided order for the target values
+        codes = list(enumerate(target_value_order))
+        
     mapper = {v: k for (k, v) in codes}
     y = y.replace(mapper)
 
