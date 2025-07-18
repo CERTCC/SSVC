@@ -1,0 +1,165 @@
+#!/usr/bin/env python
+"""
+Models the Human Impact decision table for SSVC.
+"""
+#  Copyright (c) 2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
+
+from ssvc.decision_points.ssvc.human_impact import LATEST as HumanImpact
+from ssvc.decision_points.ssvc.mission_impact import LATEST as MissionImpact
+from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_1 as SituatedSafetyImpact
+from ssvc.decision_tables.base import DecisionTable, dpdict_to_combination_list
+from ssvc.decision_tables.helpers import write_csv
+
+dp_dict = {dp.id: dp for dp in [SituatedSafetyImpact, MissionImpact, HumanImpact]}
+
+for combo in dpdict_to_combination_list(dp_dict,exclude=HumanImpact.id):
+    print(combo)
+
+HUMAN_IMPACT_1 = DecisionTable(
+        name = "Human Impact",
+        namespace = "ssvc",
+        description = "Human Impact decision table for SSVC",
+        version = "1.0.0",
+        decision_points = {dp.id: dp for dp in [SituatedSafetyImpact,MissionImpact,HumanImpact]},
+        outcome = HumanImpact.id,
+        mapping = [
+    {
+      "ssvc:SI:1.0.0": "N",
+      "ssvc:MI:2.0.0": "D",
+      "ssvc:HI:2.0.1": "L"
+    },
+    {
+      "ssvc:SI:1.0.0": "N",
+      "ssvc:MI:2.0.0": "MSC",
+      "ssvc:HI:2.0.1": "L"
+    },
+    {
+      "ssvc:SI:1.0.0": "N",
+      "ssvc:MI:2.0.0": "MEF",
+      "ssvc:HI:2.0.1": "M"
+    },
+    {
+      "ssvc:SI:1.0.0": "N",
+      "ssvc:MI:2.0.0": "MF",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "M",
+      "ssvc:MI:2.0.0": "D",
+      "ssvc:HI:2.0.1": "L"
+    },
+    {
+      "ssvc:SI:1.0.0": "M",
+      "ssvc:MI:2.0.0": "MSC",
+      "ssvc:HI:2.0.1": "L"
+    },
+    {
+      "ssvc:SI:1.0.0": "M",
+      "ssvc:MI:2.0.0": "MEF",
+      "ssvc:HI:2.0.1": "M"
+    },
+    {
+      "ssvc:SI:1.0.0": "M",
+      "ssvc:MI:2.0.0": "MF",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "J",
+      "ssvc:MI:2.0.0": "D",
+      "ssvc:HI:2.0.1": "M"
+    },
+    {
+      "ssvc:SI:1.0.0": "J",
+      "ssvc:MI:2.0.0": "MSC",
+      "ssvc:HI:2.0.1": "M"
+    },
+    {
+      "ssvc:SI:1.0.0": "J",
+      "ssvc:MI:2.0.0": "MEF",
+      "ssvc:HI:2.0.1": "H"
+    },
+    {
+      "ssvc:SI:1.0.0": "J",
+      "ssvc:MI:2.0.0": "MF",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "H",
+      "ssvc:MI:2.0.0": "D",
+      "ssvc:HI:2.0.1": "H"
+    },
+    {
+      "ssvc:SI:1.0.0": "H",
+      "ssvc:MI:2.0.0": "MSC",
+      "ssvc:HI:2.0.1": "H"
+    },
+    {
+      "ssvc:SI:1.0.0": "H",
+      "ssvc:MI:2.0.0": "MEF",
+      "ssvc:HI:2.0.1": "H"
+    },
+    {
+      "ssvc:SI:1.0.0": "H",
+      "ssvc:MI:2.0.0": "MF",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "C",
+      "ssvc:MI:2.0.0": "D",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "C",
+      "ssvc:MI:2.0.0": "MSC",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "C",
+      "ssvc:MI:2.0.0": "MEF",
+      "ssvc:HI:2.0.1": "VH"
+    },
+    {
+      "ssvc:SI:1.0.0": "C",
+      "ssvc:MI:2.0.0": "MF",
+      "ssvc:HI:2.0.1": "VH"
+    }
+  ]
+)
+
+VERSIONS = [HUMAN_IMPACT_1,]
+LATEST = HUMAN_IMPACT_1
+
+def main():
+
+    print("## Human Impact Decision Table Object")
+    print()
+    print(HUMAN_IMPACT_1.model_dump_json(indent=2))
+
+    print("## Human Impact Decision Table Longform DataFrame CSV")
+    print()
+    from ssvc.decision_tables.base import decision_table_to_longform_df
+    print(decision_table_to_longform_df(HUMAN_IMPACT_1).to_csv(index=False))
+
+    csvfile = "human-impact.csv"
+    write_csv(HUMAN_IMPACT_1,csvfile)
+
+
+if __name__ == '__main__':
+    main()

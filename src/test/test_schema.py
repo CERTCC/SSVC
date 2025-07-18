@@ -80,7 +80,7 @@ class MyTestCase(unittest.TestCase):
         self.assertGreater(len(dps), 0)
 
         for dpg in self.dpgs:
-            for dp in dpg:
+            for dp in dpg.values():
                 self.assertIn(dp, REGISTERED_DECISION_POINTS)
 
         extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1, IN_KEV_1]

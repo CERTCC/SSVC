@@ -246,7 +246,7 @@ class MyTestCase(unittest.TestCase):
 
             stdout = f.getvalue()
 
-            for dpg in pg.dpg.decision_points:
+            for dpg in pg.dpg.decision_points.values():
                 self.assertIn(dpg.name, stdout)
             for og in pg.outcomes.values:
                 self.assertIn(og.name, stdout)
