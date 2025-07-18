@@ -163,7 +163,7 @@
       "type": "string"
     },
     "schemaVersion": {
-      "const": "2.0.0",
+      "const": "2-0-0",
       "title": "Schemaversion",
       "type": "string"
     },
