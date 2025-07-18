@@ -115,7 +115,14 @@ use only.
 
 The SSVC project does not manage namespaces with the `x_` prefix, so
 collisions may occur across organizations who develop their own private SSVC
-namespaces.
+namespaces. 
+
+!!! warning "Reverse domain name notation recommended"
+
+    We strongly recommend using reverse domain name notation for private namespaces to
+    avoid conflicts with other users' private namespaces. This helps to ensure
+    that your private namespaces are unique and easily identifiable.
+    E.g., `x_org.cert-experimental` for an experimental namespace within the CERT organization.
 
 !!! example "OT Monitoring Service (OTMS) Private Namespace"
 
@@ -137,9 +144,15 @@ namespaces.
 
 !!! tip "Private vs Extension Namespaces"
 
-    Private namespaces are intended for internal use only and are not registered
-    with the SSVC project. They are not intended to be shared or used outside of
-    the organization that created them. In contrast, extension namespaces are
+    Private namespaces are intended for use within a closed scope 
+    and are not registered with the SSVC project.
+    In other words, they are not intended to be used outside of a
+    specific constuency.
+    For example, an organization might create a private namespace for
+    decision points that are specific to their internal processes or policies.
+    Or an information sharing and analysis organization (ISAO) might create a
+    private namespace for decision points that are specific to their sector.
+    In contrast, extension namespaces are
     intended to extend the existing SSVC namespaces and may be shared with other
     users of the SSVC framework.
 
@@ -233,6 +246,8 @@ segment of the extension.
     To avoid conflicts with other users' extensions, we recommend using reverse
     domain name notation for your extensions. This helps to ensure that your
     extensions are unique and easily identifiable.
+    For example, if your organization is `example.com`, you might use an extension
+    like `ssvc//com.example/extension`.
 
 !!! example "Reverse Domain Name Notation"
 
