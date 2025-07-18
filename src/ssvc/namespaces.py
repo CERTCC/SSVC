@@ -25,41 +25,67 @@ for SSVC and provides a method to validate namespace values.
 
 import re
 from enum import StrEnum, auto
+from typing import Annotated
+
+from pydantic import Field
 
 X_PFX = "x_"
 """The prefix for extension namespaces. Extension namespaces must start with this prefix."""
 
-# pattern to match
-# `(?=.{3,100}$)`: 3-25 characters long
-# `^(x_)`: `x_` prefix is optional
-# `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
-# `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
-# `[a-z0-9]+`: at least one alphanumeric character is required after the punctuation character
-# `([/.-]?[a-z0-9]+){0,22}`: zero to 22 occurrences of the punctuation character followed by at least one alphanumeric character
-# (note that the total limit will kick in at or before this point)
-# `$`: end of the string
-NS_PATTERN = re.compile(r"^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$")
-"""The regular expression pattern for validating namespaces.
+MIN_NS_LENGTH = 3
+MAX_NS_LENGTH = 1000
+NS_LENGTH_INTERVAL = MAX_NS_LENGTH - MIN_NS_LENGTH
 
-Note: 
+LENGTH_CHECK_PATTERN = rf"(?=.{{{MIN_NS_LENGTH},{MAX_NS_LENGTH}}}$)"
+"""Ensures the string is between MIN_NS_LENGTH and MAX_NS_LENGTH characters long."""
+
+PREFIX_CHECK_PATTERN = rf"(x_)?[a-z0-9]{{{MIN_NS_LENGTH}}}"
+"""Ensures the string starts with an optional prefix followed by at least 3 alphanumeric characters."""
+
+REMAINDER_CHECK_PATTERN = rf"([/.-]?[a-z0-9]+){{0,{NS_LENGTH_INTERVAL}}}$"
+"""Ensures that the string contains only lowercase alphanumeric characters and limited punctuation characters (`/`, `.`, `-`),"""
+
+
+# pattern to match
+# NOTE: be careful with this regex. We're using f-strings to insert the min and max lengths, so we need to ensure that
+# literal { and } characters are escaped properly (doubled up) so they appear in as single braces in the final regex.
+NS_PATTERN = re.compile(
+    rf"^{LENGTH_CHECK_PATTERN}{PREFIX_CHECK_PATTERN}{REMAINDER_CHECK_PATTERN}$"
+)
+f"""The regular expression pattern for validating namespaces.
+
+!!! note "Namespace Validation Rules"
+
     Namespace values must 
     
-    - be 3-25 characters long
+    - be {MIN_NS_LENGTH}-{MAX_NS_LENGTH} characters long
     - contain only lowercase alphanumeric characters and limited punctuation characters (`/`,`.` and `-`)
     - have only one punctuation character in a row
-    - start with 3-4 alphanumeric characters after the optional extension prefix
+    - start with 3 alphanumeric characters after the optional extension prefix
     - end with an alphanumeric character
     
-    See examples in the `NameSpace` enum.
 """
+
+NamespaceString = Annotated[
+    str,
+    Field(
+        description="The namespace of the SSVC object.",
+        examples=["ssvc", "cisa", "x_private-test", "ssvc/de-DE/reference-arch-1"],
+        pattern=NS_PATTERN,
+        min_length=MIN_NS_LENGTH,
+        max_length=MAX_NS_LENGTH,
+    ),
+]
+"""A string datatype for namespace values, for use in Pydantic models."""
 
 
 class NameSpace(StrEnum):
-    """
+    f"""
     Defines the official namespaces for SSVC.
 
     The namespace value must be one of the members of this enum or start with the prefix specified in X_PFX.
-    Namespaces must be 3-25 lowercase characters long and must start with 3-4 alphanumeric characters after the optional prefix.
+    Namespaces must be {MIN_NS_LENGTH}-{MAX_NS_LENGTH} lowercase characters long and must start with 3-4 
+    alphanumeric characters after the optional prefix.
     Limited punctuation characters (/.-) are allowed between alphanumeric characters, but only one at a time.
 
     Example:

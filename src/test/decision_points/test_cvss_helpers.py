@@ -65,7 +65,7 @@ class TestCvssHelpers(unittest.TestCase):
             dp = CvssDecisionPoint(
                 name=f"test_{i}",
                 description=f"test_{i}",
-                version="1.0",
+                version="1.0.0",
                 key=f"TDP{i}",
                 values=(
                     DecisionPointValue(
