@@ -24,7 +24,7 @@ decision points for SSVC.
 !!! note "Namespace Requirements"
     
     A full namepace string must be between 3 and 1000 characters long. (We recommend 
-    keeping them short ease of use.)
+    keeping them short for ease of use.)
 
     Further requirements are noted in each section below.
 
