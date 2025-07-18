@@ -65,7 +65,7 @@ def dpdict_to_combination_list(
     return combos
 
 
-SCHEMA_VERSION = "2-0-0"
+SCHEMA_VERSION: str = "2-0-0"
 
 
 class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -567,7 +567,9 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
     target = _get_target_column_name(df.columns[-1])
     target_values = dt.decision_points[dt.outcome].values
     target_value_order = [v.key for v in target_values]
-    return check_topological_order(df, target=target, target_value_order=target_value_order)
+    return check_topological_order(
+        df, target=target, target_value_order=target_value_order
+    )
 
 
 def main() -> None:
