@@ -30,6 +30,7 @@ from ssvc.decision_tables.base import (
     decision_table_to_csv,
     decision_table_to_df,
     decision_table_to_longform_df,
+    dpdict_to_combination_list,
 )
 from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
@@ -90,7 +91,7 @@ class TestDecisionTableBase(unittest.TestCase):
             name="Test Table",
             namespace="x_test",
             description="Describes the test table",
-            decision_point_group=self.dpg,
+            decision_points=self.dpg,
             outcome=self.og.id,
         )
 
@@ -101,7 +102,7 @@ class TestDecisionTableBase(unittest.TestCase):
     def test_init(self):
         dt = self.dt
 
-        self.assertEqual(dt.decision_point_group, self.dpg)
+        self.assertEqual(dt.decision_points, self.dpg.decision_points)
         self.assertEqual(dt.outcome, self.og.id)
 
         # default should be to populate mapping if not provided
@@ -150,25 +151,25 @@ class TestDecisionTableBase(unittest.TestCase):
 
         json_str = dt.model_dump_json()
 
-        self.assertIn("decision_point_group", json_str)
+        self.assertIn("decision_points", json_str)
         self.assertIn("outcome", json_str)
         self.assertIn("mapping", json_str)
 
         # load it as a dict to check structure
         d = json.loads(json_str)
-        self.assertIn("decision_point_group", d)
+        self.assertIn("decision_points", d)
         self.assertIn("outcome", d)
         self.assertIn("mapping", d)
         # check that outcome is a string corresponding to a key in decsion point group
         self.assertIsInstance(d["outcome"], str)
-        self.assertIn(d["outcome"], d["decision_point_group"]["decision_points"])
+        self.assertIn(d["outcome"], d["decision_points"])
         # Check if mapping is a list of dicts
         self.assertIsInstance(d["mapping"], list)
         self.assertTrue(
             all(isinstance(row, dict) for row in d["mapping"]),
         )
         # and that the keys of each dict match the keys of decision points
-        expect_keys = set(d["decision_point_group"]["decision_points"].keys())
+        expect_keys = set(d["decision_points"].keys())
         for row in d["mapping"]:
             row_keys = set(row.keys())
             self.assertEqual(
@@ -210,7 +211,7 @@ class TestDecisionTableBase(unittest.TestCase):
 
         # Distribute outcomes evenly
         outcome_key = dt.outcome
-        og = dt.decision_point_group[outcome_key]
+        og = dt.decision_points[outcome_key]
         outcome_values = [v.key for v in og.values]
 
         # unset the mapping to test distribution
@@ -295,6 +296,42 @@ class TestDecisionTableBase(unittest.TestCase):
         self.assertTrue(df_short.equals(mock_df))
         mock_shortform.assert_called_once_with(dt)
         mock_longform.assert_not_called()
+
+    def test_combo_strings(self):
+        dps = dict(self.dpg.decision_points)
+        del [dps[self.og.id]]  # remove outcome group from decision points
+
+        # get all the combinations
+        combos = dpdict_to_combination_list(dps)
+
+        # assert that the number of combinations is the product of the number of values
+        # for each decision point
+        n_combos = 1
+        for dp in dps.values():
+            n_combos *= len(dp.values)
+        self.assertEqual(n_combos, len(combos))
+
+        counter = {}
+        for dp in dps.values():
+            for v in dp.values:
+                counter[v.key] = 0
+
+        # assert that each combination is a tuple
+        for combo in combos:
+            self.assertEqual(len(dps), len(combo))
+            self.assertIsInstance(combo, dict)
+            # assert that each value in the combination is a string
+            print(combo)
+            for value in combo.values():
+                print(value)
+                self.assertIn(value, counter)
+                counter[value] += 1
+
+        for k, count in counter.items():
+            # each count should be greater than or equal to 0
+            self.assertGreaterEqual(count, 0)
+            # # each count should be less than or equal to the length of the combination
+            self.assertLessEqual(count, len(combos))
 
 
 if __name__ == "__main__":

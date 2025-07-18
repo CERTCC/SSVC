@@ -22,15 +22,50 @@ DecisionTable: A flexible, serializable SSVC decision table model.
 #  DM24-0278
 
 import logging
+from itertools import product
+from typing import Literal
 
 import pandas as pd
 from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
 from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY, DecisionPoint
-from ssvc.dp_groups.base import DecisionPointGroup
+from ssvc.utils import obfuscate_dict
 
 logger = logging.getLogger(__name__)
+
+
+def dpdict_to_combination_list(
+    dpdict: dict[str, DecisionPoint],
+    exclude: list[str] = [],
+) -> list[dict[str, str]]:
+    """
+    Generate all combinations of decision point values as dictionaries.
+    Each combination is a dictionary with decision point IDs as keys and value keys as values.
+    """
+    dpg_vals = []
+    for dp in dpdict.values():
+        if dp.id in exclude:
+            # skip this decision point if it is in the exclude list
+            continue
+        vals = []
+        for value in dp.values:
+            row = {dp.id: value.key}
+            vals.append(row)
+        dpg_vals.append(vals)
+
+    # now we have a list of lists of dicts, we need to the combinations
+    combos = []
+    for prod in product(*dpg_vals):
+        # prod is a tuple of dicts, we need to merge them
+        merged = {}
+        for d in prod:
+            merged.update(d)
+        combos.append(merged)
+    return combos
+
+
+SCHEMA_VERSION = "2-0-0"
 
 
 class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
@@ -44,13 +79,37 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
     Attributes:
     """
 
-    decision_point_group: DecisionPointGroup
-    outcome: str
+    schemaVersion: Literal[SCHEMA_VERSION]
+
+    decision_points: dict[str, DecisionPoint] = Field(
+        ...,
+        description="A dictionary of decision points that define the decision table. Decision point IDs are recommended as keys.",
+        min_length=1,
+    )
+    outcome: str = Field(
+        ...,
+        description="The key of the decision point in `self.decision_points` that represents the outcome of the decision table.",
+        min_length=1,
+    )
+
     # default to empty mapping list
     mapping: list[dict[str, str]] = Field(
         default_factory=list,
         description="Mapping of decision point values to outcomes.",
     )
+
+    # validator to set schemaVersion
+    @model_validator(mode="before")
+    def set_schema_version(cls, data):
+        """
+        Set the schema version to 2.0.0 if it is not already set.
+        This ensures that the model is always compatible with the latest schema version.
+        """
+        # we don't set this as a default because we want to ensure that the schema
+        # version is required in the JSON schema
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
 
     @model_validator(mode="after")
     def populate_mapping_if_empty(self):
@@ -67,10 +126,11 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
             return self
 
         outcome_key = self.outcome
-        mapping = self.decision_point_group.combination_list(
+        mapping = dpdict_to_combination_list(
+            self.decision_points,
             exclude=[
                 outcome_key,
-            ]
+            ],
         )
         # mapping is a list of dicts
         # but mapping doesn't have the outcome key yet
@@ -86,7 +146,7 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
             row[outcome_key] = None
 
         # distribute outcomes evenly across the mapping
-        og: DecisionPoint = self.decision_point_group[outcome_key]
+        og: DecisionPoint = self.decision_points[outcome_key]
 
         mapping = distribute_outcomes_evenly(mapping, og)
 
@@ -107,7 +167,7 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
             ValueError: If any item in the mapping does not have the expected keys.
         """
         # we expect the keys of each item in the mapping to match the decision point group keys
-        expected = set(self.decision_point_group.keys())
+        expected = set(self.decision_points.keys())
 
         for i, d in enumerate(self.mapping):
             if not isinstance(d, dict):
@@ -135,7 +195,7 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
 
         # Check that each MappingRow has the correct number of decision point values
         for row in self.mapping:
-            if set(row.keys()) != set(self.decision_point_group.keys()):
+            if set(row.keys()) != set(self.decision_points.keys()):
                 raise ValueError(
                     "MappingRow does not have the correct keys. "
                     "Keys must match the decision point group keys."
@@ -170,10 +230,10 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
         """
         Obfuscate the decision table by renaming the dict keys.
         """
-        obfuscated_dpg, translator = self.decision_point_group.obfuscate()
+        obfuscated_dpdict, translator = obfuscate_dict(self.decision_points)
 
         new_table = self.copy(deep=True)
-        new_table.decision_point_group = obfuscated_dpg
+        new_table.decision_points = obfuscated_dpdict
         new_table.outcome = translator.get(self.outcome, self.outcome)
         # replace all the keys in mapping dicts
         new_table.mapping = []
@@ -511,6 +571,8 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
 def main() -> None:
     from ssvc.dp_groups.ssvc.coordinator_publication import LATEST as dpg
     from ssvc.outcomes.x_basic.mscw import LATEST as outcomes
+    import os
+    import json
 
     rootlogger = logging.getLogger()
     rootlogger.setLevel(logging.DEBUG)
@@ -523,7 +585,7 @@ def main() -> None:
         name="Test Table",
         description="A test decision table",
         namespace="x_test",
-        decision_point_group=dpg,
+        decision_points=dpg.decision_points,
         outcome=outcomes.id,
     )
 
@@ -554,6 +616,19 @@ def main() -> None:
     print("## Obfuscated JSON representation of the decision table:")
     obfuscated = table.obfuscate()
     print(obfuscated.model_dump_json(indent=2))
+
+    # write json schema to file
+    file_loc = os.path.dirname(__file__)
+
+    schemafile = "../../../data/schema/v2/Decision_Table-2-0-0.schema.json"
+    schemafile = os.path.abspath(os.path.join(file_loc, schemafile))
+    print("Writing JSON schema to file:", schemafile)
+
+    if not os.path.exists(os.path.dirname(schemafile)):
+        os.makedirs(os.path.dirname(schemafile))
+
+    with open(schemafile, "w") as f:
+        json.dump(DecisionTable.model_json_schema(), f, indent=2)
 
 
 if __name__ == "__main__":

@@ -22,9 +22,7 @@
 """
 Provides a DecisionPointGroup object for use in SSVC.
 """
-import secrets
 from collections.abc import MutableMapping
-from itertools import product
 
 from pydantic import BaseModel, model_validator
 
@@ -87,83 +85,10 @@ class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel, MutableMapping):
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
 
-    def obfuscate(self) -> tuple["DecisionPointGroup", dict[str, str]]:
-        """
-        Returns a new DecisionPointGroup object, with the keys of the decision points dict obfuscated.
-
-        Returns:
-            tuple: A tuple containing the new DecisionPointGroup and a dictionary mapping old keys to new obfuscated keys.
-        """
-        token_len = 4
-        new_dict = {}
-        translator = {}
-        for old_key in self.decision_points.keys():
-            while True:
-                new_key = secrets.token_hex(token_len)
-                # make the new key match NNNN-NNNN...
-                new_key = "-".join(
-                    new_key[i : i + token_len]
-                    for i in range(0, len(new_key), token_len)
-                )
-                # uppercase the new key
-                new_key = new_key.upper()
-                if new_key not in translator:
-                    break
-            # got a unique new_key
-            translator[old_key] = new_key
-            new_dict[new_key] = self.decision_points[old_key]
-
-        new_group = self.copy(deep=True)
-        new_group.decision_points = new_dict
-
-        return (new_group, translator)
-
-    def combination_strings(self) -> list[tuple[str, ...]]:
-        """
-        Generate all combinations of decision point values as strings.
-        Each combination is a tuple of value keys, one for each decision point.
-        """
-        value_lists = []
-        for dp in self.decision_points.values():
-            if not dp.values:
-                raise ValueError(
-                    f"Decision point {dp.key} has no values defined, cannot generate combinations."
-                )
-            value_keys = list(dp.value_dict.keys())
-            value_lists.append(value_keys)
-
-        return list(product(*value_lists))
-
-    def combination_list(self, exclude=str) -> list[dict[str, str]]:
-        """
-        Generate all combinations of decision point values as dictionaries.
-        Each combination is a dictionary with decision point IDs as keys and value keys as values.
-        """
-        dpg_vals = []
-        for dp in self.decision_points.values():
-            if dp.id in exclude:
-                # skip this decision point if it is in the exclude list
-                continue
-            vals = []
-            for value in dp.values:
-                row = {dp.id: value.key}
-                vals.append(row)
-            dpg_vals.append(vals)
-
-        # now we have a list of lists of dicts, we need to the combinations
-        combos = []
-        for prod in product(*dpg_vals):
-            # prod is a tuple of dicts, we need to merge them
-            merged = {}
-            for d in prod:
-                merged.update(d)
-            combos.append(merged)
-        return combos
-
 
 def get_all_decision_points_from(
     *groups: list[DecisionPointGroup],
-) -> tuple[DecisionPoint, ...]:
+) -> list[DecisionPoint]:
     """
     Given a list of DecisionPointGroup objects, return a list of all
     the unique DecisionPoint objects contained in those groups.
@@ -172,25 +97,19 @@ def get_all_decision_points_from(
         groups (list): A list of SsvcDecisionPointGroup objects.
 
     Returns:
-        list: A list of SsvcDecisionPoint objects.
+        list: A list of unique SsvcDecisionPoint objects.
     """
-    dps = []
-    seen = set()
 
+    # each group has a decision_points dict, we need to collect all the decision points
+    new_dict = {}
     for group in groups:
+        # we could have just done a dict update, but want to ensure uniqueness
+        # even if the decision point groups use non-standard keys for their
+        # decision points dict. So we'll build a new dict with known consistent keys.
         for dp in group.decision_points.values():
-            if dp in dps:
-                # skip duplicates
-                continue
-            key = (dp.name, dp.version)
-            if key in seen:
-                # skip duplicates
-                continue
-            # keep non-duplicates
-            dps.append(dp)
-            seen.add(key)
-
-    return tuple(dps)
+            new_dict[dp.id] = dp
+    # now we have a dictionary of all decision points, we can return them as a tuple
+    return list(new_dict.values())
 
 
 def main():

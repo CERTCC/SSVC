@@ -1,0 +1,207 @@
+{
+  "$defs": {
+    "DecisionPoint": {
+      "description": "Models a single decision point as a list of values.\n\nDecision points should have the following attributes:\n\n- name (str): The name of the decision point\n- description (str): A description of the decision point\n- version (str): A semantic version string for the decision point\n- namespace (str): The namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point\n- key (str): A key (a short, unique string within the namespace) that can be used to identify the decision point in a shorthand way\n- values (tuple): A tuple of DecisionPointValue objects",
+      "properties": {
+        "name": {
+          "description": "Name of the SSVC object",
+          "examples": [
+            "Exploitation",
+            "Automatable"
+          ],
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the SSVC object",
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace (a short, unique string) of the SSVC object. The value must be one of the official namespaces or start with 'x_'.",
+          "examples": [
+            "ssvc",
+            "cvss",
+            "x_custom",
+            "x_custom/extension"
+          ],
+          "maxLength": 100,
+          "minLength": 3,
+          "pattern": "^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "version": {
+          "default": "0.0.0",
+          "description": "Version of the SSVC object as a semantic version string",
+          "examples": [
+            "1.0.1",
+            "1.0.1-alpha"
+          ],
+          "title": "Version",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "default": "1-0-1",
+          "description": "Schema version of the SSVC object",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key of the SSVC object",
+          "examples": [
+            "E",
+            "A",
+            "SI"
+          ],
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_*]+$",
+          "title": "Key",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/DecisionPointValue"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "namespace",
+        "key",
+        "values"
+      ],
+      "title": "DecisionPoint",
+      "type": "object"
+    },
+    "DecisionPointValue": {
+      "description": "Models a single value option for a decision point.\n\nEach value should have the following attributes:\n\n- name (str): A name\n- description (str): A description\n- key (str): A key (a short, unique string) that can be used to identify the value in a shorthand way\n- _comment (str): An optional comment that will be included in the object.",
+      "properties": {
+        "key": {
+          "description": "Key of the SSVC object",
+          "examples": [
+            "E",
+            "A",
+            "SI"
+          ],
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_*]+$",
+          "title": "Key",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the SSVC object",
+          "examples": [
+            "Exploitation",
+            "Automatable"
+          ],
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the SSVC object",
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name",
+        "description"
+      ],
+      "title": "DecisionPointValue",
+      "type": "object"
+    }
+  },
+  "description": "DecisionTable: A flexible, serializable SSVC decision table model.\n\nThis model represents a decision table that can be used to map combinations of decision point values\nto outcomes. It allows for flexible mapping and can be used with helper methods to generate DataFrame and CSV representations\nof the decision table.\n\nAttributes:",
+  "properties": {
+    "name": {
+      "description": "Name of the SSVC object",
+      "examples": [
+        "Exploitation",
+        "Automatable"
+      ],
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "description": "Description of the SSVC object",
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "namespace": {
+      "description": "Namespace (a short, unique string) of the SSVC object. The value must be one of the official namespaces or start with 'x_'.",
+      "examples": [
+        "ssvc",
+        "cvss",
+        "x_custom",
+        "x_custom/extension"
+      ],
+      "maxLength": 100,
+      "minLength": 3,
+      "pattern": "^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "version": {
+      "default": "0.0.0",
+      "description": "Version of the SSVC object as a semantic version string",
+      "examples": [
+        "1.0.1",
+        "1.0.1-alpha"
+      ],
+      "title": "Version",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "2.0.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "decision_points": {
+      "additionalProperties": {
+        "$ref": "#/$defs/DecisionPoint"
+      },
+      "description": "A dictionary of decision points that define the decision table. Decision point IDs are recommended as keys.",
+      "minProperties": 1,
+      "title": "Decision Points",
+      "type": "object"
+    },
+    "outcome": {
+      "description": "The key of the decision point in `self.decision_points` that represents the outcome of the decision table.",
+      "minLength": 1,
+      "title": "Outcome",
+      "type": "string"
+    },
+    "mapping": {
+      "description": "Mapping of decision point values to outcomes.",
+      "items": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "type": "object"
+      },
+      "title": "Mapping",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "namespace",
+    "schemaVersion",
+    "decision_points",
+    "outcome"
+  ],
+  "title": "DecisionTable",
+  "type": "object"
+}
