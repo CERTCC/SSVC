@@ -115,7 +115,14 @@ use only.
 
 The SSVC project does not manage namespaces with the `x_` prefix, so
 collisions may occur across organizations who develop their own private SSVC
-namespaces.
+namespaces. 
+
+!!! warning "Reverse domain name notation recommended"
+
+    We strongly recommend using reverse domain name notation for private namespaces to
+    avoid conflicts with other users' private namespaces. This helps to ensure
+    that your private namespaces are unique and easily identifiable.
+    E.g., `x_org.cert-experimental` for an experimental namespace within the CERT organization.
 
 !!! example "OT Monitoring Service (OTMS) Private Namespace"
 
@@ -233,6 +240,8 @@ segment of the extension.
     To avoid conflicts with other users' extensions, we recommend using reverse
     domain name notation for your extensions. This helps to ensure that your
     extensions are unique and easily identifiable.
+    For example, if your organization is `example.com`, you might use an extension
+    like `ssvc//com.example/extension`.
 
 !!! example "Reverse Domain Name Notation"
 
