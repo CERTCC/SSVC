@@ -73,6 +73,7 @@ class TestNamespacePattern(unittest.TestCase):
             "x_custom/extension/with--double-dash",  # double dash in middle
             "ab",  # too short
             "x_",  # too short after prefix
+            "x_x_some-weird-private-one",  # double x_ not allowed
         ]
 
     def test_ns_pattern(self):
