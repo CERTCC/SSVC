@@ -108,8 +108,8 @@ maintainers of the respective projects or standards.
 
 ## Private / Experimental Namespaces
 
-Private and experimental namespaces may prepend a prefix `x_` to a namespace
-to an otherwise valid namespace string to create private decision points that 
+Private and experimental namespaces may prepend a prefix `x_` to 
+an otherwise valid namespace string to create private decision points that 
 are not intended to be shared outside of a specific scope, e.g., for internal 
 use only. 
 
