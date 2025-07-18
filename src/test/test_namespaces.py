@@ -34,8 +34,9 @@ class MyTestCase(unittest.TestCase):
             "foo",
             "foo.bar",
             "foo.bar.baz",
-            "foo/bar/baz/quux",
-            "foo.bar/baz.quux",
+            "foo/jp-JP/bar.baz/quux",
+            "foo//bar/baz/quux",
+            "foo.bar//baz.quux",
         ]
         should_match.extend([f"x_{ns}" for ns in should_match])
 
