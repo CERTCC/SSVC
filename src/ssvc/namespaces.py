@@ -113,7 +113,13 @@ NamespaceString = Annotated[
     str,
     Field(
         description="The namespace of the SSVC object.",
-        examples=["ssvc", "cisa", "x_private-test", "ssvc/de-DE/reference-arch-1"],
+        examples=[
+            "ssvc",
+            "cisa",
+            "x_com.example//private",
+            "com.example//some-extension",
+            "ssvc/de-DE/example.org/reference-arch-1",
+        ],
         pattern=NS_PATTERN,
         min_length=MIN_NS_LENGTH,
         max_length=MAX_NS_LENGTH,
