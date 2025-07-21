@@ -101,14 +101,28 @@ f"""The full regular expression pattern for validating namespaces.
     - Extensions are optional
     - Extensions must be delineated by slashes (`/`)
     - If any extension segments are present, the following rules apply:
-    - The first extension segment, must be a valid BCP-47 language tag or empty (i.e., `//`).
+    - The first extension segment must be a valid BCP-47 language tag or empty (i.e., `//`).
     - Subsequent extension segments:
         - must start with a letter (upper or lowercase)
-        - may contain letters, numbers, dots (`.`), and hyphens (`-`)
-        - must not start or end with a dot or hyphen
+        - may contain letters, numbers, dots (`.`), hyphens (`-`), and at most one hash (`#`)
         - must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
+        - if a hash is present, it separates the main part from an optional fragment part
         - are separated by single forward slashes (`/`)
     - multiple extension segments are allowed
+
+!!! info "ABNF Notation"
+
+    namespace = base-ns [extensions]
+    base-ns = [x-prefix] ns-core
+    x-prefix = "x_"
+    ns-core = LOWER 1*ALNUMLOW *("." / "-" 1*ALNUMLOW)
+    extensions = lang-ext [*("/" ext-seg)]
+    lang-ext = "//" / ("/" bcp47 "/")
+    ext-seg = ALPHA *ALNUM *("." / "-" 1*ALNUM) ["#" 1*ALNUM *("." / "-" 1*ALNUM)]
+    bcp47 = (2*3ALPHA ["-" 3ALPHA *2("-" 3ALPHA)] / 4*8ALPHA) ["-" 4ALPHA] ["-" (2ALPHA / 3DIGIT)] *("-" (5*8ALNUM / DIGIT 3ALNUM)) *("-" %x41-57.59-5A.61-7A.7C-7E "-" 2*8ALNUM) ["-" %x58.78 1*("-" 1*8ALNUM)] / %x58.78 1*("-" 1*8ALNUM) / %x49.69 "-" %x44.64 %x45.65 %x46.66 %x41.61 %x55.75 %x4C.6C %x54.74 / %x49.69 "-" %x4D.6D %x49.69 %x4E.6E %x47.67 %x4F.6F
+    LOWER = %x61-7A
+    ALNUMLOW = LOWER / DIGIT
+    ; constraints: 3-1000 chars total, no consecutive separators
 
 """
 
