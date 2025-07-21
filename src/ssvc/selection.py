@@ -39,6 +39,8 @@ class MinimalSelection(BaseModel):
     This is used to transition from an SSVC decision point to a selection.
     """
 
+    model_config = ConfigDict(extra="forbid")
+
     namespace: NamespaceString = Field(
         ...,
         description="The namespace of the decision point.",

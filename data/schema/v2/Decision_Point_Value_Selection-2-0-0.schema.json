@@ -64,6 +64,7 @@
   "additionalProperties": false,
   "$defs": {
     "MinimalSelection": {
+      "additionalProperties": false,
       "description": "A minimal selection object that contains the decision point ID and the selected options.\nThis is used to transition from an SSVC decision point to a selection.",
       "properties": {
         "namespace": {
