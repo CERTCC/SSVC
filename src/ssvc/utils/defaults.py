@@ -22,6 +22,9 @@ Provides default values and constants for use in SSVC objects.
 #  subject to its own license.
 #  DM24-0278
 
+DEFAULT_VERSION = "0.0.1"
+"""The default version for SSVC objects, used when no version is specified at object creation."""
+
 X_PFX = "x_"
 """The prefix for extension namespaces. Extension namespaces must start with this prefix."""
 
@@ -44,4 +47,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-DEFAULT_VERSION = "0.0.1"
