@@ -24,8 +24,6 @@ Provides python regular expressions and utility functions for SSVC-related patte
 
 import re
 
-from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH, X_PFX
-
 # from https://semver.org/
 VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
 """A regular expression pattern for semantic versioning (semver)."""
@@ -37,94 +35,45 @@ BCP_47_PATTERN = r"(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,
 
 # --- Namespace Regex Components ---
 
-# Length check
-LENGTH_CHECK_PATTERN = rf"(?=.{{{MIN_NS_LENGTH},{MAX_NS_LENGTH}}}$)"
-"""Ensures the string is between MIN_NS_LENGTH and MAX_NS_LENGTH characters long."""
+# --- Length constraint ---
+LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 
-# Base namespace pattern (before any // or /lang/)
+# --- Base namespace ---
+NO_CONSECUTIVE_SEP = r"(?!.*[.-]{2,})"  # no consecutive '.' or '-'
+
 BASE_PATTERN = (
-    r"(?!.*[.-]{2,})"  # no consecutive separators
-    r"[a-z][a-z0-9]+"  # starts with a letter, followed by one or more alphanumeric chars
-    r"(?:[.-][a-z0-9]+)*"  # then . or - followed by alphanumerics
+    rf"{NO_CONSECUTIVE_SEP}"
+    r"[a-z][a-z0-9]+"  # starts with lowercase letter + 1+ alnum
+    r"(?:[.-][a-z0-9]+)*"  # optional dot or dash + alnum
 )
-"""The base pattern for namespaces."""
 
-EXPERIMENTAL_BASE = rf"{X_PFX}{BASE_PATTERN}"
-"""The base pattern for experimental namespaces with the x_ prefix."""
+BASE_NS_PATTERN = rf"(?:x_{BASE_PATTERN}|{BASE_PATTERN})"
 
-BASE_NS_PATTERN = rf"(?:{EXPERIMENTAL_BASE}|{BASE_PATTERN})"
-"""The complete base namespace pattern."""
-
-# --- Extension Segments ---
-
-# Single extension segment between slashes.
-# Requirements:
-#   - Starts with a letter
-#   - May contain '.', '-', or '#' as separators
-#   - No consecutive '.' or '-'
-#   - At most one '#'
+# --- Extension segments ---
+# A single ext-seg with at most one '#'
 EXT_SEGMENT_PATTERN = (
-    r"(?!.*[.-]{2,})"  # no consecutive dots or hyphens
-    r"[a-zA-Z][a-zA-Z0-9]*(?:[.-][a-zA-Z0-9]+)*"  # main part, will handle reverse domain style
-    r"(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?"  # optional single hash part
+    rf"{NO_CONSECUTIVE_SEP}"
+    r"[a-zA-Z][a-zA-Z0-9]*"  # start with a letter
+    r"(?:[.-][a-zA-Z0-9]+)*"  # dot or dash + alnum
+    r"(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?"  # optional single hash section
 )
-"""The pattern for a single extension segment."""
 
-# Language extension pattern: either // or /<BCP_47>/
-LANG_EXT_PATTERN = rf"(?:/{BCP_47_PATTERN}/|//)"
-"""The first extension segment, either empty (//) or a valid BCP-47 tag."""
+# Subsequent ext-seg(s)
+SUBSEQUENT_EXT = rf"{EXT_SEGMENT_PATTERN}(?:/{EXT_SEGMENT_PATTERN})*"
 
-# Subsequent extension segments (zero or more)
-SUBSEQUENT_EXT_PATTERN = rf"{EXT_SEGMENT_PATTERN}(?:/{EXT_SEGMENT_PATTERN})*"
-"""The pattern for all subsequent extension segments."""
 
-# --- Full Namespace Pattern ---
-NS_PATTERN = re.compile(
-    rf"^{LENGTH_CHECK_PATTERN}{BASE_NS_PATTERN}(?:{LANG_EXT_PATTERN}{SUBSEQUENT_EXT_PATTERN})?$"
+# --- Language extension ---
+LANG_EXT = rf"(?:/{BCP_47_PATTERN}/|//)"
+
+# --- Combine all parts into the full namespace pattern ---
+NS_PATTERN_STR = (
+    rf"^{LENGTH_CHECK_PATTERN}"
+    rf"{BASE_NS_PATTERN}"
+    rf"(?:{LANG_EXT}{SUBSEQUENT_EXT})?$"
 )
-f"""The full regular expression pattern for validating namespaces.
 
-!!! note "Length Requirements"
-
-    - Namespaces must be between {MIN_NS_LENGTH} and {MAX_NS_LENGTH} characters long.
-
-!!! note "Base Namespace Requirements"
-
-    - Must start with a lowercase letter
-    - Must contain at least 3 total characters in the base part (after the optional experimental/private prefix)
-    - Must contain only lowercase letters, numbers, dots (`.`), and hyphens (`-`)
-    - Must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
-    - May optionally start with the experimental/private prefix `{X_PFX}`.
-
-!!! note "Extension Requirements (Optional)"
-
-    - Extensions are optional
-    - Extensions must be delineated by slashes (`/`)
-    - If any extension segments are present, the following rules apply:
-    - The first extension segment must be a valid BCP-47 language tag or empty (i.e., `//`).
-    - Subsequent extension segments:
-        - must start with a letter (upper or lowercase)
-        - may contain letters, numbers, dots (`.`), hyphens (`-`), and at most one hash (`#`)
-        - must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
-        - if a hash is present, it separates the main part from an optional fragment part
-        - are separated by single forward slashes (`/`)
-    - multiple extension segments are allowed
-
-!!! info "ABNF Notation"
-
-    namespace = base-ns [extensions]
-    base-ns = [x-prefix] ns-core
-    x-prefix = "x_"
-    ns-core = LOWER 1*ALNUMLOW *("." / "-" 1*ALNUMLOW)
-    extensions = lang-ext [*("/" ext-seg)]
-    lang-ext = "//" / ("/" bcp47 "/")
-    ext-seg = ALPHA *ALNUM *("." / "-" 1*ALNUM) ["#" 1*ALNUM *("." / "-" 1*ALNUM)]
-    bcp47 = (2*3ALPHA ["-" 3ALPHA *2("-" 3ALPHA)] / 4*8ALPHA) ["-" 4ALPHA] ["-" (2ALPHA / 3DIGIT)] *("-" (5*8ALNUM / DIGIT 3ALNUM)) *("-" %x41-57.59-5A.61-7A.7C-7E "-" 2*8ALNUM) ["-" %x58.78 1*("-" 1*8ALNUM)] / %x58.78 1*("-" 1*8ALNUM) / %x49.69 "-" %x44.64 %x45.65 %x46.66 %x41.61 %x55.75 %x4C.6C %x54.74 / %x49.69 "-" %x4D.6D %x49.69 %x4E.6E %x47.67 %x4F.6F
-    LOWER = %x61-7A
-    ALNUMLOW = LOWER / DIGIT
-    ; constraints: 3-1000 chars total, no consecutive separators
-
-"""
+# Compile the regex with verbose flag for readability (if needed)
+NS_PATTERN = re.compile(NS_PATTERN_STR)
 
 
 def main():

@@ -270,53 +270,99 @@ segment of the extension.
 The following technical requirements are enforced for SSVC namespaces,
 based on the implementation in `src/ssvc/namespaces.py` and the NS_PATTERN regular expression:
 
-```python exec="true" idprefix=""
+!!! info "Namespace Pattern"
 
-from ssvc.utils.patterns import NS_PATTERN
+    The regular expression used to validate namespaces is:
 
-print(f"`{NS_PATTERN.pattern}`")
-```
+    ```python exec="true" idprefix=""
+    
+    from ssvc.utils.patterns import NS_PATTERN
+    
+    print(f"`{NS_PATTERN.pattern}`")
+    ```
 
-- **Length**: Namespaces must be between 3 and 1000 characters long.
-- **Base Namespace**:
-    - Must start with a lowercase letter.
-    - Must contain at least 3 total characters in the base part (after the optional experimental/private prefix).
-    - Only lowercase letters, numbers, dots (`.`), and hyphens (`-`) are allowed.
-    - Must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.).
-    - Cannot end with a dot or hyphen.
-    - May optionally start with the experimental/private prefix `x_`.
-- **Experimental/Private Namespaces**:
-    - Must start with `x_` followed by a valid base namespace.
-- **Extensions (Optional)**:
-    - Extensions are optional and must be delineated by slashes (`/`).
-    - If present, the first extension segment must be a valid BCP-47 language tag or empty (`//`).
-    - Subsequent extension segments:
-        - Must start with a letter (upper or lowercase).
-        - May contain letters, numbers, dots (`.`), and hyphens (`-`).
-        - Must not start or end with a dot or hyphen.
-        - Must not contain consecutive dots or hyphens.
-        - Are separated by single forward slashes (`/`).
-        - Multiple extension segments are allowed.
-- **Examples of valid namespaces**:
-    - `ssvc`
-    - `cisa`
-    - `x_private-test`
-    - `ssvc/de-DE/reference-arch-1`
-    - `x_custom//extension` (empty language tag)
-- **Examples of invalid namespaces**:
-    - `custom` (not in enum, no `x_` prefix)
-    - `x_custom/extension` (first segment must be a language tag)
-    - `x_custom.extension.` (ends with punctuation)
-    - `x_custom..extension` (double dot)
-    - `x_custom/` (ends with slash)
-    - `x_custom/extension//` (double slash at end)
-    - `ab` (too short)
-    - `x_` (too short after prefix)
+### Length Requirements
 
-These requirements are strictly enforced by the `NS_PATTERN` regular expression 
-in the codebase. For full details, see the documentation below and 
-implementation in `src/ssvc/namespaces.py`.
+- Namespaces must be between 3 and 1000 characters long.
 
+### Base Namespace Requirements
+
+- Must start with a lowercase letter
+- Must contain at least 3 total characters in the base part (after the optional experimental/private prefix)
+- Must contain only lowercase letters, numbers, dots (`.`), and hyphens (`-`)
+- Must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
+- May optionally start with the experimental/private prefix `{X_PFX}`.
+
+### Extension Requirements (Optional)
+
+- Extensions are optional
+- Extensions must be delineated by slashes (`/`)
+- If any extension segments are present, the following rules apply:
+  - The first extension segment must be a valid BCP-47 language tag or empty (i.e., `//`).
+  - Subsequent extension segments:
+      - must start with a letter (upper or lowercase)
+      - may contain letters, numbers, dots (`.`), hyphens (`-`), and at most one hash (`#`)
+      - must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
+      - if a hash is present, it separates the main part from an optional fragment part
+      - are separated by single forward slashes (`/`)
+- Multiple extension segments are allowed
+
+!!! info "ABNF Notation"
+
+    ```abnf
+    namespace = base-ns [extensions]
+    ; Overall namespace must be 3–1000 characters
+    ; (Enforced via regex length lookahead)
+    
+    base-ns = x-base / std-base
+    x-base  = "x_" ns-core
+    std-base = ns-core
+    
+    ; ns-core starts with a lowercase letter and may have '.' or '-' separators.
+    ; Consecutive '.' or '-' are not allowed.
+    ns-core = LOWER ALNUMLOW *("." / "-" 1*ALNUMLOW)
+    
+    extensions = lang-ext [ *("/" ext-seg) ]
+    
+    ; Language extension: either // (empty language extension)
+    ; or /<bcp47>/ (BCP-47 language code)
+    lang-ext = "//" / ( "/" bcp47 "/" )
+    
+    ; Extension segment between slashes.
+    ; - Must start with ALPHA
+    ; - May have '.' or '-' separators
+    ; - Optional '#' section, at most one per segment
+    ; - No consecutive '.' or '-'
+    ext-seg = ALPHA ALNUM *
+                ( ("." / "-") 1*ALNUM ) *
+                [ "#" 1*ALNUM * ( ("." / "-") 1*ALNUM ) ]
+    
+    ; BCP-47 tag (based on the regex expansion)
+    bcp47 = ( 2*3ALPHA
+                [ "-" 3ALPHA *2( "-" 3ALPHA ) ]
+            / 4*8ALPHA )
+            [ "-" 4ALPHA ]
+            [ "-" ( 2ALPHA / 3DIGIT ) ]
+            * ( "-" ( 5*8ALNUM / DIGIT 3ALNUM ) )
+            * ( "-" %x41-57.59-5A.61-7A.7C-7E "-" 2*8ALNUM )
+            [ "-" %x58.78 1*( "-" 1*8ALNUM ) ]
+          / %x58.78 1*( "-" 1*8ALNUM )
+          / %x49.69 "-" %x44.64 %x45.65 %x46.66 %x41.61 %x55.75 %x4C.6C %x54.74
+          / %x49.69 "-" %x4D.6D %x49.69 %x4E.6E %x47.67 %x4F.6F
+    
+    ; Character sets
+    LOWER = %x61-7A   ; a-z
+    ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
+    DIGIT = %x30-39   ; 0-9
+    ALNUM = ALPHA / DIGIT
+    ALNUMLOW = LOWER / DIGIT
+    
+    ; Constraints:
+    ; - No consecutive "." or "-" in ns-core or ext-seg.
+    ; - Each ext-seg can contain at most one "#".
+    ; - Overall namespace is 3–1000 chars.
+    ```
+  
 ## The `ssvc.namespaces` module
 
 The `ssvc.namespaces` module provides a way to access and use these namespaces.
