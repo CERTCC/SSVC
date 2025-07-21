@@ -21,18 +21,18 @@ Provides the CVSS supplemental metric Automatable
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-NO = SsvcDecisionPointValue(
+NO = DecisionPointValue(
     name="No",
     key="N",
     description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
     "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
 )
-YES = SsvcDecisionPointValue(
+YES = DecisionPointValue(
     name="Yes",
     key="Y",
     description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "

@@ -22,11 +22,11 @@ Models the CVSS Availability Impact metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="There is total loss of availability, resulting in the attacker being able to fully deny access to "
@@ -34,25 +34,25 @@ _HIGH = SsvcDecisionPointValue(
     "deliver the attack) or persistent (the condition persists even after the attack has completed).",
 )
 
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="There is reduced performance or interruptions in resource availability.",
 )
 
-_NONE_2 = SsvcDecisionPointValue(
+_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no impact to the availability of the system.",
 )
 
-_COMPLETE = SsvcDecisionPointValue(
+_COMPLETE = DecisionPointValue(
     name="Complete",
     key="C",
     description="Total shutdown of the affected resource. The attacker can render the resource completely unavailable.",
 )
 
-_PARTIAL = SsvcDecisionPointValue(
+_PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
     description="Considerable lag in or interruptions in resource availability. For example, a network-based flood "
@@ -60,7 +60,7 @@ _PARTIAL = SsvcDecisionPointValue(
     "number of connections successfully complete.",
 )
 
-_NONE_1 = SsvcDecisionPointValue(
+_NONE_1 = DecisionPointValue(
     name="None", key="N", description="No impact on availability."
 )
 
@@ -95,7 +95,7 @@ AVAILABILITY_IMPACT_2 = CvssDecisionPoint(
 Updates None. Removes Partial and Complete. Adds Low and High values for CVSS Availability Impact.
 """
 
-_HIGH_2 = SsvcDecisionPointValue(
+_HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
     description="There is total loss of availability, resulting in the attacker being able to fully deny access to "
@@ -103,7 +103,7 @@ _HIGH_2 = SsvcDecisionPointValue(
     "deliver the attack) or persistent (the condition persists even after the attack has completed).",
 )
 
-_LOW_2 = SsvcDecisionPointValue(
+_LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
     description="There is reduced performance or interruptions in resource availability. Even if repeated "
@@ -113,7 +113,7 @@ _LOW_2 = SsvcDecisionPointValue(
     "serious consequence to the Vulnerable System.",
 )
 
-_NONE_3 = SsvcDecisionPointValue(
+_NONE_3 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no impact to availability within the Vulnerable System.",

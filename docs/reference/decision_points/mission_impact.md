@@ -1,7 +1,7 @@
 # Mission Impact
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.mission_impact import LATEST
+from ssvc.decision_points.ssvc.mission_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -42,7 +42,7 @@ It should require the vulnerability management team to interact with more senior
 ## Prior Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.mission_impact import VERSIONS
+from ssvc.decision_points.ssvc.mission_impact import VERSIONS
 from ssvc.doc_helpers import example_block
 
 versions = VERSIONS[:-1]

@@ -22,49 +22,49 @@ Models the CVSS Collateral Damage Potential metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_ND
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
 
-_MEDIUM_HIGH = SsvcDecisionPointValue(
+_MEDIUM_HIGH = DecisionPointValue(
     name="Medium-High",
     key="MH",
     description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
-_LOW_MEDIUM = SsvcDecisionPointValue(
+_LOW_MEDIUM = DecisionPointValue(
     name="Low-Medium",
     key="LM",
     description="A successful exploit of this vulnerability may result in moderate physical or property damage or loss.",
 )
 
-_CDP_NONE_2 = SsvcDecisionPointValue(
+_CDP_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
     description="There is no potential for loss of life, physical assets, productivity or revenue.",
 )
 
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area.",
 )
 
-_MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
     description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="A successful exploit of this vulnerability may result in light physical or property damage or loss. The system itself may be damaged or destroyed.",
 )
 
-_CDP_NONE = SsvcDecisionPointValue(
+_CDP_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="There is no potential for physical or property damage.",

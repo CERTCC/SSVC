@@ -22,18 +22,18 @@ Provides CVSS v4 Supplemental Metric for Safety
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-PRESENT = SsvcDecisionPointValue(
+PRESENT = DecisionPointValue(
     name="Present",
     key="P",
     description="Consequences of the vulnerability meet definition of IEC 61508 consequence categories of "
     '"marginal," "critical," or "catastrophic."',
 )
-NEGLIGIBLE = SsvcDecisionPointValue(
+NEGLIGIBLE = DecisionPointValue(
     name="Negligible",
     key="N",
     description="Consequences of the vulnerability meet definition of IEC 61508 consequence category "
@@ -42,7 +42,7 @@ NEGLIGIBLE = SsvcDecisionPointValue(
 SAFETY_1 = CvssDecisionPoint(
     name="Safety",
     description="The Safety decision point is a measure of the potential for harm to humans or the environment.",
-    key="S",
+    key="SF",
     version="1.0.0",
     values=(
         NOT_DEFINED_X,

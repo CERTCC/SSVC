@@ -21,11 +21,11 @@ Models the CVSS Privileges Required metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="The attacker is authorized with (i.e. requires) privileges that provide significant (e.g. "
@@ -33,7 +33,7 @@ _HIGH = SsvcDecisionPointValue(
     "files.",
 )
 
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="The attacker is authorized with (i.e. requires) privileges that provide basic user capabilities that "
@@ -41,7 +41,7 @@ _LOW = SsvcDecisionPointValue(
     "privileges may have the ability to cause an impact only to non-sensitive resources.",
 )
 
-_PR_NONE = SsvcDecisionPointValue(
+_PR_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="The attacker is unauthorized prior to attack, and therefore does not require any access to settings "
@@ -68,14 +68,14 @@ Defines None, Low, and High values for CVSS Privileges Required.
 """
 
 
-_PR_NONE_2 = SsvcDecisionPointValue(
+_PR_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
     description="The attacker is unauthorized prior to attack, and therefore does not require any access to settings "
     "or files to carry out an attack.",
 )
 
-_LOW_2 = SsvcDecisionPointValue(
+_LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
     description="The attacker is authorized with (i.e., requires) privileges that provide basic capabilities that "
@@ -83,7 +83,7 @@ _LOW_2 = SsvcDecisionPointValue(
     "an attacker with Low privileges has the ability to access only non-sensitive resources.",
 )
 
-_HIGH_2 = SsvcDecisionPointValue(
+_HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
     description="The attacker is authorized with (i.e., requires) privileges that provide significant (e.g., "

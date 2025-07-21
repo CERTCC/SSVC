@@ -1,0 +1,20 @@
+{
+  "name": "In KEV",
+  "description": "Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "KEV",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "description": "Vulnerability is not listed in KEV."
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "description": "Vulnerability is listed in KEV."
+    }
+  ]
+}

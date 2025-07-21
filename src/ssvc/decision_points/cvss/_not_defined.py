@@ -21,16 +21,16 @@ Provides a generic Not Define decision point value for CVSS decision points.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 
 
-NOT_DEFINED_ND = SsvcDecisionPointValue(
+NOT_DEFINED_ND = DecisionPointValue(
     name="Not Defined",
     key="ND",
     description="This metric value is not defined. See CVSS documentation for details.",
 )
 
-NOT_DEFINED_X = SsvcDecisionPointValue(
+NOT_DEFINED_X = DecisionPointValue(
     name="Not Defined",
     key="X",
     description="This metric value is not defined. See CVSS documentation for details.",
