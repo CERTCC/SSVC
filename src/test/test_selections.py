@@ -40,7 +40,9 @@ class MyTestCase(unittest.TestCase):
             values=["value21", "value22"],
         )
         self.selections = MinimalSelectionList(
-            selections=[self.s1, self.s2], timestamp=datetime.now()
+            selections=[self.s1, self.s2],
+            timestamp=datetime.now(),
+            target_ids=["target_id_1", "target_id_2"],
         )
 
     def test_minimal_selection_init(self):
@@ -96,8 +98,11 @@ class MyTestCase(unittest.TestCase):
         )
         self.assertRegex(self.selections.schemaVersion, VERSION_PATTERN)
 
-        # vulnerability_id is optional and can be None or a string
-        self.assertIsInstance(self.selections.vulnerability_id, (str, type(None)))
+        self.assertIsInstance(self.selections.target_ids, (list, type(None)))
+        for target_id in self.selections.target_ids:
+            self.assertIsInstance(
+                target_id, str, f"Target ID {target_id} is not a string"
+            )
 
         # selections is a list of MinimalSelection objects
         self.assertIsInstance(self.selections.selections, list)
