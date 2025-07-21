@@ -24,7 +24,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 from datetime import datetime
 from typing import Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from ssvc._mixins import VersionField
 from ssvc.decision_points.base import DecisionPoint
@@ -72,10 +72,15 @@ class MinimalSelectionList(BaseModel):
         description="The schema version of this selection list.",
     )
 
-    vulnerability_id: Optional[str] = Field(
+    target_ids: Optional[list[str]] = Field(
         default=None,
-        description="Optional vulnerability ID associated with the selections.",
-        examples=["CVE-2025-0000", "VU#999999", "GHSA-0123-4567-89ab"],
+        description="Optional list of identifiers for the item or items "
+        "(vulnerabilities, reports, advisories, systems, assets, etc.) "
+        "being evaluated by these selections.",
+        examples=[
+            ["CVE-2025-0000"],
+            ["VU#999999", "GHSA-0123-4567-89ab"],
+        ],
         min_length=1,
     )
     selections: list[MinimalSelection] = Field(
@@ -95,6 +100,22 @@ class MinimalSelectionList(BaseModel):
         if "schemaVersion" not in data:
             data["schemaVersion"] = SCHEMA_VERSION
         return data
+
+    # target_ids should be a non-empty list if not None
+    @field_validator("target_ids", mode="before")
+    @classmethod
+    def validate_target_ids(cls, value: Optional[list[str]]) -> Optional[list[str]]:
+        """
+        Validate the target_ids field.
+        If target_ids is provided, it must be a non-empty list of strings.
+        """
+        if value is not None:
+            if not isinstance(value, list) or len(value) == 0:
+                raise ValueError("target_ids must be a non-empty list of strings.")
+            for item in value:
+                if not isinstance(item, str):
+                    raise ValueError("Each target_id must be a string.")
+        return value
 
     def add_selection(self, selection: MinimalSelection) -> None:
         """

@@ -10,24 +10,31 @@
       "title": "Schemaversion",
       "type": "string"
     },
-    "vulnerability_id": {
+    "target_ids": {
       "anyOf": [
         {
-          "minLength": 1,
-          "type": "string"
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
         },
         {
           "type": "null"
         }
       ],
       "default": null,
-      "description": "Optional vulnerability ID associated with the selections.",
+      "description": "Optional list of identifiers for the item or items (vulnerabilities, reports, advisories, systems, assets, etc.) being evaluated by these selections.",
       "examples": [
-        "CVE-2025-0000",
-        "VU#999999",
-        "GHSA-0123-4567-89ab"
+        [
+          "CVE-2025-0000"
+        ],
+        [
+          "VU#999999",
+          "GHSA-0123-4567-89ab"
+        ]
       ],
-      "title": "Vulnerability Id"
+      "title": "Target Ids"
     },
     "selections": {
       "description": "List of minimal selections made from decision points.",
