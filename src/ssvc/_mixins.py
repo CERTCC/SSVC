@@ -35,7 +35,7 @@ VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|
 VersionField = Annotated[
     str,
     Field(
-        description="The version of the SSVC object. This should be a valid semantic version string.",
+        description="The version of the SSVC object. This must be a valid semantic version string.",
         examples=["1.0.0", "2.1.3"],
         pattern=VERSION_PATTERN,
         min_length=5,
@@ -48,7 +48,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: VersionField = Field(default="0.0.0")
+    version: VersionField = Field(default="0.0.1")
 
     @field_validator("version")
     @classmethod
