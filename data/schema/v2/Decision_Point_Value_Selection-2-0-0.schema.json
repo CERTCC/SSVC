@@ -6,7 +6,6 @@
   "properties": {
     "schemaVersion": {
       "const": "2.0.0",
-      "default": "2.0.0",
       "description": "The schema version of this selection list.",
       "title": "Schemaversion",
       "type": "string"
