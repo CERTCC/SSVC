@@ -65,7 +65,7 @@ class MinimalSelectionList(BaseModel):
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="forbid")
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
         ...,
         description="The schema version of this selection list.",
