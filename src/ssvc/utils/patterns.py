@@ -26,25 +26,6 @@ import re
 
 from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH, X_PFX
 
-#  Copyright (c) 2025 Carnegie Mellon University.
-#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
-#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
-#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
-#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
-#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
-#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
-#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
-#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
-#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
-#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
-#  permission@sei.cmu.edu for full terms.
-#  [DISTRIBUTION STATEMENT A] This material has been approved for
-#  public release and unlimited distribution. Please see Copyright notice
-#  for non-US Government use and distribution.
-#  This Software includes and/or makes use of Third-Party Software each
-#  subject to its own license.
-#  DM24-0278
-
 # from https://semver.org/
 VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
 """A regular expression pattern for semantic versioning (semver)."""
