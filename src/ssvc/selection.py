@@ -82,7 +82,7 @@ class MinimalSelectionList(BaseModel):
         description="List of minimal selections made from decision points.",
         min_length=1,
     )
-    timestamp: Optional[datetime] = Field(
+    timestamp: datetime = Field(
         ...,
         description="Timestamp of when the selections were made, in ISO 8601 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
