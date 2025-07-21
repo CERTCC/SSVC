@@ -25,6 +25,7 @@ from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH
 from ssvc.utils.patterns import (
     BASE_NS_PATTERN,
     BASE_PATTERN,
+    EXT_SEGMENT_PATTERN,
     LENGTH_CHECK_PATTERN,
     NS_PATTERN,
 )
@@ -46,7 +47,8 @@ class TestNamespacePattern(unittest.TestCase):
             "x_custom//extension",  # double slash is okay when it's the first segment
             "x_private-test",  # valid namespace with x_ prefix and dash (does not follow reverse domain notation)
             "x_com.example//custom-extension",  # x_prefix, reverse domain notation, double slash, dashes
-            "ssvc/de-DE/example.org/reference-arch-1",  # valid BCP-47 tag, reverse domain notation, dashes
+            "ssvc/de-DE/example.organization#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
+            "ssvc//example.organization#model/com.example#foo",  # valid BCP-47 tag, two segments with one hash each
             "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes (But doesn't follow reverse domain notation)
             "x_test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
             "com.example",  # valid namespace with dots following reverse domain notation
@@ -74,6 +76,8 @@ class TestNamespacePattern(unittest.TestCase):
             "x_test/not-bcp-47",  # not a valid BCP-47 tag
             "x_custom/extension/with/multiple/segments/"
             + "a" * 990,  # exceeds max length
+            "ssvc/de-DE/example.organization##reference-arch-1",  # valid BCP-47 tag, reverse domain notation, double hash
+            "ssvc/de-DE/example.organization#multi#hash#forbidden",  # valid BCP-47 tag, reverse domain notation, more than one hash per segment
             "x_custom.extension.",  # ends with punctuation
             "x_custom..extension",  # double dot
             "x_custom/",  # ends with slash
@@ -105,6 +109,9 @@ class TestNamespacePattern(unittest.TestCase):
             "a",  # too short
             "9abc",  # starts with a number
             "x_foo",  # no x_ in base pattern
+            "com.example#foo",  # no hashes in base
+            "com.example##foo",  # double hash
+            "com.example#foo#bar",  # multiple hashes not allowed
             "contains..double.dot",  # double dot
             "contains--double-dash",  # double dash
             "contains_underscore",  # underscore not allowed
@@ -204,6 +211,34 @@ class TestNamespacePattern(unittest.TestCase):
             self.assertIsNone(
                 re.match(LENGTH_CHECK_PATTERN, ns), f"Should not match: {ns}"
             )
+
+    def test_ext_segment_pattern(self):
+        """
+        Test the extension segment pattern.
+        The pattern should allow valid extension segments and disallow invalid ones.
+        """
+        valid_segments = [
+            "valid",
+            "valid.extension",
+            "valid-extension",
+            "valid#extension",
+            "valid.extension#with-hash",
+            "com.example#foo",  # valid namespace with hash
+        ]
+        invalid_segments = [
+            "a_bc",  # underscore not allowed
+            "invalid..segment",  # double dot
+            "invalid--segment",  # double dash
+            "invalid.segment.",  # ends with a dot
+            "invalid.segment-",  # ends with a dash
+            "invalid/segment",  # slash not allowed
+            "com.example##foo",  # valid namespace with hash
+            "invalid#segment#with#multiple#hashes",  # multiple hashes not allowed
+            "invalid/segment/",  # ends with a slash
+        ]
+        self._test_successes_failures(
+            EXT_SEGMENT_PATTERN, invalid_segments, valid_segments
+        )
 
 
 if __name__ == "__main__":

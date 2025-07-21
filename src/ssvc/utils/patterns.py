@@ -35,42 +35,53 @@ BCP_47_PATTERN = r"(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,
 """A regular expression pattern for BCP-47 language tags."""
 
 
+# --- Namespace Regex Components ---
+
+# Length check
 LENGTH_CHECK_PATTERN = rf"(?=.{{{MIN_NS_LENGTH},{MAX_NS_LENGTH}}}$)"
 """Ensures the string is between MIN_NS_LENGTH and MAX_NS_LENGTH characters long."""
 
-# Base namespace part (before any extensions) allows . and - with restrictions
+# Base namespace pattern (before any // or /lang/)
 BASE_PATTERN = (
     r"(?!.*[.-]{2,})"  # no consecutive separators
-    r"[a-z][a-z0-9]+"  # first part starts with a letter, followed by one or more alphanumeric characters
-    r"(?:[.-][a-z0-9]+)*"  # remaining parts can have alphanumeric characters and single . or - separators
+    r"[a-z][a-z0-9]+"  # starts with a letter, followed by one or more alphanumeric chars
+    r"(?:[.-][a-z0-9]+)*"  # then . or - followed by alphanumerics
 )
-"""The base pattern for namespaces, which must start with a letter followed by at least one alphanumeric character."""
+"""The base pattern for namespaces."""
 
 EXPERIMENTAL_BASE = rf"{X_PFX}{BASE_PATTERN}"
-f"""The base pattern for experimental namespaces, which must start with the {X_PFX} prefix, 
-followed by a string matching the base pattern."""
+"""The base pattern for experimental namespaces with the x_ prefix."""
 
-BASE_NS_PATTERN = rf"({EXPERIMENTAL_BASE}|{BASE_PATTERN})"
-"""The complete base namespace pattern, which allows for experimental namespaces."""
+BASE_NS_PATTERN = rf"(?:{EXPERIMENTAL_BASE}|{BASE_PATTERN})"
+"""The complete base namespace pattern."""
 
+# --- Extension Segments ---
+
+# Single extension segment between slashes.
+# Requirements:
+#   - Starts with a letter
+#   - May contain '.', '-', or '#' as separators
+#   - No consecutive '.' or '-'
+#   - At most one '#'
 EXT_SEGMENT_PATTERN = (
-    r"(?!.*[.-]{2,})"  # no consecutive separators
-    r"[a-zA-Z][a-zA-Z0-9]*"  # first part starts with a letter, followed by zero or more alphanumeric characters
-    r"(?:[.-][a-zA-Z0-9]+)*"  # remaining parts can have alphanumeric characters and single ., -, / separators
+    r"(?!.*#.*#)"  # at most one hash
+    r"(?!.*[.-]{2,})"  # no consecutive dots or hyphens
+    r"[a-zA-Z][a-zA-Z0-9]*"  # must start with a letter
+    r"(?:[.#-][a-zA-Z0-9]+)*"  # allowed separators with alphanumerics
 )
-"""The pattern for extension segments in namespaces, which must start with a letter and contain alphanumeric characters or
-limited punctuation characters (., -), with no consecutive punctuation characters allowed."""
+"""The pattern for a single extension segment."""
 
-LANG_EXT_PATTERN = rf"(/({BCP_47_PATTERN})/|//)"
-# Language extension pattern (BCP-47 or empty for //)
-"""The pattern for the first extension segment, which must be either a valid BCP-47 tag or empty (//)."""
+# Language extension pattern: either // or /<BCP_47>/
+LANG_EXT_PATTERN = rf"(?:/{BCP_47_PATTERN}/|//)"
+"""The first extension segment, either empty (//) or a valid BCP-47 tag."""
 
+# Subsequent extension segments (zero or more)
 SUBSEQUENT_EXT_PATTERN = rf"{EXT_SEGMENT_PATTERN}(?:/{EXT_SEGMENT_PATTERN})*"
-# Subsequent extension segments
-"""The pattern for subsequent extension segments, which must follow the rules for extension segments, delimited by slashes (/)."""
+"""The pattern for all subsequent extension segments."""
 
+# --- Full Namespace Pattern ---
 NS_PATTERN = re.compile(
-    rf"^{LENGTH_CHECK_PATTERN}({BASE_NS_PATTERN})({LANG_EXT_PATTERN}{SUBSEQUENT_EXT_PATTERN})?$"
+    rf"^{LENGTH_CHECK_PATTERN}{BASE_NS_PATTERN}(?:{LANG_EXT_PATTERN}{SUBSEQUENT_EXT_PATTERN})?$"
 )
 f"""The full regular expression pattern for validating namespaces.
 
