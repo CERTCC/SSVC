@@ -79,6 +79,7 @@ class NameSpace(StrEnum):
     # when used in a StrEnum, auto() assigns the lowercase name of the member as the value
     SSVC = auto()
     CVSS = auto()
+    CISA = auto()
 
     @classmethod
     def validate(cls, value: str) -> str:

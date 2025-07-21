@@ -1,0 +1,25 @@
+{
+  "name": "Supplier Involvement",
+  "description": "What is the state of the supplier’s work on addressing the vulnerability?",
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "SINV",
+  "values": [
+    {
+      "key": "FR",
+      "name": "Fix Ready",
+      "description": "The supplier has provided a patch or fix."
+    },
+    {
+      "key": "C",
+      "name": "Cooperative",
+      "description": "The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time."
+    },
+    {
+      "key": "UU",
+      "name": "Uncooperative/Unresponsive",
+      "description": "The supplier has not responded, declined to generate a remediation, or no longer exists."
+    }
+  ]
+}
