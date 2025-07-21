@@ -64,10 +64,9 @@ BASE_NS_PATTERN = rf"(?:{EXPERIMENTAL_BASE}|{BASE_PATTERN})"
 #   - No consecutive '.' or '-'
 #   - At most one '#'
 EXT_SEGMENT_PATTERN = (
-    r"(?!.*#.*#)"  # at most one hash
     r"(?!.*[.-]{2,})"  # no consecutive dots or hyphens
-    r"[a-zA-Z][a-zA-Z0-9]*"  # must start with a letter
-    r"(?:[.#-][a-zA-Z0-9]+)*"  # allowed separators with alphanumerics
+    r"[a-zA-Z][a-zA-Z0-9]*(?:[.-][a-zA-Z0-9]+)*"  # main part, will handle reverse domain style
+    r"(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?"  # optional single hash part
 )
 """The pattern for a single extension segment."""
 
