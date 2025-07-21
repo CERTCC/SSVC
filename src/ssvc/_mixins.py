@@ -29,6 +29,7 @@ from semver import Version
 from ssvc import _schemaVersion
 from ssvc.namespaces import NameSpace, NamespaceString
 
+DEFAULT_VERSION = "0.0.1"
 VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
 
 
@@ -48,7 +49,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: VersionField = Field(default="0.0.1")
+    version: VersionField = Field(default=DEFAULT_VERSION)
 
     @field_validator("version")
     @classmethod
