@@ -22,7 +22,14 @@ from random import randint
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc._mixins import (
+    DEFAULT_VERSION,
+    _Base,
+    _Keyed,
+    _Namespaced,
+    _Valued,
+    _Versioned,
+)
 from ssvc.namespaces import MAX_NS_LENGTH, NameSpace
 
 
@@ -120,7 +127,7 @@ class TestMixins(unittest.TestCase):
 
     def test_versioned_create(self):
         obj = _Versioned()
-        self.assertEqual(obj.version, "0.0.0")
+        self.assertEqual(obj.version, DEFAULT_VERSION)
 
         obj = _Versioned(version="1.2.3")
         self.assertEqual(obj.version, "1.2.3")

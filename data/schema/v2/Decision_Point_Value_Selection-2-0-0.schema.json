@@ -1,4 +1,60 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json",
+  "description": "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0.0",
+      "description": "The schema version of this selection list.",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "vulnerability_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional vulnerability ID associated with the selections.",
+      "examples": [
+        "CVE-2025-0000",
+        "VU#999999",
+        "GHSA-0123-4567-89ab"
+      ],
+      "title": "Vulnerability Id"
+    },
+    "selections": {
+      "description": "List of minimal selections made from decision points.",
+      "items": {
+        "$ref": "#/$defs/MinimalSelection"
+      },
+      "minItems": 1,
+      "title": "Selections",
+      "type": "array"
+    },
+    "timestamp": {
+      "description": "Timestamp of when the selections were made, in ISO 8601 format.",
+      "examples": [
+        "2025-01-01T12:00:00Z",
+        "2025-01-02T15:30:45-04:00"
+      ],
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "selections",
+    "timestamp"
+  ],
+  "additionalProperties": true,
   "$defs": {
     "MinimalSelection": {
       "description": "A minimal selection object that contains the decision point ID and the selected options.\nThis is used to transition from an SSVC decision point to a selection.",
@@ -30,7 +86,7 @@
           "type": "string"
         },
         "version": {
-          "description": "The version of the SSVC object. This should be a valid semantic version string.",
+          "description": "The version of the SSVC object. This must be a valid semantic version string.",
           "examples": [
             "1.0.0",
             "2.1.3"
@@ -70,68 +126,5 @@
       "title": "MinimalSelection",
       "type": "object"
     }
-  },
-  "description": "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
-  "properties": {
-    "schemaVersion": {
-      "const": "2.0.0",
-      "default": "2.0.0",
-      "description": "The schema version of this selection list.",
-      "title": "Schemaversion",
-      "type": "string"
-    },
-    "vulnerability_id": {
-      "anyOf": [
-        {
-          "minLength": 1,
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "description": "Optional vulnerability ID associated with the selections.",
-      "examples": [
-        "CVE-2025-0000",
-        "VU#999999",
-        "GHSA-0123-4567-89ab"
-      ],
-      "title": "Vulnerability Id"
-    },
-    "selections": {
-      "description": "List of minimal selections made from decision points.",
-      "items": {
-        "$ref": "#/$defs/MinimalSelection"
-      },
-      "minItems": 1,
-      "title": "Selections",
-      "type": "array"
-    },
-    "timestamp": {
-      "anyOf": [
-        {
-          "format": "date-time",
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "description": "Timestamp of when the selections were made, in ISO 8601 format.",
-      "examples": [
-        "2025-01-01T12:00:00Z",
-        "2025-01-02T15:30:45-04:00"
-      ],
-      "title": "Timestamp"
-    }
-  },
-  "required": [
-    "schemaVersion",
-    "selections",
-    "timestamp"
-  ],
-  "type": "object",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
+  }
 }

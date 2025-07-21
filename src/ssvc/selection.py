@@ -24,7 +24,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 from datetime import datetime
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ssvc._mixins import VersionField
 from ssvc.decision_points.base import DecisionPoint
@@ -66,8 +66,9 @@ class MinimalSelectionList(BaseModel):
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
 
+    model_config = ConfigDict(extra="allow")
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
-        default=SCHEMA_VERSION,
+        ...,
         description="The schema version of this selection list.",
     )
 
@@ -82,11 +83,18 @@ class MinimalSelectionList(BaseModel):
         description="List of minimal selections made from decision points.",
         min_length=1,
     )
-    timestamp: Optional[datetime] = Field(
+    timestamp: datetime = Field(
         ...,
-        description="Timestamp of when the selections were made, in ISO 8601 format.",
+        description="Timestamp of when the selections were made, in RFC 3339 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
+
+    @model_validator(mode="before")
+    def set_schema_version(cls, data):
+        # If schemaVersion is missing, add it
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
 
     def add_selection(self, selection: MinimalSelection) -> None:
         """
@@ -149,11 +157,29 @@ def main() -> None:
     schema["description"] = (
         "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available."
     )
-    # force the schema version to be included in the required fields
-    # even though we set a default value
-    schema["required"].insert(0, "schemaVersion")
 
-    print(json.dumps(schema, indent=2))
+    # preferred order of fields, just setting for convention
+    preferred_order = [
+        "$schema",
+        "$id",
+        "title",
+        "description",
+        "schemaVersion",
+        "type",
+        "properties",
+        "required",
+        "additionalProperties",
+        "$defs",
+    ]
+
+    # create a new dict with the preferred order of fields first
+    ordered_fields = {k: schema[k] for k in preferred_order if k in schema}
+    # add the rest of the fields in their original order
+    for k in schema:
+        if k not in ordered_fields:
+            ordered_fields[k] = schema[k]
+
+    print(json.dumps(ordered_fields, indent=2))
 
     # find local path to this file
     import os
@@ -167,7 +193,7 @@ def main() -> None:
 
     with open(schema_path, "w") as f:
         print(f"Writing schema to {schema_path}")
-        json.dump(schema, f, indent=2)
+        json.dump(ordered_fields, f, indent=2)
 
 
 if __name__ == "__main__":
