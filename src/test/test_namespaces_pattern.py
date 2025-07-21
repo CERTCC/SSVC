@@ -39,15 +39,26 @@ class TestNamespacePattern(unittest.TestCase):
             "ssvc",
             "cisa",
             "custom",  # not in enum, but valid for the pattern
-            "x_private-test",  # valid namespace with dash
-            "x_custom",  # valid namespace with x_ prefix
-            "x_custom.with.dots",  # valid namespace with x_ prefix and dots
             "abc",  # not in enum, but valid for the pattern
             "x_abc",  # valid namespace with x_ prefix
+            "x_custom",  # valid namespace with x_ prefix
+            "x_private-test",  # valid namespace with dash
+            "x_custom.with.dots",  # valid namespace with x_ prefix and dots
             "x_custom//extension",  # double slash is okay when it's the first segment
-            "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes
+            "x_private-test",  # valid namespace with x_ prefix and dash (does not follow reverse domain notation)
+            "x_com.example//custom-extension",  # x_prefix, reverse domain notation, double slash, dashes
+            "ssvc/de-DE/example.org/reference-arch-1",  # valid BCP-47 tag, reverse domain notation, dashes
+            "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes (But doesn't follow reverse domain notation)
             "x_test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
-            "foo.bar//baz.quux",  # valid namespace with x_ prefix and mixed segments
+            "com.example",  # valid namespace with dots following reverse domain notation
+            "x_com.example",  # valid namespace with x_ prefix and dots following reverse domain notation
+            "au.com.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD
+            "x_au.com.example"  # valid namespace with x_ prefix and dots following reverse domain notation
+            "abc//com.example",  # valid namespace with double slash
+            "abc//com.au.example",
+            "abc//com.example/foo.bar",  # valid namespace with double slash and additional segments
+            "abc//com.example-foo.bar",  # valid namespace with double slash and dash
+            "foo.bar//baz.quux",
         ]
         self.expect_fail = [
             "999",  # invalid namespace, numeric only
@@ -88,10 +99,11 @@ class TestNamespacePattern(unittest.TestCase):
             "contains.dot",
             "contains-dash",
             "contains-dash-and.dot",
+            "com.example",  # valid namespace with dots following reverse domain notation
+            "au.com.example",  # valid namespace with dots following reverse domain notation
         ]
         x_fail = [
             "a",  # too short
-            "ab",  # too short
             "9abc",  # starts with a number
             "x_foo",  # no x_ in base pattern
             "contains..double.dot",  # double dot

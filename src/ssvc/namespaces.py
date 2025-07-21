@@ -43,7 +43,7 @@ LENGTH_CHECK_PATTERN = rf"(?=.{{{MIN_NS_LENGTH},{MAX_NS_LENGTH}}}$)"
 # Base namespace part (before any extensions) allows . and - with restrictions
 BASE_PATTERN = (
     r"(?!.*[.-]{2,})"  # no consecutive separators
-    r"[a-z][a-z0-9]{2,}"  # first part starts with a letter, followed by three or more alphanumeric characters
+    r"[a-z][a-z0-9]+"  # first part starts with a letter, followed by one or more alphanumeric characters
     r"(?:[.-][a-z0-9]+)*"  # remaining parts can have alphanumeric characters and single . or - separators
 )
 """The base pattern for namespaces, which must start with a letter and contain at least 3 alphanumeric characters."""
