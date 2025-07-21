@@ -29,7 +29,7 @@ from semver import Version
 from ssvc import _schemaVersion
 from ssvc.namespaces import NameSpace
 from ssvc.utils.defaults import DEFAULT_VERSION
-from ssvc.utils.types import NamespaceString, VersionString
+from ssvc.utils.field_specs import NamespaceString, VersionString
 
 
 class _Versioned(BaseModel):

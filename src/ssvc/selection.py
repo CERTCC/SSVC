@@ -27,7 +27,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.utils.types import NamespaceString, VersionString
+from ssvc.utils.field_specs import NamespaceString, VersionString
 
 SCHEMA_VERSION = "2.0.0"
 
