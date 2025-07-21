@@ -35,12 +35,12 @@ from ssvc._mixins import (
     _Valued,
     _Versioned,
 )
+from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
 
 
 REGISTERED_DECISION_POINTS = []
-FIELD_DELIMITER = ":"
 
 
 class Registry(BaseModel):

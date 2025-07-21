@@ -26,9 +26,8 @@ from typing import Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ssvc._mixins import VersionField
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.namespaces import NamespaceString
+from ssvc.utils.types import NamespaceString, VersionString
 
 SCHEMA_VERSION = "2.0.0"
 
@@ -49,7 +48,7 @@ class MinimalSelection(BaseModel):
         examples=["E", "A", "MI", "PSI"],
         min_length=1,
     )
-    version: VersionField
+    version: VersionString
     values: list[str] = Field(
         ...,
         description="A list of selected value keys from the decision point values.",

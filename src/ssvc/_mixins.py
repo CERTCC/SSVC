@@ -21,27 +21,15 @@ This module provides mixin classes for adding features to SSVC objects.
 #  subject to its own license.
 #  DM24-0278
 
-from typing import Annotated, Optional
+from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from semver import Version
 
 from ssvc import _schemaVersion
-from ssvc.namespaces import NameSpace, NamespaceString
-
-DEFAULT_VERSION = "0.0.1"
-VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
-
-
-VersionField = Annotated[
-    str,
-    Field(
-        description="The version of the SSVC object. This must be a valid semantic version string.",
-        examples=["1.0.0", "2.1.3"],
-        pattern=VERSION_PATTERN,
-        min_length=5,
-    ),
-]
+from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION
+from ssvc.utils.types import NamespaceString, VersionString
 
 
 class _Versioned(BaseModel):
@@ -49,7 +37,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: VersionField = Field(default=DEFAULT_VERSION)
+    version: VersionString = Field(default=DEFAULT_VERSION)
 
     @field_validator("version")
     @classmethod

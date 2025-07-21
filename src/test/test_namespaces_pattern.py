@@ -21,12 +21,11 @@ import logging
 import re
 import unittest
 
-from ssvc.namespaces import (
+from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH
+from ssvc.utils.patterns import (
     BASE_NS_PATTERN,
     BASE_PATTERN,
     LENGTH_CHECK_PATTERN,
-    MAX_NS_LENGTH,
-    MIN_NS_LENGTH,
     NS_PATTERN,
 )
 

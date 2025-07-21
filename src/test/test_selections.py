@@ -21,9 +21,8 @@ import unittest
 from datetime import datetime
 
 from ssvc import selection
-from ssvc._mixins import VERSION_PATTERN
-from ssvc.namespaces import NS_PATTERN
 from ssvc.selection import MinimalSelectionList
+from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 
 
 class MyTestCase(unittest.TestCase):
@@ -64,7 +63,7 @@ class MyTestCase(unittest.TestCase):
         # key is a string
         self.assertIsInstance(self.s1.key, str)
         self.assertGreater(len(self.s1.key), 0, "Key should not be empty")
-        # version is a valid VersionField
+        # version is a valid VersionString
         self.assertIsInstance(self.s1.version, str)
         self.assertRegex(
             self.s1.version,

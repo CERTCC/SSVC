@@ -19,7 +19,8 @@
 
 import unittest
 
-from ssvc.namespaces import NS_PATTERN, NameSpace
+from ssvc.namespaces import NameSpace
+from ssvc.utils.patterns import NS_PATTERN
 
 
 class MyTestCase(unittest.TestCase):

@@ -271,7 +271,8 @@ The following technical requirements are enforced for SSVC namespaces,
 based on the implementation in `src/ssvc/namespaces.py` and the NS_PATTERN regular expression:
 
 ```python exec="true" idprefix=""
-from ssvc.namespaces import NS_PATTERN
+
+from ssvc.utils.patterns import NS_PATTERN
 
 print(f"`{NS_PATTERN.pattern}`")
 ```

@@ -23,14 +23,14 @@ from random import randint
 from pydantic import BaseModel, ValidationError
 
 from ssvc._mixins import (
-    DEFAULT_VERSION,
     _Base,
     _Keyed,
     _Namespaced,
     _Valued,
     _Versioned,
 )
-from ssvc.namespaces import MAX_NS_LENGTH, NameSpace
+from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION, MAX_NS_LENGTH
 
 
 class TestMixins(unittest.TestCase):
