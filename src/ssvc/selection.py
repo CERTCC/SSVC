@@ -22,7 +22,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  DM24-0278
 
 from datetime import datetime
-from typing import Annotated, Literal, Optional
+from typing import Literal, Optional
 
 from pydantic import (
     BaseModel,
@@ -34,7 +34,7 @@ from pydantic import (
 )
 
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.utils.field_specs import NamespaceString, VersionString
+from ssvc.utils.field_specs import NamespaceString, TargetIdList, VersionString
 
 SCHEMA_VERSION = "2.0.0"
 
@@ -67,9 +67,6 @@ class MinimalSelection(BaseModel):
             ["A", "B", "C"],
         ],  # Example values
     )
-
-
-TargetIdList = Annotated[list[str], Field(min_length=1)]
 
 
 class MinimalSelectionList(BaseModel):

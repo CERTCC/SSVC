@@ -57,6 +57,9 @@ NamespaceString = Annotated[
 ]
 """A string datatype for namespace values, for use in Pydantic models."""
 
+TargetIdList = Annotated[list[str], Field(min_length=1)]
+"""A list of target IDs, for use in Pydantic models."""
+
 
 def main():
     pass
