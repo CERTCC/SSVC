@@ -11,30 +11,22 @@
       "type": "string"
     },
     "target_ids": {
-      "anyOf": [
-        {
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1,
-          "type": "array"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
       "description": "Optional list of identifiers for the item or items (vulnerabilities, reports, advisories, systems, assets, etc.) being evaluated by these selections.",
       "examples": [
         [
-          "CVE-2025-0000"
+          "CVE-1900-0000"
         ],
         [
           "VU#999999",
           "GHSA-0123-4567-89ab"
         ]
       ],
-      "title": "Target Ids"
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Target Ids",
+      "type": "array"
     },
     "selections": {
       "description": "List of minimal selections made from decision points.",

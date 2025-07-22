@@ -22,9 +22,16 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  DM24-0278
 
 from datetime import datetime
-from typing import Literal, Optional
+from typing import Annotated, Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import NamespaceString, VersionString
@@ -62,6 +69,9 @@ class MinimalSelection(BaseModel):
     )
 
 
+TargetIdList = Annotated[list[str], Field(min_length=1)]
+
+
 class MinimalSelectionList(BaseModel):
     """
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
@@ -73,20 +83,22 @@ class MinimalSelectionList(BaseModel):
         description="The schema version of this selection list.",
     )
 
-    target_ids: Optional[list[str]] = Field(
-        default=None,
+    target_ids: TargetIdList = Field(
+        default_factory=list,
         description="Optional list of identifiers for the item or items "
         "(vulnerabilities, reports, advisories, systems, assets, etc.) "
         "being evaluated by these selections.",
         examples=[
-            ["CVE-2025-0000"],
+            ["CVE-1900-0000"],
             ["VU#999999", "GHSA-0123-4567-89ab"],
         ],
         min_length=1,
     )
     selections: list[MinimalSelection] = Field(
         ...,
-        description="List of minimal selections made from decision points.",
+        description="List of selections made from decision points. Each selection item corresponds to "
+        "value keys contained in a specific decision point identified by its namespace, key, and version. "
+        "Note that selection objects are deliberately minimal objects and do not contain the full decision point details.",
         min_length=1,
     )
     timestamp: datetime = Field(
@@ -110,13 +122,27 @@ class MinimalSelectionList(BaseModel):
         Validate the target_ids field.
         If target_ids is provided, it must be a non-empty list of strings.
         """
-        if value is not None:
-            if not isinstance(value, list) or len(value) == 0:
-                raise ValueError("target_ids must be a non-empty list of strings.")
-            for item in value:
-                if not isinstance(item, str):
-                    raise ValueError("Each target_id must be a string.")
+        if value is None:
+            return []
+        if not isinstance(value, list):
+            raise ValueError("target_ids must be a list of strings.")
+        if len(value) == 0:
+            raise ValueError("target_ids must be a non-empty list of strings.")
+        for item in value:
+            if not isinstance(item, str):
+                raise ValueError("Each target_id must be a string.")
         return value
+
+    @model_serializer
+    def serialize_model(self) -> dict:
+        data = dict()
+
+        data["schemaVersion"] = self.schemaVersion
+        if self.target_ids:
+            data["targetIds"] = self.target_ids
+        data["selections"] = self.selections
+        data["timestamp"] = self.timestamp
+        return data
 
     def add_selection(self, selection: MinimalSelection) -> None:
         """
@@ -177,7 +203,9 @@ def main() -> None:
         "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
     )
     schema["description"] = (
-        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available."
+        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values "
+        "for a given vulnerability. Each vulnerability can have multiple Decision Points, and each "
+        "Decision Point can have multiple selected values when full certainty is not available."
     )
 
     # preferred order of fields, just setting for convention
