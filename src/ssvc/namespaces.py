@@ -36,7 +36,7 @@ class NameSpace(StrEnum):
     The namespace value must be one of the members of this enum or start with the prefix specified in X_PFX.
     Namespaces must be {MIN_NS_LENGTH}-{MAX_NS_LENGTH} lowercase characters long and must start with 3-4 
     alphanumeric characters after the optional prefix.
-    Limited punctuation characters (/.-) are allowed between alphanumeric characters, but only one at a time.
+    Limited punctuation characters (#/.-) are allowed between alphanumeric characters, but only one at a time.
 
     Example:
         Following are examples of valid and invalid namespace values:
