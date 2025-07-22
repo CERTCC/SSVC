@@ -29,7 +29,7 @@
       "type": "array"
     },
     "selections": {
-      "description": "List of minimal selections made from decision points.",
+      "description": "List of selections made from decision points. Each selection item corresponds to value keys contained in a specific decision point identified by its namespace, key, and version. Note that selection objects are deliberately minimal objects and do not contain the full decision point details.",
       "items": {
         "$ref": "#/$defs/MinimalSelection"
       },
@@ -64,9 +64,8 @@
           "examples": [
             "ssvc",
             "cisa",
-            "x_com.example//private",
-            "com.example//some-extension",
-            "ssvc/de-DE/example.organization/reference-arch-1"
+            "x_com.example//com.example#private",
+            "ssvc/de-DE/example.organization#reference-arch-1"
           ],
           "maxLength": 1000,
           "minLength": 3,
