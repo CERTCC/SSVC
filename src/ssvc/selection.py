@@ -97,7 +97,9 @@ class MinimalSelectionList(BaseModel):
     )
     selections: list[MinimalSelection] = Field(
         ...,
-        description="List of minimal selections made from decision points.",
+        description="List of selections made from decision points. Each selection item corresponds to "
+        "value keys contained in a specific decision point identified by its namespace, key, and version. "
+        "Note that selection objects are deliberately minimal objects and do not contain the full decision point details.",
         min_length=1,
     )
     timestamp: datetime = Field(
@@ -202,7 +204,9 @@ def main() -> None:
         "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
     )
     schema["description"] = (
-        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available."
+        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values "
+        "for a given vulnerability. Each vulnerability can have multiple Decision Points, and each "
+        "Decision Point can have multiple selected values when full certainty is not available."
     )
 
     # preferred order of fields, just setting for convention
