@@ -160,7 +160,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_test"},
+                "args": {"namespace": "x_example.test"},
                 "has_default": False,
             },
             {

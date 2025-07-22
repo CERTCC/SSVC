@@ -28,13 +28,13 @@ from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.s1 = selection.MinimalSelection(
-            namespace="x_test-namespace",
+            namespace="x_example.test",
             key="test_key_1",
             version="1.0.0",
             values=["value11", "value12"],
         )
         self.s2 = selection.MinimalSelection(
-            namespace="x_test-namespace",
+            namespace="x_example.test",
             key="test_key_2",
             version="1.0.0",
             values=["value21", "value22"],

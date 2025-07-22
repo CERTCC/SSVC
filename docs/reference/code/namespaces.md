@@ -127,20 +127,20 @@ namespaces.
 !!! example "OT Monitoring Service (OTMS) Private Namespace"
 
     Organization A creates a set of decision points for testing purposes and
-    uses the `x_test` namespace. They do not intend to share these decision
+    uses the `x_example.test` namespace. They do not intend to share these decision
     points with anyone outside of their organization, so they use the `x_`
     prefix to indicate that this namespace is private to them.
 
     Organization B also creates a set of decision points for testing purposes
-    and uses the same `x_test` namespace. They also do not intend to share
+    and uses the same `x_example.test` namespace. They also do not intend to share
     these decision points with anyone outside of their organization.
 
 !!! warning "Namespace Conflicts"
 
     Conflicts are possible in the x_ prefix space. 
     In the previous example, Organizations A and B could both choose to use 
-    `x_test`, and there are no guarantees of global uniqueness for the 
-    decision points in the `x_test` namespace.
+    `x_example.test`, and there are no guarantees of global uniqueness for the 
+    decision points in the `x_example.test` namespace.
 
 !!! tip "Private vs Extension Namespaces"
 

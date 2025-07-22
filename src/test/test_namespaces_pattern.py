@@ -50,7 +50,7 @@ class TestNamespacePattern(unittest.TestCase):
             "ssvc/de-DE/example.organization#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
             "ssvc//example.organization#model/com.example#foo",  # valid BCP-47 tag, two segments with one hash each
             "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes (But doesn't follow reverse domain notation)
-            "x_test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
+            "x_example.test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
             "com.example",  # valid namespace with dots following reverse domain notation
             "x_com.example",  # valid namespace with x_ prefix and dots following reverse domain notation
             "au.com.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD
@@ -73,7 +73,7 @@ class TestNamespacePattern(unittest.TestCase):
             "abc/invalid-bcp-47",  # not in enum (but that's ok for the pattern), not a valid BCP-47 tag
             "abc/invalid",  # not in enum (but that's ok for the pattern), not a valid BCP-47 tag
             "x_custom/extension",  # not a valid BCP-47 tag
-            "x_test/not-bcp-47",  # not a valid BCP-47 tag
+            "x_example.test/not-bcp-47",  # not a valid BCP-47 tag
             "x_custom/extension/with/multiple/segments/"
             + "a" * 990,  # exceeds max length
             "ssvc/de-DE/example.organization##reference-arch-1",  # valid BCP-47 tag, reverse domain notation, double hash
