@@ -21,7 +21,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  subject to its own license.
 #  DM24-0278
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Literal, Optional
 
 from pydantic import (
@@ -132,7 +132,12 @@ class MinimalSelectionList(BaseModel):
         if self.target_ids:
             data["targetIds"] = self.target_ids
         data["selections"] = self.selections
-        data["timestamp"] = self.timestamp
+
+        # 1. Ensure the datetime object is UTC
+        dt = self.timestamp.astimezone(timezone.utc)
+        # 2. Format as ISO 8601 with 'Z' for UTC and no milliseconds
+        data["timestamp"] = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
         return data
 
     def add_selection(self, selection: MinimalSelection) -> None:
