@@ -220,6 +220,71 @@ class MinimalSelectionList(_Timestamped, BaseModel):
         """
         self.selections.append(selection)
 
+    # override schema generation to ensure it's the way we want it
+    @classmethod
+    def model_json_schema(cls, **kwargs):
+        schema = super().model_json_schema(**kwargs)
+
+        schema["title"] = "Decision Point Value Selection List"
+        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+        schema["$id"] = (
+            "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
+        )
+        schema["description"] = (
+            "This schema defines the structure for selecting SSVC Decision Points and their evaluated values "
+            "for a given vulnerability. Each vulnerability can have multiple Decision Points, and each "
+            "Decision Point can have multiple selected values when full certainty is not available."
+        )
+
+        non_required_fields = [
+            "name",
+            "description",
+            "target_ids",
+            "resources",
+            "references",
+        ]
+
+        # remove non-required fields from the required list
+        if "required" in schema and isinstance(schema["required"], list):
+            schema["required"] = [
+                field
+                for field in schema["required"]
+                if field not in non_required_fields
+            ]
+
+        # dive in to find all the required lists in the schema
+        # don't forget the defs
+        if "$defs" in schema:
+            for prop in schema["$defs"].values():
+                if isinstance(prop, dict) and "required" in prop:
+                    # remove non-required fields from the required list
+                    prop["required"] = [
+                        r for r in prop["required"] if r not in non_required_fields
+                    ]
+
+        # preferred order of fields, just setting for convention
+        preferred_order = [
+            "$schema",
+            "$id",
+            "title",
+            "description",
+            "schemaVersion",
+            "type",
+            "properties",
+            "required",
+            "additionalProperties",
+            "$defs",
+        ]
+
+        # create a new dict with the preferred order of fields first
+        ordered_fields = {k: schema[k] for k in preferred_order if k in schema}
+        # add the rest of the fields in their original order
+        for k in schema:
+            if k not in ordered_fields:
+                ordered_fields[k] = schema[k]
+
+        return ordered_fields
+
 
 def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelection:
     """
@@ -272,64 +337,7 @@ def main() -> None:
     print("# Schema for MinimalSelectionList")
     schema = MinimalSelectionList.model_json_schema()
 
-    # add schema extras
-    schema.pop("title")
-    schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-    schema["$id"] = (
-        "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
-    )
-    schema["description"] = (
-        "This schema defines the structure for selecting SSVC Decision Points and their evaluated values "
-        "for a given vulnerability. Each vulnerability can have multiple Decision Points, and each "
-        "Decision Point can have multiple selected values when full certainty is not available."
-    )
-
-    non_required_fields = [
-        "name",
-        "description",
-        "target_ids",
-        "resources",
-        "references",
-    ]
-
-    # remove non-required fields from the required list
-    if "required" in schema and isinstance(schema["required"], list):
-        schema["required"] = [
-            field for field in schema["required"] if field not in non_required_fields
-        ]
-
-    # dive in to find all the required lists in the schema
-    # don't forget the defs
-    if "$defs" in schema:
-        for prop in schema["$defs"].values():
-            if isinstance(prop, dict) and "required" in prop:
-                # remove non-required fields from the required list
-                prop["required"] = [
-                    r for r in prop["required"] if r not in non_required_fields
-                ]
-
-    # preferred order of fields, just setting for convention
-    preferred_order = [
-        "$schema",
-        "$id",
-        "title",
-        "description",
-        "schemaVersion",
-        "type",
-        "properties",
-        "required",
-        "additionalProperties",
-        "$defs",
-    ]
-
-    # create a new dict with the preferred order of fields first
-    ordered_fields = {k: schema[k] for k in preferred_order if k in schema}
-    # add the rest of the fields in their original order
-    for k in schema:
-        if k not in ordered_fields:
-            ordered_fields[k] = schema[k]
-
-    print(json.dumps(ordered_fields, indent=2))
+    print(json.dumps(schema, indent=2))
 
     # find local path to this file
     import os
@@ -343,7 +351,7 @@ def main() -> None:
 
     with open(schema_path, "w") as f:
         print(f"Writing schema to {schema_path}")
-        json.dump(ordered_fields, f, indent=2)
+        json.dump(schema, f, indent=2)
 
 
 if __name__ == "__main__":
