@@ -39,7 +39,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: VersionString
+    version: VersionString = Field(default=DEFAULT_VERSION)
 
     @field_validator("version")
     @classmethod
@@ -55,8 +55,6 @@ class _Versioned(BaseModel):
         Raises:
             ValueError: if the value is not a valid version number
         """
-        if value is None:
-            value = DEFAULT_VERSION
         version = Version.parse(value, optional_minor_and_patch=True)
         return version.__str__()
 

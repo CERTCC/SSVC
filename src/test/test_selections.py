@@ -21,7 +21,7 @@ import unittest
 from datetime import datetime
 
 from ssvc import selection
-from ssvc.selection import MinimalSelectionList
+from ssvc.selection import MinimalDecisionPointValue, MinimalSelectionList
 from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 
 
@@ -31,13 +31,13 @@ class MyTestCase(unittest.TestCase):
             namespace="x_example.test",
             key="test_key_1",
             version="1.0.0",
-            values=["value11", "value12"],
+            values=[{"key": "value11"}, {"key": "value12"}],
         )
         self.s2 = selection.MinimalSelection(
             namespace="x_example.test",
             key="test_key_2",
             version="1.0.0",
-            values=["value21", "value22"],
+            values=[{"key": "value21"}, {"key": "value22"}],
         )
         self.selections = MinimalSelectionList(
             selections=[self.s1, self.s2],
@@ -73,10 +73,18 @@ class MyTestCase(unittest.TestCase):
             "Version does not match the required pattern",
         )
 
-        # values is list of strings
-        self.assertIsInstance(self.s1.values, list)
+        # values is list of strings'
+        self.assertIsInstance(self.s1.values, tuple)
         for value in self.s1.values:
-            self.assertIsInstance(value, str, f"Value {value} is not a string")
+            self.assertIsInstance(
+                value,
+                MinimalDecisionPointValue,
+                f"Value {value} is not a MinimalDecisionPoint",
+            )
+            self.assertTrue(
+                hasattr(value, "key"), f"Attribute 'key' is missing from {value}"
+            )
+            self.assertIsInstance(value.key, str)
 
     def test_minimal_selection_list_init(self):
         required_attrs = [
