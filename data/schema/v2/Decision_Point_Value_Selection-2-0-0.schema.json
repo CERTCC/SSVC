@@ -4,6 +4,16 @@
   "description": "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
   "type": "object",
   "properties": {
+    "timestamp": {
+      "description": "Timestamp of the selections, in RFC 3339 format.",
+      "examples": [
+        "2025-01-01T12:00:00Z",
+        "2025-01-02T15:30:45-04:00"
+      ],
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    },
     "schemaVersion": {
       "const": "2.0.0",
       "description": "The schema version of this selection list.",
@@ -36,22 +46,12 @@
       "minItems": 1,
       "title": "Selections",
       "type": "array"
-    },
-    "timestamp": {
-      "description": "Timestamp of when the selections were made, in RFC 3339 format.",
-      "examples": [
-        "2025-01-01T12:00:00Z",
-        "2025-01-02T15:30:45-04:00"
-      ],
-      "format": "date-time",
-      "title": "Timestamp",
-      "type": "string"
     }
   },
   "required": [
+    "timestamp",
     "schemaVersion",
-    "selections",
-    "timestamp"
+    "selections"
   ],
   "additionalProperties": false,
   "$defs": {

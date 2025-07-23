@@ -33,7 +33,7 @@ from pydantic import (
     model_validator,
 )
 
-from ssvc._mixins import _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc._mixins import _Keyed, _Namespaced, _Timestamped, _Valued, _Versioned
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList
 
@@ -63,7 +63,7 @@ class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, BaseModel):
     )
 
 
-class MinimalSelectionList(BaseModel):
+class MinimalSelectionList(_Timestamped, BaseModel):
     """
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
@@ -94,7 +94,7 @@ class MinimalSelectionList(BaseModel):
     )
     timestamp: datetime = Field(
         ...,
-        description="Timestamp of when the selections were made, in RFC 3339 format.",
+        description="Timestamp of the selections, in RFC 3339 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
 
