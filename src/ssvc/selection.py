@@ -381,6 +381,7 @@ def main() -> None:
     with open(schema_path, "w") as f:
         print(f"Writing schema to {schema_path}")
         json.dump(schema, f, indent=2)
+        f.write("\n")  # Ensure the file ends with a newline
 
 
 if __name__ == "__main__":
