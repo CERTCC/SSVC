@@ -64,6 +64,7 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     This is used to transition from an SSVC decision point to a selection.
+    Other fields like name and description may be copied from the decision point, but are not required.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -77,6 +78,28 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
             [{"key": "A"}, {"key": "B"}, {"key": "C"}],
         ],  # Example values
     )
+
+    # class method to convert a decision point to a selection
+    @classmethod
+    def from_decision_point(cls, decision_point: DecisionPoint) -> "Selection":
+        """
+        Converts a decision point to a minimal selection object.
+
+        Args:
+            decision_point (DecisionPoint): The decision point to convert.
+
+        Returns:
+            Selection: The resulting minimal selection object.
+        """
+        data = {
+            "namespace": decision_point.namespace,
+            "key": decision_point.key,
+            "version": decision_point.version,
+            "values": [
+                MinimalDecisionPointValue(key=val.key) for val in decision_point.values
+            ],
+        }
+        return cls(**data)
 
     @model_validator(mode="before")
     def set_optional_fields(cls, data):
@@ -286,26 +309,6 @@ class SelectionList(_Timestamped, BaseModel):
         return ordered_fields
 
 
-def selection_from_decision_point(decision_point: DecisionPoint) -> Selection:
-    """
-    Converts a decision point to a minimal selection object.
-
-    Args:
-        decision_point (DecisionPoint): The decision point to convert.
-
-    Returns:
-        Selection: The resulting minimal selection object.
-    """
-    data = {
-        "namespace": decision_point.namespace,
-        "key": decision_point.key,
-        "version": decision_point.version,
-        "values": [{"key": val.key} for val in decision_point.values],
-    }
-
-    return Selection(**data)
-
-
 def main() -> None:
     """
     Prints example selections and their schema in JSON format.
@@ -317,8 +320,8 @@ def main() -> None:
     from ssvc.decision_points.ssvc.safety_impact import LATEST as dp2
     import json
 
-    a1 = selection_from_decision_point(dp1)
-    a2 = selection_from_decision_point(dp2)
+    a1 = Selection.from_decision_point(dp1)
+    a2 = Selection.from_decision_point(dp2)
     selections = SelectionList(
         schemaVersion=SCHEMA_VERSION,
         selections=[a1, a2],

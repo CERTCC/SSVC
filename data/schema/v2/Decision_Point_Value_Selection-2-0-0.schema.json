@@ -143,7 +143,7 @@
     },
     "Selection": {
       "additionalProperties": false,
-      "description": "A minimal selection object that contains the decision point ID and the selected values.\nThis is used to transition from an SSVC decision point to a selection.",
+      "description": "A minimal selection object that contains the decision point ID and the selected values.\nThis is used to transition from an SSVC decision point to a selection.\nOther fields like name and description may be copied from the decision point, but are not required.",
       "properties": {
         "name": {
           "title": "Name",
