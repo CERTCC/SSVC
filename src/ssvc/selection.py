@@ -21,7 +21,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  subject to its own license.
 #  DM24-0278
 
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Literal, Optional
 
 from pydantic import (
@@ -30,22 +30,37 @@ from pydantic import (
     ConfigDict,
     Field,
     field_validator,
-    model_serializer,
     model_validator,
 )
 
-from ssvc._mixins import _Keyed, _Namespaced, _Timestamped, _Valued, _Versioned
+from ssvc._mixins import (
+    _Base,
+    _Keyed,
+    _Namespaced,
+    _Timestamped,
+    _Valued,
+    _Versioned,
+)
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList
 
 SCHEMA_VERSION = "2.0.0"
 
 
-class MinimalDecisionPointValue(_Keyed, BaseModel):
+class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
     """A minimal representation of a decision point value."""
 
+    @model_validator(mode="before")
+    def set_optional_fields(cls, data):
+        if "name" not in data:
+            data["name"] = ""
+        if "description" not in data:
+            data["description"] = ""
 
-class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, BaseModel):
+        return data
+
+
+class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     This is used to transition from an SSVC decision point to a selection.
@@ -63,12 +78,43 @@ class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, BaseModel):
         ],  # Example values
     )
 
+    @model_validator(mode="before")
+    def set_optional_fields(cls, data):
+        if "name" not in data:
+            data["name"] = ""
+        if "description" not in data:
+            data["description"] = ""
+        return data
+
+    def model_json_schema(cls, **kwargs):
+        schema = super().model_json_schema(**kwargs)
+        not_required = ["name", "description"]
+        if "required" in schema and isinstance(schema["required"], list):
+            # remove description from required list if it exists
+            schema["required"] = [
+                field for field in schema["required"] if field not in not_required
+            ]
+        return schema
+
 
 class Reference(BaseModel):
     """A reference to a resource that provides additional context about the decision points or selections."""
 
+    model_config = ConfigDict(extra="forbid")
+
     uri: AnyUrl
     description: str
+
+    # override schema generation to ensure that description is not required
+    def model_json_schema(cls, **kwargs):
+        schema = super().model_json_schema(**kwargs)
+        not_required = ["description"]
+        if "required" in schema and isinstance(schema["required"], list):
+            # remove description from required list if it exists
+            schema["required"] = [
+                field for field in schema["required"] if field not in not_required
+            ]
+        return schema
 
 
 class MinimalSelectionList(_Timestamped, BaseModel):
@@ -142,7 +188,6 @@ class MinimalSelectionList(_Timestamped, BaseModel):
 
     @model_validator(mode="before")
     def set_schema_version(cls, data):
-        # If schemaVersion is missing, add it
         if "schemaVersion" not in data:
             data["schemaVersion"] = SCHEMA_VERSION
         return data
@@ -165,26 +210,6 @@ class MinimalSelectionList(_Timestamped, BaseModel):
             if not isinstance(item, str):
                 raise ValueError("Each target_id must be a string.")
         return value
-
-    @model_serializer
-    def serialize_model(self) -> dict:
-        data = dict()
-
-        data["schemaVersion"] = self.schemaVersion
-        if self.target_ids:
-            data["target_ids"] = self.target_ids
-        data["selections"] = self.selections
-
-        # 1. Ensure the datetime object is UTC
-        dt = self.timestamp.astimezone(timezone.utc)
-        # 2. Format as ISO 8601 with 'Z' for UTC and no milliseconds
-        data["timestamp"] = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-        if self.resources:
-            data["resources"] = [resource.model_dump() for resource in self.resources]
-        if self.references:
-            data["references"] = [ref.model_dump() for ref in self.references]
-
-        return data
 
     def add_selection(self, selection: MinimalSelection) -> None:
         """
@@ -242,7 +267,7 @@ def main() -> None:
         ],
     )
 
-    print(selections.model_dump_json(indent=2, exclude_none=True))
+    print(selections.model_dump_json(indent=2, exclude_none=True, exclude_unset=True))
 
     print("# Schema for MinimalSelectionList")
     schema = MinimalSelectionList.model_json_schema()
@@ -258,6 +283,30 @@ def main() -> None:
         "for a given vulnerability. Each vulnerability can have multiple Decision Points, and each "
         "Decision Point can have multiple selected values when full certainty is not available."
     )
+
+    non_required_fields = [
+        "name",
+        "description",
+        "target_ids",
+        "resources",
+        "references",
+    ]
+
+    # remove non-required fields from the required list
+    if "required" in schema and isinstance(schema["required"], list):
+        schema["required"] = [
+            field for field in schema["required"] if field not in non_required_fields
+        ]
+
+    # dive in to find all the required lists in the schema
+    # don't forget the defs
+    if "$defs" in schema:
+        for prop in schema["$defs"].values():
+            if isinstance(prop, dict) and "required" in prop:
+                # remove non-required fields from the required list
+                prop["required"] = [
+                    r for r in prop["required"] if r not in non_required_fields
+                ]
 
     # preferred order of fields, just setting for convention
     preferred_order = [
