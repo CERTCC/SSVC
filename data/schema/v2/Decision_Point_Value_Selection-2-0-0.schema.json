@@ -46,6 +46,48 @@
       "minItems": 1,
       "title": "Selections",
       "type": "array"
+    },
+    "resources": {
+      "description": "A list of references to resources that provide additional context about the decision points found in this selection.",
+      "examples": [
+        [
+          {
+            "description": "Documentation for a set of decision points",
+            "uri": "https://example.com/decision_points"
+          },
+          {
+            "description": "JSON representation of decision point 2",
+            "uri": "https://example.org/definitions/dp2.json"
+          },
+          {
+            "description": "A JSON file containing extension decision points in the x_com.example namespace",
+            "uri": "https://example.com/ssvc/x_com.example/decision_points.json"
+          }
+        ]
+      ],
+      "items": {
+        "$ref": "#/$defs/Reference"
+      },
+      "minItems": 1,
+      "title": "Resources",
+      "type": "array"
+    },
+    "references": {
+      "description": "A list of references to resources that provide additional context about the specific values selected.",
+      "examples": [
+        [
+          {
+            "description": "A report on which the selections were based",
+            "uri": "https://example.com/report"
+          }
+        ]
+      ],
+      "items": {
+        "$ref": "#/$defs/Reference"
+      },
+      "minItems": 1,
+      "title": "References",
+      "type": "array"
     }
   },
   "required": [
@@ -92,6 +134,7 @@
           "type": "string"
         },
         "version": {
+          "default": "0.0.1",
           "description": "The version of the SSVC object. This must be a valid semantic version string.",
           "examples": [
             "1.0.0",
@@ -136,10 +179,30 @@
       "required": [
         "namespace",
         "key",
-        "version",
         "values"
       ],
       "title": "MinimalSelection",
+      "type": "object"
+    },
+    "Reference": {
+      "description": "A reference to a resource that provides additional context about the decision points or selections.",
+      "properties": {
+        "uri": {
+          "format": "uri",
+          "minLength": 1,
+          "title": "Uri",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri",
+        "description"
+      ],
+      "title": "Reference",
       "type": "object"
     }
   }

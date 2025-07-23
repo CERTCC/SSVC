@@ -25,6 +25,7 @@ from datetime import datetime, timezone
 from typing import Literal, Optional
 
 from pydantic import (
+    AnyUrl,
     BaseModel,
     ConfigDict,
     Field,
@@ -63,6 +64,13 @@ class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, BaseModel):
     )
 
 
+class Reference(BaseModel):
+    """A reference to a resource that provides additional context about the decision points or selections."""
+
+    uri: AnyUrl
+    description: str
+
+
 class MinimalSelectionList(_Timestamped, BaseModel):
     """
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
@@ -97,6 +105,40 @@ class MinimalSelectionList(_Timestamped, BaseModel):
         description="Timestamp of the selections, in RFC 3339 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
+    resources: list[Reference] = Field(
+        default_factory=list,
+        min_length=1,
+        description="A list of references to resources that provide additional context about the decision points found in this selection.",
+        examples=[
+            [
+                {
+                    "uri": "https://example.com/decision_points",
+                    "description": "Documentation for a set of decision points",
+                },
+                {
+                    "uri": "https://example.org/definitions/dp2.json",
+                    "description": "JSON representation of decision point 2",
+                },
+                {
+                    "uri": "https://example.com/ssvc/x_com.example/decision_points.json",
+                    "description": "A JSON file containing extension decision points in the x_com.example namespace",
+                },
+            ],
+        ],
+    )
+    references: list[Reference] = Field(
+        default_factory=list,
+        min_length=1,
+        description="A list of references to resources that provide additional context about the specific values selected.",
+        examples=[
+            [
+                {
+                    "uri": "https://example.com/report",
+                    "description": "A report on which the selections were based",
+                },
+            ]
+        ],
+    )
 
     @model_validator(mode="before")
     def set_schema_version(cls, data):
@@ -130,13 +172,17 @@ class MinimalSelectionList(_Timestamped, BaseModel):
 
         data["schemaVersion"] = self.schemaVersion
         if self.target_ids:
-            data["targetIds"] = self.target_ids
+            data["target_ids"] = self.target_ids
         data["selections"] = self.selections
 
         # 1. Ensure the datetime object is UTC
         dt = self.timestamp.astimezone(timezone.utc)
         # 2. Format as ISO 8601 with 'Z' for UTC and no milliseconds
         data["timestamp"] = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+        if self.resources:
+            data["resources"] = [resource.model_dump() for resource in self.resources]
+        if self.references:
+            data["references"] = [ref.model_dump() for ref in self.references]
 
         return data
 
@@ -184,7 +230,16 @@ def main() -> None:
     a1 = selection_from_decision_point(dp1)
     a2 = selection_from_decision_point(dp2)
     selections = MinimalSelectionList(
-        schemaVersion=SCHEMA_VERSION, selections=[a1, a2], timestamp=datetime.now()
+        schemaVersion=SCHEMA_VERSION,
+        selections=[a1, a2],
+        timestamp=datetime.now(),
+        target_ids=["CVE-2025-0001", "GHSA-0123-4567-89ab"],
+        references=[
+            Reference(
+                uri="https://example.com/report",
+                description="A report on which the selections were based",
+            )
+        ],
     )
 
     print(selections.model_dump_json(indent=2, exclude_none=True))
