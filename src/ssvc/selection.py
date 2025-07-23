@@ -60,7 +60,7 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
         return data
 
 
-class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
+class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     This is used to transition from an SSVC decision point to a selection.
@@ -117,7 +117,7 @@ class Reference(BaseModel):
         return schema
 
 
-class MinimalSelectionList(_Timestamped, BaseModel):
+class SelectionList(_Timestamped, BaseModel):
     """
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
@@ -139,7 +139,7 @@ class MinimalSelectionList(_Timestamped, BaseModel):
         ],
         min_length=1,
     )
-    selections: list[MinimalSelection] = Field(
+    selections: list[Selection] = Field(
         ...,
         description="List of selections made from decision points. Each selection item corresponds to "
         "value keys contained in a specific decision point identified by its namespace, key, and version. "
@@ -211,12 +211,12 @@ class MinimalSelectionList(_Timestamped, BaseModel):
                 raise ValueError("Each target_id must be a string.")
         return value
 
-    def add_selection(self, selection: MinimalSelection) -> None:
+    def add_selection(self, selection: Selection) -> None:
         """
         Adds a minimal selection to the list.
 
         Args:
-            selection (MinimalSelection): The minimal selection to add.
+            selection (Selection): The minimal selection to add.
         """
         self.selections.append(selection)
 
@@ -286,7 +286,7 @@ class MinimalSelectionList(_Timestamped, BaseModel):
         return ordered_fields
 
 
-def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelection:
+def selection_from_decision_point(decision_point: DecisionPoint) -> Selection:
     """
     Converts a decision point to a minimal selection object.
 
@@ -294,7 +294,7 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
         decision_point (DecisionPoint): The decision point to convert.
 
     Returns:
-        MinimalSelection: The resulting minimal selection object.
+        Selection: The resulting minimal selection object.
     """
     data = {
         "namespace": decision_point.namespace,
@@ -303,7 +303,7 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
         "values": [{"key": val.key} for val in decision_point.values],
     }
 
-    return MinimalSelection(**data)
+    return Selection(**data)
 
 
 def main() -> None:
@@ -319,7 +319,7 @@ def main() -> None:
 
     a1 = selection_from_decision_point(dp1)
     a2 = selection_from_decision_point(dp2)
-    selections = MinimalSelectionList(
+    selections = SelectionList(
         schemaVersion=SCHEMA_VERSION,
         selections=[a1, a2],
         timestamp=datetime.now(),
@@ -334,8 +334,8 @@ def main() -> None:
 
     print(selections.model_dump_json(indent=2, exclude_none=True, exclude_unset=True))
 
-    print("# Schema for MinimalSelectionList")
-    schema = MinimalSelectionList.model_json_schema()
+    print("# Schema for SelectionList")
+    schema = SelectionList.model_json_schema()
 
     print(json.dumps(schema, indent=2))
 

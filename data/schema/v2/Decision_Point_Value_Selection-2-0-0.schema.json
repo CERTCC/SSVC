@@ -42,7 +42,7 @@
     "selections": {
       "description": "List of selections made from decision points. Each selection item corresponds to value keys contained in a specific decision point identified by its namespace, key, and version. Note that selection objects are deliberately minimal objects and do not contain the full decision point details.",
       "items": {
-        "$ref": "#/$defs/MinimalSelection"
+        "$ref": "#/$defs/Selection"
       },
       "minItems": 1,
       "title": "Selections",
@@ -120,7 +120,28 @@
       "title": "MinimalDecisionPointValue",
       "type": "object"
     },
-    "MinimalSelection": {
+    "Reference": {
+      "additionalProperties": false,
+      "description": "A reference to a resource that provides additional context about the decision points or selections.",
+      "properties": {
+        "uri": {
+          "format": "uri",
+          "minLength": 1,
+          "title": "Uri",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "title": "Reference",
+      "type": "object"
+    },
+    "Selection": {
       "additionalProperties": false,
       "description": "A minimal selection object that contains the decision point ID and the selected values.\nThis is used to transition from an SSVC decision point to a selection.",
       "properties": {
@@ -198,28 +219,7 @@
         "key",
         "values"
       ],
-      "title": "MinimalSelection",
-      "type": "object"
-    },
-    "Reference": {
-      "additionalProperties": false,
-      "description": "A reference to a resource that provides additional context about the decision points or selections.",
-      "properties": {
-        "uri": {
-          "format": "uri",
-          "minLength": 1,
-          "title": "Uri",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string"
-        }
-      },
-      "required": [
-        "uri"
-      ],
-      "title": "Reference",
+      "title": "Selection",
       "type": "object"
     }
   }

@@ -21,25 +21,25 @@ import unittest
 from datetime import datetime
 
 from ssvc import selection
-from ssvc.selection import MinimalDecisionPointValue, MinimalSelectionList
+from ssvc.selection import MinimalDecisionPointValue, SelectionList
 from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.s1 = selection.MinimalSelection(
+        self.s1 = selection.Selection(
             namespace="x_example.test",
             key="test_key_1",
             version="1.0.0",
             values=[{"key": "value11"}, {"key": "value12"}],
         )
-        self.s2 = selection.MinimalSelection(
+        self.s2 = selection.Selection(
             namespace="x_example.test",
             key="test_key_2",
             version="1.0.0",
             values=[{"key": "value21"}, {"key": "value22"}],
         )
-        self.selections = MinimalSelectionList(
+        self.selections = SelectionList(
             selections=[self.s1, self.s2],
             timestamp=datetime.now(),
             target_ids=["target_id_1", "target_id_2"],
@@ -112,10 +112,10 @@ class MyTestCase(unittest.TestCase):
                 target_id, str, f"Target ID {target_id} is not a string"
             )
 
-        # selections is a list of MinimalSelection objects
+        # selections is a list of Selection objects
         self.assertIsInstance(self.selections.selections, list)
         for sel in self.selections.selections:
-            self.assertIsInstance(sel, selection.MinimalSelection)
+            self.assertIsInstance(sel, selection.Selection)
 
         # timestamp is a datetime object
         self.assertIsInstance(self.selections.timestamp, datetime)
