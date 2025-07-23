@@ -56,7 +56,7 @@ def markdown_table(dp: SsvcDecisionPoint, indent: int = 0) -> str:
 def example_block_tabbed(dp: SsvcDecisionPoint, indent=4) -> str:
     """Given a decision point, return a markdown block that contains an example of the decision point."""
 
-    dp_title_str = f"{dp.name} ({dp.key}) v{dp.version}"
+    dp_title_str = f"{dp.name} ({dp.namespace}:{dp.key}:{dp.version})"
 
     indent_ = " " * 4
     rows = []
@@ -82,7 +82,7 @@ def example_block(
 ) -> str:
     """Given a decision point, return a markdown block that contains an example of the decision point."""
 
-    dp_title_str = f"{dp.name} ({dp.key}) v{dp.version}"
+    dp_title_str = f"{dp.name} ({dp.namespace}:{dp.key}:{dp.version})"
 
     indent_ = " " * indent
     rows = []
