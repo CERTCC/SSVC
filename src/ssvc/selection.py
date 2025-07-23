@@ -59,6 +59,18 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
 
         return data
 
+    @model_validator(mode="after")
+    def validate_values(cls, data):
+        """
+        If name or description are empty strings, set them to None so that
+        they are not included in the JSON output when serialized using model_dump_json.
+        """
+        if not data.name:
+            data.name = None
+        if not data.description:
+            data.description = None
+        return data
+
 
 class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
     """
@@ -81,7 +93,9 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
 
     # class method to convert a decision point to a selection
     @classmethod
-    def from_decision_point(cls, decision_point: DecisionPoint) -> "Selection":
+    def from_decision_point(
+        cls, decision_point: DecisionPoint, include_optional: bool = False
+    ) -> "Selection":
         """
         Converts a decision point to a minimal selection object.
 
@@ -99,6 +113,10 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
                 MinimalDecisionPointValue(key=val.key) for val in decision_point.values
             ],
         }
+        for attr in ("name", "description"):
+            if hasattr(decision_point, attr):
+                data[attr] = getattr(decision_point, attr)
+
         return cls(**data)
 
     @model_validator(mode="before")
@@ -107,6 +125,14 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
             data["name"] = ""
         if "description" not in data:
             data["description"] = ""
+        return data
+
+    @model_validator(mode="after")
+    def validate_values(cls, data):
+        if not data.name:
+            data.name = None
+        if not data.description:
+            data.description = None
         return data
 
     def model_json_schema(cls, **kwargs):
