@@ -4,6 +4,16 @@
   "description": "This schema defines the structure for selecting SSVC Decision Points and their evaluated values for a given vulnerability. Each vulnerability can have multiple Decision Points, and each Decision Point can have multiple selected values when full certainty is not available.",
   "type": "object",
   "properties": {
+    "timestamp": {
+      "description": "Timestamp of the selections, in RFC 3339 format.",
+      "examples": [
+        "2025-01-01T12:00:00Z",
+        "2025-01-02T15:30:45-04:00"
+      ],
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    },
     "schemaVersion": {
       "const": "2.0.0",
       "description": "The schema version of this selection list.",
@@ -29,59 +39,55 @@
       "type": "array"
     },
     "selections": {
-      "description": "List of minimal selections made from decision points.",
+      "description": "List of selections made from decision points. Each selection item corresponds to value keys contained in a specific decision point identified by its namespace, key, and version. Note that selection objects are deliberately minimal objects and do not contain the full decision point details.",
       "items": {
         "$ref": "#/$defs/MinimalSelection"
       },
       "minItems": 1,
       "title": "Selections",
       "type": "array"
-    },
-    "timestamp": {
-      "description": "Timestamp of when the selections were made, in RFC 3339 format.",
-      "examples": [
-        "2025-01-01T12:00:00Z",
-        "2025-01-02T15:30:45-04:00"
-      ],
-      "format": "date-time",
-      "title": "Timestamp",
-      "type": "string"
     }
   },
   "required": [
+    "timestamp",
     "schemaVersion",
-    "selections",
-    "timestamp"
+    "selections"
   ],
   "additionalProperties": false,
   "$defs": {
+    "MinimalDecisionPointValue": {
+      "description": "A minimal representation of a decision point value.",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ],
+      "title": "MinimalDecisionPointValue",
+      "type": "object"
+    },
     "MinimalSelection": {
       "additionalProperties": false,
-      "description": "A minimal selection object that contains the decision point ID and the selected options.\nThis is used to transition from an SSVC decision point to a selection.",
+      "description": "A minimal selection object that contains the decision point ID and the selected values.\nThis is used to transition from an SSVC decision point to a selection.",
       "properties": {
         "namespace": {
-          "description": "The namespace of the decision point.",
+          "description": "The namespace of the SSVC object.",
           "examples": [
             "ssvc",
             "cisa",
-            "x_private-test",
-            "ssvc/de-DE/reference-arch-1"
+            "x_com.example//com.example#private",
+            "ssvc/de-DE/example.organization#reference-arch-1"
           ],
           "maxLength": 1000,
           "minLength": 3,
-          "pattern": "^(?=.{3,1000}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,997}$$",
+          "pattern": "^(?=.{3,1000}$)(?:x_(?!.*[.-]{2,})[a-z][a-z0-9]+(?:[.-][a-z0-9]+)*|(?!.*[.-]{2,})[a-z][a-z0-9]+(?:[.-][a-z0-9]+)*)(?:(?:/(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,8})(-[A-Za-z]{4})?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-[A-WY-Za-wy-z0-9](-[A-Za-z0-9]{2,8})+)*(-[Xx](-[A-Za-z0-9]{1,8})+)?|[Xx](-[A-Za-z0-9]{1,8})+|[Ii]-[Dd][Ee][Ff][Aa][Uu][Ll][Tt]|[Ii]-[Mm][Ii][Nn][Gg][Oo])/|//)(?!.*[.-]{2,})[a-zA-Z][a-zA-Z0-9]*(?:[.-][a-zA-Z0-9]+)*(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?(?:/(?!.*[.-]{2,})[a-zA-Z][a-zA-Z0-9]*(?:[.-][a-zA-Z0-9]+)*(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?)*)?$",
           "title": "Namespace",
           "type": "string"
         },
         "key": {
-          "description": "The decision point key.",
-          "examples": [
-            "E",
-            "A",
-            "MI",
-            "PSI"
-          ],
-          "minLength": 1,
           "title": "Key",
           "type": "string"
         },
@@ -100,17 +106,27 @@
           "description": "A list of selected value keys from the decision point values.",
           "examples": [
             [
-              "N",
-              "Y"
+              {
+                "key": "N"
+              },
+              {
+                "key": "Y"
+              }
             ],
             [
-              "A",
-              "B",
-              "C"
+              {
+                "key": "A"
+              },
+              {
+                "key": "B"
+              },
+              {
+                "key": "C"
+              }
             ]
           ],
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/MinimalDecisionPointValue"
           },
           "minItems": 1,
           "title": "Values",

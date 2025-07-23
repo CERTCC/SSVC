@@ -23,14 +23,14 @@ from random import randint
 from pydantic import BaseModel, ValidationError
 
 from ssvc._mixins import (
-    DEFAULT_VERSION,
     _Base,
     _Keyed,
     _Namespaced,
     _Valued,
     _Versioned,
 )
-from ssvc.namespaces import MAX_NS_LENGTH, NameSpace
+from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION, MAX_NS_LENGTH
 
 
 class TestMixins(unittest.TestCase):
@@ -121,7 +121,7 @@ class TestMixins(unittest.TestCase):
         # custom namespaces are allowed as long as they start with x_
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_{randint(1000,1000000)}"
+            ns = f"x_a{randint(1000,1000000)}"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
@@ -160,7 +160,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_test"},
+                "args": {"namespace": "x_example.test"},
                 "has_default": False,
             },
             {

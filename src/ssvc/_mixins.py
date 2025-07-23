@@ -2,6 +2,7 @@
 """
 This module provides mixin classes for adding features to SSVC objects.
 """
+
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -21,27 +22,16 @@ This module provides mixin classes for adding features to SSVC objects.
 #  subject to its own license.
 #  DM24-0278
 
-from typing import Annotated, Optional
+from datetime import datetime, timezone
+from typing import Optional
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from semver import Version
 
 from ssvc import _schemaVersion
-from ssvc.namespaces import NameSpace, NamespaceString
-
-DEFAULT_VERSION = "0.0.1"
-VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
-
-
-VersionField = Annotated[
-    str,
-    Field(
-        description="The version of the SSVC object. This must be a valid semantic version string.",
-        examples=["1.0.0", "2.1.3"],
-        pattern=VERSION_PATTERN,
-        min_length=5,
-    ),
-]
+from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION
+from ssvc.utils.field_specs import NamespaceString, VersionString
 
 
 class _Versioned(BaseModel):
@@ -49,7 +39,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: VersionField = Field(default=DEFAULT_VERSION)
+    version: VersionString = Field(default=DEFAULT_VERSION)
 
     @field_validator("version")
     @classmethod
@@ -147,6 +137,28 @@ class _Commented(BaseModel):
     _comment: Optional[str] = None
 
     model_config = ConfigDict(json_encoders={Optional[str]: exclude_if_none})
+
+
+class _Timestamped(BaseModel):
+    """
+    Mixin class for timestamped SSVC objects.
+    """
+
+    timestamp: datetime = Field(
+        ...,
+        description="Timestamp of the SSVC object, in RFC 3339 format.",
+        examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
+    )
+
+    # set the default value to the current time
+    @model_validator(mode="before")
+    def set_timestamp(cls, data):
+        """
+        Set the timestamp to the current time if not provided.
+        """
+        if "timestamp" not in data:
+            data["timestamp"] = datetime.now().astimezone(timezone.utc)
+        return data
 
 
 class _Base(BaseModel):

@@ -21,8 +21,8 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  subject to its own license.
 #  DM24-0278
 
-from datetime import datetime
-from typing import Annotated, Literal, Optional
+from datetime import datetime, timezone
+from typing import Literal, Optional
 
 from pydantic import (
     BaseModel,
@@ -33,47 +33,37 @@ from pydantic import (
     model_validator,
 )
 
-from ssvc._mixins import VersionField
+from ssvc._mixins import _Keyed, _Namespaced, _Timestamped, _Valued, _Versioned
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.namespaces import NamespaceString
+from ssvc.utils.field_specs import TargetIdList
 
 SCHEMA_VERSION = "2.0.0"
 
 
-class MinimalSelection(BaseModel):
+class MinimalDecisionPointValue(_Keyed, BaseModel):
+    """A minimal representation of a decision point value."""
+
+
+class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, BaseModel):
     """
-    A minimal selection object that contains the decision point ID and the selected options.
+    A minimal selection object that contains the decision point ID and the selected values.
     This is used to transition from an SSVC decision point to a selection.
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    namespace: NamespaceString = Field(
-        ...,
-        description="The namespace of the decision point.",
-    )
-    key: str = Field(
-        ...,
-        description="The decision point key.",
-        examples=["E", "A", "MI", "PSI"],
-        min_length=1,
-    )
-    version: VersionField
-    values: list[str] = Field(
+    values: tuple[MinimalDecisionPointValue, ...] = Field(
         ...,
         description="A list of selected value keys from the decision point values.",
         min_length=1,
         examples=[
-            ["N", "Y"],
-            ["A", "B", "C"],
+            [{"key": "N"}, {"key": "Y"}],
+            [{"key": "A"}, {"key": "B"}, {"key": "C"}],
         ],  # Example values
     )
 
 
-TargetIdList = Annotated[list[str], Field(min_length=1)]
-
-
-class MinimalSelectionList(BaseModel):
+class MinimalSelectionList(_Timestamped, BaseModel):
     """
     A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
     """
@@ -104,7 +94,7 @@ class MinimalSelectionList(BaseModel):
     )
     timestamp: datetime = Field(
         ...,
-        description="Timestamp of when the selections were made, in RFC 3339 format.",
+        description="Timestamp of the selections, in RFC 3339 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
 
@@ -142,7 +132,12 @@ class MinimalSelectionList(BaseModel):
         if self.target_ids:
             data["targetIds"] = self.target_ids
         data["selections"] = self.selections
-        data["timestamp"] = self.timestamp
+
+        # 1. Ensure the datetime object is UTC
+        dt = self.timestamp.astimezone(timezone.utc)
+        # 2. Format as ISO 8601 with 'Z' for UTC and no milliseconds
+        data["timestamp"] = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
         return data
 
     def add_selection(self, selection: MinimalSelection) -> None:
@@ -169,7 +164,7 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
         "namespace": decision_point.namespace,
         "key": decision_point.key,
         "version": decision_point.version,
-        "values": [val.key for val in decision_point.values],
+        "values": [{"key": val.key} for val in decision_point.values],
     }
 
     return MinimalSelection(**data)
