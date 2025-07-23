@@ -55,12 +55,26 @@
   ],
   "additionalProperties": false,
   "$defs": {
+    "MinimalDecisionPointValue": {
+      "description": "A minimal representation of a decision point value.",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ],
+      "title": "MinimalDecisionPointValue",
+      "type": "object"
+    },
     "MinimalSelection": {
       "additionalProperties": false,
-      "description": "A minimal selection object that contains the decision point ID and the selected options.\nThis is used to transition from an SSVC decision point to a selection.",
+      "description": "A minimal selection object that contains the decision point ID and the selected values.\nThis is used to transition from an SSVC decision point to a selection.",
       "properties": {
         "namespace": {
-          "description": "The namespace of the decision point.",
+          "description": "The namespace of the SSVC object.",
           "examples": [
             "ssvc",
             "cisa",
@@ -74,14 +88,6 @@
           "type": "string"
         },
         "key": {
-          "description": "The decision point key.",
-          "examples": [
-            "E",
-            "A",
-            "MI",
-            "PSI"
-          ],
-          "minLength": 1,
           "title": "Key",
           "type": "string"
         },
@@ -100,17 +106,27 @@
           "description": "A list of selected value keys from the decision point values.",
           "examples": [
             [
-              "N",
-              "Y"
+              {
+                "key": "N"
+              },
+              {
+                "key": "Y"
+              }
             ],
             [
-              "A",
-              "B",
-              "C"
+              {
+                "key": "A"
+              },
+              {
+                "key": "B"
+              },
+              {
+                "key": "C"
+              }
             ]
           ],
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/MinimalDecisionPointValue"
           },
           "minItems": 1,
           "title": "Values",

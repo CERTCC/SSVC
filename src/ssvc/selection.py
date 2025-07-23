@@ -33,38 +33,32 @@ from pydantic import (
     model_validator,
 )
 
+from ssvc._mixins import _Keyed, _Namespaced, _Valued, _Versioned
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.utils.field_specs import NamespaceString, TargetIdList, VersionString
+from ssvc.utils.field_specs import TargetIdList
 
 SCHEMA_VERSION = "2.0.0"
 
 
-class MinimalSelection(BaseModel):
+class MinimalDecisionPointValue(_Keyed, BaseModel):
+    """A minimal representation of a decision point value."""
+
+
+class MinimalSelection(_Valued, _Versioned, _Keyed, _Namespaced, BaseModel):
     """
-    A minimal selection object that contains the decision point ID and the selected options.
+    A minimal selection object that contains the decision point ID and the selected values.
     This is used to transition from an SSVC decision point to a selection.
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    namespace: NamespaceString = Field(
-        ...,
-        description="The namespace of the decision point.",
-    )
-    key: str = Field(
-        ...,
-        description="The decision point key.",
-        examples=["E", "A", "MI", "PSI"],
-        min_length=1,
-    )
-    version: VersionString
-    values: list[str] = Field(
+    values: tuple[MinimalDecisionPointValue, ...] = Field(
         ...,
         description="A list of selected value keys from the decision point values.",
         min_length=1,
         examples=[
-            ["N", "Y"],
-            ["A", "B", "C"],
+            [{"key": "N"}, {"key": "Y"}],
+            [{"key": "A"}, {"key": "B"}, {"key": "C"}],
         ],  # Example values
     )
 
@@ -165,7 +159,7 @@ def selection_from_decision_point(decision_point: DecisionPoint) -> MinimalSelec
         "namespace": decision_point.namespace,
         "key": decision_point.key,
         "version": decision_point.version,
-        "values": [val.key for val in decision_point.values],
+        "values": [{"key": val.key} for val in decision_point.values],
     }
 
     return MinimalSelection(**data)
