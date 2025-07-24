@@ -42,7 +42,7 @@ from ssvc._mixins import (
     _Versioned,
 )
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.utils.field_specs import TargetIdList
+from ssvc.utils.field_specs import TargetIdList, VersionString
 
 SCHEMA_VERSION = "2.0.0"
 
@@ -80,6 +80,9 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
     """
 
     model_config = ConfigDict(extra="forbid")
+
+    # _Versioned has a default value, but here we don't want to have a default
+    version: VersionString
 
     values: tuple[MinimalDecisionPointValue, ...] = Field(
         ...,

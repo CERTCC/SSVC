@@ -172,7 +172,6 @@
           "type": "string"
         },
         "version": {
-          "default": "0.0.1",
           "description": "The version of the SSVC object. This must be a valid semantic version string.",
           "examples": [
             "1.0.0",
@@ -217,6 +216,7 @@
       "required": [
         "namespace",
         "key",
+        "version",
         "values"
       ],
       "title": "Selection",
