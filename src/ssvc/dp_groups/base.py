@@ -26,13 +26,15 @@ from collections.abc import MutableMapping
 
 from pydantic import BaseModel, model_validator
 
-from ssvc._mixins import _Base, _SchemaVersioned
+from ssvc._mixins import _Base, _SchemaVersioned, _Versioned
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
 
 
-class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel, MutableMapping):
+class DecisionPointGroup(
+    _Base, _SchemaVersioned, _Versioned, BaseModel, MutableMapping
+):
     """
     Models a group of decision points as a dictionary, keyed by their ID.
     """

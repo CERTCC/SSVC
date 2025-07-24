@@ -35,8 +35,8 @@ from ssvc._mixins import (
     _Valued,
     _Versioned,
 )
-from ssvc.utils.defaults import FIELD_DELIMITER
 from ssvc.registry import Registry
+from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
 
@@ -93,7 +93,14 @@ class DecisionPointValue(_Base, _Keyed, _Commented, BaseModel):
 
 
 class DecisionPoint(
-    _Valued, _Keyed, _SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel
+    _Valued,
+    _Keyed,
+    _SchemaVersioned,
+    _Versioned,
+    _Namespaced,
+    _Base,
+    _Commented,
+    BaseModel,
 ):
     """
     Models a single decision point as a list of values.

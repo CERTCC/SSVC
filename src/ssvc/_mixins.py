@@ -59,7 +59,7 @@ class _Versioned(BaseModel):
         return version.__str__()
 
 
-class _SchemaVersioned(_Versioned, BaseModel):
+class _SchemaVersioned(BaseModel):
     """
     Mixin class for version
     """

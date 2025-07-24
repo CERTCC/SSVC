@@ -60,6 +60,16 @@ NamespaceString = Annotated[
 TargetIdList = Annotated[list[str], Field(min_length=1)]
 """A list of target IDs, for use in Pydantic models."""
 
+DecisionPointDict = Annotated[
+    dict[str, "DecisionPoint"],
+    Field(
+        ...,
+        description="A non-empty dictionary of decision points Decision point IDs are recommended as keys.",
+        min_length=1,
+    ),
+]
+"""A dictionary of decision points, for use in Pydantic models."""
+
 
 def main():
     pass

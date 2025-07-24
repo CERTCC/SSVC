@@ -28,8 +28,9 @@ from typing import Literal
 import pandas as pd
 from pydantic import BaseModel, Field, model_validator
 
-from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
+from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned, _Versioned
 from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY, DecisionPoint
+from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
 
 logger = logging.getLogger(__name__)
@@ -65,10 +66,12 @@ def dpdict_to_combination_list(
     return combos
 
 
-SCHEMA_VERSION: str = "2-0-0"
+SCHEMA_VERSION: str = "2.0.0"
 
 
-class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel):
+class DecisionTable(
+    _SchemaVersioned, _Versioned, _Namespaced, _Base, _Commented, BaseModel
+):
     """
     DecisionTable: A flexible, serializable SSVC decision table model.
 
@@ -81,11 +84,8 @@ class DecisionTable(_SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel)
 
     schemaVersion: Literal[SCHEMA_VERSION]
 
-    decision_points: dict[str, DecisionPoint] = Field(
-        ...,
-        description="A dictionary of decision points that define the decision table. Decision point IDs are recommended as keys.",
-        min_length=1,
-    )
+    decision_points: DecisionPointDict
+
     outcome: str = Field(
         ...,
         description="The key of the decision point in `self.decision_points` that represents the outcome of the decision table.",
