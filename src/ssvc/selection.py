@@ -44,7 +44,7 @@ from ssvc._mixins import (
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
 
-SCHEMA_VERSION = "2.0.0"
+SCHEMA_VERSION = "2.0.1"
 
 
 class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):

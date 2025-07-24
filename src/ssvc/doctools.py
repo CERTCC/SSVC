@@ -79,7 +79,7 @@ def find_modules_to_import(
     return imported_modules
 
 
-def _filename_friendly(name: str) -> str:
+def _filename_friendly(name: str, replacement="_") -> str:
     """
     Given a string, return a version that is friendly for use in a filename.
 
@@ -90,10 +90,10 @@ def _filename_friendly(name: str) -> str:
         str: A version of the string that is friendly for use in a filename.
     """
     # replace all non-alphanumeric characters with underscores and convert to lowercase
-    name = re.sub(r"[^a-zA-Z0-9]", "_", name)
+    name = re.sub(r"[^a-zA-Z0-9]", replacement, name)
     name = name.lower()
     # replace any sequence of underscores with a single underscore
-    name = re.sub(r"_+", "_", name)
+    name = re.sub(rf"{replacement}+", replacement, name)
 
     return name
 
@@ -258,10 +258,11 @@ def main():
 
     # dump the selection schema
     schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
-    schemafile = os.path.join(
-        schemadir, "Decision_Point_Value_Selection-2-0-0.schema.json"
-    )
-    dump_selection_schema(schemafile)
+
+    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION,replacement="-")}.schema.json"
+    schemapath = os.path.join(schemadir, schemafile)
+
+    dump_selection_schema(schemapath)
 
 
 if __name__ == "__main__":

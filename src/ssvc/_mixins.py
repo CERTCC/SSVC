@@ -107,10 +107,10 @@ class _Keyed(BaseModel):
     # should start with uppercase alphanumeric followed by any case alphanumeric or underscores, no spaces
     key: str = Field(
         ...,
-        description="Key of the SSVC object",
+        description="A short, non-empty string identifier for the object, must contain only alphanumerics and underscores.",
         pattern=r"^[a-zA-Z0-9_*]+$",
         min_length=1,
-        examples=["E", "A", "SI"],
+        examples=["E", "A", "SI", "L", "M", "H", "Mixed_case_OK", "alph4num3ric"],
     )
 
 
