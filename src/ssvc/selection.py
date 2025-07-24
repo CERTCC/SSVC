@@ -310,9 +310,10 @@ class SelectionList(_Timestamped, BaseModel):
             "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
         )
         schema["description"] = (
-            "This schema defines the structure for selecting SSVC Decision Points and their evaluated values "
-            "for a given vulnerability. Each vulnerability can have multiple Decision Points, and each "
-            "Decision Point can have multiple selected values when full certainty is not available."
+            "This schema defines the structure for representing selected values from SSVC Decision Points. "
+            "Each selection list can have multiple selection objects, each representing a decision point, and each "
+            "selection object can have multiple selected values when full certainty (i.e., a singular value selection) "
+            "is not available."
         )
 
         non_required_fields = [
