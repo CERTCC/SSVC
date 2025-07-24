@@ -33,7 +33,9 @@ from ssvc._mixins import (
     _Namespaced,
     _SchemaVersioned,
     _Valued,
+    _Versioned,
 )
+from ssvc.utils.defaults import FIELD_DELIMITER
 from ssvc.registry import Registry
 
 logger = logging.getLogger(__name__)
@@ -44,7 +46,6 @@ DPV_REGISTRY = Registry()
 
 
 REGISTERED_DECISION_POINTS = []
-FIELD_DELIMITER = ":"
 
 
 def register(dp):

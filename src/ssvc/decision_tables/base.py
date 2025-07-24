@@ -30,7 +30,7 @@ from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned
 from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY, DecisionPoint
-from ssvc.utils import obfuscate_dict
+from ssvc.utils.misc import obfuscate_dict
 
 logger = logging.getLogger(__name__)
 

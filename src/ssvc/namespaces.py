@@ -23,44 +23,20 @@ for SSVC and provides a method to validate namespace values.
 #  subject to its own license.
 #  DM24-0278
 
-import re
 from enum import StrEnum, auto
 
-X_PFX = "x_"
-"""The prefix for extension namespaces. Extension namespaces must start with this prefix."""
-
-# pattern to match
-# `(?=.{3,100}$)`: 3-25 characters long
-# `^(x_)`: `x_` prefix is optional
-# `[a-z0-9]{3,4}`:  must start with 3-4 alphanumeric characters
-# `[/.-]?`: only one punctuation character is allowed between alphanumeric characters
-# `[a-z0-9]+`: at least one alphanumeric character is required after the punctuation character
-# `([/.-]?[a-z0-9]+){0,22}`: zero to 22 occurrences of the punctuation character followed by at least one alphanumeric character
-# (note that the total limit will kick in at or before this point)
-# `$`: end of the string
-NS_PATTERN = re.compile(r"^(?=.{3,100}$)(x_)?[a-z0-9]{3}([/.-]?[a-z0-9]+){0,97}$")
-"""The regular expression pattern for validating namespaces.
-
-Note: 
-    Namespace values must 
-    
-    - be 3-25 characters long
-    - contain only lowercase alphanumeric characters and limited punctuation characters (`/`,`.` and `-`)
-    - have only one punctuation character in a row
-    - start with 3-4 alphanumeric characters after the optional extension prefix
-    - end with an alphanumeric character
-    
-    See examples in the `NameSpace` enum.
-"""
+from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH, X_PFX
+from ssvc.utils.patterns import NS_PATTERN
 
 
 class NameSpace(StrEnum):
-    """
+    f"""
     Defines the official namespaces for SSVC.
 
     The namespace value must be one of the members of this enum or start with the prefix specified in X_PFX.
-    Namespaces must be 3-25 lowercase characters long and must start with 3-4 alphanumeric characters after the optional prefix.
-    Limited punctuation characters (/.-) are allowed between alphanumeric characters, but only one at a time.
+    Namespaces must be {MIN_NS_LENGTH}-{MAX_NS_LENGTH} lowercase characters long and must start with 3-4 
+    alphanumeric characters after the optional prefix.
+    Limited punctuation characters (#/.-) are allowed between alphanumeric characters, but only one at a time.
 
     Example:
         Following are examples of valid and invalid namespace values:
@@ -97,12 +73,26 @@ class NameSpace(StrEnum):
             ValueError: if the value is not a valid namespace
 
         """
-        if value in cls.__members__.values():
-            return value
-        if value.startswith(X_PFX) and NS_PATTERN.match(value):
-            return value
+        valid = NS_PATTERN.match(value)
+
+        if valid:
+            # pattern matches, so we can proceed with further checks
+            # partition always returns three parts: the part before the separator, the separator itself, and the part after the separator
+            (base_ns, _, extension) = value.partition("/")
+            # and we don't care about the extension beyond the pattern match above
+            # so base_ns is either the full value or the part before the first slash
+
+            if base_ns in cls.__members__.values():
+                # base_ns is a registered namespaces
+                return value
+
+            elif base_ns.startswith(X_PFX):
+                # base_ns might start with x_
+                return value
+
+        # if you got here, the value is not a valid namespace
         raise ValueError(
-            f"Invalid namespace: {value}. Must be one of {[ns.value for ns in cls]} or start with '{X_PFX}'."
+            f"Invalid namespace: '{value}' Must be one of {[ns.value for ns in cls]} or start with '{X_PFX}'."
         )
 
 

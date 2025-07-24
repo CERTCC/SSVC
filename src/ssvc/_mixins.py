@@ -2,6 +2,7 @@
 """
 This module provides mixin classes for adding features to SSVC objects.
 """
+
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -21,13 +22,16 @@ This module provides mixin classes for adding features to SSVC objects.
 #  subject to its own license.
 #  DM24-0278
 
+from datetime import datetime, timezone
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from semver import Version
 
 from ssvc import _schemaVersion
-from ssvc.namespaces import NS_PATTERN, NameSpace
+from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION
+from ssvc.utils.field_specs import NamespaceString, VersionString
 
 
 class _Versioned(BaseModel):
@@ -35,12 +39,7 @@ class _Versioned(BaseModel):
     Mixin class for versioned SSVC objects.
     """
 
-    version: str = Field(
-        default="0.0.0",
-        description="Version of the SSVC object as a semantic version string",
-        # pattern="^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-        examples=["1.0.1", "1.0.1-alpha"],
-    )
+    version: VersionString = Field(default=DEFAULT_VERSION)
 
     @field_validator("version")
     @classmethod
@@ -77,14 +76,7 @@ class _Namespaced(BaseModel):
 
     # the field definition enforces the pattern for namespaces
     # additional validation is performed in the field_validator immediately after the pattern check
-    namespace: str = Field(
-        ...,
-        description="Namespace (a short, unique string) of the SSVC object. The value must be one of the official namespaces or start with 'x_'.",
-        pattern=NS_PATTERN,
-        min_length=3,
-        max_length=100,
-        examples=["ssvc", "cvss", "x_custom", "x_custom/extension"],
-    )
+    namespace: NamespaceString
 
     @field_validator("namespace", mode="before")
     @classmethod
@@ -154,6 +146,28 @@ class _Commented(BaseModel):
     _comment: Optional[str] = None
 
     model_config = ConfigDict(json_encoders={Optional[str]: exclude_if_none})
+
+
+class _Timestamped(BaseModel):
+    """
+    Mixin class for timestamped SSVC objects.
+    """
+
+    timestamp: datetime = Field(
+        ...,
+        description="Timestamp of the SSVC object, in RFC 3339 format.",
+        examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
+    )
+
+    # set the default value to the current time
+    @model_validator(mode="before")
+    def set_timestamp(cls, data):
+        """
+        Set the timestamp to the current time if not provided.
+        """
+        if "timestamp" not in data:
+            data["timestamp"] = datetime.now().astimezone(timezone.utc)
+        return data
 
 
 class _Base(BaseModel):

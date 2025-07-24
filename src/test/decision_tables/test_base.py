@@ -53,7 +53,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.dp1 = DecisionPoint(
             name="dp1",
             description="description for dp1",
-            version="1.0",
+            version="1.0.0",
             namespace="x_test",
             key="dp1",
             values=(self.dp1v1, self.dp1v2),
@@ -61,7 +61,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.dp2 = DecisionPoint(
             name="dp2",
             description="description for dp2",
-            version="1.0",
+            version="1.0.0",
             namespace="x_test",
             key="dp2",
             values=(self.dp2v1, self.dp2v2, self.dp2v3),
@@ -74,7 +74,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.og = OutcomeGroup(
             name="outcome",
             description="description for outcome",
-            version="1.0",
+            version="1.0.0",
             namespace="x_test",
             key="outcome",
             values=(self.ogv1, self.ogv2, self.ogv3),
@@ -83,7 +83,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.dpg = DecisionPointGroup(
             name="dpg",
             description="description for dpg",
-            version="1.0",
+            version="1.0.0",
             namespace="x_test",
             decision_points=(self.dp1, self.dp2, self.og),
         )
