@@ -168,7 +168,7 @@ class Reference(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    urL: AnyUrl
+    uri: AnyUrl
     description: str
 
     # override schema generation to ensure that description is not required

@@ -124,10 +124,10 @@
       "additionalProperties": false,
       "description": "A reference to a resource that provides additional context about the decision points or selections.\nThis object is intentionally minimal and contains only the URL and an optional description.",
       "properties": {
-        "urL": {
+        "uri": {
           "format": "uri",
           "minLength": 1,
-          "title": "Url",
+          "title": "Uri",
           "type": "string"
         },
         "description": {
@@ -136,7 +136,7 @@
         }
       },
       "required": [
-        "urL"
+        "uri"
       ],
       "title": "Reference",
       "type": "object"
