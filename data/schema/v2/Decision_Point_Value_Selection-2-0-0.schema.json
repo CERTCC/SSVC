@@ -99,7 +99,7 @@
   "additionalProperties": false,
   "$defs": {
     "MinimalDecisionPointValue": {
-      "description": "A minimal representation of a decision point value.",
+      "description": "A minimal representation of a decision point value.\nIntended to parallel the DecisionPointValue object, but with fewer required fields.\nA decision point value is uniquely identified within a decision point by its key.\nGlobally, the combination of Decision Point namespace, key, and version coupled with the value key\nuniquely identifies a value across all decision points and values.\nOther required fields in the DecisionPointValue object, such as name and description, are optional here.",
       "properties": {
         "key": {
           "title": "Key",
@@ -122,12 +122,12 @@
     },
     "Reference": {
       "additionalProperties": false,
-      "description": "A reference to a resource that provides additional context about the decision points or selections.",
+      "description": "A reference to a resource that provides additional context about the decision points or selections.\nThis object is intentionally minimal and contains only the URL and an optional description.",
       "properties": {
-        "uri": {
+        "urL": {
           "format": "uri",
           "minLength": 1,
-          "title": "Uri",
+          "title": "Url",
           "type": "string"
         },
         "description": {
@@ -136,14 +136,14 @@
         }
       },
       "required": [
-        "uri"
+        "urL"
       ],
       "title": "Reference",
       "type": "object"
     },
     "Selection": {
       "additionalProperties": false,
-      "description": "A minimal selection object that contains the decision point ID and the selected values.\nThis is used to transition from an SSVC decision point to a selection.\nOther fields like name and description may be copied from the decision point, but are not required.",
+      "description": "A minimal selection object that contains the decision point ID and the selected values.\nWhile the Selection object parallels the DecisionPoint object, it is intentionally minimal, with\nfewer required fields and no additional metadata, as it is meant to represent a selection made from a\npreviously defined decision point. The expectation is that a Selection object will usually have\nfewer values than the original decision point, as it represents a specific evaluation\nat a specific time and may therefore rule out some values that were previously considered.\nOther fields like name and description may be copied from the decision point, but are not required.",
       "properties": {
         "name": {
           "title": "Name",

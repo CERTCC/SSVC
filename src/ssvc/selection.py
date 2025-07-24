@@ -48,7 +48,14 @@ SCHEMA_VERSION = "2.0.0"
 
 
 class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
-    """A minimal representation of a decision point value."""
+    """
+    A minimal representation of a decision point value.
+    Intended to parallel the DecisionPointValue object, but with fewer required fields.
+    A decision point value is uniquely identified within a decision point by its key.
+    Globally, the combination of Decision Point namespace, key, and version coupled with the value key
+    uniquely identifies a value across all decision points and values.
+    Other required fields in the DecisionPointValue object, such as name and description, are optional here.
+    """
 
     @model_validator(mode="before")
     def set_optional_fields(cls, data):
@@ -75,7 +82,11 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
 class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
-    This is used to transition from an SSVC decision point to a selection.
+    While the Selection object parallels the DecisionPoint object, it is intentionally minimal, with
+    fewer required fields and no additional metadata, as it is meant to represent a selection made from a
+    previously defined decision point. The expectation is that a Selection object will usually have
+    fewer values than the original decision point, as it represents a specific evaluation
+    at a specific time and may therefore rule out some values that were previously considered.
     Other fields like name and description may be copied from the decision point, but are not required.
     """
 
@@ -150,11 +161,14 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
 
 
 class Reference(BaseModel):
-    """A reference to a resource that provides additional context about the decision points or selections."""
+    """
+    A reference to a resource that provides additional context about the decision points or selections.
+    This object is intentionally minimal and contains only the URL and an optional description.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
-    uri: AnyUrl
+    urL: AnyUrl
     description: str
 
     # override schema generation to ensure that description is not required
@@ -171,7 +185,20 @@ class Reference(BaseModel):
 
 class SelectionList(_Timestamped, BaseModel):
     """
-    A down-selection of SSVC Decision Points that represent an evaluation at a specific time of a Vulnerability evaluation.
+    A list decision point selections that represent an evaluation at a specific time of evaluation.
+    Individual selections are derived from decision points, and each selection
+    contains a minimal representation of the decision point and the selected values.
+
+    A SelectionList requires a timestamp in RFC 3339 format, which indicates when the selections were made.
+
+    Optional fields include
+
+    - `target_ids`: If present, a non-empty list of identifiers for the item or items being evaluated.
+    - `resources`: If present, a non-empty list of references to resources that provide additional context about the decision points
+        found in this selection. Resources point to documentation, JSON files, or other relevant information that
+        describe what the decision points are and how they should be interpreted.
+    - `references`: If present, a non-empty list of references to resources that provide additional context about the specific values selected.
+        References point to reports, advisories, or other relevant information that describe why the selected values were chosen.
     """
 
     model_config = ConfigDict(extra="forbid")
