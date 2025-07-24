@@ -175,15 +175,8 @@ class _Base(BaseModel):
     Base class for SSVC objects.
     """
 
-    name: str = Field(
-        ...,
-        description="Name of the SSVC object",
-        min_length=1,
-        examples=["Exploitation", "Automatable"],
-    )
-    description: str = Field(
-        ..., description="Description of the SSVC object", min_length=1
-    )
+    name: str
+    description: str
 
 
 def main():
