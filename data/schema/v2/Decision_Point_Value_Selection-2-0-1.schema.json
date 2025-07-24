@@ -102,7 +102,7 @@
       "description": "A minimal representation of a decision point value.\nIntended to parallel the DecisionPointValue object, but with fewer required fields.\nA decision point value is uniquely identified within a decision point by its key.\nGlobally, the combination of Decision Point namespace, key, and version coupled with the value key\nuniquely identifies a value across all decision points and values.\nOther required fields in the DecisionPointValue object, such as name and description, are optional here.",
       "properties": {
         "key": {
-          "description": "A short, non-empty string identifier for the object, must contain only alphanumerics and underscores.",
+          "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
           "examples": [
             "E",
             "A",
@@ -114,7 +114,7 @@
             "alph4num3ric"
           ],
           "minLength": 1,
-          "pattern": "^[a-zA-Z0-9_*]+$",
+          "pattern": "^([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9]?)|(T\\*)$",
           "title": "Key",
           "type": "string"
         },
@@ -181,7 +181,7 @@
           "type": "string"
         },
         "key": {
-          "description": "A short, non-empty string identifier for the object, must contain only alphanumerics and underscores.",
+          "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
           "examples": [
             "E",
             "A",
@@ -193,7 +193,7 @@
             "alph4num3ric"
           ],
           "minLength": 1,
-          "pattern": "^[a-zA-Z0-9_*]+$",
+          "pattern": "^([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9]?)|(T\\*)$",
           "title": "Key",
           "type": "string"
         },

@@ -107,8 +107,9 @@ class _Keyed(BaseModel):
     # should start with uppercase alphanumeric followed by any case alphanumeric or underscores, no spaces
     key: str = Field(
         ...,
-        description="A short, non-empty string identifier for the object, must contain only alphanumerics and underscores.",
-        pattern=r"^[a-zA-Z0-9_*]+$",
+        description="A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric."
+        "(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
+        pattern=r"^([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9]?)|(T\*)$",
         min_length=1,
         examples=["E", "A", "SI", "L", "M", "H", "Mixed_case_OK", "alph4num3ric"],
     )
