@@ -73,22 +73,26 @@ class NameSpace(StrEnum):
             ValueError: if the value is not a valid namespace
 
         """
-        if value in cls.__members__.values():
-            # value is explicitly registered in the enum
-            return value
-        if any(
-            [value.startswith(registered) for registered in cls.__members__.values()]
-        ) and NS_PATTERN.match(value):
-            # value is a valid namespace that starts with one of the registered namespaces
-            # and meets the pattern requirements for extensions
-            # this allows for custom extensions of registered namespaces without needing to register them in the enum
-            return value
-        if value.startswith(X_PFX) and NS_PATTERN.match(value):
-            # value starts with the experimental prefix and meets the pattern requirements
-            # this allows for custom namespaces that are not registered in the enum
-            return value
+        valid = NS_PATTERN.match(value)
+
+        if valid:
+            # pattern matches, so we can proceed with further checks
+            # partition always returns three parts: the part before the separator, the separator itself, and the part after the separator
+            (base_ns, _, extension) = value.partition("/")
+            # and we don't care about the extension beyond the pattern match above
+            # so base_ns is either the full value or the part before the first slash
+
+            if base_ns in cls.__members__.values():
+                # base_ns is a registered namespaces
+                return value
+
+            elif base_ns.startswith(X_PFX):
+                # base_ns might start with x_
+                return value
+
+        # if you got here, the value is not a valid namespace
         raise ValueError(
-            f"Invalid namespace: {value}. Must be one of {[ns.value for ns in cls]} or start with '{X_PFX}'."
+            f"Invalid namespace: '{value}' Must be one of {[ns.value for ns in cls]} or start with '{X_PFX}'."
         )
 
 
