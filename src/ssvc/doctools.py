@@ -187,6 +187,7 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
         remove_if_exists(json_file)
     with EnsureDirExists(dirname):
         try:
+            logger.info(f"Writing {json_file}")
             with open(json_file, "x") as f:
                 f.write(dp.model_dump_json(indent=2))
                 f.write("\n")  # newline at end of file

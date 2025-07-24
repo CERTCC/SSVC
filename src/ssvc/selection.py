@@ -352,7 +352,7 @@ def main() -> None:
         schemaVersion=SCHEMA_VERSION,
         selections=[a1, a2],
         timestamp=datetime.now(),
-        target_ids=["CVE-2025-0001", "GHSA-0123-4567-89ab"],
+        target_ids=["CVE-1900-0001", "GHSA-0123-4567-89ab"],
         references=[
             Reference(
                 uri="https://example.com/report",

@@ -166,8 +166,20 @@ class MyTestCase(unittest.TestCase):
         d = json.load(open(json_file))
         self.assertEqual(dp.name, d["name"])
 
-    def test_main(self):
-        pass
+    def test_dump_selection_schema(self):
+        schemafile = os.path.join(self.tempdir.name, "selection_schema.json")
+        self.assertFalse(os.path.exists(schemafile))
+        from ssvc.doctools import dump_selection_schema
+
+        dump_selection_schema(schemafile)
+        self.assertTrue(os.path.exists(schemafile))
+
+        # file is loadable json
+        d = json.load(open(schemafile))
+        self.assertIn("title", d)
+        self.assertEqual(d["title"], "Decision Point Value Selection List")
+        self.assertIn("type", d)
+        self.assertEqual(d["type"], "object")
 
 
 if __name__ == "__main__":
