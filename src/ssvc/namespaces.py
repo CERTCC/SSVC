@@ -74,8 +74,18 @@ class NameSpace(StrEnum):
 
         """
         if value in cls.__members__.values():
+            # value is explicitly registered in the enum
+            return value
+        if any(
+            [value.startswith(registered) for registered in cls.__members__.values()]
+        ) and NS_PATTERN.match(value):
+            # value is a valid namespace that starts with one of the registered namespaces
+            # and meets the pattern requirements for extensions
+            # this allows for custom extensions of registered namespaces without needing to register them in the enum
             return value
         if value.startswith(X_PFX) and NS_PATTERN.match(value):
+            # value starts with the experimental prefix and meets the pattern requirements
+            # this allows for custom namespaces that are not registered in the enum
             return value
         raise ValueError(
             f"Invalid namespace: {value}. Must be one of {[ns.value for ns in cls]} or start with '{X_PFX}'."
