@@ -198,7 +198,16 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
     return str(json_file)
 
 
-def dump_selection_schema(filepath: str):
+def dump_selection_schema(filepath: str) -> None:
+    """
+    Dump the schema for the SelectionList model to a file.
+    Args:
+        filepath: The path to the file to write the schema to.
+
+    Returns:
+        None
+
+    """
     logger.info(f"Dumping schema to {filepath}")
     schema = SelectionList.model_json_schema()
     with open(filepath, "w") as f:

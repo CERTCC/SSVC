@@ -146,9 +146,17 @@ class MyTestCase(unittest.TestCase):
         # capture logger output
         with self.assertLogs() as cm:
             json_file = dump_json(basename, dp, jsondir, overwrite)
-        self.assertEqual(_jsonfile, json_file)
-        # logger warns that the file exists
-        self.assertIn("already exists", cm.output[0])
+            self.assertEqual(_jsonfile, json_file)
+            # logger warns that the file exists
+            found = False
+            for line in cm.output:
+                if not "WARNING" in line:
+                    continue
+                # it's a warning log
+                if "already exists" in line:
+                    found = True
+                    break
+            self.assertTrue(found, "Expected warning about existing file not found")
 
         # should overwrite the file
         overwrite = True
