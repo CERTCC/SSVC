@@ -28,9 +28,8 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from semver import Version
 
-from ssvc import _schemaVersion
 from ssvc.namespaces import NameSpace
-from ssvc.utils.defaults import DEFAULT_VERSION
+from ssvc.utils.defaults import DEFAULT_VERSION, SCHEMA_VERSION
 from ssvc.utils.field_specs import NamespaceString, VersionString
 
 
@@ -65,7 +64,7 @@ class _SchemaVersioned(BaseModel):
     """
 
     schemaVersion: str = Field(
-        _schemaVersion, description="Schema version of the SSVC object"
+        SCHEMA_VERSION, description="Schema version of the SSVC object"
     )
 
 

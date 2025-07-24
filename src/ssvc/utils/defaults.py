@@ -47,3 +47,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+SCHEMA_VERSION = "1-0-1"

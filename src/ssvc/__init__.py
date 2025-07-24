@@ -19,5 +19,3 @@
 """
 Provides SSVC modules.
 """
-
-_schemaVersion = "1-0-1"
