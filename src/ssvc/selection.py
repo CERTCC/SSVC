@@ -35,11 +35,9 @@ from pydantic import (
 
 from ssvc._mixins import (
     _Base,
-    _Keyed,
-    _Namespaced,
+    _GenericSsvcObject, _Keyed,
     _Timestamped,
     _Valued,
-    _Versioned,
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
@@ -47,7 +45,7 @@ from ssvc.utils.field_specs import TargetIdList, VersionString
 SCHEMA_VERSION = "2.0.1"
 
 
-class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
+class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
     """
     A minimal representation of a decision point value.
     Intended to parallel the DecisionPointValue object, but with fewer required fields.
@@ -79,7 +77,7 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
         return data
 
 
-class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
+class Selection(_Valued, _GenericSsvcObject, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     While the Selection object parallels the DecisionPoint object, it is intentionally minimal, with

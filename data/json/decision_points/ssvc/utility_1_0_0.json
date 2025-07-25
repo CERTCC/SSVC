@@ -2,9 +2,9 @@
   "name": "Utility",
   "description": "The Usefulness of the Exploit to the Adversary",
   "namespace": "ssvc",
+  "key": "U",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "U",
   "values": [
     {
       "key": "L",

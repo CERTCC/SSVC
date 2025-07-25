@@ -2,9 +2,9 @@
   "name": "Report Credibility",
   "description": "Is the report credible?",
   "namespace": "ssvc",
+  "key": "RC",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "RC",
   "values": [
     {
       "key": "NC",

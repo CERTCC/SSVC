@@ -56,6 +56,7 @@ class NameSpace(StrEnum):
     SSVC = auto()
     CVSS = auto()
     CISA = auto()
+    BASIC = auto()
 
     @classmethod
     def validate(cls, value: str) -> str:

@@ -2,9 +2,9 @@
   "name": "Attack Vector",
   "description": "This metric reflects the context by which vulnerability exploitation is possible. ",
   "namespace": "cvss",
+  "key": "AV",
   "version": "3.0.0",
   "schemaVersion": "1-0-1",
-  "key": "AV",
   "values": [
     {
       "key": "P",

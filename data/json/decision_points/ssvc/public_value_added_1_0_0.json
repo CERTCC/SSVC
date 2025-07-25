@@ -2,9 +2,9 @@
   "name": "Public Value Added",
   "description": "How much value would a publication from the coordinator benefit the broader community?",
   "namespace": "ssvc",
+  "key": "PVA",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "PVA",
   "values": [
     {
       "key": "L",

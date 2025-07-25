@@ -276,7 +276,7 @@ def decision_table_to_shortform_df(dt: DecisionTable) -> pd.DataFrame:
         Table values might look like:
 
         ```csv
-        ssvc:SINV:1.0.0,ssvc:E:1.0.0,ssvc:PVA:1.0.0,x_basic:MSCW:1.0.0
+        ssvc:SINV:1.0.0,ssvc:E:1.0.0,ssvc:PVA:1.0.0,basic:MSCW:1.0.0
         FR,N,L,W
         FR,N,A,W
         FR,N,P,W
@@ -366,7 +366,7 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
         Column Heading format: `{decision_point_name} v{version} ({namespace})`
 
         ```csv
-        row,Supplier Involvement v1.0.0,Exploitation v1.0.0,Public Value Added v1.0.0,MoSCoW v1.0.0 (x_basic)
+        row,Supplier Involvement v1.0.0,Exploitation v1.0.0,Public Value Added v1.0.0,MoSCoW v1.0.0 (basic)
         0,fix ready,none,limited,won't
         1,fix ready,none,ampliative,won't
         2,fix ready,none,precedence,won't
@@ -574,7 +574,7 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
 
 def main() -> None:
     from ssvc.dp_groups.ssvc.coordinator_publication import LATEST as dpg
-    from ssvc.outcomes.x_basic.mscw import LATEST as outcomes
+    from ssvc.outcomes.basic.mscw import LATEST as outcomes
     import os
     import json
 

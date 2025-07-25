@@ -29,11 +29,8 @@ from pydantic import BaseModel, ConfigDict, model_validator
 from ssvc._mixins import (
     _Base,
     _Commented,
-    _Keyed,
-    _Namespaced,
-    _SchemaVersioned,
-    _Valued,
-    _Versioned,
+    _GenericSsvcObject, _Keyed,
+    _SchemaVersioned, _Valued,
 )
 from ssvc.registry import Registry
 from ssvc.utils.defaults import FIELD_DELIMITER
@@ -94,11 +91,8 @@ class DecisionPointValue(_Base, _Keyed, _Commented, BaseModel):
 
 class DecisionPoint(
     _Valued,
-    _Keyed,
     _SchemaVersioned,
-    _Versioned,
-    _Namespaced,
-    _Base,
+    _GenericSsvcObject,
     _Commented,
     BaseModel,
 ):
@@ -123,12 +117,16 @@ class DecisionPoint(
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
 
     @property
-    def id(self):
+    def id(self) -> str:
+        f"""
+        Return an identity string for the DecisionPoint, combining namespace, key, and version into a global unique identifier.
+        
+        Returns:
+            str: A string representation of the DecisionPoint in the format "namespace{FIELD_DELIMITER}key{FIELD_DELIMITER}version".
         """
-        Return an identity string for the DecisionPoint.
-        """
+        id_parts = (self.namespace, self.key, self.version)
 
-        return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
+        return FIELD_DELIMITER.join(id_parts)
 
     @property
     def value_dict(self) -> dict[str, DecisionPointValue]:

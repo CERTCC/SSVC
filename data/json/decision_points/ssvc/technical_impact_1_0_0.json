@@ -2,9 +2,9 @@
   "name": "Technical Impact",
   "description": "The technical impact of the vulnerability.",
   "namespace": "ssvc",
+  "key": "TI",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "TI",
   "values": [
     {
       "key": "P",

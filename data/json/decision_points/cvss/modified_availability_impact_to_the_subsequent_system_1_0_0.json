@@ -2,9 +2,9 @@
   "name": "Modified Availability Impact to the Subsequent System",
   "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
   "namespace": "cvss",
+  "key": "MSA",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "MSA",
   "values": [
     {
       "key": "N",

@@ -2,9 +2,9 @@
   "name": "Supplier Engagement",
   "description": "Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
   "namespace": "ssvc",
+  "key": "SE",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "SE",
   "values": [
     {
       "key": "A",

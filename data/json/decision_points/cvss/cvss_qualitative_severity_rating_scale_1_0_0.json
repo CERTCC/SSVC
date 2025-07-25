@@ -2,9 +2,9 @@
   "name": "CVSS Qualitative Severity Rating Scale",
   "description": "The CVSS Qualitative Severity Rating Scale group.",
   "namespace": "cvss",
+  "key": "CVSS",
   "version": "1.0.0",
   "schemaVersion": "1-0-1",
-  "key": "CVSS",
   "values": [
     {
       "key": "N",
