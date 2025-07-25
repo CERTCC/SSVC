@@ -142,6 +142,11 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         Lookup an object type in the registry by its name.
         Returns None if the type is not found.
+
+        Args:
+            objtype (str): The name of the object type to lookup.
+        Returns:
+            NsType | None: The NsType object if found, otherwise None.
         """
         if objtype not in self.types:
             logger.debug(f"Object type '{objtype}' not found in registry.")
@@ -153,6 +158,12 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         Lookup a namespace in the registry by object type and namespace name.
         Returns None if the namespace is not found.
+
+        Args:
+            objtype (str): The name of the object type.
+            namespace (str): The name of the namespace to lookup.
+        Returns:
+            Namespace | None: The Namespace object if found, otherwise None.
         """
         otype = self.lookup_objtype(objtype)
         if otype is None:
@@ -168,6 +179,13 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         Lookup a key in the registry by object type, namespace, and key name.
         Returns None if the key is not found.
+
+        Args:
+            objtype (str): The name of the object type.
+            namespace (str): The name of the namespace.
+            key (str): The key to lookup.
+        Returns:
+            Key | None: The Key object if found, otherwise None.
         """
         ns = self.lookup_namespace(objtype, namespace)
         if ns is None:
@@ -183,6 +201,14 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         Lookup a version in the registry by object type, namespace, key, and version string.
         Returns None if the version is not found.
+        Args:
+            objtype (str): The name of the object type.
+            namespace (str): The name of the namespace.
+            key (str): The key to lookup.
+            version (str): The version string to lookup.
+        Returns:
+            NonValuedVersion | ValuedVersion | None: The version object if found, otherwise None.
+
         """
         key_obj = self.lookup_key(objtype, namespace, key)
         if key_obj is None:
@@ -198,6 +224,16 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         Lookup a value in the registry by object type, namespace, key, version, and value key.
         Returns None if the value is not found.
+
+        Args:
+            objtype (str): The name of the object type.
+            namespace (str): The name of the namespace.
+            key (str): The key to lookup.
+            version (str): The version string to lookup.
+            value_key (str): The key of the value to lookup.
+        Returns:
+            _KeyedBaseModel | None: The value object if found, otherwise None.
+
         """
         version_obj = self.lookup_version(objtype, namespace, key, version)
         if version_obj is None:
@@ -215,7 +251,21 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
     def lookup(self,objtype:str=None,namespace:str=None,key:str=None,version:str=None,value_key:str=None) -> _GenericSsvcObject | None:
         """
         Lookup an object in the registry by type, namespace, key, version, and value key.
+
+        Args:
+            objtype (str): The name of the object type.
+            namespace (str): The name of the namespace.
+            key (str): The key to lookup.
+            version (str): The version string to lookup.
+            value_key (str): The key of the value to lookup.
+        Returns:
+            _GenericSsvcObject | None: The object if found, otherwise None.
+
         """
+        # everything None just returns the whole registry
+        if all([x is None for x in [objtype, namespace, key, version, value_key]]):
+            return self
+
         if value_key is not None:
             return self.lookup_value(objtype, namespace, key, version, value_key)
         if version is not None:
