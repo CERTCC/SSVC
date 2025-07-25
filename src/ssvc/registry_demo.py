@@ -24,9 +24,10 @@ created_at: 7/25/25 2:18 PM
 #  subject to its own license.
 #  DM24-0278
 
+import logging
+
 from ssvc.registry import REGISTRY, SsvcObjectRegistry
 from ssvc.utils.misc import order_schema
-
 
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -47,9 +48,16 @@ from ssvc.utils.misc import order_schema
 #  subject to its own license.
 #  DM24-0278
 
+logger = logging.getLogger(__name__)
 
 def main():
     import ssvc.__init__  # noqa: F401
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    logger.addHandler(handler)
 
     print(REGISTRY.model_dump_json(indent=2))
 
@@ -59,6 +67,14 @@ def main():
     schema = SsvcObjectRegistry.model_json_schema()
     schema = order_schema(schema)
     print(json.dumps(schema, indent=2))
+
+
+    print()
+    print("# Lookup demo")
+    search_for = {"objtype": "DecisionPoint", "namespace": "ssvc", "key": "EXP",}
+
+    dp = REGISTRY.lookup(**search_for)
+    print(dp.model_dump_json(indent=2))
 
 if __name__ == "__main__":
     main()
