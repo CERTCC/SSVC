@@ -26,10 +26,12 @@ logger = logging.getLogger(__name__)
 
 _registration_hooks = []
 
+
 def add_registration_hook(hook_func):
     """Add a function to be called when objects are registered."""
     logger.debug(f"Adding registration hook: {hook_func.__name__}")
     _registration_hooks.append(hook_func)
+
 
 def notify_registration(obj):
     """Notify all hooks about a new registration."""
@@ -46,5 +48,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

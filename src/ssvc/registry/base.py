@@ -26,7 +26,13 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field, model_validator
 
-from ssvc._mixins import _Base, _GenericSsvcObject, _KeyedBaseModel, _SchemaVersioned, _Valued
+from ssvc._mixins import (
+    _Base,
+    _GenericSsvcObject,
+    _KeyedBaseModel,
+    _SchemaVersioned,
+    _Valued,
+)
 from ssvc.utils.field_specs import VersionString
 
 logger = logging.getLogger(__name__)
@@ -34,7 +40,8 @@ logger = logging.getLogger(__name__)
 SCHEMA_VERSION: str = "2.0.0"
 logger.debug(f"Using schema version {SCHEMA_VERSION} for SsvcObjectRegistry.")
 
-def lookup_type(module:str,type_name: str):
+
+def lookup_type(module: str, type_name: str):
     """
     Lookup a type by its name in the specified module.
     Args:
@@ -45,10 +52,12 @@ def lookup_type(module:str,type_name: str):
         The type if found, otherwise None.
     """
     import sys
+
     mod = sys.modules.get(module)
     if mod is None:
         return None
     return getattr(mod, type_name, None)
+
 
 def _get_obj_type(obj: object) -> str:
     """
@@ -60,7 +69,7 @@ def _get_obj_type(obj: object) -> str:
         str: If the object is of a recognized type, return the name of the recognized type.
              Otherwise, return "other".
     """
-    objtype = "other" # default type if not recognized
+    objtype = "other"  # default type if not recognized
     recognized_types = [
         lookup_type("ssvc.decision_points.base", "DecisionPoint"),
         lookup_type("ssvc.decision_tables.base", "DecisionTable"),
@@ -76,6 +85,7 @@ class NonValuedVersion(BaseModel):
     version: VersionString
     obj: _GenericSsvcObject
 
+
 class ValuedVersion(BaseModel):
     version: VersionString
     obj: _GenericSsvcObject
@@ -88,7 +98,9 @@ class ValuedVersion(BaseModel):
     def _populate_values(cls, data):
         obj = data.get("obj")
         if not isinstance(obj, _Valued):
-            raise ValueError("ValuedVersion must include an `obj` that subclasses `_Valued`")
+            raise ValueError(
+                "ValuedVersion must include an `obj` that subclasses `_Valued`"
+            )
         return data
 
     def model_post_init(self, __context: Any) -> None:
@@ -99,10 +111,11 @@ class ValuedVersion(BaseModel):
 
 class Key(BaseModel):
     key: str
-    versions: dict[str,NonValuedVersion|ValuedVersion] = Field(
+    versions: dict[str, NonValuedVersion | ValuedVersion] = Field(
         default_factory=dict,
         description="A dictionary mapping version strings to versioned objects.",
     )
+
 
 class Namespace(BaseModel):
     namespace: str
@@ -111,12 +124,14 @@ class Namespace(BaseModel):
         description="A dictionary mapping keys to Key objects within this namespace.",
     )
 
+
 class NsType(BaseModel):
     type: str
     namespaces: dict[str, Namespace] = Field(
         default_factory=dict,
         description="A dictionary mapping namespace strings to Namespace objects.",
     )
+
 
 class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
@@ -192,12 +207,16 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             return None
 
         if key not in ns.keys:
-            logger.debug(f"Key '{key}' not found in namespace '{namespace}' of type '{objtype}'.")
+            logger.debug(
+                f"Key '{key}' not found in namespace '{namespace}' of type '{objtype}'."
+            )
             return None
 
         return ns.keys[key]
 
-    def lookup_version(self, objtype: str, namespace: str, key: str, version: str) -> NonValuedVersion | ValuedVersion | None:
+    def lookup_version(
+        self, objtype: str, namespace: str, key: str, version: str
+    ) -> NonValuedVersion | ValuedVersion | None:
         """
         Lookup a version in the registry by object type, namespace, key, and version string.
         Returns None if the version is not found.
@@ -215,12 +234,16 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             return None
 
         if version not in key_obj.versions:
-            logger.debug(f"Version '{version}' not found for key '{key}' in namespace '{namespace}' of type '{objtype}'.")
+            logger.debug(
+                f"Version '{version}' not found for key '{key}' in namespace '{namespace}' of type '{objtype}'."
+            )
             return None
 
         return key_obj.versions[version]
 
-    def lookup_value(self, objtype: str, namespace: str, key: str, version: str, value_key: str) -> _KeyedBaseModel | None:
+    def lookup_value(
+        self, objtype: str, namespace: str, key: str, version: str, value_key: str
+    ) -> _KeyedBaseModel | None:
         """
         Lookup a value in the registry by object type, namespace, key, version, and value key.
         Returns None if the value is not found.
@@ -241,14 +264,23 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
 
         if isinstance(version_obj, ValuedVersion):
             if value_key not in version_obj.values:
-                logger.debug(f"Value key '{value_key}' not found in version '{version}' for key '{key}' in namespace '{namespace}' of type '{objtype}'.")
+                logger.debug(
+                    f"Value key '{value_key}' not found in version '{version}' for key '{key}' in namespace '{namespace}' of type '{objtype}'."
+                )
                 return None
             return version_obj.values[value_key]
 
         logger.debug(f"Object type '{objtype}' does not support values.")
         return None
 
-    def lookup(self,objtype:str=None,namespace:str=None,key:str=None,version:str=None,value_key:str=None) -> _GenericSsvcObject | None:
+    def lookup(
+        self,
+        objtype: str = None,
+        namespace: str = None,
+        key: str = None,
+        version: str = None,
+        value_key: str = None,
+    ) -> _GenericSsvcObject | None:
         """
         Lookup an object in the registry by type, namespace, key, version, and value key.
 
@@ -279,7 +311,6 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         logger.debug("No parameters provided for lookup, returning None.")
         return None
 
-
     def register(self, obj: _GenericSsvcObject) -> None:
         # extract the parts we need to register
 
@@ -288,32 +319,50 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         k = obj.key
         ver = obj.version
 
+        # if this object already exists in the registry, do nothing
+        if self.lookup(objtype=objtype, namespace=ns, key=k, version=ver) is not None:
+            logger.debug(f"Object {obj.id} already registered, skipping registration.")
+            return
+
         # start at the top of the registry and work down
-        if not objtype in self.types:
+        if objtype not in self.types:
+            logger.debug(f"Registering new object type '{objtype}'.")
             self.types[objtype] = NsType(type=objtype)
 
-        d = self.types[objtype].namespaces
+        if ns not in self.types[objtype].namespaces:
+            logger.debug(
+                f"Registering new namespace '{ns}' for object type '{objtype}'."
+            )
+            self.types[objtype].namespaces[ns] = Namespace(namespace=ns)
 
-        if ns not in d:
-            d[ns] = Namespace(namespace=ns)
-        if k not in d[ns].keys:
+        if k not in self.types[objtype].namespaces[ns].keys:
+            logger.debug(
+                f"Registering new key '{k}' in namespace '{ns}' for object type '{objtype}'."
+            )
             # versions will be created empty by the Key model
-            d[ns].keys[k] = Key(key=k)
+            self.types[objtype].namespaces[ns].keys[k] = Key(key=k)
 
-        if ver not in d[ns].keys[k].versions:
-            if isinstance(obj,_Valued):
-                d[ns].keys[k].versions[ver] = ValuedVersion(
+        if ver not in self.types[objtype].namespaces[ns].keys[k].versions:
+            logger.debug(
+                f"Registering new version '{ver}' for key '{k}' in namespace '{ns}' of type '{objtype}'."
+            )
+            if isinstance(obj, _Valued):
+                # values will be populated in the ValuedVersion model
+                self.types[objtype].namespaces[ns].keys[k].versions[ver] = (
+                    ValuedVersion(
                         version=ver,
                         obj=obj,
-                        # values will be populated from the obj
+                    )
                 )
             else:
-                d[ns].keys[k].versions[ver] = NonValuedVersion(
+                self.types[objtype].namespaces[ns].keys[k].versions[ver] = (
+                    NonValuedVersion(
                         version=ver,
                         obj=obj,
+                    )
                 )
 
-    def reset(self,force: bool = False) -> None:
+    def reset(self, force: bool = False) -> None:
         """
         Reset the registry to an empty state.
         If force is True, it will clear the registry even if it has objects.
@@ -323,6 +372,3 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             logger.debug("Registry reset.")
         else:
             logger.warning("Registry not reset. Use force=True to clear it.")
-
-
-

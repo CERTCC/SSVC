@@ -214,6 +214,7 @@ def dump_selection_schema(filepath: str) -> None:
     schema = SelectionList.model_json_schema()
     dump_schema(filepath=filepath, schema=schema)
 
+
 def dump_registry_schema(filepath: str) -> None:
     """
     Dump the schema for the SsvcObjectRegistry model to a file.
@@ -228,11 +229,13 @@ def dump_registry_schema(filepath: str) -> None:
     schema = SsvcObjectRegistry.model_json_schema()
     dump_schema(filepath=filepath, schema=schema)
 
-def dump_schema(filepath:str,schema:dict) -> None:
+
+def dump_schema(filepath: str, schema: dict) -> None:
     schema = order_schema(schema)
     with open(filepath, "w") as f:
         json.dump(schema, f, indent=2)
         f.write("\n")
+
 
 def main():
     # we are going to generate three files for each decision point:
@@ -278,7 +281,7 @@ def main():
     # dump the selection schema
     schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
 
-    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION,replacement="-")}.schema.json"
+    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement="-")}.schema.json"
     schemapath = os.path.join(schemadir, schemafile)
 
     selection_schema = SelectionList.model_json_schema()
