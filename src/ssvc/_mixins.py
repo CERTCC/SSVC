@@ -64,8 +64,17 @@ class _SchemaVersioned(BaseModel):
     """
 
     schemaVersion: str = Field(
-        SCHEMA_VERSION, description="Schema version of the SSVC object"
+        ..., description="Schema version of the SSVC object"
     )
+
+    @model_validator(mode="before")
+    def set_schema_version(cls, data):
+        """
+        Set the schema version to the default if not provided.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
 
 
 class _Namespaced(BaseModel):
