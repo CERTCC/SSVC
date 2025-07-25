@@ -1,9 +1,9 @@
 {
-  "name": "Authentication",
-  "description": "This metric measures whether or not an attacker needs to be authenticated to the target system in order to exploit the vulnerability.",
   "namespace": "cvss",
   "key": "Au",
   "version": "1.0.0",
+  "name": "Authentication",
+  "description": "This metric measures whether or not an attacker needs to be authenticated to the target system in order to exploit the vulnerability.",
   "schemaVersion": "1-0-1",
   "values": [
     {

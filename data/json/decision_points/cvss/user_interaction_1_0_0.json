@@ -1,9 +1,9 @@
 {
-  "name": "User Interaction",
-  "description": "This metric captures the requirement for a user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
   "namespace": "cvss",
   "key": "UI",
   "version": "1.0.0",
+  "name": "User Interaction",
+  "description": "This metric captures the requirement for a user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
   "schemaVersion": "1-0-1",
   "values": [
     {

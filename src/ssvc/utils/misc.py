@@ -24,6 +24,20 @@ Provides miscellaneous utility functions for SSVC.
 
 import secrets
 
+from ssvc.utils.defaults import SCHEMA_ORDER
+
+
+def order_schema(schema: dict) -> dict:
+    # create a new dict with the preferred order of fields first
+    ordered_schema = {k: schema[k] for k in (SCHEMA_ORDER) if k in schema}
+
+    # add the rest of the fields in their original order
+    other_keys = [k for k in schema if k not in ordered_schema]
+    for k in other_keys:
+        ordered_schema[k] = schema[k]
+
+    return ordered_schema
+
 
 def obfuscate_dict(data: dict) -> tuple[dict, dict]:
     """Given a dictionary, obfuscate its keys by replacing them with random strings.

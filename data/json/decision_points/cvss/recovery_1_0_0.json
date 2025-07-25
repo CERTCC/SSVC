@@ -1,9 +1,9 @@
 {
-  "name": "Recovery",
-  "description": "The Recovery metric describes the resilience of a system to recover services, in terms of performance and availability, after an attack has been performed.",
   "namespace": "cvss",
   "key": "R",
   "version": "1.0.0",
+  "name": "Recovery",
+  "description": "The Recovery metric describes the resilience of a system to recover services, in terms of performance and availability, after an attack has been performed.",
   "schemaVersion": "1-0-1",
   "values": [
     {

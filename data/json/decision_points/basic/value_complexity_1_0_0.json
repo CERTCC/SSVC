@@ -1,9 +1,9 @@
 {
-  "name": "Value, Complexity",
-  "description": "The Value/Complexity outcome group.",
   "namespace": "basic",
   "key": "VALUE_COMPLEXITY",
   "version": "1.0.0",
+  "name": "Value, Complexity",
+  "description": "The Value/Complexity outcome group.",
   "schemaVersion": "1-0-1",
   "values": [
     {

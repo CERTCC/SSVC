@@ -40,6 +40,19 @@ NS_LENGTH_INTERVAL = MAX_NS_LENGTH - MIN_NS_LENGTH
 FIELD_DELIMITER = ":"
 """The delimiter used to separate fields in SSVC object IDs."""
 
+SCHEMA_ORDER =  (
+        "$schema",
+        "$id",
+        "title",
+        "description",
+        "schemaVersion",
+        "type",
+        "properties",
+        "required",
+        "additionalProperties",
+        "$defs",
+)
+"""Preferred order of fields in SSVC JSON Schema objects."""
 
 def main():
     pass

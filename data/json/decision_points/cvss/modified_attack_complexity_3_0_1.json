@@ -1,9 +1,9 @@
 {
-  "name": "Modified Attack Complexity",
-  "description": "This metric captures measurable actions that must be taken by the attacker to actively evade or circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
   "namespace": "cvss",
   "key": "MAC",
   "version": "3.0.1",
+  "name": "Modified Attack Complexity",
+  "description": "This metric captures measurable actions that must be taken by the attacker to actively evade or circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
   "schemaVersion": "1-0-1",
   "values": [
     {

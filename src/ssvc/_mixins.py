@@ -188,7 +188,10 @@ class _Base(BaseModel):
     description: str
 
 
-class _GenericSsvcObject(_Versioned, _Keyed, _Namespaced, _Base, BaseModel):
+class _KeyedBaseModel(_Base,_Keyed,BaseModel):
+    pass
+
+class _GenericSsvcObject( _Base, _Versioned, _Keyed, _Namespaced, BaseModel):
     """
     Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned.
     """

@@ -46,6 +46,12 @@ class Registry(BaseModel):
     def __getitem__(self, key: str) -> object:
         return self.registry[key]
 
+    def keys(self):
+        return self.registry.keys()
+
+    def values(self):
+        return self.registry.values()
+
     def register(self, key: str, value: BaseModel) -> None:
         """
         Idempotently register a key-value pair in the registry.

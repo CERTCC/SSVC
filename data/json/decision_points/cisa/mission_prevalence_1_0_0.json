@@ -1,9 +1,9 @@
 {
-  "name": "Mission Prevalence",
-  "description": "Prevalence of the mission essential functions",
   "namespace": "cisa",
   "key": "MP",
   "version": "1.0.0",
+  "name": "Mission Prevalence",
+  "description": "Prevalence of the mission essential functions",
   "schemaVersion": "1-0-1",
   "values": [
     {

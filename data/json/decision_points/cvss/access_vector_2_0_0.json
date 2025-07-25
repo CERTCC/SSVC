@@ -1,9 +1,9 @@
 {
-  "name": "Access Vector",
-  "description": "This metric reflects the context by which vulnerability exploitation is possible.",
   "namespace": "cvss",
   "key": "AV",
   "version": "2.0.0",
+  "name": "Access Vector",
+  "description": "This metric reflects the context by which vulnerability exploitation is possible.",
   "schemaVersion": "1-0-1",
   "values": [
     {

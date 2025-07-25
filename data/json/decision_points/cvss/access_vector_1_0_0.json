@@ -1,9 +1,9 @@
 {
-  "name": "Access Vector",
-  "description": "This metric measures whether or not the vulnerability is exploitable locally or remotely.",
   "namespace": "cvss",
   "key": "AV",
   "version": "1.0.0",
+  "name": "Access Vector",
+  "description": "This metric measures whether or not the vulnerability is exploitable locally or remotely.",
   "schemaVersion": "1-0-1",
   "values": [
     {

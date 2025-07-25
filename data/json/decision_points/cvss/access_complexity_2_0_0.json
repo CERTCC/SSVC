@@ -1,9 +1,9 @@
 {
-  "name": "Access Complexity",
-  "description": "This metric measures the complexity of the attack required to exploit the vulnerability once an attacker has gained access to the target system.",
   "namespace": "cvss",
   "key": "AC",
   "version": "2.0.0",
+  "name": "Access Complexity",
+  "description": "This metric measures the complexity of the attack required to exploit the vulnerability once an attacker has gained access to the target system.",
   "schemaVersion": "1-0-1",
   "values": [
     {

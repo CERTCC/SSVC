@@ -1,9 +1,9 @@
 {
-  "name": "MoSCoW",
-  "description": "The MoSCoW (Must, Should, Could, Won't) outcome group.",
   "namespace": "basic",
   "key": "MSCW",
   "version": "1.0.0",
+  "name": "MoSCoW",
+  "description": "The MoSCoW (Must, Should, Could, Won't) outcome group.",
   "schemaVersion": "1-0-1",
   "values": [
     {

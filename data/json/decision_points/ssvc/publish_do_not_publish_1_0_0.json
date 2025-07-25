@@ -1,9 +1,9 @@
 {
-  "name": "Publish, Do Not Publish",
-  "description": "The publish outcome group.",
   "namespace": "ssvc",
   "key": "PUBLISH",
   "version": "1.0.0",
+  "name": "Publish, Do Not Publish",
+  "description": "The publish outcome group.",
   "schemaVersion": "1-0-1",
   "values": [
     {

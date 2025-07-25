@@ -1,9 +1,9 @@
 {
-  "name": "Integrity Requirement",
-  "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
   "namespace": "cvss",
   "key": "IR",
   "version": "1.1.1",
+  "name": "Integrity Requirement",
+  "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
   "schemaVersion": "1-0-1",
   "values": [
     {

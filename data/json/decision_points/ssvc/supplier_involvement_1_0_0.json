@@ -1,9 +1,9 @@
 {
-  "name": "Supplier Involvement",
-  "description": "What is the state of the supplier’s work on addressing the vulnerability?",
   "namespace": "ssvc",
   "key": "SINV",
   "version": "1.0.0",
+  "name": "Supplier Involvement",
+  "description": "What is the state of the supplier’s work on addressing the vulnerability?",
   "schemaVersion": "1-0-1",
   "values": [
     {

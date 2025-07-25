@@ -1,9 +1,9 @@
 {
-  "name": "Safety Impact",
-  "description": "The safety impact of the vulnerability.",
   "namespace": "ssvc",
   "key": "SI",
   "version": "1.0.0",
+  "name": "Safety Impact",
+  "description": "The safety impact of the vulnerability.",
   "schemaVersion": "1-0-1",
   "values": [
     {

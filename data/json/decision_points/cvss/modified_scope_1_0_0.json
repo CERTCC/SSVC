@@ -1,9 +1,9 @@
 {
-  "name": "Modified Scope",
-  "description": "the ability for a vulnerability in one software component to impact resources beyond its means, or privileges",
   "namespace": "cvss",
   "key": "MS",
   "version": "1.0.0",
+  "name": "Modified Scope",
+  "description": "the ability for a vulnerability in one software component to impact resources beyond its means, or privileges",
   "schemaVersion": "1-0-1",
   "values": [
     {

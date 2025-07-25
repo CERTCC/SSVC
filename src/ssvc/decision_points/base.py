@@ -26,13 +26,9 @@ import logging
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
-from ssvc._mixins import (
-    _Base,
-    _Commented,
-    _GenericSsvcObject, _Keyed,
-    _SchemaVersioned, _Valued,
-)
-from ssvc.registry import Registry
+from ssvc._mixins import (_Commented, _GenericSsvcObject, _KeyedBaseModel, _SchemaVersioned, _Valued)
+from ssvc.registry.events import notify_registration
+from ssvc.registry.old.registry import Registry
 from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
@@ -72,8 +68,7 @@ def _reset_registered():
     DP_REGISTRY.reset_registry()
     REGISTERED_DECISION_POINTS = []
 
-
-class DecisionPointValue(_Base, _Keyed, _Commented, BaseModel):
+class DecisionPointValue(_Commented, _KeyedBaseModel, BaseModel):
     """
     Models a single value option for a decision point.
 
@@ -156,10 +151,9 @@ class DecisionPoint(
 
     @model_validator(mode="after")
     def _register(self):
-        """
-        Register the decision point.
-        """
-        register(self)
+        """Register the decision point."""
+        notify_registration(self)
+        register(self)  # Your existing registry
         return self
 
     @property

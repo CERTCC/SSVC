@@ -1,9 +1,9 @@
 {
-  "name": "Confidentiality Impact",
-  "description": "This metric measures the impact on confidentiality of a successful exploit of the vulnerability on the target system.",
   "namespace": "cvss",
   "key": "C",
   "version": "1.0.0",
+  "name": "Confidentiality Impact",
+  "description": "This metric measures the impact on confidentiality of a successful exploit of the vulnerability on the target system.",
   "schemaVersion": "1-0-1",
   "values": [
     {

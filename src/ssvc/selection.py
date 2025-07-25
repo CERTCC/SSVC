@@ -41,6 +41,7 @@ from ssvc._mixins import (
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
+from ssvc.utils.misc import order_schema
 
 SCHEMA_VERSION = "2.0.1"
 
@@ -340,28 +341,7 @@ class SelectionList(_Timestamped, BaseModel):
                         r for r in prop["required"] if r not in non_required_fields
                     ]
 
-        # preferred order of fields, just setting for convention
-        preferred_order = [
-            "$schema",
-            "$id",
-            "title",
-            "description",
-            "schemaVersion",
-            "type",
-            "properties",
-            "required",
-            "additionalProperties",
-            "$defs",
-        ]
-
-        # create a new dict with the preferred order of fields first
-        ordered_fields = {k: schema[k] for k in preferred_order if k in schema}
-        # add the rest of the fields in their original order
-        for k in schema:
-            if k not in ordered_fields:
-                ordered_fields[k] = schema[k]
-
-        return ordered_fields
+        return order_schema(schema)
 
 
 def main() -> None:

@@ -1,9 +1,9 @@
 {
-  "name": "theParanoids",
-  "description": "PrioritizedRiskRemediation outcome group based on TheParanoids.",
   "namespace": "x_com.yahooinc",
   "key": "PARANOIDS",
   "version": "1.0.0",
+  "name": "theParanoids",
+  "description": "PrioritizedRiskRemediation outcome group based on TheParanoids.",
   "schemaVersion": "1-0-1",
   "values": [
     {

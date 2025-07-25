@@ -1,9 +1,9 @@
 {
-  "name": "Integrity Impact",
-  "description": "This metric measures the impact on integrity a successful exploit of the vulnerability will have on the target system.",
   "namespace": "cvss",
   "key": "I",
   "version": "1.0.0",
+  "name": "Integrity Impact",
+  "description": "This metric measures the impact on integrity a successful exploit of the vulnerability will have on the target system.",
   "schemaVersion": "1-0-1",
   "values": [
     {

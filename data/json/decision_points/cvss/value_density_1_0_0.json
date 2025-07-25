@@ -1,9 +1,9 @@
 {
-  "name": "Value Density",
-  "description": "Value Density describes the resources that the attacker will gain control over with a single exploitation event. It has two possible values, diffuse and concentrated.",
   "namespace": "cvss",
   "key": "V",
   "version": "1.0.0",
+  "name": "Value Density",
+  "description": "Value Density describes the resources that the attacker will gain control over with a single exploitation event. It has two possible values, diffuse and concentrated.",
   "schemaVersion": "1-0-1",
   "values": [
     {

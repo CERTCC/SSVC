@@ -1,9 +1,9 @@
 {
-  "name": "Equivalence Set 3",
-  "description": "VC/VI/VA with 3 levels specified in Table 26",
   "namespace": "cvss",
   "key": "EQ3",
   "version": "1.0.0",
+  "name": "Equivalence Set 3",
+  "description": "VC/VI/VA with 3 levels specified in Table 26",
   "schemaVersion": "1-0-1",
   "values": [
     {
