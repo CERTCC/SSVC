@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Report Credibility",
   "description": "Is the report credible?",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "NC",

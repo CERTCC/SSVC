@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Value Density",
   "description": "The concentration of value in the target",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "D",

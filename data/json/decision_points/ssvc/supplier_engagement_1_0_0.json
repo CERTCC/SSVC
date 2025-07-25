@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Supplier Engagement",
   "description": "Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "A",

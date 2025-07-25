@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Equivalence Set 5",
   "description": "E with 3 levels specified in Table 28",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

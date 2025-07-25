@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Safety",
   "description": "The Safety decision point is a measure of the potential for harm to humans or the environment.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "X",

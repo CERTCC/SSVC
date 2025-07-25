@@ -4,7 +4,7 @@
   "version": "1.1.0",
   "name": "Confidentiality Requirement",
   "description": "This metric measures the impact to the confidentiality of a successfully exploited vulnerability.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "name": "Modified Availability Impact to the Vulnerable System",
   "description": "This metric measures the impact to the availability of the impacted system resulting from a successfully exploited vulnerability.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

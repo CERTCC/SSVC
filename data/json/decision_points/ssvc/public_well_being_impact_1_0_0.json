@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Public Well-Being Impact",
   "description": "A coarse-grained representation of impact to public well-being.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "M",

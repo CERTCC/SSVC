@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Automatable",
   "description": "The \"Automatable\" metric captures the answer to the question \"Can an attacker automate exploitation events for this vulnerability across multiple targets?\" based on steps 1-4 of the kill chain.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

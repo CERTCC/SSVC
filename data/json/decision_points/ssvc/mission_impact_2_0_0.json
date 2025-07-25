@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "name": "Mission Impact",
   "description": "Impact on Mission Essential Functions of the Organization",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "D",

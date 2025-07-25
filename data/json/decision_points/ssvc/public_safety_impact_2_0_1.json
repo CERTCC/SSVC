@@ -4,7 +4,7 @@
   "version": "2.0.1",
   "name": "Public Safety Impact",
   "description": "A coarse-grained representation of impact to public safety.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "M",

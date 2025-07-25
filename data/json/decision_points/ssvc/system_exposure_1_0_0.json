@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "System Exposure",
   "description": "The Accessible Attack Surface of the Affected System or Service",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "S",

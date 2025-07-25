@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Technical Impact",
   "description": "The technical impact of the vulnerability.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "P",

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Utility",
   "description": "The Usefulness of the Exploit to the Adversary",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

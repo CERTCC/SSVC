@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Collateral Damage Potential",
   "description": "This metric measures the potential for a loss in physical equipment, property damage or loss of life or limb.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

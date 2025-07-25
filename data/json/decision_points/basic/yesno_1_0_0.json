@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "YesNo",
   "description": "A Yes/No decision point / outcome group.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

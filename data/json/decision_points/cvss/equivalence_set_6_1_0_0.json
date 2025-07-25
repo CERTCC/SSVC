@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Equivalence Set 6",
   "description": "VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

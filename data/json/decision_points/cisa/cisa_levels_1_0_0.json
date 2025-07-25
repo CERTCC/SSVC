@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "CISA Levels",
   "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "T",

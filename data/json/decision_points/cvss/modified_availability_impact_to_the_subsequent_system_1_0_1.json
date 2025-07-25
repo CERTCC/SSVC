@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "name": "Modified Availability Impact to the Subsequent System",
   "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

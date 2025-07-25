@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "name": "Access Vector",
   "description": "This metric reflects the context by which vulnerability exploitation is possible.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

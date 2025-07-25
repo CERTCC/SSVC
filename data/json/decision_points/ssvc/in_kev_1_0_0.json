@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "In KEV",
   "description": "Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

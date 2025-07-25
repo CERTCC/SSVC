@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "name": "Modified Attack Complexity",
   "description": "This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.",
-  "schemaVersion": "1-0-1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
