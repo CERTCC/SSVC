@@ -39,6 +39,8 @@ from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
 
+SCHEMA_VERSION = "2.0.0"
+
 DP_REGISTRY = Registry()
 DPV_REGISTRY = Registry()
 
@@ -108,6 +110,15 @@ class DecisionPoint(
     - key (str): A key (a short, unique string within the namespace) that can be used to identify the decision point in a shorthand way
     - values (tuple): A tuple of DecisionPointValue objects
     """
+
+    @model_validator(mode="before")
+    def _set_schema_version(cls, data: dict) -> dict:
+        """
+        Set the schema version to the default if not provided.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
 
     values: tuple[DecisionPointValue, ...]
 

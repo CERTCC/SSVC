@@ -290,7 +290,14 @@ def main():
     # dump the registry schema
     registry_schema_file = f"Ssvc_Object_Registry-{_filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
     registry_schema_path = os.path.join(schemadir, registry_schema_file)
-    dump_registry_schema(filepath=registry_schema_path)
+    registry_schema = SsvcObjectRegistry.model_json_schema()
+    dump_schema(filepath=registry_schema_path, schema=registry_schema)
+
+    # dump the decision point schema
+    dp_schema_file = f"Decision_Point-{_filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    dp_schema_path = os.path.join(schemadir, dp_schema_file)
+    dp_schema = DecisionPoint.model_json_schema()
+    dump_schema(filepath=dp_schema_path, schema=dp_schema)
 
 
 if __name__ == "__main__":
