@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "MAV",
+  "version": "3.0.1",
   "name": "Modified Attack Vector",
   "description": "This metric reflects the context by which vulnerability exploitation is possible. This metric value (and consequently the resulting severity) will be larger the more remote (logically, and physically) an attacker can be in order to exploit the vulnerable system. The assumption is that the number of potential attackers for a vulnerability that could be exploited from across a network is larger than the number of potential attackers that could exploit a vulnerability requiring physical access to a device, and therefore warrants a greater severity.",
-  "namespace": "cvss",
-  "version": "3.0.1",
-  "schemaVersion": "1-0-1",
-  "key": "MAV",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "P",

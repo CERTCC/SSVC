@@ -138,8 +138,37 @@ class TestMixins(unittest.TestCase):
 
         self.assertRaises(ValidationError, _Keyed)
 
+        good_keys = ["A", "1", "F1", "T*", "Mixed_case_OK", "alph4num3ric"]
+        bad_keys = [
+            "",  # no empty string
+            "foo_",  # no trailing underscore
+            "_",  # no solitary underscore
+            "_foo",  # no leading underscore
+            "A*",  # no trailing asterisk
+        ]
+        # add other bad keys that contain special characters
+        # these should not be allowed in keys
+        for char in " ~`!@#$%^&*()-+={}[]|\\:;\"'<>,.?/":
+            bad_keys.append(char)
+            bad_keys.append("foo" + char)
+            bad_keys.append(char + "bar")
+            bad_keys.append("foo" + char + "bar")
+
+        for key in good_keys:
+            with self.subTest(key=key):
+                obj = _Keyed(key=key)
+                self.assertEqual(obj.key, key)
+
+        for key in bad_keys:
+            with self.subTest(key=key):
+                with self.assertRaises(
+                    ValidationError, msg=f"Key '{key}' should be invalid"
+                ):
+                    _Keyed(key=key)
+
     def test_valued_create(self):
         values = ("foo", "bar", "baz", "quux")
+
         obj = _Valued(values=values)
 
         # length

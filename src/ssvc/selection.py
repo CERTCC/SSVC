@@ -35,19 +35,18 @@ from pydantic import (
 
 from ssvc._mixins import (
     _Base,
-    _Keyed,
-    _Namespaced,
+    _GenericSsvcObject, _Keyed,
     _Timestamped,
     _Valued,
-    _Versioned,
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
+from ssvc.utils.misc import order_schema
 
-SCHEMA_VERSION = "2.0.0"
+SCHEMA_VERSION = "2.0.1"
 
 
-class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
+class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
     """
     A minimal representation of a decision point value.
     Intended to parallel the DecisionPointValue object, but with fewer required fields.
@@ -79,7 +78,7 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
         return data
 
 
-class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
+class Selection(_Valued, _GenericSsvcObject, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     While the Selection object parallels the DecisionPoint object, it is intentionally minimal, with
@@ -342,28 +341,7 @@ class SelectionList(_Timestamped, BaseModel):
                         r for r in prop["required"] if r not in non_required_fields
                     ]
 
-        # preferred order of fields, just setting for convention
-        preferred_order = [
-            "$schema",
-            "$id",
-            "title",
-            "description",
-            "schemaVersion",
-            "type",
-            "properties",
-            "required",
-            "additionalProperties",
-            "$defs",
-        ]
-
-        # create a new dict with the preferred order of fields first
-        ordered_fields = {k: schema[k] for k in preferred_order if k in schema}
-        # add the rest of the fields in their original order
-        for k in schema:
-            if k not in ordered_fields:
-                ordered_fields[k] = schema[k]
-
-        return ordered_fields
+        return order_schema(schema)
 
 
 def main() -> None:

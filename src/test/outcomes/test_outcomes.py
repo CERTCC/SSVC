@@ -39,14 +39,14 @@ class MyTestCase(unittest.TestCase):
 
         og = OutcomeGroup(
             name="Outcome Group",
-            key="OG",
+            key="OGX",
             description="an outcome group",
             namespace="x_example.test",
             values=tuple(values),
         )
 
         self.assertEqual(og.name, "Outcome Group")
-        self.assertEqual(og.key, "OG")
+        self.assertEqual(og.key, "OGX")
         self.assertEqual(og.description, "an outcome group")
 
         self.assertEqual(len(og), len(ALPHABET))

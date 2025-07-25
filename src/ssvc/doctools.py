@@ -45,7 +45,9 @@ from ssvc.decision_points.base import (
     REGISTERED_DECISION_POINTS,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
+from ssvc.registry.base import SsvcObjectRegistry
 from ssvc.selection import SelectionList
+from ssvc.utils.misc import order_schema
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +81,7 @@ def find_modules_to_import(
     return imported_modules
 
 
-def _filename_friendly(name: str) -> str:
+def _filename_friendly(name: str, replacement="_") -> str:
     """
     Given a string, return a version that is friendly for use in a filename.
 
@@ -90,10 +92,10 @@ def _filename_friendly(name: str) -> str:
         str: A version of the string that is friendly for use in a filename.
     """
     # replace all non-alphanumeric characters with underscores and convert to lowercase
-    name = re.sub(r"[^a-zA-Z0-9]", "_", name)
+    name = re.sub(r"[^a-zA-Z0-9]", replacement, name)
     name = name.lower()
     # replace any sequence of underscores with a single underscore
-    name = re.sub(r"_+", "_", name)
+    name = re.sub(rf"{replacement}+", replacement, name)
 
     return name
 
@@ -210,9 +212,29 @@ def dump_selection_schema(filepath: str) -> None:
     """
     logger.info(f"Dumping schema to {filepath}")
     schema = SelectionList.model_json_schema()
+    dump_schema(filepath=filepath, schema=schema)
+
+
+def dump_registry_schema(filepath: str) -> None:
+    """
+    Dump the schema for the SsvcObjectRegistry model to a file.
+    Args:
+        filepath: The path to the file to write the schema to.
+
+    Returns:
+        None
+
+    """
+    logger.info(f"Dumping schema to {filepath}")
+    schema = SsvcObjectRegistry.model_json_schema()
+    dump_schema(filepath=filepath, schema=schema)
+
+
+def dump_schema(filepath: str, schema: dict) -> None:
+    schema = order_schema(schema)
     with open(filepath, "w") as f:
         json.dump(schema, f, indent=2)
-        f.write("\n")  # newline at end of file
+        f.write("\n")
 
 
 def main():
@@ -258,10 +280,24 @@ def main():
 
     # dump the selection schema
     schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
-    schemafile = os.path.join(
-        schemadir, "Decision_Point_Value_Selection-2-0-0.schema.json"
-    )
-    dump_selection_schema(schemafile)
+
+    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement="-")}.schema.json"
+    schemapath = os.path.join(schemadir, schemafile)
+
+    selection_schema = SelectionList.model_json_schema()
+    dump_schema(filepath=schemapath, schema=selection_schema)
+
+    # dump the registry schema
+    registry_schema_file = f"Ssvc_Object_Registry-{_filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    registry_schema_path = os.path.join(schemadir, registry_schema_file)
+    registry_schema = SsvcObjectRegistry.model_json_schema()
+    dump_schema(filepath=registry_schema_path, schema=registry_schema)
+
+    # dump the decision point schema
+    dp_schema_file = f"Decision_Point-{_filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    dp_schema_path = os.path.join(schemadir, dp_schema_file)
+    dp_schema = DecisionPoint.model_json_schema()
+    dump_schema(filepath=dp_schema_path, schema=dp_schema)
 
 
 if __name__ == "__main__":

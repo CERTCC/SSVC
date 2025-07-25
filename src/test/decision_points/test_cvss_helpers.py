@@ -20,7 +20,8 @@
 import unittest
 
 import ssvc.decision_points.cvss.helpers as h
-from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY, DecisionPointValue
+from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
 
