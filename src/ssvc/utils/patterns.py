@@ -59,11 +59,11 @@ EXT_SEGMENT_PATTERN = (
 )
 
 # Subsequent ext-seg(s)
-SUBSEQUENT_EXT = rf"{EXT_SEGMENT_PATTERN}(?:/{EXT_SEGMENT_PATTERN})*"
+SUBSEQUENT_EXT = rf"{EXT_SEGMENT_PATTERN}(?:\/{EXT_SEGMENT_PATTERN})*"
 
 
 # --- Language extension ---
-LANG_EXT = rf"(?:/{BCP_47_PATTERN}/|//)"
+LANG_EXT = rf"(?:\/{BCP_47_PATTERN}\/|\/\/)"
 
 # --- Combine all parts into the full namespace pattern ---
 NS_PATTERN_STR = (

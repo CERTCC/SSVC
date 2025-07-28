@@ -138,14 +138,15 @@ we expect that this will rarely lead to conflicts in practice.
     Unregistered namespaces must follow the following structure:
 
     - Unregistered namespaces must use the `x_` prefix.
-    - Following the `x_` prefix, unregistered namespaces must use reverse domain name notation to ensure uniqueness.
+    - Following the `x_` prefix, unregistered namespaces must use reverse domain name notation of a domain under their control to ensure uniqueness.
     - Aside from the required `x_` prefix, unregistered namespaces must contain only alphanumeric characters, dots (`.`), and dashes (`-`).
+   - For any domain using other characters, DNS Punycode must be used
 
 
 !!! warning "Namespace Conflicts"
 
-    Conflicts are possible in the x_ prefix space. 
-    In the previous example, Organizations A and B could both choose to use 
+    Conflicts are possible in the x_ prefix space - especially as the control over a domain may be transferred. 
+    Also in tests, Organizations A and B could both choose to use 
     `x_example.test`, and there are no guarantees of global uniqueness for the 
     decision points in the `x_example.test` namespace.
 
@@ -180,6 +181,12 @@ constituencies or to provide translations of existing decision points.
     as described above instead of an extension.
     Extensions are not intended to be used to create new decision points.
 
+!!! question "Why is that important?"
+
+    The way extensions are build enables tools to process the decision points even if
+    they do not know the defined extension. As long as the tool knows the base
+    namespace, it can process the decision point.
+
 #### Namespace Extension Structure
 
 The first extension segment is reserved for an optional BCP-47 language tag, which may be left empty.
@@ -188,8 +195,8 @@ When empty, the default language (`en-US`) is implied.
 Subsequent extension segments must begin with a reverse domain name notation string,
 and may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`).
 A single fragment identifier (`#`) may be included in an extension segment, but it is optional.
-Fragment identifiers can be used to indicate a specific interpretation or context for the extension.
-
+Fragment segments can be used to indicate a specific interpretation or context for the extension.
+Note: Without a fragment segment, all decision points of an organization fall into one bucket, which is in most cases not intended. Therefore, the use of a fragment segment is recommended.
 The following diagram illustrates the structure of namespace extensions:
 ```mermaid
 ---
@@ -228,7 +235,7 @@ base_ns -->|/| first
     - Multiple extension segments are allowed.
     - If any extension segments are present, the first segment must be a valid BCP-47 language tag or an empty string.
     - When the first segment is left as an empty string, the default language (`en-US`) is implied.
-    - Subsequent extension segments must begin with a reverse domain name notation string.
+    - Subsequent extension segments must begin with a reverse domain name notation string or be a valid, non-empty BCP-47 language tag.
     - A fragment identifier (`#`) may be included in extension segments, but it is optional.
     - Extension segments may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`), and zero or one hash (`#`).
     - Extensions must not alter the decision point key, version number, or value keys for any decision point they are derived from.
@@ -287,7 +294,7 @@ segment of the extension.
 !!! tip "Use BCP-47 Language Tags"
 
     Regardless where they appear in the extension strings, BCP-47 language tags
-    must be for any language-based extension.
+    must be used for any language-based extension.
     Note, however that we do not strictly enforce this recommendation in the 
     SSVC codebase outside of the first extension segment.
 

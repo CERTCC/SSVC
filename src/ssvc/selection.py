@@ -57,6 +57,8 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
     Other required fields in the DecisionPointValue object, such as name and description, are optional here.
     """
 
+    model_config = ConfigDict(extra="forbid")
+
     @model_validator(mode="before")
     def set_optional_fields(cls, data):
         if "name" not in data:
@@ -238,15 +240,15 @@ class SelectionList(_Timestamped, BaseModel):
             [
                 {
                     "uri": "https://example.com/decision_points",
-                    "description": "Documentation for a set of decision points",
+                    "summary": "Documentation for a set of decision points",
                 },
                 {
                     "uri": "https://example.org/definitions/dp2.json",
-                    "description": "JSON representation of decision point 2",
+                    "summary": "JSON representation of decision point 2",
                 },
                 {
                     "uri": "https://example.com/ssvc/x_com.example/decision_points.json",
-                    "description": "A JSON file containing extension decision points in the x_com.example namespace",
+                    "summary": "A JSON file containing extension decision points in the x_com.example namespace",
                 },
             ],
         ],
@@ -259,7 +261,7 @@ class SelectionList(_Timestamped, BaseModel):
             [
                 {
                     "uri": "https://example.com/report",
-                    "description": "A report on which the selections were based",
+                    "summary": "A report on which the selections were based",
                 },
             ]
         ],
