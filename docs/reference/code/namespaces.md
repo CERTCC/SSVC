@@ -181,6 +181,12 @@ constituencies or to provide translations of existing decision points.
     as described above instead of an extension.
     Extensions are not intended to be used to create new decision points.
 
+!!! question "Why is that important?"
+
+    The way extensions are build enables tools to process the decision points even if
+    they do not know the defined extension. As long as the tool knows the base
+    namespace, it can process the decision point.
+
 #### Namespace Extension Structure
 
 The first extension segment is reserved for an optional BCP-47 language tag, which may be left empty.
