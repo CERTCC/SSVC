@@ -35,7 +35,8 @@ from pydantic import (
 
 from ssvc._mixins import (
     _Base,
-    _GenericSsvcObject, _Keyed,
+    _GenericSsvcObject,
+    _Keyed,
     _Timestamped,
     _Valued,
 )
@@ -43,7 +44,7 @@ from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
 from ssvc.utils.misc import order_schema
 
-SCHEMA_VERSION = "2.0.1"
+SCHEMA_VERSION = "2.0.0"
 
 
 class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):

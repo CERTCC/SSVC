@@ -101,16 +101,29 @@
     "MinimalDecisionPointValue": {
       "description": "A minimal representation of a decision point value.\nIntended to parallel the DecisionPointValue object, but with fewer required fields.\nA decision point value is uniquely identified within a decision point by its key.\nGlobally, the combination of Decision Point namespace, key, and version coupled with the value key\nuniquely identifies a value across all decision points and values.\nOther required fields in the DecisionPointValue object, such as name and description, are optional here.",
       "properties": {
-        "key": {
-          "title": "Key",
-          "type": "string"
-        },
         "name": {
           "title": "Name",
           "type": "string"
         },
         "description": {
           "title": "Description",
+          "type": "string"
+        },
+        "key": {
+          "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
+          "examples": [
+            "E",
+            "A",
+            "SI",
+            "L",
+            "M",
+            "H",
+            "Mixed_case_OK",
+            "alph4num3ric"
+          ],
+          "minLength": 1,
+          "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
+          "title": "Key",
           "type": "string"
         }
       },
@@ -145,14 +158,6 @@
       "additionalProperties": false,
       "description": "A minimal selection object that contains the decision point ID and the selected values.\nWhile the Selection object parallels the DecisionPoint object, it is intentionally minimal, with\nfewer required fields and no additional metadata, as it is meant to represent a selection made from a\npreviously defined decision point. The expectation is that a Selection object will usually have\nfewer values than the original decision point, as it represents a specific evaluation\nat a specific time and may therefore rule out some values that were previously considered.\nOther fields like name and description may be copied from the decision point, but are not required.",
       "properties": {
-        "name": {
-          "title": "Name",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string"
-        },
         "namespace": {
           "description": "The namespace of the SSVC object.",
           "examples": [
@@ -168,6 +173,19 @@
           "type": "string"
         },
         "key": {
+          "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
+          "examples": [
+            "E",
+            "A",
+            "SI",
+            "L",
+            "M",
+            "H",
+            "Mixed_case_OK",
+            "alph4num3ric"
+          ],
+          "minLength": 1,
+          "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
           "title": "Key",
           "type": "string"
         },
@@ -180,6 +198,14 @@
           "minLength": 5,
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
           "title": "Version",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
           "type": "string"
         },
         "values": {
