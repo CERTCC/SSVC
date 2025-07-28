@@ -295,7 +295,7 @@ segment of the extension.
 
     Regardless where they appear in the extension strings, BCP-47 language tags
     must be used for any language-based extension.
-    Note, however that we do not strictly enforce this recommendation in the 
+    Note, however that we do not yet strictly enforce this recommendation in the 
     SSVC codebase outside of the first extension segment.
 
 !!! example "Translation of a custom extension"
