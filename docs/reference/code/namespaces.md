@@ -235,7 +235,7 @@ base_ns -->|/| first
     - Multiple extension segments are allowed.
     - If any extension segments are present, the first segment must be a valid BCP-47 language tag or an empty string.
     - When the first segment is left as an empty string, the default language (`en-US`) is implied.
-    - Subsequent extension segments must begin with a reverse domain name notation string.
+    - Subsequent extension segments must begin with a reverse domain name notation string or be a valid, non-empty BCP-47 language tag.
     - A fragment identifier (`#`) may be included in extension segments, but it is optional.
     - Extension segments may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`), and zero or one hash (`#`).
     - Extensions must not alter the decision point key, version number, or value keys for any decision point they are derived from.
