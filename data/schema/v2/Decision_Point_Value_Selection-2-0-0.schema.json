@@ -81,6 +81,16 @@
             "description": "A report on which the selections were based",
             "uri": "https://example.com/report"
           }
+        ],
+        [
+          {
+            "description": "A code section on which the selections were based",
+            "uri": "https://git.example.com/some-relevant-path/code#L21-42"
+          },
+          {
+            "description": "A code section on which calls the vulnerable function",
+            "uri": "https://git.example.com/some-relevant-path/callingcode#L91-16"
+          }
         ]
       ],
       "items": {
