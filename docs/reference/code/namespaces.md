@@ -294,7 +294,7 @@ segment of the extension.
 !!! tip "Use BCP-47 Language Tags"
 
     Regardless where they appear in the extension strings, BCP-47 language tags
-    must be for any language-based extension.
+    must be used for any language-based extension.
     Note, however that we do not strictly enforce this recommendation in the 
     SSVC codebase outside of the first extension segment.
 
