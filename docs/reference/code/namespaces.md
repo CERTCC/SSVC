@@ -138,7 +138,7 @@ we expect that this will rarely lead to conflicts in practice.
     Unregistered namespaces must follow the following structure:
 
     - Unregistered namespaces must use the `x_` prefix.
-    - Following the `x_` prefix, unregistered namespaces must use reverse domain name notation to ensure uniqueness.
+    - Following the `x_` prefix, unregistered namespaces must use reverse domain name notation of a domain under their control to ensure uniqueness.
     - Aside from the required `x_` prefix, unregistered namespaces must contain only alphanumeric characters, dots (`.`), and dashes (`-`).
    - For any domain using other characters, DNS Punycode must be used
 
