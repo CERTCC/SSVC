@@ -92,7 +92,7 @@ data collection and analysis capabilities increase. We demonstrate this with the
     into their decision model.
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.exploitation import LATEST
+    from ssvc.decision_points.ssvc.exploitation import LATEST
     from ssvc.doc_helpers import example_block
 
     print(example_block(LATEST))
@@ -105,7 +105,7 @@ data collection and analysis capabilities increase. We demonstrate this with the
     incorporate the `SYSTEM_EXPOSURE_1_0_1` decision point into their decision model.
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.system_exposure import LATEST
+    from ssvc.decision_points.ssvc.system_exposure import LATEST
     from ssvc.doc_helpers import example_block
     
     print(example_block(LATEST))
@@ -121,7 +121,7 @@ data collection and analysis capabilities increase. We demonstrate this with the
     or by translating CVSS v3 or v4 scores into a value for this decision point.
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.automatable import LATEST
+    from ssvc.decision_points.ssvc.automatable import LATEST
     from ssvc.doc_helpers import example_block
     
     print(example_block(LATEST))
@@ -134,8 +134,8 @@ data collection and analysis capabilities increase. We demonstrate this with the
     `MISSION_IMPACT_2` and `SAFETY_IMPACT_1` decision points into their decision model.
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.mission_impact import LATEST as MI
-    from ssvc.decision_points.safety_impact import LATEST as SI
+    from ssvc.decision_points.ssvc.mission_impact import LATEST as MI
+    from ssvc.decision_points.ssvc.safety_impact import LATEST as SI
 
     from ssvc.doc_helpers import example_block
     
