@@ -182,10 +182,8 @@ class _Base(BaseModel):
     Base class for SSVC objects.
     """
 
-    name: str = Field(..., description="A name for the SSVC object", min_length=1)
-    description: str = Field(
-        ..., description="A brief description of the SSVC object", min_length=1
-    )
+    name: str
+    description: str
 
 
 class _KeyedBaseModel(_Base, _Keyed, BaseModel):

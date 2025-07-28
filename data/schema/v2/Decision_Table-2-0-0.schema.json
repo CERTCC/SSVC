@@ -26,14 +26,10 @@
         },
         "name": {
           "title": "Name",
-          "description": "A name for the SSVC object",
-          "minLength": 1,
           "type": "string"
         },
         "description": {
           "title": "Description",
-          "description": "A brief description of the SSVC object",
-          "minLength": 1,
           "type": "string"
         }
       },
@@ -82,14 +78,10 @@
     },
     "name": {
       "title": "Name",
-      "description": "A name for the SSVC object",
-      "minLength": 1,
       "type": "string"
     },
     "description": {
       "title": "Description",
-      "description": "A brief description of the SSVC object",
-      "minLength": 1,
       "type": "string"
     },
     "schemaVersion": {
