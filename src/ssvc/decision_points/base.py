@@ -35,45 +35,11 @@ from ssvc._mixins import (
     _Valued,
 )
 from ssvc.registry.events import notify_registration
-from ssvc.registry.old.registry import Registry
 from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
 
 SCHEMA_VERSION = "2.0.0"
-
-DP_REGISTRY = Registry()
-DPV_REGISTRY = Registry()
-
-REGISTERED_DECISION_POINTS = []
-
-
-def register(dp):
-    """
-    Register a decision point.
-    """
-
-    # register the values
-    for dpv_id, dpv in dp.value_dict.items():
-        DPV_REGISTRY.register(dpv_id, dpv)
-
-    # register the decision point
-    DP_REGISTRY.register(dp.id, dp)
-
-    REGISTERED_DECISION_POINTS.append(dp)
-
-
-def _reset_registered():
-    """
-    Reset the registered decision points.
-    """
-    global DPV_REGISTRY
-    global DP_REGISTRY
-    global REGISTERED_DECISION_POINTS
-
-    DPV_REGISTRY.reset_registry()
-    DP_REGISTRY.reset_registry()
-    REGISTERED_DECISION_POINTS = []
 
 
 class DecisionPointValue(_Commented, _KeyedBaseModel, BaseModel):
@@ -172,7 +138,6 @@ class DecisionPoint(
     def _register(self):
         """Register the decision point."""
         notify_registration(self)
-        register(self)  # Your existing registry
         return self
 
     @property

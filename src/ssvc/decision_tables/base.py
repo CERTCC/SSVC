@@ -29,7 +29,7 @@ import pandas as pd
 from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned, _Versioned
-from ssvc.decision_points.base import DPV_REGISTRY, DP_REGISTRY, DecisionPoint
+from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
 
@@ -382,10 +382,38 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
 
     df = decision_table_to_shortform_df(dt)
 
+    def _col_check(col: str) -> bool:
+        """
+        Check if the column is a valid decision point or outcome column.
+        Args:
+            col: a colon-separated string representing a decision point or outcome column in the format `namespace:dp_key:version`.
+
+        Returns:
+            bool: True if the column is a valid decision point or outcome column, False otherwise.
+
+        """
+        # late-binding import to avoid circular import issues
+        from ssvc.registry import REGISTRY
+
+        ns, dp_key, version = col.split(":")
+
+        return (
+            REGISTRY.lookup_version(
+                objtype="DecisionPoint",
+                namespace=ns,
+                key=dp_key,
+                version=version,
+            )
+            is not None
+        )
+
     # Replace cell values using DPV_REGISTRY
     for col in df.columns:
         logger.debug(f"Converting column: {col}")
-        if col in DP_REGISTRY.registry:  # Ensure the column name is valid
+
+        ns, dp_key, version = col.split(":")
+
+        if _col_check(col):
             dp_id = col
             newcol = df[col].apply(_replace_value_keys, dp_id=dp_id)
             df[col] = newcol
@@ -395,7 +423,7 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
 
     # Rename columns using DP_REGISTRY
 
-    rename_map = {col: _rename_column(col) for col in df.columns if col in DP_REGISTRY}
+    rename_map = {col: _rename_column(col) for col in df.columns if _col_check(col)}
 
     df = df.rename(
         columns=rename_map,
@@ -416,7 +444,11 @@ def _replace_value_keys(value_key: str, dp_id: str) -> str:
     """
     key = f"{dp_id}:{value_key}"
 
-    newval = DPV_REGISTRY[key]
+    objtype = "DecisionPoint"
+    from ssvc.registry import REGISTRY
+
+    newval = REGISTRY.lookup_by_id(objtype, key)
+
     logger.debug(f"Replacing value key: {key} with {newval}")
 
     return newval.name
@@ -429,11 +461,16 @@ def _rename_column(col: str) -> str:
     Returns:
         str: The renamed column.
     """
+    from ssvc.registry import REGISTRY
 
-    if col not in DP_REGISTRY.registry:
+    # col should be in the format "namespace:dp_key:version"
+    dp = REGISTRY.lookup_by_id(objtype="DecisionPoint", objid=col)
+
+    if dp is None:
         raise KeyError(f"Column {col} not found in DP_REGISTRY.")
 
-    dp = DP_REGISTRY[col]
+    dp = dp.obj
+
     new_col = f"{dp.name} v{dp.version}"
 
     # If the namespace is "ssvc", we don't include it in the column name

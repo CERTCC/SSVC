@@ -291,6 +291,19 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         logger.debug("No parameters provided for lookup, returning None.")
         return None
 
+    def lookup_by_id(self, objtype: str, objid: str) -> object | None:
+
+        value_key = None
+        parts = objid.split(":")
+        ns, objid, version = parts[0:3]
+        if len(parts) == 4:
+            value_key = parts[3]
+
+        if value_key is not None:
+            return self.lookup_value(objtype, ns, objid, version, value_key)
+
+        return self.lookup_version(objtype, ns, objid, version)
+
     def register(self, obj: _GenericSsvcObject) -> None:
         # extract the parts we need to register
 
@@ -302,6 +315,7 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         # if this object already exists in the registry, do nothing
         if self.lookup(objtype=objtype, namespace=ns, key=k, version=ver) is not None:
             logger.debug(f"Object {obj.id} already registered, skipping registration.")
+            # if this is a different object with theame id, we should throw an error
             return
 
         # start at the top of the registry and work down
@@ -352,3 +366,26 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             logger.debug("Registry reset.")
         else:
             logger.warning("Registry not reset. Use force=True to clear it.")
+
+    def get_all(self, objtype: str) -> list[_GenericSsvcObject]:
+        """
+        Get all objects of a specific type from the registry.
+
+        Args:
+            objtype (str): The type of objects to retrieve.
+
+        Returns:
+            list[_GenericSsvcObject]: A list of objects of the specified type.
+        """
+        otype_ns = self.lookup_objtype(objtype)
+        if otype_ns is None:
+            return []
+
+        all_objects = []
+
+        for ns in otype_ns.namespaces.values():
+            for key in ns.keys.values():
+                for version in key.versions.values():
+                    all_objects.append(version.obj)
+
+        return all_objects

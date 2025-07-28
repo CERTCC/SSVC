@@ -1,6 +1,7 @@
 """
 Provides an object registry for SSVC.
 """
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -39,6 +40,7 @@ def _handle_registration(obj):
     # Import here to avoid circular imports
     try:
         from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+
         logger.debug(f"Handling registration for {obj.id} of type {type(obj)}")
         if isinstance(obj, (DecisionPoint, DecisionPointValue)):
             REGISTRY.register(obj)
