@@ -145,8 +145,8 @@ we expect that this will rarely lead to conflicts in practice.
 
 !!! warning "Namespace Conflicts"
 
-    Conflicts are possible in the x_ prefix space. 
-    In the previous example, Organizations A and B could both choose to use 
+    Conflicts are possible in the x_ prefix space - especially as the control over a domain may be transferred. 
+    Also in tests, Organizations A and B could both choose to use 
     `x_example.test`, and there are no guarantees of global uniqueness for the 
     decision points in the `x_example.test` namespace.
 
