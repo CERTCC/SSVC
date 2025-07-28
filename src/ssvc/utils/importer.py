@@ -24,12 +24,12 @@ Provides a bulk importer for SSVC object modules.
 import logging
 import pkgutil
 
+
 logger = logging.getLogger(__name__)
 
 # import all submodules from ssvc.decision_points and ssvc.outcomes to populate the registries
 # automatically walk through the decision_points and outcomes directories
 # dive into each submodule and import all its parts
-IMPORTABLES = ["ssvc.decision_points", "ssvc.outcomes", "ssvc.decision_tables"]
 
 
 def import_module(module_name: str) -> object:
@@ -69,7 +69,12 @@ def import_modules(modules: list[str], include_children=True) -> list[object]:
 
 
 def main():
-    import_modules(IMPORTABLES)
+    from ssvc.utils.defaults import IMPORTABLES
+
+    pkgs = import_modules(IMPORTABLES)
+
+    for pkg in pkgs:
+        logger.info(f"Imported package: {pkg.__name__}")
 
 
 if __name__ == "__main__":

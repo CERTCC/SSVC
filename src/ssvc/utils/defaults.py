@@ -40,19 +40,20 @@ NS_LENGTH_INTERVAL = MAX_NS_LENGTH - MIN_NS_LENGTH
 FIELD_DELIMITER = ":"
 """The delimiter used to separate fields in SSVC object IDs."""
 
-SCHEMA_ORDER =  (
-        "$schema",
-        "$id",
-        "title",
-        "description",
-        "schemaVersion",
-        "type",
-        "properties",
-        "required",
-        "additionalProperties",
-        "$defs",
+SCHEMA_ORDER = (
+    "$schema",
+    "$id",
+    "title",
+    "description",
+    "schemaVersion",
+    "type",
+    "properties",
+    "required",
+    "additionalProperties",
+    "$defs",
 )
 """Preferred order of fields in SSVC JSON Schema objects."""
+
 
 def main():
     pass
@@ -61,3 +62,4 @@ def main():
 if __name__ == "__main__":
     main()
 SCHEMA_VERSION = "1-0-1"
+IMPORTABLES = ["ssvc.decision_points", "ssvc.outcomes", "ssvc.decision_tables"]

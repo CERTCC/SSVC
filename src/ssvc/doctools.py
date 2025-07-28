@@ -236,6 +236,44 @@ def dump_schema(filepath: str, schema: dict) -> None:
         json.dump(schema, f, indent=2)
         f.write("\n")
 
+def dump_schemas(jsondir):
+    import ssvc.selection
+    import ssvc.decision_tables.base
+
+    # dump the selection schema
+    schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
+    schemapaths: list[dict(str, str)] = []
+
+    # selection schema
+    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement="-")}.schema.json"
+    schemapath = os.path.join(schemadir, schemafile)
+    selection_schema = SelectionList.model_json_schema()
+    schemapaths.append({"filepath": schemapath, "schema": selection_schema})
+
+    # registry schema
+    registry_schema_file = f"Ssvc_Object_Registry-{_filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    registry_schema_path = os.path.join(schemadir, registry_schema_file)
+    registry_schema = SsvcObjectRegistry.model_json_schema()
+    schemapaths.append({"filepath": registry_schema_path, "schema": registry_schema})
+
+    # decision point schema
+    dp_schema_file = f"Decision_Point-{_filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    dp_schema_path = os.path.join(schemadir, dp_schema_file)
+    dp_schema = DecisionPoint.model_json_schema()
+    schemapaths.append({"filepath": dp_schema_path, "schema": dp_schema})
+
+    # decision table schema
+    decision_table_schema_file = f"Decision_Table-{_filename_friendly(ssvc.decision_tables.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    decision_table_schema_path = os.path.join(schemadir, decision_table_schema_file)
+    decision_table_schema = SsvcDecisionPoint.model_json_schema()
+    schemapaths.append({"filepath": decision_table_schema_path, "schema": decision_table_schema})
+
+    with EnsureDirExists(schemadir):
+        for d in schemapaths:
+            path = d["filepath"]
+            schema = d["schema"]
+            dump_schema(filepath=path, schema=schema)
+
 
 def main():
     # we are going to generate three files for each decision point:
@@ -278,26 +316,8 @@ def main():
     for dp in REGISTERED_DECISION_POINTS:
         dump_decision_point(dp_dir, dp, overwrite)
 
-    # dump the selection schema
-    schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
+    dump_schemas(jsondir)
 
-    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement="-")}.schema.json"
-    schemapath = os.path.join(schemadir, schemafile)
-
-    selection_schema = SelectionList.model_json_schema()
-    dump_schema(filepath=schemapath, schema=selection_schema)
-
-    # dump the registry schema
-    registry_schema_file = f"Ssvc_Object_Registry-{_filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    registry_schema_path = os.path.join(schemadir, registry_schema_file)
-    registry_schema = SsvcObjectRegistry.model_json_schema()
-    dump_schema(filepath=registry_schema_path, schema=registry_schema)
-
-    # dump the decision point schema
-    dp_schema_file = f"Decision_Point-{_filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    dp_schema_path = os.path.join(schemadir, dp_schema_file)
-    dp_schema = DecisionPoint.model_json_schema()
-    dump_schema(filepath=dp_schema_path, schema=dp_schema)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,8 @@
 """
 Provides SSVC modules.
 """
-from ssvc.utils.importer import IMPORTABLES, import_modules
+from ssvc.utils.defaults import IMPORTABLES
+from ssvc.utils.importer import import_modules
 
 # import all submodules from ssvc.decision_points and ssvc.outcomes to populate the registries
 # automatically walk through the decision_points and outcomes directories

@@ -22,7 +22,7 @@ Work in progress on an experimental registry object for SSVC.
 #  DM24-0278
 
 import logging
-from typing import Any, Literal
+from typing import Any, Literal, Optional
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -163,11 +163,7 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         Returns:
             NsType | None: The NsType object if found, otherwise None.
         """
-        if objtype not in self.types:
-            logger.debug(f"Object type '{objtype}' not found in registry.")
-            return None
-
-        return self.types[objtype]
+        return self.types.get(objtype, None)
 
     def lookup_namespace(self, objtype: str, namespace: str) -> Namespace | None:
         """
@@ -181,14 +177,11 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             Namespace | None: The Namespace object if found, otherwise None.
         """
         otype = self.lookup_objtype(objtype)
+
         if otype is None:
             return None
 
-        if namespace not in otype.namespaces:
-            logger.debug(f"Namespace '{namespace}' not found in type '{objtype}'.")
-            return None
-
-        return otype.namespaces[namespace]
+        return otype.namespaces.get(namespace, None)
 
     def lookup_key(self, objtype: str, namespace: str, key: str) -> Key | None:
         """
@@ -203,16 +196,11 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             Key | None: The Key object if found, otherwise None.
         """
         ns = self.lookup_namespace(objtype, namespace)
+
         if ns is None:
             return None
 
-        if key not in ns.keys:
-            logger.debug(
-                f"Key '{key}' not found in namespace '{namespace}' of type '{objtype}'."
-            )
-            return None
-
-        return ns.keys[key]
+        return ns.keys.get(key, None)
 
     def lookup_version(
         self, objtype: str, namespace: str, key: str, version: str
@@ -230,16 +218,11 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
 
         """
         key_obj = self.lookup_key(objtype, namespace, key)
+
         if key_obj is None:
             return None
 
-        if version not in key_obj.versions:
-            logger.debug(
-                f"Version '{version}' not found for key '{key}' in namespace '{namespace}' of type '{objtype}'."
-            )
-            return None
-
-        return key_obj.versions[version]
+        return key_obj.versions.get(version, None)
 
     def lookup_value(
         self, objtype: str, namespace: str, key: str, version: str, value_key: str
@@ -259,27 +242,23 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
 
         """
         version_obj = self.lookup_version(objtype, namespace, key, version)
+
         if version_obj is None:
             return None
 
         if isinstance(version_obj, ValuedVersion):
-            if value_key not in version_obj.values:
-                logger.debug(
-                    f"Value key '{value_key}' not found in version '{version}' for key '{key}' in namespace '{namespace}' of type '{objtype}'."
-                )
-                return None
-            return version_obj.values[value_key]
+            return version_obj.values.get(value_key, None)
 
         logger.debug(f"Object type '{objtype}' does not support values.")
         return None
 
     def lookup(
         self,
-        objtype: str = None,
-        namespace: str = None,
-        key: str = None,
-        version: str = None,
-        value_key: str = None,
+        objtype: Optional[str] = None,
+        namespace: Optional[str] = None,
+        key: Optional[str] = None,
+        version: Optional[str] = None,
+        value_key: Optional[str] = None,
     ) -> _GenericSsvcObject | None:
         """
         Lookup an object in the registry by type, namespace, key, version, and value key.
@@ -298,6 +277,7 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         if all([x is None for x in [objtype, namespace, key, version, value_key]]):
             return self
 
+        # start at the deepest level and work up
         if value_key is not None:
             return self.lookup_value(objtype, namespace, key, version, value_key)
         if version is not None:
