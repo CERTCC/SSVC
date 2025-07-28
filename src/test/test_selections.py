@@ -173,10 +173,10 @@ class MyTestCase(unittest.TestCase):
     def test_reference_model(self):
         """Test the Reference model."""
         ref = selection.Reference(
-            uri="https://example.com/test", description="Test description"
+            uri="https://example.com/test", summary="Test description"
         )
         self.assertEqual(str(ref.uri), "https://example.com/test")
-        self.assertEqual(ref.description, "Test description")
+        self.assertEqual(ref.summary, "Test description")
 
     def test_selection_list_validators(self):
         """Test SelectionList validators."""
@@ -245,7 +245,7 @@ class MyTestCase(unittest.TestCase):
     def test_selection_list_optional_fields(self):
         """Test SelectionList with optional fields."""
         ref = selection.Reference(
-            uri="https://example.com/resource", description="Test resource"
+            uri="https://example.com/resource", summary="Test resource"
         )
 
         sel_list = SelectionList(

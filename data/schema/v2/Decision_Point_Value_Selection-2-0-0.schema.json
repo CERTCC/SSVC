@@ -51,13 +51,14 @@
           "minLength": 1,
           "type": "string"
         },
-        "description": {
-          "title": "Description",
+        "summary": {
+          "title": "Summary",
           "type": "string"
         }
       },
       "required": [
-        "uri"
+        "uri",
+        "summary"
       ],
       "type": "object"
     },

@@ -169,12 +169,12 @@ class Reference(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     uri: AnyUrl
-    description: str
+    summary: str
 
     # override schema generation to ensure that description is not required
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
-        not_required = ["description"]
+        not_required = ["summary"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
