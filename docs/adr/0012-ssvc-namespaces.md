@@ -70,7 +70,7 @@ interpretation of a decision point in a specific context.
 
 !!! example
 
-    An ISAO might want to refine the meaning of decision point values for their
+    An ISAO (Information Sharing and Analyzing Organization) might want to refine the meaning of decision point values for their
     constituency, and could use `ssvc//example.isao` as the namespace for their
     collection of extensions.
 
