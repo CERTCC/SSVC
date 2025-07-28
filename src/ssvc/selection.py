@@ -57,6 +57,8 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
     Other required fields in the DecisionPointValue object, such as name and description, are optional here.
     """
 
+    model_config = ConfigDict(extra="forbid")
+
     @model_validator(mode="before")
     def set_optional_fields(cls, data):
         if "name" not in data:
