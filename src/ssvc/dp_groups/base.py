@@ -23,6 +23,7 @@
 Provides a DecisionPointGroup object for use in SSVC.
 """
 from collections.abc import MutableMapping
+from typing import Literal
 
 from pydantic import BaseModel, model_validator
 
@@ -30,6 +31,8 @@ from ssvc._mixins import _Base, _SchemaVersioned, _Versioned
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
+
+SCHEMA_VERSION = "2.0.0"
 
 
 class DecisionPointGroup(
@@ -41,7 +44,20 @@ class DecisionPointGroup(
 
     decision_points: dict[str, DecisionPoint]
 
+    schemaVersion: Literal[SCHEMA_VERSION]
+
     @model_validator(mode="before")
+    @classmethod
+    def set_schema_version(cls, data):
+        """
+        Set the schema version to the current version if not already set.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
+
+    @model_validator(mode="before")
+    @classmethod
     def transform_decision_points(cls, data):
         if isinstance(data, dict) and "decision_points" in data:
             # If decision_points is a list/tuple, convert to dictionary

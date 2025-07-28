@@ -42,9 +42,9 @@ import re
 
 from ssvc.decision_points.base import (
     DecisionPoint,
-    REGISTERED_DECISION_POINTS,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
+from ssvc.registry import REGISTRY
 from ssvc.registry.base import SsvcObjectRegistry
 from ssvc.selection import SelectionList
 from ssvc.utils.misc import order_schema
@@ -200,34 +200,6 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
     return str(json_file)
 
 
-def dump_selection_schema(filepath: str) -> None:
-    """
-    Dump the schema for the SelectionList model to a file.
-    Args:
-        filepath: The path to the file to write the schema to.
-
-    Returns:
-        None
-
-    """
-    logger.info(f"Dumping schema to {filepath}")
-    schema = SelectionList.model_json_schema()
-    dump_schema(filepath=filepath, schema=schema)
-
-
-def dump_registry_schema(filepath: str) -> None:
-    """
-    Dump the schema for the SsvcObjectRegistry model to a file.
-    Args:
-        filepath: The path to the file to write the schema to.
-
-    Returns:
-        None
-
-    """
-    logger.info(f"Dumping schema to {filepath}")
-    schema = SsvcObjectRegistry.model_json_schema()
-    dump_schema(filepath=filepath, schema=schema)
 
 
 def dump_schema(filepath: str, schema: dict) -> None:
@@ -267,6 +239,12 @@ def dump_schemas(jsondir):
     decision_table_schema_path = os.path.join(schemadir, decision_table_schema_file)
     decision_table_schema = SsvcDecisionPoint.model_json_schema()
     schemapaths.append({"filepath": decision_table_schema_path, "schema": decision_table_schema})
+
+    # decision point group schema
+    dp_group_schema_file = f"Decision_Point_Group-{_filename_friendly(ssvc.dp_groups.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    dp_group_schema_path = os.path.join(schemadir, dp_group_schema_file)
+    dp_group_schema = ssvc.dp_groups.base.DecisionPointGroup.model_json_schema()
+    schemapaths.append({"filepath": dp_group_schema_path, "schema": dp_group_schema})
 
     with EnsureDirExists(schemadir):
         for d in schemapaths:
@@ -313,7 +291,7 @@ def main():
     import ssvc.dp_groups.cvss.collections  # noqa: F401
 
     # for each decision point:
-    for dp in REGISTERED_DECISION_POINTS:
+    for dp in REGISTRY.get_all("DecisionPoint"):
         dump_decision_point(dp_dir, dp, overwrite)
 
     dump_schemas(jsondir)
