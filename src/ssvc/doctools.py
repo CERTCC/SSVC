@@ -35,6 +35,7 @@ To regenerate the existing docs, use the following command:
 
 """
 import importlib
+import json
 import logging
 import os
 import re
@@ -44,6 +45,7 @@ from ssvc.decision_points.base import (
     REGISTERED_DECISION_POINTS,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
+from ssvc.selection import SelectionList
 
 logger = logging.getLogger(__name__)
 
@@ -185,6 +187,7 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
         remove_if_exists(json_file)
     with EnsureDirExists(dirname):
         try:
+            logger.info(f"Writing {json_file}")
             with open(json_file, "x") as f:
                 f.write(dp.model_dump_json(indent=2))
                 f.write("\n")  # newline at end of file
@@ -193,6 +196,23 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
                 f"File {json_file} already exists, use --overwrite to replace"
             )
     return str(json_file)
+
+
+def dump_selection_schema(filepath: str) -> None:
+    """
+    Dump the schema for the SelectionList model to a file.
+    Args:
+        filepath: The path to the file to write the schema to.
+
+    Returns:
+        None
+
+    """
+    logger.info(f"Dumping schema to {filepath}")
+    schema = SelectionList.model_json_schema()
+    with open(filepath, "w") as f:
+        json.dump(schema, f, indent=2)
+        f.write("\n")  # newline at end of file
 
 
 def main():
@@ -223,6 +243,8 @@ def main():
     overwrite = args.overwrite
     jsondir = args.jsondir
 
+    dp_dir = os.path.join(os.path.abspath(jsondir), "decision_points")
+
     find_modules_to_import("./src/ssvc/decision_points", "ssvc.decision_points")
     find_modules_to_import("./src/ssvc/outcomes", "ssvc.outcomes")
 
@@ -232,7 +254,14 @@ def main():
 
     # for each decision point:
     for dp in REGISTERED_DECISION_POINTS:
-        dump_decision_point(jsondir, dp, overwrite)
+        dump_decision_point(dp_dir, dp, overwrite)
+
+    # dump the selection schema
+    schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
+    schemafile = os.path.join(
+        schemadir, "Decision_Point_Value_Selection-2-0-0.schema.json"
+    )
+    dump_selection_schema(schemafile)
 
 
 if __name__ == "__main__":

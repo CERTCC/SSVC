@@ -22,8 +22,15 @@ from random import randint
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc._mixins import (
+    _Base,
+    _Keyed,
+    _Namespaced,
+    _Valued,
+    _Versioned,
+)
 from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION, MAX_NS_LENGTH
 
 
 class TestMixins(unittest.TestCase):
@@ -92,12 +99,12 @@ class TestMixins(unittest.TestCase):
             _Namespaced(namespace="x_")
 
         # error if namespace starts with x_ but is too long
-        for i in range(150):
+        for i in range(MAX_NS_LENGTH + 50):
             shortest = "x_aaa"
             ns = shortest + "a" * i
             with self.subTest(ns=ns):
                 # length limit set in the NS_PATTERN regex
-                if len(ns) <= 100:
+                if len(ns) <= MAX_NS_LENGTH:
                     # expect success on shorter than limit
                     _Namespaced(namespace=ns)
                 else:
@@ -114,13 +121,13 @@ class TestMixins(unittest.TestCase):
         # custom namespaces are allowed as long as they start with x_
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_{randint(1000,1000000)}"
+            ns = f"x_a{randint(1000,1000000)}"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
     def test_versioned_create(self):
         obj = _Versioned()
-        self.assertEqual(obj.version, "0.0.0")
+        self.assertEqual(obj.version, DEFAULT_VERSION)
 
         obj = _Versioned(version="1.2.3")
         self.assertEqual(obj.version, "1.2.3")
@@ -153,7 +160,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_test"},
+                "args": {"namespace": "x_example.test"},
                 "has_default": False,
             },
             {
