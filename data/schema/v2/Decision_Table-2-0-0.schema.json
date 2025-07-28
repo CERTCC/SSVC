@@ -46,7 +46,7 @@
       "type": "string"
     },
     "schemaVersion": {
-      "description": "Schema version of the SSVC object",
+      "const": "2.0.0",
       "title": "Schemaversion",
       "type": "string"
     },
