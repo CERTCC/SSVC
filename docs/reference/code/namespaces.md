@@ -195,7 +195,7 @@ When empty, the default language (`en-US`) is implied.
 Subsequent extension segments must begin with a reverse domain name notation string,
 and may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`).
 A single fragment identifier (`#`) may be included in an extension segment, but it is optional.
-Fragment identifiers can be used to indicate a specific interpretation or context for the extension.
+Fragment segments can be used to indicate a specific interpretation or context for the extension.
 
 The following diagram illustrates the structure of namespace extensions:
 ```mermaid
