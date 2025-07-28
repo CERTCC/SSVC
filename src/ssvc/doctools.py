@@ -31,7 +31,7 @@ To generate the documentation for the decision points, use the following command
 
 To regenerate the existing docs, use the following command:
 
-    python -m ssvc.doctools --overwrite --jsondir data/json/decision_points
+    python -m ssvc.doctools --overwrite --jsondir data/json
 
 """
 import importlib
