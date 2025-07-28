@@ -240,15 +240,15 @@ class SelectionList(_Timestamped, BaseModel):
             [
                 {
                     "uri": "https://example.com/decision_points",
-                    "description": "Documentation for a set of decision points",
+                    "summary": "Documentation for a set of decision points",
                 },
                 {
                     "uri": "https://example.org/definitions/dp2.json",
-                    "description": "JSON representation of decision point 2",
+                    "summary": "JSON representation of decision point 2",
                 },
                 {
                     "uri": "https://example.com/ssvc/x_com.example/decision_points.json",
-                    "description": "A JSON file containing extension decision points in the x_com.example namespace",
+                    "summary": "A JSON file containing extension decision points in the x_com.example namespace",
                 },
             ],
         ],
@@ -261,7 +261,7 @@ class SelectionList(_Timestamped, BaseModel):
             [
                 {
                     "uri": "https://example.com/report",
-                    "description": "A report on which the selections were based",
+                    "summary": "A report on which the selections were based",
                 },
             ]
         ],
