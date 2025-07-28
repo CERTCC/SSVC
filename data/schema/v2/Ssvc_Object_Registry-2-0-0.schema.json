@@ -1,43 +1,16 @@
 {
   "title": "SsvcObjectRegistry",
   "type": "object",
-  "properties": {
-    "name": {
-      "title": "Name",
-      "type": "string"
-    },
-    "description": {
-      "title": "Description",
-      "type": "string"
-    },
-    "schemaVersion": {
-      "const": "2.0.0",
-      "description": "The schema version of this selection list.",
-      "title": "Schemaversion",
-      "type": "string"
-    },
-    "types": {
-      "additionalProperties": {
-        "$ref": "#/$defs/NsType"
-      },
-      "description": "A dictionary mapping type names to NsType objects.",
-      "title": "Types",
-      "type": "object"
-    }
-  },
-  "required": [
-    "name",
-    "description",
-    "schemaVersion"
-  ],
   "$defs": {
     "Key": {
+      "title": "Key",
       "properties": {
         "key": {
           "title": "Key",
           "type": "string"
         },
         "versions": {
+          "title": "Versions",
           "additionalProperties": {
             "anyOf": [
               {
@@ -49,40 +22,40 @@
             ]
           },
           "description": "A dictionary mapping version strings to versioned objects.",
-          "title": "Versions",
           "type": "object"
         }
       },
       "required": [
         "key"
       ],
-      "title": "Key",
       "type": "object"
     },
     "Namespace": {
+      "title": "Namespace",
       "properties": {
         "namespace": {
           "title": "Namespace",
           "type": "string"
         },
         "keys": {
+          "title": "Keys",
           "additionalProperties": {
             "$ref": "#/$defs/Key"
           },
           "description": "A dictionary mapping keys to Key objects within this namespace.",
-          "title": "Keys",
           "type": "object"
         }
       },
       "required": [
         "namespace"
       ],
-      "title": "Namespace",
       "type": "object"
     },
     "NonValuedVersion": {
+      "title": "NonValuedVersion",
       "properties": {
         "version": {
+          "title": "Version",
           "description": "The version of the SSVC object. This must be a valid semantic version string.",
           "examples": [
             "1.0.0",
@@ -90,7 +63,6 @@
           ],
           "minLength": 5,
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-          "title": "Version",
           "type": "string"
         },
         "obj": {
@@ -101,33 +73,34 @@
         "version",
         "obj"
       ],
-      "title": "NonValuedVersion",
       "type": "object"
     },
     "NsType": {
+      "title": "NsType",
       "properties": {
         "type": {
           "title": "Type",
           "type": "string"
         },
         "namespaces": {
+          "title": "Namespaces",
           "additionalProperties": {
             "$ref": "#/$defs/Namespace"
           },
           "description": "A dictionary mapping namespace strings to Namespace objects.",
-          "title": "Namespaces",
           "type": "object"
         }
       },
       "required": [
         "type"
       ],
-      "title": "NsType",
       "type": "object"
     },
     "ValuedVersion": {
+      "title": "ValuedVersion",
       "properties": {
         "version": {
+          "title": "Version",
           "description": "The version of the SSVC object. This must be a valid semantic version string.",
           "examples": [
             "1.0.0",
@@ -135,18 +108,17 @@
           ],
           "minLength": 5,
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-          "title": "Version",
           "type": "string"
         },
         "obj": {
           "$ref": "#/$defs/_GenericSsvcObject"
         },
         "values": {
+          "title": "Values",
           "additionalProperties": {
             "$ref": "#/$defs/_KeyedBaseModel"
           },
           "description": "A dictionary mapping value keys to _Valued objects.",
-          "title": "Values",
           "type": "object"
         }
       },
@@ -154,13 +126,14 @@
         "version",
         "obj"
       ],
-      "title": "ValuedVersion",
       "type": "object"
     },
     "_GenericSsvcObject": {
+      "title": "_GenericSsvcObject",
       "description": "Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned.",
       "properties": {
         "namespace": {
+          "title": "Namespace",
           "description": "The namespace of the SSVC object.",
           "examples": [
             "ssvc",
@@ -171,10 +144,10 @@
           "maxLength": 1000,
           "minLength": 3,
           "pattern": "^(?=.{3,1000}$)(?:x_(?!.*[.-]{2,})[a-z][a-z0-9]+(?:[.-][a-z0-9]+)*|(?!.*[.-]{2,})[a-z][a-z0-9]+(?:[.-][a-z0-9]+)*)(?:(?:/(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,8})(-[A-Za-z]{4})?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-[A-WY-Za-wy-z0-9](-[A-Za-z0-9]{2,8})+)*(-[Xx](-[A-Za-z0-9]{1,8})+)?|[Xx](-[A-Za-z0-9]{1,8})+|[Ii]-[Dd][Ee][Ff][Aa][Uu][Ll][Tt]|[Ii]-[Mm][Ii][Nn][Gg][Oo])/|//)(?!.*[.-]{2,})[a-zA-Z][a-zA-Z0-9]*(?:[.-][a-zA-Z0-9]+)*(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?(?:/(?!.*[.-]{2,})[a-zA-Z][a-zA-Z0-9]*(?:[.-][a-zA-Z0-9]+)*(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?)*)?$",
-          "title": "Namespace",
           "type": "string"
         },
         "key": {
+          "title": "Key",
           "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
           "examples": [
             "E",
@@ -188,10 +161,10 @@
           ],
           "minLength": 1,
           "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
-          "title": "Key",
           "type": "string"
         },
         "version": {
+          "title": "Version",
           "default": "0.0.1",
           "description": "The version of the SSVC object. This must be a valid semantic version string.",
           "examples": [
@@ -200,7 +173,6 @@
           ],
           "minLength": 5,
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-          "title": "Version",
           "type": "string"
         },
         "name": {
@@ -218,12 +190,13 @@
         "name",
         "description"
       ],
-      "title": "_GenericSsvcObject",
       "type": "object"
     },
     "_KeyedBaseModel": {
+      "title": "_KeyedBaseModel",
       "properties": {
         "key": {
+          "title": "Key",
           "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
           "examples": [
             "E",
@@ -237,7 +210,6 @@
           ],
           "minLength": 1,
           "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
-          "title": "Key",
           "type": "string"
         },
         "name": {
@@ -254,8 +226,36 @@
         "name",
         "description"
       ],
-      "title": "_KeyedBaseModel",
       "type": "object"
     }
-  }
+  },
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "title": "Schemaversion",
+      "const": "2.0.0",
+      "description": "The schema version of this selection list.",
+      "type": "string"
+    },
+    "types": {
+      "title": "Types",
+      "additionalProperties": {
+        "$ref": "#/$defs/NsType"
+      },
+      "description": "A dictionary mapping type names to NsType objects.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "schemaVersion"
+  ]
 }

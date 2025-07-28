@@ -41,16 +41,16 @@ FIELD_DELIMITER = ":"
 """The delimiter used to separate fields in SSVC object IDs."""
 
 SCHEMA_ORDER = (
+    "title",
     "$schema",
     "$id",
-    "title",
     "description",
     "schemaVersion",
     "type",
+    "$defs",
     "properties",
     "required",
     "additionalProperties",
-    "$defs",
 )
 """Preferred order of fields in SSVC JSON Schema objects."""
 

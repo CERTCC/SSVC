@@ -2,74 +2,13 @@
   "title": "SsvcDecisionPoint",
   "description": "Models a single decision point as a list of values.",
   "type": "object",
-  "properties": {
-    "namespace": {
-      "default": "ssvc",
-      "title": "Namespace",
-      "type": "string"
-    },
-    "key": {
-      "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
-      "examples": [
-        "E",
-        "A",
-        "SI",
-        "L",
-        "M",
-        "H",
-        "Mixed_case_OK",
-        "alph4num3ric"
-      ],
-      "minLength": 1,
-      "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
-      "title": "Key",
-      "type": "string"
-    },
-    "version": {
-      "default": "0.0.1",
-      "description": "The version of the SSVC object. This must be a valid semantic version string.",
-      "examples": [
-        "1.0.0",
-        "2.1.3"
-      ],
-      "minLength": 5,
-      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-      "title": "Version",
-      "type": "string"
-    },
-    "name": {
-      "title": "Name",
-      "type": "string"
-    },
-    "description": {
-      "title": "Description",
-      "type": "string"
-    },
-    "schemaVersion": {
-      "const": "2.0.0",
-      "title": "Schemaversion",
-      "type": "string"
-    },
-    "values": {
-      "items": {
-        "$ref": "#/$defs/DecisionPointValue"
-      },
-      "title": "Values",
-      "type": "array"
-    }
-  },
-  "required": [
-    "key",
-    "name",
-    "description",
-    "schemaVersion",
-    "values"
-  ],
   "$defs": {
     "DecisionPointValue": {
+      "title": "DecisionPointValue",
       "description": "Models a single value option for a decision point.\n\nEach value should have the following attributes:\n\n- name (str): A name\n- description (str): A description\n- key (str): A key (a short, unique string) that can be used to identify the value in a shorthand way\n- _comment (str): An optional comment that will be included in the object.",
       "properties": {
         "key": {
+          "title": "Key",
           "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
           "examples": [
             "E",
@@ -83,7 +22,6 @@
           ],
           "minLength": 1,
           "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
-          "title": "Key",
           "type": "string"
         },
         "name": {
@@ -100,8 +38,70 @@
         "name",
         "description"
       ],
-      "title": "DecisionPointValue",
       "type": "object"
     }
-  }
+  },
+  "properties": {
+    "namespace": {
+      "title": "Namespace",
+      "default": "ssvc",
+      "type": "string"
+    },
+    "key": {
+      "title": "Key",
+      "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
+      "examples": [
+        "E",
+        "A",
+        "SI",
+        "L",
+        "M",
+        "H",
+        "Mixed_case_OK",
+        "alph4num3ric"
+      ],
+      "minLength": 1,
+      "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "default": "0.0.1",
+      "description": "The version of the SSVC object. This must be a valid semantic version string.",
+      "examples": [
+        "1.0.0",
+        "2.1.3"
+      ],
+      "minLength": 5,
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "title": "Schemaversion",
+      "const": "2.0.0",
+      "type": "string"
+    },
+    "values": {
+      "title": "Values",
+      "items": {
+        "$ref": "#/$defs/DecisionPointValue"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "key",
+    "name",
+    "description",
+    "schemaVersion",
+    "values"
+  ]
 }

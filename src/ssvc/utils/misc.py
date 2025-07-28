@@ -27,6 +27,22 @@ import secrets
 from ssvc.utils.defaults import SCHEMA_ORDER
 
 
+def reorder_title_first(obj):
+    if isinstance(obj, dict):
+        if "title" in obj:
+            reordered = {"title": obj["title"]}
+            for k, v in obj.items():
+                if k != "title":
+                    reordered[k] = reorder_title_first(v)
+            return reordered
+        else:
+            return {k: reorder_title_first(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [reorder_title_first(item) for item in obj]
+    else:
+        return obj
+
+
 def order_schema(schema: dict) -> dict:
     # create a new dict with the preferred order of fields first
     ordered_schema = {k: schema[k] for k in (SCHEMA_ORDER) if k in schema}
@@ -35,6 +51,9 @@ def order_schema(schema: dict) -> dict:
     other_keys = [k for k in schema if k not in ordered_schema]
     for k in other_keys:
         ordered_schema[k] = schema[k]
+
+    # recursively move "title" to the front of any nested objects
+    ordered_schema = reorder_title_first(ordered_schema)
 
     return ordered_schema
 
