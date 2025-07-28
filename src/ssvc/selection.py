@@ -350,10 +350,10 @@ class SelectionList(_Timestamped, BaseModel):
             "description",
             "schemaVersion",
             "type",
-            "properties",
-            "required",
-            "additionalProperties",
             "$defs",
+            "required",
+            "properties",
+            "additionalProperties",
         ]
 
         # create a new dict with the preferred order of fields first
