@@ -196,7 +196,7 @@ Subsequent extension segments must begin with a reverse domain name notation str
 and may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`).
 A single fragment identifier (`#`) may be included in an extension segment, but it is optional.
 Fragment segments can be used to indicate a specific interpretation or context for the extension.
-
+Note: Without a fragment segment, all decision points of an organization fall into one bucket, which is in most cases not intended. Therefore, the use of a fragment segment is recommended.
 The following diagram illustrates the structure of namespace extensions:
 ```mermaid
 ---
