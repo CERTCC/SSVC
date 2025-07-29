@@ -26,7 +26,7 @@ from ssvc.doc_helpers import example_block, markdown_table
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.dp = DecisionPoint(
-            namespace="x_test",
+            namespace="x_example.test",
             name="test name",
             description="test description",
             key="TK",
@@ -48,8 +48,8 @@ class MyTestCase(unittest.TestCase):
             "\n"
             "| Value | Definition |\n"
             "|:-----|:-----------|\n"
-            "| A | A Definition |\n"
-            "| B | B Definition |"
+            "| A (A) | A Definition |\n"
+            "| B (B) | B Definition |"
         )
 
         self.assertEqual(result, expected)
@@ -61,8 +61,8 @@ class MyTestCase(unittest.TestCase):
             "\n"
             "    | Value | Definition |\n"
             "    |:-----|:-----------|\n"
-            "    | A | A Definition |\n"
-            "    | B | B Definition |"
+            "    | A (A) | A Definition |\n"
+            "    | B (B) | B Definition |"
         )
 
         self.assertEqual(indented, expected_indented)
@@ -73,8 +73,8 @@ class MyTestCase(unittest.TestCase):
 
         self.assertIn("!!! note", result)
         self.assertIn("\n    | Value | Definition |", result)
-        self.assertIn("\n    | A | A Definition |", result)
-        self.assertIn("\n    | B | B Definition |", result)
+        self.assertIn("\n    | A (A) | A Definition |", result)
+        self.assertIn("\n    | B (B) | B Definition |", result)
         self.assertIn("\n    ??? example", result)
         self.assertIn("\n        ```json", result)
 

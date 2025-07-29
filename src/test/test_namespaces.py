@@ -19,7 +19,8 @@
 
 import unittest
 
-from ssvc.namespaces import NS_PATTERN, NameSpace
+from ssvc.namespaces import NameSpace
+from ssvc.utils.patterns import NS_PATTERN
 
 
 class MyTestCase(unittest.TestCase):
@@ -34,8 +35,9 @@ class MyTestCase(unittest.TestCase):
             "foo",
             "foo.bar",
             "foo.bar.baz",
-            "foo/bar/baz/quux",
-            "foo.bar/baz.quux",
+            "foo/jp-JP/bar.baz/quux",
+            "foo//bar/baz/quux",
+            "foo.bar//baz.quux",
         ]
         should_match.extend([f"x_{ns}" for ns in should_match])
 

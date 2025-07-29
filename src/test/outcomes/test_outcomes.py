@@ -41,7 +41,7 @@ class MyTestCase(unittest.TestCase):
             name="Outcome Group",
             key="OG",
             description="an outcome group",
-            namespace="x_test",
+            namespace="x_example.test",
             values=tuple(values),
         )
 

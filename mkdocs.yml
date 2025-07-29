@@ -114,10 +114,11 @@ nav:
         - Recoverability: 'reference/decision_points/nciss/recoverability.md'
     - Code:
         - Intro: 'reference/code/index.md'
+        - Namespaces: 'reference/code/namespaces.md'
+        - Selections: 'reference/code/selection.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
         - Policy Generator: 'reference/code/policy_generator.md'
         - Outcomes: 'reference/code/outcomes.md'
-        - Namespaces: 'reference/code/namespaces.md'
         - Doctools: 'reference/code/doctools.md'
     - Learning SSVC:
         - Tutorials: 'tutorials/index.md'
