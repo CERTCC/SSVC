@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
             key="bar",
             description="baz",
             version="1.0.0",
-            namespace="x_test",
+            namespace="x_example.test",
             values=tuple(self.values),
         )
 
@@ -95,7 +95,7 @@ class MyTestCase(unittest.TestCase):
         dp3 = ssvc.decision_points.ssvc.base.DecisionPoint(
             name="asdfad",
             description="asdfasdf",
-            namespace="x_test-extra",  # different namespace
+            namespace="x_example.test.extra",  # different namespace
             key=self.dp.key,  # same key
             version=self.dp.version,  # same version
             values=tuple(self.values),
@@ -131,7 +131,7 @@ class MyTestCase(unittest.TestCase):
             key="asdfasdf",
             description="asdfasdf",
             version="1.33.1",
-            namespace="x_test",
+            namespace="x_example.test",
             values=self.values,
         )
 
@@ -157,7 +157,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj.key, "bar")
         self.assertEqual(obj.description, "baz")
         self.assertEqual(obj.version, "1.0.0")
-        self.assertEqual(obj.namespace, "x_test")
+        self.assertEqual(obj.namespace, "x_example.test")
         self.assertEqual(len(self.values), len(obj.values))
 
     def test_ssvc_value_json_roundtrip(self):
