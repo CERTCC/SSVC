@@ -35,12 +35,12 @@ from ssvc._mixins import (
     _Valued,
     _Versioned,
 )
+from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
 
 
 REGISTERED_DECISION_POINTS = []
-FIELD_DELIMITER = ":"
 
 
 class Registry(BaseModel):
@@ -185,6 +185,14 @@ class DecisionPoint(
     model_config = ConfigDict(revalidate_instances="always")
 
     def __str__(self):
+        return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
+
+    @property
+    def id(self):
+        """
+        Return an identity string for the DecisionPoint.
+        """
+
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
 
     @property

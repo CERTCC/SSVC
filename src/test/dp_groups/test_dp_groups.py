@@ -31,7 +31,7 @@ class MyTestCase(unittest.TestCase):
             dp = ssvc.decision_points.ssvc.base.DecisionPoint(
                 name=f"Decision Point {i}",
                 key=f"DP_{i}",
-                namespace="x_test",
+                namespace="x_example.test",
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
