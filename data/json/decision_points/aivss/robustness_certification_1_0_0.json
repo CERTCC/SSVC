@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "RC",
+  "version": "1.0.0",
+  "name": "Robustness Certification",
+  "description": "Degree to which the model's robustness has been certified or tested, from 0.0 (formally certified) to 1.0 (no testing performed).",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "F",
+      "name": "Formal",
+      "description": "Formal robustness certification obtained from a reputable third-party organization."
+    },
+    {
+      "key": "R",
+      "name": "Rigorous",
+      "description": "Rigorous robustness testing against a wide range of attacks and using multiple metrics."
+    },
+    {
+      "key": "B",
+      "name": "Basic",
+      "description": "Basic robustness testing against a limited set of attacks or using simple metrics."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No robustness testing performed."
+    }
+  ]
+}

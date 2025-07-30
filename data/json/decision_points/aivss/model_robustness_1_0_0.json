@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "MR",
+  "version": "1.0.0",
+  "name": "Model Robustness",
+  "description": "A decision point for assessing the robustness of AI models against adversarial attacks.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No known vulnerability or a formally proven resistance to the specific threat."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Low vulnerability with strong mitigation in place, but some minor weaknesses may still exist."
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "Moderate vulnerability with some mitigation, but significant weaknesses remain."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "Severe vulnerability with little to no mitigation in place."
+    }
+  ]
+}

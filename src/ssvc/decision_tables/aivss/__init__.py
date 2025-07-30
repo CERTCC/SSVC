@@ -18,5 +18,5 @@
 #  DM24-0278
 
 """
-Provides AIVSS-specific decision points for evaluating AI vulnerabilities.
+Provides AIVSS-specific decision point tables for evaluating AI vulnerabilities.
 """
