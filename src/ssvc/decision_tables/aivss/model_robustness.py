@@ -24,8 +24,6 @@ created_at: 7/30/25 12:11 PM
 #  subject to its own license.
 #  DM24-0278
 
-import logging
-
 from ssvc.decision_points.aivss.evasion_resistance import LATEST as ER
 from ssvc.decision_points.aivss.gradient_masking import LATEST as GM
 from ssvc.decision_points.aivss.model_robustness import LATEST as MR
@@ -33,11 +31,6 @@ from ssvc.decision_points.aivss.robustness_certification import LATEST as RC
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setLevel(logging.DEBUG)
-logger.addHandler(handler)
 
 MODEL_RESISTANCE = DecisionTable(
     namespace=NameSpace.AIVSS,

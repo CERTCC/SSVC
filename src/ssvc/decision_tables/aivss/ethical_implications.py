@@ -22,26 +22,26 @@ AIVSS Data Sensitivity Decision Table
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.aivss.data_confidentiality import LATEST as DC
-from ssvc.decision_points.aivss.data_integrity import LATEST as DI
-from ssvc.decision_points.aivss.data_provenance import LATEST as DP
-from ssvc.decision_points.aivss.data_sensitivity import LATEST as DS
+from ssvc.decision_points.aivss.accountability import LATEST as AC
+from ssvc.decision_points.aivss.bias_and_discrimination import LATEST as BD
+from ssvc.decision_points.aivss.ethical_implications import LATEST as EI
+from ssvc.decision_points.aivss.societal_impact import LATEST as SI
+from ssvc.decision_points.aivss.transparency_and_explainability import LATEST as TE
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-
-DATA_SENSITIVITY = DecisionTable(
+ETHICAL_IMPLICATIONS = DecisionTable(
     namespace=NameSpace.AIVSS,
-    name="Data Sensitivity",
+    name="Ethical Implications",
     version="1.0.0",
-    description="A decision table for assessing the sensitivity of data used in AI systems.",
-    decision_points={dp.id: dp for dp in [DS, DI, DP, DC]},
-    outcome=DS.id,
+    description="A decision table for evaluating the ethical implications of AI systems.",
+    decision_points={dp.id: dp for dp in [BD, TE, AC, SI, EI]},
+    outcome=EI.id,
 )
 
 
 VERSIONS = [
-    DATA_SENSITIVITY,
+    ETHICAL_IMPLICATIONS,
 ]
 LATEST = VERSIONS[-1]
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-AIVSS Data Sensitivity Decision Table
+Provides a model for the AIVSS Ethical Implications decision point.
 """
 
 #  Copyright (c) 2025 Carnegie Mellon University.
@@ -22,33 +22,24 @@ AIVSS Data Sensitivity Decision Table
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.aivss.data_confidentiality import LATEST as DC
-from ssvc.decision_points.aivss.data_integrity import LATEST as DI
-from ssvc.decision_points.aivss.data_provenance import LATEST as DP
-from ssvc.decision_points.aivss.data_sensitivity import LATEST as DS
-from ssvc.decision_tables.base import DecisionTable
-from ssvc.namespaces import NameSpace
+from ssvc.decision_points.aivss.base import AivssDecisionPoint
+from ssvc.decision_points.aivss.generic import HIGH, LOW, MEDIUM, _NONE
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
-
-DATA_SENSITIVITY = DecisionTable(
-    namespace=NameSpace.AIVSS,
-    name="Data Sensitivity",
+ETHICAL_IMPLICATIONS = AivssDecisionPoint(
+    name="Ethical Implications",
+    key="EI",
     version="1.0.0",
-    description="A decision table for assessing the sensitivity of data used in AI systems.",
-    decision_points={dp.id: dp for dp in [DS, DI, DP, DC]},
-    outcome=DS.id,
+    description="A decision point for evaluating the ethical implications of AI systems.",
+    values=(_NONE, LOW, MEDIUM, HIGH),
 )
 
-
-VERSIONS = [
-    DATA_SENSITIVITY,
-]
+VERSIONS = (ETHICAL_IMPLICATIONS,)
 LATEST = VERSIONS[-1]
 
 
 def main():
-
-    print(LATEST.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

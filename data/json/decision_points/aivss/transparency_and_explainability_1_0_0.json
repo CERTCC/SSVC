@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "TE",
+  "version": "1.0.0",
+  "name": "Transparency and Explainability",
+  "description": "Degree to which the system's decision-making process is transparent and explainable.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "F",
+      "name": "Fully Transparent",
+      "description": "System's decision-making process is fully transparent and formally explainable, with clear causal relationships established."
+    },
+    {
+      "key": "H",
+      "name": "Highly Explainable",
+      "description": "Highly explainable, system uses inherently interpretable models or provides reliable and comprehensive explanations for all decisions."
+    },
+    {
+      "key": "L",
+      "name": "Limited Explainability",
+      "description": "Limited explainability, some post-hoc explanations can be generated, but they may not be reliable or comprehensive."
+    },
+    {
+      "key": "B",
+      "name": "Black Box",
+      "description": "Black-box system, no insight into decision-making process."
+    }
+  ]
+}
