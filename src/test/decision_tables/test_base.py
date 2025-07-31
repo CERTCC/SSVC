@@ -32,7 +32,7 @@ from ssvc.decision_tables.base import (
     decision_table_to_longform_df,
     dpdict_to_combination_list,
 )
-from ssvc.dp_groups.base import DecisionPoint, DecisionPointGroup
+from ssvc.dp_groups.base import DecisionPoint
 from ssvc.outcomes.base import OutcomeGroup
 
 
@@ -48,6 +48,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.dp2v1 = DecisionPointValue(name="x", key="x", description="X value")
         self.dp2v2 = DecisionPointValue(name="y", key="y", description="Y value")
         self.dp2v3 = DecisionPointValue(name="z", key="z", description="Z value")
+        self.dp2v4 = DecisionPointValue(name="w", key="w", description="W value")
 
         # Create dummy decision points and group
         self.dp1 = DecisionPoint(
@@ -64,7 +65,7 @@ class TestDecisionTableBase(unittest.TestCase):
             version="1.0.0",
             namespace="x_test",
             key="dp2",
-            values=(self.dp2v1, self.dp2v2, self.dp2v3),
+            values=(self.dp2v1, self.dp2v2, self.dp2v3, self.dp2v4),
         )
         # Create dummy outcome group
         self.ogv1 = DecisionPointValue(name="o1", key="o1", description="Outcome 1")
@@ -80,18 +81,14 @@ class TestDecisionTableBase(unittest.TestCase):
             values=(self.ogv1, self.ogv2, self.ogv3),
         )
 
-        self.dpg = DecisionPointGroup(
-            name="dpg",
-            description="description for dpg",
-            version="1.0.0",
-            namespace="x_test",
-            decision_points=(self.dp1, self.dp2, self.og),
-        )
+        self.dplist = [self.dp1, self.dp2, self.og]
+        self.dpdict = {dp.id: dp for dp in self.dplist}
+
         self.dt = DecisionTable(
             name="Test Table",
             namespace="x_test",
             description="Describes the test table",
-            decision_points=self.dpg,
+            decision_points=self.dpdict,
             outcome=self.og.id,
         )
 
@@ -102,7 +99,6 @@ class TestDecisionTableBase(unittest.TestCase):
     def test_init(self):
         dt = self.dt
 
-        self.assertEqual(dt.decision_points, self.dpg.decision_points)
         self.assertEqual(dt.outcome, self.og.id)
 
         # default should be to populate mapping if not provided
@@ -136,7 +132,7 @@ class TestDecisionTableBase(unittest.TestCase):
         self.assertEqual(len(df), expected_lines)
         # Check if the DataFrame has the expected columns
 
-        expected_columns = set(self.dpg.decision_points.keys())
+        expected_columns = set(self.dpdict.keys())
         colset = set(df.columns)
 
         # everything in expected_columns should be in colset
@@ -243,7 +239,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # Should have as many rows as mapping
         self.assertEqual(len(df), len(dt.mapping))
         # Should have as many columns as decision points (including outcome)
-        expected_num_cols = len(self.dpg.decision_points)
+        expected_num_cols = len(self.dplist)
         self.assertEqual(len(df.columns), expected_num_cols)
         # All values should be lowercase strings
         for col in df.columns:
@@ -251,7 +247,7 @@ class TestDecisionTableBase(unittest.TestCase):
                 if isinstance(val, str):
                     self.assertEqual(val, val.lower())
         # Column names should contain decision point names and version
-        for dp in self.dpg.decision_points.values():
+        for dp in self.dplist:
             self.assertTrue(any(dp.name in c for c in df.columns))
         self.assertTrue(any(self.og.name in c for c in df.columns))
 
@@ -298,7 +294,7 @@ class TestDecisionTableBase(unittest.TestCase):
         mock_longform.assert_not_called()
 
     def test_combo_strings(self):
-        dps = dict(self.dpg.decision_points)
+        dps = dict(self.dpdict)  # copy the decision points
         del [dps[self.og.id]]  # remove outcome group from decision points
 
         # get all the combinations

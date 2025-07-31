@@ -231,7 +231,7 @@ class DecisionTable(
         """
         obfuscated_dpdict, translator = obfuscate_dict(self.decision_points)
 
-        new_table = self.copy(deep=True)
+        new_table = self.model_copy(deep=True)
         new_table.decision_points = obfuscated_dpdict
         new_table.outcome = translator.get(self.outcome, self.outcome)
         # replace all the keys in mapping dicts
