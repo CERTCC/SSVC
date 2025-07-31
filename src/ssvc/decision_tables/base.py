@@ -32,6 +32,7 @@ from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned, _Vers
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
+from ssvc.utils.toposort import dplist_to_toposort
 
 logger = logging.getLogger(__name__)
 
@@ -126,12 +127,10 @@ class DecisionTable(
             return self
 
         outcome_key = self.outcome
-        mapping = dpdict_to_combination_list(
-            self.decision_points,
-            exclude=[
-                outcome_key,
-            ],
-        )
+
+        dps = [dp for dpid, dp in self.decision_points.items() if dpid != outcome_key]
+        mapping = dplist_to_toposort(dps)
+
         # mapping is a list of dicts
         # but mapping doesn't have the outcome key yet
         # add the key with None as the value
