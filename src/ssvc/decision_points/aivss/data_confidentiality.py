@@ -62,7 +62,7 @@ MINIMAL_PROTECTION = DecisionPointValue(
 
 DATA_CONFIDENTIALITY = AivssDecisionPoint(
     name="Data Confidentiality",
-    key="DC",
+    key="DCON",
     version="1.0.0",
     description="Measures taken to protect the confidentiality of data used in training and inference.",
     values=[

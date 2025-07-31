@@ -1,6 +1,6 @@
 {
   "namespace": "aivss",
-  "key": "DC",
+  "key": "DCON",
   "version": "1.0.0",
   "name": "Data Confidentiality",
   "description": "Measures taken to protect the confidentiality of data used in training and inference.",

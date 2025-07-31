@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "OD",
+  "version": "1.0.0",
+  "name": "Operational Disruption",
+  "description": "Degree to which the system is resilient to operational disruption and incorporates business continuity measures.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "H",
+      "name": "High Availability",
+      "description": "System designed for high availability and resilience, with real-time monitoring, automated recovery, and regular testing of failover mechanisms."
+    },
+    {
+      "key": "R",
+      "name": "Robust Controls",
+      "description": "Robust operational controls, including redundancy, failover mechanisms, and a comprehensive business continuity and disaster recovery plan."
+    },
+    {
+      "key": "S",
+      "name": "Some Measures",
+      "description": "Some measures to mitigate operational risks, but no comprehensive business continuity plan."
+    },
+    {
+      "key": "HR",
+      "name": "High Risk",
+      "description": "High risk of significant operational disruption due to system failures or attacks, no backup systems or recovery plans."
+    }
+  ]
+}
