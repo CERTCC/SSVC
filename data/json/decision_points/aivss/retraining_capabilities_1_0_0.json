@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "RE",
+  "version": "1.0.0",
+  "name": "Retraining Capabilities",
+  "description": "Degree to which the system supports retraining and adaptation to new data or conditions.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "C",
+      "name": "Continuous Automated Retraining",
+      "description": "Continuous and automated retraining triggered by performance degradation, concept drift, or new data, with minimal human intervention."
+    },
+    {
+      "key": "A",
+      "name": "Automated Pipeline",
+      "description": "Automated retraining pipeline in place, allowing for regular updates with new data and model improvements."
+    },
+    {
+      "key": "M",
+      "name": "Manual Retraining",
+      "description": "Manual retraining possible, but infrequent and time-consuming, with limited automation."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No capability to retrain the model, or retraining requires significant manual effort and downtime."
+    }
+  ]
+}
