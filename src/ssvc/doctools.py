@@ -204,6 +204,7 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
 
 def dump_schema(filepath: str, schema: dict) -> None:
     schema = order_schema(schema)
+    logger.info(f"Writing schema to {filepath}")
     with open(filepath, "w") as f:
         json.dump(schema, f, indent=2)
         f.write("\n")
