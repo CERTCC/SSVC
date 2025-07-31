@@ -141,16 +141,20 @@ def tuple_to_dict(t: tuple[str, ...], lookup: dict[int, str]) -> dict[str, str]:
     #     given
     # t = ('V', 'H', 'F')
     # return {'ER': 'V', 'GM': 'H', 'RC': 'F'}
-
     return {lookup[i]: t[i] for i in range(len(t))}
 
 
 def dplist_to_toposort(decision_points: list[DecisionPoint]) -> list[dict[str, str]]:
+    logger.debug("Creating graph from list of decision points")
     G = graph_from_dplist(decision_points)
     dp_lookup = dplist_to_lookup(decision_points)
     value_lookup = dplist_to_value_lookup(decision_points)
+    logger.debug(
+        "Graph created, performing topological sort over decision points graph"
+    )
     sorted_nodes = nx.topological_sort(G)
     sorted_list = []
+    logger.debug("Topological sort completed, converting graph nodes to dictionaries")
     for node in sorted_nodes:
         vals = lookup_value(node, value_lookup)
         sorted_list.append(tuple_to_dict(vals, dp_lookup))
