@@ -312,10 +312,43 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         k = obj.key
         ver = obj.version
 
-        # if this object already exists in the registry, do nothing
-        if self.lookup(objtype=objtype, namespace=ns, key=k, version=ver) is not None:
+        # if this object already exists in the registry, see if it matches
+        found = self.lookup(objtype=objtype, namespace=ns, key=k, version=ver)
+        if found is not None:
             logger.debug(f"Object {obj.id} already registered, skipping registration.")
-            # if this is a different object with theame id, we should throw an error
+            # if this is a different object with the same id, we should throw an error
+            diffs = []
+            should_be_version = False
+            found_obj = found.obj
+            if found_obj.name != obj.name:
+                diffs.append(f"Name mismatch: {found_obj.name} != {obj.name}")
+            else:
+                should_be_version = True
+            if found_obj.description != obj.description:
+                diffs.append(
+                    f"Description mismatch: {found_obj.description} != {obj.description}"
+                )
+            if isinstance(found_obj, _Valued):
+                for a, b in zip(found_obj.values, obj.values):
+                    if a != b:
+                        diffs.append(f"Value mismatch: {a} != {b}")
+            for d in diffs:
+                logger.warning(f"Diff found when registering {obj.id}: {d}")
+
+            if diffs:
+                if should_be_version:
+                    logger.error(
+                        f"Object {obj.id} ({obj.name}) already registered with different attributes. Consider changing the version."
+                    )
+                else:
+                    logger.error(
+                        f"Object {obj.id} already registered with different attributes. "
+                        f"Consider changing the key ({obj.key}) for '{obj.name}' to avoid collision with '{found_obj.name}'."
+                    )
+                raise ValueError(
+                    f"Object {obj.id} already registered with different attributes: {', '.join(diffs)}"
+                )
+            # otherwise, we just return
             return
 
         # start at the top of the registry and work down
