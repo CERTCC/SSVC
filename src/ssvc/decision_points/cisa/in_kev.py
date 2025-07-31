@@ -22,8 +22,8 @@ Provides a decision point representing whether a vulnerability is in the CISA Kn
 #  DM24-0278
 
 from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import CisaDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 YES = DecisionPointValue(
     name="Yes",
@@ -37,7 +37,7 @@ NO = DecisionPointValue(
     description="Vulnerability is not listed in KEV.",
 )
 
-IN_KEV_1 = SsvcDecisionPoint(
+IN_KEV_1 = CisaDecisionPoint(
     name="In KEV",
     description="Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
     key="KEV",
