@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "EF",
+  "version": "1.0.0",
+  "name": "Ethical Framework Alignment",
+  "description": "Degree to which the system aligns with and promotes ethical AI principles and frameworks.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "P",
+      "name": "Promotes Ethics",
+      "description": "System demonstrably adheres to and promotes ethical AI principles, with ongoing monitoring and auditing of ethical performance."
+    },
+    {
+      "key": "A",
+      "name": "Aligns with Frameworks",
+      "description": "System design and operation align with established ethical frameworks, with mechanisms for addressing ethical concerns."
+    },
+    {
+      "key": "W",
+      "name": "Awareness",
+      "description": "Basic awareness of ethical guidelines, limited implementation, no formal ethical review process."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No consideration of ethical frameworks or principles in the design, development, or deployment of the AI system."
+    }
+  ]
+}

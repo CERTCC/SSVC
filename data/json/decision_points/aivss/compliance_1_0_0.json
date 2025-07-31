@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "CO",
+  "version": "1.0.0",
+  "name": "Compliance",
+  "description": "Degree to which the system complies with relevant regulations and industry standards.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "E",
+      "name": "Exceeds Requirements",
+      "description": "System exceeds regulatory requirements and sets industry best practices for compliance, with a proactive approach to adapting to new regulations."
+    },
+    {
+      "key": "F",
+      "name": "Full Compliance",
+      "description": "Full compliance with relevant regulations and industry standards, with a dedicated compliance team and regular audits."
+    },
+    {
+      "key": "B",
+      "name": "Basic Understanding",
+      "description": "Basic understanding of regulations, some ad-hoc compliance efforts, but no formal compliance program."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No awareness of or compliance with relevant regulations or industry standards."
+    }
+  ]
+}

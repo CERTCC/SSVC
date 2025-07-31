@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "HO",
+  "version": "1.0.0",
+  "name": "Human Oversight",
+  "description": "Degree to which human oversight and intervention are incorporated into the AI system's operation.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "H",
+      "name": "Human-in-the-Loop",
+      "description": "Human-in-the-loop system with well-defined roles and responsibilities, clear procedures for human-machine collaboration, and mechanisms for human oversight at various stages of the system's operation."
+    },
+    {
+      "key": "C",
+      "name": "Clear Mechanisms",
+      "description": "Clear mechanisms for human review and intervention in the system's decision-making process, with well-defined roles and responsibilities for human operators."
+    },
+    {
+      "key": "L",
+      "name": "Limited Oversight",
+      "description": "Limited human oversight, primarily reactive (e.g., users can report errors), no clear mechanisms for human intervention or override."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No human oversight or intervention in the AI system's decision-making process."
+    }
+  ]
+}

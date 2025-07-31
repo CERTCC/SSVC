@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "RM",
+  "version": "1.0.0",
+  "name": "Risk Management",
+  "description": "Degree to which AI risk management is implemented and integrated into the organization's risk framework.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "P",
+      "name": "Proactive and Continuous",
+      "description": "Proactive and continuous AI risk management, with a dedicated AI risk management team, regular risk assessments, and a strong focus on anticipating and mitigating emerging AI risks."
+    },
+    {
+      "key": "C",
+      "name": "Comprehensive Framework",
+      "description": "Comprehensive AI risk management framework in place, with specific processes for identifying, assessing, mitigating, and monitoring AI risks, fully integrated into the organizational risk framework."
+    },
+    {
+      "key": "B",
+      "name": "Basic Assessment",
+      "description": "Basic risk assessment for AI systems, limited mitigation strategies, AI risks partially integrated into the organizational risk framework."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No AI-specific risk management processes, AI risks not considered in the overall organizational risk framework."
+    }
+  ]
+}
