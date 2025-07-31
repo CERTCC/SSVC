@@ -77,7 +77,6 @@ def off_by_one(t: tuple[int, ...]) -> bool:
 
 
 def graph_from_dplist(decision_points: list[DecisionPoint]) -> nx.DiGraph:
-    G = nx.DiGraph()
 
     dp_lookup = dplist_to_lookup(decision_points)
 
@@ -88,29 +87,30 @@ def graph_from_dplist(decision_points: list[DecisionPoint]) -> nx.DiGraph:
 
     value_tuples = [tuple(v.keys()) for v in value_lookup]
 
+    return graph_from_value_tuples(value_tuples)
+
+
+def graph_from_value_tuples(value_tuples: list[tuple[int, ...]]) -> nx.DiGraph:
+    G = nx.DiGraph()
+
     # add nodes to the graph
-    for node_tup in product(*value_tuples):
-        logger.debug(f"Adding node: {node_tup}")
-        G.add_node(node_tup)
+    nodes = list(product(*value_tuples))
+    G.add_nodes_from(nodes)
 
     # add edges to the graph
-    for u, v in product(G.nodes, G.nodes):
 
-        uvdiff = diff(u, v)
-        if off_by_one(uvdiff):
-            if not G.has_edge(v, u):
-                logger.debug(f"Adding edge: {v} -> {u}")
-                G.add_edge(v, u)
-
-        vudiff = diff(v, u)
-        if off_by_one(vudiff):
-            if not G.has_edge(u, v):
-                logger.debug(f"Adding edge: {u} -> {v}")
-                G.add_edge(u, v)
-
-    # remove all extra edges that are not needed for topological sorting
-    G = nx.transitive_reduction(G)
-
+    # For each node, try to increment one coordinate by one step
+    for node in nodes:
+        for i, val in enumerate(node):
+            axis = value_tuples[i]
+            idx = axis.index(val)
+            if idx + 1 < len(axis):
+                # Create a new node with i-th coordinate incremented
+                neighbor = list(node)
+                neighbor[i] = axis[idx + 1]
+                neighbor = tuple(neighbor)
+                if neighbor in G:
+                    G.add_edge(node, neighbor)
     return G
 
 
