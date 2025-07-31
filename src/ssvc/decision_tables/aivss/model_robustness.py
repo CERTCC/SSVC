@@ -32,7 +32,7 @@ from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
 
-MODEL_RESISTANCE = DecisionTable(
+V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
     name="Model Robustness",
     version="1.0.0",
@@ -43,7 +43,7 @@ MODEL_RESISTANCE = DecisionTable(
 
 
 VERSIONS = [
-    MODEL_RESISTANCE,
+    V1_0_0,
 ]
 LATEST = VERSIONS[-1]
 

@@ -30,7 +30,7 @@ from ssvc.decision_points.aivss.safety_critical import LATEST as SC
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-DECISION_CRITICALITY = DecisionTable(
+V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
     name="Decision Criticality",
     version="1.0.0",
@@ -41,7 +41,7 @@ DECISION_CRITICALITY = DecisionTable(
 
 
 VERSIONS = [
-    DECISION_CRITICALITY,
+    V1_0_0,
 ]
 LATEST = VERSIONS[-1]
 

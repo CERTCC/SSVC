@@ -30,7 +30,7 @@ from ssvc.decision_points.aivss.threat_intelligence_integration import LATEST as
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-ADAPTABILITY = DecisionTable(
+V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
     name="Adaptability",
     version="1.0.0",
@@ -41,7 +41,7 @@ ADAPTABILITY = DecisionTable(
 
 
 VERSIONS = [
-    ADAPTABILITY,
+    V1_0_0,
 ]
 LATEST = VERSIONS[-1]
 

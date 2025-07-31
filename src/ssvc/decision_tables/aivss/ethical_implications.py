@@ -30,7 +30,7 @@ from ssvc.decision_points.aivss.transparency_and_explainability import LATEST as
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-ETHICAL_IMPLICATIONS = DecisionTable(
+V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
     name="Ethical Implications",
     version="1.0.0",
@@ -41,7 +41,7 @@ ETHICAL_IMPLICATIONS = DecisionTable(
 
 
 VERSIONS = [
-    ETHICAL_IMPLICATIONS,
+    V1_0_0,
 ]
 LATEST = VERSIONS[-1]
 

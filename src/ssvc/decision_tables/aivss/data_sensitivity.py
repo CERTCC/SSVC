@@ -29,8 +29,7 @@ from ssvc.decision_points.aivss.data_sensitivity import LATEST as DS
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-
-DATA_SENSITIVITY = DecisionTable(
+V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
     name="Data Sensitivity",
     version="1.0.0",
@@ -41,7 +40,7 @@ DATA_SENSITIVITY = DecisionTable(
 
 
 VERSIONS = [
-    DATA_SENSITIVITY,
+    V1_0_0,
 ]
 LATEST = VERSIONS[-1]
 
