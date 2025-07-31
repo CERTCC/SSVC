@@ -1,0 +1,20 @@
+{
+  "name": "High Value Asset",
+  "description": "Denotes whether a system meets a high value asset definition.",
+  "namespace": "ssvc",
+  "version": "1.0.0",
+  "schemaVersion": "1-0-1",
+  "key": "HVA",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "description": "System does not meet a high value asset definition."
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "description": "System meets a high value asset definition."
+    }
+  ]
+}

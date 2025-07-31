@@ -21,11 +21,11 @@ CVSS Subsequent System Integrity Impact Decision Point
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-SI_HIGH = SsvcDecisionPointValue(
+SI_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able "
@@ -34,7 +34,7 @@ SI_HIGH = SsvcDecisionPointValue(
     "System.",
 )
 
-SI_LOW = SsvcDecisionPointValue(
+SI_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="Modification of data is possible, but the attacker does not have control over the consequence of a "
@@ -42,7 +42,7 @@ SI_LOW = SsvcDecisionPointValue(
     "serious impact to the Subsequent System.",
 )
 
-SI_NONE = SsvcDecisionPointValue(
+SI_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="There is no loss of integrity within the Subsequent System or all integrity impact is constrained to "

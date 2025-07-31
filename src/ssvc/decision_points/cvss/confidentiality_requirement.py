@@ -22,7 +22,7 @@ Models the CVSS Confidentiality Requirement metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import (
     NOT_DEFINED_ND,
     NOT_DEFINED_X,
@@ -30,21 +30,21 @@ from ssvc.decision_points.cvss._not_defined import (
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
     description="Loss of confidentiality is likely to have a catastrophic adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
     description="Loss of confidentiality is likely to have a serious adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
     description="Loss of confidentiality is likely to have only a limited adverse effect on the organization or "
@@ -81,21 +81,21 @@ CONFIDENTIALITY_REQUIREMENT_1_1 = CvssDecisionPoint(
 )
 
 
-_HIGH_2 = SsvcDecisionPointValue(
+_HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
     description="Loss of confidentiality is likely to have a catastrophic adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_MEDIUM_2 = SsvcDecisionPointValue(
+_MEDIUM_2 = DecisionPointValue(
     name="Medium",
     key="M",
     description="Loss of confidentiality is likely to have a serious adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_LOW_2 = SsvcDecisionPointValue(
+_LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
     description="Loss of confidentiality is likely to have only a limited adverse effect on the organization or "

@@ -23,13 +23,13 @@ created_at: 9/21/23 11:40 AM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.exploitation import EXPLOITATION_1
-from ssvc.decision_points.public_value_added import PUBLIC_VALUE_ADDED_1
-from ssvc.decision_points.supplier_involvement import SUPPLIER_INVOLVEMENT_1
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1
+from ssvc.decision_points.ssvc.public_value_added import PUBLIC_VALUE_ADDED_1
+from ssvc.decision_points.ssvc.supplier_involvement import SUPPLIER_INVOLVEMENT_1
+from ssvc.dp_groups.base import DecisionPointGroup
 
 
-COORDINATOR_PUBLICATION_1 = SsvcDecisionPointGroup(
+COORDINATOR_PUBLICATION_1 = DecisionPointGroup(
     name="Coordinator Publication",
     description="The decision points used by the coordinator during publication.",
     version="1.0.0",
@@ -49,9 +49,13 @@ It includes decision points:
 - Public Value Added v1.0.0
 """
 
+VERSIONS = (COORDINATOR_PUBLICATION_1,)
+LATEST = VERSIONS[-1]
+
 
 def main():
-    print(COORDINATOR_PUBLICATION_1.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

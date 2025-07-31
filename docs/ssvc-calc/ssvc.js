@@ -1875,6 +1875,10 @@ function createPDF(vulnerability,cveinfo) {
     })
     doc.setFontSize(12);
     for(var i = 0; i < t.length; i++) {
+	if(ynow > 280) {
+	    doc.addPage("a4");
+	    ynow = 20;
+        }
 	if(steps[i] in ischild) {
 	    continue;
 	}
@@ -1910,17 +1914,21 @@ function createPDF(vulnerability,cveinfo) {
 	var f = t[i].match(/.{1,45}(\s|$)/g);	
 	doc.text("=> "+f[0],xOffset+q*5,ynow);
 	if(t[i].length<= f[0].length) {
-	    ynow = ynow +10
-            continue
+	    ynow = ynow + 10;
+            continue;
 	}	
 	//console.log(t[i].substr(f[0].length));
 	f = t[i].substr(f[0].length).match(/.{1,65}(\s|$)/g);
 	for (var j = 0; j<f.length; j++) {
 	    doc.setFont("courier",'normal')
-	    ynow = ynow +5
+	    ynow = ynow + 5;
+            if(ynow > 280) {
+		doc.addPage("a4");
+		ynow = 20;
+            }
 	    doc.text(f[j],xOffset,ynow);
 	}
-	ynow = ynow +10
+	ynow = ynow +10;
     }
     doc.setFont("helvetica",'bold');
     doc.text("Contact:",xOffset,ynow);
@@ -1929,10 +1937,12 @@ function createPDF(vulnerability,cveinfo) {
     var safetime = ts.toGMTString().replace(/[^a-z0-9]+/ig,'-');
     var fulltree = includetree ? "-with-full-tree" : ""
     var dfilename = "SSVC-"+role+"-"+vulid+"-"+safetime+fulltree+".pdf";
-    if(includetree)
-	appendtree(doc,dfilename)
-    else 
+    if(includetree) {
+	doc.text("*** Decision Tree included in next page ***", xOffset, ynow+10);
+	appendtree(doc,dfilename);
+    } else  {
 	doc.save(dfilename);
+    }
     $('.Exporter').css({'pointer-events':'all'});
 }
 function sigmoid(flen) {

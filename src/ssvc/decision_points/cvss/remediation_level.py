@@ -22,19 +22,19 @@ Models the CVSS Remediation Level metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
 
-_UNAVAILABLE = SsvcDecisionPointValue(
+_UNAVAILABLE = DecisionPointValue(
     name="Unavailable",
     key="U",
     description="There is either no solution available or it is impossible to apply.",
 )
 
-_WORKAROUND = SsvcDecisionPointValue(
+_WORKAROUND = DecisionPointValue(
     name="Workaround",
     key="W",
     description="There is an unofficial, non-vendor solution available. In some cases, users of the affected "
@@ -43,14 +43,14 @@ _WORKAROUND = SsvcDecisionPointValue(
     "plugging the hole for the mean time and no official remediation is available, this value can be set.",
 )
 
-_TEMPORARY_FIX = SsvcDecisionPointValue(
+_TEMPORARY_FIX = DecisionPointValue(
     name="Temporary Fix",
     key="TF",
     description="There is an official but temporary fix available. This includes instances where the vendor issues a "
     "temporary hotfix, tool or official workaround.",
 )
 
-_OFFICIAL_FIX = SsvcDecisionPointValue(
+_OFFICIAL_FIX = DecisionPointValue(
     name="Official Fix",
     key="OF",
     description="A complete vendor solution is available. Either the vendor has issued the final, official patch "

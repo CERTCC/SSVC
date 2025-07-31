@@ -10,14 +10,14 @@ We have organized the SSVC documentation into four main sections:
 
 <div class="grid cards" markdown>
 
-- :material-television-shimmer:{ .lg .middle } **Get Started with SSVC**
+- :fontawesome-regular-eye:{ .lg .middle } **SSVC Overview**
 
     ---
 
-    Get started learning about SSVC and how it can help you prioritize vulnerabilities.
-    This section is intended for people who are new to SSVC.
+    A beginner's guide to SSVC.
+    This section is for people who have never heard of SSVC.
 
-    [:octicons-arrow-right-24: Learning SSVC](tutorials/index.md)
+    [:octicons-arrow-right-24: An Overview of SSVC](ssvc_overview.md)
 
 - :material-clipboard-check:{ .lg .middle } **SSVC How To**
 
@@ -28,7 +28,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: SSVC How To](howto/index.md)
 
-- :fontawesome-solid-book:{ .lg .middle } **Learn More about SSVC**
+- :fontawesome-solid-book:{ .lg .middle } **More about SSVC**
 
     ---
 

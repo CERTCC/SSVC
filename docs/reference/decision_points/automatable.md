@@ -1,7 +1,7 @@
 # Automatable (SSVC)
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.automatable import LATEST
+from ssvc.decision_points.ssvc.automatable import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -62,7 +62,7 @@ Due to vulnerability chaining, there is some nuance as to whether reconnaissance
 ## Prior Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.automatable import VERSIONS
+from ssvc.decision_points.ssvc.automatable import VERSIONS
 from ssvc.doc_helpers import prior_version, example_block
 
 versions = VERSIONS[:-1]

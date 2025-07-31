@@ -133,9 +133,9 @@ and adds two new ones ([*Supplier Involvement*](../reference/decision_points/sup
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.supplier_involvement import LATEST as SI
-from ssvc.decision_points.exploitation import LATEST as EXP
-from ssvc.decision_points.public_value_added import LATEST as PVA
+from ssvc.decision_points.ssvc.supplier_involvement import LATEST as SI
+from ssvc.decision_points.ssvc.exploitation import LATEST as EXP
+from ssvc.decision_points.ssvc.public_value_added import LATEST as PVA
 
 from ssvc.doc_helpers import example_block
 

@@ -21,23 +21,23 @@ Provides the CVSS supplemental metric Recovery
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-AUTOMATIC = SsvcDecisionPointValue(
+AUTOMATIC = DecisionPointValue(
     name="Automatic",
     key="A",
     description="The system recovers services automatically after an attack has been performed.",
 )
-USER = SsvcDecisionPointValue(
+USER = DecisionPointValue(
     name="User",
     key="U",
     description="The system requires manual intervention by the user to recover services, after an attack has "
     "been performed.",
 )
-IRRECOVERABLE = SsvcDecisionPointValue(
+IRRECOVERABLE = DecisionPointValue(
     name="Irrecoverable",
     key="I",
     description="The system services are irrecoverable by the user, after an attack has been performed.",
