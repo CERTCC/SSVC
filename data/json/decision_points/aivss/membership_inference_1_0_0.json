@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "MINF",
+  "version": "1.0.0",
+  "name": "Membership Inference",
+  "description": "Degree to which the model is resistant to membership inference attacks and protects the privacy of individual training data points.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "P",
+      "name": "Provably Resistant",
+      "description": "Model provably resistant to membership inference attacks, with formal guarantees on the privacy of individual training data points."
+    },
+    {
+      "key": "S",
+      "name": "Strong Defenses",
+      "description": "Strong defenses against membership inference, such as differential privacy or model stacking, significantly reducing the attacker's ability to infer membership."
+    },
+    {
+      "key": "M",
+      "name": "Some Mitigation",
+      "description": "Some measures to mitigate membership inference (e.g., regularization, dropout), but significant risks remain."
+    },
+    {
+      "key": "H",
+      "name": "High Risk",
+      "description": "High risk of membership inference attacks, attackers can easily determine whether a specific data point was used in the model's training set."
+    }
+  ]
+}
