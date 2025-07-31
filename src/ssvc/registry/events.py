@@ -42,11 +42,3 @@ def notify_registration(obj):
         except Exception as e:
             logger.warning(f"Registration hook failed: {e}")
             raise
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
