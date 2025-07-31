@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "TR",
+  "version": "1.0.0",
+  "name": "Training",
+  "description": "Degree to which secure practices are implemented in the training environment and process.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "F",
+      "name": "Formal Verification",
+      "description": "Secure and isolated training environment with formal verification of the training process, strict access controls, and continuous monitoring for intrusions and anomalies."
+    },
+    {
+      "key": "S",
+      "name": "Secure Environment",
+      "description": "Secure training environment with access controls, data encryption at rest and in transit, and regular security audits."
+    },
+    {
+      "key": "B",
+      "name": "Basic Security Measures",
+      "description": "Basic security measures in the training environment, but no encryption or strict access controls."
+    },
+    {
+      "key": "I",
+      "name": "Insecure Environment",
+      "description": "Insecure training environment, no data security or access controls, training data stored and processed on unsecured systems."
+    }
+  ]
+}

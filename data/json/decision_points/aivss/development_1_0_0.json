@@ -1,0 +1,30 @@
+{
+  "namespace": "aivss",
+  "key": "DV",
+  "version": "1.0.0",
+  "name": "Development",
+  "description": "Degree to which secure development practices and environments are implemented.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "F",
+      "name": "Formal Verification",
+      "description": "Secure development environment with formal verification of code, strict access controls, and continuous monitoring for security threats."
+    },
+    {
+      "key": "S",
+      "name": "SDL Practices",
+      "description": "Secure development lifecycle (SDL) practices followed, including code reviews, static analysis, and vulnerability scanning, with access controls on development resources."
+    },
+    {
+      "key": "B",
+      "name": "Basic Security Measures",
+      "description": "Basic security measures in the development environment, some secure coding guidelines, but no formal SDL."
+    },
+    {
+      "key": "I",
+      "name": "Insecure Environment",
+      "description": "Insecure development environment, no secure coding practices, no access controls on development resources."
+    }
+  ]
+}
