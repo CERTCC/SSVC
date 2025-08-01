@@ -138,7 +138,7 @@ If the analyst knows nothing, all states are possible.
     For example, [Utility](../../reference/decision_points/utility.md) may be [laborious](../../reference/decision_points/utility.md), [efficient](../../reference/decision_points/utility.md), or [super effective](../../reference/decision_points/system_exposure.md).
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.utility import LATEST
+    from ssvc.decision_points.ssvc.utility import LATEST
     from ssvc.doc_helpers import example_block
     
     print(example_block(LATEST))
@@ -155,14 +155,14 @@ The merit in this “list all values” approach emerges when the stakeholder kn
     Extending the previous example, say the analyst knows that [*Value Density*](../../reference/decision_points/value_density.md) is [diffuse](../../reference/decision_points/value_density.md) but does not know the value for [Automatability](../../reference/decision_points/automatable.md).
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.value_density import LATEST
+    from ssvc.decision_points.ssvc.value_density import LATEST
     from ssvc.doc_helpers import example_block
 
     print(example_block(LATEST))
     ```
 
     ```python exec="true" idprefix=""
-    from ssvc.decision_points.automatable import LATEST
+    from ssvc.decision_points.ssvc.automatable import LATEST
     from ssvc.doc_helpers import example_block
 
     print(example_block(LATEST))

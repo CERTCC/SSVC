@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "MI",
+  "version": "2.0.0",
   "name": "Modified Integrity Impact",
   "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
-  "namespace": "cvss",
-  "version": "2.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "MI",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

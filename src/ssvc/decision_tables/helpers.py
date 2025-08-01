@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """
-Provides a decision point representing whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.
+Provides helper functions for decision tables in SSVC.
 """
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -21,39 +22,38 @@ Provides a decision point representing whether a vulnerability is in the CISA Kn
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
+from ssvc.decision_tables.base import decision_table_to_longform_df
 
-YES = DecisionPointValue(
-    name="Yes",
-    key="Y",
-    description="Vulnerability is listed in KEV.",
-)
 
-NO = DecisionPointValue(
-    name="No",
-    key="N",
-    description="Vulnerability is not listed in KEV.",
-)
+def write_csv(
+    decision_table: "DecisionTable",
+    csvfile: str,
+    child_tree: bool = False,
+    index: bool = False,
+):
+    import os
 
-IN_KEV_1 = SsvcDecisionPoint(
-    name="In KEV",
-    description="Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
-    key="KEV",
-    version="1.0.0",
-    values=(
-        NO,
-        YES,
-    ),
-)
+    # write longform csv to file
+    file_path = os.path.abspath(__file__)
+    project_base_path = os.path.abspath(
+        os.path.join(os.path.dirname(file_path), "..", "..", "..")
+    )
 
-VERSIONS = (IN_KEV_1,)
-LATEST = VERSIONS[-1]
+    parts = ["data", "csvs"]
+    if child_tree:
+        parts.append("child_trees")
+
+    target_dir = os.path.join(project_base_path, *parts)
+    assert os.path.exists(target_dir), f"Target directory {target_dir} does not exist."
+
+    csv_path = os.path.join(target_dir, csvfile)
+
+    with open(csv_path, "w") as fp:
+        fp.write(decision_table_to_longform_df(decision_table).to_csv(index=index))
 
 
 def main():
-    print_versions_and_diffs(VERSIONS)
+    pass
 
 
 if __name__ == "__main__":

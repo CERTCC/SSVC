@@ -165,18 +165,20 @@ class PolicyGenerator:
 
     def _create_policy(self):
         rows = []
+        dps = list(self.dpg.decision_points.values())
+
         for node in self.G.nodes:
             row = {}
             for i in range(len(node)):
                 # turn the numerical indexes back into decision point names
-                col1 = f"{self.dpg.decision_points[i].str}"
-                row[col1] = self.dpg.decision_points[i].value_summaries_str[node[i]]
+                col1 = f"{dps[i].id}"
+                row[col1] = dps[i].value_summaries[node[i]]
                 # numerical values
-                col2 = f"idx_{self.dpg.decision_points[i].str}"
+                col2 = f"idx_{dps[i].str}"
                 row[col2] = node[i]
 
             oc_idx = self.G.nodes[node]["outcome"]
-            row["outcome"] = self.outcomes.value_summaries_str[oc_idx]
+            row["outcome"] = self.outcomes.value_summaries[oc_idx]
 
             row["idx_outcome"] = oc_idx
             rows.append(row)
@@ -277,7 +279,7 @@ class PolicyGenerator:
         # for each decision point in the group, get an enumeration of the values
         # so [[a,b,c],[d,e],[f,g,h]] becomes [[0,1,2],[0,1],[0,1,2]]
         vec = []
-        for dp in self.dpg.decision_points:
+        for dp in self.dpg.decision_points.values():
             vec.append(tuple(range(len(dp.values))))
 
         logger.debug(f"Enumerated vector: {vec}")

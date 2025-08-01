@@ -174,18 +174,23 @@ class MyTestCase(unittest.TestCase):
         d = json.load(open(json_file))
         self.assertEqual(dp.name, d["name"])
 
-    def test_dump_selection_schema(self):
-        schemafile = os.path.join(self.tempdir.name, "selection_schema.json")
+    def test_dump_schema(self):
+        schemafile = os.path.join(self.tempdir.name, "dummy_schema.json")
         self.assertFalse(os.path.exists(schemafile))
-        from ssvc.doctools import dump_selection_schema
+        from ssvc.doctools import dump_schema
+        from pydantic import BaseModel
 
-        dump_selection_schema(schemafile)
+        class Dummy(BaseModel):
+            name: str = "Name"
+            description: str = "Description"
+
+        dump_schema(filepath=schemafile, schema=Dummy.model_json_schema())
         self.assertTrue(os.path.exists(schemafile))
 
         # file is loadable json
         d = json.load(open(schemafile))
         self.assertIn("title", d)
-        self.assertEqual(d["title"], "Decision Point Value Selection List")
+        self.assertEqual("Dummy", d["title"])
         self.assertIn("type", d)
         self.assertEqual(d["type"], "object")
 

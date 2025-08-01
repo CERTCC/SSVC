@@ -1,0 +1,197 @@
+{
+  "title": "SsvcObjectRegistry",
+  "type": "object",
+  "$defs": {
+    "Key": {
+      "title": "Key",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "versions": {
+          "title": "Versions",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/NonValuedVersion"
+              },
+              {
+                "$ref": "#/$defs/ValuedVersion"
+              }
+            ]
+          },
+          "description": "A dictionary mapping version strings to versioned objects.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "key"
+      ],
+      "type": "object"
+    },
+    "Namespace": {
+      "title": "Namespace",
+      "properties": {
+        "namespace": {
+          "title": "Namespace",
+          "type": "string"
+        },
+        "keys": {
+          "title": "Keys",
+          "additionalProperties": {
+            "$ref": "#/$defs/Key"
+          },
+          "description": "A dictionary mapping keys to Key objects within this namespace.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "NonValuedVersion": {
+      "title": "NonValuedVersion",
+      "properties": {
+        "version": {
+          "title": "Version",
+          "description": "The version of the SSVC object. This must be a valid semantic version string.",
+          "examples": [
+            "1.0.0",
+            "2.1.3"
+          ],
+          "minLength": 5,
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "obj": {
+          "title": "Obj"
+        }
+      },
+      "required": [
+        "version",
+        "obj"
+      ],
+      "type": "object"
+    },
+    "NsType": {
+      "title": "NsType",
+      "properties": {
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "namespaces": {
+          "title": "Namespaces",
+          "additionalProperties": {
+            "$ref": "#/$defs/Namespace"
+          },
+          "description": "A dictionary mapping namespace strings to Namespace objects.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "ValuedVersion": {
+      "title": "ValuedVersion",
+      "properties": {
+        "version": {
+          "title": "Version",
+          "description": "The version of the SSVC object. This must be a valid semantic version string.",
+          "examples": [
+            "1.0.0",
+            "2.1.3"
+          ],
+          "minLength": 5,
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "obj": {
+          "title": "Obj"
+        },
+        "values": {
+          "title": "Values",
+          "additionalProperties": {
+            "$ref": "#/$defs/_KeyedBaseModel"
+          },
+          "description": "A dictionary mapping value keys to _Valued objects.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "version",
+        "obj"
+      ],
+      "type": "object"
+    },
+    "_KeyedBaseModel": {
+      "title": "_KeyedBaseModel",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "description": "A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric.(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
+          "examples": [
+            "E",
+            "A",
+            "SI",
+            "L",
+            "M",
+            "H",
+            "Mixed_case_OK",
+            "alph4num3ric"
+          ],
+          "minLength": 1,
+          "pattern": "^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\\*))$",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name",
+        "description"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "title": "Schemaversion",
+      "const": "2.0.0",
+      "description": "The schema version of this selection list.",
+      "type": "string"
+    },
+    "types": {
+      "title": "Types",
+      "additionalProperties": {
+        "$ref": "#/$defs/NsType"
+      },
+      "description": "A dictionary mapping type names to NsType objects.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "schemaVersion"
+  ]
+}

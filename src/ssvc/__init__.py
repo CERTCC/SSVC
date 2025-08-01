@@ -19,5 +19,16 @@
 """
 Provides SSVC modules.
 """
+from ssvc.utils.defaults import IMPORTABLES
+from ssvc.utils.importer import import_modules
 
-_schemaVersion = "1-0-1"
+# import all submodules from ssvc.decision_points and ssvc.outcomes to populate the registries
+# automatically walk through the decision_points and outcomes directories
+# dive into each submodule and import all its parts
+import_modules(IMPORTABLES, include_children=True)
+
+if __name__ == "__main__":
+    # confirms that the registries are populated
+    from ssvc.registry import REGISTRY
+
+    print(REGISTRY.model_dump_json(indent=2))

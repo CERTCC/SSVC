@@ -28,9 +28,8 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from semver import Version
 
-from ssvc import _schemaVersion
 from ssvc.namespaces import NameSpace
-from ssvc.utils.defaults import DEFAULT_VERSION
+from ssvc.utils.defaults import DEFAULT_VERSION, SCHEMA_VERSION
 from ssvc.utils.field_specs import NamespaceString, VersionString
 
 
@@ -59,12 +58,21 @@ class _Versioned(BaseModel):
         return version.__str__()
 
 
-class _SchemaVersioned(_Versioned, BaseModel):
+class _SchemaVersioned(BaseModel):
     """
     Mixin class for version
     """
 
-    schemaVersion: str = _schemaVersion
+    schemaVersion: str = Field(..., description="Schema version of the SSVC object")
+
+    @model_validator(mode="before")
+    def set_schema_version(cls, data):
+        """
+        Set the schema version to the default if not provided.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
 
 
 class _Namespaced(BaseModel):
@@ -102,7 +110,15 @@ class _Keyed(BaseModel):
     Mixin class for keyed SSVC objects.
     """
 
-    key: str
+    # should start with uppercase alphanumeric followed by any case alphanumeric or underscores, no spaces
+    key: str = Field(
+        ...,
+        description="A short, non-empty string identifier for the object. Keys must start with an alphanumeric, contain only alphanumerics and `_`, and end with an alphanumeric."
+        "(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
+        pattern=r"^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\*))$",
+        min_length=1,
+        examples=["E", "A", "SI", "L", "M", "H", "Mixed_case_OK", "alph4num3ric"],
+    )
 
 
 class _Valued(BaseModel):
@@ -168,6 +184,18 @@ class _Base(BaseModel):
 
     name: str
     description: str
+
+
+class _KeyedBaseModel(_Base, _Keyed, BaseModel):
+    pass
+
+
+class _GenericSsvcObject(_Base, _Versioned, _Keyed, _Namespaced, BaseModel):
+    """
+    Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned.
+    """
+
+    pass
 
 
 def main():

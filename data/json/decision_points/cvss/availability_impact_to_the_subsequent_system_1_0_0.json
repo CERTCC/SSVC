@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "SA",
+  "version": "1.0.0",
   "name": "Availability Impact to the Subsequent System",
   "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
-  "namespace": "cvss",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "SA",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
