@@ -254,6 +254,35 @@ def dump_schemas(jsondir):
             schema = d["schema"]
             dump_schema(filepath=path, schema=schema)
 
+def dump_decision_table(jsondir: str, dt: DecisionTable, overwrite: bool) -> None:
+    # make dp.name safe for use in a filename
+    basename = _filename_friendly(dt.name) + f"_{_filename_friendly(dt.version)}"
+
+    filename = f"{basename}.json"
+    parts = [
+        jsondir,
+    ]
+    parts.append(_filename_friendly(dt.namespace))
+    dirname = os.path.join(*parts)
+
+    parts.append(filename)
+
+    json_file = os.path.join(*parts)
+
+    if overwrite:
+        remove_if_exists(json_file)
+    with EnsureDirExists(dirname):
+        try:
+            logger.info(f"Writing {json_file}")
+            with open(json_file, "x") as f:
+                f.write(dt.model_dump_json(indent=2))
+                f.write("\n")  # newline at end of file
+        except FileExistsError:
+            logger.warning(
+                    f"File {json_file} already exists, use --overwrite to replace"
+            )
+    return str(json_file)
+
 
 def main():
     # we are going to generate three files for each decision point:
@@ -284,6 +313,7 @@ def main():
     jsondir = args.jsondir
 
     dp_dir = os.path.join(os.path.abspath(jsondir), "decision_points")
+    dt_dir = os.path.join(os.path.abspath(jsondir), "decision_tables")
 
     find_modules_to_import("./src/ssvc/decision_points", "ssvc.decision_points")
     find_modules_to_import("./src/ssvc/outcomes", "ssvc.outcomes")
@@ -295,6 +325,9 @@ def main():
     # for each decision point:
     for dp in REGISTRY.get_all("DecisionPoint"):
         dump_decision_point(dp_dir, dp, overwrite)
+
+    for dt in REGISTRY.get_all("DecisionTable"):
+        dump_decision_table(dt_dir, dt, overwrite)
 
     dump_schemas(jsondir)
 

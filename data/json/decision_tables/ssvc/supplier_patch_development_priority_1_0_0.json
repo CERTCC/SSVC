@@ -1,0 +1,385 @@
+{
+  "namespace": "ssvc",
+  "key": "DT_SP",
+  "version": "1.0.0",
+  "name": "Supplier Patch Development Priority",
+  "description": "Decision table for evaluating supplier patch development priority in SSVC",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "ssvc:E:1.1.0": {
+      "namespace": "ssvc",
+      "key": "E",
+      "version": "1.1.0",
+      "name": "Exploitation",
+      "description": "The present state of exploitation of the vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+        },
+        {
+          "key": "P",
+          "name": "Public PoC",
+          "description": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
+        },
+        {
+          "key": "A",
+          "name": "Active",
+          "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+        }
+      ]
+    },
+    "ssvc:U:1.0.1": {
+      "namespace": "ssvc",
+      "key": "U",
+      "version": "1.0.1",
+      "name": "Utility",
+      "description": "The Usefulness of the Exploit to the Adversary",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Laborious",
+          "description": "Automatable:No AND Value Density:Diffuse"
+        },
+        {
+          "key": "E",
+          "name": "Efficient",
+          "description": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
+        },
+        {
+          "key": "S",
+          "name": "Super Effective",
+          "description": "Automatable:Yes AND Value Density:Concentrated"
+        }
+      ]
+    },
+    "ssvc:TI:1.0.0": {
+      "namespace": "ssvc",
+      "key": "TI",
+      "version": "1.0.0",
+      "name": "Technical Impact",
+      "description": "The technical impact of the vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "P",
+          "name": "Partial",
+          "description": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
+        },
+        {
+          "key": "T",
+          "name": "Total",
+          "description": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+        }
+      ]
+    },
+    "ssvc:PSI:2.0.1": {
+      "namespace": "ssvc",
+      "key": "PSI",
+      "version": "2.0.1",
+      "name": "Public Safety Impact",
+      "description": "A coarse-grained representation of impact to public safety.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "M",
+          "name": "Minimal",
+          "description": "Safety Impact:Negligible"
+        },
+        {
+          "key": "S",
+          "name": "Significant",
+          "description": "Safety Impact:(Marginal OR Critical OR Catastrophic)"
+        }
+      ]
+    },
+    "ssvc:DSOI:1.0.0": {
+      "namespace": "ssvc",
+      "key": "DSOI",
+      "version": "1.0.0",
+      "name": "Defer, Scheduled, Out-of-Cycle, Immediate",
+      "description": "The original SSVC outcome group.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "D",
+          "name": "Defer",
+          "description": "Defer"
+        },
+        {
+          "key": "S",
+          "name": "Scheduled",
+          "description": "Scheduled"
+        },
+        {
+          "key": "O",
+          "name": "Out-of-Cycle",
+          "description": "Out-of-Cycle"
+        },
+        {
+          "key": "I",
+          "name": "Immediate",
+          "description": "Immediate"
+        }
+      ]
+    }
+  },
+  "outcome": "ssvc:DSOI:1.0.0",
+  "mapping": [
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "D"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "L",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "E",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "P",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "M",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "ssvc:U:1.0.1": "S",
+      "ssvc:TI:1.0.0": "T",
+      "ssvc:PSI:2.0.1": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    }
+  ]
+}
