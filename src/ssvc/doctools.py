@@ -326,8 +326,24 @@ def main():
     for dp in REGISTRY.get_all("DecisionPoint"):
         dump_decision_point(dp_dir, dp, overwrite)
 
+    # for each decision table:
     for dt in REGISTRY.get_all("DecisionTable"):
         dump_decision_table(dt_dir, dt, overwrite)
+
+    # dump the registry
+    registry_json = os.path.join(jsondir, "ssvc_object_registry.json")
+    if overwrite:
+        remove_if_exists(registry_json)
+    with EnsureDirExists(jsondir):
+        try:
+            logger.info(f"Writing {registry_json}")
+            with open(registry_json, "x") as f:
+                f.write(REGISTRY.model_dump_json(indent=2))
+                f.write("\n")  # newline at end of file
+        except FileExistsError:
+            logger.warning(
+                f"File {registry_json} already exists, use --overwrite to replace"
+            )
 
     dump_schemas(jsondir)
 
