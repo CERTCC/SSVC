@@ -34,8 +34,9 @@ from ssvc.namespaces import NameSpace
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
-    name="Model Robustness",
+    key="MR",
     version="1.0.0",
+    name="Model Robustness",
     description="A decision table for assessing the robustness of AI models against adversarial attacks.",
     decision_points={dp.id: dp for dp in [ER, GM, RC, MR]},
     outcome=MR.id,

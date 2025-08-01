@@ -22,10 +22,9 @@ AIVSS Lifecycle Vulnerabilities Decision Table
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.aivss.lifecycle import LATEST as LL
-
 from ssvc.decision_points.aivss.deployment import LATEST as DPY
 from ssvc.decision_points.aivss.development import LATEST as DV
+from ssvc.decision_points.aivss.lifecycle import LATEST as LL
 from ssvc.decision_points.aivss.operations import LATEST as OP
 from ssvc.decision_points.aivss.training import LATEST as TR
 from ssvc.decision_tables.base import DecisionTable
@@ -33,8 +32,9 @@ from ssvc.namespaces import NameSpace
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
-    name="Lifecycle Vulnerabilities",
+    key="LL",
     version="1.0.0",
+    name="Lifecycle Vulnerabilities",
     description="A decision table for assessing the lifecycle vulnerabilities of AI systems.",
     decision_points={dp.id: dp for dp in [DV, DPY, OP, TR, LL]},
     outcome=LL.id,

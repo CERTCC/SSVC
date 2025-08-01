@@ -32,8 +32,9 @@ from ssvc.namespaces import NameSpace
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
-    name="Adaptability",
+    key="AD",
     version="1.0.0",
+    name="Adaptability",
     description="A decision table for assessing the adaptability of AI systems.",
     decision_points={dp.id: dp for dp in [CM, RT, TI, AT, AD]},
     outcome=AD.id,

@@ -32,8 +32,9 @@ from ssvc.namespaces import NameSpace
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
-    name="Ethical Implications",
     version="1.0.0",
+    key="EI",
+    name="Ethical Implications",
     description="A decision table for evaluating the ethical implications of AI systems.",
     decision_points={dp.id: dp for dp in [BD, TE, AC, SI, EI]},
     outcome=EI.id,

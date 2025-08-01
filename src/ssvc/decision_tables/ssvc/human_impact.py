@@ -27,14 +27,16 @@ from ssvc.decision_points.ssvc.safety_impact import (
     SAFETY_IMPACT_1 as SituatedSafetyImpact,
 )
 from ssvc.decision_tables.base import DecisionTable
+from ssvc.namespaces import NameSpace
 
 dp_dict = {dp.id: dp for dp in [SituatedSafetyImpact, MissionImpact, HumanImpact]}
 
 HUMAN_IMPACT_1 = DecisionTable(
-    name="Human Impact",
-    namespace="ssvc",
-    description="Human Impact decision table for SSVC",
+    namespace=NameSpace.SSVC,
+    key="HI",
     version="1.0.0",
+    name="Human Impact",
+    description="Human Impact decision table for SSVC",
     decision_points={
         dp.id: dp for dp in [SituatedSafetyImpact, MissionImpact, HumanImpact]
     },

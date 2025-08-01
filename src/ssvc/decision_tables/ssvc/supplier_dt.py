@@ -29,13 +29,15 @@ from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PublicSafet
 from ssvc.decision_points.ssvc.technical_impact import LATEST as TechnicalImpact
 from ssvc.decision_points.ssvc.utility import LATEST as Utility
 from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
+from ssvc.namespaces import NameSpace
 from ssvc.outcomes.ssvc.dsoi import LATEST as DSOI
 
 SUPPLIER_1 = DecisionTable(
-    name="Supplier Decision Table",
-    namespace="ssvc",
-    description="Decision table for evaluating supplier risk in SSVC",
+    namespace=NameSpace.SSVC,
+    key="SP",
     version="1.0.0",
+    name="Supplier Patch Development Priority",
+    description="Decision table for evaluating supplier patch development priority in SSVC",
     decision_points={
         dp.id: dp
         for dp in [Exploitation, Utility, TechnicalImpact, PublicSafetyImpact, DSOI]

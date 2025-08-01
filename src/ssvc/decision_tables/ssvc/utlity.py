@@ -27,12 +27,14 @@ from ssvc.decision_points.ssvc.utility import LATEST as Utility
 from ssvc.decision_points.ssvc.value_density import LATEST as ValueDensity
 from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
 from ssvc.decision_tables.helpers import write_csv
+from ssvc.namespaces import NameSpace
 
 UTILITY_1 = DecisionTable(
-        name='Utility',
-        namespace ='ssvc',
-        description='Utility decision table for SSVC',
+        namespace =NameSpace.SSVC,
+        key='U',
         version='1.0.0',
+        name='Utility',
+        description='Utility decision table for SSVC',
         decision_points={dp.id: dp for dp in [Automatable,ValueDensity,Utility]},
         outcome = Utility.id,
         mapping =  [

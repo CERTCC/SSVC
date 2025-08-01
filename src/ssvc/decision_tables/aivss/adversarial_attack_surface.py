@@ -31,8 +31,9 @@ from ssvc.namespaces import NameSpace
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.AIVSS,
-    name="Adversarial Attack Surface",
+    key="AA",
     version="1.0.0",
+    name="Adversarial Attack Surface",
     description="A decision table for assessing the adversarial attack surface of AI systems.",
     decision_points={dp.id: dp for dp in [MI, ME, MINF, AA]},
     outcome=AA.id,
