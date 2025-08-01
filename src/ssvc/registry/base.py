@@ -83,12 +83,12 @@ def _get_obj_type(obj: object) -> str:
 
 class NonValuedVersion(BaseModel):
     version: VersionString
-    obj: _GenericSsvcObject
+    obj: object
 
 
 class ValuedVersion(BaseModel):
     version: VersionString
-    obj: _GenericSsvcObject
+    obj: object
     values: dict[str, _KeyedBaseModel] = Field(
         default_factory=dict,
         description="A dictionary mapping value keys to _Valued objects.",
