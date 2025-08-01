@@ -34,63 +34,17 @@ from ssvc.decision_points.base import DecisionPoint
 logger = logging.getLogger(__name__)
 
 
-def diff(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
-
-    if len(a) != len(b):
-        raise ValueError("Tuples must be of the same length")
-
-    d = [x - y for x, y in zip(a, b)]
-    return tuple(d)
-
-
-def all_but_one_zero(t: tuple[int, ...]) -> bool:
-    """
-    Check if all elements in the tuple are zero except for one element.
-    """
-    non_zero_count = sum(1 for x in t if x != 0)
-    return non_zero_count == 1 and len(t) > 1
-
-
-def exactly_one_one(t: tuple[int, ...]) -> bool:
-    """
-    Check if exactly one element in the tuple is one.
-    """
-    one_count = sum(1 for x in t if x == 1)
-    return one_count == 1 and len(t) > 1
-
-
-def off_by_one(t: tuple[int, ...]) -> bool:
-    """
-    Returns true if exactly one element in the tuple is one and all others are zero.
-    Args:
-        t: the tuple to check
-
-    Returns:
-        bool: True if the tuple is off by one, False otherwise
-
-    """
-    if not all_but_one_zero(t):
-        return False
-    if not exactly_one_one(t):
-        return False
-    return True
-
-
 def graph_from_dplist(decision_points: list[DecisionPoint]) -> nx.DiGraph:
-
-    dp_lookup = dplist_to_lookup(decision_points)
-
+    logger.debug(f"Creating graph from dplist: {[dp.id for dp in decision_points]}")
     value_lookup = dplist_to_value_lookup(decision_points)
-
-    logger.debug(f"dp_lookup: {dp_lookup}")
-    logger.debug(f"value_lookup: {value_lookup}")
-
     value_tuples = [tuple(v.keys()) for v in value_lookup]
+    logger.debug(f"Value tuples: {value_tuples}")
 
     return graph_from_value_tuples(value_tuples)
 
 
 def graph_from_value_tuples(value_tuples: list[tuple[int, ...]]) -> nx.DiGraph:
+    logger.debug(f"Creating graph from value_tuples: {value_tuples}")
     G = nx.DiGraph()
 
     # add nodes to the graph
@@ -111,6 +65,7 @@ def graph_from_value_tuples(value_tuples: list[tuple[int, ...]]) -> nx.DiGraph:
                 neighbor = tuple(neighbor)
                 if neighbor in G:
                     G.add_edge(node, neighbor)
+                    
     return G
 
 
@@ -147,14 +102,15 @@ def tuple_to_dict(t: tuple[str, ...], lookup: dict[int, str]) -> dict[str, str]:
 def dplist_to_toposort(decision_points: list[DecisionPoint]) -> list[dict[str, str]]:
     logger.debug("Creating graph from list of decision points")
     G = graph_from_dplist(decision_points)
-    dp_lookup = dplist_to_lookup(decision_points)
-    value_lookup = dplist_to_value_lookup(decision_points)
     logger.debug(
         "Graph created, performing topological sort over decision points graph"
     )
     sorted_nodes = nx.topological_sort(G)
-    sorted_list = []
+
     logger.debug("Topological sort completed, converting graph nodes to dictionaries")
+    sorted_list = []
+    dp_lookup = dplist_to_lookup(decision_points)
+    value_lookup = dplist_to_value_lookup(decision_points)
     for node in sorted_nodes:
         vals = lookup_value(node, value_lookup)
         sorted_list.append(tuple_to_dict(vals, dp_lookup))
