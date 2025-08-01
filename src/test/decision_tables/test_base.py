@@ -85,8 +85,9 @@ class TestDecisionTableBase(unittest.TestCase):
         self.dpdict = {dp.id: dp for dp in self.dplist}
 
         self.dt = DecisionTable(
-            name="Test Table",
+            key="TEST",
             namespace="x_test",
+            name="Test Table",
             description="Describes the test table",
             decision_points=self.dpdict,
             outcome=self.og.id,

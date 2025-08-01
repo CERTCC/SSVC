@@ -23,13 +23,14 @@ DecisionTable: A flexible, serializable SSVC decision table model.
 
 import logging
 from itertools import product
-from typing import Literal
+from typing import ClassVar, Literal
 
 import pandas as pd
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
-from ssvc._mixins import _Base, _Commented, _Namespaced, _SchemaVersioned, _Versioned
+from ssvc._mixins import _Commented, _GenericSsvcObject, _SchemaVersioned
 from ssvc.decision_points.base import DecisionPoint
+from ssvc.registry.events import notify_registration
 from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
 from ssvc.utils.toposort import dplist_to_toposort
@@ -71,7 +72,7 @@ SCHEMA_VERSION: str = "2.0.0"
 
 
 class DecisionTable(
-    _SchemaVersioned, _Versioned, _Namespaced, _Base, _Commented, BaseModel
+    _SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel
 ):
     """
     DecisionTable: A flexible, serializable SSVC decision table model.
@@ -82,6 +83,7 @@ class DecisionTable(
 
     Attributes:
     """
+    key_prefix: ClassVar[str] = "DT"
 
     schemaVersion: Literal[SCHEMA_VERSION]
 
@@ -98,6 +100,16 @@ class DecisionTable(
         default_factory=list,
         description="Mapping of decision point values to outcomes.",
     )
+
+    @property
+    def id(self):
+        return f"{self.namespace}:{self.name}:{self.version}"
+
+    @field_validator("key", mode="before")
+    @classmethod
+    def validate_key(cls, value: str) -> str:
+        key = f"{cls.key_prefix}_{value}"
+        return key
 
     # validator to set schemaVersion
     @model_validator(mode="before")
@@ -224,6 +236,13 @@ class DecisionTable(
             )
 
         return self
+
+    @model_validator(mode="after")
+    def _register(self):
+        """Register the decision point table."""
+        notify_registration(self)
+        return self
+
 
     def obfuscate(self) -> "DecisionTable":
         """

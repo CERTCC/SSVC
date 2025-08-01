@@ -40,10 +40,17 @@ def _handle_registration(obj):
     # Import here to avoid circular imports
     try:
         from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+        from ssvc.decision_tables.base import DecisionTable
 
         logger.debug(f"Handling registration for {obj.id} of type {type(obj)}")
-        if isinstance(obj, (DecisionPoint, DecisionPointValue)):
+        if isinstance(obj, (DecisionPoint, DecisionPointValue, DecisionTable)):
             REGISTRY.register(obj)
+        else:
+            logger.warning(
+                f"Object {obj.id} is not a recognized SSVC decision point type: {type(obj)}"
+            )
+            raise TypeError(f"Object {obj.id} is not a valid SSVC decision point type.")
+
     except ImportError:
         # Fallback registration without type checking
         logger.debug(f"Handling registration for {obj.id} of type {type(obj)}")

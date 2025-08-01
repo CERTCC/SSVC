@@ -44,6 +44,7 @@ from ssvc.decision_points.base import (
     DecisionPoint,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
+from ssvc.decision_tables.base import DecisionTable
 from ssvc.registry import REGISTRY
 from ssvc.registry.base import SsvcObjectRegistry
 from ssvc.selection import SelectionList
@@ -238,7 +239,7 @@ def dump_schemas(jsondir):
     # decision table schema
     decision_table_schema_file = f"Decision_Table-{_filename_friendly(ssvc.decision_tables.base.SCHEMA_VERSION, replacement='-')}.schema.json"
     decision_table_schema_path = os.path.join(schemadir, decision_table_schema_file)
-    decision_table_schema = SsvcDecisionPoint.model_json_schema()
+    decision_table_schema = DecisionTable.model_json_schema()
     schemapaths.append({"filepath": decision_table_schema_path, "schema": decision_table_schema})
 
     # decision point group schema
