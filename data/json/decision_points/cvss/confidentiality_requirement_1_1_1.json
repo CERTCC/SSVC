@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "CR",
+  "version": "1.1.1",
   "name": "Confidentiality Requirement",
   "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Confidentiality.",
-  "namespace": "cvss",
-  "version": "1.1.1",
-  "schemaVersion": "1-0-1",
-  "key": "CR",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

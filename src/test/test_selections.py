@@ -19,6 +19,7 @@
 
 import unittest
 from datetime import datetime
+from unittest import expectedFailure
 
 from ssvc import selection
 from ssvc.selection import MinimalDecisionPointValue, SelectionList
@@ -172,11 +173,62 @@ class MyTestCase(unittest.TestCase):
 
     def test_reference_model(self):
         """Test the Reference model."""
-        ref = selection.Reference(
-            uri="https://example.com/test", description="Test description"
-        )
-        self.assertEqual(str(ref.uri), "https://example.com/test")
-        self.assertEqual(ref.description, "Test description")
+        uris = [
+            "https://example.com",
+            "http://example.org/path",
+            "ftp://ftp.example.com/file.txt",
+            "mailto:someone@example.com",
+            "tel:+1-555-555-5555",
+            "https://example.com:8080/path/to/resource?query=string#fragment",
+            "http://localhost:3000/api/v1/users",
+            "https://127.0.0.1/",
+            "https://user:pass@example.com",
+            "ftp://anonymous:anon@example.com/resource.txt",
+            "http://192.168.1.1/",
+            "https://[2001:db8::1]/",
+            "urn:isbn:8675309#page=42",
+            "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ%3D%3D",
+            "custom-scheme://host/resource",
+            "blob:https://example.com/550e8400-e29b-41d4-a716-446655440000",
+        ]
+
+        for uri in uris:
+            ref = selection.Reference(
+                uri=uri, summary="Test description"
+            )
+
+            self.assertIn(uri, str(ref.uri))
+            self.assertEqual(ref.summary, "Test description")
+
+    @expectedFailure
+    def test_reference_model_without_summary(self):
+        """Test the Reference model."""
+        uris = [
+            "https://example.com",
+            "http://example.org/path",
+            "ftp://ftp.example.com/file.txt",
+            "mailto:someone@example.com",
+            "tel:+1-555-555-5555",
+            "https://example.com:8080/path/to/resource?query=string#fragment",
+            "http://localhost:3000/api/v1/users",
+            "https://127.0.0.1/",
+            "https://user:pass@example.com",
+            "ftp://anonymous:anon@example.com/resource.txt",
+            "http://192.168.1.1/",
+            "https://[2001:db8::1]/",
+            "urn:isbn:8675309#page=42",
+            "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ%3D%3D",
+            "custom-scheme://host/resource",
+            "blob:https://example.com/550e8400-e29b-41d4-a716-446655440000",
+        ]
+
+        for uri in uris:
+            ref = selection.Reference(
+                uri=uri,
+            )
+
+            self.assertIn(uri, str(ref.uri))
+
 
     def test_selection_list_validators(self):
         """Test SelectionList validators."""
@@ -245,7 +297,7 @@ class MyTestCase(unittest.TestCase):
     def test_selection_list_optional_fields(self):
         """Test SelectionList with optional fields."""
         ref = selection.Reference(
-            uri="https://example.com/resource", description="Test resource"
+            uri="https://example.com/resource", summary="Test resource"
         )
 
         sel_list = SelectionList(

@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "EQ1",
+  "version": "1.0.0",
   "name": "Equivalence Set 1",
   "description": "AV/PR/UI with 3 levels specified in Table 24",
-  "namespace": "cvss",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "EQ1",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

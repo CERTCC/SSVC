@@ -88,20 +88,23 @@ class MyTestCase(unittest.TestCase):
         #   * new values are added that divide previous value semantics ambiguously
 
         # remove one
-        self.dp2.values = self.dp2.values[:-1]
+        vals = list(self.dp1.values)
+        self.dp2.values = tuple(vals[:-1])
+
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)
         self.assertIn("major", text)
 
         # add one
-        self.dp2.values = list(self.dp1.values)
-        self.dp2.values.append(
+        vals = list(self.dp1.values)
+        vals.append(
             DecisionPointValue(
                 name="Maybe",
                 key="maybe",
                 description="Maybe",
             )
         )
+        self.dp2.values = tuple(vals)
 
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)
@@ -112,14 +115,15 @@ class MyTestCase(unittest.TestCase):
         # * Criteria for incrementing the Major Version are not met, _AND_
         #   * new options are added, _OR_
         # add one
-        self.dp2.values = list(self.dp1.values)
-        self.dp2.values.append(
+        vals = list(self.dp1.values)
+        vals.append(
             DecisionPointValue(
                 name="Maybe",
                 key="maybe",
                 description="Maybe",
             )
         )
+        self.dp2.values = tuple(vals)
 
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)

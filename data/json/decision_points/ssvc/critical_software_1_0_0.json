@@ -1,10 +1,10 @@
 {
+  "namespace": "ssvc",
+  "key": "CS",
+  "version": "1.0.0",
   "name": "Critical Software",
   "description": "Denotes whether a system meets a critical software definition.",
-  "namespace": "ssvc",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "CS",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

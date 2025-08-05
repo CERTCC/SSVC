@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "MA",
+  "version": "2.0.0",
   "name": "Modified Availability Impact",
   "description": "This metric measures the impact to availability of a successfully exploited vulnerability.",
-  "namespace": "cvss",
-  "version": "2.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "MA",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

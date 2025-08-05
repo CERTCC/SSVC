@@ -1,10 +1,10 @@
 {
+  "namespace": "ssvc",
+  "key": "MI",
+  "version": "1.0.0",
   "name": "Mission Impact",
   "description": "Impact on Mission Essential Functions of the Organization",
-  "namespace": "ssvc",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "MI",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

@@ -23,107 +23,26 @@ Defines the formatting for SSVC Decision Points.
 #  DM24-0278
 
 import logging
+from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, model_validator
 
 from ssvc._mixins import (
-    _Base,
     _Commented,
-    _Keyed,
-    _Namespaced,
+    _GenericSsvcObject,
+    _KeyedBaseModel,
     _SchemaVersioned,
     _Valued,
-    _Versioned,
 )
+from ssvc.registry.events import notify_registration
 from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
 
-
-REGISTERED_DECISION_POINTS = []
-
-
-class Registry(BaseModel):
-    registry: dict[str, object] = Field(default_factory=dict)
-
-    def __iter__(self) -> object:
-        return iter(self.registry.values())
-
-    def __getitem__(self, key: str) -> object:
-        return self.registry[key]
-
-    def __setitem__(self, key: str, value: object) -> None:
-
-        if key in self.registry:
-            # are the values the same?
-            registered = self.registry[key].model_dump_json()
-            value_dumped = value.model_dump_json()
-            if registered == value_dumped:
-                logger.warning(f"Duplicate key {key} with the same value, ignoring.")
-                return
-
-            logger.warning(f"Duplicate key {key}:")
-            logger.warning(f"\t{registered}")
-            logger.warning(f"\t{value_dumped}")
-            raise KeyError(f"Duplicate key {key}")
-
-        self.registry[key] = value
-
-    def __contains__(self, key: str) -> bool:
-        return key in self.registry
-
-    def reset_registry(self) -> None:
-        self.registry = {}
-
-    # convenience alias
-    def clear(self) -> None:
-        self.reset_registry()
+SCHEMA_VERSION = "2.0.0"
 
 
-class DecisionPointRegistry(Registry, BaseModel):
-    """
-    A dictionary of decision points.
-    """
-
-    registry: dict[str, "DecisionPoint"] = Field(default_factory=dict)
-
-
-class DecisionPointValueRegistry(Registry, BaseModel):
-    """
-    A dictionary of decision point values.
-    """
-
-    registry: dict[str, "DecisionPointValue"] = Field(default_factory=dict)
-
-
-def register(dp):
-    """
-    Register a decision point.
-    """
-
-    # register the values
-    for value_str, value_summary in dp.value_summaries_dict.items():
-        DPV_REGISTRY[value_str] = value_summary
-
-    key = dp.str
-    DP_REGISTRY[key] = dp
-    REGISTERED_DECISION_POINTS.append(dp)
-
-
-def _reset_registered():
-    """
-    Reset the registered decision points.
-    """
-    global DPV_REGISTRY
-    global DP_REGISTRY
-    global REGISTERED_DECISION_POINTS
-
-    DPV_REGISTRY.reset_registry()
-    DP_REGISTRY.reset_registry()
-    REGISTERED_DECISION_POINTS = []
-
-
-class DecisionPointValue(_Base, _Keyed, _Commented, BaseModel):
+class DecisionPointValue(_Commented, _KeyedBaseModel, BaseModel):
     """
     Models a single value option for a decision point.
 
@@ -139,33 +58,12 @@ class DecisionPointValue(_Base, _Keyed, _Commented, BaseModel):
         return self.name
 
 
-class ValueSummary(_Versioned, _Keyed, _Namespaced, BaseModel):
-    """
-    A ValueSummary is a simple object that represents a single value for a decision point.
-    It includes the parent decision point's key, version, namespace, and the value key.
-    These can be used to reference a specific value in a decision point.
-    """
-
-    value: str
-
-    def __str__(self):
-        s = FIELD_DELIMITER.join([self.namespace, self.key, self.version, self.value])
-        return s
-
-    @property
-    def str(self):
-        """
-        Return the ValueSummary as a string.
-
-        Returns:
-            str: A string representation of the ValueSummary, in the format "namespace:key:version:value".
-
-        """
-        return self.__str__()
-
-
 class DecisionPoint(
-    _Valued, _Keyed, _SchemaVersioned, _Namespaced, _Base, _Commented, BaseModel
+    _Valued,
+    _SchemaVersioned,
+    _GenericSsvcObject,
+    _Commented,
+    BaseModel,
 ):
     """
     Models a single decision point as a list of values.
@@ -180,6 +78,17 @@ class DecisionPoint(
     - values (tuple): A tuple of DecisionPointValue objects
     """
 
+    schemaVersion: Literal[SCHEMA_VERSION]
+
+    @model_validator(mode="before")
+    def _set_schema_version(cls, data: dict) -> dict:
+        """
+        Set the schema version to the default if not provided.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
+
     values: tuple[DecisionPointValue, ...]
 
     model_config = ConfigDict(revalidate_instances="always")
@@ -188,12 +97,31 @@ class DecisionPoint(
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
 
     @property
-    def id(self):
+    def id(self) -> str:
+        f"""
+        Return an identity string for the DecisionPoint, combining namespace, key, and version into a global unique identifier.
+        
+        Returns:
+            str: A string representation of the DecisionPoint in the format "namespace{FIELD_DELIMITER}key{FIELD_DELIMITER}version".
         """
-        Return an identity string for the DecisionPoint.
-        """
+        id_parts = (self.namespace, self.key, self.version)
 
-        return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
+        return FIELD_DELIMITER.join(id_parts)
+
+    @property
+    def value_dict(self) -> dict[str, DecisionPointValue]:
+        """
+        Return a list of value IDs for the DecisionPoint.
+
+        Returns:
+            list: A list of strings, each representing a value ID in the format "namespace:key:version:value".
+
+        """
+        value_dict = {}
+        for value in self.values:
+            value_id = FIELD_DELIMITER.join([self.id, value.key])
+            value_dict[value_id] = value
+        return value_dict
 
     @property
     def str(self) -> str:
@@ -208,58 +136,16 @@ class DecisionPoint(
 
     @model_validator(mode="after")
     def _register(self):
-        """
-        Register the decision point.
-        """
-        register(self)
+        """Register the decision point."""
+        notify_registration(self)
         return self
 
     @property
-    def value_summaries(self) -> list[ValueSummary]:
+    def value_summaries(self) -> list[str]:
         """
         Return a list of value summaries.
         """
-        return list(self.value_summaries_dict.values())
-
-    @property
-    def value_summaries_dict(self) -> dict[str, ValueSummary]:
-        """
-        Return a dictionary of value summaries keyed by the value key.
-        """
-        summaries = {}
-        for value in self.values:
-            summary = ValueSummary(
-                key=self.key,
-                version=self.version,
-                namespace=self.namespace,
-                value=value.key,
-            )
-            key = summary.str
-            summaries[key] = summary
-
-        return summaries
-
-    @property
-    def value_summaries_str(self):
-        """
-        Return a list of value summaries as strings.
-
-        Returns:
-            list: A list of strings, each representing a value summary in the format "namespace:key:version:value".
-
-        """
-        return list(self.value_summaries_dict.keys())
-
-    @property
-    def enumerated_values(self) -> dict[int, str]:
-        """
-        Return a list of enumerated values.
-        """
-        return {i: v.str for i, v in enumerate(self.value_summaries)}
-
-
-DP_REGISTRY = DecisionPointRegistry()
-DPV_REGISTRY = DecisionPointRegistry()
+        return list(self.value_dict.keys())
 
 
 def main():

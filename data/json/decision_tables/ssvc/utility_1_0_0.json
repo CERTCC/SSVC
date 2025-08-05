@@ -1,0 +1,98 @@
+{
+  "namespace": "ssvc",
+  "key": "DT_U",
+  "version": "1.0.0",
+  "name": "Utility",
+  "description": "Utility decision table for SSVC",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "ssvc:A:2.0.0": {
+      "namespace": "ssvc",
+      "key": "A",
+      "version": "2.0.0",
+      "name": "Automatable",
+      "description": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "No",
+          "description": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
+        },
+        {
+          "key": "Y",
+          "name": "Yes",
+          "description": "Attackers can reliably automate steps 1-4 of the kill chain."
+        }
+      ]
+    },
+    "ssvc:VD:1.0.0": {
+      "namespace": "ssvc",
+      "key": "VD",
+      "version": "1.0.0",
+      "name": "Value Density",
+      "description": "The concentration of value in the target",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "D",
+          "name": "Diffuse",
+          "description": "The system that contains the vulnerable component has limited resources. That is, the resources that the adversary will gain control over with a single exploitation event are relatively small."
+        },
+        {
+          "key": "C",
+          "name": "Concentrated",
+          "description": "The system that contains the vulnerable component is rich in resources. Heuristically, such systems are often the direct responsibility of “system operators” rather than users."
+        }
+      ]
+    },
+    "ssvc:U:1.0.1": {
+      "namespace": "ssvc",
+      "key": "U",
+      "version": "1.0.1",
+      "name": "Utility",
+      "description": "The Usefulness of the Exploit to the Adversary",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Laborious",
+          "description": "Automatable:No AND Value Density:Diffuse"
+        },
+        {
+          "key": "E",
+          "name": "Efficient",
+          "description": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
+        },
+        {
+          "key": "S",
+          "name": "Super Effective",
+          "description": "Automatable:Yes AND Value Density:Concentrated"
+        }
+      ]
+    }
+  },
+  "outcome": "ssvc:U:1.0.1",
+  "mapping": [
+    {
+      "ssvc:A:2.0.0": "N",
+      "ssvc:VD:1.0.0": "D",
+      "ssvc:U:1.0.1": "L"
+    },
+    {
+      "ssvc:A:2.0.0": "N",
+      "ssvc:VD:1.0.0": "C",
+      "ssvc:U:1.0.1": "E"
+    },
+    {
+      "ssvc:A:2.0.0": "Y",
+      "ssvc:VD:1.0.0": "D",
+      "ssvc:U:1.0.1": "E"
+    },
+    {
+      "ssvc:A:2.0.0": "Y",
+      "ssvc:VD:1.0.0": "C",
+      "ssvc:U:1.0.1": "S"
+    }
+  ]
+}

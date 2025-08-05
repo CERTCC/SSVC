@@ -41,6 +41,7 @@ class MyTestCase(unittest.TestCase):
                 ),
             )
             self.dps.append(dp)
+        self.dp_ids = [dp.id for dp in self.dps]
 
     def tearDown(self) -> None:
         pass
@@ -57,7 +58,7 @@ class MyTestCase(unittest.TestCase):
 
         # iterate over the group
         for dp in g:
-            self.assertIn(dp, self.dps)
+            self.assertIn(dp, self.dp_ids)
 
     def test_len(self):
         # add them to a decision point group
@@ -70,45 +71,6 @@ class MyTestCase(unittest.TestCase):
         self.assertGreater(len(self.dps), 0)
         self.assertEqual(len(self.dps), len(list(g.decision_points)))
         self.assertEqual(len(self.dps), len(g))
-
-    def test_combo_strings(self):
-        # add them to a decision point group
-        g = dpg.DecisionPointGroup(
-            name="Test Group",
-            description="Test Group",
-            decision_points=self.dps,
-        )
-
-        # get all the combinations
-        combos = list(g.combination_strings())
-
-        # assert that the number of combinations is the product of the number of values
-        # for each decision point
-        n_combos = 1
-        for dp in self.dps:
-            n_combos *= len(dp.values)
-        self.assertEqual(n_combos, len(combos))
-
-        # assert that each combination is a tuple
-        for combo in combos:
-            self.assertEqual(len(self.dps), len(combo))
-            self.assertIsInstance(combo, tuple)
-            # assert that each value in the combination is a string
-            for value in combo:
-                self.assertIsInstance(value, str)
-            # foo, bar, and baz should be in each combination to some degree
-            foo_count = sum(1 for v in combo if v.endswith("FOO"))
-            bar_count = sum(1 for v in combo if v.endswith("BAR"))
-            baz_count = sum(1 for v in combo if v.endswith("BAZ"))
-            for count in (foo_count, bar_count, baz_count):
-                # each count should be greater than or equal to 0
-                self.assertGreaterEqual(count, 0)
-                # each count should be less than or equal to the length of the combination
-                self.assertLessEqual(count, len(combo))
-            # the total count of foo, bar, and baz should be the same as the length of the combination
-            # indicating that no other values are present
-            total = sum((foo_count, bar_count, baz_count))
-            self.assertEqual(len(combo), total)
 
     def test_json_roundtrip(self):
         # add them to a decision point group
@@ -134,8 +96,12 @@ class MyTestCase(unittest.TestCase):
             decision_points=self.dps,
         )
 
+        # after init, g.decision_points should be a dict
+
         # get the decision points as a dictionary
-        dp_dict = g.decision_points_dict
+
+        dp_dict = g.decision_points
+        self.assertIsInstance(dp_dict, dict)
 
         # assert that the dictionary is the correct length
         self.assertEqual(len(self.dps), len(dp_dict))
@@ -144,21 +110,6 @@ class MyTestCase(unittest.TestCase):
         for dp in self.dps:
             self.assertIn(dp.str, dp_dict)
             self.assertEqual(dp, dp_dict[dp.str])
-
-    def test_decision_points_str(self):
-        g = dpg.DecisionPointGroup(
-            name="Test Group",
-            description="Test Group",
-            decision_points=self.dps,
-        )
-        dp_str = g.decision_points_str
-        self.assertEqual(len(self.dps), len(dp_str))
-
-        for i, dp in enumerate(self.dps):
-            self.assertIn(dp.str, dp_str)
-            # check that the string is the same as the decision point's string representation
-            # and they are in the same order
-            self.assertEqual(dp.str, dp_str[i])
 
 
 if __name__ == "__main__":
