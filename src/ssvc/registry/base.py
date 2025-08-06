@@ -238,7 +238,7 @@ def register(obj: _RegisterableClass, registry: SsvcObjectRegistry = None) -> No
     if registry is None:
         registry = get_registry()
 
-    if not isinstance(obj, _RegisterableClass):
+    if not isinstance(obj, (DecisionPoint, DecisionTable)):
         raise TypeError(f"Object {obj} is not a registerable SSVC object.")
 
     (objtype, ns, k, ver) = _get_keys(obj)
