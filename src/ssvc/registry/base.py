@@ -43,7 +43,8 @@ SCHEMA_VERSION: str = "2.0.0"
 logger.debug(f"Using schema version {SCHEMA_VERSION} for SsvcObjectRegistry.")
 
 # Define the types we can register
-_RegisterableClass = Union[DecisionPoint, DecisionTable]
+_Registerable = (DecisionPoint, DecisionTable)
+_RegisterableClass = Union[_Registerable]
 
 
 def lookup_type(module: str, type_name: str):
@@ -238,7 +239,7 @@ def register(obj: _RegisterableClass, registry: SsvcObjectRegistry = None) -> No
     if registry is None:
         registry = get_registry()
 
-    if not isinstance(obj, (DecisionPoint, DecisionTable)):
+    if not isinstance(obj, _Registerable):
         raise TypeError(f"Object {obj} is not a registerable SSVC object.")
 
     (objtype, ns, k, ver) = _get_keys(obj)
@@ -263,7 +264,9 @@ def _get_keys(obj: _RegisterableClass) -> tuple[str, ...]:
     return (objtype, ns, k, ver)
 
 
-def _insert(new: _RegisterableClass, registry: Optional[SsvcObjectRegistry] = None) -> None:
+def _insert(
+    new: _RegisterableClass, registry: Optional[SsvcObjectRegistry] = None
+) -> None:
     if registry is None:
         registry = get_registry()
 
