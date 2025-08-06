@@ -23,18 +23,18 @@ Defines the formatting for SSVC Decision Points.
 #  DM24-0278
 
 import logging
-from typing import Any, Literal
+from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, model_validator
 
 from ssvc._mixins import (
     _Commented,
     _GenericSsvcObject,
     _KeyedBaseModel,
+    _Registered,
     _SchemaVersioned,
     _Valued,
 )
-from ssvc.registry.events import notify_registration
 from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
@@ -59,6 +59,7 @@ class DecisionPointValue(_Commented, _KeyedBaseModel, BaseModel):
 
 
 class DecisionPoint(
+    _Registered,
     _Valued,
     _SchemaVersioned,
     _GenericSsvcObject,
@@ -81,10 +82,6 @@ class DecisionPoint(
     schemaVersion: Literal[SCHEMA_VERSION]
     values: tuple[DecisionPointValue, ...]
     model_config = ConfigDict(revalidate_instances="always")
-    registered: bool = Field(
-        default=True,
-        exclude=True,
-    )
 
     def __str__(self):
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
@@ -135,15 +132,6 @@ class DecisionPoint(
         if "schemaVersion" not in data:
             data["schemaVersion"] = SCHEMA_VERSION
         return data
-
-    def model_post_init(self, context: Any, /) -> None:
-        if self.registered:
-            self._register()
-
-    def _register(self):
-        """Register the decision point."""
-        notify_registration(self)
-        return self
 
     @property
     def value_summaries(self) -> list[str]:

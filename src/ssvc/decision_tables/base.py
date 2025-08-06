@@ -23,15 +23,14 @@ DecisionTable: A flexible, serializable SSVC decision table model.
 
 import logging
 from itertools import product
-from typing import Any, ClassVar, Literal
+from typing import ClassVar, Literal
 
 import pandas as pd
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from ssvc._mixins import _Commented, _GenericSsvcObject, _SchemaVersioned
+from ssvc._mixins import _Commented, _GenericSsvcObject, _Registered, _SchemaVersioned
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.registry import get_registry
-from ssvc.registry.events import notify_registration
 from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
 from ssvc.utils.toposort import dplist_to_toposort
@@ -72,7 +71,9 @@ def dpdict_to_combination_list(
 SCHEMA_VERSION: str = "2.0.0"
 
 
-class DecisionTable(_SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel):
+class DecisionTable(
+    _Registered, _SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel
+):
     """
     DecisionTable: A flexible, serializable SSVC decision table model.
 
@@ -239,14 +240,6 @@ class DecisionTable(_SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel)
                 "Please remove them before proceeding."
             )
 
-        return self
-
-    def model_post_init(self, context: Any, /) -> None:
-        self._register()
-
-    def _register(self):
-        """Register the decision table."""
-        notify_registration(self)
         return self
 
     def obfuscate(self) -> "DecisionTable":
