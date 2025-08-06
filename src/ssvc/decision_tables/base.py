@@ -108,6 +108,10 @@ class DecisionTable(_SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel)
     @field_validator("key", mode="before")
     @classmethod
     def validate_key(cls, value: str) -> str:
+        if value.startswith(f"{cls.key_prefix}_"):
+            return value
+
+        # prepend the key prefix if it is not already present
         key = f"{cls.key_prefix}_{value}"
         return key
 

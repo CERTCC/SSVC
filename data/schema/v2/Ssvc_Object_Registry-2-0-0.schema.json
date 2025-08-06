@@ -225,7 +225,14 @@
         "versions": {
           "title": "Versions",
           "additionalProperties": {
-            "$ref": "#/$defs/_Version"
+            "anyOf": [
+              {
+                "$ref": "#/$defs/_ValuedVersion"
+              },
+              {
+                "$ref": "#/$defs/_NonValuedVersion"
+              }
+            ]
           },
           "description": "A dictionary mapping version strings to versioned objects.",
           "type": "object"
@@ -257,6 +264,30 @@
       ],
       "type": "object"
     },
+    "_NonValuedVersion": {
+      "title": "_NonValuedVersion",
+      "properties": {
+        "version": {
+          "title": "Version",
+          "description": "The version of the SSVC object. This must be a valid semantic version string.",
+          "examples": [
+            "1.0.0",
+            "2.1.3"
+          ],
+          "minLength": 5,
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "obj": {
+          "$ref": "#/$defs/DecisionTable"
+        }
+      },
+      "required": [
+        "version",
+        "obj"
+      ],
+      "type": "object"
+    },
     "_NsType": {
       "title": "_NsType",
       "properties": {
@@ -278,8 +309,8 @@
       ],
       "type": "object"
     },
-    "_Version": {
-      "title": "_Version",
+    "_ValuedVersion": {
+      "title": "_ValuedVersion",
       "properties": {
         "version": {
           "title": "Version",
@@ -293,31 +324,15 @@
           "type": "string"
         },
         "obj": {
-          "title": "Obj",
-          "anyOf": [
-            {
-              "$ref": "#/$defs/DecisionPoint"
-            },
-            {
-              "$ref": "#/$defs/DecisionTable"
-            }
-          ]
+          "$ref": "#/$defs/DecisionPoint"
         },
         "values": {
           "title": "Values",
-          "anyOf": [
-            {
-              "additionalProperties": {
-                "$ref": "#/$defs/DecisionPointValue"
-              },
-              "type": "object"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "A dictionary mapping value keys to DecisionPointValue objects. This is optional and may be None for versions of objects that do not support values."
+          "additionalProperties": {
+            "$ref": "#/$defs/DecisionPointValue"
+          },
+          "description": "A dictionary mapping value keys to DecisionPointValue objects.",
+          "type": "object"
         }
       },
       "required": [

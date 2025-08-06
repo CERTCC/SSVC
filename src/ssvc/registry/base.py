@@ -106,9 +106,12 @@ class _NonValuedVersion(BaseModel):
     obj: DecisionTable
 
 
+_Version = Union[_ValuedVersion, _NonValuedVersion]
+
+
 class _Key(BaseModel):
     key: str
-    versions: dict[str, Union[_NonValuedVersion, _ValuedVersion]] = Field(
+    versions: dict[str, _Version] = Field(
         default_factory=dict,
         description="A dictionary mapping version strings to versioned objects.",
     )

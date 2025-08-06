@@ -16,10 +16,13 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-
+import math
 import unittest
+from unittest.mock import Mock, patch
 
 import ssvc.registry.base as base
+from ssvc.decision_tables.base import DecisionTable
+from ssvc.registry import get_registry
 
 
 class RegistryTestCase(unittest.TestCase):
@@ -27,6 +30,8 @@ class RegistryTestCase(unittest.TestCase):
         self.registry = base.SsvcObjectRegistry(
             name="test_registry", description="A test registry"
         )
+        main_reg = get_registry()
+        main_reg.reset(force=True)  # reset the main registry to ensure a clean state
 
     def tearDown(self):
         pass
@@ -88,7 +93,7 @@ class RegistryTestCase(unittest.TestCase):
         )
         self.assertEqual("DecisionPoint", base._get_obj_type(obj2))
 
-    def test_version(self):
+    def test_valued_version(self):
         # test with a known type
         from ssvc.decision_points.base import DecisionPoint
         from ssvc.decision_points.base import DecisionPointValue
@@ -109,6 +114,118 @@ class RegistryTestCase(unittest.TestCase):
         self.assertEqual(dp.version, ver.version)
         self.assertEqual(dp, ver.obj)
         self.assertEqual(2, len(ver.values))
+
+    def test_nonvalued_version(self):
+        # test with a known type
+        from ssvc.decision_points.base import DecisionPoint
+
+        from ssvc.decision_points.base import DecisionPointValue
+
+        dp1 = DecisionPoint(
+            namespace="x_test",
+            key="TEST",
+            version="2.0.0",
+            name="TestDP",
+            description="A test decision point",
+            values=(
+                DecisionPointValue(key="A", name="AAA", description="Option A"),
+                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(key="C", name="CCC", description="Option C"),
+                DecisionPointValue(key="D", name="DDD", description="Option D"),
+                DecisionPointValue(key="E", name="EEE", description="Option E"),
+            ),
+        )
+        dp2 = DecisionPoint(
+            namespace="x_test",
+            key="TEST2",
+            version="2.0.0",
+            name="TestDP",
+            description="A test decision point",
+            values=(
+                DecisionPointValue(key="A", name="AAA", description="Option A"),
+                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(key="C", name="CCC", description="Option C"),
+            ),
+        )
+
+        dp3 = DecisionPoint(
+            namespace="x_test",
+            key="TEST3",
+            version="2.0.0",
+            name="TestDP2",
+            description="A test decision point",
+            values=(
+                DecisionPointValue(key="A", name="A", description="Outcome A"),
+                DecisionPointValue(key="B", name="B", description="Outcome B"),
+            ),
+        )
+
+        dt = DecisionTable(
+            namespace="x_test",
+            key="TEST_DT",
+            version="2.0.0",
+            name="TestDT",
+            description="A test decision table",
+            decision_points={dp.id: dp for dp in [dp1, dp2, dp3]},
+            outcome=dp3.id,
+        )
+
+        ver = base._NonValuedVersion(version=dt.version, obj=dt)
+        self.assertEqual(dt.version, ver.version)
+        self.assertEqual(dt, ver.obj)
+        # even though we didn't specify a mapping
+        # it should be created automatically
+        # and populated into the object
+        self.assertIsNotNone(ver.obj.mapping)
+
+        self.assertEqual(
+            math.prod(len(dp.values) for dp in [dp1, dp2]), len(ver.obj.mapping)
+        )
+
+    @patch("ssvc.registry.base._NonValuedVersion")
+    @patch("ssvc.registry.base._ValuedVersion")
+    def test_key(self, mock_valued_version, mock_nonvalued_version):
+        mockobj1 = Mock()
+        mockobj1.schemaVersion = "2.0.0"
+        mockobj1.key = "TEST"
+        mockobj1.namespace = "x_test"
+        mockobj1.version = "1.0.0"
+        mockobj1.name = "Test Object"
+        mockobj1.description = "A test object"
+        mockobj1.id = "test-id"
+        mockobj1.model_dump_json.return_value = "{}"
+        mockobj1.values = []
+        mockobj1.decision_points = {}
+        mockobj1.outcome = ""
+
+        mockobj2 = Mock()
+        mockobj2.schemaVersion = "2.0.0"
+        mockobj2.key = "TEST2"
+        mockobj2.version = "2.0.0"
+        mockobj2.namespace = "x_test"
+        mockobj2.name = "Test Object"
+        mockobj2.description = "A test object"
+        mockobj2.id = "test-id"
+        mockobj2.model_dump_json.return_value = "{}"
+        mockobj2.values = []
+        mockobj2.decision_points = {}
+        mockobj2.outcome = ""
+
+        mock_valued_version.return_value = mockobj1
+        mock_nonvalued_version.return_value = mockobj1
+
+        keyobj = base._Key(
+            key="FOO",
+            versions={
+                "1.0.0": {"obj": mockobj1.__dict__, "version": "1.0.0"},
+                "2.0.0": {"obj": mockobj2.__dict__, "version": "2.0.0"},
+            },
+        )
+        self.assertEqual("FOO", keyobj.key)
+        self.assertEqual(2, len(keyobj.versions))
+
+        self.assertIn("1.0.0", keyobj.versions)
+        self.assertIn("2.0.0", keyobj.versions)
 
 
 if __name__ == "__main__":
