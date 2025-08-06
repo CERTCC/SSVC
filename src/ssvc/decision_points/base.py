@@ -23,7 +23,7 @@ Defines the formatting for SSVC Decision Points.
 #  DM24-0278
 
 import logging
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
@@ -134,7 +134,9 @@ class DecisionPoint(
         """
         return self.__str__()
 
-    @model_validator(mode="after")
+    def model_post_init(self, context: Any, /) -> None:
+        self._register()
+
     def _register(self):
         """Register the decision point."""
         notify_registration(self)

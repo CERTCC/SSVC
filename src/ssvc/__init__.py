@@ -28,7 +28,9 @@ from ssvc.utils.importer import import_modules
 import_modules(IMPORTABLES, include_children=True)
 
 if __name__ == "__main__":
-    # confirms that the registries are populated
-    from ssvc.registry import REGISTRY
+    from ssvc.registry import get_registry
 
-    print(REGISTRY.model_dump_json(indent=2))
+    # confirms that the registries are populated
+    registry = get_registry()
+
+    print(registry.model_dump_json(indent=2))

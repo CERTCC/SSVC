@@ -22,7 +22,7 @@ Work in progress on an experimental registry object for SSVC.
 #  DM24-0278
 
 import logging
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -33,6 +33,9 @@ from ssvc._mixins import (
     _SchemaVersioned,
     _Valued,
 )
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+from ssvc.decision_tables.base import DecisionTable
+from ssvc.registry import get_registry
 from ssvc.utils.field_specs import VersionString
 
 logger = logging.getLogger(__name__)
@@ -78,58 +81,48 @@ def _get_obj_type(obj: object) -> str:
         if t is not None and isinstance(obj, t):
             objtype = t.__name__
             break
+
     return objtype
 
 
-class NonValuedVersion(BaseModel):
+class _Version(BaseModel):
     version: VersionString
-    obj: object
-
-
-class ValuedVersion(BaseModel):
-    version: VersionString
-    obj: object
-    values: dict[str, _KeyedBaseModel] = Field(
-        default_factory=dict,
-        description="A dictionary mapping value keys to _Valued objects.",
+    obj: Union[DecisionPoint, DecisionTable]
+    values: Optional[dict[str, DecisionPointValue]] = Field(
+        default=None,
+        description="A dictionary mapping value keys to DecisionPointValue objects. "
+        "This is optional and may be None for versions of objects that do not support values.",
     )
 
-    @model_validator(mode="before")
-    def _populate_values(cls, data):
-        obj = data.get("obj")
-        if not isinstance(obj, _Valued):
-            raise ValueError(
-                "ValuedVersion must include an `obj` that subclasses `_Valued`"
-            )
-        return data
-
     def model_post_init(self, __context: Any) -> None:
-        # set the values dictionary from the obj
-        self.values = {v.key: v for v in self.obj.values}
+        if isinstance(self.obj, _Valued) and self.values is None:
+            # if the object is valued, we should set the values dictionary
+            self.values = {v.key: v for v in self.obj.values}
+
         return self
 
 
-class Key(BaseModel):
+class _Key(BaseModel):
     key: str
-    versions: dict[str, NonValuedVersion | ValuedVersion] = Field(
+    versions: dict[str, _Version] = Field(
         default_factory=dict,
         description="A dictionary mapping version strings to versioned objects.",
     )
 
 
-class Namespace(BaseModel):
+class _Namespace(BaseModel):
     namespace: str
-    keys: dict[str, Key] = Field(
+    keys: dict[str, _Key] = Field(
         default_factory=dict,
         description="A dictionary mapping keys to Key objects within this namespace.",
     )
 
 
-class NsType(BaseModel):
+class _NsType(BaseModel):
     type: str
-    namespaces: dict[str, Namespace] = Field(
+    namespaces: dict[str, _Namespace] = Field(
         default_factory=dict,
-        description="A dictionary mapping namespace strings to Namespace objects.",
+        description="A dictionary mapping obj types to Namespace objects.",
     )
 
 
@@ -139,7 +132,7 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         description="The schema version of this selection list.",
     )
 
-    types: dict[str, NsType] = Field(
+    types: dict[str, _NsType] = Field(
         default_factory=dict,
         description="A dictionary mapping type names to NsType objects.",
     )
@@ -153,241 +146,19 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
             data["schemaVersion"] = SCHEMA_VERSION
         return data
 
-    def lookup_objtype(self, objtype: str) -> NsType | None:
-        """
-        Lookup an object type in the registry by its name.
-        Returns None if the type is not found.
-
-        Args:
-            objtype (str): The name of the object type to lookup.
-        Returns:
-            NsType | None: The NsType object if found, otherwise None.
-        """
-        return self.types.get(objtype, None)
-
-    def lookup_namespace(self, objtype: str, namespace: str) -> Namespace | None:
-        """
-        Lookup a namespace in the registry by object type and namespace name.
-        Returns None if the namespace is not found.
-
-        Args:
-            objtype (str): The name of the object type.
-            namespace (str): The name of the namespace to lookup.
-        Returns:
-            Namespace | None: The Namespace object if found, otherwise None.
-        """
-        otype = self.lookup_objtype(objtype)
-
-        if otype is None:
-            return None
-
-        return otype.namespaces.get(namespace, None)
-
-    def lookup_key(self, objtype: str, namespace: str, key: str) -> Key | None:
-        """
-        Lookup a key in the registry by object type, namespace, and key name.
-        Returns None if the key is not found.
-
-        Args:
-            objtype (str): The name of the object type.
-            namespace (str): The name of the namespace.
-            key (str): The key to lookup.
-        Returns:
-            Key | None: The Key object if found, otherwise None.
-        """
-        ns = self.lookup_namespace(objtype, namespace)
-
-        if ns is None:
-            return None
-
-        return ns.keys.get(key, None)
-
-    def lookup_version(
-        self, objtype: str, namespace: str, key: str, version: str
-    ) -> NonValuedVersion | ValuedVersion | None:
-        """
-        Lookup a version in the registry by object type, namespace, key, and version string.
-        Returns None if the version is not found.
-        Args:
-            objtype (str): The name of the object type.
-            namespace (str): The name of the namespace.
-            key (str): The key to lookup.
-            version (str): The version string to lookup.
-        Returns:
-            NonValuedVersion | ValuedVersion | None: The version object if found, otherwise None.
-
-        """
-        key_obj = self.lookup_key(objtype, namespace, key)
-
-        if key_obj is None:
-            return None
-
-        return key_obj.versions.get(version, None)
-
-    def lookup_value(
-        self, objtype: str, namespace: str, key: str, version: str, value_key: str
-    ) -> _KeyedBaseModel | None:
-        """
-        Lookup a value in the registry by object type, namespace, key, version, and value key.
-        Returns None if the value is not found.
-
-        Args:
-            objtype (str): The name of the object type.
-            namespace (str): The name of the namespace.
-            key (str): The key to lookup.
-            version (str): The version string to lookup.
-            value_key (str): The key of the value to lookup.
-        Returns:
-            _KeyedBaseModel | None: The value object if found, otherwise None.
-
-        """
-        version_obj = self.lookup_version(objtype, namespace, key, version)
-
-        if version_obj is None:
-            return None
-
-        if isinstance(version_obj, ValuedVersion):
-            return version_obj.values.get(value_key, None)
-
-        logger.debug(f"Object type '{objtype}' does not support values.")
-        return None
-
-    def lookup(
-        self,
-        objtype: Optional[str] = None,
-        namespace: Optional[str] = None,
-        key: Optional[str] = None,
-        version: Optional[str] = None,
-        value_key: Optional[str] = None,
-    ) -> _GenericSsvcObject | None:
-        """
-        Lookup an object in the registry by type, namespace, key, version, and value key.
-
-        Args:
-            objtype (str): The name of the object type.
-            namespace (str): The name of the namespace.
-            key (str): The key to lookup.
-            version (str): The version string to lookup.
-            value_key (str): The key of the value to lookup.
-        Returns:
-            _GenericSsvcObject | None: The object if found, otherwise None.
-
-        """
-        # everything None just returns the whole registry
-        if all([x is None for x in [objtype, namespace, key, version, value_key]]):
-            return self
-
-        # start at the deepest level and work up
-        if value_key is not None:
-            return self.lookup_value(objtype, namespace, key, version, value_key)
-        if version is not None:
-            return self.lookup_version(objtype, namespace, key, version)
-        if key is not None:
-            return self.lookup_key(objtype, namespace, key)
-        if namespace is not None:
-            return self.lookup_namespace(objtype, namespace)
-        if objtype is not None:
-            return self.lookup_objtype(objtype)
-        logger.debug("No parameters provided for lookup, returning None.")
-        return None
-
-    def lookup_by_id(self, objtype: str, objid: str) -> object | None:
-
-        value_key = None
-        parts = objid.split(":")
-        ns, objid, version = parts[0:3]
-        if len(parts) == 4:
-            value_key = parts[3]
-
-        if value_key is not None:
-            return self.lookup_value(objtype, ns, objid, version, value_key)
-
-        return self.lookup_version(objtype, ns, objid, version)
-
     def register(self, obj: _GenericSsvcObject) -> None:
-        # extract the parts we need to register
+        """
+        Register an object in the SSVC object registry.
+        If the object already exists, it will compare the new object with the existing one.
+        If they differ, it will raise a ValueError.
 
-        objtype = _get_obj_type(obj)
-        ns = str(obj.namespace)  # explicitly cast to string
-        k = obj.key
-        ver = obj.version
+        Args:
+            obj: The object to register.
 
-        # if this object already exists in the registry, see if it matches
-        found = self.lookup(objtype=objtype, namespace=ns, key=k, version=ver)
-        if found is not None:
-            logger.debug(f"Object {obj.id} already registered, skipping registration.")
-            # if this is a different object with the same id, we should throw an error
-            diffs = []
-            should_be_version = False
-            found_obj = found.obj
-            if found_obj.name != obj.name:
-                diffs.append(f"Name mismatch: {found_obj.name} != {obj.name}")
-            else:
-                should_be_version = True
-            if found_obj.description != obj.description:
-                diffs.append(
-                    f"Description mismatch: {found_obj.description} != {obj.description}"
-                )
-            if isinstance(found_obj, _Valued):
-                for a, b in zip(found_obj.values, obj.values):
-                    if a != b:
-                        diffs.append(f"Value mismatch: {a} != {b}")
-            for d in diffs:
-                logger.warning(f"Diff found when registering {obj.id}: {d}")
-
-            if diffs:
-                if should_be_version:
-                    logger.error(
-                        f"Object {obj.id} ({obj.name}) already registered with different attributes. Consider changing the version."
-                    )
-                else:
-                    logger.error(
-                        f"Object {obj.id} already registered with different attributes. "
-                        f"Consider changing the key ({obj.key}) for '{obj.name}' to avoid collision with '{found_obj.name}'."
-                    )
-                raise ValueError(
-                    f"Object {obj.id} already registered with different attributes: {', '.join(diffs)}"
-                )
-            # otherwise, we just return
-            return
-
-        # start at the top of the registry and work down
-        if objtype not in self.types:
-            logger.debug(f"Registering new object type '{objtype}'.")
-            self.types[objtype] = NsType(type=objtype)
-
-        if ns not in self.types[objtype].namespaces:
-            logger.debug(
-                f"Registering new namespace '{ns}' for object type '{objtype}'."
-            )
-            self.types[objtype].namespaces[ns] = Namespace(namespace=ns)
-
-        if k not in self.types[objtype].namespaces[ns].keys:
-            logger.debug(
-                f"Registering new key '{k}' in namespace '{ns}' for object type '{objtype}'."
-            )
-            # versions will be created empty by the Key model
-            self.types[objtype].namespaces[ns].keys[k] = Key(key=k)
-
-        if ver not in self.types[objtype].namespaces[ns].keys[k].versions:
-            logger.debug(
-                f"Registering new version '{ver}' for key '{k}' in namespace '{ns}' of type '{objtype}'."
-            )
-            if isinstance(obj, _Valued):
-                # values will be populated in the ValuedVersion model
-                self.types[objtype].namespaces[ns].keys[k].versions[ver] = (
-                    ValuedVersion(
-                        version=ver,
-                        obj=obj,
-                    )
-                )
-            else:
-                self.types[objtype].namespaces[ns].keys[k].versions[ver] = (
-                    NonValuedVersion(
-                        version=ver,
-                        obj=obj,
-                    )
-                )
+        Returns:
+            None
+        """
+        return register(obj=obj, registry=self)
 
     def reset(self, force: bool = False) -> None:
         """
@@ -400,25 +171,404 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         else:
             logger.warning("Registry not reset. Use force=True to clear it.")
 
-    def get_all(self, objtype: str) -> list[_GenericSsvcObject]:
+    def lookup(
+        self,
+        objtype: Optional[str] = None,
+        namespace: Optional[str] = None,
+        key: Optional[str] = None,
+        version: Optional[str] = None,
+        value_key: Optional[str] = None,
+    ) -> Union[DecisionPoint, DecisionPointValue, DecisionTable, None]:
         """
-        Get all objects of a specific type from the registry.
+        Lookup an object in the registry by type, namespace, key, version, and value key.
 
         Args:
-            objtype (str): The type of objects to retrieve.
+            objtype (str): The name of the object type.
+            namespace (str): The name of the namespace.
+            key (str): The key to lookup.
+            version (str): The version string to lookup.
+            value_key (str): The key of the value to lookup.
 
         Returns:
-            list[_GenericSsvcObject]: A list of objects of the specified type.
+            DecisionPoint | DecisionPointValue | DecisionTable | None: The object if found, otherwise None.
         """
-        otype_ns = self.lookup_objtype(objtype)
-        if otype_ns is None:
-            return []
+        return lookup(
+            objtype=objtype,
+            namespace=namespace,
+            key=key,
+            version=version,
+            value_key=value_key,
+            registry=self,
+        )
 
-        all_objects = []
+    def lookup_by_id(
+        self, objtype: str, objid: str
+    ) -> Union[DecisionPoint, DecisionPointValue, DecisionTable, None]:
+        """
+        Lookup an object by its ID in the registry.
 
-        for ns in otype_ns.namespaces.values():
-            for key in ns.keys.values():
-                for version in key.versions.values():
-                    all_objects.append(version.obj)
+        Args:
+            objtype (str): The type of the object.
+            objid (str): The ID of the object in the format "namespace:key:version[:value_key]".
 
+        Returns:
+            DecisionPoint | DecisionPointValue | DecisionTable | None: The object if found, otherwise None.
+        """
+        return lookup_by_id(objtype=objtype, objid=objid, registry=self)
+
+
+def register(obj: _GenericSsvcObject, registry: SsvcObjectRegistry = None) -> None:
+    """
+    Register an object in the SSVC object registry.
+
+    Args:
+        obj: The object to register.
+        registry: The SsvcObjectRegistry to use. If None, uses the global registry.
+
+    Returns:
+        None
+    """
+    if registry is None:
+        registry = get_registry()
+
+    if not isinstance(obj, _GenericSsvcObject):
+        raise TypeError(f"Object {obj} is not a valid SSVC object.")
+
+    (objtype, ns, k, ver) = _get_keys(obj)
+
+    try:
+        found = registry.types[objtype].namespaces[ns].keys[k].versions[ver]
+    except KeyError:
+        found = None
+
+    if found is None:
+        _insert(new=obj, registry=registry)
+    else:
+        _compare(new=obj, existing=found.obj)
+
+
+def _get_keys(obj: _GenericSsvcObject) -> tuple[str, ...]:
+    objtype = _get_obj_type(obj)
+    ns = str(obj.namespace)  # explicitly cast to string
+    k = obj.key
+    ver = obj.version
+
+    return (objtype, ns, k, ver)
+
+
+def _insert(
+    new: Union[DecisionPoint, DecisionTable], registry=SsvcObjectRegistry
+) -> None:
+
+    (objtype, ns, k, ver) = _get_keys(new)
+
+    try:
+        typesobj = registry.types[objtype]
+    except KeyError:
+        logger.debug(f"Registering new object type '{objtype}'.")
+        typesobj = _NsType(type=objtype)
+        registry.types[objtype] = typesobj
+
+    try:
+        nsobj = typesobj.namespaces[ns]
+    except KeyError:
+        logger.debug(f"Registering new namespace '{ns}' for object type '{objtype}'.")
+        nsobj = _Namespace(namespace=ns)
+        registry.types[objtype].namespaces[ns] = nsobj
+
+    try:
+        keyobj = nsobj.keys[k]
+    except KeyError:
+        logger.debug(
+            f"Registering new key '{k}' in namespace '{ns}' for object type '{objtype}'."
+        )
+        keyobj = _Key(key=k)
+        registry.types[objtype].namespaces[ns].keys[k] = keyobj
+
+    try:
+        keyobj.versions[ver]
+    except KeyError:
+        logger.debug(
+            f"Registering new version '{ver}' for key '{k}' in namespace '{ns}' of type '{objtype}'."
+        )
+
+        # use model_construct to avoid validation overhead and recursion
+        verobj = _Version.model_construct(version=ver, obj=new)
+        registry.types[objtype].namespaces[ns].keys[k].versions[ver] = verobj
+
+
+def _compare(new: _GenericSsvcObject, existing: _GenericSsvcObject) -> None:
+    """
+    Compares two objects and raises an error if they are different.
+
+    Args:
+        new: the new object being registered
+        existing: the existing object in the registry
+
+    Returns:
+        None: if the objects are the same
+
+    Raises:
+        ValueError: if the objects are different
+    """
+    # if this is a different object with the same id, we should throw an error
+    diffs = []
+    should_be_version = False
+
+    if existing.name != new.name:
+        diffs.append(f"Name mismatch: {existing.name} != {new.name}")
+    else:
+        should_be_version = True
+
+    if existing.description != new.description:
+        diffs.append(
+            f"Description mismatch: {existing.description} != {new.description}"
+        )
+
+    if hasattr(existing, "values") and hasattr(new, "values"):
+        if existing.values is None and new.values is not None:
+            diffs.append(
+                f"Existing object {existing.id} has no values, but new object {new.id} has values."
+            )
+        elif existing.values is not None and new.values is None:
+            diffs.append(
+                f"Existing object {existing.id} has values, but new object {new.id} has no values."
+            )
+        elif existing.values is not None and new.values is not None:
+            for a, b in zip(existing.values, new.values):
+                if a != b:
+                    diffs.append(f"Value mismatch: {a} != {b}")
+
+    if diffs:
+        for d in diffs:
+            logger.warning(f"Diff found when registering {new.id}: {d}")
+
+        if should_be_version:
+            logger.error(
+                f"Object {new.id} ({new.name}) already registered with different attributes. Consider changing the version."
+            )
+        else:
+            logger.error(
+                f"Object {new.id} already registered with different attributes. "
+                f"Consider changing the key ({new.key}) for '{new.name}' to avoid collision with '{existing.name}'."
+            )
+        raise ValueError(
+            f"Object {new.id} already registered with different attributes: {', '.join(diffs)}"
+        )
+
+    # if you get here, no problems were found, this is just a benign duplicate
+    logger.debug(
+        f"Object {new.id} already registered with matching attributes. No action taken."
+    )
+
+
+def lookup_by_id(
+    objtype: str, objid: str, registry: SsvcObjectRegistry
+) -> DecisionPoint | DecisionPointValue | DecisionTable | None:
+
+    parts = objid.split(":")
+    args = {}
+    args["objtype"] = objtype
+    args["namespace"] = parts[0]
+    args["key"] = parts[1]
+    args["version"] = parts[2]
+    try:
+        args["value_key"] = parts[3]
+    except IndexError:
+        pass
+
+    if "value_key" in args:
+        return lookup_value(**args, registry=registry)
+
+    # if you got here, we're just looking up a version
+    return lookup_version(**args, registry=registry)
+
+
+def get_all(objtype: str, registry: SsvcObjectRegistry) -> list[_GenericSsvcObject]:
+    """
+    Get all objects of a specific type from the registry.
+
+    Args:
+        objtype (str): The type of objects to retrieve.
+
+    Returns:
+        list[_GenericSsvcObject]: A list of objects of the specified type.
+    """
+
+    all_objects = []
+
+    otype_ns = lookup_objtype(objtype, registry)
+
+    if otype_ns is None:
         return all_objects
+
+    for ns in otype_ns.namespaces.values():
+        for key in ns.keys.values():
+            for version in key.versions.values():
+                all_objects.append(version.obj)
+
+    return all_objects
+
+
+def lookup_objtype(objtype: str, registry: SsvcObjectRegistry) -> _NsType | None:
+    """
+    Lookup an object type in the registry by its name.
+    Returns None if the type is not found.
+
+    Args:
+        objtype (str): The name of the object type to lookup.
+    Returns:
+        _NsType | None: The NsType object if found, otherwise None.
+    """
+    return registry.types.get(objtype, None)
+
+
+def lookup_namespace(
+    objtype: str, namespace: str, registry: SsvcObjectRegistry
+) -> _Namespace | None:
+    """
+    Lookup a namespace in the registry by object type and namespace name.
+    Returns None if the namespace is not found.
+
+    Args:
+        objtype (str): The name of the object type.
+        namespace (str): The name of the namespace to lookup.
+    Returns:
+        _Namespace | None: The Namespace object if found, otherwise None.
+    """
+    otype = lookup_objtype(objtype, registry)
+
+    if otype is None:
+        return None
+
+    return otype.namespaces.get(namespace, None)
+
+
+def lookup_key(
+    objtype: str, namespace: str, key: str, registry: SsvcObjectRegistry
+) -> _Key | None:
+    """
+    Lookup a key in the registry by object type, namespace, and key name.
+    Returns None if the key is not found.
+
+    Args:
+        objtype (str): The name of the object type.
+        namespace (str): The name of the namespace.
+        key (str): The key to lookup.
+    Returns:
+        _Key | None: The Key object if found, otherwise None.
+    """
+    ns = lookup_namespace(objtype, namespace, registry)
+
+    if ns is None:
+        return None
+
+    return ns.keys.get(key, None)
+
+
+def lookup_version(
+    objtype: str, namespace: str, key: str, version: str, registry: SsvcObjectRegistry
+) -> _Version | None:
+    """
+    Lookup a version in the registry by object type, namespace, key, and version string.
+    Returns None if the version is not found.
+    Args:
+        registry: the SsvcObjectRegistry to use for lookup.
+        objtype (str): The name of the object type.
+        namespace (str): The name of the namespace.
+        key (str): The key to lookup.
+        version (str): The version string to lookup.
+    Returns:
+        NonValuedVersion | ValuedVersion | None: The version object if found, otherwise None.
+
+    """
+    key_obj = lookup_key(objtype, namespace, key, registry)
+
+    if key_obj is None:
+        return None
+
+    return key_obj.versions.get(version, None)
+
+
+def lookup_value(
+    objtype: str,
+    namespace: str,
+    key: str,
+    version: str,
+    value_key: str,
+    registry: SsvcObjectRegistry,
+) -> DecisionPointValue | None:
+    """
+    Lookup a value in the registry by object type, namespace, key, version, and value key.
+    Returns None if the value is not found.
+
+    Args:
+        objtype (str): The name of the object type.
+        namespace (str): The name of the namespace.
+        key (str): The key to lookup.
+        version (str): The version string to lookup.
+        value_key (str): The key of the value to lookup.
+    Returns:
+        _KeyedBaseModel | None: The value object if found, otherwise None.
+
+    """
+    version_obj = lookup_version(objtype, namespace, key, version, registry)
+
+    if version_obj is None:
+        return None
+
+    if version_obj.values is not None:
+        return version_obj.values.get(value_key, None)
+
+    logger.debug(f"Object type '{objtype}' does not support values.")
+    return None
+
+
+def lookup(
+    objtype: Optional[str] = None,
+    namespace: Optional[str] = None,
+    key: Optional[str] = None,
+    version: Optional[str] = None,
+    value_key: Optional[str] = None,
+    registry: SsvcObjectRegistry = None,
+) -> DecisionPoint | DecisionPointValue | DecisionTable | None:
+    """
+    Lookup an object in the registry by type, namespace, key, version, and value key.
+
+    Args:
+        objtype (str): The name of the object type.
+        namespace (str): The name of the namespace.
+        key (str): The key to lookup.
+        version (str): The version string to lookup.
+        value_key (str): The key of the value to lookup.
+        registry (SsvcObjectRegistry): The SsvcObjectRegistry to use.
+
+    Returns:
+        DecisionPoint | DecisionPointValue | DecisionTable | None: The object if found, otherwise None.
+
+    Raises:
+        ValueError: If the registry is not provided or if all lookup parameters are None.
+
+    """
+    if registry is None:
+        raise ValueError("Registry must be provided for lookup.")
+
+    # start at the deepest level and work up
+    if value_key is not None:
+        return lookup_value(objtype, namespace, key, version, value_key, registry)
+
+    if version is not None:
+        return lookup_version(objtype, namespace, key, version, registry)
+
+    if key is not None:
+        return lookup_key(objtype, namespace, key, registry)
+
+    if namespace is not None:
+        return lookup_namespace(objtype, namespace, registry)
+
+    if objtype is not None:
+        return lookup_objtype(objtype, registry)
+
+    raise ValueError(
+        "All lookup parameters were None. Please provide at least one parameter to lookup an object."
+    )

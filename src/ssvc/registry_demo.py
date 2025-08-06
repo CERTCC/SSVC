@@ -24,10 +24,12 @@ Demonstrates the SSVC registry and schema.
 
 import logging
 
-from ssvc.registry import REGISTRY, SsvcObjectRegistry
+from ssvc.registry import get_registry
+from ssvc.registry.base import SsvcObjectRegistry
 from ssvc.utils.misc import order_schema
 
 logger = logging.getLogger(__name__)
+
 
 def main():
     # importing the ssvc module forces the registry to be initialized
@@ -39,22 +41,29 @@ def main():
     handler.setLevel(logging.DEBUG)
     logger.addHandler(handler)
 
-    print(REGISTRY.model_dump_json(indent=2))
+    registry = get_registry()
+
+    print(registry.model_dump_json(indent=2))
 
     print()
     print()
     import json
+
     schema = SsvcObjectRegistry.model_json_schema()
     schema = order_schema(schema)
     print(json.dumps(schema, indent=2))
 
-
     print()
     print("# Lookup demo")
-    search_for = {"objtype": "DecisionPoint", "namespace": "ssvc", "key": "EXP",}
+    search_for = {
+        "objtype": "DecisionPoint",
+        "namespace": "ssvc",
+        "key": "EXP",
+    }
 
-    dp = REGISTRY.lookup(**search_for)
+    dp = registry.lookup(**search_for)
     print(dp.model_dump_json(indent=2))
+
 
 if __name__ == "__main__":
     main()

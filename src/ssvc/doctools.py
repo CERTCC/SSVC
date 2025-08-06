@@ -40,13 +40,14 @@ import logging
 import os
 import re
 
+import ssvc.dp_groups.base
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 from ssvc.decision_tables.base import DecisionTable
-from ssvc.registry import REGISTRY
-from ssvc.registry.base import SsvcObjectRegistry
+from ssvc.registry import get_registry
+from ssvc.registry.base import SsvcObjectRegistry, get_all
 from ssvc.selection import SelectionList
 from ssvc.utils.misc import order_schema
 
@@ -318,16 +319,15 @@ def main():
     find_modules_to_import("./src/ssvc/decision_points", "ssvc.decision_points")
     find_modules_to_import("./src/ssvc/outcomes", "ssvc.outcomes")
 
-    # import collections to ensure they are registered too
-    import ssvc.dp_groups.ssvc.collections  # noqa: F401
-    import ssvc.dp_groups.cvss.collections  # noqa: F401
+
+    registry = get_registry()
 
     # for each decision point:
-    for dp in REGISTRY.get_all("DecisionPoint"):
+    for dp in get_all("DecisionPoint", registry=registry):
         dump_decision_point(dp_dir, dp, overwrite)
 
     # for each decision table:
-    for dt in REGISTRY.get_all("DecisionTable"):
+    for dt in get_all("DecisionTable", registry=registry):
         dump_decision_table(dt_dir, dt, overwrite)
 
     # dump the registry
@@ -338,7 +338,7 @@ def main():
         try:
             logger.info(f"Writing {registry_json}")
             with open(registry_json, "x") as f:
-                f.write(REGISTRY.model_dump_json(indent=2))
+                f.write(registry.model_dump_json(indent=2,exclude_none=True))
                 f.write("\n")  # newline at end of file
         except FileExistsError:
             logger.warning(

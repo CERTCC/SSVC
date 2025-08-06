@@ -20,6 +20,7 @@
 import unittest
 
 import ssvc.decision_points.cvss.helpers as h
+from ssvc import get_registry
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 
@@ -57,9 +58,9 @@ def fake_ms_impacts() -> list[CvssDecisionPoint]:
 class TestCvssHelpers(unittest.TestCase):
     def setUp(self) -> None:
         # reset the registry
-        from ssvc.registry import REGISTRY
 
-        REGISTRY.reset()
+        registry = get_registry()
+        registry.reset(force=True)
 
         self.dps = []
         for i in range(3):
