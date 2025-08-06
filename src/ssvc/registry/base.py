@@ -263,7 +263,9 @@ def _get_keys(obj: _RegisterableClass) -> tuple[str, ...]:
     return (objtype, ns, k, ver)
 
 
-def _insert(new: _RegisterableClass, registry=SsvcObjectRegistry) -> None:
+def _insert(new: _RegisterableClass, registry: Optional[SsvcObjectRegistry] = None) -> None:
+    if registry is None:
+        registry = get_registry()
 
     (objtype, ns, k, ver) = _get_keys(new)
 
