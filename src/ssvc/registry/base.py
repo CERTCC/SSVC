@@ -31,7 +31,6 @@ from ssvc._mixins import (
     _GenericSsvcObject,
     _KeyedBaseModel,
     _SchemaVersioned,
-    _Valued,
 )
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
@@ -88,24 +87,28 @@ def _get_obj_type(obj: object) -> str:
     return objtype
 
 
-class _Version(BaseModel):
+class _ValuedVersion(BaseModel):
     version: VersionString
-    obj: _RegisterableClass
-    values: Optional[dict[str, DecisionPointValue]] = Field(
-        default=None,
-        description="A dictionary mapping value keys to DecisionPointValue objects. "
-        "This is optional and may be None for versions of objects that do not support values.",
+    obj: DecisionPoint
+    values: dict[str, DecisionPointValue] = Field(
+        default_factory=dict,
+        description="A dictionary mapping value keys to DecisionPointValue objects.",
     )
 
     def model_post_init(self, __context: Any) -> None:
-        if isinstance(self.obj, _Valued) and self.values is None:
+        if not self.values:
             # if the object is valued, we should set the values dictionary
             self.values = {v.key: v for v in self.obj.values}
 
 
+class _NonValuedVersion(BaseModel):
+    version: VersionString
+    obj: DecisionTable
+
+
 class _Key(BaseModel):
     key: str
-    versions: dict[str, _Version] = Field(
+    versions: dict[str, Union[_NonValuedVersion, _ValuedVersion]] = Field(
         default_factory=dict,
         description="A dictionary mapping version strings to versioned objects.",
     )
@@ -291,8 +294,18 @@ def _insert(new: _RegisterableClass, registry=SsvcObjectRegistry) -> None:
             f"Registering new version '{ver}' for key '{k}' in namespace '{ns}' of type '{objtype}'."
         )
 
-        # use model_construct to avoid validation overhead and recursion
-        verobj = _Version.model_construct(version=ver, obj=new)
+        # use model_construct to create the versioned object
+        # while avoiding recursion issues
+        if isinstance(new, DecisionTable):
+            # if this is a DecisionTable, we use the non-valued version
+            verobj = _NonValuedVersion.model_construct(version=ver, obj=new)
+        elif isinstance(new, DecisionPoint):
+            # if this is a DecisionPoint, we use the valued version
+            verobj = _ValuedVersion.model_construct(version=ver, obj=new)
+        else:
+            raise TypeError(
+                f"Object {new} is not a recognized SSVC object type for registration."
+            )
         registry.types[objtype].namespaces[ns].keys[k].versions[ver] = verobj
 
 
@@ -467,7 +480,7 @@ def lookup_key(
 
 def lookup_version(
     objtype: str, namespace: str, key: str, version: str, registry: SsvcObjectRegistry
-) -> _Version | None:
+) -> _ValuedVersion | _NonValuedVersion | None:
     """
     Lookup a version in the registry by object type, namespace, key, and version string.
     Returns None if the version is not found.

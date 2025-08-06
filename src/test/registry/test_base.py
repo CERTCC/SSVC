@@ -88,13 +88,12 @@ class RegistryTestCase(unittest.TestCase):
         )
         self.assertEqual("DecisionPoint", base._get_obj_type(obj2))
 
-    @unittest.expectedFailure
     def test_version(self):
         # test with a known type
         from ssvc.decision_points.base import DecisionPoint
         from ssvc.decision_points.base import DecisionPointValue
 
-        obj = DecisionPoint(
+        dp = DecisionPoint(
             name="TestDP",
             description="A test decision point",
             namespace="x_test",
@@ -105,11 +104,11 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="B", name="BBB", description="Option B"),
             ],
         )
-        self.assertEqual("DecisionPoint", base._get_obj_type(obj))
 
-        ver = base._Version(version=obj.version, obj=obj)
-        self.assertEqual(obj.version, ver.version)
-        self.assertEqual(obj, ver.obj)
+        ver = base._ValuedVersion(version=dp.version, obj=dp)
+        self.assertEqual(dp.version, ver.version)
+        self.assertEqual(dp, ver.obj)
+        self.assertEqual(2, len(ver.values))
 
 
 if __name__ == "__main__":
