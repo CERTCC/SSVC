@@ -25,7 +25,7 @@ Defines the formatting for SSVC Decision Points.
 import logging
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ssvc._mixins import (
     _Commented,
@@ -79,19 +79,12 @@ class DecisionPoint(
     """
 
     schemaVersion: Literal[SCHEMA_VERSION]
-
-    @model_validator(mode="before")
-    def _set_schema_version(cls, data: dict) -> dict:
-        """
-        Set the schema version to the default if not provided.
-        """
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
-
     values: tuple[DecisionPointValue, ...]
-
     model_config = ConfigDict(revalidate_instances="always")
+    registered: bool = Field(
+        default=True,
+        exclude=True,
+    )
 
     def __str__(self):
         return FIELD_DELIMITER.join([self.namespace, self.key, self.version])
@@ -134,8 +127,18 @@ class DecisionPoint(
         """
         return self.__str__()
 
+    @model_validator(mode="before")
+    def _set_schema_version(cls, data: dict) -> dict:
+        """
+        Set the schema version to the default if not provided.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
+
     def model_post_init(self, context: Any, /) -> None:
-        self._register()
+        if self.registered:
+            self._register()
 
     def _register(self):
         """Register the decision point."""

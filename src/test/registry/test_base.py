@@ -74,6 +74,7 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="A", name="AAA", description="Option A"),
                 DecisionPointValue(key="B", name="BBB", description="Option B"),
             ],
+            registered=False,
         )
         self.assertEqual("DecisionPoint", base._get_obj_type(obj))
 
@@ -90,6 +91,7 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="B", name="BBB", description="Option B"),
                 DecisionPointValue(key="C", name="CCC", description="Option C"),
             ],
+            registered=False,
         )
         self.assertEqual("DecisionPoint", base._get_obj_type(obj2))
 
@@ -108,6 +110,7 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="A", name="AAA", description="Option A"),
                 DecisionPointValue(key="B", name="BBB", description="Option B"),
             ],
+            registered=False,
         )
 
         ver = base._ValuedVersion(version=dp.version, obj=dp)
@@ -134,6 +137,7 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="D", name="DDD", description="Option D"),
                 DecisionPointValue(key="E", name="EEE", description="Option E"),
             ),
+            registered=False,
         )
         dp2 = DecisionPoint(
             namespace="x_test",
@@ -146,6 +150,7 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="B", name="BBB", description="Option B"),
                 DecisionPointValue(key="C", name="CCC", description="Option C"),
             ),
+            registered=False,
         )
 
         dp3 = DecisionPoint(
@@ -158,6 +163,7 @@ class RegistryTestCase(unittest.TestCase):
                 DecisionPointValue(key="A", name="A", description="Outcome A"),
                 DecisionPointValue(key="B", name="B", description="Outcome B"),
             ),
+            registered=False,
         )
 
         dt = DecisionTable(
@@ -226,6 +232,78 @@ class RegistryTestCase(unittest.TestCase):
 
         self.assertIn("1.0.0", keyobj.versions)
         self.assertIn("2.0.0", keyobj.versions)
+
+    def test__insert(self):
+        # test with a known type
+        from ssvc.decision_points.base import DecisionPoint
+        from ssvc.decision_points.base import DecisionPointValue
+
+        dp = DecisionPoint(
+            name="TestDP",
+            description="A test decision point",
+            namespace="x_test",
+            key="TEST",
+            values=[
+                DecisionPointValue(key="A", name="AAA", description="Option A"),
+                DecisionPointValue(key="B", name="BBB", description="Option B"),
+            ],
+            registered=False,
+        )
+
+        self.assertIsNone(
+            base.lookup_by_id(
+                objtype="DecisionPoint", objid=dp.id, registry=self.registry
+            )
+        )
+
+        # insert the object into the registry
+        base._insert(dp, registry=self.registry)
+
+        result = base.lookup_by_id(
+            objtype="DecisionPoint", objid=dp.id, registry=self.registry
+        )
+        self.assertIsNotNone(result)
+        self.assertEqual(dp, result.obj)
+
+    def test__compare(self):
+        # test with a known type
+        from ssvc.decision_points.base import DecisionPoint
+        from ssvc.decision_points.base import DecisionPointValue
+
+        dp1 = DecisionPoint(
+            name="TestDP",
+            description="A test decision point",
+            namespace="x_test",
+            key="TEST",
+            values=[
+                DecisionPointValue(key="A", name="AAA", description="Option A"),
+                DecisionPointValue(key="B", name="BBB", description="Option B"),
+            ],
+            registered=False,
+        )
+
+        dp2 = DecisionPoint(
+            name="TestDP2",
+            description="A test decision point",
+            namespace="x_test",
+            key="TEST",
+            values=[
+                DecisionPointValue(key="AA", name="AAAA", description="Option A"),
+                DecisionPointValue(key="B", name="BBB", description="Option B"),
+            ],
+            registered=False,
+        )
+        main_reg = get_registry()
+        self.assertIsNone(base.lookup_by_id("DecisionPoint", dp1.id, main_reg))
+        self.assertIsNone(base.lookup_by_id("DecisionPoint", dp2.id, main_reg))
+
+        # no diffs
+        result = base._compare(dp1, dp1)
+        self.assertIsNone(result)
+
+        # different values raise ValueError
+        with self.assertRaises(ValueError):
+            base._compare(dp1, dp2)
 
 
 if __name__ == "__main__":
