@@ -43,6 +43,9 @@ logger = logging.getLogger(__name__)
 SCHEMA_VERSION: str = "2.0.0"
 logger.debug(f"Using schema version {SCHEMA_VERSION} for SsvcObjectRegistry.")
 
+# Define the types we can register
+_RegisterableClass = Union[DecisionPoint, DecisionTable]
+
 
 def lookup_type(module: str, type_name: str):
     """
@@ -87,7 +90,7 @@ def _get_obj_type(obj: object) -> str:
 
 class _Version(BaseModel):
     version: VersionString
-    obj: Union[DecisionPoint, DecisionTable]
+    obj: _RegisterableClass
     values: Optional[dict[str, DecisionPointValue]] = Field(
         default=None,
         description="A dictionary mapping value keys to DecisionPointValue objects. "
@@ -98,8 +101,6 @@ class _Version(BaseModel):
         if isinstance(self.obj, _Valued) and self.values is None:
             # if the object is valued, we should set the values dictionary
             self.values = {v.key: v for v in self.obj.values}
-
-        return self
 
 
 class _Key(BaseModel):
@@ -217,7 +218,7 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         return lookup_by_id(objtype=objtype, objid=objid, registry=self)
 
 
-def register(obj: _GenericSsvcObject, registry: SsvcObjectRegistry = None) -> None:
+def register(obj: _RegisterableClass, registry: SsvcObjectRegistry = None) -> None:
     """
     Register an object in the SSVC object registry.
 
@@ -231,8 +232,8 @@ def register(obj: _GenericSsvcObject, registry: SsvcObjectRegistry = None) -> No
     if registry is None:
         registry = get_registry()
 
-    if not isinstance(obj, _GenericSsvcObject):
-        raise TypeError(f"Object {obj} is not a valid SSVC object.")
+    if not isinstance(obj, _RegisterableClass):
+        raise TypeError(f"Object {obj} is not a registerable SSVC object.")
 
     (objtype, ns, k, ver) = _get_keys(obj)
 
@@ -247,7 +248,7 @@ def register(obj: _GenericSsvcObject, registry: SsvcObjectRegistry = None) -> No
         _compare(new=obj, existing=found.obj)
 
 
-def _get_keys(obj: _GenericSsvcObject) -> tuple[str, ...]:
+def _get_keys(obj: _RegisterableClass) -> tuple[str, ...]:
     objtype = _get_obj_type(obj)
     ns = str(obj.namespace)  # explicitly cast to string
     k = obj.key
@@ -256,9 +257,7 @@ def _get_keys(obj: _GenericSsvcObject) -> tuple[str, ...]:
     return (objtype, ns, k, ver)
 
 
-def _insert(
-    new: Union[DecisionPoint, DecisionTable], registry=SsvcObjectRegistry
-) -> None:
+def _insert(new: _RegisterableClass, registry=SsvcObjectRegistry) -> None:
 
     (objtype, ns, k, ver) = _get_keys(new)
 
@@ -297,7 +296,7 @@ def _insert(
         registry.types[objtype].namespaces[ns].keys[k].versions[ver] = verobj
 
 
-def _compare(new: _GenericSsvcObject, existing: _GenericSsvcObject) -> None:
+def _compare(new: _RegisterableClass, existing: _GenericSsvcObject) -> None:
     """
     Compares two objects and raises an error if they are different.
 

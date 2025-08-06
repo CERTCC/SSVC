@@ -20,9 +20,9 @@
 import unittest
 
 import ssvc.decision_points.cvss.helpers as h
-from ssvc import get_registry
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.registry import get_registry
 
 
 def fake_ms_impacts() -> list[CvssDecisionPoint]:
