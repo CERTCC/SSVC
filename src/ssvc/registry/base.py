@@ -239,20 +239,7 @@ def register(obj: _RegisterableClass, registry: SsvcObjectRegistry = None) -> No
     if registry is None:
         registry = get_registry()
 
-    if not isinstance(obj, _Registerable):
-        raise TypeError(f"Object {obj} is not a registerable SSVC object.")
-
-    (objtype, ns, k, ver) = _get_keys(obj)
-
-    try:
-        found = registry.types[objtype].namespaces[ns].keys[k].versions[ver]
-    except KeyError:
-        found = None
-
-    if found is None:
-        _insert(new=obj, registry=registry)
-    else:
-        _compare(new=obj, existing=found.obj)
+    _insert(new=obj, registry=registry)
 
 
 def _get_keys(obj: _RegisterableClass) -> tuple[str, ...]:
@@ -267,37 +254,54 @@ def _get_keys(obj: _RegisterableClass) -> tuple[str, ...]:
 def _insert(
     new: _RegisterableClass, registry: Optional[SsvcObjectRegistry] = None
 ) -> None:
+    """
+    Inserts a new object into the SSVC object registry.
+    If the object is not registerable, it will raise a TypeError.
+    If the object already exists, it will compare the new object with the existing one.
+    If they differ, it will raise a ValueError.
+
+    Args:
+        new:
+        registry:
+
+    Returns:
+
+    """
     if registry is None:
         registry = get_registry()
 
+    if not isinstance(new, _Registerable):
+        raise TypeError(f"Object {new} is not a registerable SSVC object.")
+
     (objtype, ns, k, ver) = _get_keys(new)
 
-    try:
-        typesobj = registry.types[objtype]
-    except KeyError:
+    # check to see if the type is already registered
+    typesobj = registry.types.get(objtype)
+    if typesobj is None:
         logger.debug(f"Registering new object type '{objtype}'.")
         typesobj = _NsType(type=objtype)
         registry.types[objtype] = typesobj
 
-    try:
-        nsobj = typesobj.namespaces[ns]
-    except KeyError:
+    # check to see if the namespace is already registered
+    nsobj = typesobj.namespaces.get(ns)
+    if nsobj is None:
         logger.debug(f"Registering new namespace '{ns}' for object type '{objtype}'.")
         nsobj = _Namespace(namespace=ns)
         registry.types[objtype].namespaces[ns] = nsobj
 
-    try:
-        keyobj = nsobj.keys[k]
-    except KeyError:
+    # check to see if the key is already registered
+    keyobj = nsobj.keys.get(k)
+    if keyobj is None:
         logger.debug(
             f"Registering new key '{k}' in namespace '{ns}' for object type '{objtype}'."
         )
         keyobj = _Key(key=k)
         registry.types[objtype].namespaces[ns].keys[k] = keyobj
 
-    try:
-        keyobj.versions[ver]
-    except KeyError:
+    #
+    verobj = keyobj.versions.get(ver)
+    if verobj is None:
+        # if we got here, we need to register the new version
         logger.debug(
             f"Registering new version '{ver}' for key '{k}' in namespace '{ns}' of type '{objtype}'."
         )
@@ -314,10 +318,15 @@ def _insert(
             raise TypeError(
                 f"Object {new} is not a recognized SSVC object type for registration."
             )
-        registry.types[objtype].namespaces[ns].keys[k].versions[ver] = verobj
+        keyobj.versions[ver] = verobj
+    else:
+        # if we got here, the version already exists, which is odd, but often benign
+        logger.debug(f"Object {new.id} already registered with version {ver}.")
+        # we should do a comparison to ensure it matches
+        _compare(new=new, existing=verobj.obj)
 
 
-def _compare(new: _RegisterableClass, existing: _GenericSsvcObject) -> None:
+def _compare(new: _RegisterableClass, existing: _RegisterableClass) -> None:
     """
     Compares two objects and raises an error if they are different.
 
