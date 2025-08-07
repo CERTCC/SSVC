@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-file: deployer_dt
-author: vss
-created_at: 8/5/25 1:57 PM
+Provides the Deployer Patch Application Priority decision table for SSVC.
 """
 
 #  Copyright (c) 2025 Carnegie Mellon University.
@@ -24,15 +22,13 @@ created_at: 8/5/25 1:57 PM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc.human_impact import LATEST as HumanImpact
 from ssvc.decision_points.ssvc.automatable import LATEST as Automatable
-from ssvc.decision_points.ssvc.system_exposure import LATEST as Exposure
 from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
-from ssvc.outcomes.ssvc.dsoi import LATEST as DSOI
-
+from ssvc.decision_points.ssvc.human_impact import LATEST as HumanImpact
+from ssvc.decision_points.ssvc.system_exposure import LATEST as Exposure
 from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
 from ssvc.namespaces import NameSpace
-
+from ssvc.outcomes.ssvc.dsoi import LATEST as DSOI
 
 DEPLOYER_1 = DecisionTable(
     namespace=NameSpace.SSVC,
@@ -41,516 +37,515 @@ DEPLOYER_1 = DecisionTable(
     name="Deployer Patch Application Priority",
     description="Decision table for evaluating deployer's patch application priority in SSVC",
     decision_points={
-        dp.id: dp
-        for dp in [Exploitation,Exposure,Automatable,HumanImpact,DSOI]
+        dp.id: dp for dp in [Exploitation, Exposure, Automatable, HumanImpact, DSOI]
     },
     outcome=DSOI.id,
     mapping=[
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "N",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "D"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "P",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "S",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "C",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "S"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "N",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "I"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "L",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "M",
-      "ssvc:DSOI:1.0.0": "O"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "H",
-      "ssvc:DSOI:1.0.0": "I"
-    },
-    {
-      "ssvc:E:1.1.0": "A",
-      "ssvc:EXP:1.0.1": "O",
-      "ssvc:A:2.0.0": "Y",
-      "ssvc:HI:2.0.1": "VH",
-      "ssvc:DSOI:1.0.0": "I"
-    }
-]
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "D",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "S",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "C",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "S",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "I",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "L",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "M",
+            "ssvc:DSOI:1.0.0": "O",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "H",
+            "ssvc:DSOI:1.0.0": "I",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:EXP:1.0.1": "O",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:HI:2.0.1": "VH",
+            "ssvc:DSOI:1.0.0": "I",
+        },
+    ],
 )
 
 VERSIONS = (DEPLOYER_1,)
