@@ -21,14 +21,21 @@ import unittest
 
 import ssvc.decision_points.base as base
 import ssvc.decision_points.ssvc.base
+import ssvc.registry
+from ssvc.decision_points.base import FIELD_DELIMITER
+from ssvc.registry import get_registry
+from ssvc.registry.base import _get_keys, get_all
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        base.DP_REGISTRY.reset_registry()
-        base.DPV_REGISTRY.reset_registry()
+        self.registry = get_registry()
+        self.assertIsNotNone(self.registry)
 
-        self.original_registry = base.REGISTERED_DECISION_POINTS.copy()
+        self.original_registry = list(get_all("DecisionPoint", self.registry))
+
+        # reset the registry
+        self.registry.reset()
 
         # add multiple values
         self.values = []
@@ -44,13 +51,13 @@ class MyTestCase(unittest.TestCase):
             key="bar",
             description="baz",
             version="1.0.0",
-            namespace="x_test",
+            namespace="x_example.test",
             values=tuple(self.values),
         )
 
     def tearDown(self) -> None:
         # restore the original registry
-        base._reset_registered()
+        self.registry.reset()
 
     def test_decision_point_basics(self):
         from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
@@ -62,82 +69,25 @@ class MyTestCase(unittest.TestCase):
 
     def test_registry(self):
         # just by creating the objects, they should be registered
-        self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
+        self.registry.reset(force=True)
 
-        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
-            name="asdfad",
-            key="asdfasdf",
-            description="asdfasdf",
-            version="1.33.1",
-            namespace="asdfasdf",
-            values=tuple(self.values),
-        )
-        self.assertIn(dp2, base.REGISTERED_DECISION_POINTS)
+        # registry should be empty
+        self.assertIsNone(self.registry.types.get("DecisionPoint"))
 
-    def test_registry_errors_on_duplicate_key(self):
-        # dp should already be registered from setUp
-        self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
-
-        # create a new decision point with the same key
-        with self.assertRaises(KeyError):
-            # the registry key is a combination of namespace, key, and version
-
-            dp2 = ssvc.decision_points.ssvc.base.DecisionPoint(
-                name="asdfad",
-                description="asdfasdf",
-                namespace=self.dp.namespace,
-                key=self.dp.key,  # same key as self.dp
-                version=self.dp.version,  # same version as self.dp
-                values=tuple(self.values),
-            )
-
-        # should not be a problem if namespace, key or version are different
-        dp3 = ssvc.decision_points.ssvc.base.DecisionPoint(
-            name="asdfad",
-            description="asdfasdf",
-            namespace="x_test-extra",  # different namespace
-            key=self.dp.key,  # same key
-            version=self.dp.version,  # same version
-            values=tuple(self.values),
-        )
-        self.assertIn(dp3, base.REGISTERED_DECISION_POINTS)
-        # should not be a problem if key is different
-        dp4 = ssvc.decision_points.ssvc.base.DecisionPoint(
-            name="asdfad",
-            description="asdfasdf",
-            namespace=self.dp.namespace,  # same namespace
-            key="different_key",  # different key
-            version=self.dp.version,  # same version
-            values=tuple(self.values),
-        )
-        self.assertIn(dp4, base.REGISTERED_DECISION_POINTS)
-        # should not be a problem if version is different
-        dp5 = ssvc.decision_points.ssvc.base.DecisionPoint(
-            name="asdfad",
-            description="asdfasdf",
-            namespace=self.dp.namespace,  # same namespace
-            key=self.dp.key,  # same key
-            version="2.0.0",  # different version
-            values=tuple(self.values),
-        )
-        self.assertIn(dp5, base.REGISTERED_DECISION_POINTS)
-
-    def test_registry(self):
-        # just by creating the objects, they should be registered
-        self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
-
-        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
-            name="asdfad",
+        dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+            name="testdp",
             key="asdfasdf",
             description="asdfasdf",
             version="1.33.1",
             namespace="x_test",
-            values=self.values,
+            values=tuple(self.values),
         )
 
-        dp2._comment = "asdfasdfasdf"
-
-        self.assertIn(dp2, base.REGISTERED_DECISION_POINTS)
+        (objtype, ns, key, version) = _get_keys(dp)
+        self.assertEqual(
+            dp,
+            self.registry.types[objtype].namespaces[ns].keys[key].versions[version].obj,
+        )
 
     def test_ssvc_value(self):
         for i, obj in enumerate(self.values):
@@ -157,7 +107,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj.key, "bar")
         self.assertEqual(obj.description, "baz")
         self.assertEqual(obj.version, "1.0.0")
-        self.assertEqual(obj.namespace, "x_test")
+        self.assertEqual(obj.namespace, "x_example.test")
         self.assertEqual(len(self.values), len(obj.values))
 
     def test_ssvc_value_json_roundtrip(self):
@@ -184,70 +134,35 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj, obj2)
         self.assertEqual(obj.model_dump(), obj2.model_dump())
 
-    def test_value_summaries_dict(self):
+    def test_value_dict(self):
         obj = self.dp
-        summaries = obj.value_summaries_dict
 
-        # should be a dictionary
-        self.assertIsInstance(summaries, dict)
-        self.assertEqual(len(summaries), len(obj.values))
+        value_dict = obj.value_dict
 
-        # the summaries dict should have str(ValueSummary) as the key
-        # and the ValueSummary as the value
-        for key, summary in summaries.items():
-            # confirm the key is the string representation of the ValueSummary
-            self.assertEqual(key, str(summary))
+        self.assertIsInstance(value_dict, dict)
+        self.assertEqual(len(value_dict), len(obj.values))
 
-            # confirm the attributes of the ValueSummary
-            # key, version, and namespace come from the decision point
-            self.assertEqual(summary.key, obj.key)
-            self.assertEqual(summary.version, obj.version)
-            self.assertEqual(summary.namespace, obj.namespace)
-            # value comes from the list of values, and should be a key to one of the values
-            value_keys = [v.key for v in obj.values]
-            self.assertIn(summary.value, value_keys)
-
-    def test_value_summaries_str(self):
-        obj = self.dp
-        summaries = obj.value_summaries_str
-
-        # should be a list
-        self.assertIsInstance(summaries, list)
-        self.assertEqual(len(summaries), len(obj.values))
-
-        # the summaries list should have str(ValueSummary) as the key
-        for key in summaries:
-            # confirm the key is the string representation of the ValueSummary
-            self.assertIsInstance(key, str)
-
-            # parse the key into its parts
-            (ns, k, v, val) = key.split(":")
-            # ns, k, v should come from the decision point
-            self.assertEqual(ns, obj.namespace)
-            self.assertEqual(k, obj.key)
-            self.assertEqual(v, obj.version)
-            # val should be a key to one of the values
-            value_keys = [v.key for v in obj.values]
-            self.assertIn(val, value_keys)
+        # the value_dict should have the dp.id:v.key as the key
+        # and the DecisionPointValue as the value
+        for value in obj.values:
+            expected_key = FIELD_DELIMITER.join((obj.id, value.key))
+            self.assertIn(expected_key, value_dict)
+            self.assertEqual(value_dict[expected_key], value)
 
     def test_value_summaries(self):
         obj = self.dp
+        # summaries are just the keys of the value_dict
         summaries = obj.value_summaries
 
         # should be a list
         self.assertIsInstance(summaries, list)
         self.assertEqual(len(summaries), len(obj.values))
 
-        # the summaries list should be ValueSummary objects
         for summary in summaries:
-            self.assertIsInstance(summary, base.ValueSummary)
-            # key, version, and namespace come from the decision point
-            self.assertEqual(summary.key, obj.key)
-            self.assertEqual(summary.version, obj.version)
-            self.assertEqual(summary.namespace, obj.namespace)
-            # value comes from the list of values, and should be a key to one of the values
-            value_keys = [v.key for v in obj.values]
-            self.assertIn(summary.value, value_keys)
+            # each summary should be a string
+            self.assertIsInstance(summary, str)
+            # each summary should be the key of a value
+            self.assertIn(summary, obj.value_dict)
 
 
 if __name__ == "__main__":

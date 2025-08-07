@@ -1,10 +1,10 @@
 {
+  "namespace": "ssvc",
+  "key": "RP",
+  "version": "1.0.0",
   "name": "Report Public",
   "description": "Is a viable report of the details of the vulnerability already publicly available?",
-  "namespace": "ssvc",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "RP",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "Y",

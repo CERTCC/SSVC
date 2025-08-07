@@ -96,7 +96,9 @@ def _modify_4(dp: DecisionPoint):
                 v["name"] = "Negligible"
                 v["description"] = v["description"].replace(" no ", " negligible ")
                 # we need to bump the version for this change
-                _dp_dict["version"] = semver.bump_patch(_dp_dict["version"])
+                version = _dp_dict["version"]
+                ver = semver.Version.parse(version)
+                _dp_dict["version"] = str(semver.Version.bump_patch(ver))
                 break
 
     # Note: For MSI, There is also a highest severity level, Safety (S), in addition to the same values as the

@@ -16,6 +16,8 @@ test:
 	pytest -v src/test
 
 docker_test:
+	@echo "Building the latest test image..."
+	pushd $(DOCKER_DIR) && docker-compose build test
 	@echo "Running tests in Docker..."
 	pushd $(DOCKER_DIR) && docker-compose run --rm test
 

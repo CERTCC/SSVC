@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "MPR",
+  "version": "1.0.0",
   "name": "Modified Privileges Required",
   "description": "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.",
-  "namespace": "cvss",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "MPR",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "H",
