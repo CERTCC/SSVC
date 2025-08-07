@@ -23,16 +23,19 @@ import ssvc.decision_points.base as base
 import ssvc.decision_points.ssvc.base
 import ssvc.registry
 from ssvc.decision_points.base import FIELD_DELIMITER
+from ssvc.registry import get_registry
+from ssvc.registry.base import _get_keys, get_all
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        from ssvc.registry import REGISTRY
+        self.registry = get_registry()
+        self.assertIsNotNone(self.registry)
 
-        self.original_registry = list(REGISTRY.get_all("DecisionPoint"))
+        self.original_registry = list(get_all("DecisionPoint", self.registry))
 
         # reset the registry
-        REGISTRY.reset()
+        self.registry.reset()
 
         # add multiple values
         self.values = []
@@ -54,9 +57,7 @@ class MyTestCase(unittest.TestCase):
 
     def tearDown(self) -> None:
         # restore the original registry
-        from ssvc.registry import REGISTRY
-
-        REGISTRY.reset()
+        self.registry.reset()
 
     def test_decision_point_basics(self):
         from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
@@ -68,36 +69,25 @@ class MyTestCase(unittest.TestCase):
 
     def test_registry(self):
         # just by creating the objects, they should be registered
-        self.assertIn(self.dp, base.REGISTERED_DECISION_POINTS)
+        self.registry.reset(force=True)
 
-        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
-            name="asdfad",
+        # registry should be empty
+        self.assertIsNone(self.registry.types.get("DecisionPoint"))
+
+        dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
+            name="testdp",
             key="asdfasdf",
             description="asdfasdf",
             version="1.33.1",
-            namespace="asdfasdf",
+            namespace="x_test",
             values=tuple(self.values),
         )
-        self.assertIn(dp2, base.REGISTERED_DECISION_POINTS)
 
-    def test_registry(self):
-        from ssvc.registry import REGISTRY
-
-        # just by creating the objects, they should be registered
-        self.assertIsNotNone(REGISTRY.lookup_by_id("DecisionPoint", self.dp.id))
-
-        dp2 = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
-            name="asdfad",
-            key="asdfasdf",
-            description="asdfasdf",
-            version="1.33.1",
-            namespace="x_example.test",
-            values=self.values,
+        (objtype, ns, key, version) = _get_keys(dp)
+        self.assertEqual(
+            dp,
+            self.registry.types[objtype].namespaces[ns].keys[key].versions[version].obj,
         )
-
-        dp2._comment = "asdfasdfasdf"
-
-        self.assertIsNotNone(REGISTRY.lookup_by_id("DecisionPoint", dp2.id))
 
     def test_ssvc_value(self):
         for i, obj in enumerate(self.values):

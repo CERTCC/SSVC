@@ -23,12 +23,13 @@ This module provides mixin classes for adding features to SSVC objects.
 #  DM24-0278
 
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Any, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from semver import Version
 
 from ssvc.namespaces import NameSpace
+from ssvc.registry.events import notify_registration
 from ssvc.utils.defaults import DEFAULT_VERSION, SCHEMA_VERSION
 from ssvc.utils.field_specs import NamespaceString, VersionString
 
@@ -196,6 +197,25 @@ class _GenericSsvcObject(_Base, _Versioned, _Keyed, _Namespaced, BaseModel):
     """
 
     pass
+
+
+class _Registered(BaseModel):
+    registered: bool = Field(
+        default=True, exclude=True, json_schema_extra={"exclude": True}
+    )
+
+    model_config = ConfigDict(json_schema_mode_override="serialization")
+
+    def model_post_init(self, __context: Any, /) -> None:
+        if hasattr(super(), "model_post_init"):
+            super().model_post_init(__context)
+
+        if self.registered:
+            self._register()
+
+    def _register(self) -> None:
+        """Register the object."""
+        notify_registration(self)
 
 
 def main():

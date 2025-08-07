@@ -28,9 +28,9 @@ from typing import ClassVar, Literal
 import pandas as pd
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from ssvc._mixins import _Commented, _GenericSsvcObject, _SchemaVersioned
+from ssvc._mixins import _Commented, _GenericSsvcObject, _Registered, _SchemaVersioned
 from ssvc.decision_points.base import DecisionPoint
-from ssvc.registry.events import notify_registration
+from ssvc.registry import get_registry
 from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
 from ssvc.utils.toposort import dplist_to_toposort
@@ -72,7 +72,7 @@ SCHEMA_VERSION: str = "2.0.0"
 
 
 class DecisionTable(
-    _SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel
+    _Registered, _SchemaVersioned, _GenericSsvcObject, _Commented, BaseModel
 ):
     """
     DecisionTable: A flexible, serializable SSVC decision table model.
@@ -83,6 +83,7 @@ class DecisionTable(
 
     Attributes:
     """
+
     key_prefix: ClassVar[str] = "DT"
 
     schemaVersion: Literal[SCHEMA_VERSION]
@@ -108,6 +109,10 @@ class DecisionTable(
     @field_validator("key", mode="before")
     @classmethod
     def validate_key(cls, value: str) -> str:
+        if value.startswith(f"{cls.key_prefix}_"):
+            return value
+
+        # prepend the key prefix if it is not already present
         key = f"{cls.key_prefix}_{value}"
         return key
 
@@ -236,13 +241,6 @@ class DecisionTable(
             )
 
         return self
-
-    @model_validator(mode="after")
-    def _register(self):
-        """Register the decision point table."""
-        notify_registration(self)
-        return self
-
 
     def obfuscate(self) -> "DecisionTable":
         """
@@ -411,12 +409,12 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
 
         """
         # late-binding import to avoid circular import issues
-        from ssvc.registry import REGISTRY
+        registry = get_registry()
 
         ns, dp_key, version = col.split(":")
 
         return (
-            REGISTRY.lookup_version(
+            registry.lookup(
                 objtype="DecisionPoint",
                 namespace=ns,
                 key=dp_key,
@@ -463,7 +461,7 @@ def _replace_value_keys(value_key: str, dp_id: str) -> str:
     key = f"{dp_id}:{value_key}"
 
     objtype = "DecisionPoint"
-    from ssvc.registry import REGISTRY
+    REGISTRY = get_registry()
 
     newval = REGISTRY.lookup_by_id(objtype, key)
 
@@ -479,10 +477,10 @@ def _rename_column(col: str) -> str:
     Returns:
         str: The renamed column.
     """
-    from ssvc.registry import REGISTRY
+    registry = get_registry()
 
     # col should be in the format "namespace:dp_key:version"
-    dp = REGISTRY.lookup_by_id(objtype="DecisionPoint", objid=col)
+    dp = registry.lookup_by_id(objtype="DecisionPoint", objid=col)
 
     if dp is None:
         raise KeyError(f"Column {col} not found in DP_REGISTRY.")

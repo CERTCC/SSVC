@@ -34,7 +34,8 @@ from ssvc.decision_points.ssvc.high_value_asset import HIGH_VALUE_ASSET_1  # noq
 
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
-from ssvc.registry import REGISTRY
+from ssvc.registry import get_registry
+from ssvc.registry.base import get_all
 
 
 def retrieve_local(uri: str) -> Resource:
@@ -55,9 +56,7 @@ def retrieve_local(uri: str) -> Resource:
     return Resource.from_contents(schema)
 
 
-registry = Registry(retrieve=retrieve_local)
-
-REGISTERED_DECISION_POINTS = REGISTRY.get_all("DecisionPoint")
+_schema_registry = Registry(retrieve=retrieve_local)
 
 
 class MyTestCase(unittest.TestCase):
@@ -68,10 +67,8 @@ class MyTestCase(unittest.TestCase):
         logger.addHandler(hdlr)
         self.logger = logger
 
-        from ssvc.registry import REGISTRY
-
-        self.registry = REGISTRY
-        self.registered_dps = list(self.registry.get_all("DecisionPoint"))
+        self.registry = get_registry()
+        self.registered_dps = list(get_all("DecisionPoint", registry=self.registry))
 
         my_file_path = os.path.abspath(__file__)
         my_dir = os.path.dirname(my_file_path)
@@ -81,7 +78,6 @@ class MyTestCase(unittest.TestCase):
     def test_confirm_registered_decision_points(self):
         self.assertGreater(len(self.registered_dps), 0, "No decision points registered")
 
-    # @unittest.expectedFailure
     def test_decision_point_validation(self):
         schema_path = os.path.join(self.schema_dir, "Decision_Point-2-0-0.schema.json")
         schema_path = os.path.abspath(schema_path)
@@ -95,7 +91,7 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator(schema, registry=registry).validate(loaded)
+                Draft202012Validator(schema, registry=_schema_registry).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
@@ -119,7 +115,7 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator(schema, registry=registry).validate(loaded)
+                Draft202012Validator(schema, registry=_schema_registry).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
