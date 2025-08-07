@@ -55,11 +55,18 @@ SCHEMA_ORDER = (
 """Preferred order of fields in SSVC JSON Schema objects."""
 
 
+SCHEMA_VERSION = "2.0.0"
+IMPORTABLES = [
+    "ssvc.decision_points",
+    "ssvc.outcomes",
+    "ssvc.decision_tables",
+    "ssvc.dp_groups",
+]
+
+
 def main():
     pass
 
 
 if __name__ == "__main__":
     main()
-SCHEMA_VERSION = "1-0-1"
-IMPORTABLES = ["ssvc.decision_points", "ssvc.outcomes", "ssvc.decision_tables"]

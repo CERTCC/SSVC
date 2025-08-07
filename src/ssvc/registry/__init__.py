@@ -23,38 +23,51 @@ Provides an object registry for SSVC.
 
 import logging
 
-from ssvc.registry.base import SsvcObjectRegistry
 from ssvc.registry.events import add_registration_hook
 
 logger = logging.getLogger(__name__)
 
 # create an empty registry
-REGISTRY = SsvcObjectRegistry(
-    name="SSVC Object Registry",
-    description="A registry for SSVC objects organized by type, namespace, key, and version.",
-)
+_REGISTRY = None
+
+
+def get_registry() -> "SsvcObjectRegistry":
+    """Create and return a new SSVC object registry."""
+    from ssvc.registry.base import SsvcObjectRegistry
+
+    global _REGISTRY
+
+    if _REGISTRY is None:
+        _REGISTRY = SsvcObjectRegistry(
+            name="SSVC Object Registry",
+            description="A registry for SSVC objects organized by type, namespace, key, and version.",
+        )
+
+    return _REGISTRY
 
 
 def _handle_registration(obj):
     """Handle object registration with type checking."""
+    registry = get_registry()
+
     # Import here to avoid circular imports
     try:
         from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
         from ssvc.decision_tables.base import DecisionTable
 
-        logger.debug(f"Handling registration for {obj.id} of type {type(obj)}")
         if isinstance(obj, (DecisionPoint, DecisionPointValue, DecisionTable)):
-            REGISTRY.register(obj)
+            registry.register(obj)
+            logger.debug("Registered object %s of type %s", obj.id, type(obj).__name__)
         else:
             logger.warning(
-                f"Object {obj.id} is not a recognized SSVC decision point type: {type(obj)}"
+                f"Object {obj.id} is not a recognized SSVC type: {type(obj)}"
             )
-            raise TypeError(f"Object {obj.id} is not a valid SSVC decision point type.")
+            raise TypeError(f"Object {obj.id} is not a valid SSVC type.")
 
     except ImportError:
         # Fallback registration without type checking
         logger.debug(f"Handling registration for {obj.id} of type {type(obj)}")
-        REGISTRY.register(obj)
+        registry.register(obj)
 
 
 # Set up the hook

@@ -31,10 +31,10 @@ from ssvc._mixins import (
     _Commented,
     _GenericSsvcObject,
     _KeyedBaseModel,
+    _Registered,
     _SchemaVersioned,
     _Valued,
 )
-from ssvc.registry.events import notify_registration
 from ssvc.utils.defaults import FIELD_DELIMITER
 
 logger = logging.getLogger(__name__)
@@ -59,6 +59,7 @@ class DecisionPointValue(_Commented, _KeyedBaseModel, BaseModel):
 
 
 class DecisionPoint(
+    _Registered,
     _Valued,
     _SchemaVersioned,
     _GenericSsvcObject,
@@ -79,18 +80,7 @@ class DecisionPoint(
     """
 
     schemaVersion: Literal[SCHEMA_VERSION]
-
-    @model_validator(mode="before")
-    def _set_schema_version(cls, data: dict) -> dict:
-        """
-        Set the schema version to the default if not provided.
-        """
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
-
     values: tuple[DecisionPointValue, ...]
-
     model_config = ConfigDict(revalidate_instances="always")
 
     def __str__(self):
@@ -134,11 +124,14 @@ class DecisionPoint(
         """
         return self.__str__()
 
-    @model_validator(mode="after")
-    def _register(self):
-        """Register the decision point."""
-        notify_registration(self)
-        return self
+    @model_validator(mode="before")
+    def _set_schema_version(cls, data: dict) -> dict:
+        """
+        Set the schema version to the default if not provided.
+        """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
 
     @property
     def value_summaries(self) -> list[str]:
