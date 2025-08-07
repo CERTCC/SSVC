@@ -1,5 +1,3 @@
-CISA Coordinator Decision Table (2.0.3)
-
 {
   "namespace": "cisa",
   "key": "DT_CO",
@@ -390,43 +388,3 @@ CISA Coordinator Decision Table (2.0.3)
     }
   ]
 }
-Longform DataFrame CSV
-
-Exploitation v1.1.0,Automatable v2.0.0,Technical Impact v1.0.0,Human Impact v2.0.1,CISA Levels v1.0.0 (cisa)
-none,no,partial,low,track
-none,no,partial,medium,track
-none,no,partial,high,track
-none,no,total,low,track
-none,no,total,medium,track
-none,no,total,high,track*
-none,yes,partial,low,track
-none,yes,partial,medium,track
-none,yes,partial,high,act
-none,yes,total,low,track
-none,yes,total,medium,track
-none,yes,total,high,act
-public poc,no,partial,low,track
-public poc,no,partial,medium,track
-public poc,no,partial,high,track*
-public poc,no,total,low,track
-public poc,no,total,medium,track*
-public poc,no,total,high,act
-public poc,yes,partial,low,track
-public poc,yes,partial,medium,track
-public poc,yes,partial,high,act
-public poc,yes,total,low,track
-public poc,yes,total,medium,track*
-public poc,yes,total,high,act
-active,no,partial,low,track
-active,no,partial,medium,track
-active,no,partial,high,act
-active,no,total,low,track
-active,no,total,medium,act
-active,no,total,high,act
-active,yes,partial,low,act
-active,yes,partial,medium,act
-active,yes,partial,high,act
-active,yes,total,low,act
-active,yes,total,medium,act
-active,yes,total,high,act
-
