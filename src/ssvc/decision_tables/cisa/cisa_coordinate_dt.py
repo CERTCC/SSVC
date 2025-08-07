@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-file: cisa_coordinate_dt
-author: vss
-created_at: 8/5/25 2:57 PM
+Provides the CISA coordinator decision table.
 """
 
 #  Copyright (c) 2025 Carnegie Mellon University.
@@ -24,30 +22,279 @@ created_at: 8/5/25 2:57 PM
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc.human_impact import LATEST as HumanImpact
 from ssvc.decision_points.ssvc.automatable import LATEST as Automatable
-from ssvc.decision_points.ssvc.technical_impact import LATEST as TechnicalImpact
 from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
-from ssvc.outcomes.cisa.scoring import CISA as Priority
-
+from ssvc.decision_points.ssvc.human_impact import LATEST as HumanImpact
+from ssvc.decision_points.ssvc.technical_impact import LATEST as TechnicalImpact
 from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
 from ssvc.namespaces import NameSpace
-
+from ssvc.outcomes.cisa.scoring import CISA as Priority
 
 CISA_COORDINATE_1 = DecisionTable(
     namespace=NameSpace.CISA,
     key="CO",
     version="2.0.3",
-    name = "CISA Coordinator (2.0.3)",
-    description = "CISA Coordinator decision table for SSVC",
-    outcome = Priority.id,
+    name="CISA Coordinator",
+    description="CISA Coordinator decision table for SSVC",
+    outcome=Priority.id,
     decision_points={
         dp.id: dp
-        for dp in [Exploitation,Automatable,TechnicalImpact,HumanImpact,Priority]
+        for dp in [Exploitation, Automatable, TechnicalImpact, HumanImpact, Priority]
     },
     mapping=[
-        {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'T*'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'N', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'T*'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T*'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T*'}, {'ssvc:E:1.1.0': 'P', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'T'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'N', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'P', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'L', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'M', 'cisa:CISA:1.0.0': 'A'}, {'ssvc:E:1.1.0': 'A', 'ssvc:A:2.0.0': 'Y', 'ssvc:TI:1.0.0': 'T', 'ssvc:HI:2.0.1': 'H', 'cisa:CISA:1.0.0': 'A'}
-    ]
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "T*",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "N",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "T*",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T*",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T*",
+        },
+        {
+            "ssvc:E:1.1.0": "P",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "T",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "N",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "P",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "L",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "M",
+            "cisa:CISA:1.0.0": "A",
+        },
+        {
+            "ssvc:E:1.1.0": "A",
+            "ssvc:A:2.0.0": "Y",
+            "ssvc:TI:1.0.0": "T",
+            "ssvc:HI:2.0.1": "H",
+            "cisa:CISA:1.0.0": "A",
+        },
+    ],
 )
 
 VERSIONS = (CISA_COORDINATE_1,)
