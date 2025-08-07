@@ -73,7 +73,7 @@ height = "700" />
 *Exploitation* refers to how much evidence currently exists that the vulnerability is being exploited. This value is mutable because new evidence of exploit can arise at any time.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.exploitation import LATEST
+from ssvc.decision_points.ssvc.exploitation import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -90,7 +90,7 @@ print(example_block(LATEST, include_json=False))
 We define the following combinations to determine *Utility* values:
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.utility import LATEST
+from ssvc.decision_points.ssvc.utility import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -107,7 +107,7 @@ print(example_block(LATEST, include_json=False))
 If the answer is 'no' to all of the above questions, then the attack is presumed to gain *Partial* control of the system. Examples of *Partial* control include denial of service and memory address information leaks.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.technical_impact import LATEST
+from ssvc.decision_points.ssvc.technical_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -118,7 +118,7 @@ print(example_block(LATEST, include_json=False))
 *Public Safety Impact* is a reduction of the more expansive *Safety Impact* decision point to *Signficant* or *Minimal*. If the highest category of *Safety Impact* is Marginal, Critical, or Catastrophic, then the *Public Safety Impact* is *Significant*. If no types of harm are more severe than Neglible, then the *Public Safety Impact* is *Minimal*.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.public_safety_impact import LATEST
+from ssvc.decision_points.ssvc.public_safety_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -129,7 +129,7 @@ print(example_block(LATEST, include_json=False))
 *Safety Impact*
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.safety_impact import LATEST
+from ssvc.decision_points.ssvc.safety_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -158,7 +158,7 @@ If a system is not 'Open', we suggest the following questions to guide your deci
 - If the vulnerable component is in a third party library that is unreachable because the feature is unused in the surrounding product, choose *small*.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.system_exposure import LATEST
+from ssvc.decision_points.ssvc.system_exposure import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -178,7 +178,7 @@ For easy reference, the information on *Safety Impact* is again provided here:
 *Safety Impact* is expansive to include impacts of physical harm, operator resiliency, system resiliency, environment, financial, and psychological harm. We used IEC 61508 to guide determinations of Negligible, Marginal, Critical, and Catastrophic impact on the aforementioned types of harm. Only one type of harm needs to qualify per category. Use the highest qualifying category to determine safety impact.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.safety_impact import LATEST
+from ssvc.decision_points.ssvc.safety_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -187,7 +187,7 @@ print(example_block(LATEST, include_json=False))
 *Mission Impact* is the impact on the Mission Essential Functions of the organization. A **mission essential function (MEF)** is a function “directly related to accomplishing the organization’s mission as set forth in its statutory or executive charter” [@FCD2_2017, page A-1].
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.mission_impact import LATEST
+from ssvc.decision_points.ssvc.mission_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))
@@ -196,7 +196,7 @@ print(example_block(LATEST, include_json=False))
 We define the following combinations of *Safety Impact* and *Mission Impact* values to determine *Human Impact* values:
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.human_impact import LATEST
+from ssvc.decision_points.ssvc.human_impact import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST, include_json=False))

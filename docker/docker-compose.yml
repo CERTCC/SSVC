@@ -1,0 +1,36 @@
+services:
+  base:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: base
+    image: base:latest
+
+  dependencies:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: dependencies
+    image: dependencies:latest
+    depends_on:
+      - base
+
+  test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: test
+    image: test:latest
+    depends_on:
+      - dependencies
+
+  docs:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: docs
+    image: docs:latest
+    depends_on:
+      - dependencies
+    ports:
+      - "8000:8000"

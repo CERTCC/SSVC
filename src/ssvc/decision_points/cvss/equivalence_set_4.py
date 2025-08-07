@@ -21,7 +21,7 @@ This module provides an object representing the CVSS Equivalence Set 4 as a deci
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -29,17 +29,17 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 # 0	MSI:S or MSA:S	SC:H/SI:S/SA:S
 # 1	not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)	SC:H/SI:H/SA:H
 # 2	not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)	SC:L/SI:L/SA:L
-TWO = SsvcDecisionPointValue(
+TWO = DecisionPointValue(
     name="Low",
     key="L",
     description="2: not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)",
 )
-ONE = SsvcDecisionPointValue(
+ONE = DecisionPointValue(
     name="Medium",
     key="M",
     description="1: not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)",
 )
-ZERO = SsvcDecisionPointValue(
+ZERO = DecisionPointValue(
     name="High",
     key="H",
     description="0: MSI:S or MSA:S",

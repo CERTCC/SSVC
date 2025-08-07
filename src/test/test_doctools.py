@@ -22,7 +22,7 @@ import os
 import tempfile
 import unittest
 
-from ssvc.decision_points import SsvcDecisionPoint
+from ssvc.decision_points.base import DecisionPoint
 from ssvc.doctools import (
     EnsureDirExists,
     _filename_friendly,
@@ -46,7 +46,7 @@ _dp_dict = {
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.dp = SsvcDecisionPoint.model_validate(_dp_dict)
+        self.dp = DecisionPoint.model_validate(_dp_dict)
 
         # create a temp working dir
         self.tempdir = tempfile.TemporaryDirectory()
@@ -103,7 +103,11 @@ class MyTestCase(unittest.TestCase):
         self.assertIn("json", os.listdir(self.tempdir.name))
         self.assertEqual(1, len(os.listdir(jsondir)))
 
-        file_created = os.listdir(jsondir)[0]
+        nsdir = os.path.join(jsondir, dp.namespace)
+        self.assertTrue(os.path.exists(nsdir))
+        self.assertEqual(1, len(os.listdir(nsdir)))
+
+        file_created = os.listdir(nsdir)[0]
 
         for word in dp.name.split():
             self.assertIn(word.lower(), file_created)
@@ -116,12 +120,14 @@ class MyTestCase(unittest.TestCase):
         dp = self.dp
         jsondir = self.tempdir.name
         overwrite = False
+        nsdir = os.path.join(jsondir, dp.namespace)
 
-        _jsonfile = os.path.join(jsondir, f"{basename}.json")
+        _jsonfile = os.path.join(nsdir, f"{basename}.json")
         self.assertFalse(os.path.exists(_jsonfile))
 
         # should create the file in the expected place
         json_file = dump_json(basename, dp, jsondir, overwrite)
+
         self.assertEqual(_jsonfile, json_file)
         self.assertTrue(os.path.exists(json_file))
 
@@ -140,9 +146,17 @@ class MyTestCase(unittest.TestCase):
         # capture logger output
         with self.assertLogs() as cm:
             json_file = dump_json(basename, dp, jsondir, overwrite)
-        self.assertEqual(_jsonfile, json_file)
-        # logger warns that the file exists
-        self.assertIn("already exists", cm.output[0])
+            self.assertEqual(_jsonfile, json_file)
+            # logger warns that the file exists
+            found = False
+            for line in cm.output:
+                if not "WARNING" in line:
+                    continue
+                # it's a warning log
+                if "already exists" in line:
+                    found = True
+                    break
+            self.assertTrue(found, "Expected warning about existing file not found")
 
         # should overwrite the file
         overwrite = True
@@ -160,8 +174,25 @@ class MyTestCase(unittest.TestCase):
         d = json.load(open(json_file))
         self.assertEqual(dp.name, d["name"])
 
-    def test_main(self):
-        pass
+    def test_dump_schema(self):
+        schemafile = os.path.join(self.tempdir.name, "dummy_schema.json")
+        self.assertFalse(os.path.exists(schemafile))
+        from ssvc.doctools import dump_schema
+        from pydantic import BaseModel
+
+        class Dummy(BaseModel):
+            name: str = "Name"
+            description: str = "Description"
+
+        dump_schema(filepath=schemafile, schema=Dummy.model_json_schema())
+        self.assertTrue(os.path.exists(schemafile))
+
+        # file is loadable json
+        d = json.load(open(schemafile))
+        self.assertIn("title", d)
+        self.assertEqual("Dummy", d["title"])
+        self.assertIn("type", d)
+        self.assertEqual(d["type"], "object")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 # System Exposure
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.system_exposure import LATEST
+from ssvc.decision_points.ssvc.system_exposure import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -20,7 +20,7 @@ Whether that mitigation allows the deployer to defer further action varies accor
 ## Prior Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.system_exposure import VERSIONS
+from ssvc.decision_points.ssvc.system_exposure import VERSIONS
 from ssvc.doc_helpers import example_block
 
 versions = VERSIONS[:-1]

@@ -22,18 +22,18 @@ Models CVSS User Interaction as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_REQUIRED = SsvcDecisionPointValue(
+_REQUIRED = DecisionPointValue(
     name="Required",
     key="R",
     description="Successful exploitation of this vulnerability requires a user to take some action before the "
     "vulnerability can be exploited.",
 )
 
-_UI_NONE = SsvcDecisionPointValue(
+_UI_NONE = DecisionPointValue(
     name="None",
     key="N",
     description="The vulnerable system can be exploited without interaction from any user.",
@@ -55,14 +55,14 @@ USER_INTERACTION_1 = CvssDecisionPoint(
 Defines None and Required values for CVSS User Interaction.
 """
 
-_UI_NONE_2 = SsvcDecisionPointValue(
+_UI_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
     description="The vulnerable system can be exploited without interaction from any human user, other than the "
     "attacker.",
 )
 
-_PASSIVE = SsvcDecisionPointValue(
+_PASSIVE = DecisionPointValue(
     name="Passive",
     key="P",
     description="Successful exploitation of this vulnerability requires limited interaction by the targeted user with "
@@ -70,7 +70,7 @@ _PASSIVE = SsvcDecisionPointValue(
     "and do not require that the user actively subvert protections built into the vulnerable system.",
 )
 
-_ACTIVE = SsvcDecisionPointValue(
+_ACTIVE = DecisionPointValue(
     name="Active",
     key="A",
     description="Successful exploitation of this vulnerability requires a targeted user to perform specific, "

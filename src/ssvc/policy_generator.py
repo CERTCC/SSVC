@@ -30,7 +30,7 @@ import networkx as nx
 import pandas as pd
 
 from ssvc import csv_analyzer
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
+from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.outcomes.base import OutcomeGroup
 
 logger = logging.getLogger(__name__)
@@ -51,8 +51,8 @@ class PolicyGenerator:
 
     def __init__(
         self,
-        dp_group: SsvcDecisionPointGroup = None,
-        outcomes: OutcomeGroup = None,
+        dp_group: DecisionPointGroup,
+        outcomes: OutcomeGroup,
         outcome_weights: list[float] = None,
         validate: bool = False,
     ):
@@ -72,7 +72,7 @@ class PolicyGenerator:
         if dp_group is None:
             raise ValueError("dp_group is required")
         else:
-            self.dpg: SsvcDecisionPointGroup = dp_group
+            self.dpg: DecisionPointGroup = dp_group
 
         if outcomes is None:
             raise ValueError("outcomes is required")
@@ -92,9 +92,7 @@ class PolicyGenerator:
             # validate that the outcome weights sum to 1.0
             total = sum(outcome_weights)
             if not math.isclose(total, 1.0):
-                raise ValueError(
-                    f"Outcome weights must sum to 1.0, but sum to {total}"
-                )
+                raise ValueError(f"Outcome weights must sum to 1.0, but sum to {total}")
 
             self.outcome_weights = outcome_weights
         logger.debug(f"Outcome weights: {self.outcome_weights}")
@@ -167,18 +165,20 @@ class PolicyGenerator:
 
     def _create_policy(self):
         rows = []
+        dps = list(self.dpg.decision_points.values())
+
         for node in self.G.nodes:
             row = {}
             for i in range(len(node)):
                 # turn the numerical indexes back into decision point names
-                col1 = f"{self.dpg.decision_points[i].name}"
-                row[col1] = self.dpg.decision_points[i].values[node[i]].name
+                col1 = f"{dps[i].id}"
+                row[col1] = dps[i].value_summaries[node[i]]
                 # numerical values
-                col2 = f"idx_{self.dpg.decision_points[i].name}"
+                col2 = f"idx_{dps[i].str}"
                 row[col2] = node[i]
 
             oc_idx = self.G.nodes[node]["outcome"]
-            row["outcome"] = self.outcomes.outcomes[oc_idx].name
+            row["outcome"] = self.outcomes.value_summaries[oc_idx]
 
             row["idx_outcome"] = oc_idx
             rows.append(row)
@@ -187,9 +187,12 @@ class PolicyGenerator:
 
     def clean_policy(self) -> pd.DataFrame:
         df = self.policy.copy()
+        # rename "outcome" column to outcome group name
+        df = df.rename(columns={"outcome": self.outcomes.str})
         print_cols = [c for c in df.columns if not c.startswith("idx_")]
-        for c in print_cols:
-            df[c] = df[c].str.lower()
+
+        # for c in print_cols:
+        #     df[c] = df[c].str.lower()
 
         return pd.DataFrame(df[print_cols])
 
@@ -203,22 +206,20 @@ class PolicyGenerator:
 
     def _assign_outcomes(self):
         node_count = len(self.G.nodes)
-        outcomes = [outcome.name for outcome in self.outcomes.outcomes]
+        outcomes = [outcome.name for outcome in self.outcomes.values]
         logger.debug(f"Outcomes: {outcomes}")
 
         layers = list(nx.topological_generations(self.G))
         logger.debug(f"Layer count: {len(layers)}")
         logger.debug(f"Layer sizes: {[len(layer) for layer in layers]}")
 
-        outcome_counts = [
-            round(node_count * weight) for weight in self.outcome_weights
-        ]
+        outcome_counts = [round(node_count * weight) for weight in self.outcome_weights]
 
         toposort = list(nx.topological_sort(self.G))
         logger.debug(f"Toposort: {toposort[:4]}...{toposort[-4:]}")
 
         outcome_idx = 0
-        assigned_counts = [0 for _ in self.outcomes.outcomes]
+        assigned_counts = [0 for _ in self.outcomes.values]
         for node in toposort:
             # step through the nodes in topological order
             # and assign outcomes to each node
@@ -278,7 +279,7 @@ class PolicyGenerator:
         # for each decision point in the group, get an enumeration of the values
         # so [[a,b,c],[d,e],[f,g,h]] becomes [[0,1,2],[0,1],[0,1,2]]
         vec = []
-        for dp in self.dpg.decision_points:
+        for dp in self.dpg.decision_points.values():
             vec.append(tuple(range(len(dp.values))))
 
         logger.debug(f"Enumerated vector: {vec}")
@@ -301,15 +302,11 @@ class PolicyGenerator:
         # all nodes must be in the graph
         for node in node_order:
             if node not in self.G.nodes:
-                raise ValueError(
-                    f"Node order contains node {node} not in the graph"
-                )
+                raise ValueError(f"Node order contains node {node} not in the graph")
 
         for node in self.G.nodes:
             if node not in node_order:
-                raise ValueError(
-                    f"Graph contains node {node} not in the node order"
-                )
+                raise ValueError(f"Graph contains node {node} not in the node order")
 
         node_idx = {node: i for i, node in enumerate(node_order)}
 
@@ -341,11 +338,11 @@ class PolicyGenerator:
 
 
 def main():
-    from ssvc.decision_points.automatable import AUTOMATABLE_2
-    from ssvc.decision_points.exploitation import EXPLOITATION_1
-    from ssvc.decision_points.human_impact import HUMAN_IMPACT_2
-    from ssvc.decision_points.system_exposure import SYSTEM_EXPOSURE_1_0_1
-    from ssvc.outcomes.groups import DSOI
+    from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2
+    from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1
+    from ssvc.decision_points.ssvc.human_impact import HUMAN_IMPACT_2
+    from ssvc.decision_points.ssvc.system_exposure import SYSTEM_EXPOSURE_1_0_1
+    from ssvc.outcomes.ssvc.dsoi import DSOI
 
     # set up logging
     logger = logging.getLogger()
@@ -353,16 +350,16 @@ def main():
     hdlr = logging.StreamHandler()
     logger.addHandler(hdlr)
 
-    dpg = SsvcDecisionPointGroup(
+    dpg = DecisionPointGroup(
         name="Dummy Decision Point Group",
         description="Dummy decision point group",
         version="1.0.0",
-        decision_points=[
+        decision_points=(
             EXPLOITATION_1,
             SYSTEM_EXPOSURE_1_0_1,
             AUTOMATABLE_2,
             HUMAN_IMPACT_2,
-        ],
+        ),
     )
 
     with PolicyGenerator(

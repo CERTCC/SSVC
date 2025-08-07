@@ -21,7 +21,7 @@ This module provides an object representing the CVSS Equivalence Set 2 as a deci
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -29,12 +29,12 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 # Levels	Constraints	Highest Severity Vector(s)
 # 0	AC:L and AT:N	AC:L/AT:N
 # 1	not (AC:L and AT:N)	AC:L/AT:P or AC:H/AT:N
-ONE = SsvcDecisionPointValue(
+ONE = DecisionPointValue(
     name="Low",
     key="L",
     description="1: not (AC:L and AT:N)",
 )
-ZERO = SsvcDecisionPointValue(
+ZERO = DecisionPointValue(
     name="High",
     key="H",
     description="0: AC:L and AT:N",

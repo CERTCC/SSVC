@@ -1,7 +1,7 @@
 # Utility
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.utility import LATEST
+from ssvc.decision_points.ssvc.utility import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -46,7 +46,7 @@ However, future work should look for and prevent large mismatches between the ou
 ## Previous Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.utility import VERSIONS
+from ssvc.decision_points.ssvc.utility import VERSIONS
 from ssvc.doc_helpers import example_block
 
 versions = VERSIONS[:-1]

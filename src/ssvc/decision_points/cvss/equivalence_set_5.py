@@ -21,7 +21,7 @@ This module provides an object representing the CVSS Equivalence Set 5 as a deci
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
@@ -29,9 +29,21 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 # 0	E:A	E:A
 # 1	E:P	E:P
 # 2	E:U	E:U
-TWO = SsvcDecisionPointValue(name="Low", key="L", description="2: E:U", )
-ONE = SsvcDecisionPointValue(name="Medium", key="M", description="1: E:P", )
-ZERO = SsvcDecisionPointValue(name="High", key="H", description="0: E:A", )
+TWO = DecisionPointValue(
+    name="Low",
+    key="L",
+    description="2: E:U",
+)
+ONE = DecisionPointValue(
+    name="Medium",
+    key="M",
+    description="1: E:P",
+)
+ZERO = DecisionPointValue(
+    name="High",
+    key="H",
+    description="0: E:A",
+)
 EQ5 = CvssDecisionPoint(
     name="Equivalence Set 5",
     key="EQ5",
@@ -41,16 +53,17 @@ EQ5 = CvssDecisionPoint(
         TWO,
         ONE,
         ZERO,
-),
+    ),
 )
 
 
 VERSIONS = (EQ5,)
 LATEST = VERSIONS[-1]
 
+
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
