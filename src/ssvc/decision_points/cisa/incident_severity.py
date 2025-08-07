@@ -22,49 +22,49 @@ Based on [National Cybersecurity Incident Scoring System (NCISS)](https://www.ci
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.nciss.base import NcissDecisionPoint
 
 # Define the values for the Cyber Incident Severity decision point
 # Intentionally omitting the color codes from the original schema at this time
 # We can add them later if needed
-LEVEL_5 = SsvcDecisionPointValue(
+LEVEL_5 = DecisionPointValue(
     name="Emergency",
     key="5",
     description="Poses an imminent threat to the provision of wide-scale critical infrastructure services, national "
     "government stability, or to the lives of U.S. persons.",
 )
 
-LEVEL_4 = SsvcDecisionPointValue(
+LEVEL_4 = DecisionPointValue(
     name="Severe",
     key="4",
     description="Likely to result in a significant impact to public health or safety, national security, economic "
     "security, foreign relations, or civil liberties.",
 )
 
-LEVEL_3 = SsvcDecisionPointValue(
+LEVEL_3 = DecisionPointValue(
     name="High",
     key="3",
     description="Likely to result in a demonstrable impact to public health or safety, national security, economic "
     "security, foreign relations, civil liberties, or public confidence.",
 )
 
-LEVEL_2 = SsvcDecisionPointValue(
+LEVEL_2 = DecisionPointValue(
     name="Medium",
     key="2",
     description="May impact public health or safety, national security, economic security, foreign relations, civil "
     "liberties, or public confidence.",
 )
 
-LEVEL_1 = SsvcDecisionPointValue(
+LEVEL_1 = DecisionPointValue(
     name="Low",
     key="1",
     description="Unlikely to impact public health or safety, national security, economic security, foreign relations, "
     "civil liberties, or public confidence.",
 )
 
-LEVEL_0 = SsvcDecisionPointValue(
+LEVEL_0 = DecisionPointValue(
     name="Baseline",
     key="0",
     description="Unsubstantiated or inconsequential event.",
@@ -89,42 +89,42 @@ INCIDENT_SEVERITY = NcissDecisionPoint(
     ),
 )
 
-LEVEL_5_1 = SsvcDecisionPointValue(
+LEVEL_5_1 = DecisionPointValue(
     name="Emergency",
     key="5",
     description="An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure "
     "services, national government stability, or the lives of U.S. persons.",
 )
 
-LEVEL_4_1 = SsvcDecisionPointValue(
+LEVEL_4_1 = DecisionPointValue(
     name="Severe",
     key="4",
     description="A Severe priority incident is likely to result in a significant impact to public health or safety, national security, "
     "economic security, foreign relations, or civil liberties.",
 )
 
-LEVEL_3_1 = SsvcDecisionPointValue(
+LEVEL_3_1 = DecisionPointValue(
     name="High",
     key="3",
     description="A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, "
     "economic security, foreign relations, civil liberties, or public confidence.",
 )
 
-LEVEL_2_1 = SsvcDecisionPointValue(
+LEVEL_2_1 = DecisionPointValue(
     name="Medium",
     key="2",
     description="A Medium priority incident may affect public health or safety, national security, economic security, foreign "
     "relations, civil liberties, or public confidence.",
 )
 
-LEVEL_1_1 = SsvcDecisionPointValue(
+LEVEL_1_1 = DecisionPointValue(
     name="Low",
     key="1",
     description="A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign "
     "relations, civil liberties, or public confidence.",
 )
 
-LEVEL_0_MINOR = SsvcDecisionPointValue(
+LEVEL_0_MINOR = DecisionPointValue(
     name="Baseline - Minor",
     key="0M",
     description="A Baseline–Minor priority incident is an incident that is highly unlikely to affect public health or safety, "
@@ -132,7 +132,7 @@ LEVEL_0_MINOR = SsvcDecisionPointValue(
     "impact, however, exists and warrants additional scrutiny.",
 )
 
-LEVEL_0_NEGLIGIBLE = SsvcDecisionPointValue(
+LEVEL_0_NEGLIGIBLE = DecisionPointValue(
     name="Baseline - Negligible",
     key="0N",
     description="A Baseline–Negligible priority incident is an incident that is highly unlikely to affect public health or safety, "

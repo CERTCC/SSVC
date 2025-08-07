@@ -21,11 +21,11 @@ Provides the NCISS Observed Activity Decision Point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.nciss.base import NcissDecisionPoint
 
-PREPARE = SsvcDecisionPointValue(
+PREPARE = DecisionPointValue(
     key="P",
     name="Prepare",
     description="Prepare actions are actions taken to establish objectives, intent, and strategy; "
@@ -34,7 +34,7 @@ PREPARE = SsvcDecisionPointValue(
     "and develop capabilities.",
 )
 
-ENGAGE = SsvcDecisionPointValue(
+ENGAGE = DecisionPointValue(
     key="E",
     name="Engage",
     description="Engage activities are actions taken against a specific target or target set prior to gaining, "
@@ -42,7 +42,7 @@ ENGAGE = SsvcDecisionPointValue(
     "networks, and data stores.",
 )
 
-PRESENCE = SsvcDecisionPointValue(
+PRESENCE = DecisionPointValue(
     key="R",
     name="Presence",
     description="Presence is the set of actions taken by the threat actor once access to the target physical or "
@@ -52,7 +52,7 @@ PRESENCE = SsvcDecisionPointValue(
     "or data stores.",
 )
 
-EFFECT = SsvcDecisionPointValue(
+EFFECT = DecisionPointValue(
     key="F",
     name="Effect",
     description="Effects are outcomes of a threat actor’s actions "

@@ -1,7 +1,7 @@
 # Incident Severity
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.nciss.incident_severity import LATEST
+from ssvc.decision_points.cisa.incident_severity import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -19,7 +19,7 @@ adopted by the United States Federal Cybersecurity Centers, in coordination with
 cybersecurity or cyber operations mission.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.nciss.incident_severity import VERSIONS
+from ssvc.decision_points.cisa.incident_severity import VERSIONS
 from ssvc.doc_helpers import example_block
 
 versions = VERSIONS[:-1]

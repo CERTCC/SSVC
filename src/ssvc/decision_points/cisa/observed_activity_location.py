@@ -22,63 +22,62 @@ Based on [National Cybersecurity Incident Scoring System (NCISS)](https://www.ci
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.nciss.base import NcissDecisionPoint
 
-
-LEVEL_0 = SsvcDecisionPointValue(
+LEVEL_0 = DecisionPointValue(
     name="Unsuccessful",
     key="0",
     description="Existing network defenses repelled all observed activity.",
 )
 
 
-LEVEL_1 = SsvcDecisionPointValue(
+LEVEL_1 = DecisionPointValue(
     name="Business Demilitarized Zone",
     key="1",
     description="Activity was observed in the business network’s demilitarized zone (DMZ). These systems are generally untrusted and are designed to be exposed to the Internet.",
 )
 
 
-LEVEL_2 = SsvcDecisionPointValue(
+LEVEL_2 = DecisionPointValue(
     name="Business Network",
     key="2",
     description="Activity was observed in the business or corporate network of the victim. These systems would be corporate user workstations, application servers, and other non-core management systems.",
 )
 
 
-LEVEL_3 = SsvcDecisionPointValue(
+LEVEL_3 = DecisionPointValue(
     name="Business Network Management",
     key="3",
     description="Activity was observed in business network management systems such as administrative user workstations, active directory servers, or other trust stores.",
 )
 
-LEVEL_4 = SsvcDecisionPointValue(
+LEVEL_4 = DecisionPointValue(
     name="Critical System DMZ",
     key="4",
     description="Activity was observed in the DMZ that exists between the business network and a critical system network. These systems may be internally facing services such as SharePoint sites, financial systems, or relay “jump” boxes into more critical systems.",
 )
 
-LEVEL_5 = SsvcDecisionPointValue(
+LEVEL_5 = DecisionPointValue(
     name="Critical System Management",
     key="5",
     description="Activity was observed in high-level critical systems management such as human-machine interfaces (HMIs) in industrial control systems.",
 )
 
-LEVEL_6 = SsvcDecisionPointValue(
+LEVEL_6 = DecisionPointValue(
     name="Critical Systems",
     key="6",
     description="Activity was observed in the critical systems that operate critical processes, such as programmable logic controllers in industrial control system environments.",
 )
 
-LEVEL_7 = SsvcDecisionPointValue(
+LEVEL_7 = DecisionPointValue(
     name="Safety Systems",
     key="7",
     description="Activity was observed in critical safety systems that ensure the safe operation of an environment. One example of a critical safety system is a fire suppression system.",
 )
 
-UNKNOWN = SsvcDecisionPointValue(
+UNKNOWN = DecisionPointValue(
     name="Unknown",
     key="U",
     description="Activity was observed, but the network segment could not be identified.",

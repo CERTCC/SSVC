@@ -21,30 +21,30 @@ Provides the NCISS Information Impact Decision Point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.nciss.base import NcissDecisionPoint
 
-IMPACT_NONE = SsvcDecisionPointValue(
+IMPACT_NONE = DecisionPointValue(
     key="N",
     name="None",
     description="No information was exfiltrated, modified, deleted, or otherwise compromised.",
 )
 
-INTEGRITY = SsvcDecisionPointValue(
+INTEGRITY = DecisionPointValue(
     key="I",
     name="Integrity",
     description="The necessary integrity of information was modified without authorization.",
 )
 
-PRIVACY = SsvcDecisionPointValue(
+PRIVACY = DecisionPointValue(
     key="P",
     name="Privacy",
     description="The confidentiality of personally identifiable information (PII) "
     "or personal health information (PHI) was compromised.",
 )
 
-PROPRIETARY = SsvcDecisionPointValue(
+PROPRIETARY = DecisionPointValue(
     key="R",
     name="Proprietary",
     description="The confidentiality of unclassified proprietary information, such as "
@@ -52,7 +52,7 @@ PROPRIETARY = SsvcDecisionPointValue(
     "trade secrets was compromised.",
 )
 
-CLASSIFIED = SsvcDecisionPointValue(
+CLASSIFIED = DecisionPointValue(
     key="C",
     name="Classified",
     description="The confidentiality of classified information was compromised.",
@@ -68,51 +68,51 @@ INFORMATION_IMPACT_1 = NcissDecisionPoint(
 )
 
 
-NO_IMPACT = SsvcDecisionPointValue(
+NO_IMPACT = DecisionPointValue(
     key="N",
     name="No Impact",
     description="No known data impact.",
 )
 
-SUSPECTED_BUT_NOT_IDENTIFIED = SsvcDecisionPointValue(
+SUSPECTED_BUT_NOT_IDENTIFIED = DecisionPointValue(
     key="S",
     name="Suspected But Not Identified",
     description="A data loss or impact to availability is suspected, but no direct confirmation exists.",
 )
 
-PROPRIETARY_INFORMATION_BREACH = SsvcDecisionPointValue(
+PROPRIETARY_INFORMATION_BREACH = DecisionPointValue(
     key="R",
     name="Proprietary Information Breach",
     description="The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised.",
 )
 
-PRIVACY_DATA_BREACH = SsvcDecisionPointValue(
+PRIVACY_DATA_BREACH = DecisionPointValue(
     key="P",
     name="Privacy Data Breach",
     description="The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised.",
 )
 
 
-CRITICAL_SYSTEMS_DATA_BREACH = SsvcDecisionPointValue(
+CRITICAL_SYSTEMS_DATA_BREACH = DecisionPointValue(
     key="C",
     name="Critical Systems Data Breach",
     description="Data pertaining to a critical system has been exfiltrated.",
 )
 
-DESTRUCTION_OF_NON_CRITICAL_SYSTEMS = SsvcDecisionPointValue(
+DESTRUCTION_OF_NON_CRITICAL_SYSTEMS = DecisionPointValue(
     key="D",
     name="Destruction of Non-Critical Systems",
     description="Destructive techniques, such as master boot record (MBR) overwrite; have been used against a non-critical system.",
 )
 
 
-CORE_CREDENTIAL_COMPROMISE = SsvcDecisionPointValue(
+CORE_CREDENTIAL_COMPROMISE = DecisionPointValue(
     key="O",
     name="Core Credential Compromise",
     description="Core system credentials (such as domain or enterprise administrative credentials) or credentials for critical systems have been exfiltrated.",
 )
 
-DESTRUCTION_OF_CRITICAL_SYSTEM = SsvcDecisionPointValue(
+DESTRUCTION_OF_CRITICAL_SYSTEM = DecisionPointValue(
     key="E",
     name="Destruction of Critical System",
     description="Destructive techniques, such as MBR overwrite; have been used against a critical system.",

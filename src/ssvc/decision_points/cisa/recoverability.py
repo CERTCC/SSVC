@@ -22,30 +22,29 @@ Based on the [National Cybersecurity Incident Scoring System (NCISS)](https://ww
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.nciss.base import NcissDecisionPoint
 
-
-REGULAR = SsvcDecisionPointValue(
+REGULAR = DecisionPointValue(
     name="Regular",
     key="R",
     description="Time to recovery is predictable with existing resources.",
 )
 
-SUPPLEMENTED = SsvcDecisionPointValue(
+SUPPLEMENTED = DecisionPointValue(
     name="Supplemented",
     key="S",
     description="Time to recover is predictable with additional resources.",
 )
 
-EXTENDED = SsvcDecisionPointValue(
+EXTENDED = DecisionPointValue(
     name="Extended",
     key="E",
     description="Time to recovery is unpredictable; additional resources and outside assistance may be required.",
 )
 
-NOT_RECOVERABLE = SsvcDecisionPointValue(
+NOT_RECOVERABLE = DecisionPointValue(
     name="Not Recoverable",
     key="N",
     description="Recovery from the incident is not possible.",
