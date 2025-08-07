@@ -24,6 +24,7 @@ Work in progress on an experimental registry object for SSVC.
 import logging
 from typing import Any, Literal, Optional, Union
 
+import semver
 from pydantic import BaseModel, Field, model_validator
 
 from ssvc._mixins import (
@@ -553,6 +554,45 @@ def lookup_value(
     return None
 
 
+def lookup_latest(
+    objtype: Optional[str] = None,
+    namespace: Optional[str] = None,
+    key: Optional[str] = None,
+    registry: SsvcObjectRegistry = None,
+) -> Union[_RegisterableClass, None]:
+    if registry is None:
+        registry = get_registry()
+
+    keyobj = lookup_key(
+        objtype=objtype, namespace=namespace, key=key, registry=registry
+    )
+    versions = keyobj.versions
+    # now we have a dict of {version_string: version_object}
+
+    if versions is None:
+        return None
+
+    def normalize_version(v: str) -> str:
+        return semver.Version.parse(v, optional_minor_and_patch=True)
+
+    def stringify_version(v: str) -> str:
+        vers = normalize_version(v)
+        return vers.__str__()
+
+    # create a quick lookup for version strings
+    version_lookup = {stringify_version(k): v.obj for k, v in versions.items()}
+
+    parsed_version = [normalize_version(v) for v in list(versions.keys())]
+    latest = sorted(parsed_version)[-1]
+    # convert back to string
+    latest_str = str(latest)
+
+    # now lookup the version object
+    version_obj = version_lookup[latest_str]
+
+    return version_obj
+
+
 def lookup(
     objtype: Optional[str] = None,
     namespace: Optional[str] = None,
@@ -560,7 +600,7 @@ def lookup(
     version: Optional[str] = None,
     value_key: Optional[str] = None,
     registry: SsvcObjectRegistry = None,
-) -> DecisionPoint | DecisionPointValue | DecisionTable | None:
+) -> Union[_RegisterableClass, DecisionPointValue, None]:
     """
     Lookup an object in the registry by type, namespace, key, version, and value key.
 

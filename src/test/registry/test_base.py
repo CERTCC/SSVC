@@ -17,10 +17,15 @@
 #  subject to its own license.
 #  DM24-0278
 import math
+import random
 import unittest
 from unittest.mock import Mock, patch
 
+import semver
+
 import ssvc.registry.base as base
+from ssvc.decision_points.base import DecisionPoint
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.registry import get_registry
 
@@ -62,9 +67,6 @@ class RegistryTestCase(unittest.TestCase):
         self.assertEqual("other", obj_type)
 
         # test with a known type
-        from ssvc.decision_points.base import DecisionPoint
-        from ssvc.decision_points.base import DecisionPointValue
-
         obj = DecisionPoint(
             name="TestDP",
             description="A test decision point",
@@ -97,8 +99,6 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_valued_version(self):
         # test with a known type
-        from ssvc.decision_points.base import DecisionPoint
-        from ssvc.decision_points.base import DecisionPointValue
 
         dp = DecisionPoint(
             name="TestDP",
@@ -120,9 +120,6 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_nonvalued_version(self):
         # test with a known type
-        from ssvc.decision_points.base import DecisionPoint
-
-        from ssvc.decision_points.base import DecisionPointValue
 
         dp1 = DecisionPoint(
             namespace="x_test",
@@ -235,8 +232,6 @@ class RegistryTestCase(unittest.TestCase):
 
     def test__insert(self):
         # test with a known type
-        from ssvc.decision_points.base import DecisionPoint
-        from ssvc.decision_points.base import DecisionPointValue
 
         dp = DecisionPoint(
             name="TestDP",
@@ -267,8 +262,6 @@ class RegistryTestCase(unittest.TestCase):
 
     def test__compare(self):
         # test with a known type
-        from ssvc.decision_points.base import DecisionPoint
-        from ssvc.decision_points.base import DecisionPointValue
 
         dp1 = DecisionPoint(
             name="TestDP",
@@ -304,6 +297,49 @@ class RegistryTestCase(unittest.TestCase):
         # different values raise ValueError
         with self.assertRaises(ValueError):
             base._compare(dp1, dp2)
+
+    def test_lookup_latest(self):
+        dps = []
+        for v in range(1, 100):
+            version = str(
+                semver.Version(
+                    major=v, minor=random.randint(0, 20), patch=random.randint(0, 50)
+                )
+            )
+
+            dp = DecisionPoint(
+                name="TestDP",
+                description="A test decision point",
+                namespace="x_test",
+                key="TEST",
+                version=version,
+                values=[
+                    DecisionPointValue(key="A", name=f"AAA{v}", description="Option A"),
+                    DecisionPointValue(key="B", name="BBB", description="Option B"),
+                ],
+                registered=False,
+            )
+            dps.append(dp)
+
+        # the highest version will be the last one added
+        expect_latest = dps[-1]
+
+        # shuffle to change the order of insertion
+        # this is to ensure that the lookup_latest function
+        # correctly identifies the latest version regardless of insertion order
+        random.shuffle(dps)
+
+        for dp in dps:
+            self.registry.register(dp)
+
+        latest = base.lookup_latest(
+            objtype="DecisionPoint",
+            namespace="x_test",
+            key="TEST",
+            registry=self.registry,
+        )
+        self.assertIsNotNone(latest)
+        self.assertEqual(expect_latest, latest)
 
 
 if __name__ == "__main__":
