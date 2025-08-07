@@ -318,6 +318,7 @@ def main():
 
     find_modules_to_import("./src/ssvc/decision_points", "ssvc.decision_points")
     find_modules_to_import("./src/ssvc/outcomes", "ssvc.outcomes")
+    find_modules_to_import("./src/ssvc/decision_tables", "ssvc.decision_tables")
 
 
     registry = get_registry()
