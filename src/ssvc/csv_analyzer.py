@@ -38,7 +38,7 @@ Example:
     ```
 
     Higher values imply more important features.
-    """
+"""
 
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -63,13 +63,13 @@ import argparse
 import logging
 import re
 import sys
-from itertools import product
 
-import networkx as nx
 import pandas as pd
 import sklearn.inspection
 from sklearn.base import clone
 from sklearn.tree import DecisionTreeClassifier
+
+from ssvc.utils.toposort import graph_from_value_tuples
 
 logger = logging.getLogger(__name__)
 
@@ -326,72 +326,58 @@ def permute_feature_importance(df: pd.DataFrame, target: str) -> pd.DataFrame:
     return imp
 
 
-def check_topological_order(df, target):
+def check_topological_order(
+    df: pd.DataFrame, target: str, target_value_order: list[str] = None
+) -> list[dict]:
     # split df into features and target
     X, y = _prepare_data(df, target)
 
-    # convert outcome to numeric codes
-    codes = list(enumerate(y.unique()))
+    if target_value_order is None:
+        # convert outcome to numeric codes
+        codes = list(enumerate(y.unique()))
+    else:
+        # use the provided order for the target values
+        codes = list(enumerate(target_value_order))
+
     mapper = {v: k for (k, v) in codes}
     y = y.replace(mapper)
 
+    node_tuples = []
+    for col in X.columns:
+        # get the unique values in the column, sort them, and convert to tuple
+        vals = tuple(sorted(X[col].unique()))
+        node_tuples.append(vals)
+    logger.debug(f"Node tuples: {node_tuples}")
     # create a graph of the nodes, assign the outcome value to each node
     # and then check that the graph is topologically sorted
     # (i.e. no edges point backwards)
-    G = nx.DiGraph()
-    # each row of X is a single node
+
+    G = graph_from_value_tuples(node_tuples)
+
+    # create a dict to lookup node outcomes from nodes
+    node_outcomes = {}
     for i, row in enumerate(X.iterrows()):
         rownum, rowval = row
 
         # cast the row to a tuple so we can use it as a node
         node = tuple(rowval)
-        G.add_node(node, outcome=y.iloc[i])
+        node_outcomes[node] = y.iloc[i]
 
-    # add edges
-    for u, v in product(G.nodes, G.nodes):
-        # skip self edges
-        if u == v:
-            continue
+    for u in G.nodes:
+        # assign the outcome value to each node
+        G.nodes[u]["outcome"] = node_outcomes.get(u, None)
 
-        # u is less than v if all elements of u are less than or equal to v
-        if all(u[i] <= v[i] for i in range(len(u))):
-            # and at least one element of u is less than v
-            if any(u[i] < v[i] for i in range(len(u))):
-                # add edge if not already there
-                if not G.has_edge(u, v):
-                    G.add_edge(u, v)
-
-        # v is less than u if all elements of v are less than or equal to u
-        if all(v[i] <= u[i] for i in range(len(v))):
-            # and at least one element of v is less than u
-            if any(v[i] < u[i] for i in range(len(v))):
-                # add edge if not already there
-                if not G.has_edge(v, u):
-                    G.add_edge(v, u)
-
-    # take the transitive reduction of G to remove redundant edges
-    # this will remove all edges that are implied by other edges
-    # and leave only the minimal set of edges
-    # H is thus a Hasse diagram of G
-    H = nx.transitive_reduction(G)
-
-    # networkx transitive reduction doesn't copy the node data
-    # so we need to copy it from G to H
-    for u in H.nodes:
-        H.nodes[u]["outcome"] = G.nodes[u]["outcome"]
-
-    logger.debug(f"Original graph: {len(G.nodes)} nodes with {len(G.edges)} edges")
-    logger.debug(f"Reduced graph: {len(H.nodes)} nodes with {len(H.edges)} edges")
+    logger.debug(f"Graph has {len(G.nodes)} nodes with {len(G.edges)} edges")
 
     problems = []
     # check if the outcome is topologically sorted
-    for u, v in H.edges:
-        if H.nodes[u]["outcome"] > H.nodes[v]["outcome"]:
+    for u, v in G.edges:
+        if G.nodes[u]["outcome"] > G.nodes[v]["outcome"]:
             problem = {
                 "u": u,
                 "v": v,
-                "u_outcome": H.nodes[u]["outcome"],
-                "v_outcome": H.nodes[v]["outcome"],
+                "u_outcome": G.nodes[u]["outcome"],
+                "v_outcome": G.nodes[v]["outcome"],
             }
             problems.append(problem)
 

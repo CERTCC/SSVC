@@ -22,8 +22,15 @@ from random import randint
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc._mixins import (
+    _Base,
+    _Keyed,
+    _Namespaced,
+    _Valued,
+    _Versioned,
+)
 from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION, MAX_NS_LENGTH
 
 
 class TestMixins(unittest.TestCase):
@@ -92,12 +99,12 @@ class TestMixins(unittest.TestCase):
             _Namespaced(namespace="x_")
 
         # error if namespace starts with x_ but is too long
-        for i in range(150):
+        for i in range(MAX_NS_LENGTH + 50):
             shortest = "x_aaa"
             ns = shortest + "a" * i
             with self.subTest(ns=ns):
                 # length limit set in the NS_PATTERN regex
-                if len(ns) <= 100:
+                if len(ns) <= MAX_NS_LENGTH:
                     # expect success on shorter than limit
                     _Namespaced(namespace=ns)
                 else:
@@ -114,13 +121,13 @@ class TestMixins(unittest.TestCase):
         # custom namespaces are allowed as long as they start with x_
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_{randint(1000,1000000)}"
+            ns = f"x_a{randint(1000,1000000)}"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
     def test_versioned_create(self):
         obj = _Versioned()
-        self.assertEqual(obj.version, "0.0.0")
+        self.assertEqual(obj.version, DEFAULT_VERSION)
 
         obj = _Versioned(version="1.2.3")
         self.assertEqual(obj.version, "1.2.3")
@@ -131,8 +138,37 @@ class TestMixins(unittest.TestCase):
 
         self.assertRaises(ValidationError, _Keyed)
 
+        good_keys = ["A", "1", "F1", "T*", "Mixed_case_OK", "alph4num3ric"]
+        bad_keys = [
+            "",  # no empty string
+            "foo_",  # no trailing underscore
+            "_",  # no solitary underscore
+            "_foo",  # no leading underscore
+            "A*",  # no trailing asterisk
+        ]
+        # add other bad keys that contain special characters
+        # these should not be allowed in keys
+        for char in " ~`!@#$%^&*()-+={}[]|\\:;\"'<>,.?/":
+            bad_keys.append(char)
+            bad_keys.append("foo" + char)
+            bad_keys.append(char + "bar")
+            bad_keys.append("foo" + char + "bar")
+
+        for key in good_keys:
+            with self.subTest(key=key):
+                obj = _Keyed(key=key)
+                self.assertEqual(obj.key, key)
+
+        for key in bad_keys:
+            with self.subTest(key=key):
+                with self.assertRaises(
+                    ValidationError, msg=f"Key '{key}' should be invalid"
+                ):
+                    _Keyed(key=key)
+
     def test_valued_create(self):
         values = ("foo", "bar", "baz", "quux")
+
         obj = _Valued(values=values)
 
         # length
@@ -153,7 +189,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_test"},
+                "args": {"namespace": "x_example.test"},
                 "has_default": False,
             },
             {

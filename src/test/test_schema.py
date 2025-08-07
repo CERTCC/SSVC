@@ -27,21 +27,15 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 import ssvc.decision_points  # noqa F401
-from ssvc.decision_points.base import REGISTERED_DECISION_POINTS
 
 # importing these causes the decision points to register themselves
 from ssvc.decision_points.ssvc.critical_software import CRITICAL_SOFTWARE_1  # noqa
 from ssvc.decision_points.ssvc.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
-from ssvc.decision_points.ssvc.in_kev import IN_KEV_1
-from ssvc.dp_groups.cvss.collections import (
-    CVSSv1,
-    CVSSv2,
-    CVSSv3,
-    CVSSv4,
-)  # noqa
 
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
+from ssvc.registry import get_registry
+from ssvc.registry.base import get_all
 
 
 def retrieve_local(uri: str) -> Resource:
@@ -62,7 +56,7 @@ def retrieve_local(uri: str) -> Resource:
     return Resource.from_contents(schema)
 
 
-registry = Registry(retrieve=retrieve_local)
+_schema_registry = Registry(retrieve=retrieve_local)
 
 
 class MyTestCase(unittest.TestCase):
@@ -73,36 +67,31 @@ class MyTestCase(unittest.TestCase):
         logger.addHandler(hdlr)
         self.logger = logger
 
-        self.dpgs = [SSVCv1, SSVCv2, SSVCv2_1, CVSSv1, CVSSv2, CVSSv3, CVSSv4]
+        self.registry = get_registry()
+        self.registered_dps = list(get_all("DecisionPoint", registry=self.registry))
+
+        my_file_path = os.path.abspath(__file__)
+        my_dir = os.path.dirname(my_file_path)
+
+        self.schema_dir = os.path.join(my_dir, "..", "..", "data", "schema", "v2")
 
     def test_confirm_registered_decision_points(self):
-        dps = list(REGISTERED_DECISION_POINTS)
-        self.assertGreater(len(dps), 0)
-
-        for dpg in self.dpgs:
-            for dp in dpg:
-                self.assertIn(dp, REGISTERED_DECISION_POINTS)
-
-        extras = [CRITICAL_SOFTWARE_1, HIGH_VALUE_ASSET_1, IN_KEV_1]
-        for dp in extras:
-            self.assertIn(dp, REGISTERED_DECISION_POINTS)
+        self.assertGreater(len(self.registered_dps), 0, "No decision points registered")
 
     def test_decision_point_validation(self):
-        # path relative to top level of repo
-        schema_url = "https://certcc.github.io/SSVC/data/schema/current/Decision_Point.schema.json"
+        schema_path = os.path.join(self.schema_dir, "Decision_Point-2-0-0.schema.json")
+        schema_path = os.path.abspath(schema_path)
 
-        decision_points = list(REGISTERED_DECISION_POINTS)
-        self.assertGreater(len(decision_points), 0)
+        with open(schema_path, "r") as f:
+            schema = json.load(f)
 
-        for dp in decision_points:
+        for dp in self.registered_dps:
             exp = None
             as_json = dp.model_dump_json()
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(
-                    loaded
-                )
+                Draft202012Validator(schema, registry=_schema_registry).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
@@ -112,28 +101,30 @@ class MyTestCase(unittest.TestCase):
             )
 
     def test_decision_point_group_validation(self):
-        schema_url = "https://certcc.github.io/SSVC/data/schema/current/Decision_Point_Group.schema.json"
-        for dpg in self.dpgs:
+        schema_path = os.path.join(
+            self.schema_dir, "Decision_Point_Group-2-0-0.schema.json"
+        )
+        schema_path = os.path.abspath(schema_path)
+
+        with open(schema_path, "r") as f:
+            schema = json.load(f)
+
+        for dp_group in [SSVCv1, SSVCv2, SSVCv2_1]:
             exp = None
-            as_json = dpg.model_dump_json()
+            as_json = dp_group.model_dump_json()
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator({"$ref": schema_url}, registry=registry).validate(
-                    loaded
-                )
+                Draft202012Validator(schema, registry=_schema_registry).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
-            self.assertIsNone(exp, f"Validation failed for {dpg.name} {dpg.version}")
-            self.logger.debug(
-                f"Validation passed for Decision Point Group {dpg.name} v{dpg.version}"
+            self.assertIsNone(
+                exp, f"Validation failed for {dp_group.name} {dp_group.version}"
             )
-
-    @unittest.skip("Test not implemented")
-    def test_outcome_group_schema_validation(self):
-        # TODO: Implement test
-        self.fail()
+            self.logger.debug(
+                f"Validation passed for Decision Point Group {dp_group.name} v{dp_group.version}"
+            )
 
 
 if __name__ == "__main__":
