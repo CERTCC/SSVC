@@ -3,6 +3,7 @@
 Provides the Coordinator Publish Decision Table for SSVC.
 """
 
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -211,13 +212,9 @@ LATEST = VERSIONS[-1]
 
 
 def main():
-    from ssvc.decision_tables.base import decision_table_to_longform_df
+    from ssvc.decision_tables.helpers import print_dt_version
 
-    print(LATEST.model_dump_json(indent=2))
-
-    print("Longform DataFrame CSV")
-    print()
-    print(decision_table_to_longform_df(LATEST).to_csv(index=False))
+    print_dt_version(LATEST)
 
 
 if __name__ == "__main__":
