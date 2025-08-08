@@ -1,0 +1,35 @@
+{
+  "namespace": "cisa",
+  "key": "II",
+  "version": "1.0.0",
+  "name": "Information Impact",
+  "description": "Describes the type of information lost, compromised, or corrupted.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "N",
+      "name": "None",
+      "description": "No information was exfiltrated, modified, deleted, or otherwise compromised."
+    },
+    {
+      "key": "I",
+      "name": "Integrity",
+      "description": "The necessary integrity of information was modified without authorization."
+    },
+    {
+      "key": "P",
+      "name": "Privacy",
+      "description": "The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised."
+    },
+    {
+      "key": "R",
+      "name": "Proprietary",
+      "description": "The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised."
+    },
+    {
+      "key": "C",
+      "name": "Classified",
+      "description": "The confidentiality of classified information was compromised."
+    }
+  ]
+}
