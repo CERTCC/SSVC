@@ -2,7 +2,9 @@
 """
 CVSS Subsequent System Integrity Impact Decision Point
 """
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+
+
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -21,12 +23,15 @@ CVSS Subsequent System Integrity Impact Decision Point
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.cvss.helpers import modify_4
+from ssvc.decision_points.cvss.helpers import modify_4, no_x
 from ssvc.decision_points.cvss.subsequent_integrity_impact import (
     SUBSEQUENT_INTEGRITY_IMPACT_1 as SI,
 )
 
 MSI = modify_4(SI)
+
+MSI_NoX = no_x(MSI)
+
 
 VERSIONS = (MSI,)
 LATEST = VERSIONS[-1]
@@ -36,6 +41,12 @@ def main():
     from ssvc.decision_points.helpers import print_versions_and_diffs
 
     print_versions_and_diffs(VERSIONS)
+
+    print_versions_and_diffs(
+        [
+            MSI_NoX,
+        ]
+    )
 
 
 if __name__ == "__main__":

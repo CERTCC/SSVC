@@ -21,12 +21,13 @@ CVSS Subsequent system availability impact decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.cvss.helpers import modify_4
+from ssvc.decision_points.cvss.helpers import modify_4, no_x
 from ssvc.decision_points.cvss.subsequent_availability_impact import (
     SUBSEQUENT_AVAILABILITY_IMPACT_1 as SA,
 )
 
 MSA = modify_4(SA)
+MSA_NoX = no_x(MSA)
 
 VERSIONS = (MSA,)
 LATEST = VERSIONS[-1]
@@ -36,6 +37,9 @@ def main():
     from ssvc.decision_points.helpers import print_versions_and_diffs
 
     print_versions_and_diffs(VERSIONS)
+    print_versions_and_diffs([
+        MSA_NoX,
+    ])
 
 
 if __name__ == "__main__":

@@ -57,14 +57,6 @@ def write_csv(
         fp.write(decision_table_to_longform_df(decision_table).to_csv(index=index))
 
 
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
-
-
 def print_dt_version(dt: DecisionTable, longform=True) -> None:
     from ssvc.decision_tables.base import decision_table_to_longform_df
 
@@ -81,3 +73,12 @@ def print_dt_version(dt: DecisionTable, longform=True) -> None:
     else:
         df = decision_table_to_shortform_df(dt)
     print(df.to_csv(index=False))
+
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
+
