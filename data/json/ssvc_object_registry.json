@@ -6884,7 +6884,7 @@
                         "cvss:AV:3.0.1": "N",
                         "cvss:PR:1.0.1": "H",
                         "cvss:UI:2.0.0": "A",
-                        "cvss:EQ1:1.0.0": "L"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "A",
@@ -6902,19 +6902,19 @@
                         "cvss:AV:3.0.1": "A",
                         "cvss:PR:1.0.1": "H",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "M"
+                        "cvss:EQ1:1.0.0": "L"
                       },
                       {
                         "cvss:AV:3.0.1": "L",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "M"
+                        "cvss:EQ1:1.0.0": "L"
                       },
                       {
                         "cvss:AV:3.0.1": "P",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "M"
+                        "cvss:EQ1:1.0.0": "L"
                       },
                       {
                         "cvss:AV:3.0.1": "L",
@@ -6926,7 +6926,7 @@
                         "cvss:AV:3.0.1": "P",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "M"
+                        "cvss:EQ1:1.0.0": "L"
                       },
                       {
                         "cvss:AV:3.0.1": "N",
@@ -6950,7 +6950,7 @@
                         "cvss:AV:3.0.1": "A",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "M"
+                        "cvss:EQ1:1.0.0": "L"
                       },
                       {
                         "cvss:AV:3.0.1": "L",
@@ -6968,67 +6968,67 @@
                         "cvss:AV:3.0.1": "L",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "P",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "L"
                       },
                       {
                         "cvss:AV:3.0.1": "N",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "A",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "N",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "A",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "N",
                         "cvss:PR:1.0.1": "H",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "A",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "L",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "N",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "P",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "N",
                         "cvss:PR:1.0.1": "L",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "A",
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "N",
-                        "cvss:EQ1:1.0.0": "H"
+                        "cvss:EQ1:1.0.0": "M"
                       },
                       {
                         "cvss:AV:3.0.1": "N",

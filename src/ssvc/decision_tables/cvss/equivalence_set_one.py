@@ -21,6 +21,8 @@ Provides a decision table modeling equivalence set 1 from CVSS v4"""
 #  subject to its own license.
 #  DM24-0278
 
+# https://www.first.org/cvss/v4-0/specification-document
+#  Table 24: EQ1 MacroVectors
 # Levels	Constraints	Highest Severity Vector(s)
 # 0	AV:N and PR:N and UI:N	AV:N/PR:N/UI:N
 # 1	(AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P	AV:A/PR:N/UI:N or AV:N/PR:L/UI:N or AV:N/PR:N:/UI:P
@@ -34,6 +36,7 @@ from ssvc.decision_points.cvss.privileges_required import (
 from ssvc.decision_points.cvss.user_interaction import USER_INTERACTION_2 as UI
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
+
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.CVSS,
@@ -108,7 +111,7 @@ V1_0_0 = DecisionTable(
             "cvss:AV:3.0.1": "N",
             "cvss:PR:1.0.1": "H",
             "cvss:UI:2.0.0": "A",
-            "cvss:EQ1:1.0.0": "L",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "A",
@@ -126,19 +129,19 @@ V1_0_0 = DecisionTable(
             "cvss:AV:3.0.1": "A",
             "cvss:PR:1.0.1": "H",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "M",
+            "cvss:EQ1:1.0.0": "L",
         },
         {
             "cvss:AV:3.0.1": "L",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "M",
+            "cvss:EQ1:1.0.0": "L",
         },
         {
             "cvss:AV:3.0.1": "P",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "M",
+            "cvss:EQ1:1.0.0": "L",
         },
         {
             "cvss:AV:3.0.1": "L",
@@ -150,7 +153,7 @@ V1_0_0 = DecisionTable(
             "cvss:AV:3.0.1": "P",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "M",
+            "cvss:EQ1:1.0.0": "L",
         },
         {
             "cvss:AV:3.0.1": "N",
@@ -174,7 +177,7 @@ V1_0_0 = DecisionTable(
             "cvss:AV:3.0.1": "A",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "M",
+            "cvss:EQ1:1.0.0": "L",
         },
         {
             "cvss:AV:3.0.1": "L",
@@ -192,67 +195,67 @@ V1_0_0 = DecisionTable(
             "cvss:AV:3.0.1": "L",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "P",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "L",
         },
         {
             "cvss:AV:3.0.1": "N",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "A",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "N",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "A",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "N",
             "cvss:PR:1.0.1": "H",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "A",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "L",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "N",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "P",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "N",
             "cvss:PR:1.0.1": "L",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "A",
             "cvss:PR:1.0.1": "N",
             "cvss:UI:2.0.0": "N",
-            "cvss:EQ1:1.0.0": "H",
+            "cvss:EQ1:1.0.0": "M",
         },
         {
             "cvss:AV:3.0.1": "N",
