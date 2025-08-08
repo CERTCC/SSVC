@@ -2289,6 +2289,346 @@
                 }
               }
             },
+            "SA": {
+              "key": "SA",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "SA",
+                    "version": "1.0.0",
+                    "name": "Availability Impact to the Subsequent System",
+                    "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+                    }
+                  }
+                }
+              }
+            },
+            "MSA": {
+              "key": "MSA",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "MSA",
+                    "version": "1.0.0",
+                    "name": "Modified Availability Impact to the Subsequent System",
+                    "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+                      },
+                      {
+                        "key": "X",
+                        "name": "Not Defined",
+                        "description": "This metric value is not defined. See CVSS documentation for details."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+                    },
+                    "X": {
+                      "key": "X",
+                      "name": "Not Defined",
+                      "description": "This metric value is not defined. See CVSS documentation for details."
+                    }
+                  }
+                },
+                "1.0.1": {
+                  "version": "1.0.1",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "MSA",
+                    "version": "1.0.1",
+                    "name": "Modified Availability Impact to the Subsequent System",
+                    "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "Negligible",
+                        "description": "There is negligible impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+                      },
+                      {
+                        "key": "X",
+                        "name": "Not Defined",
+                        "description": "This metric value is not defined. See CVSS documentation for details."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "Negligible",
+                      "description": "There is negligible impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+                    },
+                    "X": {
+                      "key": "X",
+                      "name": "Not Defined",
+                      "description": "This metric value is not defined. See CVSS documentation for details."
+                    }
+                  }
+                }
+              }
+            },
+            "SI": {
+              "key": "SI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "SI",
+                    "version": "1.0.0",
+                    "name": "Integrity Impact to the Subsequent System",
+                    "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+                    }
+                  }
+                }
+              }
+            },
+            "MSI": {
+              "key": "MSI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "MSI",
+                    "version": "1.0.0",
+                    "name": "Modified Integrity Impact to the Subsequent System",
+                    "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+                      },
+                      {
+                        "key": "X",
+                        "name": "Not Defined",
+                        "description": "This metric value is not defined. See CVSS documentation for details."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+                    },
+                    "X": {
+                      "key": "X",
+                      "name": "Not Defined",
+                      "description": "This metric value is not defined. See CVSS documentation for details."
+                    }
+                  }
+                },
+                "1.0.1": {
+                  "version": "1.0.1",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "MSI",
+                    "version": "1.0.1",
+                    "name": "Modified Integrity Impact to the Subsequent System",
+                    "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "Negligible",
+                        "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+                      },
+                      {
+                        "key": "X",
+                        "name": "Not Defined",
+                        "description": "This metric value is not defined. See CVSS documentation for details."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Safety",
+                        "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "Negligible",
+                      "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+                    },
+                    "X": {
+                      "key": "X",
+                      "name": "Not Defined",
+                      "description": "This metric value is not defined. See CVSS documentation for details."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Safety",
+                      "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
+                    }
+                  }
+                }
+              }
+            },
             "PR": {
               "key": "PR",
               "versions": {
@@ -2779,56 +3119,6 @@
                 }
               }
             },
-            "SA": {
-              "key": "SA",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "cvss",
-                    "key": "SA",
-                    "version": "1.0.0",
-                    "name": "Availability Impact to the Subsequent System",
-                    "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "None",
-                        "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "None",
-                      "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
-                    }
-                  }
-                }
-              }
-            },
             "SC": {
               "key": "SC",
               "versions": {
@@ -2874,56 +3164,6 @@
                       "key": "H",
                       "name": "High",
                       "description": "There is a total loss of confidentiality, resulting in all resources within the Subsequent System being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact."
-                    }
-                  }
-                }
-              }
-            },
-            "SI": {
-              "key": "SI",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "cvss",
-                    "key": "SI",
-                    "version": "1.0.0",
-                    "name": "Integrity Impact to the Subsequent System",
-                    "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "None",
-                        "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "None",
-                      "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
                     }
                   }
                 }
@@ -4564,246 +4804,6 @@
                       "key": "H",
                       "name": "High",
                       "description": "There is a total loss of confidentiality, resulting in all resources within the Subsequent System being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact."
-                    },
-                    "X": {
-                      "key": "X",
-                      "name": "Not Defined",
-                      "description": "This metric value is not defined. See CVSS documentation for details."
-                    }
-                  }
-                }
-              }
-            },
-            "MSI": {
-              "key": "MSI",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "cvss",
-                    "key": "MSI",
-                    "version": "1.0.0",
-                    "name": "Modified Integrity Impact to the Subsequent System",
-                    "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "None",
-                        "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
-                      },
-                      {
-                        "key": "X",
-                        "name": "Not Defined",
-                        "description": "This metric value is not defined. See CVSS documentation for details."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "None",
-                      "description": "There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
-                    },
-                    "X": {
-                      "key": "X",
-                      "name": "Not Defined",
-                      "description": "This metric value is not defined. See CVSS documentation for details."
-                    }
-                  }
-                },
-                "1.0.1": {
-                  "version": "1.0.1",
-                  "obj": {
-                    "namespace": "cvss",
-                    "key": "MSI",
-                    "version": "1.0.1",
-                    "name": "Modified Integrity Impact to the Subsequent System",
-                    "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "Negligible",
-                        "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
-                      },
-                      {
-                        "key": "X",
-                        "name": "Not Defined",
-                        "description": "This metric value is not defined. See CVSS documentation for details."
-                      },
-                      {
-                        "key": "S",
-                        "name": "Safety",
-                        "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "Negligible",
-                      "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
-                    },
-                    "X": {
-                      "key": "X",
-                      "name": "Not Defined",
-                      "description": "This metric value is not defined. See CVSS documentation for details."
-                    },
-                    "S": {
-                      "key": "S",
-                      "name": "Safety",
-                      "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
-                    }
-                  }
-                }
-              }
-            },
-            "MSA": {
-              "key": "MSA",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "cvss",
-                    "key": "MSA",
-                    "version": "1.0.0",
-                    "name": "Modified Availability Impact to the Subsequent System",
-                    "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "None",
-                        "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
-                      },
-                      {
-                        "key": "X",
-                        "name": "Not Defined",
-                        "description": "This metric value is not defined. See CVSS documentation for details."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "None",
-                      "description": "There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
-                    },
-                    "X": {
-                      "key": "X",
-                      "name": "Not Defined",
-                      "description": "This metric value is not defined. See CVSS documentation for details."
-                    }
-                  }
-                },
-                "1.0.1": {
-                  "version": "1.0.1",
-                  "obj": {
-                    "namespace": "cvss",
-                    "key": "MSA",
-                    "version": "1.0.1",
-                    "name": "Modified Availability Impact to the Subsequent System",
-                    "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "Negligible",
-                        "description": "There is negligible impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
-                      },
-                      {
-                        "key": "X",
-                        "name": "Not Defined",
-                        "description": "This metric value is not defined. See CVSS documentation for details."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "Negligible",
-                      "description": "There is negligible impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
                     },
                     "X": {
                       "key": "X",
