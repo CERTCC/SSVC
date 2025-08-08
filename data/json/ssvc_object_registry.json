@@ -173,27 +173,27 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable."
-                      },
-                      {
                         "key": "H",
                         "name": "High",
                         "description": "Specialized access conditions exist; for example: the system is exploitable during specific windows of time (a race condition), the system is exploitable under specific circumstances (nondefault configurations), or the system is exploitable with victim interaction (vulnerability exploitable only if user opens e-mail)"
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable."
                       }
                     ]
                   },
                   "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable."
-                    },
                     "H": {
                       "key": "H",
                       "name": "High",
                       "description": "Specialized access conditions exist; for example: the system is exploitable during specific windows of time (a race condition), the system is exploitable under specific circumstances (nondefault configurations), or the system is exploitable with victim interaction (vulnerability exploitable only if user opens e-mail)"
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable."
                     }
                   }
                 },
@@ -208,9 +208,9 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Specialized access conditions or extenuating circumstances do not exist."
+                        "key": "H",
+                        "name": "High",
+                        "description": "Specialized access conditions exist."
                       },
                       {
                         "key": "M",
@@ -218,27 +218,27 @@
                         "description": "The access conditions are somewhat specialized."
                       },
                       {
-                        "key": "H",
-                        "name": "High",
-                        "description": "Specialized access conditions exist."
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Specialized access conditions or extenuating circumstances do not exist."
                       }
                     ]
                   },
                   "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Specialized access conditions or extenuating circumstances do not exist."
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "Specialized access conditions exist."
                     },
                     "M": {
                       "key": "M",
                       "name": "Medium",
                       "description": "The access conditions are somewhat specialized."
                     },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "description": "Specialized access conditions exist."
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Specialized access conditions or extenuating circumstances do not exist."
                     }
                   }
                 },
@@ -253,27 +253,27 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
-                      },
-                      {
                         "key": "H",
                         "name": "High",
                         "description": "A successful attack depends on conditions beyond the attacker's control."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
                       }
                     ]
                   },
                   "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
-                    },
                     "H": {
                       "key": "H",
                       "name": "High",
                       "description": "A successful attack depends on conditions beyond the attacker's control."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
                     }
                   }
                 },
@@ -288,27 +288,27 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
-                      },
-                      {
                         "key": "H",
                         "name": "High",
                         "description": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
                       }
                     ]
                   },
                   "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
-                    },
                     "H": {
                       "key": "H",
                       "name": "High",
                       "description": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
                     }
                   }
                 }
@@ -328,27 +328,27 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "N",
-                        "name": "None",
-                        "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
-                      },
-                      {
                         "key": "P",
                         "name": "Present",
                         "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+                      },
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
                       }
                     ]
                   },
                   "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "None",
-                      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
-                    },
                     "P": {
                       "key": "P",
                       "name": "Present",
                       "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+                    },
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
                     }
                   }
                 }
@@ -3698,14 +3698,14 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
-                      },
-                      {
                         "key": "H",
                         "name": "High",
                         "description": "A successful attack depends on conditions beyond the attacker's control."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
                       },
                       {
                         "key": "X",
@@ -3715,15 +3715,15 @@
                     ]
                   },
                   "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
-                    },
                     "H": {
                       "key": "H",
                       "name": "High",
                       "description": "A successful attack depends on conditions beyond the attacker's control."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
                     },
                     "X": {
                       "key": "X",
@@ -3743,14 +3743,14 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "L",
-                        "name": "Low",
-                        "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
-                      },
-                      {
                         "key": "H",
                         "name": "High",
                         "description": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
                       },
                       {
                         "key": "X",
@@ -3760,15 +3760,15 @@
                     ]
                   },
                   "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
-                    },
                     "H": {
                       "key": "H",
                       "name": "High",
                       "description": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
                     },
                     "X": {
                       "key": "X",
@@ -4243,14 +4243,14 @@
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
-                        "key": "N",
-                        "name": "None",
-                        "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
-                      },
-                      {
                         "key": "P",
                         "name": "Present",
                         "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+                      },
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
                       },
                       {
                         "key": "X",
@@ -4260,15 +4260,15 @@
                     ]
                   },
                   "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "None",
-                      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
-                    },
                     "P": {
                       "key": "P",
                       "name": "Present",
                       "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+                    },
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
                     },
                     "X": {
                       "key": "X",
@@ -7035,6 +7035,107 @@
                         "cvss:PR:1.0.1": "N",
                         "cvss:UI:2.0.0": "N",
                         "cvss:EQ1:1.0.0": "H"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "DT_CVSS4_EQ2": {
+              "key": "DT_CVSS4_EQ2",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "DT_CVSS4_EQ2",
+                    "version": "1.0.0",
+                    "name": "CVSS v4 Equivalence Set 2",
+                    "description": "This decision table models equivalence set 2 from CVSS v4. Factors include Attack Complexity (AC) and .",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "cvss:AC:3.0.1": {
+                        "namespace": "cvss",
+                        "key": "AC",
+                        "version": "3.0.1",
+                        "name": "Attack Complexity",
+                        "description": "This metric captures measurable actions that must be taken by the attacker to actively evade or circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "H",
+                            "name": "High",
+                            "description": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
+                          },
+                          {
+                            "key": "L",
+                            "name": "Low",
+                            "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
+                          }
+                        ]
+                      },
+                      "cvss:AT:1.0.0": {
+                        "namespace": "cvss",
+                        "key": "AT",
+                        "version": "1.0.0",
+                        "name": "Attack Requirements",
+                        "description": "This metric captures the prerequisite deployment and execution conditions or variables of the vulnerable system that enable the attack.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "P",
+                            "name": "Present",
+                            "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+                          },
+                          {
+                            "key": "N",
+                            "name": "None",
+                            "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
+                          }
+                        ]
+                      },
+                      "cvss:EQ2:1.0.0": {
+                        "namespace": "cvss",
+                        "key": "EQ2",
+                        "version": "1.0.0",
+                        "name": "Equivalence Set 2",
+                        "description": "AC/AT with 2 levels specified in Table 25",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "L",
+                            "name": "Low",
+                            "description": "1: not (AC:L and AT:N)"
+                          },
+                          {
+                            "key": "H",
+                            "name": "High",
+                            "description": "0: AC:L and AT:N"
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "cvss:EQ2:1.0.0",
+                    "mapping": [
+                      {
+                        "cvss:AC:3.0.1": "H",
+                        "cvss:AT:1.0.0": "P",
+                        "cvss:EQ2:1.0.0": "L"
+                      },
+                      {
+                        "cvss:AC:3.0.1": "L",
+                        "cvss:AT:1.0.0": "P",
+                        "cvss:EQ2:1.0.0": "L"
+                      },
+                      {
+                        "cvss:AC:3.0.1": "H",
+                        "cvss:AT:1.0.0": "N",
+                        "cvss:EQ2:1.0.0": "L"
+                      },
+                      {
+                        "cvss:AC:3.0.1": "L",
+                        "cvss:AT:1.0.0": "N",
+                        "cvss:EQ2:1.0.0": "H"
                       }
                     ]
                   }
