@@ -227,6 +227,13 @@ class DecisionTable(
         else:
             logger.debug("Topological order check passed with no problems.")
 
+        # if there's only one decision point mapping to the outcome, we can stop here
+        input_cols = [
+            dp for dp in self.decision_points.values() if dp.id != self.outcome
+        ]
+        if len(input_cols) <= 1:
+            return self
+
         # reject if any irrelevant columns are present in the mapping
         fi = feature_importance(self)
         irrelevant_features = fi[fi["feature_importance"] <= 0]

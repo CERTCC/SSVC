@@ -330,7 +330,6 @@ class TestDecisionTableBase(unittest.TestCase):
             # # each count should be less than or equal to the length of the combination
             self.assertLessEqual(count, len(combos))
 
-    @unittest.expectedFailure
     def test_single_dp_dt(self):
         # Create a DecisionTable with a single DecisionPoint
         dp_in = DecisionPoint(

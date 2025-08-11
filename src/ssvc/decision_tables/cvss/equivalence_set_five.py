@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+"""
+CVSS Equivalence Set 5 Decision Table
+"""
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -17,49 +21,43 @@
 #  subject to its own license.
 #  DM24-0278
 
-# #!/usr/bin/env python
-# """
-# CVSS Equivalence Set 5 Decision Table
-# """
+# Table 28: EQ5 - MacroVectors
 #
-# # Table 28: EQ5 - MacroVectors
-# #
-# # Levels	Constraints	Highest Severity Vector(s)
-# # 0	E:A	E:A
-# # 1	E:P	E:P
-# # 2	E:U	E:U
-#
-#
-# from ssvc.decision_points.cvss.equivalence_set_5 import EQ5
-# from ssvc.decision_points.cvss.exploit_maturity import EXPLOIT_MATURITY_2 as E
-# from ssvc.decision_tables.base import DecisionTable
-# from ssvc.namespaces import NameSpace
-#
-# TODO Re-enable this once we've resolved https://github.com/CERTCC/SSVC/issues/853
-# V1_0_0 = DecisionTable(
-#     namespace=NameSpace.CVSS,
-#     key="CVSS_EQ5",
-#     version="1.0.0",
-#     name="CVSS Equivalence Set 5",
-#     description="CVSS Equivalence Set 5 Decision Table",
-#     decision_points={dp.id: dp for dp in [E, EQ5]},
-#     outcome=EQ5.id,
-#     mapping=[
-#         {"cvss:E:2.0.0": "U", "cvss:EQ5:1.0.0": "L"},
-#         {"cvss:E:2.0.0": "P", "cvss:EQ5:1.0.0": "M"},
-#         {"cvss:E:2.0.0": "A", "cvss:EQ5:1.0.0": "H"},
-#     ],
-# )
-#
-# VERSIONS = (V1_0_0,)
-# LATEST = VERSIONS[-1]
-#
-#
-# def main():
-#     from ssvc.decision_tables.helpers import print_dt_version
-#
-#     print_dt_version(LATEST, longform=False)
-#
-#
-# if __name__ == "__main__":
-#     main()
+# Levels	Constraints	Highest Severity Vector(s)
+# 0	E:A	E:A
+# 1	E:P	E:P
+# 2	E:U	E:U
+
+
+from ssvc.decision_points.cvss.equivalence_set_5 import EQ5
+from ssvc.decision_points.cvss.exploit_maturity import EXPLOIT_MATURITY_2 as E
+from ssvc.decision_tables.base import DecisionTable
+from ssvc.namespaces import NameSpace
+
+V1_0_0 = DecisionTable(
+    namespace=NameSpace.CVSS,
+    key="CVSS_EQ5",
+    version="1.0.0",
+    name="CVSS Equivalence Set 5",
+    description="CVSS Equivalence Set 5 Decision Table",
+    decision_points={dp.id: dp for dp in [E, EQ5]},
+    outcome=EQ5.id,
+    mapping=[
+        {"cvss:E:2.0.0": "U", "cvss:EQ5:1.0.0": "L"},
+        {"cvss:E:2.0.0": "P", "cvss:EQ5:1.0.0": "M"},
+        {"cvss:E:2.0.0": "A", "cvss:EQ5:1.0.0": "H"},
+    ],
+)
+
+VERSIONS = (V1_0_0,)
+LATEST = VERSIONS[-1]
+
+
+def main():
+    from ssvc.decision_tables.helpers import print_dt_version
+
+    print_dt_version(LATEST, longform=False)
+
+
+if __name__ == "__main__":
+    main()
