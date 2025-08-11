@@ -27,7 +27,7 @@ import semver
 
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
-from ssvc.decision_points.cvss.base import CvssDecisionPoint as DecisionPoint
+from ssvc.decision_points.cvss.base import CvssDecisionPoint, CvssDecisionPoint as DecisionPoint
 
 
 def _modify_3(dp: DecisionPoint):
@@ -101,9 +101,9 @@ def _modify_4(dp: DecisionPoint):
                 _dp_dict["version"] = str(semver.Version.bump_patch(ver))
                 break
 
-    # Note: For MSI, There is also a highest severity level, Safety (S), in addition to the same values as the
+    # Note: For MSI and MSA, There is also a highest severity level, Safety (S), in addition to the same values as the
     # corresponding Base Metric (High, Medium, Low).
-    if key == "MSI":
+    if key in ["MSI", "MSA"]:
         _SAFETY = DecisionPointValue(
             name="Safety",
             key="S",
@@ -125,3 +125,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def no_x(dp: CvssDecisionPoint) -> CvssDecisionPoint:
+    """Create a version of the decision point without the Not Defined (X) option."""
+    return CvssDecisionPoint(
+        namespace=dp.namespace,
+        key=f"{dp.key}_NoX",
+        version=dp.version,
+        name=f"{dp.name} (without Not Defined)",
+        description=(
+            f"{dp.description} This version does not include the Not Defined (X) option."
+        ),
+        values=tuple([v for v in dp.values if v.key != "X"]),
+    )

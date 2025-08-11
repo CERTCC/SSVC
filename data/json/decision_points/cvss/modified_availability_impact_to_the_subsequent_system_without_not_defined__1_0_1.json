@@ -1,9 +1,9 @@
 {
   "namespace": "cvss",
-  "key": "MSA",
+  "key": "MSA_NoX",
   "version": "1.0.1",
-  "name": "Modified Availability Impact to the Subsequent System",
-  "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System.",
+  "name": "Modified Availability Impact to the Subsequent System (without Not Defined)",
+  "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System. This version does not include the Not Defined (X) option.",
   "schemaVersion": "2.0.0",
   "values": [
     {
@@ -20,11 +20,6 @@
       "key": "H",
       "name": "High",
       "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
-    },
-    {
-      "key": "X",
-      "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
     },
     {
       "key": "S",

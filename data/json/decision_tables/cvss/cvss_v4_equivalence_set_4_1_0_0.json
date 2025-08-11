@@ -1,0 +1,411 @@
+{
+  "namespace": "cvss",
+  "key": "DT_CVSS4_EQ4",
+  "version": "1.0.0",
+  "name": "CVSS v4 Equivalence Set 4",
+  "description": "This decision table models equivalence set 4 from CVSS v4.",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "cvss:SC:1.0.0": {
+      "namespace": "cvss",
+      "key": "SC",
+      "version": "1.0.0",
+      "name": "Confidentiality Impact to the Subsequent System",
+      "description": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones. The resulting score is greatest when the loss to the system is highest.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "Negligible",
+          "description": "There is no loss of confidentiality within the Subsequent System or all confidentiality impact is constrained to the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the Subsequent System."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is a total loss of confidentiality, resulting in all resources within the Subsequent System being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact."
+        }
+      ]
+    },
+    "cvss:MSI_NoX:1.0.1": {
+      "namespace": "cvss",
+      "key": "MSI_NoX",
+      "version": "1.0.1",
+      "name": "Modified Integrity Impact to the Subsequent System (without Not Defined)",
+      "description": "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. Integrity of a system is impacted when an attacker causes unauthorized modification of system data. Integrity is also impacted when a system user can repudiate critical actions taken in the context of the system (e.g. due to insufficient logging). The resulting score is greatest when the consequence to the system is highest. This version does not include the Not Defined (X) option.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "Negligible",
+          "description": "There is negligible loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
+        },
+        {
+          "key": "S",
+          "name": "Safety",
+          "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
+        }
+      ]
+    },
+    "cvss:MSA_NoX:1.0.1": {
+      "namespace": "cvss",
+      "key": "MSA_NoX",
+      "version": "1.0.1",
+      "name": "Modified Availability Impact to the Subsequent System (without Not Defined)",
+      "description": "This metric measures the impact on availability a successful exploit of the vulnerability will have on the Subsequent System. This version does not include the Not Defined (X) option.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "Negligible",
+          "description": "There is negligible impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+        },
+        {
+          "key": "S",
+          "name": "Safety",
+          "description": "The Safety metric value measures the impact regarding the Safety of a human actor or participant that can be predictably injured as a result of the vulnerability being exploited."
+        }
+      ]
+    },
+    "cvss:EQ4:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ4",
+      "version": "1.0.0",
+      "name": "Equivalence Set 4",
+      "description": "SC/SI/SA with 3 levels specified in Table 27",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: MSI:S or MSA:S"
+        }
+      ]
+    }
+  },
+  "outcome": "cvss:EQ4:1.0.0",
+  "mapping": [
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "L"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "N",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "N",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "L",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "M"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "L",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "N",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "H",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "H",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "L",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    },
+    {
+      "cvss:SC:1.0.0": "H",
+      "cvss:MSI_NoX:1.0.1": "S",
+      "cvss:MSA_NoX:1.0.1": "S",
+      "cvss:EQ4:1.0.0": "H"
+    }
+  ]
+}

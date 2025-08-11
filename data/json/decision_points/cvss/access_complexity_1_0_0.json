@@ -7,14 +7,14 @@
   "schemaVersion": "2.0.0",
   "values": [
     {
-      "key": "L",
-      "name": "Low",
-      "description": "Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable."
-    },
-    {
       "key": "H",
       "name": "High",
       "description": "Specialized access conditions exist; for example: the system is exploitable during specific windows of time (a race condition), the system is exploitable under specific circumstances (nondefault configurations), or the system is exploitable with victim interaction (vulnerability exploitable only if user opens e-mail)"
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Specialized access conditions or extenuating circumstances do not exist; the system is always exploitable."
     }
   ]
 }

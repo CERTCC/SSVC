@@ -330,6 +330,46 @@ class TestDecisionTableBase(unittest.TestCase):
             # # each count should be less than or equal to the length of the combination
             self.assertLessEqual(count, len(combos))
 
+    def test_single_dp_dt(self):
+        # Create a DecisionTable with a single DecisionPoint
+        dp_in = DecisionPoint(
+            name="dp_in",
+            description="A single decision point",
+            version="1.0.0",
+            namespace="x_test",
+            key="dp",
+            values=(self.dp1v1, self.dp1v2),
+            registered=False,
+        )
+        dp_out = DecisionPoint(
+            namespace="x_test",
+            key="outcome",
+            name="Outcome",
+            description="Outcome for single DP test",
+            version="1.0.0",
+            values=(self.ogv1, self.ogv2, self.ogv3),
+            registered=False,
+        )
+
+        single_dt = DecisionTable(
+            key="SINGLE_TEST",
+            namespace="x_test",
+            name="Single DP Test Table",
+            description="Describes the single DP test table",
+            decision_points={dp.id: dp for dp in [dp_in, dp_out]},
+            outcome=dp_out.id,
+            registered=False,
+        )
+
+        # Check if mapping is populated correctly
+        self.assertIsNotNone(single_dt.mapping)
+        self.assertEqual(len(single_dt.mapping), len(dp_in.values))
+
+        # Check if the mapping contains the correct outcomes
+        for row in single_dt.mapping:
+            self.assertIn(single_dt.outcome, row)
+            self.assertIn(row[single_dt.outcome], [v.key for v in self.og.values])
+
 
 if __name__ == "__main__":
     unittest.main()

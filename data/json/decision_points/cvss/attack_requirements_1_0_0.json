@@ -7,14 +7,14 @@
   "schemaVersion": "2.0.0",
   "values": [
     {
-      "key": "N",
-      "name": "None",
-      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
-    },
-    {
       "key": "P",
       "name": "Present",
       "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+    },
+    {
+      "key": "N",
+      "name": "None",
+      "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
     }
   ]
 }

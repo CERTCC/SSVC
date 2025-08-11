@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-CVSS Attack Requirements
+CVSS Subsequent system availability impact decision point.
 """
 #  Copyright (c) 2023-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -21,44 +21,25 @@ CVSS Attack Requirements
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_points.cvss.base import CvssDecisionPoint
-from ssvc.decision_points.helpers import print_versions_and_diffs
-
-_AT_NONE = DecisionPointValue(
-    name="None",
-    key="N",
-    description="The successful attack does not depend on the deployment and execution conditions of the vulnerable "
-    "system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or "
-    "most instances of the vulnerability.",
+from ssvc.decision_points.cvss.helpers import modify_4, no_x
+from ssvc.decision_points.cvss.subsequent_availability_impact import (
+    SUBSEQUENT_AVAILABILITY_IMPACT_1 as SA,
 )
 
+MSA = modify_4(SA)
+MSA_NoX = no_x(MSA)
 
-_PRESENT = DecisionPointValue(
-    name="Present",
-    key="P",
-    description="The successful attack depends on the presence of specific deployment and execution conditions of "
-    "the vulnerable system that enable the attack.",
-)
-
-ATTACK_REQUIREMENTS_1 = CvssDecisionPoint(
-    name="Attack Requirements",
-    key="AT",
-    version="1.0.0",
-    description="This metric captures the prerequisite deployment and execution conditions or variables of the "
-    "vulnerable system that enable the attack.",
-    values=(
-        _PRESENT,
-        _AT_NONE,
-    ),
-)
-
-VERSIONS = (ATTACK_REQUIREMENTS_1,)
+VERSIONS = (MSA,)
 LATEST = VERSIONS[-1]
 
 
 def main():
+    from ssvc.decision_points.helpers import print_versions_and_diffs
+
     print_versions_and_diffs(VERSIONS)
+    print_versions_and_diffs([
+        MSA_NoX,
+    ])
 
 
 if __name__ == "__main__":

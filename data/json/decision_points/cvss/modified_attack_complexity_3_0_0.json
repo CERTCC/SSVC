@@ -7,14 +7,14 @@
   "schemaVersion": "2.0.0",
   "values": [
     {
-      "key": "L",
-      "name": "Low",
-      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
-    },
-    {
       "key": "H",
       "name": "High",
       "description": "A successful attack depends on conditions beyond the attacker's control."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
     },
     {
       "key": "X",

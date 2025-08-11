@@ -22,7 +22,12 @@ Provides helper functions for decision tables in SSVC.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_tables.base import decision_table_to_longform_df
+
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    decision_table_to_longform_df,
+    decision_table_to_shortform_df,
+)
 
 
 def write_csv(
@@ -52,9 +57,28 @@ def write_csv(
         fp.write(decision_table_to_longform_df(decision_table).to_csv(index=index))
 
 
+def print_dt_version(dt: DecisionTable, longform=True) -> None:
+    from ssvc.decision_tables.base import decision_table_to_longform_df
+
+    print(f"# Decision Table: {dt.name} v{dt.version}")
+    print()
+    print("## Full Model Dump:")
+    print()
+    print(dt.model_dump_json(indent=2))
+    print()
+    print("## CSV Mapping:")
+    print()
+    if longform:
+        df = decision_table_to_longform_df(dt)
+    else:
+        df = decision_table_to_shortform_df(dt)
+    print(df.to_csv(index=False))
+
+
 def main():
     pass
 
 
 if __name__ == "__main__":
     main()
+
