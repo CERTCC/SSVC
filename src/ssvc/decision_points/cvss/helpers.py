@@ -103,7 +103,7 @@ def _modify_4(dp: DecisionPoint):
 
     # Note: For MSI and MSA, There is also a highest severity level, Safety (S), in addition to the same values as the
     # corresponding Base Metric (High, Medium, Low).
-    if key in ["MSI","MSA"]:
+    if key in ["MSI", "MSA"]:
         _SAFETY = DecisionPointValue(
             name="Safety",
             key="S",
