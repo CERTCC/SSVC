@@ -14873,7 +14873,7 @@
                     "key": "DT_CVSS4_EQ2",
                     "version": "1.0.0",
                     "name": "CVSS v4 Equivalence Set 2",
-                    "description": "This decision table models equivalence set 2 from CVSS v4. Factors include Attack Complexity (AC) and .",
+                    "description": "This decision table models equivalence set 2 from CVSS v4. Factors include Attack Complexity (AC) and Attack Requirements (AT).",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
                       "cvss:AC:3.0.1": {
