@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+"""
+Provides CVSS v4 Equivalence Set 4 Decision Table
+"""
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -76,7 +80,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "H",
             "cvss:MSI_NoX:1.0.1": "N",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",
@@ -88,7 +92,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "H",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",
@@ -106,31 +110,31 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "N",
             "cvss:MSA_NoX:1.0.1": "H",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "H",
             "cvss:MSI_NoX:1.0.1": "L",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",
             "cvss:MSI_NoX:1.0.1": "H",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "S",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
             "cvss:MSI_NoX:1.0.1": "N",
             "cvss:MSA_NoX:1.0.1": "L",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",
@@ -142,7 +146,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "H",
             "cvss:MSA_NoX:1.0.1": "L",
-            "cvss:EQ4:1.0.0": "L",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",
@@ -160,7 +164,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "N",
             "cvss:MSA_NoX:1.0.1": "S",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
@@ -172,7 +176,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "L",
             "cvss:MSI_NoX:1.0.1": "S",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
@@ -190,7 +194,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "S",
             "cvss:MSA_NoX:1.0.1": "L",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
@@ -214,19 +218,19 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "L",
             "cvss:MSI_NoX:1.0.1": "N",
             "cvss:MSA_NoX:1.0.1": "S",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "N",
             "cvss:MSI_NoX:1.0.1": "L",
             "cvss:MSA_NoX:1.0.1": "S",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
             "cvss:MSI_NoX:1.0.1": "S",
             "cvss:MSA_NoX:1.0.1": "N",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
@@ -238,19 +242,19 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "L",
             "cvss:MSI_NoX:1.0.1": "S",
             "cvss:MSA_NoX:1.0.1": "L",
-            "cvss:EQ4:1.0.0": "M",
+            "cvss:EQ4:1.0.0": "H",
         },
         {
             "cvss:SC:1.0.0": "H",
             "cvss:MSI_NoX:1.0.1": "L",
             "cvss:MSA_NoX:1.0.1": "H",
-            "cvss:EQ4:1.0.0": "H",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",
             "cvss:MSI_NoX:1.0.1": "H",
             "cvss:MSA_NoX:1.0.1": "H",
-            "cvss:EQ4:1.0.0": "H",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "N",
@@ -286,7 +290,7 @@ V1_0_0 = DecisionTable(
             "cvss:SC:1.0.0": "H",
             "cvss:MSI_NoX:1.0.1": "H",
             "cvss:MSA_NoX:1.0.1": "H",
-            "cvss:EQ4:1.0.0": "H",
+            "cvss:EQ4:1.0.0": "M",
         },
         {
             "cvss:SC:1.0.0": "L",

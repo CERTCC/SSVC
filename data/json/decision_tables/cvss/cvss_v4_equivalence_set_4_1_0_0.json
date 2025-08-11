@@ -147,7 +147,7 @@
       "cvss:SC:1.0.0": "H",
       "cvss:MSI_NoX:1.0.1": "N",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
@@ -159,7 +159,7 @@
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "H",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
@@ -177,31 +177,31 @@
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "N",
       "cvss:MSA_NoX:1.0.1": "H",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "H",
       "cvss:MSI_NoX:1.0.1": "L",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
       "cvss:MSI_NoX:1.0.1": "H",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "S",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
       "cvss:MSI_NoX:1.0.1": "N",
       "cvss:MSA_NoX:1.0.1": "L",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
@@ -213,7 +213,7 @@
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "H",
       "cvss:MSA_NoX:1.0.1": "L",
-      "cvss:EQ4:1.0.0": "L"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
@@ -231,7 +231,7 @@
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "N",
       "cvss:MSA_NoX:1.0.1": "S",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
@@ -243,7 +243,7 @@
       "cvss:SC:1.0.0": "L",
       "cvss:MSI_NoX:1.0.1": "S",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
@@ -261,7 +261,7 @@
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "S",
       "cvss:MSA_NoX:1.0.1": "L",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
@@ -285,19 +285,19 @@
       "cvss:SC:1.0.0": "L",
       "cvss:MSI_NoX:1.0.1": "N",
       "cvss:MSA_NoX:1.0.1": "S",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "N",
       "cvss:MSI_NoX:1.0.1": "L",
       "cvss:MSA_NoX:1.0.1": "S",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
       "cvss:MSI_NoX:1.0.1": "S",
       "cvss:MSA_NoX:1.0.1": "N",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
@@ -309,19 +309,19 @@
       "cvss:SC:1.0.0": "L",
       "cvss:MSI_NoX:1.0.1": "S",
       "cvss:MSA_NoX:1.0.1": "L",
-      "cvss:EQ4:1.0.0": "M"
+      "cvss:EQ4:1.0.0": "H"
     },
     {
       "cvss:SC:1.0.0": "H",
       "cvss:MSI_NoX:1.0.1": "L",
       "cvss:MSA_NoX:1.0.1": "H",
-      "cvss:EQ4:1.0.0": "H"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
       "cvss:MSI_NoX:1.0.1": "H",
       "cvss:MSA_NoX:1.0.1": "H",
-      "cvss:EQ4:1.0.0": "H"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "N",
@@ -357,7 +357,7 @@
       "cvss:SC:1.0.0": "H",
       "cvss:MSI_NoX:1.0.1": "H",
       "cvss:MSA_NoX:1.0.1": "H",
-      "cvss:EQ4:1.0.0": "H"
+      "cvss:EQ4:1.0.0": "M"
     },
     {
       "cvss:SC:1.0.0": "L",
