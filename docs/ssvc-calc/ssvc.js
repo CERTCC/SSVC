@@ -20,7 +20,7 @@
  */
 
 /* SSVC code for graph building */
-const _version = "5.1.7"
+const _version = "5.1.8"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
 var diagonal,tree,svg,duration,root
@@ -667,6 +667,47 @@ function create_short_keys(x,uniq_keys) {
 	x["key"] = ssvc_short_keys[x.label];
     }
 }
+function schemaTransform(dtnew) {
+    const dtobj = JSON.parse(JSON.stringify(dtnew));
+    const dtold = {};
+    let finalkey;
+    if('outcome' in dtobj)
+	finalkey = dtobj.outcome;
+    if('decision_points' in dtobj) {
+	dtold['decision_points'] = [];
+	Object.entries(dtobj['decision_points']).forEach(function([k,dp]) {
+	    dp.decision_type = "simple";
+	    if(k == finalkey)
+		dp.decision_type = "final";
+	    dp.values.forEach(function(dv) {
+		dv.label = dv.name;
+		delete dv.name;
+	    });
+	    dp.options = dp.values;
+	    delete dp.values;
+	    dp.label = dp.name;
+	    delete dp.name;
+	    dtold.decision_points.push(dp);
+	});
+    }
+    if('mapping' in dtobj) {
+        dtold['decisions_table'] = [];
+        dtobj.mapping.forEach(function(dvpair) {
+            const dt = {}
+            Object.entries(dvpair).forEach(function([k,v]) {
+                const dp = dtnew.decision_points[k];
+                const name = dp.name;
+                for(let i=0; i< dp.values.length; i++) {
+                    if('key' in dp.values[i] && dp.values[i].key == v)
+			dt[name] = dp.values[i].name;
+	        }
+            });
+            dtold['decisions_table'].push(dt);
+        });
+    }
+    return dtold;
+
+}
 function parse_json(xraw,paused) {
     $('.bcomplex').remove();
     $('.graphy').not('#zoomcontrol').show();
@@ -678,6 +719,9 @@ function parse_json(xraw,paused) {
 	tm = JSON.parse(xraw)
     else
 	tm = xraw
+    if(('schemaVersion' in tm) && (tm.schemaVersion == "2.0.0")) {
+	tm = schemaTransform(tm);
+    }
     if('decision_tree' in tm) {
 	/* This has a decision_tree and a score - a computed and provision
 	   schemas together*/
@@ -785,7 +829,6 @@ function parse_json(xraw,paused) {
     var duniq_keys = {};
     /* unique keys for choices under decision points*/
     var ouniq_keys = {};
-    acolors = [];
     lcolors = {};    
     tm.decision_points.map(x => {
 	create_short_keys(x,duniq_keys);
@@ -853,8 +896,10 @@ function parse_json(xraw,paused) {
 	classes.push(srlabel);
 	if(("color" in r) && (r.color)) {
 	    lcolors[r.label] = r.color;
-	} else if(acolors[i]) {
-	    r.color = acolors[i];
+	} else if(acolors[ir]) {
+	    r.color = acolors[ir];
+	} else {
+	    r.color = "#fefefe";
 	}
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
 				     css({color:r.color}).html(r.label))
