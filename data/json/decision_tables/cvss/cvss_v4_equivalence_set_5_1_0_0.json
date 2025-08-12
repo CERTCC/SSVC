@@ -2,7 +2,7 @@
   "namespace": "cvss",
   "key": "DT_CVSS_EQ5",
   "version": "1.0.0",
-  "name": "CVSS Equivalence Set 5",
+  "name": "CVSS v4 Equivalence Set 5",
   "description": "CVSS Equivalence Set 5 Decision Table",
   "schemaVersion": "2.0.0",
   "decision_points": {
