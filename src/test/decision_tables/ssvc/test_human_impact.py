@@ -36,16 +36,16 @@ class MyTestCase(unittest.TestCase):
                 self.assertIn(self.mi, row)
                 self.assertIn(self.outcome, row)
 
-        if row[self.si] == "N" and row[self.mi] in ["N", "D", "MSC"]:
+        if row[self.si] == "N" and row[self.mi] in ["D", "MSC"]:
             # Low	Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)
             self.assertEqual(row[self.outcome], "L", f"row {i}: {row}")
         elif row[self.si] == "N" and row[self.mi] == "MEF":
             # Medium	(Safety Impact:Negligible AND Mission Impact:MEF Failure)
             self.assertEqual(row[self.outcome], "M", f"row {i}: {row}")
-        elif row[self.si] == "M" and row[self.mi] in ["N", "D", "MSC"]:
+        elif row[self.si] == "M" and row[self.mi] in ["D", "MSC"]:
             # Medium	OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))
             self.assertEqual(row[self.outcome], "M", f"row {i}: {row}")
-        elif row[self.si] == "C" and row[self.mi] in ["N", "D", "MSC"]:
+        elif row[self.si] == "C" and row[self.mi] in ["D", "MSC"]:
             # High	(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled))
             self.assertEqual(row[self.outcome], "H", f"row {i}: {row}")
         elif row[self.si] == "M" and row[self.mi] == "MEF":

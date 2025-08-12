@@ -24,7 +24,7 @@ Provides the CISA coordinator decision table.
 
 from ssvc.decision_points.ssvc.automatable import LATEST as Automatable
 from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
-from ssvc.decision_points.ssvc.human_impact import LATEST as HumanImpact
+from ssvc.decision_points.ssvc.human_impact import HUMAN_IMPACT_2_0_1 as HumanImpact
 from ssvc.decision_points.ssvc.technical_impact import LATEST as TechnicalImpact
 from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
 from ssvc.namespaces import NameSpace
