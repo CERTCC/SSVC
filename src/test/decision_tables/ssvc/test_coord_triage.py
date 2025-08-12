@@ -72,34 +72,44 @@ expect_coord = {
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.ct = CT
+        self.ct: "DecisionTable" = CT
+        self.rp: str = [k for k in self.ct.decision_points if "RP" in k][0]
+        self.scon: str = [k for k in self.ct.decision_points if "SCON" in k][0]
+        self.rc: str = [k for k in self.ct.decision_points if "RC" in k][0]
+        self.sc: str = [
+            k for k in self.ct.decision_points if "SC" in k and "SCON" not in k
+        ][0]
+        self.se: str = [k for k in self.ct.decision_points if "SE" in k][0]
+        self.u: str = [k for k in self.ct.decision_points if "U" in k][0]
+        self.psi: str = [k for k in self.ct.decision_points if "PSI" in k][0]
+        self.outcome: str = self.ct.outcome
 
-    @unittest.expectedFailure
-    def test_mapping(self):
-        rp = [k for k in self.ct.decision_points if "RP" in k][0]
-        scon = [k for k in self.ct.decision_points if "SCON" in k][0]
-        rc = [k for k in self.ct.decision_points if "RC" in k][0]
-        sc = [k for k in self.ct.decision_points if "SC" in k and "SCON" not in k][0]
-        se = [k for k in self.ct.decision_points if "SE" in k][0]
-        u = [k for k in self.ct.decision_points if "U" in k][0]
-        psi = [k for k in self.ct.decision_points if "PSI" in k][0]
-        outcome = self.ct.outcome
-
-        anomalies = []
+    def test_mapping_basics(self):
+        self.assertIsNotNone(self.ct.mapping)
+        self.assertGreater(len(self.ct.mapping), 0)
 
         for row in self.ct.mapping:
             with self.subTest(row=row):
-                self.assertIn(rp, row)
-                self.assertIn(scon, row)
-                self.assertIn(rc, row)
-                self.assertIn(sc, row)
-                self.assertIn(se, row)
-                self.assertIn(u, row)
-                self.assertIn(psi, row)
-                self.assertIn(outcome, row)
+                for x in [
+                    self.rp,
+                    self.scon,
+                    self.rc,
+                    self.sc,
+                    self.se,
+                    self.u,
+                    self.psi,
+                    self.outcome,
+                ]:
+                    self.assertIn(x, row)
+
+    # @unittest.expectedFailure
+    def test_mapping(self):
+
+        for row in self.ct.mapping:
+            with self.subTest(row=row):
 
                 multiparty_supereffective_safety_impact = (
-                    row[sc] == "M" and row[u] == "SE" and row[psi] == "S"
+                    row[self.sc] == "M" and row[self.u] == "S" and row[self.psi] == "S"
                 )
 
                 # Report Public: If a report is already public,
@@ -108,30 +118,50 @@ class MyTestCase(unittest.TestCase):
                 # there are multiple suppliers,
                 # super effective Utility,
                 # and significant Public Safety Impact.
-                if row[rp] == "Y" or row[scon] == "N":
-                    if row[rc] == "NC":
-                        self.assertEqual("D", row[outcome])
+                if row[self.rp] == "Y" or row[self.scon] == "N":
+                    if row[self.rc] == "NC":
+                        self.assertEqual("D", row[self.outcome])
 
                     if not multiparty_supereffective_safety_impact:
-                        self.assertEqual("D", row[outcome])
+                        self.assertEqual("D", row[self.outcome])
                 else:
-                    if row[rc] == "NC":
+                    if row[self.rc] == "NC":
                         # Report Credibility: If the report is not credible,
                         # then CERT/CC will decline the case.
-                        self.assertEqual("D", row[outcome])
+                        self.assertEqual("D", row[self.outcome])
 
-                val_tup = tuple([v for k, v in row.items() if k != outcome])
+    @unittest.expectedFailure
+    def test_mapping_expected(self):
+
+        matches = []
+        anomalies = []
+
+        for row in self.ct.mapping:
+            with self.subTest(row=row):
+
+                val_tup = tuple([v for k, v in row.items() if k != self.outcome])
 
                 if val_tup in expect_track:
-                    if row[outcome] != "T":
+                    if row[self.outcome] != "T":
                         anomalies.append(f"Unexpected outcome {val_tup} should be T ")
-                    # self.assertEqual("T", row[outcome])
+                    else:
+                        matches.append(val_tup)
                 elif val_tup in expect_coord:
-                    if row[outcome] != "C":
+                    if row[self.outcome] != "C":
                         anomalies.append(f"Unexpected outcome {val_tup} should be C")
+                    else:
+                        matches.append(val_tup)
                 else:
-                    if row[outcome] != "D":
+                    if row[self.outcome] != "D":
                         anomalies.append(f"Unexpected outcome {val_tup} should be D")
+                    else:
+                        matches.append(val_tup)
+
+        if matches:
+            print()
+            print("### Matches ###")
+            for match in matches:
+                print(match)
 
         if anomalies:
             print()
