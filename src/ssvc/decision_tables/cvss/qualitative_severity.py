@@ -29,7 +29,6 @@ from ssvc.decision_points.cvss.equivalence_set_5 import LATEST as EQ5
 from ssvc.decision_points.cvss.equivalence_set_6 import LATEST as EQ6
 from ssvc.outcomes.cvss.lmhc import LATEST as LMHC
 import pandas as pd
-from mapper import findmap
 from ssvc.decision_tables.base import DecisionTable, dpdict_to_combination_list
 from ssvc.decision_tables.helpers import write_csv
 
