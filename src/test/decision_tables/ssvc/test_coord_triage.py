@@ -39,6 +39,7 @@ expect_track = {
     ("N", "Y", "C", "M", "A", "E", "S"): "T",
 }
 
+
 expect_coord = {
     ("N", "Y", "NC", "M", "A", "S", "S"): "C",
     ("N", "Y", "NC", "M", "U", "S", "S"): "C",
@@ -104,9 +105,18 @@ class MyTestCase(unittest.TestCase):
 
     # @unittest.expectedFailure
     def test_mapping(self):
+        """Test the mapping of the decision table against the expected outcomes."""
 
-        for row in self.ct.mapping:
+        for i, row in enumerate(self.ct.mapping):
             with self.subTest(row=row):
+
+                val_tup = tuple([v for k, v in row.items() if k != self.outcome])
+
+                # skip rows where we explicitly set a different outcome
+                if val_tup in expect_track:
+                    continue
+                elif val_tup in expect_coord:
+                    continue
 
                 multiparty_supereffective_safety_impact = (
                     row[self.sc] == "M" and row[self.u] == "S" and row[self.psi] == "S"
@@ -118,57 +128,31 @@ class MyTestCase(unittest.TestCase):
                 # there are multiple suppliers,
                 # super effective Utility,
                 # and significant Public Safety Impact.
+
                 if row[self.rp] == "Y" or row[self.scon] == "N":
                     if row[self.rc] == "NC":
-                        self.assertEqual("D", row[self.outcome])
+                        self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
 
                     if not multiparty_supereffective_safety_impact:
-                        self.assertEqual("D", row[self.outcome])
+                        self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
                 else:
                     if row[self.rc] == "NC":
                         # Report Credibility: If the report is not credible,
                         # then CERT/CC will decline the case.
-                        self.assertEqual("D", row[self.outcome])
+                        self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
 
-    @unittest.expectedFailure
     def test_mapping_expected(self):
-
-        matches = []
-        anomalies = []
-
         for row in self.ct.mapping:
             with self.subTest(row=row):
 
                 val_tup = tuple([v for k, v in row.items() if k != self.outcome])
 
                 if val_tup in expect_track:
-                    if row[self.outcome] != "T":
-                        anomalies.append(f"Unexpected outcome {val_tup} should be T ")
-                    else:
-                        matches.append(val_tup)
+                    self.assertEqual(expect_track[val_tup], row[self.outcome])
                 elif val_tup in expect_coord:
-                    if row[self.outcome] != "C":
-                        anomalies.append(f"Unexpected outcome {val_tup} should be C")
-                    else:
-                        matches.append(val_tup)
+                    self.assertEqual(expect_coord[val_tup], row[self.outcome])
                 else:
-                    if row[self.outcome] != "D":
-                        anomalies.append(f"Unexpected outcome {val_tup} should be D")
-                    else:
-                        matches.append(val_tup)
-
-        if matches:
-            print()
-            print("### Matches ###")
-            for match in matches:
-                print(match)
-
-        if anomalies:
-            print()
-            print("### Anomalies ###")
-            for anomaly in anomalies:
-                print(anomaly)
-            self.fail("See anomalies")
+                    self.assertEqual("D", row[self.outcome])
 
 
 if __name__ == "__main__":
