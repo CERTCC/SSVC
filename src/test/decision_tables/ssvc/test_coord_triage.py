@@ -112,15 +112,20 @@ class MyTestCase(unittest.TestCase):
 
                 val_tup = tuple([v for k, v in row.items() if k != self.outcome])
 
-                # skip rows where we explicitly set a different outcome
+                # short circuit rows where we explicitly set a different outcome
                 if val_tup in expect_track:
+                    self.assertEqual(expect_track[val_tup], row[self.outcome])
                     continue
                 elif val_tup in expect_coord:
+                    self.assertEqual(expect_coord[val_tup], row[self.outcome])
                     continue
 
-                multiparty_supereffective_safety_impact = (
-                    row[self.sc] == "M" and row[self.u] == "S" and row[self.psi] == "S"
+                multiparty_supereffective_safety_impact = all(
+                    (row[self.sc] == "M", row[self.u] == "S", row[self.psi] == "S")
                 )
+
+                # everything from here on should be a decline
+                # but we'll check it for completeness
 
                 # Report Public: If a report is already public,
                 # OR If no suppliers have been contacted,
@@ -135,24 +140,12 @@ class MyTestCase(unittest.TestCase):
 
                     if not multiparty_supereffective_safety_impact:
                         self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
+                elif row[self.rc] == "NC":
+                    # Report Credibility: If the report is not credible,
+                    # then CERT/CC will decline the case.
+                    self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
                 else:
-                    if row[self.rc] == "NC":
-                        # Report Credibility: If the report is not credible,
-                        # then CERT/CC will decline the case.
-                        self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
-
-    def test_mapping_expected(self):
-        for row in self.ct.mapping:
-            with self.subTest(row=row):
-
-                val_tup = tuple([v for k, v in row.items() if k != self.outcome])
-
-                if val_tup in expect_track:
-                    self.assertEqual(expect_track[val_tup], row[self.outcome])
-                elif val_tup in expect_coord:
-                    self.assertEqual(expect_coord[val_tup], row[self.outcome])
-                else:
-                    self.assertEqual("D", row[self.outcome])
+                    self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
 
 
 if __name__ == "__main__":
