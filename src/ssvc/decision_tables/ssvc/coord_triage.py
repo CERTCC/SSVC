@@ -21,16 +21,26 @@ Provides the Coordination Triage decision table for SSVC."""
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PublicSafetyImpact
-from ssvc.decision_points.ssvc.report_credibility import LATEST as ReportCredibility
-from ssvc.decision_points.ssvc.report_public import LATEST as ReportPublic
-from ssvc.decision_points.ssvc.supplier_cardinality import LATEST as SupplierCardinality
-from ssvc.decision_points.ssvc.supplier_contacted import LATEST as SupplierContacted
-from ssvc.decision_points.ssvc.supplier_engagement import LATEST as SupplierEngagement
-from ssvc.decision_points.ssvc.utility import LATEST as Utility
+from ssvc.decision_points.ssvc.public_safety_impact import (
+    PUBLIC_SAFETY_IMPACT_2_0_1 as PublicSafetyImpact,
+)
+from ssvc.decision_points.ssvc.report_credibility import (
+    REPORT_CREDIBILITY_1 as ReportCredibility,
+)
+from ssvc.decision_points.ssvc.report_public import REPORT_PUBLIC_1 as ReportPublic
+from ssvc.decision_points.ssvc.supplier_cardinality import (
+    SUPPLIER_CARDINALITY_1 as SupplierCardinality,
+)
+from ssvc.decision_points.ssvc.supplier_contacted import (
+    SUPPLIER_CONTACTED_1 as SupplierContacted,
+)
+from ssvc.decision_points.ssvc.supplier_engagement import (
+    SUPPLIER_ENGAGEMENT_1 as SupplierEngagement,
+)
+from ssvc.decision_points.ssvc.utility import UTILITY_1_0_1 as Utility
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
-from ssvc.outcomes.ssvc.coordinate import LATEST as Outcome
+from ssvc.outcomes.ssvc.coordinate import COORDINATE as Outcome
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.SSVC,
@@ -771,7 +781,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.0": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -821,7 +831,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.0": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
