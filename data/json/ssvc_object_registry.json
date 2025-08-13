@@ -102,12 +102,12 @@
             "CISA": {
               "key": "CISA",
               "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
+                "1.1.0": {
+                  "version": "1.1.0",
                   "obj": {
                     "namespace": "cisa",
                     "key": "CISA",
-                    "version": "1.0.0",
+                    "version": "1.1.0",
                     "name": "CISA Levels",
                     "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
                     "schemaVersion": "2.0.0",
@@ -123,12 +123,12 @@
                         "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
                       },
                       {
-                        "key": "A",
+                        "key": "AT",
                         "name": "Attend",
                         "description": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
                       },
                       {
-                        "key": "A",
+                        "key": "AC",
                         "name": "Act",
                         "description": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
                       }
@@ -145,8 +145,13 @@
                       "name": "Track*",
                       "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
                     },
-                    "A": {
-                      "key": "A",
+                    "AT": {
+                      "key": "AT",
+                      "name": "Attend",
+                      "description": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
+                    },
+                    "AC": {
+                      "key": "AC",
                       "name": "Act",
                       "description": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
                     }
@@ -2009,6 +2014,56 @@
                       "key": "X",
                       "name": "Not Defined",
                       "description": "This metric value is not defined. See CVSS documentation for details."
+                    }
+                  }
+                }
+              }
+            },
+            "E_NoX": {
+              "key": "E_NoX",
+              "versions": {
+                "2.0.0": {
+                  "version": "2.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "E_NoX",
+                    "version": "2.0.0",
+                    "name": "Exploit Maturity (without Not Defined)",
+                    "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation. This version does not include the Not Defined (X) option.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "U",
+                        "name": "Unreported",
+                        "description": "Based on available threat intelligence each of the following must apply: No knowledge of publicly available proof-of-concept exploit code No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., neither the “POC” nor “Attacked” values apply)"
+                      },
+                      {
+                        "key": "P",
+                        "name": "Proof-of-Concept",
+                        "description": "Based on available threat intelligence each of the following must apply: Proof-of-concept exploit code is publicly available No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., the “Attacked” value does not apply)"
+                      },
+                      {
+                        "key": "A",
+                        "name": "Attacked",
+                        "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "U": {
+                      "key": "U",
+                      "name": "Unreported",
+                      "description": "Based on available threat intelligence each of the following must apply: No knowledge of publicly available proof-of-concept exploit code No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., neither the “POC” nor “Attacked” values apply)"
+                    },
+                    "P": {
+                      "key": "P",
+                      "name": "Proof-of-Concept",
+                      "description": "Based on available threat intelligence each of the following must apply: Proof-of-concept exploit code is publicly available No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., the “Attacked” value does not apply)"
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Attacked",
+                      "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
                     }
                   }
                 }
@@ -5516,6 +5571,61 @@
                       "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
                     }
                   }
+                },
+                "2.0.2": {
+                  "version": "2.0.2",
+                  "obj": {
+                    "namespace": "ssvc",
+                    "key": "HI",
+                    "version": "2.0.2",
+                    "name": "Human Impact",
+                    "description": "Human Impact is a combination of Safety and Mission impacts.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "description": "Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)"
+                      },
+                      {
+                        "key": "M",
+                        "name": "Medium",
+                        "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))"
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "description": "(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+                      },
+                      {
+                        "key": "VH",
+                        "name": "Very High",
+                        "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "description": "Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)"
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Medium",
+                      "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))"
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "description": "(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+                    },
+                    "VH": {
+                      "key": "VH",
+                      "name": "Very High",
+                      "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
+                    }
+                  }
                 }
               }
             },
@@ -5647,12 +5757,12 @@
             "PWI": {
               "key": "PWI",
               "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
+                "1.1.0": {
+                  "version": "1.1.0",
                   "obj": {
                     "namespace": "ssvc",
                     "key": "PWI",
-                    "version": "1.0.0",
+                    "version": "1.1.0",
                     "name": "Public Well-Being Impact",
                     "description": "A coarse-grained representation of impact to public well-being.",
                     "schemaVersion": "2.0.0",
@@ -5663,7 +5773,7 @@
                         "description": "The effect is below the threshold for all aspects described in material. "
                       },
                       {
-                        "key": "M",
+                        "key": "MA",
                         "name": "Material",
                         "description": "Any one or more of these conditions hold. Physical harm: Does one or more of the following: (a) Causes physical distress or injury to system users. (b) Introduces occupational safety hazards. (c) Reduces and/or results in failure of cyber-physical system safety margins. Environment: Major externalities (property damage, environmental damage, etc.) are imposed on other parties. Financial: Financial losses likely lead to bankruptcy of multiple persons. Psychological: Widespread emotional or psychological harm, sufficient to necessitate counseling or therapy, impact populations of people. "
                       },
@@ -5677,6 +5787,11 @@
                   "values": {
                     "M": {
                       "key": "M",
+                      "name": "Minimal",
+                      "description": "The effect is below the threshold for all aspects described in material. "
+                    },
+                    "MA": {
+                      "key": "MA",
                       "name": "Material",
                       "description": "Any one or more of these conditions hold. Physical harm: Does one or more of the following: (a) Causes physical distress or injury to system users. (b) Introduces occupational safety hazards. (c) Reduces and/or results in failure of cyber-physical system safety margins. Environment: Major externalities (property damage, environmental damage, etc.) are imposed on other parties. Financial: Financial losses likely lead to bankruptcy of multiple persons. Psychological: Widespread emotional or psychological harm, sufficient to necessitate counseling or therapy, impact populations of people. "
                     },
@@ -6992,12 +7107,12 @@
                     "description": "CVSS Equivalence Set 5 Decision Table",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
-                      "cvss:E:2.0.0": {
+                      "cvss:E_NoX:2.0.0": {
                         "namespace": "cvss",
-                        "key": "E",
+                        "key": "E_NoX",
                         "version": "2.0.0",
-                        "name": "Exploit Maturity",
-                        "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation.",
+                        "name": "Exploit Maturity (without Not Defined)",
+                        "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation. This version does not include the Not Defined (X) option.",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
@@ -7014,11 +7129,6 @@
                             "key": "A",
                             "name": "Attacked",
                             "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
-                          },
-                          {
-                            "key": "X",
-                            "name": "Not Defined",
-                            "description": "This metric value is not defined. See CVSS documentation for details."
                           }
                         ]
                       },
@@ -7051,15 +7161,15 @@
                     "outcome": "cvss:EQ5:1.0.0",
                     "mapping": [
                       {
-                        "cvss:E:2.0.0": "U",
+                        "cvss:E_NoX:2.0.0": "U",
                         "cvss:EQ5:1.0.0": "L"
                       },
                       {
-                        "cvss:E:2.0.0": "P",
+                        "cvss:E_NoX:2.0.0": "P",
                         "cvss:EQ5:1.0.0": "M"
                       },
                       {
-                        "cvss:E:2.0.0": "A",
+                        "cvss:E_NoX:2.0.0": "A",
                         "cvss:EQ5:1.0.0": "H"
                       }
                     ]
@@ -17441,10 +17551,10 @@
                           }
                         ]
                       },
-                      "ssvc:HI:2.0.1": {
+                      "ssvc:HI:2.0.2": {
                         "namespace": "ssvc",
                         "key": "HI",
-                        "version": "2.0.1",
+                        "version": "2.0.2",
                         "name": "Human Impact",
                         "description": "Human Impact is a combination of Safety and Mission impacts.",
                         "schemaVersion": "2.0.0",
@@ -17452,17 +17562,17 @@
                           {
                             "key": "L",
                             "name": "Low",
-                            "description": "Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)"
+                            "description": "Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)"
                           },
                           {
                             "key": "M",
                             "name": "Medium",
-                            "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))"
+                            "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))"
                           },
                           {
                             "key": "H",
                             "name": "High",
-                            "description": "(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+                            "description": "(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
                           },
                           {
                             "key": "VH",
@@ -17508,504 +17618,504 @@
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "D"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "S",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "C",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "S"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "N",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "I"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:HI:2.0.2": "L",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:HI:2.0.2": "M",
                         "ssvc:DSOI:1.0.0": "O"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:HI:2.0.2": "H",
                         "ssvc:DSOI:1.0.0": "I"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:EXP:1.0.1": "O",
                         "ssvc:A:2.0.0": "Y",
-                        "ssvc:HI:2.0.1": "VH",
+                        "ssvc:HI:2.0.2": "VH",
                         "ssvc:DSOI:1.0.0": "I"
                       }
                     ]
@@ -18026,38 +18136,33 @@
                     "description": "Human Impact decision table for SSVC",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
-                      "ssvc:SI:1.0.0": {
+                      "ssvc:SI:2.0.0": {
                         "namespace": "ssvc",
                         "key": "SI",
-                        "version": "1.0.0",
+                        "version": "2.0.0",
                         "name": "Safety Impact",
-                        "description": "The safety impact of the vulnerability.",
+                        "description": "The safety impact of the vulnerability. (based on IEC 61508)",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
                             "key": "N",
-                            "name": "None",
-                            "description": "The effect is below the threshold for all aspects described in Minor."
+                            "name": "Negligible",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Minor injuries at worst (IEC 61508 Negligible).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard.<br/>- *System resiliency*: Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation.<br/>- *Environment*: Minor externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses, which are not readily absorbable, to multiple persons.<br/>- *Psychological*: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons."
                           },
                           {
                             "key": "M",
-                            "name": "Minor",
-                            "description": "Any one or more of these conditions hold. Physical harm: Physical discomfort for users (not operators) of the system. Operator resiliency: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard. System resiliency: Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation. Environment: Minor externalities (property damage, environmental damage, etc.) imposed on other parties. Financial Financial losses, which are not readily absorbable, to multiple persons. Psychological: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons."
+                            "name": "Marginal",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Major injuries to one or more persons (IEC 61508 Marginal).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard.<br/>- *System resiliency*: System safety margin effectively eliminated but no actual harm; OR failure of system functional capabilities that support safe operation.<br/>- *Environment*: Major externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses that likely lead to bankruptcy of multiple persons.<br/>- *Psychological*: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people."
                           },
                           {
-                            "key": "J",
-                            "name": "Major",
-                            "description": "Any one or more of these conditions hold. Physical harm: Physical distress and injuries for users (not operators) of the system. Operator resiliency: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard. System resiliency: System safety margin effectively eliminated but no actual harm; OR failure of system functional capabilities that support safe operation. Environment: Major externalities (property damage, environmental damage, etc.) imposed on other parties. Financial: Financial losses that likely lead to bankruptcy of multiple persons. Psychological: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people."
-                          },
-                          {
-                            "key": "H",
-                            "name": "Hazardous",
-                            "description": "Any one or more of these conditions hold. Physical harm: Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures. Operator resiliency: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly. System resiliency: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact. Environment: Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties. Financial: Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state. Psychological: N/A."
+                            "key": "R",
+                            "name": "Critical",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Loss of life (IEC 61508 Critical).<br/>- *Operator resiliency*: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly.<br/>- *System resiliency*: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact.<br/>- *Environment*: Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties.<br/>- *Financial*: Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state.<br/>- *Psychological*: N/A."
                           },
                           {
                             "key": "C",
                             "name": "Catastrophic",
-                            "description": "Any one or more of these conditions hold. Physical harm: Multiple immediate fatalities (Emergency response probably cannot save the victims.) Operator resiliency: Operator incapacitated (includes fatality or otherwise incapacitated). System resiliency: Total loss of whole cyber-physical system, of which the software is a part. Environment: Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties. Financial: Social systems (elections, financial grid, etc.) supported by the software collapse. Psychological: N/A."
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Multiple loss of life (IEC 61508 Catastrophic).<br/>- *Operator resiliency*: Operator incapacitated (includes fatality or otherwise incapacitated).<br/>- *System resiliency*: Total loss of whole cyber-physical system, of which the software is a part.<br/>- *Environment*: Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.<br/>- *Financial*: Social systems (elections, financial grid, etc.) supported by the software collapse.<br/>- *Psychological*: N/A."
                           }
                         ]
                       },
@@ -18091,10 +18196,10 @@
                           }
                         ]
                       },
-                      "ssvc:HI:2.0.1": {
+                      "ssvc:HI:2.0.2": {
                         "namespace": "ssvc",
                         "key": "HI",
-                        "version": "2.0.1",
+                        "version": "2.0.2",
                         "name": "Human Impact",
                         "description": "Human Impact is a combination of Safety and Mission impacts.",
                         "schemaVersion": "2.0.0",
@@ -18102,17 +18207,17 @@
                           {
                             "key": "L",
                             "name": "Low",
-                            "description": "Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)"
+                            "description": "Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)"
                           },
                           {
                             "key": "M",
                             "name": "Medium",
-                            "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))"
+                            "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))"
                           },
                           {
                             "key": "H",
                             "name": "High",
-                            "description": "(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+                            "description": "(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
                           },
                           {
                             "key": "VH",
@@ -18122,107 +18227,87 @@
                         ]
                       }
                     },
-                    "outcome": "ssvc:HI:2.0.1",
+                    "outcome": "ssvc:HI:2.0.2",
                     "mapping": [
                       {
-                        "ssvc:SI:1.0.0": "N",
+                        "ssvc:SI:2.0.0": "N",
                         "ssvc:MI:2.0.0": "D",
-                        "ssvc:HI:2.0.1": "L"
+                        "ssvc:HI:2.0.2": "L"
                       },
                       {
-                        "ssvc:SI:1.0.0": "N",
+                        "ssvc:SI:2.0.0": "N",
                         "ssvc:MI:2.0.0": "MSC",
-                        "ssvc:HI:2.0.1": "L"
+                        "ssvc:HI:2.0.2": "L"
                       },
                       {
-                        "ssvc:SI:1.0.0": "N",
+                        "ssvc:SI:2.0.0": "N",
                         "ssvc:MI:2.0.0": "MEF",
-                        "ssvc:HI:2.0.1": "M"
+                        "ssvc:HI:2.0.2": "M"
                       },
                       {
-                        "ssvc:SI:1.0.0": "N",
+                        "ssvc:SI:2.0.0": "N",
                         "ssvc:MI:2.0.0": "MF",
-                        "ssvc:HI:2.0.1": "VH"
+                        "ssvc:HI:2.0.2": "VH"
                       },
                       {
-                        "ssvc:SI:1.0.0": "M",
+                        "ssvc:SI:2.0.0": "M",
                         "ssvc:MI:2.0.0": "D",
-                        "ssvc:HI:2.0.1": "L"
+                        "ssvc:HI:2.0.2": "L"
                       },
                       {
-                        "ssvc:SI:1.0.0": "M",
+                        "ssvc:SI:2.0.0": "M",
                         "ssvc:MI:2.0.0": "MSC",
-                        "ssvc:HI:2.0.1": "L"
+                        "ssvc:HI:2.0.2": "L"
                       },
                       {
-                        "ssvc:SI:1.0.0": "M",
+                        "ssvc:SI:2.0.0": "M",
                         "ssvc:MI:2.0.0": "MEF",
-                        "ssvc:HI:2.0.1": "M"
+                        "ssvc:HI:2.0.2": "M"
                       },
                       {
-                        "ssvc:SI:1.0.0": "M",
+                        "ssvc:SI:2.0.0": "M",
                         "ssvc:MI:2.0.0": "MF",
-                        "ssvc:HI:2.0.1": "VH"
+                        "ssvc:HI:2.0.2": "VH"
                       },
                       {
-                        "ssvc:SI:1.0.0": "J",
+                        "ssvc:SI:2.0.0": "R",
                         "ssvc:MI:2.0.0": "D",
-                        "ssvc:HI:2.0.1": "M"
+                        "ssvc:HI:2.0.2": "M"
                       },
                       {
-                        "ssvc:SI:1.0.0": "J",
+                        "ssvc:SI:2.0.0": "R",
                         "ssvc:MI:2.0.0": "MSC",
-                        "ssvc:HI:2.0.1": "M"
+                        "ssvc:HI:2.0.2": "H"
                       },
                       {
-                        "ssvc:SI:1.0.0": "J",
+                        "ssvc:SI:2.0.0": "R",
                         "ssvc:MI:2.0.0": "MEF",
-                        "ssvc:HI:2.0.1": "H"
+                        "ssvc:HI:2.0.2": "H"
                       },
                       {
-                        "ssvc:SI:1.0.0": "J",
+                        "ssvc:SI:2.0.0": "R",
                         "ssvc:MI:2.0.0": "MF",
-                        "ssvc:HI:2.0.1": "VH"
+                        "ssvc:HI:2.0.2": "VH"
                       },
                       {
-                        "ssvc:SI:1.0.0": "H",
+                        "ssvc:SI:2.0.0": "C",
                         "ssvc:MI:2.0.0": "D",
-                        "ssvc:HI:2.0.1": "H"
+                        "ssvc:HI:2.0.2": "VH"
                       },
                       {
-                        "ssvc:SI:1.0.0": "H",
+                        "ssvc:SI:2.0.0": "C",
                         "ssvc:MI:2.0.0": "MSC",
-                        "ssvc:HI:2.0.1": "H"
+                        "ssvc:HI:2.0.2": "VH"
                       },
                       {
-                        "ssvc:SI:1.0.0": "H",
+                        "ssvc:SI:2.0.0": "C",
                         "ssvc:MI:2.0.0": "MEF",
-                        "ssvc:HI:2.0.1": "H"
+                        "ssvc:HI:2.0.2": "VH"
                       },
                       {
-                        "ssvc:SI:1.0.0": "H",
+                        "ssvc:SI:2.0.0": "C",
                         "ssvc:MI:2.0.0": "MF",
-                        "ssvc:HI:2.0.1": "VH"
-                      },
-                      {
-                        "ssvc:SI:1.0.0": "C",
-                        "ssvc:MI:2.0.0": "D",
-                        "ssvc:HI:2.0.1": "VH"
-                      },
-                      {
-                        "ssvc:SI:1.0.0": "C",
-                        "ssvc:MI:2.0.0": "MSC",
-                        "ssvc:HI:2.0.1": "VH"
-                      },
-                      {
-                        "ssvc:SI:1.0.0": "C",
-                        "ssvc:MI:2.0.0": "MEF",
-                        "ssvc:HI:2.0.1": "VH"
-                      },
-                      {
-                        "ssvc:SI:1.0.0": "C",
-                        "ssvc:MI:2.0.0": "MF",
-                        "ssvc:HI:2.0.1": "VH"
+                        "ssvc:HI:2.0.2": "VH"
                       }
                     ]
                   }
@@ -18811,40 +18896,35 @@
                           }
                         ]
                       },
-                      "ssvc:HI:2.0.1": {
+                      "ssvc:MWI:1.0.0": {
                         "namespace": "ssvc",
-                        "key": "HI",
-                        "version": "2.0.1",
-                        "name": "Human Impact",
-                        "description": "Human Impact is a combination of Safety and Mission impacts.",
+                        "key": "MWI",
+                        "version": "1.0.0",
+                        "name": "Mission and Well-Being Impact",
+                        "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
                             "key": "L",
                             "name": "Low",
-                            "description": "Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)"
+                            "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
                           },
                           {
                             "key": "M",
                             "name": "Medium",
-                            "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))"
+                            "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
                           },
                           {
                             "key": "H",
                             "name": "High",
-                            "description": "(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
-                          },
-                          {
-                            "key": "VH",
-                            "name": "Very High",
-                            "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
+                            "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
                           }
                         ]
                       },
-                      "cisa:CISA:1.0.0": {
+                      "cisa:CISA:1.1.0": {
                         "namespace": "cisa",
                         "key": "CISA",
-                        "version": "1.0.0",
+                        "version": "1.1.0",
                         "name": "CISA Levels",
                         "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
                         "schemaVersion": "2.0.0",
@@ -18860,271 +18940,271 @@
                             "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
                           },
                           {
-                            "key": "A",
+                            "key": "AT",
                             "name": "Attend",
                             "description": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
                           },
                           {
-                            "key": "A",
+                            "key": "AC",
                             "name": "Act",
                             "description": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
                           }
                         ]
                       }
                     },
-                    "outcome": "cisa:CISA:1.0.0",
+                    "outcome": "cisa:CISA:1.1.0",
                     "mapping": [
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "T*"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "T*"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T*"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T*"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AC"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AC"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "AC"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
-                        "cisa:CISA:1.0.0": "A"
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AC"
                       }
                     ]
                   }

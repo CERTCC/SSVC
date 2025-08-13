@@ -196,6 +196,73 @@ class DecisionTable(
         return self
 
     @model_validator(mode="after")
+    def remove_duplicate_mapping_rows(self):
+        seen = dict()
+        new_mapping = []
+        for row in self.mapping:
+            value_tuple = tuple(v for k, v in row.items() if k != self.outcome)
+            if value_tuple in seen:
+                # we have a duplicate, but is it same or different?
+                if seen[value_tuple][self.outcome] == row[self.outcome]:
+                    # if it's a match, just log it and move on
+                    logger.warning(
+                        f"Duplicate mapping found (removed automatically): {row}"
+                    )
+                else:
+                    # they don't match
+                    raise ValueError(
+                        f"Conflicting mappings found: {seen[value_tuple]} != {row}"
+                    )
+            else:
+                # not a duplicate, add it to the new mapping
+                seen[value_tuple] = row
+                new_mapping.append(row)
+        # set the new mapping (with duplicates removed)
+        self.mapping = new_mapping
+        return self
+
+    @model_validator(mode="after")
+    def check_mapping_coverage(self):
+        counts = {}
+        all_combos = dpdict_to_combination_list(
+            self.decision_points, exclude=[self.outcome]
+        )
+        # all_combos is a dict of all possible combinations of decision point values
+        # keyed by decision point ID, with value keys as values.
+        # initialize counts for all input combinations to 0
+        for combo in all_combos:
+            value_tuple = tuple(combo.values())
+            counts[value_tuple] = counts.get(value_tuple, 0)
+
+        # counts now has all possible input combinations set to count 0
+
+        for row in self.mapping:
+            value_tuple = tuple(v for k, v in row.items() if k != self.outcome)
+            counts[value_tuple] += 1
+
+        # check if all combinations are covered
+        for k, v in counts.items():
+            if v == 1:
+                # ok, proceed
+                continue
+            elif v == 0:
+                # missing combination
+                raise ValueError(
+                    f"Mapping is incomplete: No mapping found for decision point combination: {k}."
+                )
+            elif v > 1:
+                # duplicate. remove duplicate mapping rows should have caught this already
+                raise ValueError(
+                    f"Duplicate mapping found for decision point combination: {k}."
+                )
+            else:
+                raise ValueError(f"Unexpected count in mapping coverage check.{k}: {v}")
+
+        # if you made it to here, all the counts were 1, so we're good
+
+        return self
+
+    @model_validator(mode="after")
     def validate_mapping(self):
         """
         Validate the mapping after it has been populated.

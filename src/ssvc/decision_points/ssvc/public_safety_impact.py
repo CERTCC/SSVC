@@ -48,6 +48,22 @@ MATERIAL = DecisionPointValue(
     key="M",
 )
 
+MATERIAL_1 = DecisionPointValue(
+    name="Material",
+    description="Any one or more of these conditions hold. "
+    "Physical harm: Does one or more of the following: "
+    "(a) Causes physical distress or injury to system users. "
+    "(b) Introduces occupational safety hazards. "
+    "(c) Reduces and/or results in failure of cyber-physical system safety margins. "
+    "Environment: Major externalities (property damage, environmental damage, etc.) are "
+    "imposed on other parties. "
+    "Financial: Financial losses likely lead to bankruptcy of multiple persons. "
+    "Psychological: Widespread emotional or psychological harm, sufficient to necessitate "
+    "counseling or therapy, impact populations of people. ",
+    key="MA",
+)
+
+
 IRREVERSIBLE = DecisionPointValue(
     name="Irreversible",
     description="Any one or more of these conditions hold. "
@@ -81,18 +97,32 @@ MINIMAL_3 = DecisionPointValue(
     name="Minimal", description="Safety Impact:Negligible", key="M"
 )
 
+# This version is deprecated because it had two values with the same key.
+# It is kept here for reference, but should not be used in new code.
+# PUBLIC_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(
+#     name="Public Well-Being Impact",
+#     description="A coarse-grained representation of impact to public well-being.",
+#     key="PWI",
+#     version="1.0.0",
+#     values=(
+#         MINIMAL_1,
+#         MATERIAL,
+#         IRREVERSIBLE,
+#     ),
+# )
 
-PUBLIC_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(
+PUBLIC_WELL_BEING_IMPACT_1_1 = SsvcDecisionPoint(
     name="Public Well-Being Impact",
     description="A coarse-grained representation of impact to public well-being.",
     key="PWI",
-    version="1.0.0",
+    version="1.1.0",
     values=(
         MINIMAL_1,
-        MATERIAL,
+        MATERIAL_1,
         IRREVERSIBLE,
     ),
 )
+
 
 PUBLIC_SAFETY_IMPACT_2 = SsvcDecisionPoint(
     name="Public Safety Impact",
@@ -117,7 +147,8 @@ PUBLIC_SAFETY_IMPACT_2_0_1 = SsvcDecisionPoint(
 )
 
 VERSIONS = (
-    PUBLIC_WELL_BEING_IMPACT_1,
+    # PUBLIC_WELL_BEING_IMPACT_1,
+    PUBLIC_WELL_BEING_IMPACT_1_1,
     PUBLIC_SAFETY_IMPACT_2,
     PUBLIC_SAFETY_IMPACT_2_0_1,
 )

@@ -133,6 +133,21 @@ class DecisionPoint(
             data["schemaVersion"] = SCHEMA_VERSION
         return data
 
+    @model_validator(mode="after")
+    def _validate_values(self):
+        # confirm that value keys are unique
+        seen = dict()
+        for value in self.values:
+            if value.key in seen:
+                raise ValueError(
+                    f"Duplicate key found in {self.id}: {value.key} ({value.name} and {seen[value.key]})"
+                )
+            else:
+                seen[value.key] = value.name
+
+        # if we got here, all good
+        return self
+
     @property
     def value_summaries(self) -> list[str]:
         """
