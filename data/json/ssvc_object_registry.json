@@ -2014,6 +2014,56 @@
                 }
               }
             },
+            "E_NoX": {
+              "key": "E_NoX",
+              "versions": {
+                "2.0.0": {
+                  "version": "2.0.0",
+                  "obj": {
+                    "namespace": "cvss",
+                    "key": "E_NoX",
+                    "version": "2.0.0",
+                    "name": "Exploit Maturity (without Not Defined)",
+                    "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation. This version does not include the Not Defined (X) option.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "U",
+                        "name": "Unreported",
+                        "description": "Based on available threat intelligence each of the following must apply: No knowledge of publicly available proof-of-concept exploit code No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., neither the “POC” nor “Attacked” values apply)"
+                      },
+                      {
+                        "key": "P",
+                        "name": "Proof-of-Concept",
+                        "description": "Based on available threat intelligence each of the following must apply: Proof-of-concept exploit code is publicly available No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., the “Attacked” value does not apply)"
+                      },
+                      {
+                        "key": "A",
+                        "name": "Attacked",
+                        "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "U": {
+                      "key": "U",
+                      "name": "Unreported",
+                      "description": "Based on available threat intelligence each of the following must apply: No knowledge of publicly available proof-of-concept exploit code No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., neither the “POC” nor “Attacked” values apply)"
+                    },
+                    "P": {
+                      "key": "P",
+                      "name": "Proof-of-Concept",
+                      "description": "Based on available threat intelligence each of the following must apply: Proof-of-concept exploit code is publicly available No knowledge of reported attempts to exploit this vulnerability No knowledge of publicly available solutions used to simplify attempts to exploit the vulnerability (i.e., the “Attacked” value does not apply)"
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Attacked",
+                      "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
+                    }
+                  }
+                }
+              }
+            },
             "IB": {
               "key": "IB",
               "versions": {
@@ -7047,12 +7097,12 @@
                     "description": "CVSS Equivalence Set 5 Decision Table",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
-                      "cvss:E:2.0.0": {
+                      "cvss:E_NoX:2.0.0": {
                         "namespace": "cvss",
-                        "key": "E",
+                        "key": "E_NoX",
                         "version": "2.0.0",
-                        "name": "Exploit Maturity",
-                        "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation.",
+                        "name": "Exploit Maturity (without Not Defined)",
+                        "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation. This version does not include the Not Defined (X) option.",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
@@ -7069,11 +7119,6 @@
                             "key": "A",
                             "name": "Attacked",
                             "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
-                          },
-                          {
-                            "key": "X",
-                            "name": "Not Defined",
-                            "description": "This metric value is not defined. See CVSS documentation for details."
                           }
                         ]
                       },
@@ -7106,15 +7151,15 @@
                     "outcome": "cvss:EQ5:1.0.0",
                     "mapping": [
                       {
-                        "cvss:E:2.0.0": "U",
+                        "cvss:E_NoX:2.0.0": "U",
                         "cvss:EQ5:1.0.0": "L"
                       },
                       {
-                        "cvss:E:2.0.0": "P",
+                        "cvss:E_NoX:2.0.0": "P",
                         "cvss:EQ5:1.0.0": "M"
                       },
                       {
-                        "cvss:E:2.0.0": "A",
+                        "cvss:E_NoX:2.0.0": "A",
                         "cvss:EQ5:1.0.0": "H"
                       }
                     ]
@@ -18841,33 +18886,28 @@
                           }
                         ]
                       },
-                      "ssvc:HI:2.0.1": {
+                      "ssvc:MWI:1.0.0": {
                         "namespace": "ssvc",
-                        "key": "HI",
-                        "version": "2.0.1",
-                        "name": "Human Impact",
-                        "description": "Human Impact is a combination of Safety and Mission impacts.",
+                        "key": "MWI",
+                        "version": "1.0.0",
+                        "name": "Mission and Well-Being Impact",
+                        "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
                             "key": "L",
                             "name": "Low",
-                            "description": "Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)"
+                            "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
                           },
                           {
                             "key": "M",
                             "name": "Medium",
-                            "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))"
+                            "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
                           },
                           {
                             "key": "H",
                             "name": "High",
-                            "description": "(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
-                          },
-                          {
-                            "key": "VH",
-                            "name": "Very High",
-                            "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
+                            "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
                           }
                         ]
                       },
@@ -18908,252 +18948,252 @@
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "L",
+                        "ssvc:MWI:1.0.0": "L",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "M",
+                        "ssvc:MWI:1.0.0": "M",
                         "cisa:CISA:1.0.0": "A"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
-                        "ssvc:HI:2.0.1": "H",
+                        "ssvc:MWI:1.0.0": "H",
                         "cisa:CISA:1.0.0": "A"
                       }
                     ]

@@ -6,12 +6,12 @@
   "description": "CVSS Equivalence Set 5 Decision Table",
   "schemaVersion": "2.0.0",
   "decision_points": {
-    "cvss:E:2.0.0": {
+    "cvss:E_NoX:2.0.0": {
       "namespace": "cvss",
-      "key": "E",
+      "key": "E_NoX",
       "version": "2.0.0",
-      "name": "Exploit Maturity",
-      "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation.",
+      "name": "Exploit Maturity (without Not Defined)",
+      "description": "This metric measures the likelihood of the vulnerability being attacked, and is based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation. This version does not include the Not Defined (X) option.",
       "schemaVersion": "2.0.0",
       "values": [
         {
@@ -28,11 +28,6 @@
           "key": "A",
           "name": "Attacked",
           "description": "Based on available threat intelligence either of the following must apply: Attacks targeting this vulnerability (attempted or successful) have been reported Solutions to simplify attempts to exploit the vulnerability are publicly or privately available (such as exploit toolkits)"
-        },
-        {
-          "key": "X",
-          "name": "Not Defined",
-          "description": "This metric value is not defined. See CVSS documentation for details."
         }
       ]
     },
@@ -65,15 +60,15 @@
   "outcome": "cvss:EQ5:1.0.0",
   "mapping": [
     {
-      "cvss:E:2.0.0": "U",
+      "cvss:E_NoX:2.0.0": "U",
       "cvss:EQ5:1.0.0": "L"
     },
     {
-      "cvss:E:2.0.0": "P",
+      "cvss:E_NoX:2.0.0": "P",
       "cvss:EQ5:1.0.0": "M"
     },
     {
-      "cvss:E:2.0.0": "A",
+      "cvss:E_NoX:2.0.0": "A",
       "cvss:EQ5:1.0.0": "H"
     }
   ]

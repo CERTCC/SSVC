@@ -408,6 +408,18 @@ class TestDecisionTableBase(unittest.TestCase):
 
         self.assertIn("Duplicate mapping found", log.output[0])
 
+    def test_should_fail_on_incomplete_mapping(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just remove something from it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+        dt.mapping = dt.mapping[:-1]  # remove the last row
+
+        with self.assertRaises(ValueError) as context:
+            dt.check_mapping_coverage()
+
+        self.assertIn("Mapping is incomplete", str(context.exception))
+
 
 if __name__ == "__main__":
     unittest.main()
