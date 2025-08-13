@@ -45,7 +45,7 @@ MATERIAL = DecisionPointValue(
     "Financial: Financial losses likely lead to bankruptcy of multiple persons. "
     "Psychological: Widespread emotional or psychological harm, sufficient to necessitate "
     "counseling or therapy, impact populations of people. ",
-    key="M",
+    key="MA",
 )
 
 IRREVERSIBLE = DecisionPointValue(
