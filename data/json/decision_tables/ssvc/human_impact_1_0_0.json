@@ -66,10 +66,10 @@
         }
       ]
     },
-    "ssvc:HI:2.0.1": {
+    "ssvc:HI:2.0.2": {
       "namespace": "ssvc",
       "key": "HI",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "name": "Human Impact",
       "description": "Human Impact is a combination of Safety and Mission impacts.",
       "schemaVersion": "2.0.0",
@@ -77,17 +77,17 @@
         {
           "key": "L",
           "name": "Low",
-          "description": "Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)"
+          "description": "Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)"
         },
         {
           "key": "M",
           "name": "Medium",
-          "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))"
+          "description": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))"
         },
         {
           "key": "H",
           "name": "High",
-          "description": "(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+          "description": "(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
         },
         {
           "key": "VH",
@@ -97,87 +97,87 @@
       ]
     }
   },
-  "outcome": "ssvc:HI:2.0.1",
+  "outcome": "ssvc:HI:2.0.2",
   "mapping": [
     {
       "ssvc:SI:2.0.0": "N",
       "ssvc:MI:2.0.0": "D",
-      "ssvc:HI:2.0.1": "L"
+      "ssvc:HI:2.0.2": "L"
     },
     {
       "ssvc:SI:2.0.0": "N",
       "ssvc:MI:2.0.0": "MSC",
-      "ssvc:HI:2.0.1": "L"
+      "ssvc:HI:2.0.2": "L"
     },
     {
       "ssvc:SI:2.0.0": "N",
       "ssvc:MI:2.0.0": "MEF",
-      "ssvc:HI:2.0.1": "M"
+      "ssvc:HI:2.0.2": "M"
     },
     {
       "ssvc:SI:2.0.0": "N",
       "ssvc:MI:2.0.0": "MF",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     },
     {
       "ssvc:SI:2.0.0": "M",
       "ssvc:MI:2.0.0": "D",
-      "ssvc:HI:2.0.1": "L"
+      "ssvc:HI:2.0.2": "L"
     },
     {
       "ssvc:SI:2.0.0": "M",
       "ssvc:MI:2.0.0": "MSC",
-      "ssvc:HI:2.0.1": "L"
+      "ssvc:HI:2.0.2": "L"
     },
     {
       "ssvc:SI:2.0.0": "M",
       "ssvc:MI:2.0.0": "MEF",
-      "ssvc:HI:2.0.1": "M"
+      "ssvc:HI:2.0.2": "M"
     },
     {
       "ssvc:SI:2.0.0": "M",
       "ssvc:MI:2.0.0": "MF",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     },
     {
       "ssvc:SI:2.0.0": "R",
       "ssvc:MI:2.0.0": "D",
-      "ssvc:HI:2.0.1": "M"
+      "ssvc:HI:2.0.2": "M"
     },
     {
       "ssvc:SI:2.0.0": "R",
       "ssvc:MI:2.0.0": "MSC",
-      "ssvc:HI:2.0.1": "H"
+      "ssvc:HI:2.0.2": "H"
     },
     {
       "ssvc:SI:2.0.0": "R",
       "ssvc:MI:2.0.0": "MEF",
-      "ssvc:HI:2.0.1": "H"
+      "ssvc:HI:2.0.2": "H"
     },
     {
       "ssvc:SI:2.0.0": "R",
       "ssvc:MI:2.0.0": "MF",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     },
     {
       "ssvc:SI:2.0.0": "C",
       "ssvc:MI:2.0.0": "D",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     },
     {
       "ssvc:SI:2.0.0": "C",
       "ssvc:MI:2.0.0": "MSC",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     },
     {
       "ssvc:SI:2.0.0": "C",
       "ssvc:MI:2.0.0": "MEF",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     },
     {
       "ssvc:SI:2.0.0": "C",
       "ssvc:MI:2.0.0": "MF",
-      "ssvc:HI:2.0.1": "VH"
+      "ssvc:HI:2.0.2": "VH"
     }
   ]
 }
