@@ -102,12 +102,12 @@
             "CISA": {
               "key": "CISA",
               "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
+                "1.1.0": {
+                  "version": "1.1.0",
                   "obj": {
                     "namespace": "cisa",
                     "key": "CISA",
-                    "version": "1.0.0",
+                    "version": "1.1.0",
                     "name": "CISA Levels",
                     "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
                     "schemaVersion": "2.0.0",
@@ -18921,10 +18921,10 @@
                           }
                         ]
                       },
-                      "cisa:CISA:1.0.0": {
+                      "cisa:CISA:1.1.0": {
                         "namespace": "cisa",
                         "key": "CISA",
-                        "version": "1.0.0",
+                        "version": "1.1.0",
                         "name": "CISA Levels",
                         "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
                         "schemaVersion": "2.0.0",
@@ -18952,259 +18952,259 @@
                         ]
                       }
                     },
-                    "outcome": "cisa:CISA:1.0.0",
+                    "outcome": "cisa:CISA:1.1.0",
                     "mapping": [
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "T*"
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "T*"
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T*"
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T*"
+                        "cisa:CISA:1.1.0": "T*"
                       },
                       {
                         "ssvc:E:1.1.0": "P",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "T"
+                        "cisa:CISA:1.1.0": "T"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AC"
+                        "cisa:CISA:1.1.0": "AC"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AC"
+                        "cisa:CISA:1.1.0": "AC"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.0.0": "AT"
+                        "cisa:CISA:1.1.0": "AT"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.0.0": "AC"
+                        "cisa:CISA:1.1.0": "AC"
                       },
                       {
                         "ssvc:E:1.1.0": "A",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.0.0": "AC"
+                        "cisa:CISA:1.1.0": "AC"
                       }
                     ]
                   }

@@ -61,7 +61,7 @@ CISA = CisaDecisionPoint(
     key="CISA",
     description="The CISA outcome group. "
     "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
-    version="1.0.0",
+    version="1.1.0",
     values=(
         _TRACK,
         _TRACK_STAR,
