@@ -30,7 +30,7 @@ CVSS Equivalence Set 5 Decision Table
 
 
 from ssvc.decision_points.cvss.equivalence_set_5 import EQ5
-from ssvc.decision_points.cvss.exploit_maturity import EXPLOIT_MATURITY_2 as E
+from ssvc.decision_points.cvss.exploit_maturity import EXPLOIT_MATURITY_2_NoX as E
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
@@ -43,9 +43,9 @@ V1_0_0 = DecisionTable(
     decision_points={dp.id: dp for dp in [E, EQ5]},
     outcome=EQ5.id,
     mapping=[
-        {"cvss:E:2.0.0": "U", "cvss:EQ5:1.0.0": "L"},
-        {"cvss:E:2.0.0": "P", "cvss:EQ5:1.0.0": "M"},
-        {"cvss:E:2.0.0": "A", "cvss:EQ5:1.0.0": "H"},
+        {"cvss:E_NoX:2.0.0": "U", "cvss:EQ5:1.0.0": "L"},
+        {"cvss:E_NoX:2.0.0": "P", "cvss:EQ5:1.0.0": "M"},
+        {"cvss:E_NoX:2.0.0": "A", "cvss:EQ5:1.0.0": "H"},
     ],
 )
 

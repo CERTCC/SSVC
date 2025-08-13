@@ -370,6 +370,56 @@ class TestDecisionTableBase(unittest.TestCase):
             self.assertIn(single_dt.outcome, row)
             self.assertIn(row[single_dt.outcome], [v.key for v in self.og.values])
 
+    def test_should_reject_duplicate_conflicting_mappings(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just append to it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+
+        new_row = dict(dt.mapping[0])  # copy the first row
+        self.assertEqual(
+            new_row[dt.outcome], self.ogv1.key, "First row should have outcome o1"
+        )
+        new_row[dt.outcome] = self.ogv2.key  # change the outcome to o2
+        # insert it at position 1
+        dt.mapping.insert(1, new_row)
+
+        with self.assertRaises(ValueError) as context:
+            dt.remove_duplicate_mapping_rows()
+
+        self.assertIn("Conflicting mappings found", str(context.exception))
+
+    def test_should_warn_duplicate_nonconflicting_mappings(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just append to it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+
+        new_row = dict(dt.mapping[0])  # copy the first row
+        self.assertEqual(
+            new_row[dt.outcome], self.ogv1.key, "First row should have outcome o1"
+        )
+        # do not change the outcome, just duplicate the row
+        # insert it at position 1
+        dt.mapping.insert(1, new_row)
+
+        with self.assertLogs(level="WARNING") as log:
+            dt.remove_duplicate_mapping_rows()
+
+        self.assertIn("Duplicate mapping found", log.output[0])
+
+    def test_should_fail_on_incomplete_mapping(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just remove something from it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+        dt.mapping = dt.mapping[:-1]  # remove the last row
+
+        with self.assertRaises(ValueError) as context:
+            dt.check_mapping_coverage()
+
+        self.assertIn("Mapping is incomplete", str(context.exception))
+
 
 if __name__ == "__main__":
     unittest.main()
