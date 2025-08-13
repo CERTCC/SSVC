@@ -196,6 +196,32 @@ class DecisionTable(
         return self
 
     @model_validator(mode="after")
+    def remove_duplicate_mapping_rows(self):
+        seen = dict()
+        new_mapping = []
+        for row in self.mapping:
+            value_tuple = tuple(v for k, v in row.items() if k != self.outcome)
+            if value_tuple in seen:
+                # we have a duplicate, but is it same or different?
+                if seen[value_tuple][self.outcome] == row[self.outcome]:
+                    # if it's a match, just log it and move on
+                    logger.warning(
+                        f"Duplicate mapping found (removed automatically): {row}"
+                    )
+                else:
+                    # they don't match
+                    raise ValueError(
+                        f"Conflicting mappings found: {seen[value_tuple]} != {row}"
+                    )
+            else:
+                # not a duplicate, add it to the new mapping
+                seen[value_tuple] = row
+                new_mapping.append(row)
+        # set the new mapping (with duplicates removed)
+        self.mapping = new_mapping
+        return self
+
+    @model_validator(mode="after")
     def validate_mapping(self):
         """
         Validate the mapping after it has been populated.
