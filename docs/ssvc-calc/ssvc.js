@@ -22,8 +22,9 @@
 /* SSVC code for graph building */
 const _version = "5.1.9"
 const _tool = "Dryad SSVC Calculator "+_version
-var showFullTree = false
-const registry_url = "../../data/json/ssvc_object_registry.json";
+var showFullTree = false;
+/* The registryurl is now relative to local folder using symlink for convenience*/
+const registry_url = "ssvc_object_registry.json";
 const SSVC = {"tool_version": _version, decision_points: [], decision_trees: []}
 var diagonal,tree,svg,duration,root
 var treeData = []
@@ -1533,6 +1534,8 @@ function revert(d) {
     console.log(d);
 }
 function doclick(d) {
+    console.log(d);
+    return;
     if(showFullTree === false) {
 	hidediv();
 	if(('clickkill' in d) &&
