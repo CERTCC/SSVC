@@ -28,9 +28,13 @@ const registry_url = "ssvc_object_registry.json";
 const SSVC = {"tool_version": _version, decision_points: [], decision_trees: []}
 var diagonal,tree,svg,duration,root
 var treeData = []
-/* Deefault color array of possible color options */
-var acolors = ["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
-var lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
+/* Default color array of possible color options
+["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
+
+ */
+var acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
+		 "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
+var lcolors = {};
 var ssvc_short_keys = {};
 /* These variables are for decision tree schema JSON aka SSVC Provision Schema */
 var export_schema = {decision_points: [],decisions_table: [], lang: "en",
@@ -78,6 +82,19 @@ function select_add_option(s,opt) {
 		 .html(opt));
     };
 }
+function arrayReduce(arr,n) {
+    if(n > arr.length)
+	return arr.concat(Array(n-arr.length).fill(arr.at(-1)))
+    return arr.filter(function(_,i) {
+        if (i === 0 || i === arr.length - 1) return true;
+        const step = (arr.length-1)/(n-1);
+        for (let j = 1; j < n - 1; j++) 
+            if (Math.round(j * step) === i)
+		return true;
+        return false;
+    });
+}
+
 $(function () {
     /* document.ready() */
     reset_form();
@@ -125,7 +142,7 @@ $(function () {
 			    for (const version in keyEntry.versions) {
 				const versionEntry = keyEntry.versions[version];
 				if (versionEntry.obj && versionEntry.obj.decision_points) {
-				    let mdata = {filename: "json:" + JSON.stringify(versionEntry.obj), displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
+				    let mdata = {data : versionEntry.obj, displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
 				    if(versionEntry.obj.name.indexOf("Deployer") > -1) {
 					mdata['selected'] = true;
 					defaultTree = versionEntry.obj;
@@ -139,10 +156,10 @@ $(function () {
 	    }
 	}
 	parse_json(defaultTree);
-	SSVC.decision_trees.forEach(function(dpd) {
+	SSVC.decision_trees.forEach(function(dpd, i) {
 	    $('#tree_samples').append($('<option>')
-				      .attr({value:dpd.filename, selected: dpd.selected})
-				      .text(dpd.displayname))
+				      .attr({value: i, selected: dpd.selected})
+				      .text(dpd.displayname));
 	});
     });
 
@@ -431,6 +448,17 @@ function tree_process(w) {
 	} else 
 	    $('#dtreecsvload').click()
 	return
+    }
+    if(ptree.match(/^\d+$/)) {
+        const index = parseInt(ptree);
+        if( index in SSVC.decision_trees && SSVC.decision_trees[index].data) {
+            /* This is a SSVC.decision_point index find it and return */
+            return parse_json(SSVC.decision_trees[index].data);
+        }
+    }
+    if(ptree.indexOf("json:") == 0) {
+        /* ptree itself is the payload with json: in the front*/
+        return parse_json(JSON.parse(ptree.substring(5)));
     }
     $.get(ptree, function(idata) {
         if(ptree.match(/\.json$/i))
@@ -849,18 +877,26 @@ function parse_json(xraw,paused) {
     var duniq_keys = {};
     /* unique keys for choices under decision points*/
     var ouniq_keys = {};
-    lcolors = {};    
-    tm.decision_points.map(x => {
+    lcolors = {};
+    tm.decision_points.map((x,index) => {
 	create_short_keys(x,duniq_keys);
-	var options_data = {}
-	var options_html = x.options.reduce((h,r) => {
+	var options_data = {};
+	const ocolors = arrayReduce(acolors, x.options.length);
+	const h5 = document.createElement("h5");
+	h5.innerText = x.label;
+	var options_html = x.options.reduce((h,r,i) => {
+	    if(index == tm.decision_points.length -1)
+		lcolors[r.label] = ocolors[i];
 	    create_short_keys(r,ouniq_keys);
 	    options_data[r.label] = r.description;
 	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1);
 	    var spclass = 'popup-'+safedivname(r.label);
-	    var div_add = "<div class='popupidiv "+spclass+"'><b>"+rlabel+"</b>&nbsp;"+r.description+"<hr /></div>";
-	    return  h + div_add;
-	},"<h5>"+x.label+"</h5>")
+	    var div_add = $('<div>').addClass('popupidiv '+ spclass)
+		.append($('<b>').css({color:ocolors[i]}).text(rlabel))
+		.append($('<span>').text(" " + r.description))
+		.append($('<hr>'));
+	    return  h + div_add[0].outerHTML;
+	}, h5.outerHTML)
 	var hdiv = safedivname(x.label)
 	if($("."+hdiv).length != 1) {
 	    //console.log(hdiv,"new");	    
@@ -910,14 +946,13 @@ function parse_json(xraw,paused) {
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
     $("."+lastdiv).addClass("Decision");
-    var classes = []
+    var classes = [];
+    const ocolors = arrayReduce(acolors, decisions[0].options.length);    
     var decision_div = decisions[0].options.reduce((h,r,ir) => {
 	var srlabel = safedivname(r.label);
 	classes.push(srlabel);
-	if(("color" in r) && (r.color)) {
-	    lcolors[r.label] = r.color;
-	} else if(acolors[ir]) {
-	    r.color = acolors[ir];
+	if(ocolors[ir]) {
+	    r.color = ocolors[ir];
 	} else {
 	    r.color = "#fefefe";
 	}
@@ -1058,9 +1093,9 @@ function parse_file(xraw) {
 	detect_version = "v1"
     topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
 	     y.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success")
-    dt_clear()
+    dt_clear();
     export_schema.decision_points[export_schema.decision_points.length-1].
-	options.map((x,i) => lcolors[x.label] = acolors[i] )
+	options.map((x,i) => lcolors[x.label] = ocolors[i] )
 }
 
 function add_invalid_feedback(xel,msg) {
@@ -1134,7 +1169,7 @@ function draw_graph() {
 	if(window.innerWidth <= 750)
 	    default_translate =  "translate(30,0) scale(0.42)"
     }
-    $('#zoomcontrol').show();
+    $('#zoomcontrol').removeClass('d-none').show();
     $('#zoomcontrol input').val(100);
     $('#graph').html($('<div>').attr({"id":"frbdiv"}).css({"position": "fixed","font-size": "x-small"})
 			.on("click",togglehelp).append($('<input>')
@@ -1199,22 +1234,20 @@ function update(source) {
 	.on("contextmenu",dorightclick)
 	.on("mouseover",showdiv)
 	.on("mouseout",hidediv);
-
     nodeEnter.append("circle")
 	.attr("r", 1e-6)
-	.attr("class",function(d) {
+	.attr("class",function(d, i) {
 	    if(!('children' in d))
-		return "junction gvisible finale";
+		return "junction gvisible finale ";
 	    return "junction gvisible"
 	})
-	.style("fill", function(d) {
+	.style("fill", function(d, i) {
 	    if(d._children) return "lightsteelblue"
 	    if(!('children' in d)) {
 		/* Last node no children */
 		var dname = d.name.split(":").shift();
 		if(dname in lcolors) 
 		    return undefined;
-
 	    }
 	    return undefined;
 	}  );

@@ -120,9 +120,9 @@
 	<p class="lead graphy">
 	  <button type="button" class="btn btn-primary" id="dt_start"
 		  data-toggle="tooltip" data-placement="bottom"
-		  title="Start walking the SSVC decision tree"
-		  onclick="dt_start()">
-	    Start Decision</button>
+		  title="Use SSVC Decision Tree to evaluate one or more vulnerabilities"
+		  onclick="evaluate()">
+	    Evaluate Vulnerability</button>
 	  <button type="button" class="btn btn-danger" id="dt_clear"
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Clear all decisions and start over"
@@ -146,6 +146,7 @@
 	    <tbody><tr></tr></tbody>
 	  </table>
 	</p>
+	<div id="evaluate"></div>
 	<div id="zoomcontrol" class="graphy embedded d-none">
 	  <div class="d-none">&#128269;</div>
 	  <input type="range" orient="vertical" alt="Zoom Graph"
