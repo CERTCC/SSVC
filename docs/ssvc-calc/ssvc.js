@@ -20,9 +20,11 @@
  */
 
 /* SSVC code for graph building */
-const _version = "5.1.8"
+const _version = "5.1.9"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false
+const registry_url = "../../data/json/ssvc_object_registry.json";
+const SSVC = {"tool_version": _version, decision_points: [], decision_trees: []}
 var diagonal,tree,svg,duration,root
 var treeData = []
 /* Deefault color array of possible color options */
@@ -34,14 +36,6 @@ var export_schema = {decision_points: [],decisions_table: [], lang: "en",
 		     version: "2.0", title: "SSVC Provision table"}
 /* If a new analysis is being done use this for export */
 var current_score = [];
-var current_tree = "Deployer.json";
-var roll_tree_map = {
-		     "Supplier": "Supplier.json",
-		     "Deployer": "Deployer.json",
-		     "Coordinator-Publish": "Coordinator-Publish.json",
-		     "Coordinator-Triage": "Coordinator-Triage.json",
-			 "CISA-Coordinator" : "CISA-Coordinator.json"
-		    };
 var current_schema = "SSVC_Computed.schema.json";
 /* A dictionary of elements that are children of a decision point*/
 var ischild = {};
@@ -84,13 +78,8 @@ function select_add_option(s,opt) {
     };
 }
 $(function () {
+    /* document.ready() */
     reset_form();
-    Object.keys(roll_tree_map).forEach(function(x) {
-	var display = roll_tree_map[x].replace(".json","");
-	$('#tree_samples').append($('<option>')
-				  .attr({value:roll_tree_map[x]})
-				  .html(display))
-    });
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
     $('[data-toggle="tooltip"]').tooltip();
@@ -100,31 +89,63 @@ $(function () {
 	$('#helper').show();
 	localStorage.setItem("beenhere",1);
     }
-    //load_tsv_score();
-    //tree_process("CISA-Coordinator-v2.01.json");
-    if(location.hash != "") {
-	/*  IF location specifies are tree and its valid, preload the right tree
-	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator" 
-	*/	
-	plparts = location.hash.substr(1).split("&");
-	if((plparts.length > 1) && (plparts[1] in roll_tree_map)) {
-	    current_tree = roll_tree_map[plparts[1]];
-	    $('#tree_samples').val(current_tree);
+    $.getJSON(registry_url).done(function(registry) {
+	let defaultTree;
+	if (registry.types && registry.types.DecisionPoint &&
+	    registry.types.DecisionPoint.namespaces) {
+	    const namespaces = registry.types.DecisionPoint.namespaces;
+	    for (const nsKey in namespaces) {
+		const namespace = namespaces[nsKey];
+		if (namespace.keys) {
+		    for (const key in namespace.keys) {
+			const keyEntry = namespace.keys[key];
+			if (keyEntry.versions) {
+			    for (const version in keyEntry.versions) {
+				const versionEntry = keyEntry.versions[version];
+				if (versionEntry.obj && versionEntry.values) {
+				    let mdata = {data: versionEntry.obj};
+				    SSVC.decision_points.push(mdata);
+				}
+			    }
+			}
+		    }
+		}
+	    }
 	}
-	/* For some reason when .val() is used the cloning of this export does not
-	 carry over the value .attr of "value" works right */
-	if((plparts.length > 2) && (plparts[2] != "")) 
-	    $('.exportId').attr("value",plparts[2]);
-    }
-    select_add_option($('#tree_samples'),current_tree);    
-    $.getJSON(current_tree).done(function(idata) {
-	parse_json(idata);
-    }).fail(function() {
-	console.log("Failed to Load CISA tree.  Loading default tree");
+	if (registry.types && registry.types.DecisionTable &&
+	    registry.types.DecisionTable.namespaces) {
+	    const namespaces = registry.types.DecisionTable.namespaces;
+	    for (const nsKey in namespaces) {
+		const namespace = namespaces[nsKey];
+		if (namespace.keys) {
+		    for (const key in namespace.keys) {
+			const keyEntry = namespace.keys[key];
+			if (keyEntry.versions) {
+			    for (const version in keyEntry.versions) {
+				const versionEntry = keyEntry.versions[version];
+				if (versionEntry.obj && versionEntry.obj.decision_points) {
+				    let mdata = {filename: "json:" + JSON.stringify(versionEntry.obj), displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
+				    if(versionEntry.obj.name.indexOf("Deployer") > -1) {
+					mdata['selected'] = true;
+					defaultTree = versionEntry.obj;
+				    }
+				    SSVC.decision_trees.push(mdata);
+				}
+			    }
+			}
+		    }
+		}
+	    }
+	}
+	parse_json(defaultTree);
+	SSVC.decision_trees.forEach(function(dpd) {
+	    $('#tree_samples').append($('<option>')
+				      .attr({value:dpd.filename, selected: dpd.selected})
+				      .text(dpd.displayname))
+	});
     });
-    export_tree();
-    load_tsv_score();
-})
+
+});
 var raw = [];
 
 document.onkeyup = function(evt) {
@@ -344,8 +365,6 @@ function export_json() {
 	oexport['options'].push(last_option);
     }
     oexport['$schema'] = location.origin + location.pathname + current_schema
-    oexport['decision_tree_url'] = location.origin + location.pathname +
-	current_tree;
     var a = document.createElement("a")
     var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
     if (includetree) {
@@ -913,10 +932,6 @@ function parse_json(xraw,paused) {
     //console.log(classes)
     //console.log(decision_div)
     $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
-    var currentRole = Object.keys(roll_tree_map)
-	.filter(x => roll_tree_map[x] == current_tree).shift()
-    if(currentRole)
-	select_add_option($('.exportRole'),currentRole);
     /* If a new tree is loaded and the user is in Simple mode
      just start simple mode decision */
     permalink();
@@ -1638,23 +1653,16 @@ function showme(divid,vul_flag) {
 
 function dt_start() {
     current_score = [];
-    showFullTree = false
+    showFullTree = true;
     $('svg.mgraph').remove();
     $('.exportActive .exportdiv').remove();
     $('#exportopen').hide();
     var xraw = JSON.parse(JSON.stringify(raw));
-    treeData=grapharray(xraw);
+    treeData=grapharray_open(xraw);
     draw_graph();
-    /* reset all Complex decision select boxes*/
-    $('.bcomplex select').each(function(_,x) { console.log(x.selectedIndex = 0)});    
-    setTimeout(function() {
-	$('circle.junction').parent().simClick()
-	/* Disable click on the first node */
-	treeData[0].clickkill = true
-    }, 900)
 }
 function dt_clear() {
-    showFullTree = false;
+    showFullTree = true;
     current_score = [];
     raw.map(x => {  x.children=[]; delete x._children;});
     /* Clear all graph to start */
@@ -1665,12 +1673,12 @@ function dt_clear() {
 }
 
 function show_full_tree() {
-    showFullTree = true
-    $('.exportActive .exportdiv').remove()
-    $('svg.mgraph').remove()
-    var xraw = JSON.parse(JSON.stringify(raw))
-    treeData=grapharray_open(xraw)
-    draw_graph()
+    showFullTree = true;
+    $('.exportActive .exportdiv').remove();
+    $('svg.mgraph').remove();
+    var xraw = JSON.parse(JSON.stringify(raw));
+    treeData=grapharray_open(xraw);
+    draw_graph();
 }
 
 
