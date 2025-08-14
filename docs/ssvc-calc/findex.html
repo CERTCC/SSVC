@@ -121,7 +121,7 @@
 	  <button type="button" class="btn btn-primary" id="dt_start"
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Use SSVC Decision Tree to evaluate one or more vulnerabilities"
-		  onclick="evaluate()">
+		  onclick="evaluate_vuls()">
 	    Evaluate Vulnerability</button>
 	  <button type="button" class="btn btn-danger" id="dt_clear"
 		  data-toggle="tooltip" data-placement="bottom"
@@ -146,7 +146,7 @@
 	    <tbody><tr></tr></tbody>
 	  </table>
 	</p>
-	<div id="evaluate"></div>
+	<section id="evaluate_section" style="display:none"></section>
 	<div id="zoomcontrol" class="graphy embedded d-none">
 	  <div class="d-none">&#128269;</div>
 	  <input type="range" orient="vertical" alt="Zoom Graph"

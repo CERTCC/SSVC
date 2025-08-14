@@ -756,6 +756,9 @@ function schemaTransform(dtnew) {
     return dtold;
 
 }
+function evaluate_vuls() {
+    $('#evaluate_section').toggle();
+}
 function parse_json(xraw,paused) {
     $('.bcomplex').remove();
     $('.graphy').not('#zoomcontrol').show();
@@ -797,6 +800,7 @@ function parse_json(xraw,paused) {
     ischild = tm.decision_points.reduce(
 	(x,y) => {
 	    /* Use either key or label to create a hash of everyone */
+	    
 	    xkeys[y.label] = y;
 	    if("key" in y)
 		xkeys[y.key] = y.label
@@ -878,15 +882,23 @@ function parse_json(xraw,paused) {
     /* unique keys for choices under decision points*/
     var ouniq_keys = {};
     lcolors = {};
+    let evaluate_div = $("<div>").css({display: "flex"});    
     tm.decision_points.map((x,index) => {
+	const dpcol = $("<div>").append($("<h4>").text(x.label).css({"border-bottom": "2px solid aqua"}));
+	dpcol.css({display: "inline-block", padding: "2px",border: "2px solid aqua"});
 	create_short_keys(x,duniq_keys);
 	var options_data = {};
 	const ocolors = arrayReduce(acolors, x.options.length);
 	const h5 = document.createElement("h5");
 	h5.innerText = x.label;
 	var options_html = x.options.reduce((h,r,i) => {
-	    if(index == tm.decision_points.length -1)
+	    const input = $("<input>").attr({type: "checkbox", checked: true, name: x.label, value: r.label});
+	    const label = $("<label>").text(r.label).css({padding: '2px'});
+	    if(index == tm.decision_points.length -1) {
 		lcolors[r.label] = ocolors[i];
+		input.css({display: "none"});
+	    }	    
+	    dpcol.append($("<div>").css({"text-align": "left"}).append(input).append(label));
 	    create_short_keys(r,ouniq_keys);
 	    options_data[r.label] = r.description;
 	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1);
@@ -897,6 +909,7 @@ function parse_json(xraw,paused) {
 		.append($('<hr>'));
 	    return  h + div_add[0].outerHTML;
 	}, h5.outerHTML)
+	evaluate_div.append(dpcol);
 	var hdiv = safedivname(x.label)
 	if($("."+hdiv).length != 1) {
 	    //console.log(hdiv,"new");	    
@@ -945,6 +958,7 @@ function parse_json(xraw,paused) {
 	//console.log(options_data);
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
+    $('#evaluate_section').append(evaluate_div);
     $("."+lastdiv).addClass("Decision");
     var classes = [];
     const ocolors = arrayReduce(acolors, decisions[0].options.length);    
