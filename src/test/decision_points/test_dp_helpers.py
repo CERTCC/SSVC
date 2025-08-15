@@ -31,7 +31,7 @@ class MyTestCase(unittest.TestCase):
             key="test_dp",
             description="This is a test decision point",
             version="1.0.0",
-            namespace="x_example.test",
+            namespace="x_org.example#bar",
             values=(
                 DecisionPointValue(
                     name="Yes",

@@ -119,9 +119,10 @@ class TestMixins(unittest.TestCase):
             self.assertEqual(obj.namespace, ns)
 
         # custom namespaces are allowed as long as they start with x_
+        # and then follow `x-name = reverse-dns  "#" fragment-seg`
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_a{randint(1000,1000000)}"
+            ns = f"x_com.example.a{randint(1000,1000000)}#foo"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
@@ -189,7 +190,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_example.test"},
+                "args": {"namespace": "x_org.example#bar"},
                 "has_default": False,
             },
             {

@@ -32,8 +32,8 @@ from ssvc.decision_points.cvss.base import CvssDecisionPoint, CvssDecisionPoint 
 
 def _modify_3(dp: DecisionPoint):
     _dp_dict = deepcopy(dp.model_dump())
-    _dp_dict["name"] = f"Modified {_dp_dict["name"]}"
-    _dp_dict["key"] = f"M{_dp_dict["key"]}"
+    _dp_dict["name"] = f'Modified {_dp_dict["name"]}'
+    _dp_dict["key"] = f'M{_dp_dict["key"]}'
 
     # if there is no value named "Not Defined" value, add it
     nd = NOT_DEFINED_X
