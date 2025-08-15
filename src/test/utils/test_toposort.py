@@ -73,7 +73,7 @@ class MyTestCase(unittest.TestCase):
         from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 
         self.dp1 = DecisionPoint(
-            namespace="x_test",
+            namespace="x_com.example#foo",
             name="Decision Point 1",
             key="DP1",
             version="1.0.0",
@@ -84,7 +84,7 @@ class MyTestCase(unittest.TestCase):
             ],
         )
         self.dp2 = DecisionPoint(
-            namespace="x_test",
+            namespace="x_com.example#foo",
             name="Decision Point 2",
             key="DP2",
             version="1.0.0",

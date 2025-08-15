@@ -18,6 +18,7 @@
 #  DM24-0278
 
 import unittest
+import re
 
 from ssvc.namespaces import NameSpace
 from ssvc.utils.patterns import NS_PATTERN
@@ -32,12 +33,9 @@ class MyTestCase(unittest.TestCase):
 
     def test_ns_pattern(self):
         should_match = [
-            "foo",
-            "foo.bar",
-            "foo.bar.baz",
-            "foo/jp-JP/bar.baz/quux",
-            "foo//bar/baz/quux",
-            "foo.bar//baz.quux",
+            "foo.bar#baz",
+            "foo.bar.baz#quux",
+            "foo.bar#baz/jp-JP/bar.baz#foo/quux",
         ]
         should_match.extend([f"x_{ns}" for ns in should_match])
 
@@ -58,9 +56,16 @@ class MyTestCase(unittest.TestCase):
 
         should_not_match.extend([f"_{ns}" for ns in should_not_match])
 
+        # end pattern just like in
+        # test_namespaces_pattern._test_successes_failures()
+        pattern_str = NS_PATTERN.pattern
+        if not pattern_str.endswith("$"):
+            pattern_str = pattern_str + "$"
+        pattern = re.compile(pattern_str)
+
         for ns in should_not_match:
             with self.subTest(ns=ns):
-                self.assertFalse(NS_PATTERN.match(ns))
+                self.assertFalse(pattern.match(ns))
 
     def test_namspace_enum(self):
         for ns in NameSpace:
@@ -79,7 +84,8 @@ class MyTestCase(unittest.TestCase):
             with self.assertRaises(ValueError):
                 NameSpace.validate(ns)
 
-        for ns in ["x_foo", "x_bar", "x_baz", "x_quux"]:
+        for ns in ["x_com.example#foo", "x_com.example#bar",
+                   "x_com.example#baz", "x_com.example#quux"]:
             self.assertEqual(ns, NameSpace.validate(ns))
 
 

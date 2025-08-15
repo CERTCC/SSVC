@@ -70,7 +70,7 @@ class RegistryTestCase(unittest.TestCase):
         obj = DecisionPoint(
             name="TestDP",
             description="A test decision point",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST",
             values=[
                 DecisionPointValue(key="A", name="AAA", description="Option A"),
@@ -86,7 +86,7 @@ class RegistryTestCase(unittest.TestCase):
         obj2 = DpSubclass(
             name="TestDP2",
             description="Another test decision point",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST2",
             values=[
                 DecisionPointValue(key="A", name="AAA", description="Option A"),
@@ -103,7 +103,7 @@ class RegistryTestCase(unittest.TestCase):
         dp = DecisionPoint(
             name="TestDP",
             description="A test decision point",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             version="2.0.0",
             key="TEST",
             values=[
@@ -122,7 +122,7 @@ class RegistryTestCase(unittest.TestCase):
         # test with a known type
 
         dp1 = DecisionPoint(
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST",
             version="2.0.0",
             name="TestDP",
@@ -137,7 +137,7 @@ class RegistryTestCase(unittest.TestCase):
             registered=False,
         )
         dp2 = DecisionPoint(
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST2",
             version="2.0.0",
             name="TestDP",
@@ -151,7 +151,7 @@ class RegistryTestCase(unittest.TestCase):
         )
 
         dp3 = DecisionPoint(
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST3",
             version="2.0.0",
             name="TestDP2",
@@ -164,7 +164,7 @@ class RegistryTestCase(unittest.TestCase):
         )
 
         dt = DecisionTable(
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST_DT",
             version="2.0.0",
             name="TestDT",
@@ -191,7 +191,7 @@ class RegistryTestCase(unittest.TestCase):
         mockobj1 = Mock()
         mockobj1.schemaVersion = "2.0.0"
         mockobj1.key = "TEST"
-        mockobj1.namespace = "x_test"
+        mockobj1.namespace = "x_com.example#foo"
         mockobj1.version = "1.0.0"
         mockobj1.name = "Test Object"
         mockobj1.description = "A test object"
@@ -205,7 +205,7 @@ class RegistryTestCase(unittest.TestCase):
         mockobj2.schemaVersion = "2.0.0"
         mockobj2.key = "TEST2"
         mockobj2.version = "2.0.0"
-        mockobj2.namespace = "x_test"
+        mockobj2.namespace = "x_com.example#foo"
         mockobj2.name = "Test Object"
         mockobj2.description = "A test object"
         mockobj2.id = "test-id"
@@ -236,7 +236,7 @@ class RegistryTestCase(unittest.TestCase):
         dp = DecisionPoint(
             name="TestDP",
             description="A test decision point",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST",
             values=[
                 DecisionPointValue(key="A", name="AAA", description="Option A"),
@@ -266,7 +266,7 @@ class RegistryTestCase(unittest.TestCase):
         dp1 = DecisionPoint(
             name="TestDP",
             description="A test decision point",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST",
             values=[
                 DecisionPointValue(key="A", name="AAA", description="Option A"),
@@ -278,7 +278,7 @@ class RegistryTestCase(unittest.TestCase):
         dp2 = DecisionPoint(
             name="TestDP2",
             description="A test decision point",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST",
             values=[
                 DecisionPointValue(key="AA", name="AAAA", description="Option A"),
@@ -310,7 +310,7 @@ class RegistryTestCase(unittest.TestCase):
             dp = DecisionPoint(
                 name="TestDP",
                 description="A test decision point",
-                namespace="x_test",
+                namespace="x_com.example#foo",
                 key="TEST",
                 version=version,
                 values=[
@@ -334,7 +334,7 @@ class RegistryTestCase(unittest.TestCase):
 
         latest = base.lookup_latest(
             objtype="DecisionPoint",
-            namespace="x_test",
+            namespace="x_com.example#foo",
             key="TEST",
             registry=self.registry,
         )

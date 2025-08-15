@@ -715,7 +715,7 @@ def main() -> None:
     table = DecisionTable(
         name="Test Table",
         description="A test decision table",
-        namespace="x_test",
+        namespace="x_com.example#foo",
         decision_points=dpg.decision_points,
         outcome=outcomes.id,
     )

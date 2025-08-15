@@ -40,33 +40,26 @@ class TestNamespacePattern(unittest.TestCase):
             "cisa",
             "custom",  # not in enum, but valid for the pattern
             "abc",  # not in enum, but valid for the pattern
-            "x_abc",  # valid namespace with x_ prefix
-            "x_custom",  # valid namespace with x_ prefix
-            "x_private-test",  # valid namespace with dash
-            "x_custom.with.dots",  # valid namespace with x_ prefix and dots
-            "x_custom//extension",  # double slash is okay when it's the first segment
-            "x_private-test",  # valid namespace with x_ prefix and dash (does not follow reverse domain notation)
-            "x_com.example//custom-extension",  # x_prefix, reverse domain notation, double slash, dashes
-            "ssvc/de-DE/example.organization#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
+            "x_com.eample#foo/",
+            "x_com.example#foo//.org.example#bar",
+            "ssvc/de-DE/.org.example#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
             "ssvc//.de.bund.bsi$de-DE",  # BSI's translation of SSVC
             "ssvc//.de.bund.bsi#ref-arch-1/de-DE",  # BSI's official translation to German as used in Germany of its ref-arch-1 model which is originally written in English
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE",  # BSI's ref-arch-2 model which is originally written in German
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE/en-GB",  # BSI's official translation to English as used in GB of its ref-arch-2 model which is originally written in German
-            "ssvc//example.organization#model/com.example#foo",  # valid BCP-47 tag, two segments with one hash each
+            "ssvc//.example.organization#model/.com.example#foo",  # valid BCP-47 tag, two segments with one hash each
             "nist#800-30",  # NIST's registered model regarding its publication 800-30
             "x_gov.nist#800-30/de-DE",  # NIST's official translation to German as used in Germany of its model (regarding its publication) 800-30
-            "x_gov.nist#800-30/.de.bund.bsi$de-DE",  # BSI's translation to German as used in Germany of NIST's model (regarding its publication) 800-30
-            "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes (But doesn't follow reverse domain notation)
-            "x_example.test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
+            "x_gov.nist#800-30//.de.bund.bsi$de-DE",  # BSI's translation to German as used in Germany of NIST's model (regarding its publication) 800-30
+            "x_com.example.test#bar/pl-PL/.com.example#foo/.org.example#bar/newfound",  # valid BCP-47 tag and multiple segments
             "com.example",  # valid namespace with dots following reverse domain notation
-            "x_com.example",  # valid namespace with x_ prefix and dots following reverse domain notation
+            "x_com.example#foo",  # valid namespace with x_ prefix and dots following reverse domain notation
             "au.com.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD
-            "x_au.com.example"  # valid namespace with x_ prefix and dots following reverse domain notation
-            "abc//com.example",  # valid namespace with double slash
-            "abc//com.au.example",
-            "abc//com.example/foo.bar",  # valid namespace with double slash and additional segments
-            "abc//com.example-foo.bar",  # valid namespace with double slash and dash
-            "foo.bar//baz.quux",
+            "x_au.com.example#bar"  # valid namespace with x_ prefix and dots following reverse domain notation
+            "abc//.com.example#foo",
+            "abc//.com.au.example#foo",
+            "abc//.com.example#foo/.foo.bar#bar",
+            "foo.bar//.baz.quux#foo",
         ]
         self.expect_fail = [
             "999",  # invalid namespace, numeric only
@@ -78,11 +71,10 @@ class TestNamespacePattern(unittest.TestCase):
             "x_//foo",  # invalid namespace, double slash after x_
             "x_abc/invalid-bcp-47",  # not a valid BCP-47 tag
             "abc/invalid-bcp-47",  # not in enum (but that's ok for the pattern), not a valid BCP-47 tag
-            "abc/invalid",  # not in enum (but that's ok for the pattern), not a valid BCP-47 tag
             "x_custom/extension",  # not a valid BCP-47 tag
             "x_example.test/not-bcp-47",  # not a valid BCP-47 tag
-            "x_custom/extension/with/multiple/segments/"
-            + "a" * 990,  # exceeds max length
+            "x_com.eample#foo"
+            + "oo" * 990,  # exceeds max length
             "ssvc$de-DE", # official translations / base language are at the first extension level
             "anssi#800-30$fr-FR",  # official translations / base language are at the first extension level
             "x_gov.nist#800-30$de-DE",  # official translations / base language are at the first extension level
@@ -137,33 +129,11 @@ class TestNamespacePattern(unittest.TestCase):
         ]
         self._test_successes_failures(BASE_PATTERN, x_fail, x_success)
 
-    def test_experimental_base_pattern(self):
-        x_success = [
-            "x_abc",
-            "x_custom",
-            "x_custom.with.dots",  # dots are allowed in the base pattern
-            "x_custom-with-dashes",  # dashes are allowed in the base pattern
-        ]
-        x_fail = [
-            "9abc",  # does not start with x_
-            "x__invalid",  # double underscore
-            "x_-invalid",  # dash after x_
-            "x_.invalid",  # dash at end
-            "x_9abc",  # starts with a number after x_
-            "x_abc.",  # ends with a dot
-            "x_abc-",  # ends with a dash
-            "x_abc/",  # ends with a slash
-            "x_/foo",  # slashes aren't part of the base pattern
-        ]
-        self._test_successes_failures(BASE_NS_PATTERN, x_fail, x_success)
-
     def test_base_ns_pattern(self):
         x_success = [
             "abc",
-            "x_abc",
-            "x_custom",
-            "x_custom.with.dots",  # dots are allowed in the base pattern
-            "x_custom-with-dashes",  # dashes are allowed in the base pattern
+            "abc-with-dashes",  # dashes are allowed in the base pattern
+            "x_example.com#foo",
         ]
         x_fail = [
             "9abc",  # starts with a number
@@ -232,9 +202,7 @@ class TestNamespacePattern(unittest.TestCase):
             "valid",
             "valid.extension",
             "valid-extension",
-            "valid#extension",
-            "valid.extension#with-hash",
-            "com.example#foo",  # valid namespace with hash
+            "v.a-li.d-extension",
         ]
         invalid_segments = [
             "a_bc",  # underscore not allowed
@@ -243,7 +211,8 @@ class TestNamespacePattern(unittest.TestCase):
             "invalid.segment.",  # ends with a dot
             "invalid.segment-",  # ends with a dash
             "invalid/segment",  # slash not allowed
-            "com.example##foo",  # valid namespace with hash
+            "com.example##foo",  # hashes not allows
+            "com.example#foo",  # hashes not allows
             "invalid#segment#with#multiple#hashes",  # multiple hashes not allowed
             "invalid/segment/",  # ends with a slash
         ]

@@ -39,7 +39,7 @@ class MyTestCase(unittest.TestCase):
             name="test",
             description="test",
             key="TEST",
-            namespace="x_example.test",
+            namespace="x_org.example#bar",
             values=tuple(
                 [
                     DecisionPointValue(key=c, name=c, description=c)
@@ -56,7 +56,7 @@ class MyTestCase(unittest.TestCase):
                         name=c,
                         description=c,
                         key=c,
-                        namespace="x_example.test",
+                        namespace="x_org.example#bar",
                         values=tuple(
                             [
                                 DecisionPointValue(name=v, key=v, description=v)
