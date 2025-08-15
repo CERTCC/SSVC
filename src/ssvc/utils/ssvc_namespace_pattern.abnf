@@ -16,7 +16,7 @@ reg-base = ns-core [ "#" fragment-seg ]
 ; It needs at least 3 characters.
 ns-core = LOWER ALNUMLOW 1*( [ "." / "-" ] 1*ALNUMLOW)
 
-x-name = reverse-dns "#" fragment-seg 
+x-name = reverse-dns "#" fragment-seg
 
 ; reverse-dns provides an specification for a reverse DNS name
 ; can't be longer than 253 characters
@@ -37,7 +37,7 @@ lang-ext = "/" /  ( "/" bcp47 )
 ; - is either a language or
 ; - a model or
 ; - a third-party/unofficial translation
-ext-seg = bcp47 / "." x-name / translation 
+ext-seg = bcp47 / "." x-name / translation
 
 ; BCP-47 tag (based on the regex expansion)
 bcp47 = ( 2*3ALPHA
