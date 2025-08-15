@@ -48,7 +48,14 @@ class TestNamespacePattern(unittest.TestCase):
             "x_private-test",  # valid namespace with x_ prefix and dash (does not follow reverse domain notation)
             "x_com.example//custom-extension",  # x_prefix, reverse domain notation, double slash, dashes
             "ssvc/de-DE/example.organization#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
+            "ssvc//.de.bund.bsi$de-DE",  # BSI's translation of SSVC
+            "ssvc//.de.bund.bsi#ref-arch-1/de-DE",  # BSI's official translation to German as used in Germany of its ref-arch-1 model which is originally written in English
+            "ssvc//.de.bund.bsi#ref-arch-2$de-DE",  # BSI's ref-arch-2 model which is originally written in German
+            "ssvc//.de.bund.bsi#ref-arch-2$de-DE/en-GB",  # BSI's official translation to English as used in GB of its ref-arch-2 model which is originally written in German
             "ssvc//example.organization#model/com.example#foo",  # valid BCP-47 tag, two segments with one hash each
+            "nist#800-30",  # NIST's registered model regarding its publication 800-30
+            "x_gov.nist#800-30/de-DE",  # NIST's official translation to German as used in Germany of its model (regarding its publication) 800-30
+            "x_gov.nist#800-30/.de.bund.bsi$de-DE",  # BSI's translation to German as used in Germany of NIST's model (regarding its publication) 800-30
             "ssvc/de-DE/reference-arch-1",  # valid BCP-47 tag with dashes (But doesn't follow reverse domain notation)
             "x_example.test/pl-PL/foo/bar/baz/quux",  # valid BCP-47 tag and multiple segments
             "com.example",  # valid namespace with dots following reverse domain notation
@@ -76,6 +83,9 @@ class TestNamespacePattern(unittest.TestCase):
             "x_example.test/not-bcp-47",  # not a valid BCP-47 tag
             "x_custom/extension/with/multiple/segments/"
             + "a" * 990,  # exceeds max length
+            "ssvc$de-DE", # official translations / base language are at the first extension level
+            "anssi#800-30$fr-FR",  # official translations / base language are at the first extension level
+            "x_gov.nist#800-30$de-DE",  # official translations / base language are at the first extension level
             "ssvc/de-DE/example.organization##reference-arch-1",  # valid BCP-47 tag, reverse domain notation, double hash
             "ssvc/de-DE/example.organization#multi#hash#forbidden",  # valid BCP-47 tag, reverse domain notation, more than one hash per segment
             "x_custom.extension.",  # ends with punctuation
