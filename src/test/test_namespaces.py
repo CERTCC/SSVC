@@ -84,8 +84,12 @@ class MyTestCase(unittest.TestCase):
             with self.assertRaises(ValueError):
                 NameSpace.validate(ns)
 
-        for ns in ["x_com.example#foo", "x_com.example#bar",
-                   "x_com.example#baz", "x_com.example#quux"]:
+        for ns in [
+            "x_com.example#foo",
+            "x_com.example#bar",
+            "x_com.example#baz",
+            "x_com.example#quux",
+        ]:
             self.assertEqual(ns, NameSpace.validate(ns))
 
 

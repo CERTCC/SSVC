@@ -73,9 +73,8 @@ class TestNamespacePattern(unittest.TestCase):
             "abc/invalid-bcp-47",  # not in enum (but that's ok for the pattern), not a valid BCP-47 tag
             "x_custom/extension",  # not a valid BCP-47 tag
             "x_example.test/not-bcp-47",  # not a valid BCP-47 tag
-            "x_com.eample#foo"
-            + "oo" * 990,  # exceeds max length
-            "ssvc$de-DE", # official translations / base language are at the first extension level
+            "x_com.eample#foo" + "oo" * 990,  # exceeds max length
+            "ssvc$de-DE",  # official translations / base language are at the first extension level
             "anssi#800-30$fr-FR",  # official translations / base language are at the first extension level
             "x_gov.nist#800-30$de-DE",  # official translations / base language are at the first extension level
             "ssvc/de-DE/example.organization##reference-arch-1",  # valid BCP-47 tag, reverse domain notation, double hash
@@ -90,11 +89,10 @@ class TestNamespacePattern(unittest.TestCase):
             "ab",  # too short
             "x_",  # too short after prefix
             "x_x_some-weird-private-one",  # double x_ not allowed
-            "x_example.test///org.example#fragment", # three slashes in a row (was an mistake in ABNF previously)
+            "x_example.test///org.example#fragment",  # three slashes in a row (was an mistake in ABNF previously)
         ]
 
     def test_ns_pattern(self):
-
         self._test_successes_failures(
             NS_PATTERN.pattern, self.expect_fail, self.expect_success
         )
