@@ -759,6 +759,55 @@ function schemaTransform(dtnew) {
 function evaluate_vuls() {
     $('#evaluate_section').toggle();
 }
+function check_select(w) {
+    const input = w.target;
+    const finddpIndex = $(input).data("dpdepth");
+    const nodes = d3.selectAll("g.node.depth-"+String(finddpIndex));
+    function traverse_remove(xnode) {
+	if(!xnode.__data__) {
+	    console.log("Error no nodes to descend!");
+	}
+	if(!xnode.__data__._schildren) {
+	    console.log("Error no node _schildren data to restore from!");
+	}
+	let removeValues = [];
+	xnode.__data__.children = Array.from(xnode.__data__._schildren);
+	input.parentElement.parentElement
+	    .querySelectorAll("input").forEach(function(cinput) {
+		if(!cinput.checked) 
+		    removeValues.push($(cinput).data("dpvdepth"));
+	    });
+	removeValues.reverse().forEach(function(rindex) {
+	    removevalueIndex = parseInt(rindex);
+	    xnode.__data__.children.splice(removevalueIndex,1);
+	});
+	update(xnode.__data__);
+	console.log(removeValues);
+    }    
+    
+    if(nodes.length) {
+	if(w.target.checked) {
+	    nodes[0].forEach(traverse_remove);
+	} else {
+	    nodes[0].forEach(function(xnode) {
+		if(xnode.__data__) {
+		    if(xnode.__data__._schildren) {
+			traverse_remove(xnode);
+		    } else if(xnode.__data__.children) {
+			let removevalueIndex = $(input).data("dpvdepth");
+			xnode.__data__._schildren = Array.from(xnode.__data__.children);
+			xnode.__data__.children.splice(removevalueIndex,1);
+			update(xnode.__data__);
+			console.log(xnode);
+		    }
+		}
+	    });
+	}
+			     
+
+    }
+    
+}
 function parse_json(xraw,paused) {
     $('.bcomplex').remove();
     $('.graphy').not('#zoomcontrol').show();
@@ -892,7 +941,7 @@ function parse_json(xraw,paused) {
 	const h5 = document.createElement("h5");
 	h5.innerText = x.label;
 	var options_html = x.options.reduce((h,r,i) => {
-	    const input = $("<input>").attr({type: "checkbox", checked: true, name: x.label, value: r.label});
+	    const input = $("<input>").attr({type: "checkbox", checked: true, name: x.label, value: r.label, "data-dpdepth": index, "data-dpvdepth": i}).click(check_select);
 	    const label = $("<label>").text(r.label).css({padding: '2px'});
 	    if(index == tm.decision_points.length -1) {
 		lcolors[r.label] = ocolors[i];
