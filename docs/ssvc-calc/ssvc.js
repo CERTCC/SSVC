@@ -782,7 +782,6 @@ function check_select(w) {
 	    xnode.__data__.children.splice(removevalueIndex,1);
 	});
 	update(xnode.__data__);
-	console.log(removeValues);
     }    
     
     if(nodes.length) {
@@ -942,12 +941,26 @@ function parse_json(xraw,paused) {
 	h5.innerText = x.label;
 	var options_html = x.options.reduce((h,r,i) => {
 	    const input = $("<input>").attr({type: "checkbox", checked: true, name: x.label, value: r.label, "data-dpdepth": index, "data-dpvdepth": i}).click(check_select);
-	    const label = $("<label>").text(r.label).css({padding: '2px'});
+	    const label = $("<label>").text(r.label).css({padding: '0px 0px 0px 2px', margin: "0px"});
+	    const ldiv = $("<div>").css({"text-align": "left",
+					 "border": "1px solid steelblue",
+					 "width": "fit-content",
+					 "padding": "0px 8px 0px 8px",
+					 "border-radius": "3px",
+					 "margin-bottom": "3px"});
 	    if(index == tm.decision_points.length -1) {
 		lcolors[r.label] = ocolors[i];
+		ldiv.css({"background": ocolors[i]});
 		input.css({display: "none"});
 	    }	    
-	    dpcol.append($("<div>").css({"text-align": "left"}).append(input).append(label));
+	    dpcol.append(ldiv.append(input).append(label)
+			 .on('click', function(d) {
+			     console.log(d);
+			     if(d.target && d.target.tagName.toUpperCase() == "INPUT")
+				 return;
+			     else if (d.currentTarget && d.currentTarget.querySelector("input"))
+				 d.currentTarget.querySelector("input").click();
+			 }));
 	    create_short_keys(r,ouniq_keys);
 	    options_data[r.label] = r.description;
 	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1);
