@@ -62,6 +62,24 @@ jQuery.fn.simClick = function () {
 	e.dispatchEvent(evt);
     });
 };
+function toggle_all() {
+    let check_all = true;
+    const els = $('#evaluate_section input[type="checkbox"].dp_input');
+    els.each(function(_,el) {
+	if(el.checked) {
+	    check_all = false;
+	    return false;
+	}
+    });
+    els.each(function(_,el) {
+	el.checked = check_all;
+    });
+    if(check_all)
+	show_full_tree();
+    else
+	dt_clear()
+    
+}
 function reset_form() {
     /* This is to clear stupid Firefox cached form values*/
     $('select').prop('selectedIndex',0);	    
@@ -761,6 +779,33 @@ function evaluate_vuls() {
 }
 function check_select(w) {
     const input = w.target;
+    /* Container for this decision point */
+    const dpContainer = input.parentElement.parentElement;
+    const groupContainer = dpContainer.parentElement;
+    let valueSet = {};
+    valueSet[final_keyword] = [];
+    groupContainer.querySelectorAll('input[type="checkbox"].dp_input').forEach(function(xinput) {
+	if(xinput.checked) {
+	    if((xinput.name in valueSet) &&(!valueSet[xinput.name].includes(xinput.value)))
+		valueSet[xinput.name].push(xinput.value);
+	    else
+		valueSet[xinput.name] = [xinput.value]
+	}
+    });
+    export_schema.decisions_table.forEach(function(dt) {
+	let matched = false;
+	Object.keys(valueSet).forEach(function(key) {
+	    if((key in dt) && (valueSet[key].includes(dt[key]))) {
+		matched = true;
+	    } else {
+		matched = false;
+	    }
+	});
+	if(matched && (!valueSet[final_keyword].includes(dt[final_keyword]))) {
+	    valueSet[final_keyword].push(dt[final_keyword]);
+	}
+    });
+    console.log(valueSet);
     const finddpIndex = $(input).data("dpdepth");
     const nodes = d3.selectAll("g.node.depth-"+String(finddpIndex));
     function traverse_remove(xnode) {
@@ -772,11 +817,10 @@ function check_select(w) {
 	}
 	let removeValues = [];
 	xnode.__data__.children = Array.from(xnode.__data__._schildren);
-	input.parentElement.parentElement
-	    .querySelectorAll("input").forEach(function(cinput) {
-		if(!cinput.checked) 
-		    removeValues.push($(cinput).data("dpvdepth"));
-	    });
+	dpContainer.querySelectorAll("input").forEach(function(cinput) {
+	    if(!cinput.checked) 
+		removeValues.push($(cinput).data("dpvdepth"));
+	});
 	removeValues.reverse().forEach(function(rindex) {
 	    removevalueIndex = parseInt(rindex);
 	    xnode.__data__.children.splice(removevalueIndex,1);
@@ -797,7 +841,6 @@ function check_select(w) {
 			xnode.__data__._schildren = Array.from(xnode.__data__.children);
 			xnode.__data__.children.splice(removevalueIndex,1);
 			update(xnode.__data__);
-			console.log(xnode);
 		    }
 		}
 	    });
@@ -930,9 +973,9 @@ function parse_json(xraw,paused) {
     /* unique keys for choices under decision points*/
     var ouniq_keys = {};
     lcolors = {};
-    let evaluate_div = $("<div>").css({display: "flex"});    
+    let evaluate_div = $("<div>").css({display: "flex","justify-content":"center"});    
     tm.decision_points.map((x,index) => {
-	const dpcol = $("<div>").append($("<h4>").text(x.label).css({"border-bottom": "2px solid aqua"}));
+	const dpcol = $("<div>").append($("<h4>").text(x.label).css({"border-bottom": "2px solid aqua","font-size": "unset"}));
 	dpcol.css({display: "inline-block", padding: "2px",border: "2px solid aqua"});
 	create_short_keys(x,duniq_keys);
 	var options_data = {};
@@ -940,8 +983,14 @@ function parse_json(xraw,paused) {
 	const h5 = document.createElement("h5");
 	h5.innerText = x.label;
 	var options_html = x.options.reduce((h,r,i) => {
-	    const input = $("<input>").attr({type: "checkbox", checked: true, name: x.label, value: r.label, "data-dpdepth": index, "data-dpvdepth": i}).click(check_select);
-	    const label = $("<label>").text(r.label).css({padding: '0px 0px 0px 2px', margin: "0px"});
+	    const input = $("<input>").attr({type: "checkbox",
+					     checked: true,
+					     name: x.label,
+					     value: r.label,
+					     "data-dpdepth": index,
+					     "data-dpvdepth": i});
+	    const label = $("<label>").text(r.label).css({padding: '0px 0px 0px 2px',
+							  margin: "0px"});
 	    const ldiv = $("<div>").css({"text-align": "left",
 					 "border": "1px solid steelblue",
 					 "width": "fit-content",
@@ -952,10 +1001,12 @@ function parse_json(xraw,paused) {
 		lcolors[r.label] = ocolors[i];
 		ldiv.css({"background": ocolors[i]});
 		input.css({display: "none"});
-	    }	    
+	    } else {
+		/* Decision Point Input */
+		input.addClass("dp_input").click(check_select);
+	    }
 	    dpcol.append(ldiv.append(input).append(label)
 			 .on('click', function(d) {
-			     console.log(d);
 			     if(d.target && d.target.tagName.toUpperCase() == "INPUT")
 				 return;
 			     else if (d.currentTarget && d.currentTarget.querySelector("input"))

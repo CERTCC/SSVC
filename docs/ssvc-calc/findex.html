@@ -126,14 +126,8 @@
 	  <button type="button" class="btn btn-danger" id="dt_clear"
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Clear all decisions and start over"
-		  onclick="dt_clear()">
-	    Clear All</button>
-	  <button type="button" class="btn btn-info" id="dt_full_tree"
-		  data-toggle="tooltip" data-placement="bottom"
-		  title="Explore the full decision tree of this SSVC Instance"
-		  onclick="show_full_tree()">
-	    Show Full Tree
-	  </button>
+		  onclick="toggle_all()">
+	    Toggle All</button>
 	  <a href="javascript:void(0)" title="View previous score"
 	     alt="View previous score" id="table_toggle" style="display:none"
 	     onclick="cve_table_toggle()">
