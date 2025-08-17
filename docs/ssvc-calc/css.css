@@ -1,4 +1,4 @@
-/* css version 2.2.9 */
+/* css version 2.2.10 */
 #helper {
     background-color: rgba(255,255,255,0.95);
     border: 1px solid grey;
@@ -463,4 +463,8 @@ pre {
 }
 textPath {
 cursor: pointer;
+}
+.blackbody .swal2-popup {
+  background: #222;
+  color: #eee;
 }

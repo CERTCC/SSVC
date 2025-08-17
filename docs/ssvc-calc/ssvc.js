@@ -1086,6 +1086,7 @@ function parse_json(xraw,paused) {
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
     let cve_div = $("<label>").append($("<input>").addClass("form-control").attr({"placeholder":"CVE/Identifier"})).css({padding: "0px 4px 0px 4px"});
+    /* Also add a button for multiple CVE's like <button type="button" class="btn btn-sm btn-outline-info" onclick="switchToMulti()">+</button> */
     let autoscore_div = $("<label>").append($("<input>").attr({"type": "checkbox","checked": true})).append($("<span>").text("Use available public scores")).css({padding: "0px 4px 0px 4px"});
     let check_allb = $("<button>").addClass("btn btn-danger").html("Check All").on("click",check_all);
     let line_div = $("<div>").append(cve_div).append(autoscore_div).append(check_allb);
@@ -1118,6 +1119,40 @@ function parse_json(xraw,paused) {
      just start simple mode decision */
     permalink();
     $('#dtreecsvload').hide();
+}
+function promptMultipleCVEs() {
+  Swal.fire({
+    title: 'Enter multiple CVEs',
+    input: 'textarea',
+    inputPlaceholder: 'CVE-2023-12345\nCVE-2024-67890\nCVE-2025-00001',
+    inputAttributes: {
+      'aria-label': 'Type CVEs here'
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Add CVEs',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed && result.value) {
+      // Split CVEs by newline or comma, clean them up
+      let cves = result.value.split(/[\n,]+/).map(cve => cve.trim()).filter(Boolean);
+      
+      console.log("User CVEs:", cves);
+
+      // Example: populate input with first CVE, or store them however you like
+      document.getElementById("cveInput").value = cves[0] || '';
+
+      // Optionally store all in hidden field for form submission
+      let hidden = document.getElementById("cveHidden");
+      if (!hidden) {
+        hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.id = "cveHidden";
+        hidden.name = "cves";
+        document.querySelector("#evaluate_section").appendChild(hidden);
+      }
+      hidden.value = JSON.stringify(cves);
+    }
+  });
 }
 function shwhelp(w) {
     var iconPos = w.getBoundingClientRect();
