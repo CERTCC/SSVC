@@ -783,7 +783,7 @@ function outcome_set(dinput, enabled) {
 function check_select(w) {
     const input = w.target;
     /* Container for this decision point */
-    const dpContainer = input.parentElement.parentElement;
+    const dpContainer = input.parentElement.parentElement.parentElement;
     const groupContainer = dpContainer.parentElement;
     let valueSet = {};
     valueSet[final_keyword] = [];
@@ -844,9 +844,10 @@ function check_select(w) {
     }    
     
     if(nodes.length) {
-	if(w.target.checked) {
+	/* if(w.target.checked) {
 	    nodes[0].forEach(traverse_remove);
-	} else {
+	    } else { */
+	console.log(dpContainer,groupContainer,dpContainer.querySelectorAll("input").length,nodes[0].length);
 	    nodes[0].forEach(function(xnode) {
 		if(xnode.__data__) {
 		    if(xnode.__data__._schildren) {
@@ -859,7 +860,7 @@ function check_select(w) {
 		    }
 		}
 	    });
-	}
+	/* } */
 			     
 
     }
@@ -1565,6 +1566,12 @@ function update(source) {
 	}
     }
     setTimeout(update_links,1500);
+    var xMin = d3.min(nodes, function(d) { return d.x; });
+    var xMax = d3.max(nodes, function(d) { return d.x; });
+
+    var yOffset = 90;
+    var xOffset = -xMin + yOffset;
+    svg.attr("transform", "translate(" + 100 + "," + xOffset + ")");
 }
 function pathclick(w) {
     var sid = $(this).attr("csid")
