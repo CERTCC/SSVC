@@ -1128,6 +1128,7 @@ function promptMultipleCVEs() {
     inputAttributes: {
       'aria-label': 'Type CVEs here'
     },
+      footer: '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="swal-cve-api" checked><span>Use public CVE API data</span> </label>',
     showCancelButton: true,
     confirmButtonText: 'Add CVEs',
     cancelButtonText: 'Cancel'
