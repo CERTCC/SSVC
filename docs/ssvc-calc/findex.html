@@ -117,7 +117,7 @@
 	<div class="alert" id="topalert" role="alert">
 	  This is an alert!
 	</div>
-	<p class="lead graphy">
+	<p class="lead graphy-old" style="display:none">
 	  <button type="button" class="btn btn-primary" id="dt_start"
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Use SSVC Decision Tree to evaluate one or more vulnerabilities"
@@ -126,8 +126,8 @@
 	  <button type="button" class="btn btn-danger" id="dt_clear"
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Clear all decisions and start over"
-		  onclick="toggle_all()">
-	    Toggle All</button>
+		  onclick="check_all()">
+	    Check All</button>
 	  <a href="javascript:void(0)" title="View previous score"
 	     alt="View previous score" id="table_toggle" style="display:none"
 	     onclick="cve_table_toggle()">
@@ -140,14 +140,15 @@
 	    <tbody><tr></tr></tbody>
 	  </table>
 	</p>
-	<section id="evaluate_section" style="display:none"></section>
+	<section id="evaluate_section"></section>
 	<div id="zoomcontrol" class="graphy embedded d-none">
 	  <div class="d-none">&#128269;</div>
 	  <input type="range" orient="vertical" alt="Zoom Graph"
 		 max="100" min="0" value="100" title="Zoom Graph"
 		 onchange="svgzoom(this)">
 	  </div>
-	<div id="graph" class="position-relative graphy embedded" style="margin-left: 20px">
+	<div id="graph" class="position-relative graphy embedded"
+	     style="border: 1px solid rgba(1,1,1,0.1)">
 	</div>
 	<div id="ungraph" class="position-relative d-none">
 	  <table class="table table-borderless">
