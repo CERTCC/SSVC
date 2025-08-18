@@ -110,7 +110,9 @@ class MyTestCase(unittest.TestCase):
         for i, row in enumerate(self.ct.mapping):
             with self.subTest(row=row):
 
-                val_tup = tuple([v for k, v in row.items() if k != self.outcome])
+                val_tup = tuple(
+                    [v for k, v in row.items() if k != self.outcome]
+                )
 
                 # short circuit rows where we explicitly set a different outcome
                 if val_tup in expect_track:
@@ -121,7 +123,11 @@ class MyTestCase(unittest.TestCase):
                     continue
 
                 multiparty_supereffective_safety_impact = all(
-                    (row[self.sc] == "M", row[self.u] == "S", row[self.psi] == "S")
+                    (
+                        row[self.sc] == "M",
+                        row[self.u] == "S",
+                        row[self.psi] == "S",
+                    )
                 )
 
                 # everything from here on should be a decline
@@ -136,10 +142,14 @@ class MyTestCase(unittest.TestCase):
 
                 if row[self.rp] == "Y" or row[self.scon] == "N":
                     if row[self.rc] == "NC":
-                        self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
+                        self.assertEqual(
+                            "D", row[self.outcome], f"Row {i}: {row}"
+                        )
 
                     if not multiparty_supereffective_safety_impact:
-                        self.assertEqual("D", row[self.outcome], f"Row {i}: {row}")
+                        self.assertEqual(
+                            "D", row[self.outcome], f"Row {i}: {row}"
+                        )
                 elif row[self.rc] == "NC":
                     # Report Credibility: If the report is not credible,
                     # then CERT/CC will decline the case.

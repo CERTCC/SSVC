@@ -49,12 +49,16 @@ def write_csv(
         parts.append("child_trees")
 
     target_dir = os.path.join(project_base_path, *parts)
-    assert os.path.exists(target_dir), f"Target directory {target_dir} does not exist."
+    assert os.path.exists(
+        target_dir
+    ), f"Target directory {target_dir} does not exist."
 
     csv_path = os.path.join(target_dir, csvfile)
 
     with open(csv_path, "w") as fp:
-        fp.write(decision_table_to_longform_df(decision_table).to_csv(index=index))
+        fp.write(
+            decision_table_to_longform_df(decision_table).to_csv(index=index)
+        )
 
 
 def print_dt_version(dt: DecisionTable, longform=True) -> None:
@@ -81,4 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

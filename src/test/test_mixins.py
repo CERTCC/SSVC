@@ -198,7 +198,9 @@ class TestMixins(unittest.TestCase):
                 "has_default": True,
             },
         ]
-        keys_with_defaults = [x["args"].keys() for x in mixins if x["has_default"]]
+        keys_with_defaults = [
+            x["args"].keys() for x in mixins if x["has_default"]
+        ]
         # flatten the list
         keys_with_defaults = [
             item for sublist in keys_with_defaults for item in sublist

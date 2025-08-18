@@ -66,6 +66,7 @@ SSVCv2_1 = DecisionPointGroup(
 VERSIONS = (SSVCv1, SSVCv2, SSVCv2_1)
 LATEST = VERSIONS[-1]
 
+
 def main():
     for version in VERSIONS:
         print(version.model_dump_json(indent=2))

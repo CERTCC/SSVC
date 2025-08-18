@@ -24,7 +24,9 @@ _NONE = DecisionPointValue(name="None", key="N", description="None (0.0)")
 
 _LOW = DecisionPointValue(name="Low", key="L", description="Low (0.1-3.9)")
 
-_MEDIUM = DecisionPointValue(name="Medium", key="M", description="Medium (4.0-6.9)")
+_MEDIUM = DecisionPointValue(
+    name="Medium", key="M", description="Medium (4.0-6.9)"
+)
 
 _HIGH = DecisionPointValue(name="High", key="H", description="High (7.0-8.9)")
 

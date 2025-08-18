@@ -29,8 +29,12 @@ from referencing import Registry, Resource
 import ssvc.decision_points  # noqa F401
 
 # importing these causes the decision points to register themselves
-from ssvc.decision_points.ssvc.critical_software import CRITICAL_SOFTWARE_1  # noqa
-from ssvc.decision_points.ssvc.high_value_asset import HIGH_VALUE_ASSET_1  # noqa
+from ssvc.decision_points.ssvc.critical_software import (
+    CRITICAL_SOFTWARE_1,
+)  # noqa
+from ssvc.decision_points.ssvc.high_value_asset import (
+    HIGH_VALUE_ASSET_1,
+)  # noqa
 
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
@@ -68,18 +72,26 @@ class MyTestCase(unittest.TestCase):
         self.logger = logger
 
         self.registry = get_registry()
-        self.registered_dps = list(get_all("DecisionPoint", registry=self.registry))
+        self.registered_dps = list(
+            get_all("DecisionPoint", registry=self.registry)
+        )
 
         my_file_path = os.path.abspath(__file__)
         my_dir = os.path.dirname(my_file_path)
 
-        self.schema_dir = os.path.join(my_dir, "..", "..", "data", "schema", "v2")
+        self.schema_dir = os.path.join(
+            my_dir, "..", "..", "data", "schema", "v2"
+        )
 
     def test_confirm_registered_decision_points(self):
-        self.assertGreater(len(self.registered_dps), 0, "No decision points registered")
+        self.assertGreater(
+            len(self.registered_dps), 0, "No decision points registered"
+        )
 
     def test_decision_point_validation(self):
-        schema_path = os.path.join(self.schema_dir, "Decision_Point-2-0-0.schema.json")
+        schema_path = os.path.join(
+            self.schema_dir, "Decision_Point-2-0-0.schema.json"
+        )
         schema_path = os.path.abspath(schema_path)
 
         with open(schema_path, "r") as f:
@@ -91,11 +103,15 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator(schema, registry=_schema_registry).validate(loaded)
+                Draft202012Validator(
+                    schema, registry=_schema_registry
+                ).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
-            self.assertIsNone(exp, f"Validation failed for {dp.name} {dp.version}")
+            self.assertIsNone(
+                exp, f"Validation failed for {dp.name} {dp.version}"
+            )
             self.logger.debug(
                 f"Validation passed for Decision Point ({dp.namespace}) {dp.name} v{dp.version}"
             )
@@ -115,12 +131,15 @@ class MyTestCase(unittest.TestCase):
             loaded = json.loads(as_json)
 
             try:
-                Draft202012Validator(schema, registry=_schema_registry).validate(loaded)
+                Draft202012Validator(
+                    schema, registry=_schema_registry
+                ).validate(loaded)
             except jsonschema.exceptions.ValidationError as e:
                 exp = e
 
             self.assertIsNone(
-                exp, f"Validation failed for {dp_group.name} {dp_group.version}"
+                exp,
+                f"Validation failed for {dp_group.name} {dp_group.version}",
             )
             self.logger.debug(
                 f"Validation passed for Decision Point Group {dp_group.name} v{dp_group.version}"

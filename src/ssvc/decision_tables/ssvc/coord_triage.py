@@ -27,7 +27,9 @@ from ssvc.decision_points.ssvc.public_safety_impact import (
 from ssvc.decision_points.ssvc.report_credibility import (
     REPORT_CREDIBILITY_1 as ReportCredibility,
 )
-from ssvc.decision_points.ssvc.report_public import REPORT_PUBLIC_1 as ReportPublic
+from ssvc.decision_points.ssvc.report_public import (
+    REPORT_PUBLIC_1 as ReportPublic,
+)
 from ssvc.decision_points.ssvc.supplier_cardinality import (
     SUPPLIER_CARDINALITY_1 as SupplierCardinality,
 )
