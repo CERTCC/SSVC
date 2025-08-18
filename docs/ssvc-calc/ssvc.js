@@ -62,8 +62,8 @@ jQuery.fn.simClick = function () {
 	e.dispatchEvent(evt);
     });
 };
-function check_all(w) {
-    const mdiv = w.target.parentElement.parentElement;
+function check_all(ev) {
+    const mdiv = ev.target.parentElement.parentElement;
     const els = $(mdiv).find('input[type="checkbox"].dp_input');
     const dto = $(mdiv).find('input[type="checkbox"].dt_outcome');
     els.each(function(_,el) {
@@ -780,8 +780,8 @@ function outcome_set(dinput, enabled) {
 	dinput.checked = false;
     }
 }
-function check_select(w) {
-    const input = w.target;
+function check_select(ev) {
+    const input = ev.target;
     /* Container for this decision point */
     const dpContainer = input.parentElement.parentElement.parentElement;
     const groupContainer = dpContainer.parentElement;
@@ -844,27 +844,58 @@ function check_select(w) {
     }    
     
     if(nodes.length) {
-	/* if(w.target.checked) {
-	    nodes[0].forEach(traverse_remove);
-	    } else { */
-	console.log(dpContainer,groupContainer,dpContainer.querySelectorAll("input").length,nodes[0].length);
-	    nodes[0].forEach(function(xnode) {
-		if(xnode.__data__) {
-		    if(xnode.__data__._schildren) {
-			traverse_remove(xnode);
-		    } else if(xnode.__data__.children) {
-			let removevalueIndex = $(input).data("dpvdepth");
-			xnode.__data__._schildren = Array.from(xnode.__data__.children);
-			xnode.__data__.children.splice(removevalueIndex,1);
-			update(xnode.__data__);
+	nodes[0].forEach(function(xnode) {
+	    if(xnode.__data__) {
+		if(xnode.__data__._schildren) {
+		    traverse_remove(xnode);
+		} else if(xnode.__data__.children) {
+		    let removevalueIndex = $(input).data("dpvdepth");
+		    xnode.__data__._schildren = Array.from(xnode.__data__.children);
+		    xnode.__data__.children.splice(removevalueIndex,1);
+		    update(xnode.__data__);
+		}
+	    }
+	});
+    }
+    
+}
+function process_ssvc(ssvc, winput) {
+    
+}
+function cveGet(ev) {
+    let api_url = "https://cveawg.mitre.org/api/cve/";
+    const winput = ev.target;
+    const vuid = winput.value.toUpperCase();
+    const ssvc = {};
+    if(vuid.match(/^CVE-(1999|2\d{3})-(?!0{4})(0\d{3}|[1-9]\d{3,})$/)) {
+	$.getJSON(api_url + vuid).done(function(cveJson) {
+	    if(!('containers' in cveJson))
+		return;
+	    winput.setAttribute("data-cve", JSON.stringify(cveJson));
+	    /* Match either cna or adp in that order for first SSVC record */
+	    ['cna', 'adp'].some(function(provider) {
+		if((provider in cveJson.containers) &&
+		   ('metrics' in cveJson.containers[provider]) &&
+		   (cveJson.containers[provider].metrics.length > 0)) {
+		    if(cveJson.containers[provider].metrics.some(function(metric) {
+			if(('other' in metric) && ('type' in metric.other) &&
+			   (metric.other.type.toLowerCase() == "ssvc")) {
+			    ssvc['provider'] = provider;
+			    ssvc['data'] = metric
+			    return true;
+			}
+		    })) {
+			process_ssvc(ssvc, winput);
+			winput.setAttribute("data-ssvc",JSON.stringify(ssvc));
+			return true;
 		    }
 		}
 	    });
-	/* } */
-			     
-
+	});
+    } else {
+	console.log("Not a CVE Record");
     }
-    
+    /* https://cveawg.mitre.org/api/cve/CVE-2025-6241 */
 }
 function parse_json(xraw,paused) {
     $('.bcomplex').remove();
@@ -1086,11 +1117,13 @@ function parse_json(xraw,paused) {
 	//console.log(options_data);
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
-    let cve_div = $("<label>").append($("<input>").addClass("form-control").attr({"placeholder":"CVE/Identifier"})).css({padding: "0px 4px 0px 4px"});
-    /* Also add a button for multiple CVE's like <button type="button" class="btn btn-sm btn-outline-info" onclick="switchToMulti()">+</button> */
+    let cve_input = $("<input>").addClass("form-control").attr({"placeholder":"CVE/Identifier"})
+    cve_input[0].addEventListener('blur', cveGet);
+    let cve_div = $("<label>").append(cve_input).css({padding: "0px 4px 0px 4px"});
+    let multi_btn = $("<button>").addClass("btn btn-sm btn-outline-info").text("+").on("click",promptMultipleCVEs);
     let autoscore_div = $("<label>").append($("<input>").attr({"type": "checkbox","checked": true})).append($("<span>").text("Use available public scores")).css({padding: "0px 4px 0px 4px"});
     let check_allb = $("<button>").addClass("btn btn-danger").html("Check All").on("click",check_all);
-    let line_div = $("<div>").append(cve_div).append(autoscore_div).append(check_allb);
+    let line_div = $("<div>").append(cve_div).append(multi_btn).append(autoscore_div).append(check_allb);
     $('#evaluate_section').append($("<div>").css({border: "1px solid rgba(1,1,1,0.1)",
 						  padding: "1px"}).append(line_div).append(evaluate_div));
     $("."+lastdiv).addClass("Decision");
@@ -1122,39 +1155,20 @@ function parse_json(xraw,paused) {
     $('#dtreecsvload').hide();
 }
 function promptMultipleCVEs() {
-  Swal.fire({
-    title: 'Enter multiple CVEs',
-    input: 'textarea',
-    inputPlaceholder: 'CVE-2023-12345\nCVE-2024-67890\nCVE-2025-00001',
-    inputAttributes: {
-      'aria-label': 'Type CVEs here'
-    },
-      footer: '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="swal-cve-api" checked><span>Use public CVE API data</span> </label>',
-    showCancelButton: true,
-    confirmButtonText: 'Add CVEs',
-    cancelButtonText: 'Cancel'
-  }).then((result) => {
-    if (result.isConfirmed && result.value) {
-      // Split CVEs by newline or comma, clean them up
-      let cves = result.value.split(/[\n,]+/).map(cve => cve.trim()).filter(Boolean);
-      
-      console.log("User CVEs:", cves);
-
-      // Example: populate input with first CVE, or store them however you like
-      document.getElementById("cveInput").value = cves[0] || '';
-
-      // Optionally store all in hidden field for form submission
-      let hidden = document.getElementById("cveHidden");
-      if (!hidden) {
-        hidden = document.createElement("input");
-        hidden.type = "hidden";
-        hidden.id = "cveHidden";
-        hidden.name = "cves";
-        document.querySelector("#evaluate_section").appendChild(hidden);
-      }
-      hidden.value = JSON.stringify(cves);
-    }
-  });
+    Swal.fire({
+	title: 'Enter multiple CVEs',
+	input: 'textarea',
+	inputPlaceholder: 'CVE-2023-12345\nCVE-2024-67890\nCVE-2025-00001',
+	inputAttributes: {'aria-label': 'Type CVEs here' },
+	footer: '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" checked><span>Use public CVE API data</span> </label>',
+	showCancelButton: true,
+	confirmButtonText: 'Add CVEs',
+	cancelButtonText: 'Cancel'
+    }).then((result) => {
+	if (result.isConfirmed && result.value) {
+	    let cves = result.value.split(/[\n,]+/).map(cve => cve.trim()).filter(Boolean);
+	}
+    });
 }
 function shwhelp(w) {
     var iconPos = w.getBoundingClientRect();
@@ -2667,14 +2681,9 @@ function copym(containerid,ispurl) {
 }
 
 function svgzoom(w) {
-    var zf = w.value/w.max;
-    if(zf > 0.95) {
-	var vbox = $('svg.mgraph').attr('viewBox');
-	console.log("The viewbox should be left as-is "+vbox);
-	return;
-    }
-    var fh = parseInt($('svg.mgraph').attr("height"));
-    var fw = parseInt($('svg.mgraph').attr("width"));
-    var vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
+    const zf = w.value/w.max;
+    const fh = parseInt($('svg.mgraph').attr("height"));
+    const fw = parseInt($('svg.mgraph').attr("width"));
+    const vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
     $('svg.mgraph').attr('viewBox',vbox);
 }
