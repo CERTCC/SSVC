@@ -29,13 +29,13 @@ from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.s1 = selection.Selection(
-            namespace="x_org.example#bar",
+            namespace="x_example.test#test",
             key="test_key_1",
             version="1.0.0",
             values=[{"key": "value11"}, {"key": "value12"}],
         )
         self.s2 = selection.Selection(
-            namespace="x_org.example#bar",
+            namespace="x_example.test#test",
             key="test_key_2",
             version="1.0.0",
             values=[{"key": "value21"}, {"key": "value22"}],
@@ -137,7 +137,7 @@ class MyTestCase(unittest.TestCase):
         """Test the model validators for Selection."""
         # Test with minimal data
         selection_minimal = selection.Selection(
-            namespace="x_org.example#bar",
+            namespace="x_example.test#test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
@@ -147,7 +147,7 @@ class MyTestCase(unittest.TestCase):
 
         # Test with empty strings
         selection_empty = selection.Selection(
-            namespace="x_org.example#bar",
+            namespace="x_example.test#test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
@@ -284,7 +284,7 @@ class MyTestCase(unittest.TestCase):
         """Test the add_selection method."""
         initial_count = len(self.selections.selections)
         new_selection = selection.Selection(
-            namespace="x_org.example#bar",
+            namespace="x_example.test#test",
             key="new_key",
             version="1.0.0",
             values=[{"key": "new_value"}],
@@ -340,7 +340,7 @@ class MyTestCase(unittest.TestCase):
         """Test that Selection requires at least one value."""
         with self.assertRaises(ValueError):
             selection.Selection(
-                namespace="x_org.example#bar",
+                namespace="x_example.test#test",
                 key="test_key",
                 version="1.0.0",
                 values=[],  # Empty values should raise error

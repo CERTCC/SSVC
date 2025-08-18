@@ -50,7 +50,7 @@ based on other sources).
 
 **Unregistered namespaces** for objects that we do not create or maintain, but
 that others may want for their own use. Unregistered namespaces must start with 
-an `x_` prefix followed by a reverse domain name, such as `x_org.example`.
+an `x_` prefix followed by a reverse domain name, such as `x_example.test`.
 Unregistered namespaces are intended for experimental or private use.
 
 !!! example

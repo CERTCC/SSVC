@@ -51,7 +51,7 @@ class MyTestCase(unittest.TestCase):
             key="bar",
             description="baz",
             version="1.0.0",
-            namespace="x_org.example#bar",
+            namespace="x_example.test#test",
             values=tuple(self.values),
         )
 
@@ -107,7 +107,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(obj.key, "bar")
         self.assertEqual(obj.description, "baz")
         self.assertEqual(obj.version, "1.0.0")
-        self.assertEqual(obj.namespace, "x_org.example#bar")
+        self.assertEqual(obj.namespace, "x_example.test#test")
         self.assertEqual(len(self.values), len(obj.values))
 
     def test_ssvc_value_json_roundtrip(self):

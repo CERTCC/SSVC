@@ -147,13 +147,13 @@ we expect that this will rarely lead to conflicts in practice.
 
     Conflicts are possible in the x_ prefix space - especially as the control over a domain may be transferred. 
     Also in tests, Organizations A and B could both choose to use 
-    `x_org.example#bar`, and there are no guarantees of global uniqueness for the 
-    decision points in the `x_org.example#bar` namespace.
+    `x_example.test#test`, and there are no guarantees of global uniqueness for the
+    decision points in the `x_example.test#test` namespace.
 
 
 !!! tip "Test Namespace"
 
-    The `x_org.example#bar` namespace is used for testing purposes and is not intended for production use.
+    The `x_example.test#test` namespace is used for testing purposes and is not intended for production use.
     It is used to test the SSVC framework and its components, and may contain decision points that are not fully implemented or tested.
 
 ### Namespace Extensions
