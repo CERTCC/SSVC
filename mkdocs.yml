@@ -147,6 +147,8 @@ theme:
   icon:
     repo: fontawesome/brands/github
 plugins:
+  - mermaid2:
+      javascript: https://unpkg.com/browse/mermaid@10.9.1/dist/mermaid.min.js
   - include-markdown:
       comments: false
   - search
