@@ -1,7 +1,7 @@
 # CVSS v4 Equivalence Set EQ1
 
 Here we describe an example decision model for an analyst assessing the CVSS v4
-equivalence set EQ1. 
+equivalence set EQ1.
 
 ## Analyst Units of Work
 
@@ -10,10 +10,10 @@ equivalence set EQ1.
     The unit of work for an Analyst is a single vulnerability report.
 
 Analysts are usually tasked with assessing the CVSS score for an individual
-vulnerability report. 
+vulnerability report.
 
 ## Analyst Decision Outcomes
-    
+
 The analyst's decision is to choose the appropriate level for CVSS v4 EQ1.
 
 ```python exec="true" idprefix=""
@@ -55,7 +55,6 @@ print(mapping2mermaid(rows, title=title))
 
 The table below shows the values for the decision model.
 Each row of the table corresponds to a path through the decision model diagram above.
-
 
 ```python exec="true" idprefix=""
 

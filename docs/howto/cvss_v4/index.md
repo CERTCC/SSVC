@@ -1,8 +1,8 @@
 # CVSS v4 Assessment With SSVC
 
 [CVSS v4](https://www.first.org/cvss/v4-0/specification-document) introduces an
-updated scoring system that includes several metric groupings referred to 
-as _Equivalence Sets_. 
+updated scoring system that includes several metric groupings referred to
+as *Equivalence Sets*.
 In SSVC, we can model these individual equivalence sets as decision tables
 that can be used by analysts to assess each equivalence set value based on
 its component metrics (which we have mapped into SSVC decision points).
@@ -26,7 +26,6 @@ by another source.
     create a broader set of decision models that incorporate CVSS vector
     elements as inputs.
 
-
 ## CVSS v4 Equivalence Sets
 
 Here we provide the decision points for each of the CVSS v4 equivalence sets.
@@ -48,10 +47,9 @@ We provide a detailed decision table for each equivalence set in the pages that 
 - [CVSS v4 Equivalence Set EQ5](eq5.md)
 - [CVSS v4 Equivalence Set EQ6](eq6.md)
 
-
 ## CVSS v4 Qualitative Severity Rating
 
-Finally, CVSS v4 provides a _Qualitative Severity Rating_ that maps the six equivalence
+Finally, CVSS v4 provides a *Qualitative Severity Rating* that maps the six equivalence
 sets into a single qualitative rating (None, Low, Medium, High, Critical).
 
 ```python exec="true" idprefix=""
@@ -64,7 +62,7 @@ print(example_block(dp))
 A full decision model for the CVSS v4 Qualitative Severity Rating can be found
 in the [CVSS v4 Qualitative Severity Rating](qualitative.md) page.
 
-!!! question "What about CVSS v4 _MacroVectors_?"
+!!! question "What about CVSS v4 *MacroVectors*?"
 
     CVSS v4 _MacroVectors_ are a new addition in CVSS v4 that provide a way to
     map the six equivalence sets into a single vector value that can be used
@@ -72,7 +70,6 @@ in the [CVSS v4 Qualitative Severity Rating](qualitative.md) page.
     In our implementation here, we simply model the MacroVector as another decision
     table that takes the individual equivalence set outcomes as inputs and provides
     the Qualitative Severity Rating as its outcome.
-
 
 !!! question "How are CVSS v4 scores handled?"
 

@@ -1,8 +1,8 @@
 # CVSS v4  Qualitative Severity Rating
 
 Here we describe an example decision model for an analyst assessing the CVSS v4
-Qualitative Severity Rating. 
-In our decision model, we assume that the analyst has already assessed the 
+Qualitative Severity Rating.
+In our decision model, we assume that the analyst has already assessed the
 vulnerability report against the CVSS v4 Equivalence Sets:
 
 - EQ1: [CVSS v4 Equivalence Set 1](eq1.md)
@@ -12,7 +12,7 @@ vulnerability report against the CVSS v4 Equivalence Sets:
 - EQ5: [CVSS v4 Equivalence Set 5](eq5.md)
 - EQ6: [CVSS v4 Equivalence Set 6](eq6.md)
 
-and is now ready to assign a qualitative severity rating based on the outcomes 
+and is now ready to assign a qualitative severity rating based on the outcomes
 of those equivalence sets.
 
 !!! info "How we modeled the CVSS v4 Qualitative Severity Rating"
@@ -42,10 +42,10 @@ of those equivalence sets.
     The unit of work for an Analyst is a single vulnerability report.
 
 Analysts are usually tasked with assessing the CVSS score for an individual
-vulnerability report. 
+vulnerability report.
 
 ## Analyst Decision Outcomes
-    
+
 The analyst's decision is to choose the appropriate level for the CVSS v4 Qualitative Severity Rating.
 
 ```python exec="true" idprefix=""
@@ -94,12 +94,10 @@ rows = [row for row in rows if not invalid(row)]
 print(mapping2mermaid(rows, title=title))
 ```
 
-
 ### Table of Values
 
 The table below shows the values for the decision model.
 Each row of the table corresponds to a path through the decision model diagram above.
-
 
 ```python exec="true" idprefix=""
 
