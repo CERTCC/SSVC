@@ -51,7 +51,6 @@ The organization considers several other factors to build the patch; refactoring
 be necessary for some patches, while others require relatively small changes.
 We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in the table below.
 
-
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.ssvc.supplier_dt import LATEST as DT
 from ssvc.doc_helpers import example_block
@@ -110,12 +109,10 @@ print(mapping2mermaid(rows, title=title))
 
 ### Table of Values
 
-
 The table below shows the values for the decision model.
 Each row of the table corresponds to a path through the decision model diagram above.
 
 % include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
-
 
 ```python exec="true" idprefix=""
 

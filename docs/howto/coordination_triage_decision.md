@@ -116,7 +116,6 @@ title = mermaid_title_from_dt(DT)
 print(mapping2mermaid(rows, title=title))
 ```
 
-
 ### Table of Values
 
 The table below shows the values for the decision model.
@@ -131,5 +130,3 @@ from ssvc.decision_tables.helpers import dt2df_md
 
 print(dt2df_md(DT))
 ```
-
-

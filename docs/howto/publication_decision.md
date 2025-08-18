@@ -157,12 +157,10 @@ title = mermaid_title_from_dt(DT)
 print(mapping2mermaid(rows, title=title))
 ```
 
-
 ### Table of Values
 
 The table below shows the values for the decision model.
 Each row of the table corresponds to a path through the decision model diagram above.
-
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.ssvc.coord_pub_dt import LATEST as DT
