@@ -83,8 +83,17 @@ from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
 
 rows = DT.mapping
 title = mermaid_title_from_dt(DT)
+
+# filter rows for invalid
+def invalid(row):
+    if row["cvss:EQ3:1.0.0"] == "L" and row["cvss:EQ6:1.0.0"] == "H":
+        return True
+    return False
+
+rows = [row for row in rows if not invalid(row)]
 print(mapping2mermaid(rows, title=title))
 ```
+
 
 ### Table of Values
 
@@ -96,6 +105,15 @@ Each row of the table corresponds to a path through the decision model diagram a
 
 from ssvc.decision_tables.cvss.qualitative_severity import LATEST as DT
 from ssvc.decision_tables.helpers import dt2df_md
+
+# filter rows for invalid (these don't affect the outcome because they're
+# unreachable from valid CVSS vectors)
+def invalid(row):
+    if row["cvss:EQ3:1.0.0"] == "L" and row["cvss:EQ6:1.0.0"] == "H":
+        return True
+    return False
+
+DT.mapping = [row for row in DT.mapping if not invalid(row)]
 
 print(dt2df_md(DT))
 ```
