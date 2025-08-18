@@ -105,9 +105,20 @@ Other coordinators should consider customizing the tree to their needs, as descr
     CISA has customized an SSVC decision model to suit their coordination needs.
     It is available at [https://www.cisa.gov/ssvc](https://www.cisa.gov/ssvc).
 
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.coord_triage import LATEST as DT
+from ssvc.decision_tables._mermaid import mapping2mermaid
+
+rows = DT.mapping
+title = f"{DT.name} Decision Table ({DT.namespace}:{DT.key}:{DT.version})"
+print(mapping2mermaid(rows,title=title))
+```
+
+<!--
 <embed src="../../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
 style="width: 100%;"
 height = "700" />
+-->
 
 ### Table of Values
 
