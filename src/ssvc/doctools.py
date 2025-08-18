@@ -220,7 +220,7 @@ def dump_schemas(jsondir):
     schemapaths: list[dict(str, str)] = []
 
     # selection schema
-    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement="-")}.schema.json"
+    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement='-')}.schema.json"
     schemapath = os.path.join(schemadir, schemafile)
     selection_schema = SelectionList.model_json_schema()
     schemapaths.append({"filepath": schemapath, "schema": selection_schema})
