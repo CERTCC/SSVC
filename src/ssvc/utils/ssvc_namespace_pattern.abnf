@@ -3,7 +3,7 @@
 ; SPDX-License-Identifier: LicenseRef-MIT-SEI-style.txt
 ;   (see LICENCE for full terms)
 
-namespace = base-ns [extensions]
+namespace = base-ns [ extensions ]
 ; Overall namespace must be 3-1000 characters
 ; (Enforced via regex length lookahead)
 
