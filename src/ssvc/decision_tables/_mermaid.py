@@ -30,38 +30,47 @@ def dicts_to_mermaid_subgraphs(rows):
     lines = ["graph LR", "n1(( ))"]
     columns = list(rows[0].keys())
 
-    # Build subgraphs
+    node_ids = {}  # (col_idx, path_tuple) -> node_id
+    seen_edges = set()  # (parent_id, child_id)
+
+    # Build subgraphs + nodes
     for col_idx, col in enumerate(columns):
         subgraph_name = f's{col_idx+1}["{col}"]'
         lines.append(f"subgraph {subgraph_name}")
-        seen = set()
+        seen_paths = set()
         for row in rows:
-            node_id = "".join(
-                row[columns[i]]
-                + (f"s{col_idx+1}" if col_idx == len(columns) - 1 else "")
-                for i in range(col_idx + 1)
-            )
+            path = tuple(row[columns[i]] for i in range(col_idx + 1))
+            if path in seen_paths:
+                continue
+            seen_paths.add(path)
+            node_id = "_".join(path) + f"_L{col_idx}"
+            # future: if you want to label the nodes, do that here
             label = row[columns[col_idx]]
-            if node_id not in seen:
-                lines.append(f"{node_id}([{label}])")
-                seen.add(node_id)
+            lines.append(f"{node_id}([{label}])")
+            node_ids[(col_idx, path)] = node_id
         lines.append("end")
 
-    # Add edges
-    first_col_vals = {row[columns[0]] for row in rows}
-    for val in first_col_vals:
-        lines.append(f"n1 --- {val}")
-
+    # Root → level 0
     for row in rows:
-        prev_id = row[columns[0]]
+        path = (row[columns[0]],)
+        child_id = node_ids[(0, path)]
+        edge = ("n1", child_id)
+        if edge not in seen_edges:
+            lines.append(f"{edge[0]} --- {edge[1]}")
+            seen_edges.add(edge)
+
+    # Level k-1 → level k
+    for row in rows:
         for col_idx in range(1, len(columns)):
-            node_id = "".join(
-                row[columns[i]]
-                + (f"s{col_idx+1}" if col_idx == len(columns) - 1 else "")
-                for i in range(col_idx + 1)
-            )
-            lines.append(f"{prev_id} --- {node_id}")
-            prev_id = node_id
+            parent_path = tuple(row[columns[i]] for i in range(col_idx))
+            child_path = parent_path + (row[columns[col_idx]],)
+            parent_id = node_ids[(col_idx - 1, parent_path)]
+            child_id = node_ids[(col_idx, child_path)]
+            edge = (parent_id, child_id)
+            if edge not in seen_edges:
+                # future: if you want to label the links, do that here
+                lines.append(f"{parent_id} --- {child_id}")
+                seen_edges.add(edge)
 
     return "\n".join(lines)
 
