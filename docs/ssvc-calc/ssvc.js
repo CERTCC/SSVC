@@ -860,9 +860,86 @@ function check_select(ev) {
     
 }
 function process_ssvc(ssvc, winput) {
-    
-}
-function cveGet(ev) {
+    /* Assume flat SSVC namespace for now */
+    function set_ssvc(dpInput, ssvc) {
+	dpInput.setAttribute("public-update", ssvc.data.timestamp);
+	dpInput.setAttribute("public-provider", ssvc.provider);
+	/* Update the title like Exploitation with this data*/
+	try {
+	    let h4 =  dpInput.parentElement.parentElement.parentElement.childNodes[0];
+	    h4.setAttribute("title", "Updated using Public Provider "
+			    + ssvc.provider +  " on " + ssvc.data.timestamp);
+	} catch (err) {
+	    console.log(err);
+	}
+    }
+    function reset_dp(dpInput) {
+	/* Check if dpInput has been changed by logic above*/
+	if(dpInput.checked && (!dpInput.hasAttribute("public-update"))) {
+	    dpInput.click();
+	} else if((!dpInput.checked) && dpInput.getAttribute("public-update")) {
+	    dpInput.click();
+	}
+	/* below will also work but for readability above is better.
+	   if (dpInput.checked !== Boolean(dpInput.getAttribute("public-update"))) {
+	   dpInput.click();
+	   }
+	*/
+    }
+    let dpContainer = winput.parentElement.parentElement.nextSibling;
+    if('data' in ssvc && 'schemaVersion' in ssvc.data) {
+	/* Uses official SSVC schema*/
+	if(ssvc.data.schemaVersion == "1-0-1") {
+	    ssvc.data.selections.forEach(function(selection, i) {
+		//const name = selection.name.toLowerCase();
+		//const value = '\\"label\\":\\"' + name + '\\"';
+		//const match = '[data-dp*="' + value + '" i]';
+		const match = 'input[name*="' + selection.name.toLowerCase() + '" i]';
+		const dpInputs = dpContainer.querySelectorAll(match);
+		dpInputs.forEach(function(dpInput) {
+		    try {
+			dpInput.parentElement.parentElement.parentElement.childNodes[0].removeAttribute("title");
+		    } catch(err) {
+			console.log(err);
+		    }
+		    dpInput.removeAttribute("public-update");
+		    selection.values.forEach(function(value) {
+			if(value.toLowerCase() == dpInput.value.toLowerCase()) 
+			    set_ssvc(dpInput, ssvc);
+		    });
+		    reset_dp(dpInput);
+		});
+	    });
+	}
+    } else if(ssvc.data.version == "2.0.3") {
+	ssvc.data.options.forEach(function(option) {
+	    const name = Object.keys(option).pop().toLowerCase();
+	    const value = Object.values(option).pop();
+            const match = 'input[name*="' + name + '" i]';
+            const dpInputs = dpContainer.querySelectorAll(match);
+            dpInputs.forEach(function(dpInput) {
+		dpInput.removeAttribute("public-update");
+		try {
+		    dpInput.parentElement.parentElement.parentElement.childNodes[0].removeAttribute("title");
+		} catch(err) {
+		    console.log(err);
+		}		
+		if(Array.isArray(value)) {
+		    value.forEach(function(tvalue) {
+			if(tvalue.toLowerCase() == dpInput.value.toLowerCase()) 
+			    set_ssvc(dpInput, ssvc);
+		    });
+		} else {
+		    if(value.toLowerCase() == dpInput.value.toLowerCase())
+			set_ssvc(dpInput, ssvc);
+		}
+		reset_dp(dpInput);
+	    });
+	});
+    }
+}				 
+
+function cve_get(ev) {
     let api_url = "https://cveawg.mitre.org/api/cve/";
     const winput = ev.target;
     const vuid = winput.value.toUpperCase();
@@ -871,29 +948,49 @@ function cveGet(ev) {
 	$.getJSON(api_url + vuid).done(function(cveJson) {
 	    if(!('containers' in cveJson))
 		return;
+	    winput.removeAttribute("data-ssvc");
 	    winput.setAttribute("data-cve", JSON.stringify(cveJson));
 	    /* Match either cna or adp in that order for first SSVC record */
-	    ['cna', 'adp'].some(function(provider) {
-		if((provider in cveJson.containers) &&
-		   ('metrics' in cveJson.containers[provider]) &&
-		   (cveJson.containers[provider].metrics.length > 0)) {
-		    if(cveJson.containers[provider].metrics.some(function(metric) {
-			if(('other' in metric) && ('type' in metric.other) &&
-			   (metric.other.type.toLowerCase() == "ssvc")) {
-			    ssvc['provider'] = provider;
-			    ssvc['data'] = metric
-			    return true;
-			}
-		    })) {
-			process_ssvc(ssvc, winput);
-			winput.setAttribute("data-ssvc",JSON.stringify(ssvc));
+	    if(('cna' in cveJson.containers) &&
+	       ('metrics' in cveJson.containers['cna']) &&
+	       (cveJson.containers['cna'].metrics.length > 0)) {
+		if(cveJson.containers['cna'].metrics.some(function(metric) {
+		    if(('other' in metric) && ('type' in metric.other) &&
+		       (metric.other.type.toLowerCase() == "ssvc")) {
+			ssvc['provider'] = 'cna';
+			ssvc['data'] = metric.other.content;
 			return true;
 		    }
+		})) {
+		    winput.setAttribute("data-ssvc",JSON.stringify(ssvc));
+		    process_ssvc(ssvc, winput);
+		    return true;
 		}
-	    });
+	    }
+	    if('adp' in cveJson.containers) {
+		if(cveJson.containers.adp.some(function(adp) {
+		    let provider = "adp";
+		    if(adp.providerMetadata && adp.providerMetadata.shortName)
+			provider = "adp:" + adp.providerMetadata.shortName;
+		    if(('metrics' in adp) && (adp.metrics.length > 0)) {
+			return adp.metrics.some(function(metric) {
+			    if(('other' in metric) && ('type' in metric.other) &&
+			       (metric.other.type.toLowerCase() == "ssvc")) {
+				ssvc['provider'] = provider;
+				ssvc['data'] = metric.other.content;
+				return true;
+			    }
+			});
+		    }
+		})) {
+                    winput.setAttribute("data-ssvc",JSON.stringify(ssvc));
+                    process_ssvc(ssvc, winput);
+                    return true;
+		}
+	    }
 	});
     } else {
-	console.log("Not a CVE Record");
+	console.log("Not a CVE Record "+vuid);
     }
     /* https://cveawg.mitre.org/api/cve/CVE-2025-6241 */
 }
@@ -901,6 +998,7 @@ function parse_json(xraw,paused) {
     $('.bcomplex').remove();
     $('.graphy').not('#zoomcontrol').show();
     $('#ungraph').addClass('d-none');
+    $('#evaluate_section').html('');
     var zraw = [];
     isparent = {};
     var tm;
@@ -1022,8 +1120,9 @@ function parse_json(xraw,paused) {
     lcolors = {};
     let evaluate_div = $("<div>").css({display: "flex","justify-content":"center"});
     tm.decision_points.map((x,index) => {
-	let h4 = $("<h4>").text(x.label).css({"border-bottom": "2px solid aqua",
-					      "font-size": "unset"});
+	let h4 = $("<h4>").text(x.label)
+	    .css({"border-bottom": "2px solid aqua","font-size": "unset"})
+	    .attr("data-dp",JSON.stringify(x));
 	const dpcol = $("<div>").append(h4);
 	dpcol.css({display: "inline-block", padding: "2px",border: "2px solid aqua"});
 	create_short_keys(x,duniq_keys);
@@ -1117,13 +1216,12 @@ function parse_json(xraw,paused) {
 	//console.log(options_data);
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
-    let cve_input = $("<input>").addClass("form-control").attr({"placeholder":"CVE/Identifier"})
-    cve_input[0].addEventListener('blur', cveGet);
+    let cve_input = $("<input>").addClass("form-control vuid").attr({"placeholder":"CVE/Identifier"})
+    cve_input[0].addEventListener('blur', cve_get);
     let cve_div = $("<label>").append(cve_input).css({padding: "0px 4px 0px 4px"});
-    let multi_btn = $("<button>").addClass("btn btn-sm btn-outline-info").text("+").on("click",promptMultipleCVEs);
     let autoscore_div = $("<label>").append($("<input>").attr({"type": "checkbox","checked": true})).append($("<span>").text("Use available public scores")).css({padding: "0px 4px 0px 4px"});
     let check_allb = $("<button>").addClass("btn btn-danger").html("Check All").on("click",check_all);
-    let line_div = $("<div>").append(cve_div).append(multi_btn).append(autoscore_div).append(check_allb);
+    let line_div = $("<div>").append(cve_div).append(autoscore_div).append(check_allb);
     $('#evaluate_section').append($("<div>").css({border: "1px solid rgba(1,1,1,0.1)",
 						  padding: "1px"}).append(line_div).append(evaluate_div));
     $("."+lastdiv).addClass("Decision");
@@ -1146,8 +1244,6 @@ function parse_json(xraw,paused) {
 	$("."+classes[0]).remove()
 	$('body').append($('<div/>').addClass("d-none "+classes[0]))
     }
-    //console.log(classes)
-    //console.log(decision_div)
     $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
     /* If a new tree is loaded and the user is in Simple mode
      just start simple mode decision */
@@ -1160,13 +1256,46 @@ function promptMultipleCVEs() {
 	input: 'textarea',
 	inputPlaceholder: 'CVE-2023-12345\nCVE-2024-67890\nCVE-2025-00001',
 	inputAttributes: {'aria-label': 'Type CVEs here' },
-	footer: '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" checked><span>Use public CVE API data</span> </label>',
+	footer: '<label style="display:flex;align-items:center;gap:6px;"> ' +
+	    '<input type="checkbox" id="swal-use-public-cve" checked><span>Use public CVE API data</span></label>',
 	showCancelButton: true,
 	confirmButtonText: 'Add CVEs',
-	cancelButtonText: 'Cancel'
+	cancelButtonText: 'Cancel',
+	preConfirm: (value) => {
+	    let cves = value.split(/[\n,]+/).map(c => c.trim()).filter(Boolean);
+	    let useAPI = document.getElementById('swal-use-public-cve').checked;
+	    if (cves.length === 0) {
+		Swal.showValidationMessage('Please enter at least one CVE');
+		return false;
+	    }
+	    return { cves, useAPI };
+	}
     }).then((result) => {
 	if (result.isConfirmed && result.value) {
-	    let cves = result.value.split(/[\n,]+/).map(cve => cve.trim()).filter(Boolean);
+	    let cves = result.value.cves;
+	    if(cves.length > 0) {
+		$('#graph').hide();
+		
+        let container = $('#evaluate_section');
+        let currentDivs = container.children('div');
+        let currentCount = currentDivs.length;
+        if (currentCount > cves.length) {
+            currentDivs.slice(cves.length).remove();
+        } else if (currentCount < cves.length) {
+            let template = currentDivs.first();
+            for (let i = currentCount; i < cves.length; i++) {
+                template.clone(true).appendTo(container);
+            }
+        }
+        container.children('div').each(function (i) {
+            let cve_input = $(this).find('.vuid').val(cves[i]);
+	    cve_get({target: cve_input[0]});
+        });
+		
+		
+	    } else {
+		$('#graph').show();
+	    }
 	}
     });
 }
