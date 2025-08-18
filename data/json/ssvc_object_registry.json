@@ -6621,6 +6621,51 @@
                       "description": "Coordinate"
                     }
                   }
+                },
+                "1.0.1": {
+                  "version": "1.0.1",
+                  "obj": {
+                    "namespace": "ssvc",
+                    "key": "COORDINATE",
+                    "version": "1.0.1",
+                    "name": "Decline, Track, Coordinate",
+                    "description": "The coordinate outcome group.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "D",
+                        "name": "Decline",
+                        "description": "Do not act on the report."
+                      },
+                      {
+                        "key": "T",
+                        "name": "Track",
+                        "description": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
+                      },
+                      {
+                        "key": "C",
+                        "name": "Coordinate",
+                        "description": "Take action on the report."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "D": {
+                      "key": "D",
+                      "name": "Decline",
+                      "description": "Do not act on the report."
+                    },
+                    "T": {
+                      "key": "T",
+                      "name": "Track",
+                      "description": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
+                    },
+                    "C": {
+                      "key": "C",
+                      "name": "Coordinate",
+                      "description": "Take action on the report."
+                    }
+                  }
                 }
               }
             },
@@ -18627,10 +18672,10 @@
                           }
                         ]
                       },
-                      "ssvc:COORDINATE:1.0.0": {
+                      "ssvc:COORDINATE:1.0.1": {
                         "namespace": "ssvc",
                         "key": "COORDINATE",
-                        "version": "1.0.0",
+                        "version": "1.0.1",
                         "name": "Decline, Track, Coordinate",
                         "description": "The coordinate outcome group.",
                         "schemaVersion": "2.0.0",
@@ -18638,22 +18683,22 @@
                           {
                             "key": "D",
                             "name": "Decline",
-                            "description": "Decline"
+                            "description": "Do not act on the report."
                           },
                           {
                             "key": "T",
                             "name": "Track",
-                            "description": "Track"
+                            "description": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
                           },
                           {
                             "key": "C",
                             "name": "Coordinate",
-                            "description": "Coordinate"
+                            "description": "Take action on the report."
                           }
                         ]
                       }
                     },
-                    "outcome": "ssvc:COORDINATE:1.0.0",
+                    "outcome": "ssvc:COORDINATE:1.0.1",
                     "mapping": [
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18663,7 +18708,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18673,7 +18718,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18683,7 +18728,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18693,7 +18738,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18703,7 +18748,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18713,7 +18758,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18723,7 +18768,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18733,7 +18778,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18743,7 +18788,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18753,7 +18798,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18763,7 +18808,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18773,7 +18818,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18783,7 +18828,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18793,7 +18838,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18803,7 +18848,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18813,7 +18858,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18823,7 +18868,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18833,7 +18878,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18843,7 +18888,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18853,7 +18898,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18863,7 +18908,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18873,7 +18918,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18883,7 +18928,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18893,7 +18938,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18903,7 +18948,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18913,7 +18958,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18923,7 +18968,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18933,7 +18978,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18943,7 +18988,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18953,7 +18998,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18963,7 +19008,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18973,7 +19018,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -18983,7 +19028,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -18993,7 +19038,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19003,7 +19048,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19013,7 +19058,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19023,7 +19068,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19033,7 +19078,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19043,7 +19088,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19053,7 +19098,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19063,7 +19108,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19073,7 +19118,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19083,7 +19128,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19093,7 +19138,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19103,7 +19148,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19113,7 +19158,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19123,7 +19168,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19133,7 +19178,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19143,7 +19188,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19153,7 +19198,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19163,7 +19208,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19173,7 +19218,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19183,7 +19228,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19193,7 +19238,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19203,7 +19248,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19213,7 +19258,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19223,7 +19268,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19233,7 +19278,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19243,7 +19288,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19253,7 +19298,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19263,7 +19308,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19273,7 +19318,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19283,7 +19328,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19293,7 +19338,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19303,7 +19348,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19313,7 +19358,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19323,7 +19368,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19333,7 +19378,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19343,7 +19388,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19353,7 +19398,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19363,7 +19408,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19373,7 +19418,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19383,7 +19428,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19393,7 +19438,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19403,7 +19448,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19413,7 +19458,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19423,7 +19468,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19433,7 +19478,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19443,7 +19488,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19453,7 +19498,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19463,7 +19508,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19473,7 +19518,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19483,7 +19528,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19493,7 +19538,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19503,7 +19548,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19513,7 +19558,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19523,7 +19568,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19533,7 +19578,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19543,7 +19588,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19553,7 +19598,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19563,7 +19608,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19573,7 +19618,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19583,7 +19628,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19593,7 +19638,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19603,7 +19648,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19613,7 +19658,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19623,7 +19668,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19633,7 +19678,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19643,7 +19688,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19653,7 +19698,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19663,7 +19708,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19673,7 +19718,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19683,7 +19728,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19693,7 +19738,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19703,7 +19748,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19713,7 +19758,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19723,7 +19768,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19733,7 +19778,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19743,7 +19788,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19753,7 +19798,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19763,7 +19808,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19773,7 +19818,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19783,7 +19828,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19793,7 +19838,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19803,7 +19848,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19813,7 +19858,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19823,7 +19868,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19833,7 +19878,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19843,7 +19888,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19853,7 +19898,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19863,7 +19908,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19873,7 +19918,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19883,7 +19928,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19893,7 +19938,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19903,7 +19948,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19913,7 +19958,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19923,7 +19968,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19933,7 +19978,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19943,7 +19988,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19953,7 +19998,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19963,7 +20008,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19973,7 +20018,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -19983,7 +20028,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -19993,7 +20038,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20003,7 +20048,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20013,7 +20058,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20023,7 +20068,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20033,7 +20078,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20043,7 +20088,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20053,7 +20098,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20063,7 +20108,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20073,7 +20118,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20083,7 +20128,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20093,7 +20138,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20103,7 +20148,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20113,7 +20158,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20123,7 +20168,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20133,7 +20178,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20143,7 +20188,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20153,7 +20198,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20163,7 +20208,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20173,7 +20218,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20183,7 +20228,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20193,7 +20238,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20203,7 +20248,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20213,7 +20258,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20223,7 +20268,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20233,7 +20278,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20243,7 +20288,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20253,7 +20298,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20263,7 +20308,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20273,7 +20318,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20283,7 +20328,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20293,7 +20338,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20303,7 +20348,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20313,7 +20358,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20323,7 +20368,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20333,7 +20378,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20343,7 +20388,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "L",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20353,7 +20398,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20363,7 +20408,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20373,7 +20418,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20383,7 +20428,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20393,7 +20438,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20403,7 +20448,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20413,7 +20458,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20423,7 +20468,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20433,7 +20478,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20443,7 +20488,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "T"
+                        "ssvc:COORDINATE:1.0.1": "T"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20453,7 +20498,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20463,7 +20508,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "D"
+                        "ssvc:COORDINATE:1.0.1": "D"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20473,7 +20518,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20483,7 +20528,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20493,7 +20538,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20503,7 +20548,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "M",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20513,7 +20558,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "E",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20523,7 +20568,7 @@
                         "ssvc:SE:1.0.0": "A",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20533,7 +20578,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20543,7 +20588,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20553,7 +20598,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "Y",
@@ -20563,7 +20608,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       },
                       {
                         "ssvc:RP:1.0.0": "N",
@@ -20573,7 +20618,7 @@
                         "ssvc:SE:1.0.0": "U",
                         "ssvc:U:1.0.1": "S",
                         "ssvc:PSI:2.0.1": "S",
-                        "ssvc:COORDINATE:1.0.0": "C"
+                        "ssvc:COORDINATE:1.0.1": "C"
                       }
                     ]
                   }
