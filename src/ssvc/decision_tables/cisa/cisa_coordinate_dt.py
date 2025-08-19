@@ -23,14 +23,19 @@ Provides the CISA coordinator decision table.
 #  DM24-0278
 
 from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2 as Automatable
-from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1_1_0 as Exploitation
+from ssvc.decision_points.ssvc.exploitation import (
+    EXPLOITATION_1_1_0 as Exploitation,
+)
 from ssvc.decision_points.ssvc.human_impact import (
     MISSION_AND_WELL_BEING_IMPACT_1 as MissionAndWellBeingImpact,
 )
 from ssvc.decision_points.ssvc.technical_impact import (
     TECHNICAL_IMPACT_1 as TechnicalImpact,
 )
-from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    decision_table_to_longform_df,
+)
 from ssvc.namespaces import NameSpace
 from ssvc.outcomes.cisa.scoring import CISA as Priority
 

@@ -6,7 +6,7 @@ FROM base AS dependencies
 
 # install requirements
 COPY ../requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 # Copy the files we need
 COPY .. /app
 # Set the environment variable
@@ -21,3 +21,6 @@ CMD ["pytest","src/test"]
 
 FROM dependencies AS docs
 CMD ["mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+
+FROM dependencies AS server
+CMD ["uvicorn", "src.main:app", "--host", "

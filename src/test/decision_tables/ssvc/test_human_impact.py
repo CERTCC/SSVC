@@ -25,8 +25,12 @@ from ssvc.decision_tables.ssvc.human_impact import HUMAN_IMPACT_1 as HI
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.hi: "DecisionTable" = HI
-        self.si: str = [k for k in self.hi.decision_points.keys() if "SI" in k][0]
-        self.mi: str = [k for k in self.hi.decision_points.keys() if "MI" in k][0]
+        self.si: str = [
+            k for k in self.hi.decision_points.keys() if "SI" in k
+        ][0]
+        self.mi: str = [
+            k for k in self.hi.decision_points.keys() if "MI" in k
+        ][0]
         self.outcome: str = self.hi.outcome
 
     def test_mapping(self):

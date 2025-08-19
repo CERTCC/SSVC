@@ -21,15 +21,21 @@ Models the Human Impact decision table for SSVC.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.ssvc.human_impact import HUMAN_IMPACT_2_0_2 as HumanImpact
-from ssvc.decision_points.ssvc.mission_impact import MISSION_IMPACT_2 as MissionImpact
+from ssvc.decision_points.ssvc.human_impact import (
+    HUMAN_IMPACT_2_0_2 as HumanImpact,
+)
+from ssvc.decision_points.ssvc.mission_impact import (
+    MISSION_IMPACT_2 as MissionImpact,
+)
 from ssvc.decision_points.ssvc.safety_impact import (
     SAFETY_IMPACT_2 as SituatedSafetyImpact,
 )
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-dp_dict = {dp.id: dp for dp in [SituatedSafetyImpact, MissionImpact, HumanImpact]}
+dp_dict = {
+    dp.id: dp for dp in [SituatedSafetyImpact, MissionImpact, HumanImpact]
+}
 
 HUMAN_IMPACT_1 = DecisionTable(
     namespace=NameSpace.SSVC,

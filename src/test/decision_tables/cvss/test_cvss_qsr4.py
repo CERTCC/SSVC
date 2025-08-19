@@ -30,15 +30,20 @@ _MAPPING = {
 
 # create a dict of the expected rows for lookups in tests
 _EXPECTED = {
-    tuple([v for k, v in row.items() if k != QSR_4.outcome]): row for row in V4_EXPECTED
+    tuple([v for k, v in row.items() if k != QSR_4.outcome]): row
+    for row in V4_EXPECTED
 }
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.qsr4 = QSR_4
-        self.eq3 = [k for k in self.qsr4.decision_points.keys() if "EQ3" in k][0]
-        self.eq6 = [k for k in self.qsr4.decision_points.keys() if "EQ6" in k][0]
+        self.eq3 = [k for k in self.qsr4.decision_points.keys() if "EQ3" in k][
+            0
+        ]
+        self.eq6 = [k for k in self.qsr4.decision_points.keys() if "EQ6" in k][
+            0
+        ]
 
     def test_mapping_for_expected(self):
         for row in V4_EXPECTED:
@@ -73,7 +78,9 @@ class MyTestCase(unittest.TestCase):
             self.assertIn(new_key, _EXPECTED)
 
             expected_row = _EXPECTED[new_key]
-            self.assertEqual(expected_row[self.qsr4.outcome], row[self.qsr4.outcome])
+            self.assertEqual(
+                expected_row[self.qsr4.outcome], row[self.qsr4.outcome]
+            )
 
 
 if __name__ == "__main__":

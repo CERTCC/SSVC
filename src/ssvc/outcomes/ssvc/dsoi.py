@@ -27,13 +27,17 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 _DEFER = DecisionPointValue(name="Defer", key="D", description="Defer")
 
-_SCHEDULED = DecisionPointValue(name="Scheduled", key="S", description="Scheduled")
+_SCHEDULED = DecisionPointValue(
+    name="Scheduled", key="S", description="Scheduled"
+)
 
 _OUT_OF_CYCLE = DecisionPointValue(
     name="Out-of-Cycle", key="O", description="Out-of-Cycle"
 )
 
-_IMMEDIATE = DecisionPointValue(name="Immediate", key="I", description="Immediate")
+_IMMEDIATE = DecisionPointValue(
+    name="Immediate", key="I", description="Immediate"
+)
 
 DSOI = SsvcDecisionPoint(
     name="Defer, Scheduled, Out-of-Cycle, Immediate",

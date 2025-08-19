@@ -42,13 +42,25 @@ class TestDecisionTableBase(unittest.TestCase):
         self.tmpdir = tempfile.TemporaryDirectory()
 
         # Create dummy decision point values
-        self.dp1v1 = DecisionPointValue(name="a", key="a", description="A value")
-        self.dp1v2 = DecisionPointValue(name="b", key="b", description="B value")
+        self.dp1v1 = DecisionPointValue(
+            name="a", key="a", description="A value"
+        )
+        self.dp1v2 = DecisionPointValue(
+            name="b", key="b", description="B value"
+        )
 
-        self.dp2v1 = DecisionPointValue(name="x", key="x", description="X value")
-        self.dp2v2 = DecisionPointValue(name="y", key="y", description="Y value")
-        self.dp2v3 = DecisionPointValue(name="z", key="z", description="Z value")
-        self.dp2v4 = DecisionPointValue(name="w", key="w", description="W value")
+        self.dp2v1 = DecisionPointValue(
+            name="x", key="x", description="X value"
+        )
+        self.dp2v2 = DecisionPointValue(
+            name="y", key="y", description="Y value"
+        )
+        self.dp2v3 = DecisionPointValue(
+            name="z", key="z", description="Z value"
+        )
+        self.dp2v4 = DecisionPointValue(
+            name="w", key="w", description="W value"
+        )
 
         # Create dummy decision points and group
         self.dp1 = DecisionPoint(
@@ -68,9 +80,15 @@ class TestDecisionTableBase(unittest.TestCase):
             values=(self.dp2v1, self.dp2v2, self.dp2v3, self.dp2v4),
         )
         # Create dummy outcome group
-        self.ogv1 = DecisionPointValue(name="o1", key="o1", description="Outcome 1")
-        self.ogv2 = DecisionPointValue(name="o2", key="o2", description="Outcome 2")
-        self.ogv3 = DecisionPointValue(name="o3", key="o3", description="Outcome 3")
+        self.ogv1 = DecisionPointValue(
+            name="o1", key="o1", description="Outcome 1"
+        )
+        self.ogv2 = DecisionPointValue(
+            name="o2", key="o2", description="Outcome 2"
+        )
+        self.ogv3 = DecisionPointValue(
+            name="o3", key="o3", description="Outcome 3"
+        )
 
         self.og = OutcomeGroup(
             name="outcome",
@@ -170,7 +188,9 @@ class TestDecisionTableBase(unittest.TestCase):
         for row in d["mapping"]:
             row_keys = set(row.keys())
             self.assertEqual(
-                row_keys, expect_keys, "Row keys do not match expected decision points"
+                row_keys,
+                expect_keys,
+                "Row keys do not match expected decision points",
             )
 
     def test_populate_mapping_if_none(self):
@@ -222,7 +242,8 @@ class TestDecisionTableBase(unittest.TestCase):
         # Check if the new mapping has outcomes assigned
         for row in new_mapping:
             self.assertIsNotNone(
-                row[outcome_key], "Outcome should not be None after distribution"
+                row[outcome_key],
+                "Outcome should not be None after distribution",
             )
 
         # Check if the length of new mapping matches original mapping
@@ -368,7 +389,9 @@ class TestDecisionTableBase(unittest.TestCase):
         # Check if the mapping contains the correct outcomes
         for row in single_dt.mapping:
             self.assertIn(single_dt.outcome, row)
-            self.assertIn(row[single_dt.outcome], [v.key for v in self.og.values])
+            self.assertIn(
+                row[single_dt.outcome], [v.key for v in self.og.values]
+            )
 
     def test_should_reject_duplicate_conflicting_mappings(self):
         dt = self.dt
@@ -378,7 +401,9 @@ class TestDecisionTableBase(unittest.TestCase):
 
         new_row = dict(dt.mapping[0])  # copy the first row
         self.assertEqual(
-            new_row[dt.outcome], self.ogv1.key, "First row should have outcome o1"
+            new_row[dt.outcome],
+            self.ogv1.key,
+            "First row should have outcome o1",
         )
         new_row[dt.outcome] = self.ogv2.key  # change the outcome to o2
         # insert it at position 1
@@ -397,7 +422,9 @@ class TestDecisionTableBase(unittest.TestCase):
 
         new_row = dict(dt.mapping[0])  # copy the first row
         self.assertEqual(
-            new_row[dt.outcome], self.ogv1.key, "First row should have outcome o1"
+            new_row[dt.outcome],
+            self.ogv1.key,
+            "First row should have outcome o1",
         )
         # do not change the outcome, just duplicate the row
         # insert it at position 1

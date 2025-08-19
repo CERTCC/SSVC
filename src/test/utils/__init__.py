@@ -25,9 +25,10 @@ created_at: 8/1/25 9:31 AM
 #  subject to its own license.
 #  DM24-0278
 
+
 def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
