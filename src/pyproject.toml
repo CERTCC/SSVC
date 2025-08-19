@@ -49,6 +49,7 @@ dependencies = [
     "networkx==3.4.2",
     "pydantic==2.11.7",
     "semver==3.0.4",
+    "fastapi[standard]>=0.116.1",
 ]
 dynamic = ["version",]
 
