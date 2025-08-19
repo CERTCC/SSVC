@@ -33,13 +33,6 @@ class MyTestCase(unittest.TestCase):
 
     def test_ns_pattern(self):
 
-        # end pattern like in
-        # test_namespaces_pattern._test_successes_failures()
-        pattern_str = NS_PATTERN.pattern
-        if not pattern_str.endswith("$"):
-            pattern_str = pattern_str + "$"
-        pattern = re.compile(pattern_str)
-
         should_match = [
             "foo.bar#baz",
             "foo.bar.baz#quux",
@@ -49,7 +42,7 @@ class MyTestCase(unittest.TestCase):
 
         for ns in should_match:
             with self.subTest(ns=ns):
-                self.assertTrue(pattern.match(ns), ns)
+                self.assertTrue(NS_PATTERN.match(ns), ns)
 
         should_not_match = [
             "",
@@ -66,7 +59,7 @@ class MyTestCase(unittest.TestCase):
 
         for ns in should_not_match:
             with self.subTest(ns=ns):
-                self.assertFalse(pattern.match(ns))
+                self.assertFalse(NS_PATTERN.match(ns))
 
     def test_namspace_enum(self):
         for ns in NameSpace:
