@@ -112,7 +112,7 @@ print(mapping2mermaid(rows, title=title))
 The table below shows the values for the decision model.
 Each row of the table corresponds to a path through the decision model diagram above.
 
-% include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
+{% include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
 
 ```python exec="true" idprefix=""
 
