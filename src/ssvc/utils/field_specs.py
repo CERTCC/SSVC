@@ -47,7 +47,7 @@ NamespaceString = Annotated[
         examples=[
             "ssvc",
             "cisa",
-            "x_example.test#test//.example.test#test",
+            "x_example.test#test//.example.test#private-extension",
             "ssvc/de-DE/.example.organization#reference-arch-1",
         ],
         pattern=NS_PATTERN,

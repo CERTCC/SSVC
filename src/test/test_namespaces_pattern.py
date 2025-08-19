@@ -54,11 +54,11 @@ class TestNamespacePattern(unittest.TestCase):
             "x_example.test.test#test/pl-PL/.example.test#another-collection/.org.example#a-different-collection/en-CA-newfound",  # valid BCP-47 tag and multiple segments
             "example.test",  # valid namespace with dots following reverse domain notation
             "x_example.test#test",  # valid namespace with x_ prefix and dots following reverse domain notation
-           "aa.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD based on private use of ISO-3166
-            "x_au.com.example#bar"  # valid namespace with x_ prefix and dots following reverse domain notation
-            "abc//.example.test#test",
-            "abc//.com.au.example#test",
-            "abc//.example.test#test/.example.test#test",
+            "aa.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD based on private use of ISO-3166
+            "x_aa.example#test"  # valid namespace with x_ prefix and dots following reverse domain notation
+            "test//.example.test#test",
+            "test//.com.au.example#test",
+            "example//.example.test#test/.example.some-other-org#foo",
             "foo.bar//.baz.quux#foo",
         ]
         self.expect_fail = [
@@ -67,6 +67,7 @@ class TestNamespacePattern(unittest.TestCase):
             "x__invalid",  # invalid namespace, double underscore
             "x_-invalid",  # invalid namespace, dash after x_
             "x_.invalid",  # invalid namespace, dash at end
+            "x_invalid-",  # invalid namespace, dash at end
             "x_/foo",  # invalid namespace, slash after x_, invalid BCP-47 tag
             "x_//foo",  # invalid namespace, double slash after x_
             "x_abc/invalid-bcp-47",  # not a valid BCP-47 tag
@@ -104,7 +105,7 @@ class TestNamespacePattern(unittest.TestCase):
             "contains-dash",
             "contains-dash-and.dot",
             "com.example",  # valid namespace with dots following reverse domain notation
-            "au.com.example",  # valid namespace with dots following reverse domain notation
+            "aa.com.example",  # valid namespace with dots following reverse domain notation
         ]
         x_fail = [
             "a",  # too short
@@ -137,7 +138,8 @@ class TestNamespacePattern(unittest.TestCase):
             "9abc",  # starts with a number
             "x__invalid",  # double underscore
             "x_-invalid",  # dash after x_
-            "x_.invalid",  # dash at end
+            "x_.invalid",  # dot at start
+            "x_invalid-",  # dash at end
             "x_9abc",  # starts with a number after x_
             "x_abc.",  # ends with a dot
             "x_abc-",  # ends with a dash

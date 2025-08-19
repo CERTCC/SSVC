@@ -161,6 +161,8 @@ we expect that this will rarely lead to conflicts in practice.
     where a unregistered namespace is needed.
     The namespace `x_example.test#test` is recommended for use in testing of current or
     new SSVC related code.
+    The namespace `x_example.test#documentation` is recommended for use in documentation
+    or as examples.
 
  !!! tip "Test Namespace"
 
@@ -222,8 +224,8 @@ Subsequently, a `$` followed by a valid BCP 47 language tag ends the string.
 Note: If the `translation` uses just the reverse domain name followed by the language tag,
 e.g. `.example.test$de-DE`, this implies an unofficial translation done by the entity in possession of that
 domain name.
-A `translation` using an `x-name` indicates that the extension bases of a model that had a different language
-and no formal translation was used to develop that model.
+A `translation` using an `x-name` indicates that the extension bases of a collection that had a different language
+and no formal translation was used to develop that collection.
 The following diagram illustrates the structure of namespace extensions:
 
 ```mermaid
@@ -314,7 +316,7 @@ base_ns -->|/| first
 
     It is also different from `ssvc//.example.isao$pl-PL/example.isao#constituency` which
     denotes that the ISAO did a translation of the `ssvc` namespace to Polish and based
-    the model for their constituency on that translation.
+    the collection for their constituency on that translation.
 
 !!! example "Refinement of Concepts for a Specific Constituency"
 
