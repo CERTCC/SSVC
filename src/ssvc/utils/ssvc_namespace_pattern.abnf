@@ -8,7 +8,7 @@ namespace = base-ns [ extensions ]
 ; (Enforced via regex length lookahead)
 
 base-ns = x-base / reg-base
-x-base  = "x_" x-name 
+x-base  = "x_" x-name
 reg-base = ns-core [ "#" fragment-seg ]
 
 ; ns-core starts with a lowercase letter and may have '.' or '-' separators.
@@ -40,7 +40,7 @@ lang-ext = "/" /  ( "/" bcp47 )
 ; - a third-party/unofficial translation
 ext-seg = bcp47 / "." x-name / translation
 
-; BCP-47 tag (based on ABNF of [RFC 5646 section 2.1](https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1) 
+; BCP-47 tag (based on ABNF of [RFC 5646 section 2.1](https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1)
 ; and language regex used in CSAF)
 bcp47 = ( 2*3ALPHA
             [ "-" 3ALPHA *2( "-" 3ALPHA ) ]
@@ -64,7 +64,7 @@ singleton     = DIGIT               ; 0 - 9
 
 ; Translations is either a
 ; - third-party/unofficial translation (depicted by using the reverse-dns before the target language) or
-; - a (context) model (depicted by using the x-name) directly used in a different language 
+; - a (context) model (depicted by using the x-name) directly used in a different language
 translation = "." ( reverse-dns /  x-name ) "$" bcp47
 
 ; Character sets
