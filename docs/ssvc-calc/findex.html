@@ -55,7 +55,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" async defer></script>
   </head>
   <body class="text-center whitebody">
-    <img src="moon_icon.png" class="cert-tweet" alt="CERT Logo"
+    <img src="moon_icon.png" class="cert-tweet" alt="CERT Logo" style="display:none"
          onclick="$('body').toggleClass('blackbody').toggleClass('whitebody')"/>
     <div class="tright" style="display:none">
       <a href="javascript:void(0)" onclick="$('#helper').show()"
@@ -98,7 +98,7 @@
 
       <main class="inner cover">
 	<h4 class="cover-heading">
-	  Dryad - SSVC Calc App
+	  Sample Decision Models:
 	  <select id="tree_samples" class="form-control impselector embedded" style="border: 1px solid"
 		   onchange="tree_process(this)">
 	    <option value="">Select</option>

@@ -1,11 +1,16 @@
-# SSVC Calculator
+---
+hide:
+  - navigation
+  - title
+---
+
+# Dryad SSVC Calculator
 
 <style>
 .sembed {
   min-width: 1200px;
   min-height: 1100px;
-  margin-left: -40%;
-  margin-top: -15%;
+  margin-top: -5%;
   z-index: 1;
   position: relative;
 }

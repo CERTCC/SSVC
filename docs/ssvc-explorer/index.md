@@ -1,11 +1,15 @@
-# _
+---
+hide:
+  - navigation
+  - title
+---
+
+# SSVC Policy Explorer
 
 <style>
 .sembed {
   min-width: 1200px;
   min-height: 1100px;
-  margin-left: -40%;
-  margin-top: -15%;
   z-index: 1;
   position: relative;
 }
