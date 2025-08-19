@@ -40,7 +40,8 @@ lang-ext = "/" /  ( "/" bcp47 )
 ; - a third-party/unofficial translation
 ext-seg = bcp47 / "." x-name / translation
 
-; BCP-47 tag (based on the regex expansion)
+; BCP-47 tag (based on ABNF of [RFC 5646 section 2.1](https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1) 
+; and language regex used in CSAF)
 bcp47 = ( 2*3ALPHA
             [ "-" 3ALPHA *2( "-" 3ALPHA ) ]
         / 4*8ALPHA )
