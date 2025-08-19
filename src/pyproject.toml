@@ -39,7 +39,6 @@ dependencies = [
     "mkdocs-include-markdown-plugin==7.1.6",
     "pandas==2.3.1",
     "scipy",
-    "dataclasses-json",
     "jsonschema==4.25.0",
     "mkdocs-bibtex==4.4.0",
     "mkdocs-table-reader-plugin==3.1.0",
