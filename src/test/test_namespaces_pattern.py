@@ -51,7 +51,7 @@ class TestNamespacePattern(unittest.TestCase):
             "nist#800-30",  # NIST's registered model regarding its publication 800-30
             "x_gov.nist#800-30/de-DE",  # NIST's official translation to German as used in Germany of its model (regarding its publication) 800-30
             "x_gov.nist#800-30//.de.bund.bsi$de-DE",  # BSI's translation to German as used in Germany of NIST's model (regarding its publication) 800-30
-            "x_example.test.test#test/pl-PL/.example.test#test/.example.test#test/newfound",  # valid BCP-47 tag and multiple segments
+            "x_example.test.test#test/pl-PL/.example.test#another-collection/.org.example#a-different-collection/en-CA-newfound",  # valid BCP-47 tag and multiple segments
             "example.test",  # valid namespace with dots following reverse domain notation
             "x_example.test#test",  # valid namespace with x_ prefix and dots following reverse domain notation
             "au.com.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD
