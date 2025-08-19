@@ -40,7 +40,7 @@ from ssvc.decision_points.ssvc.supplier_engagement import (
 from ssvc.decision_points.ssvc.utility import UTILITY_1_0_1 as Utility
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
-from ssvc.outcomes.ssvc.coordinate import COORDINATE as Outcome
+from ssvc.outcomes.ssvc.coordinate import COORDINATE_1_0_1 as Outcome
 
 V1_0_0 = DecisionTable(
     namespace=NameSpace.SSVC,
@@ -71,7 +71,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -81,7 +81,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -91,7 +91,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -101,7 +101,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -111,7 +111,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -121,7 +121,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -131,7 +131,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -141,7 +141,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -151,7 +151,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -161,7 +161,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -171,7 +171,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -181,7 +181,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -191,7 +191,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -201,7 +201,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -211,7 +211,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -221,7 +221,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -231,7 +231,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -241,7 +241,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -251,7 +251,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -261,7 +261,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -271,7 +271,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -281,7 +281,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -291,7 +291,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -301,7 +301,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -311,7 +311,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -321,7 +321,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -331,7 +331,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -341,7 +341,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -351,7 +351,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -361,7 +361,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -371,7 +371,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -381,7 +381,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -391,7 +391,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -401,7 +401,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -411,7 +411,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -421,7 +421,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -431,7 +431,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -441,7 +441,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -451,7 +451,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -461,7 +461,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -471,7 +471,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -481,7 +481,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -491,7 +491,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -501,7 +501,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -511,7 +511,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -521,7 +521,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -531,7 +531,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -541,7 +541,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -551,7 +551,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -561,7 +561,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -571,7 +571,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -581,7 +581,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -591,7 +591,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -601,7 +601,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -611,7 +611,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -621,7 +621,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -631,7 +631,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -641,7 +641,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -651,7 +651,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -661,7 +661,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -671,7 +671,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -681,7 +681,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -691,7 +691,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -701,7 +701,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -711,7 +711,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -721,7 +721,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -731,7 +731,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -741,7 +741,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -751,7 +751,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -761,7 +761,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -771,7 +771,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -781,7 +781,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -791,7 +791,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -801,7 +801,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -811,7 +811,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -821,7 +821,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -831,7 +831,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -841,7 +841,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -851,7 +851,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -861,7 +861,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -871,7 +871,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -881,7 +881,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -891,7 +891,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -901,7 +901,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -911,7 +911,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -921,7 +921,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -931,7 +931,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -941,7 +941,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -951,7 +951,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -961,7 +961,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -971,7 +971,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -981,7 +981,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -991,7 +991,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1001,7 +1001,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1011,7 +1011,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1021,7 +1021,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1031,7 +1031,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1041,7 +1041,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1051,7 +1051,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1061,7 +1061,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1071,7 +1071,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1081,7 +1081,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1091,7 +1091,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1101,7 +1101,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1111,7 +1111,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1121,7 +1121,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1131,7 +1131,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1141,7 +1141,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1151,7 +1151,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1161,7 +1161,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1171,7 +1171,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1181,7 +1181,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1191,7 +1191,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1201,7 +1201,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1211,7 +1211,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1221,7 +1221,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1231,7 +1231,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1241,7 +1241,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1251,7 +1251,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1261,7 +1261,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1271,7 +1271,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1281,7 +1281,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1291,7 +1291,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1301,7 +1301,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1311,7 +1311,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1321,7 +1321,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1331,7 +1331,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1341,7 +1341,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1351,7 +1351,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1361,7 +1361,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1371,7 +1371,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1381,7 +1381,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1391,7 +1391,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1401,7 +1401,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1411,7 +1411,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1421,7 +1421,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1431,7 +1431,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1441,7 +1441,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1451,7 +1451,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1461,7 +1461,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1471,7 +1471,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1481,7 +1481,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1491,7 +1491,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1501,7 +1501,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1511,7 +1511,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1521,7 +1521,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1531,7 +1531,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1541,7 +1541,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1551,7 +1551,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1561,7 +1561,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1571,7 +1571,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1581,7 +1581,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1591,7 +1591,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1601,7 +1601,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1611,7 +1611,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1621,7 +1621,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1631,7 +1631,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1641,7 +1641,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1651,7 +1651,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1661,7 +1661,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1671,7 +1671,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1681,7 +1681,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1691,7 +1691,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1701,7 +1701,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1711,7 +1711,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1721,7 +1721,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1731,7 +1731,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1741,7 +1741,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1751,7 +1751,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "L",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1761,7 +1761,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1771,7 +1771,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1781,7 +1781,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1791,7 +1791,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1801,7 +1801,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1811,7 +1811,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1821,7 +1821,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1831,7 +1831,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1841,7 +1841,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1851,7 +1851,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "T",
+            "ssvc:COORDINATE:1.0.1": "T",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1861,7 +1861,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1871,7 +1871,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "D",
+            "ssvc:COORDINATE:1.0.1": "D",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1881,7 +1881,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1891,7 +1891,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1901,7 +1901,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1911,7 +1911,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "M",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1921,7 +1921,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "E",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1931,7 +1931,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "A",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1941,7 +1941,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1951,7 +1951,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1961,7 +1961,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "Y",
@@ -1971,7 +1971,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
         {
             "ssvc:RP:1.0.0": "N",
@@ -1981,7 +1981,7 @@ V1_0_0 = DecisionTable(
             "ssvc:SE:1.0.0": "U",
             "ssvc:U:1.0.1": "S",
             "ssvc:PSI:2.0.1": "S",
-            "ssvc:COORDINATE:1.0.0": "C",
+            "ssvc:COORDINATE:1.0.1": "C",
         },
     ],
 )
