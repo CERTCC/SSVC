@@ -44,7 +44,8 @@ subgraph base_ns[Base Namespace]
         direction LR
         xpfx[x_]
         reverse_ns[Reverse Domain Name Notation]
-        xpfx --> reverse_ns 
+        fragment[Fragment]
+        xpfx --> reverse_ns --> fragment
     end
     subgraph registered[Registered Namespace]
         direction LR
@@ -80,6 +81,8 @@ Registered namespaces are intended to be used as follows:
 - Objects in other explicitly registered namespaces are provided for convenience,
   but the SSVC team is not responsible for modifying the content or semantics of
   those decision points.
+- The registered namespaces `example` and `test` can be used in documentation or
+  as examples, where registered namespaces are necessary.
 
 !!! note "Registered Non-`ssvc` Namespaces"
 
@@ -135,22 +138,35 @@ we expect that this will rarely lead to conflicts in practice.
     Unregistered namespaces must follow the following structure:
 
     - Unregistered namespaces must use the `x_` prefix.
-    - Following the `x_` prefix, unregistered namespaces must use reverse domain name notation of a domain under their control to ensure uniqueness.
-    - Aside from the required `x_` prefix, unregistered namespaces must contain only alphanumeric characters, dots (`.`), and dashes (`-`).
+    - Following the `x_` prefix, unregistered namespaces must use reverse domain name
+      notation of a domain under their control to ensure uniqueness.
+    - After the reverse domain name, a fragment separated by `#` must follow.
+    - The construct of reverse domain name followed by `#` and a fragment is called `x-name`.
+    - Aside from the required `x_` prefix and the fragment separator `#`, unregistered
+      namespaces must contain only alphanumeric characters, dots (`.`), and dashes (`-`).
 
 - For any domain using other characters, DNS Punycode must be used
 
 !!! warning "Namespace Conflicts"
 
-    Conflicts are possible in the x_ prefix space - especially as the control over a domain may be transferred. 
+    Conflicts are possible in the `x_` prefix space - especially as the control over a
+    domain may be transferred. 
     Also in tests, Organizations A and B could both choose to use 
     `x_example.test#test`, and there are no guarantees of global uniqueness for the
     decision points in the `x_example.test#test` namespace.
 
-!!! tip "Test Namespace"
+ !!! info "Documentation and Test Namespaces"
 
-    The `x_example.test#test` namespace is used for testing purposes and is not intended for production use.
-    It is used to test the SSVC framework and its components, and may contain decision points that are not fully implemented or tested.
+    Any namespace starting with `x_example` can be used in documentation or as examples,
+    where a unregistered namespace is needed.
+    The namespace `x_example.test#test` is recommended for use in testing of current or
+    new SSVC related code.
+
+ !!! tip "Test Namespace"
+
+    The `x_example.test#test` namespace is commonly used for testing purposes and is not
+    intended for production use. It is used to test the SSVC framework and its components,
+    and may contain decision points that are not fully implemented or tested.
 
 ### Namespace Extensions
 
@@ -188,11 +204,26 @@ constituencies or to provide translations of existing decision points.
 The first extension segment is reserved for an optional BCP-47 language tag, which may be left empty.
 When empty, the default language (`en-US`) is implied.
 
-Subsequent extension segments must begin with a reverse domain name notation string,
-and may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`).
-A single fragment identifier (`#`) may be included in an extension segment, but it is optional.
-Fragment segments can be used to indicate a specific interpretation or context for the extension.
-Note: Without a fragment segment, all decision points of an organization fall into one bucket, which is in most cases not intended. Therefore, the use of a fragment segment is recommended.
+Subsequent extension segments must either
+
+- be a valid BCP 47 language tag (marking an official translation from the previous extension segment entity),
+- begin with a `.` followed by an `x-name` (reverse domain name notation string, the fragment separator `#` and a fragment), or
+- be a `translation`.
+
+Except for the delimiters, an extension segment must not contain any other characters than alphanumeric
+characters (upper or lower case), dots (`.`), and dashes (`-`).
+Only a single fragment identifier (`#`) is allowed per extension segment.
+Fragment segments should be used to indicate a specific interpretation or context for the extension.
+Note: Without a fragment segment, all decision points of an organization would fall into one bucket,
+which is in most cases not intended. Therefore, the use of a fragment segment is required from the start.
+
+A `translation` starts with a `.` is followed by a reverse domain name or an `x-name`.
+Subsequently, a `$` followed by a valid BCP 47 language tag ends the string.
+Note: If the `translation` uses just the reverse domain name followed by the language tag,
+e.g. `.example.test$de-DE`, this implies an unofficial translation done by the entity in possession of that
+domain name.
+A `translation` using an `x-name` indicates that the extension bases of a model that had a different language
+and no formal translation was used to develop that model.
 The following diagram illustrates the structure of namespace extensions:
 
 ```mermaid
@@ -211,9 +242,21 @@ subgraph exts[Extensions]
     end
     subgraph ext[Subsequent Extension Segments]
         direction LR
+        e_lang[Language Tag]
+        dot[.]
         reverse_ns_ext[Reverse Domain Name Notation]
-        fragment[#Optional Fragment ID]
-        reverse_ns_ext --> fragment
+        fragment[#Fragment]
+        subgraph translation[Translation]
+            direction LR
+            t_dot[.]
+            t_reverse_ns_ext[Reverse Domain Name Notation]
+            t_fragment[#Optional Fragment]
+            t_dollar[$]
+            t_lang[Language Tag]
+            
+            t_dot --> t_reverse_ns_ext --> t_fragment --> t_dollar --> t_lang
+        end
+        lang ~~~|OR| dot --> reverse_ns_ext --> fragment ~~~|OR| translation
     end
     first -->|/| ext
     ext -->|/| ext
@@ -233,8 +276,8 @@ base_ns -->|/| first
     - If any extension segments are present, the first segment must be a valid BCP-47 language tag or an empty string.
     - When the first segment is left as an empty string, the default language (`en-US`) is implied.
     - Subsequent extension segments must begin with a reverse domain name notation string or be a valid, non-empty BCP-47 language tag.
-    - A fragment identifier (`#`) may be included in extension segments, but it is optional.
-    - Extension segments may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`), and zero or one hash (`#`).
+    - A fragment identifier (`#`) may be included in extension segments.
+    - Extension segments may contain alphanumeric characters (upper or lower case), dots (`.`), and dashes (`-`), and zero or one hash (`#`) and zero or one dollar sign (`$`).
     - Extensions must not alter the decision point key, version number, or value keys for any decision point they are derived from.
     - Extensions may reduce the set of values for a decision point in the parent namespace, but must not add new values.
 
@@ -243,13 +286,13 @@ base_ns -->|/| first
 
 !!! tip "Extension Order Matters"
 
-    Extension order matters. `ssvc/de-DE/example.organization#ref-arch-1`
-    denotes that (a) a German (Germany) translation of the SSVC decision points
+    Extension order matters. `ssvc/de-DE/.example.organization#ref-arch-1`
+    denotes that (a) an official German (Germany) translation of the SSVC decision points
     is available, and (b) that this translation has been extended with an extension
     by `organization.example` to fit their specific needs for `ref-arch-1`.
 
-    On the other hand, `ssvc//example.organization#ref-arch-1/de-DE`
-    denotes that (a) the `example.organization#ref-arch-1` extension is
+    On the other hand, `ssvc//.example.organization#ref-arch-1/de-DE`
+    denotes that (a) the `.example.organization#ref-arch-1` extension is
     available in the default language (`en-US`), and (b) that this extension has
     been translated into German (Germany).
 
@@ -258,16 +301,20 @@ base_ns -->|/| first
     Imagine an Information Sharing and Analysis Organization (ISAO) `isao.example`
     wants to create an extension to refine an existing decision point in the `ssvc` namespace
     with additional context for a part of their constituency. They could create an extension
-    namespace like `ssvc//example.isao#constituency` to indicate that this extension
+    namespace like `ssvc//.example.isao#constituency` to indicate that this extension
     is specifically tailored for a particular constituency within the ISAO.
     Note the empty first segment, which implies the default language (`en-US`).
 
     If they further chose to create a Polish language version of their extension,
     they would add a language segment _following_ their extension namespace,
-    e.g., `ssvc//example.isao#constituency/pl-PL`. Note that this is different 
-    from a hypothetical `ssvc/pl-PL/example.isao#constituency` extension, which would imply
-    that the `ssvc` namespace has been translated to Polish (Poland) and then extended
-    (in Polish) with the `example.isao#constituency` extension.
+    e.g., `ssvc//.example.isao#constituency/pl-PL`. Note that this is different 
+    from a hypothetical `ssvc/pl-PL/.example.isao#constituency` extension, which would imply
+    that the `ssvc` namespace has been officially translated to Polish (Poland) and then
+    extended (in Polish) with the `.example.isao#constituency` extension.
+
+    It is also different from `ssvc//.example.isao$pl-PL/example.isao#constituency` which
+    denotes that the ISAO did a translation of the `ssvc` namespace to Polish and based
+    the model for their constituency on that translation.
 
 !!! example "Refinement of Concepts for a Specific Constituency"
 
@@ -276,9 +323,9 @@ base_ns -->|/| first
     For example, say that a hypothetical registered namespace `foo`
     has a decision point for `Regulated System=(Y,N)`.
     A medical-focused ISAO might create an extension 
-    `foo//example.med-isao` where they refine the values to refer to specific 
-    regulations. If multiple regulatory regimes exist, they might even have
-    `foo//example.med-isao#regulation-1` and `foo//example.med-isao#regulation-2`
+    `foo//.example.med-isao#specific-regulations` where they refine the values to refer 
+    to specific regulations. If multiple regulatory regimes exist, they might even have
+    `foo//.example.med-isao#regulation-1` and `foo//.example.med-isao#regulation-2`
     to cover assessment of the appropriate regulations.
 
 ### Usage Suggestions
@@ -293,13 +340,15 @@ segment of the extension.
     must be used for any language-based extension.
     Note, however that we do not yet strictly enforce this recommendation in the 
     SSVC codebase outside of the first extension segment.
+    Nevertheless, validators should check that the used strings are valid BCP-47
+    language tags and exist.
 
 !!! example "Translation of a custom extension"
 
     If you have a custom extension that is not a translation of an existing
     decision point, you might use a language tag in a later segment to indicate
     a translation of the extension. 
-    For example, `ssvc//com.example/extension/pl-PL` would indicate that the
+    For example, `ssvc//.example.documentation#extension/pl-PL` would indicate that the
     an extension in the default `en-US` language has been translated to Polish (Poland).
 
 !!! tip "Use Reverse Domain Name Notation for Extensions"
@@ -307,8 +356,8 @@ segment of the extension.
     To avoid conflicts with other users' extensions, we require the use of reverse
     domain name notation for your extensions. This helps to ensure that your
     extensions are unique and easily identifiable.
-    For example, if your organization is `example.com`, you might use an extension
-    like `ssvc//com.example#extension`.
+    For example, if your organization is `documentation.example`, you might use an extension
+    like `ssvc//.example.documentation#extension`.
 
 ## Technical requirements
 
