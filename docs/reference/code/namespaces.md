@@ -362,44 +362,14 @@ segment of the extension.
 ## Technical requirements
 
 The following technical requirements are enforced for SSVC namespaces,
-based on the implementation in `src/ssvc/namespaces.py` and the NS_PATTERN regular expression:
-
-!!! info "Namespace Pattern"
-
-    The regular expression used to validate namespaces is:
-
-    ```python exec="true" idprefix=""
-    
-    from ssvc.utils.patterns import NS_PATTERN
-    
-    print(f"`{NS_PATTERN.pattern}`")
-    ```
-
-### Length Requirements
+based on the implementation in `src/ssvc/namespaces.py`
+and the ABNF specification in
+[src/ssvc/utils/ssvc_namespace_pattern.abnf](src/ssvc/utils/ssvc_namespace_pattern.abnf):
 
 - Namespaces must be between 3 and 1000 characters long.
 
-### Base Namespace Requirements
-
-- Must start with a lowercase letter
-- Must contain at least 3 total characters in the base part (after the optional experimental/private prefix)
-- Must contain only lowercase letters, numbers, dots (`.`), and hyphens (`-`)
-- Must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
-- May optionally start with the experimental/private prefix `{X_PFX}`.
-
-### Extension Requirements (Optional)
-
-- Extensions are optional
-- Extensions must be delineated by slashes (`/`)
-- If any extension segments are present, the following rules apply:
-  - The first extension segment must be a valid BCP-47 language tag or empty (i.e., `//`).
-  - Subsequent extension segments:
-    - must start with a letter (upper or lowercase)
-    - may contain letters, numbers, dots (`.`), hyphens (`-`), and at most one hash (`#`)
-    - must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
-    - if a hash is present, it separates the main part from an optional fragment part
-    - are separated by single forward slashes (`/`)
-- Multiple extension segments are allowed
+(The ABNF is used to generated the regular expressions in
+`src/ssvc/utils/patterns.py`, see the comment in the source code there.)
 
 ## The `ssvc.namespaces` module
 
