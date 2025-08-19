@@ -30,7 +30,8 @@ fragment-seg = 1*ALNUMLOW *( SPECIALCHAR 1*ALNUMLOW )
 extensions = lang-ext [ 1*("/" ext-seg) ]
 
 ; Language extension: either / (empty language extension)
-; or /<bcp47>/ (BCP-47 language code)
+; or /<bcp47> (BCP-47 language code)
+
 lang-ext = "/" /  ( "/" bcp47 )
 
 ; Extension segment between slashes.
