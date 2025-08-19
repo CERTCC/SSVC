@@ -767,18 +767,6 @@ async function get_decision_points() {
     load_trees();
 }
 
-function get_outcomes() {
-    fetch("outcomes/").then(function(d) {
-	d.text().then(function(html) {
-	    new Set(html.match(/[^">]+\.json/g)).forEach(async function(filename) {
-		const response = await fetch("outcomes/" + filename);
-		const data = await response.json()
-		SSVC.outcomes.push({"filename": filename, "data": data});
-	    });
-	});
-    })
-}
-
 function deepSet(form, obj, path) {
     if(!path)
 	path = "";
@@ -1241,7 +1229,6 @@ function restore_session() {
 document.addEventListener("DOMContentLoaded", function () {
     SSVC.form = document.getElementById('ssvcForm');
     get_decision_points();
-    get_outcomes();
     if(localStorage.getItem("SSVC")) {
 	SSVC.form.parentElement.querySelector("[data-session]").style.display = "block";
     }
