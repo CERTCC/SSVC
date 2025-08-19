@@ -44,7 +44,9 @@ from ssvc.decision_points.cvss.confidentiality_requirement import (
     CR_NoX as CR,
 )
 from ssvc.decision_points.cvss.equivalence_set_6 import EQ6
-from ssvc.decision_points.cvss.integrity_impact import INTEGRITY_IMPACT_3_0_0 as VI
+from ssvc.decision_points.cvss.integrity_impact import (
+    INTEGRITY_IMPACT_3_0_0 as VI,
+)
 from ssvc.decision_points.cvss.integrity_requirement import (
     IR_NoX as IR,
 )

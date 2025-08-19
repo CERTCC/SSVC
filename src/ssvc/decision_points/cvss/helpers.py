@@ -27,7 +27,10 @@ import semver
 
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import NOT_DEFINED_X
-from ssvc.decision_points.cvss.base import CvssDecisionPoint, CvssDecisionPoint as DecisionPoint
+from ssvc.decision_points.cvss.base import (
+    CvssDecisionPoint,
+    CvssDecisionPoint as DecisionPoint,
+)
 
 
 def _modify_3(dp: DecisionPoint):
@@ -94,7 +97,9 @@ def _modify_4(dp: DecisionPoint):
         for v in _dp_dict["values"]:
             if v["key"] == "N":
                 v["name"] = "Negligible"
-                v["description"] = v["description"].replace(" no ", " negligible ")
+                v["description"] = v["description"].replace(
+                    " no ", " negligible "
+                )
                 # we need to bump the version for this change
                 version = _dp_dict["version"]
                 ver = semver.Version.parse(version)

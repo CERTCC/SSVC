@@ -23,10 +23,19 @@ Provides the Deployer Patch Application Priority decision table for SSVC.
 #  DM24-0278
 
 from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2 as Automatable
-from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1_1_0 as Exploitation
-from ssvc.decision_points.ssvc.human_impact import HUMAN_IMPACT_2_0_2 as HumanImpact
-from ssvc.decision_points.ssvc.system_exposure import SYSTEM_EXPOSURE_1_0_1 as Exposure
-from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
+from ssvc.decision_points.ssvc.exploitation import (
+    EXPLOITATION_1_1_0 as Exploitation,
+)
+from ssvc.decision_points.ssvc.human_impact import (
+    HUMAN_IMPACT_2_0_2 as HumanImpact,
+)
+from ssvc.decision_points.ssvc.system_exposure import (
+    SYSTEM_EXPOSURE_1_0_1 as Exposure,
+)
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    decision_table_to_longform_df,
+)
 from ssvc.namespaces import NameSpace
 from ssvc.outcomes.ssvc.dsoi import DSOI as DSOI
 
@@ -37,7 +46,8 @@ DEPLOYER_1 = DecisionTable(
     name="Deployer Patch Application Priority",
     description="Decision table for evaluating deployer's patch application priority in SSVC",
     decision_points={
-        dp.id: dp for dp in [Exploitation, Exposure, Automatable, HumanImpact, DSOI]
+        dp.id: dp
+        for dp in [Exploitation, Exposure, Automatable, HumanImpact, DSOI]
     },
     outcome=DSOI.id,
     mapping=[

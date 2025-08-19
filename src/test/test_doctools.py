@@ -156,7 +156,9 @@ class MyTestCase(unittest.TestCase):
                 if "already exists" in line:
                     found = True
                     break
-            self.assertTrue(found, "Expected warning about existing file not found")
+            self.assertTrue(
+                found, "Expected warning about existing file not found"
+            )
 
         # should overwrite the file
         overwrite = True

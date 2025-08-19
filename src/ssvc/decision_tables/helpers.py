@@ -30,6 +30,9 @@ from ssvc.decision_tables.base import (
 )
 
 
+EDGE_LIMIT = 500
+
+
 def write_csv(
     decision_table: "DecisionTable",
     csvfile: str,
@@ -49,12 +52,16 @@ def write_csv(
         parts.append("child_trees")
 
     target_dir = os.path.join(project_base_path, *parts)
-    assert os.path.exists(target_dir), f"Target directory {target_dir} does not exist."
+    assert os.path.exists(
+        target_dir
+    ), f"Target directory {target_dir} does not exist."
 
     csv_path = os.path.join(target_dir, csvfile)
 
     with open(csv_path, "w") as fp:
-        fp.write(decision_table_to_longform_df(decision_table).to_csv(index=index))
+        fp.write(
+            decision_table_to_longform_df(decision_table).to_csv(index=index)
+        )
 
 
 def print_dt_version(dt: DecisionTable, longform=True) -> None:
@@ -75,10 +82,153 @@ def print_dt_version(dt: DecisionTable, longform=True) -> None:
     print(df.to_csv(index=False))
 
 
+def _mapping2mermaid(mapping: list[dict[str:str]], title: str = None) -> str:
+    """
+    Convert a decision table mapping to a Mermaid graph.
+    Args:
+        mapping (list[dict[str:str]]): A list of dictionaries representing the decision table mapping.
+            Each dictionary corresponds to a row in the table, with keys as column names and values as cell values.
+            Each row should have the same keys, representing the columns of the decision table.
+    Returns:
+        str: A string containing a markdown Mermaid graph representation, including the code block markers.
+    """
+    lines = [
+        "```mermaid",
+    ]
+    if title is not None:
+        # add the yaml front matter for the title
+        lines.extend(["---", f"title: {title}", "---"])
+
+    lines.extend(["graph LR", "n1(( ))"])
+    columns = list(mapping[0].keys())
+
+    node_ids = {}  # (col_idx, path_tuple) -> node_id
+    seen_edges = set()  # (parent_id, child_id)
+
+    # Build subgraphs + nodes
+    for col_idx, col in enumerate(columns):
+        subgraph_name = f's{col_idx+1}["{col}"]'
+        lines.append(f"subgraph {subgraph_name}")
+        seen_paths = set()
+        for row in mapping:
+            path = tuple(row[columns[i]] for i in range(col_idx + 1))
+            if path in seen_paths:
+                continue
+            seen_paths.add(path)
+            node_id = "_".join(path) + f"_L{col_idx}"
+            # future: if you want to label the nodes, do that here
+            label = row[columns[col_idx]]
+            lines.append(f"{node_id}([{label}])")
+            node_ids[(col_idx, path)] = node_id
+        lines.append("end")
+
+    # Root → level 0
+    for row in mapping:
+        path = (row[columns[0]],)
+        child_id = node_ids[(0, path)]
+        edge = ("n1", child_id)
+        if edge not in seen_edges:
+            lines.append(f"{edge[0]} --- {edge[1]}")
+            seen_edges.add(edge)
+
+    # Level k-1 → level k
+    for row in mapping:
+        for col_idx in range(1, len(columns)):
+            parent_path = tuple(row[columns[i]] for i in range(col_idx))
+            child_path = parent_path + (row[columns[col_idx]],)
+            parent_id = node_ids[(col_idx - 1, parent_path)]
+            child_id = node_ids[(col_idx, child_path)]
+            edge = (parent_id, child_id)
+            if edge not in seen_edges:
+                # future: if you want to label the links, do that here
+                lines.append(f"{parent_id} --- {child_id}")
+                seen_edges.add(edge)
+                if len(seen_edges) > EDGE_LIMIT:
+                    raise ValueError(
+                        f"Too many edges in the graph: Limit={EDGE_LIMIT}."
+                        "Consider filtering the mapping to reduce complexity."
+                    )
+
+    # Close the graph
+    lines.append("```")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def mermaid_title_from_dt(dt: "DecisionTable") -> str:
+    return f"{dt.name} Decision Table ({dt.namespace}:{dt.key}:{dt.version})"
+
+
+def mapping2mermaid(rows: list[dict[str:str]], title: str = None) -> str:
+    """
+    Convert a decision table mapping to a Mermaid graph.
+    Args:
+        rows (list[dict[str:str]]): A list of dictionaries representing the decision table mapping.
+            Each dictionary corresponds to a row in the table, with keys as column names and values as cell values.
+            Each row should have the same keys, representing the columns of the decision table.
+    Returns:
+        str: A string containing a markdown Mermaid graph representation, including the code block markers.
+    """
+    try:
+        return _mapping2mermaid(rows, title=title)
+    except ValueError as e:
+        # graph is too big, split it into smaller graphs
+        # one graph per value in the first column
+        first_col = list(rows[0].keys())[0]
+        diagrams = []
+
+        # find unique values but keep them in order of appearance
+        _uniq_set = set()
+        uniq_values = []
+        for row in rows:
+            if row[first_col] in _uniq_set:
+                continue
+            _uniq_set.add(row[first_col])
+            uniq_values.append(row[first_col])
+
+        for value in uniq_values:
+            filtered_rows = [row for row in rows if row[first_col] == value]
+            if not filtered_rows:
+                continue
+            try:
+                diagram = _mapping2mermaid(
+                    filtered_rows, title=f"{title} - {first_col}:{value}"
+                )
+                diagrams.append(diagram)
+            except ValueError as e:
+                print(f"Skipping {value} due to error: {e}")
+
+        return (
+            "\n\n".join(diagrams)
+            if diagrams
+            else "No valid diagrams generated."
+        )
+
+
+def dt2df_md(
+    dt: "DecisionTable",
+    longform: bool = True,
+) -> str:
+    """
+    Convert a decision table to a DataFrame.
+    Args:
+        decision_table (DecisionTable): The decision table to convert.
+        longform (bool): Whether to return the longform or shortform DataFrame.
+    Returns:
+        str: A string representation of the DataFrame in CSV format.
+    """
+    if longform:
+        df = decision_table_to_longform_df(dt)
+    else:
+        df = decision_table_to_shortform_df(dt)
+
+    df.index.rename("Row", inplace=True)
+    return df.to_markdown(index=True)
+
+
 def main():
     pass
 
 
 if __name__ == "__main__":
     main()
-

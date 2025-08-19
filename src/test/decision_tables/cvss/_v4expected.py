@@ -1,6 +1,6 @@
 """
 This test helper module provides a complete set of expected values for the CVSS v4 Qualitative Severity Rating Scale (QSR)
-mapped to the CVSS v4 Equivalency Set combinations.
+mapped to the CVSS v4 Equivalence Set combinations.
 
 It was generated based on https://github.com/FIRSTdotorg/cvss-v4-calculator/blob/main/cvss_lookup.js
 """

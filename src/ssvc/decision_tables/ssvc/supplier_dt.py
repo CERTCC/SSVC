@@ -25,10 +25,17 @@ created_at: 7/18/25 1:57 PM
 #  DM24-0278
 
 from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
-from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PublicSafetyImpact
-from ssvc.decision_points.ssvc.technical_impact import LATEST as TechnicalImpact
+from ssvc.decision_points.ssvc.public_safety_impact import (
+    LATEST as PublicSafetyImpact,
+)
+from ssvc.decision_points.ssvc.technical_impact import (
+    LATEST as TechnicalImpact,
+)
 from ssvc.decision_points.ssvc.utility import LATEST as Utility
-from ssvc.decision_tables.base import DecisionTable, decision_table_to_longform_df
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    decision_table_to_longform_df,
+)
 from ssvc.namespaces import NameSpace
 from ssvc.outcomes.ssvc.dsoi import LATEST as DSOI
 
@@ -40,7 +47,13 @@ SUPPLIER_1 = DecisionTable(
     description="Decision table for evaluating supplier patch development priority in SSVC",
     decision_points={
         dp.id: dp
-        for dp in [Exploitation, Utility, TechnicalImpact, PublicSafetyImpact, DSOI]
+        for dp in [
+            Exploitation,
+            Utility,
+            TechnicalImpact,
+            PublicSafetyImpact,
+            DSOI,
+        ]
     },
     outcome=DSOI.id,
     mapping=[

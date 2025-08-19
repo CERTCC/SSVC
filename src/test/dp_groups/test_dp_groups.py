@@ -35,9 +35,15 @@ class MyTestCase(unittest.TestCase):
                 description=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    DecisionPointValue(name="foo", key="FOO", description="foo"),
-                    DecisionPointValue(name="bar", key="BAR", description="bar"),
-                    DecisionPointValue(name="baz", key="BAZ", description="baz"),
+                    DecisionPointValue(
+                        name="foo", key="FOO", description="foo"
+                    ),
+                    DecisionPointValue(
+                        name="bar", key="BAR", description="bar"
+                    ),
+                    DecisionPointValue(
+                        name="baz", key="BAZ", description="baz"
+                    ),
                 ),
             )
             self.dps.append(dp)

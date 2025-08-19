@@ -345,7 +345,9 @@ CVSSv4 = DecisionPointGroup(
     name="CVSSv4",
     description="All decision points for CVSS v4 (including supplemental metrics)",
     version="4.0.0",
-    decision_points=tuple(_BASE_4 + _THREAT_4 + _ENVIRONMENTAL_4 + _SUPPLEMENTAL_4),
+    decision_points=tuple(
+        _BASE_4 + _THREAT_4 + _ENVIRONMENTAL_4 + _SUPPLEMENTAL_4
+    ),
 )
 
 CVSSv4_Equivalence_Sets = DecisionPointGroup(

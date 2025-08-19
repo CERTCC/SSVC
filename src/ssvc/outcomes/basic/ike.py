@@ -31,9 +31,13 @@ from ssvc.namespaces import NameSpace
 
 _DELETE = DecisionPointValue(name="Delete", key="D", description="Delete")
 
-_DELEGATE = DecisionPointValue(name="Delegate", key="G", description="Delegate")
+_DELEGATE = DecisionPointValue(
+    name="Delegate", key="G", description="Delegate"
+)
 
-_SCHEDULE = DecisionPointValue(name="Schedule", key="S", description="Schedule")
+_SCHEDULE = DecisionPointValue(
+    name="Schedule", key="S", description="Schedule"
+)
 
 _DO = DecisionPointValue(name="Do", key="O", description="Do")
 

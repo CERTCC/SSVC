@@ -54,7 +54,9 @@ class MyTestCase(unittest.TestCase):
             "values",
         ]
         for attr in required_attrs:
-            self.assertTrue(hasattr(self.s1, attr), f"Attribute {attr} is missing")
+            self.assertTrue(
+                hasattr(self.s1, attr), f"Attribute {attr} is missing"
+            )
         # namespace is a valid NamespaceString
         self.assertIsInstance(self.s1.namespace, str)
         self.assertRegex(
@@ -83,7 +85,8 @@ class MyTestCase(unittest.TestCase):
                 f"Value {value} is not a MinimalDecisionPoint",
             )
             self.assertTrue(
-                hasattr(value, "key"), f"Attribute 'key' is missing from {value}"
+                hasattr(value, "key"),
+                f"Attribute 'key' is missing from {value}",
             )
             self.assertIsInstance(value.key, str)
 
@@ -129,7 +132,9 @@ class MyTestCase(unittest.TestCase):
         self.assertIsNone(value.description)
 
         # Test with empty strings
-        value_empty = MinimalDecisionPointValue(key="test_key", name="", description="")
+        value_empty = MinimalDecisionPointValue(
+            key="test_key", name="", description=""
+        )
         self.assertIsNone(value_empty.name)
         self.assertIsNone(value_empty.description)
 
@@ -193,9 +198,7 @@ class MyTestCase(unittest.TestCase):
         ]
 
         for uri in uris:
-            ref = selection.Reference(
-                uri=uri, summary="Test description"
-            )
+            ref = selection.Reference(uri=uri, summary="Test description")
 
             self.assertIn(uri, str(ref.uri))
             self.assertEqual(ref.summary, "Test description")
@@ -228,7 +231,6 @@ class MyTestCase(unittest.TestCase):
             )
 
             self.assertIn(uri, str(ref.uri))
-
 
     def test_selection_list_validators(self):
         """Test SelectionList validators."""
@@ -317,7 +319,9 @@ class MyTestCase(unittest.TestCase):
         schema = SelectionList.model_json_schema()
 
         # Check schema metadata
-        self.assertEqual(schema["title"], "Decision Point Value Selection List")
+        self.assertEqual(
+            schema["title"], "Decision Point Value Selection List"
+        )
         self.assertEqual(
             schema["$schema"], "https://json-schema.org/draft/2020-12/schema"
         )
