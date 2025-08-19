@@ -54,7 +54,7 @@ class TestNamespacePattern(unittest.TestCase):
             "x_example.test.test#test/pl-PL/.example.test#another-collection/.org.example#a-different-collection/en-CA-newfound",  # valid BCP-47 tag and multiple segments
             "example.test",  # valid namespace with dots following reverse domain notation
             "x_example.test#test",  # valid namespace with x_ prefix and dots following reverse domain notation
-            "au.com.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD
+           "aa.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD based on private use of ISO-3166
             "x_au.com.example#bar"  # valid namespace with x_ prefix and dots following reverse domain notation
             "abc//.example.test#test",
             "abc//.com.au.example#test",
