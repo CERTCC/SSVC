@@ -14,7 +14,7 @@ reg-base = ns-core [ "#" fragment-seg ]
 ; ns-core starts with a lowercase letter and may have '.' or '-' separators.
 ; Consecutive '.' or '-' are not allowed.
 ; It needs at least 3 characters.
-ns-core = LOWER ALNUMLOW 1*( [ "." / "-" ] 1*ALNUMLOW)
+ns-core = LOWER ALNUMLOW 1*( SPECIALCHAR 1*ALNUMLOW)
 
 x-name = reverse-dns "#" fragment-seg
 
@@ -25,7 +25,7 @@ reverse-dns = label 1*("." label)
 ; Each label must be between 1 and 63 characters long
 label = ALNUMLOW [ *61(ALNUMLOWDASH)  ALNUMLOW ]
 
-fragment-seg = 1*ALNUMLOW *( ("." / "-") 1*ALNUMLOW )
+fragment-seg = 1*ALNUMLOW *( SPECIALCHAR 1*ALNUMLOW )
 
 extensions = lang-ext [ 1*("/" ext-seg) ]
 
