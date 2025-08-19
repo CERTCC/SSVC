@@ -122,7 +122,7 @@ class TestMixins(unittest.TestCase):
         # and then follow `x-name = reverse-dns  "#" fragment-seg`
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_com.example.a{randint(1000,1000000)}#foo"
+            ns = f"x_example.test{randint(1000,1000000)}#test"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
