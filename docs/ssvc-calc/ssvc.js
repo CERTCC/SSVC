@@ -112,13 +112,6 @@ $(function () {
     reset_form();
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
-    $('[data-toggle="tooltip"]').tooltip();
-    if(localStorage.getItem("beenhere")) {
-	tooltip_cycle_through();
-    } else {
-	$('#helper').show();
-	localStorage.setItem("beenhere",1);
-    }
     $.getJSON(registry_url).done(function(registry) {
 	let defaultTree;
 	if (registry.types && registry.types.DecisionPoint &&
@@ -857,7 +850,6 @@ function check_select(ev) {
 	    }
 	});
     }
-    
 }
 function process_ssvc(ssvc, winput) {
     /* Assume flat SSVC namespace for now */
@@ -867,8 +859,9 @@ function process_ssvc(ssvc, winput) {
 	/* Update the title like Exploitation with this data*/
 	try {
 	    let h4 =  dpInput.parentElement.parentElement.parentElement.childNodes[0];
-	    h4.setAttribute("title", "Updated using Public Provider "
+	    h4.setAttribute("title", "Updated using public provider "
 			    + ssvc.provider +  " on " + ssvc.data.timestamp);
+	    
 	} catch (err) {
 	    console.log(err);
 	}
@@ -897,11 +890,6 @@ function process_ssvc(ssvc, winput) {
 		const match = 'input[name*="' + selection.name.toLowerCase() + '" i]';
 		const dpInputs = dpContainer.querySelectorAll(match);
 		dpInputs.forEach(function(dpInput) {
-		    try {
-			dpInput.parentElement.parentElement.parentElement.childNodes[0].removeAttribute("title");
-		    } catch(err) {
-			console.log(err);
-		    }
 		    dpInput.removeAttribute("public-update");
 		    selection.values.forEach(function(value) {
 			if(value.toLowerCase() == dpInput.value.toLowerCase()) 
@@ -954,10 +942,14 @@ function cve_get(ev) {
 	    if(('cna' in cveJson.containers) &&
 	       ('metrics' in cveJson.containers['cna']) &&
 	       (cveJson.containers['cna'].metrics.length > 0)) {
-		if(cveJson.containers['cna'].metrics.some(function(metric) {
+		let provider = "cna";
+		let cna = cveJson.containers['cna'];
+		if(cna.providerMetadata && cna.providerMetadata.shortName)
+                        provider = "cna:" + cna.providerMetadata.shortName;
+		if(cna.metrics.some(function(metric) {
 		    if(('other' in metric) && ('type' in metric.other) &&
 		       (metric.other.type.toLowerCase() == "ssvc")) {
-			ssvc['provider'] = 'cna';
+			ssvc['provider'] = provider;
 			ssvc['data'] = metric.other.content;
 			return true;
 		    }
@@ -1122,7 +1114,7 @@ function parse_json(xraw,paused) {
     tm.decision_points.map((x,index) => {
 	let h4 = $("<h4>").text(x.label)
 	    .css({"border-bottom": "2px solid aqua","font-size": "unset"})
-	    .attr("data-dp",JSON.stringify(x));
+	    .attr({"data-dp":JSON.stringify(x),title: x.label});
 	const dpcol = $("<div>").append(h4);
 	dpcol.css({display: "inline-block", padding: "2px",border: "2px solid aqua"});
 	create_short_keys(x,duniq_keys);
