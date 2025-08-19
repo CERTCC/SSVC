@@ -73,7 +73,7 @@ class TestNamespacePattern(unittest.TestCase):
             "abc/invalid-bcp-47",  # not in enum (but that's ok for the pattern), not a valid BCP-47 tag
             "x_custom/extension",  # not a valid BCP-47 tag
             "x_example.test/not-bcp-47",  # not a valid BCP-47 tag
-            "x_com.example#foo" + "oo" * 990,  # exceeds max length
+            "x_example.test#test" + "0" * 990,  # exceeds max length
             "ssvc$de-DE",  # official translations / base language are at the first extension level
             "anssi#800-30$fr-FR",  # official translations / base language are at the first extension level
             "x_gov.nist#800-30$de-DE",  # official translations / base language are at the first extension level
