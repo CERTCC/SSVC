@@ -30,7 +30,9 @@ CVSS Equivalence Set 5 Decision Table
 
 
 from ssvc.decision_points.cvss.equivalence_set_5 import EQ5
-from ssvc.decision_points.cvss.exploit_maturity import EXPLOIT_MATURITY_2_NoX as E
+from ssvc.decision_points.cvss.exploit_maturity import (
+    EXPLOIT_MATURITY_2_NoX as E,
+)
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 

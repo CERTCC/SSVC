@@ -24,7 +24,9 @@ _DECLINE = DecisionPointValue(name="Decline", key="D", description="Decline")
 
 _TRACK = DecisionPointValue(name="Track", key="T", description="Track")
 
-_COORDINATE = DecisionPointValue(name="Coordinate", key="C", description="Coordinate")
+_COORDINATE = DecisionPointValue(
+    name="Coordinate", key="C", description="Coordinate"
+)
 
 _DECLINE_2 = DecisionPointValue(
     name="Decline", key="D", description="Do not act on the report."

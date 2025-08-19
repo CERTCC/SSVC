@@ -35,9 +35,13 @@ _RECONSIDER = DecisionPointValue(
     name="Reconsider Later", key="R", description="Reconsider Later"
 )
 
-_EASY_WIN = DecisionPointValue(name="Easy Win", key="E", description="Easy Win")
+_EASY_WIN = DecisionPointValue(
+    name="Easy Win", key="E", description="Easy Win"
+)
 
-_DO_FIRST = DecisionPointValue(name="Do First", key="F", description="Do First")
+_DO_FIRST = DecisionPointValue(
+    name="Do First", key="F", description="Do First"
+)
 
 VALUE_COMPLEXITY = DecisionPoint(
     name="Value, Complexity",

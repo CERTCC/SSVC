@@ -24,8 +24,12 @@ Provides the Coordinator Publish Decision Table for SSVC.
 #  DM24-0278
 
 from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
-from ssvc.decision_points.ssvc.public_value_added import LATEST as PublicValueAdded
-from ssvc.decision_points.ssvc.supplier_involvement import LATEST as SupplierInvolvement
+from ssvc.decision_points.ssvc.public_value_added import (
+    LATEST as PublicValueAdded,
+)
+from ssvc.decision_points.ssvc.supplier_involvement import (
+    LATEST as SupplierInvolvement,
+)
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 from ssvc.outcomes.ssvc.publish import LATEST as Priority
@@ -38,7 +42,12 @@ V1_0_0 = DecisionTable(
     description="This decision table is used to determine the priority of a coordinator publish.",
     decision_points={
         dp.id: dp
-        for dp in [SupplierInvolvement, Exploitation, PublicValueAdded, Priority]
+        for dp in [
+            SupplierInvolvement,
+            Exploitation,
+            PublicValueAdded,
+            Priority,
+        ]
     },
     outcome=Priority.id,
     mapping=[

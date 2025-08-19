@@ -88,7 +88,7 @@ class TestNamespacePattern(unittest.TestCase):
             "ab",  # too short
             "x_",  # too short after prefix
             "x_x_some-weird-private-one",  # double x_ not allowed
-            "x_example.test///org.example#fragment", # three slashes in a row (was an mistake in ABNF previously)
+            "x_example.test///org.example#fragment",  # three slashes in a row (was an mistake in ABNF previously)
         ]
 
     def test_ns_pattern(self):

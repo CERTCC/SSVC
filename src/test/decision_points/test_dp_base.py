@@ -60,7 +60,13 @@ class MyTestCase(unittest.TestCase):
         self.registry.reset()
 
     def test_decision_point_basics(self):
-        from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+        from ssvc._mixins import (
+            _Base,
+            _Keyed,
+            _Namespaced,
+            _Valued,
+            _Versioned,
+        )
 
         # inherits from mixins
         mixins = [_Valued, _Base, _Keyed, _Versioned, _Namespaced]
@@ -86,7 +92,11 @@ class MyTestCase(unittest.TestCase):
         (objtype, ns, key, version) = _get_keys(dp)
         self.assertEqual(
             dp,
-            self.registry.types[objtype].namespaces[ns].keys[key].versions[version].obj,
+            self.registry.types[objtype]
+            .namespaces[ns]
+            .keys[key]
+            .versions[version]
+            .obj,
         )
 
     def test_ssvc_value(self):

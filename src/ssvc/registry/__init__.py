@@ -57,7 +57,9 @@ def _handle_registration(obj):
 
         if isinstance(obj, (DecisionPoint, DecisionPointValue, DecisionTable)):
             registry.register(obj)
-            logger.debug("Registered object %s of type %s", obj.id, type(obj).__name__)
+            logger.debug(
+                "Registered object %s of type %s", obj.id, type(obj).__name__
+            )
         else:
             logger.warning(
                 f"Object {obj.id} is not a recognized SSVC type: {type(obj)}"

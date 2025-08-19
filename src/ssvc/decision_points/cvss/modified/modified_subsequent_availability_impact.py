@@ -37,9 +37,11 @@ def main():
     from ssvc.decision_points.helpers import print_versions_and_diffs
 
     print_versions_and_diffs(VERSIONS)
-    print_versions_and_diffs([
-        MSA_NoX,
-    ])
+    print_versions_and_diffs(
+        [
+            MSA_NoX,
+        ]
+    )
 
 
 if __name__ == "__main__":

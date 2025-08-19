@@ -28,8 +28,12 @@ Provides a decision table modeling equivalence set 2 from CVSS v4"""
 # 0	AC:L and AT:N	AC:L/AT:N
 # 1	not (AC:L and AT:N)	AC:L/AT:P or AC:H/AT:N
 
-from ssvc.decision_points.cvss.attack_complexity import ATTACK_COMPLEXITY_3_0_1 as AC
-from ssvc.decision_points.cvss.attack_requirements import ATTACK_REQUIREMENTS_1 as AT
+from ssvc.decision_points.cvss.attack_complexity import (
+    ATTACK_COMPLEXITY_3_0_1 as AC,
+)
+from ssvc.decision_points.cvss.attack_requirements import (
+    ATTACK_REQUIREMENTS_1 as AT,
+)
 
 from ssvc.decision_points.cvss.equivalence_set_2 import EQ2
 from ssvc.decision_tables.base import DecisionTable

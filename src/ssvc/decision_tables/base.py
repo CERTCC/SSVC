@@ -28,7 +28,12 @@ from typing import ClassVar, Literal
 import pandas as pd
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from ssvc._mixins import _Commented, _GenericSsvcObject, _Registered, _SchemaVersioned
+from ssvc._mixins import (
+    _Commented,
+    _GenericSsvcObject,
+    _Registered,
+    _SchemaVersioned,
+)
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.registry import get_registry
 from ssvc.utils.field_specs import DecisionPointDict
@@ -145,7 +150,11 @@ class DecisionTable(
 
         outcome_key = self.outcome
 
-        dps = [dp for dpid, dp in self.decision_points.items() if dpid != outcome_key]
+        dps = [
+            dp
+            for dpid, dp in self.decision_points.items()
+            if dpid != outcome_key
+        ]
         mapping = dplist_to_toposort(dps)
 
         # mapping is a list of dicts
@@ -256,7 +265,9 @@ class DecisionTable(
                     f"Duplicate mapping found for decision point combination: {k}."
                 )
             else:
-                raise ValueError(f"Unexpected count in mapping coverage check.{k}: {v}")
+                raise ValueError(
+                    f"Unexpected count in mapping coverage check.{k}: {v}"
+                )
 
         # if you made it to here, all the counts were 1, so we're good
 
@@ -290,7 +301,9 @@ class DecisionTable(
             logger.warning("Topological order check found problems:")
             for problem in problems:
                 logger.warning(f"Problem: {problem}")
-            raise ValueError("Topological order check failed. See logs for details.")
+            raise ValueError(
+                "Topological order check failed. See logs for details."
+            )
         else:
             logger.debug("Topological order check passed with no problems.")
 
@@ -509,11 +522,15 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
             df[col] = newcol
 
     # lowercase all cell values
-    df = df.apply(lambda col: col.map(lambda x: x.lower() if isinstance(x, str) else x))
+    df = df.apply(
+        lambda col: col.map(lambda x: x.lower() if isinstance(x, str) else x)
+    )
 
     # Rename columns using DP_REGISTRY
 
-    rename_map = {col: _rename_column(col) for col in df.columns if _col_check(col)}
+    rename_map = {
+        col: _rename_column(col) for col in df.columns if _col_check(col)
+    }
 
     df = df.rename(
         columns=rename_map,

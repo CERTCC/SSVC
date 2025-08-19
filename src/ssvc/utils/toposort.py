@@ -35,7 +35,9 @@ logger = logging.getLogger(__name__)
 
 
 def graph_from_dplist(decision_points: list[DecisionPoint]) -> nx.DiGraph:
-    logger.debug(f"Creating graph from dplist: {[dp.id for dp in decision_points]}")
+    logger.debug(
+        f"Creating graph from dplist: {[dp.id for dp in decision_points]}"
+    )
     value_lookup = dplist_to_value_lookup(decision_points)
     value_tuples = [tuple(v.keys()) for v in value_lookup]
     logger.debug(f"Value tuples: {value_tuples}")
@@ -65,7 +67,7 @@ def graph_from_value_tuples(value_tuples: list[tuple[int, ...]]) -> nx.DiGraph:
                 neighbor = tuple(neighbor)
                 if neighbor in G:
                     G.add_edge(node, neighbor)
-                    
+
     return G
 
 
@@ -83,7 +85,9 @@ def dplist_to_lookup(decision_points: list[DecisionPoint]) -> dict[int, str]:
     return dp_lookup
 
 
-def lookup_value(t: tuple[int, ...], lookup: list[dict[int, str]]) -> tuple[str, ...]:
+def lookup_value(
+    t: tuple[int, ...], lookup: list[dict[int, str]]
+) -> tuple[str, ...]:
     #     given
     # t = (0, 0, 0)
     # lookup = [{0: 'V', 1: 'R', 2: 'S', 3: 'HS'}, {0: 'H', 1: 'S', 2: 'B', 3: 'N'}, {0: 'F', 1: 'R', 2: 'B', 3: 'N'}]
@@ -92,14 +96,18 @@ def lookup_value(t: tuple[int, ...], lookup: list[dict[int, str]]) -> tuple[str,
     return tuple(l)
 
 
-def tuple_to_dict(t: tuple[str, ...], lookup: dict[int, str]) -> dict[str, str]:
+def tuple_to_dict(
+    t: tuple[str, ...], lookup: dict[int, str]
+) -> dict[str, str]:
     #     given
     # t = ('V', 'H', 'F')
     # return {'ER': 'V', 'GM': 'H', 'RC': 'F'}
     return {lookup[i]: t[i] for i in range(len(t))}
 
 
-def dplist_to_toposort(decision_points: list[DecisionPoint]) -> list[dict[str, str]]:
+def dplist_to_toposort(
+    decision_points: list[DecisionPoint],
+) -> list[dict[str, str]]:
     logger.debug("Creating graph from list of decision points")
     G = graph_from_dplist(decision_points)
     logger.debug(
@@ -107,7 +115,9 @@ def dplist_to_toposort(decision_points: list[DecisionPoint]) -> list[dict[str, s
     )
     sorted_nodes = nx.topological_sort(G)
 
-    logger.debug("Topological sort completed, converting graph nodes to dictionaries")
+    logger.debug(
+        "Topological sort completed, converting graph nodes to dictionaries"
+    )
     sorted_list = []
     dp_lookup = dplist_to_lookup(decision_points)
     value_lookup = dplist_to_value_lookup(decision_points)
