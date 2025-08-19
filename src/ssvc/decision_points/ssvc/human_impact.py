@@ -44,6 +44,13 @@ LOW_3 = DecisionPointValue(
     description="Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
+LOW_4 = DecisionPointValue(
+    name="Low",
+    key="L",
+    description="Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)",
+)
+
+
 MEDIUM_1 = DecisionPointValue(
     name="Medium",
     key="M",
@@ -62,6 +69,13 @@ MEDIUM_3 = DecisionPointValue(
     description="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
+MEDIUM_4 = DecisionPointValue(
+    name="Medium",
+    key="M",
+    description="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))",
+)
+
+
 HIGH_1 = DecisionPointValue(
     name="High",
     key="H",
@@ -79,6 +93,12 @@ HIGH_3 = DecisionPointValue(
     name="High",
     key="H",
     description="(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
+)
+
+HIGH_4 = DecisionPointValue(
+    name="High",
+    key="H",
+    description="(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
 )
 
 VERY_HIGH_1 = DecisionPointValue(
@@ -127,10 +147,25 @@ HUMAN_IMPACT_2_0_1 = SsvcDecisionPoint(
     ),
 )
 
+HUMAN_IMPACT_2_0_2 = SsvcDecisionPoint(
+    name="Human Impact",
+    description="Human Impact is a combination of Safety and Mission impacts.",
+    key="HI",
+    version="2.0.2",
+    values=(
+        LOW_4,
+        MEDIUM_4,
+        HIGH_4,
+        VERY_HIGH_1,
+    ),
+)
+
+
 VERSIONS = (
     MISSION_AND_WELL_BEING_IMPACT_1,
     HUMAN_IMPACT_2,
     HUMAN_IMPACT_2_0_1,
+    HUMAN_IMPACT_2_0_2,
 )
 LATEST = VERSIONS[-1]
 

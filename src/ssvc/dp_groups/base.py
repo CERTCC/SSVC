@@ -22,71 +22,91 @@
 """
 Provides a DecisionPointGroup object for use in SSVC.
 """
+from collections.abc import MutableMapping
+from typing import Literal
 
-import itertools
-from typing import Generator
+from pydantic import BaseModel, model_validator
 
-from pydantic import BaseModel
-
-from ssvc._mixins import _Base, _SchemaVersioned
+from ssvc._mixins import _Base, _SchemaVersioned, _Versioned
 from ssvc.decision_points.base import (
     DecisionPoint,
-    ValueSummary,
 )
 
+SCHEMA_VERSION = "2.0.0"
 
-class DecisionPointGroup(_Base, _SchemaVersioned, BaseModel):
+
+class DecisionPointGroup(
+    _Base, _SchemaVersioned, _Versioned, BaseModel, MutableMapping
+):
     """
-    Models a group of decision points.
+    Models a group of decision points as a dictionary, keyed by their ID.
     """
 
-    decision_points: tuple[DecisionPoint, ...]
+    decision_points: dict[str, DecisionPoint]
 
-    def __iter__(self) -> Generator[DecisionPoint, None, None]:
+    schemaVersion: Literal[SCHEMA_VERSION]
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_schema_version(cls, data):
         """
-        Allow iteration over the decision points in the group.
+        Set the schema version to the current version if not already set.
         """
+        if "schemaVersion" not in data:
+            data["schemaVersion"] = SCHEMA_VERSION
+        return data
+
+    @model_validator(mode="before")
+    @classmethod
+    def transform_decision_points(cls, data):
+        if isinstance(data, dict) and "decision_points" in data:
+            # If decision_points is a list/tuple, convert to dictionary
+            # this allows us to handle the older way of defining decision point groups
+            dp_value = data["decision_points"]
+            if isinstance(dp_value, (list, tuple)):
+                data["decision_points"] = {dp.id: dp for dp in dp_value}
+        return data
+
+    # dunder methods to allow dict-like access in conjunction with MutableMapping abstract base class
+    def __getitem__(self, key):
+        return self.decision_points[key]
+
+    def __setitem__(self, key, value):
+        if not isinstance(value, DecisionPoint):
+            raise TypeError("Value must be a DecisionPoint")
+        self.decision_points[key] = value
+
+    def __delitem__(self, key):
+        del self.decision_points[key]
+
+    def __iter__(self):
         return iter(self.decision_points)
 
-    def __len__(self) -> int:
-        """
-        Allow len() to be called on the group.
-        """
+    def __len__(self):
         return len(self.decision_points)
 
-    @property
-    def decision_points_dict(self) -> dict[str, DecisionPoint]:
+    def add(self, decision_point: DecisionPoint) -> None:
         """
-        Return a dictionary of decision points keyed by their name.
+        Add a decision point to the group.
         """
-        return {dp.str: dp for dp in self.decision_points}
+        if decision_point.id in self.decision_points:
+            # are they the same?
+            existing_dp = self.decision_points[decision_point.id]
+            if existing_dp == decision_point:
+                # this is a no-op, they are the same
+                return
+            # otherwise, raise an error
+            raise ValueError(
+                f"Decision point {decision_point.id} already exists in the group."
+            )
 
-    @property
-    def decision_points_str(self) -> list[str]:
-        """
-        Return a list of decision point names.
-        """
-        return list(self.decision_points_dict.keys())
-
-    def combination_strings(self) -> Generator[tuple[str, ...], None, None]:
-        """
-        Return a list of tuples of the value short strings for all combinations of the decision points.
-        """
-        for combo in self.combinations():
-            yield tuple(str(x) for x in combo)
-
-    def combinations(self) -> Generator[tuple[ValueSummary, ...], None, None]:
-        """
-        Return a list of tuples of the value summaries for all combinations of the decision points.
-        """
-        value_tuples = [dp.value_summaries for dp in self.decision_points]
-        for combo in itertools.product(*value_tuples):
-            yield combo
+        # set the decision point in the dictionary
+        self.decision_points[decision_point.id] = decision_point
 
 
 def get_all_decision_points_from(
     *groups: list[DecisionPointGroup],
-) -> tuple[DecisionPoint, ...]:
+) -> list[DecisionPoint]:
     """
     Given a list of DecisionPointGroup objects, return a list of all
     the unique DecisionPoint objects contained in those groups.
@@ -95,25 +115,19 @@ def get_all_decision_points_from(
         groups (list): A list of SsvcDecisionPointGroup objects.
 
     Returns:
-        list: A list of SsvcDecisionPoint objects.
+        list: A list of unique SsvcDecisionPoint objects.
     """
-    dps = []
-    seen = set()
 
+    # each group has a decision_points dict, we need to collect all the decision points
+    new_dict = {}
     for group in groups:
-        for dp in group.decision_points:
-            if dp in dps:
-                # skip duplicates
-                continue
-            key = (dp.name, dp.version)
-            if key in seen:
-                # skip duplicates
-                continue
-            # keep non-duplicates
-            dps.append(dp)
-            seen.add(key)
-
-    return tuple(dps)
+        # we could have just done a dict update, but want to ensure uniqueness
+        # even if the decision point groups use non-standard keys for their
+        # decision points dict. So we'll build a new dict with known consistent keys.
+        for dp in group.decision_points.values():
+            new_dict[dp.id] = dp
+    # now we have a dictionary of all decision points, we can return them as a tuple
+    return list(new_dict.values())
 
 
 def main():

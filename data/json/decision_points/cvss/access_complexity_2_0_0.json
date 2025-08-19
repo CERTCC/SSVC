@@ -1,15 +1,15 @@
 {
+  "namespace": "cvss",
+  "key": "AC",
+  "version": "2.0.0",
   "name": "Access Complexity",
   "description": "This metric measures the complexity of the attack required to exploit the vulnerability once an attacker has gained access to the target system.",
-  "namespace": "cvss",
-  "version": "2.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "AC",
+  "schemaVersion": "2.0.0",
   "values": [
     {
-      "key": "L",
-      "name": "Low",
-      "description": "Specialized access conditions or extenuating circumstances do not exist."
+      "key": "H",
+      "name": "High",
+      "description": "Specialized access conditions exist."
     },
     {
       "key": "M",
@@ -17,9 +17,9 @@
       "description": "The access conditions are somewhat specialized."
     },
     {
-      "key": "H",
-      "name": "High",
-      "description": "Specialized access conditions exist."
+      "key": "L",
+      "name": "Low",
+      "description": "Specialized access conditions or extenuating circumstances do not exist."
     }
   ]
 }

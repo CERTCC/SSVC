@@ -35,19 +35,19 @@ from pydantic import (
 
 from ssvc._mixins import (
     _Base,
+    _GenericSsvcObject,
     _Keyed,
-    _Namespaced,
     _Timestamped,
     _Valued,
-    _Versioned,
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
+from ssvc.utils.misc import order_schema
 
 SCHEMA_VERSION = "2.0.0"
 
 
-class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
+class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
     """
     A minimal representation of a decision point value.
     Intended to parallel the DecisionPointValue object, but with fewer required fields.
@@ -81,7 +81,7 @@ class MinimalDecisionPointValue(_Base, _Keyed, BaseModel):
         return data
 
 
-class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
+class Selection(_Valued, _GenericSsvcObject, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     While the Selection object parallels the DecisionPoint object, it is intentionally minimal, with
@@ -126,7 +126,8 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
             "key": decision_point.key,
             "version": decision_point.version,
             "values": [
-                MinimalDecisionPointValue(key=val.key) for val in decision_point.values
+                MinimalDecisionPointValue(key=val.key)
+                for val in decision_point.values
             ],
         }
         for attr in ("name", "description"):
@@ -157,7 +158,9 @@ class Selection(_Valued, _Versioned, _Keyed, _Namespaced, _Base, BaseModel):
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
-                field for field in schema["required"] if field not in not_required
+                field
+                for field in schema["required"]
+                if field not in not_required
             ]
         return schema
 
@@ -171,16 +174,18 @@ class Reference(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     uri: AnyUrl
-    description: str
+    summary: str
 
     # override schema generation to ensure that description is not required
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
-        not_required = ["description"]
+        not_required = ["summary"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
-                field for field in schema["required"] if field not in not_required
+                field
+                for field in schema["required"]
+                if field not in not_required
             ]
         return schema
 
@@ -240,15 +245,15 @@ class SelectionList(_Timestamped, BaseModel):
             [
                 {
                     "uri": "https://example.com/decision_points",
-                    "description": "Documentation for a set of decision points",
+                    "summary": "Documentation for a set of decision points",
                 },
                 {
                     "uri": "https://example.org/definitions/dp2.json",
-                    "description": "JSON representation of decision point 2",
+                    "summary": "JSON representation of decision point 2",
                 },
                 {
                     "uri": "https://example.com/ssvc/x_com.example/decision_points.json",
-                    "description": "A JSON file containing extension decision points in the x_com.example namespace",
+                    "summary": "A JSON file containing extension decision points in the x_com.example namespace",
                 },
             ],
         ],
@@ -261,7 +266,7 @@ class SelectionList(_Timestamped, BaseModel):
             [
                 {
                     "uri": "https://example.com/report",
-                    "description": "A report on which the selections were based",
+                    "summary": "A report on which the selections were based",
                 },
             ]
         ],
@@ -276,7 +281,9 @@ class SelectionList(_Timestamped, BaseModel):
     # target_ids should be a non-empty list if not None
     @field_validator("target_ids", mode="before")
     @classmethod
-    def validate_target_ids(cls, value: Optional[list[str]]) -> Optional[list[str]]:
+    def validate_target_ids(
+        cls, value: Optional[list[str]]
+    ) -> Optional[list[str]]:
         """
         Validate the target_ids field.
         If target_ids is provided, it must be a non-empty list of strings.
@@ -341,31 +348,12 @@ class SelectionList(_Timestamped, BaseModel):
                 if isinstance(prop, dict) and "required" in prop:
                     # remove non-required fields from the required list
                     prop["required"] = [
-                        r for r in prop["required"] if r not in non_required_fields
+                        r
+                        for r in prop["required"]
+                        if r not in non_required_fields
                     ]
 
-        # preferred order of fields, just setting for convention
-        preferred_order = [
-            "$schema",
-            "$id",
-            "title",
-            "description",
-            "schemaVersion",
-            "type",
-            "$defs",
-            "required",
-            "properties",
-            "additionalProperties",
-        ]
-
-        # create a new dict with the preferred order of fields first
-        ordered_fields = {k: schema[k] for k in preferred_order if k in schema}
-        # add the rest of the fields in their original order
-        for k in schema:
-            if k not in ordered_fields:
-                ordered_fields[k] = schema[k]
-
-        return ordered_fields
+        return order_schema(schema)
 
 
 def main() -> None:
@@ -394,7 +382,11 @@ def main() -> None:
         ],
     )
 
-    print(selections.model_dump_json(indent=2, exclude_none=True, exclude_unset=True))
+    print(
+        selections.model_dump_json(
+            indent=2, exclude_none=True, exclude_unset=True
+        )
+    )
 
     print("# Schema for SelectionList")
     schema = SelectionList.model_json_schema()

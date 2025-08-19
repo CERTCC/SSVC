@@ -2,7 +2,7 @@
 
 We use namespaces in SSVC to organize the various components of the framework.
 The bulk of our work is done in the `ssvc` namespace, which contains the core
-decision points for SSVC. 
+decision points for SSVC.
 
 !!! question "Why does SSVC need namespaces?"
 
@@ -54,7 +54,6 @@ subgraph base_ns[Base Namespace]
 end
 ```
 
-
 !!! info inline end "Current Registered Namespaces"
 
     The SSVC project currently has a set of registered namespaces that are
@@ -76,7 +75,7 @@ A list of the current registered namespaces can be found in the sidebar.
 
 Registered namespaces are intended to be used as follows:
 
-- Objects in the `ssvc` namespace are managed by the SSVC 
+- Objects in the `ssvc` namespace are managed by the SSVC
   project team. We have complete control over these ones.
 - Objects in other explicitly registered namespaces are provided for convenience,
   but the SSVC team is not responsible for modifying the content or semantics of
@@ -112,8 +111,6 @@ Registered namespaces are intended to be used as follows:
     Suggestions for changes to the CVSS specifications should be directed to the
     [FIRST CVSS Special Interest Group](https://www.first.org/cvss/) (SIG).
 
-
-
 !!! example "Potential Standards-based namespaces"
 
     We may in the future add namespaces when needed to reflect different standards 
@@ -140,8 +137,8 @@ we expect that this will rarely lead to conflicts in practice.
     - Unregistered namespaces must use the `x_` prefix.
     - Following the `x_` prefix, unregistered namespaces must use reverse domain name notation of a domain under their control to ensure uniqueness.
     - Aside from the required `x_` prefix, unregistered namespaces must contain only alphanumeric characters, dots (`.`), and dashes (`-`).
-   - For any domain using other characters, DNS Punycode must be used
 
+- For any domain using other characters, DNS Punycode must be used
 
 !!! warning "Namespace Conflicts"
 
@@ -149,7 +146,6 @@ we expect that this will rarely lead to conflicts in practice.
     Also in tests, Organizations A and B could both choose to use 
     `x_example.test`, and there are no guarantees of global uniqueness for the 
     decision points in the `x_example.test` namespace.
-
 
 !!! tip "Test Namespace"
 
@@ -198,6 +194,7 @@ A single fragment identifier (`#`) may be included in an extension segment, but 
 Fragment segments can be used to indicate a specific interpretation or context for the extension.
 Note: Without a fragment segment, all decision points of an organization fall into one bucket, which is in most cases not intended. Therefore, the use of a fragment segment is recommended.
 The following diagram illustrates the structure of namespace extensions:
+
 ```mermaid
 ---
 title: Namespace Extensions
@@ -256,7 +253,6 @@ base_ns -->|/| first
     available in the default language (`en-US`), and (b) that this extension has
     been translated into German (Germany).
 
-
 !!! example "Use of fragment identifiers and language tags"
 
     Imagine an Information Sharing and Analysis Organization (ISAO) `isao.example`
@@ -287,9 +283,9 @@ base_ns -->|/| first
 
 ### Usage Suggestions
 
-Although we reserved the first segment of the extension for language tags, 
+Although we reserved the first segment of the extension for language tags,
 there are scenarios where it may be appropriate to use a language tag in a later
-segment of the extension. 
+segment of the extension.
 
 !!! tip "Use BCP-47 Language Tags"
 
@@ -313,7 +309,6 @@ segment of the extension.
     extensions are unique and easily identifiable.
     For example, if your organization is `example.com`, you might use an extension
     like `ssvc//com.example#extension`.
-
 
 ## Technical requirements
 
@@ -350,72 +345,15 @@ based on the implementation in `src/ssvc/namespaces.py` and the NS_PATTERN regul
 - If any extension segments are present, the following rules apply:
   - The first extension segment must be a valid BCP-47 language tag or empty (i.e., `//`).
   - Subsequent extension segments:
-      - must start with a letter (upper or lowercase)
-      - may contain letters, numbers, dots (`.`), hyphens (`-`), and at most one hash (`#`)
-      - must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
-      - if a hash is present, it separates the main part from an optional fragment part
-      - are separated by single forward slashes (`/`)
+    - must start with a letter (upper or lowercase)
+    - may contain letters, numbers, dots (`.`), hyphens (`-`), and at most one hash (`#`)
+    - must not contain consecutive dots or hyphens (no `..`, `--`, `.-`, `-.`, `---`, etc.)
+    - if a hash is present, it separates the main part from an optional fragment part
+    - are separated by single forward slashes (`/`)
 - Multiple extension segments are allowed
 
-!!! info "ABNF Notation"
-
-    ```abnf
-    namespace = base-ns [extensions]
-    ; Overall namespace must be 3–1000 characters
-    ; (Enforced via regex length lookahead)
-    
-    base-ns = x-base / std-base
-    x-base  = "x_" ns-core
-    std-base = ns-core
-    
-    ; ns-core starts with a lowercase letter and may have '.' or '-' separators.
-    ; Consecutive '.' or '-' are not allowed.
-    ns-core = LOWER ALNUMLOW *("." / "-" 1*ALNUMLOW)
-    
-    extensions = lang-ext [ *("/" ext-seg) ]
-    
-    ; Language extension: either // (empty language extension)
-    ; or /<bcp47>/ (BCP-47 language code)
-    lang-ext = "//" / ( "/" bcp47 "/" )
-    
-    ; Extension segment between slashes.
-    ; - Must start with ALPHA
-    ; - May have '.' or '-' separators
-    ; - Optional '#' section, at most one per segment
-    ; - No consecutive '.' or '-'
-    ext-seg = ALPHA ALNUM *
-                ( ("." / "-") 1*ALNUM ) *
-                [ "#" 1*ALNUM * ( ("." / "-") 1*ALNUM ) ]
-    
-    ; BCP-47 tag (based on the regex expansion)
-    bcp47 = ( 2*3ALPHA
-                [ "-" 3ALPHA *2( "-" 3ALPHA ) ]
-            / 4*8ALPHA )
-            [ "-" 4ALPHA ]
-            [ "-" ( 2ALPHA / 3DIGIT ) ]
-            * ( "-" ( 5*8ALNUM / DIGIT 3ALNUM ) )
-            * ( "-" %x41-57.59-5A.61-7A.7C-7E "-" 2*8ALNUM )
-            [ "-" %x58.78 1*( "-" 1*8ALNUM ) ]
-          / %x58.78 1*( "-" 1*8ALNUM )
-          / %x49.69 "-" %x44.64 %x45.65 %x46.66 %x41.61 %x55.75 %x4C.6C %x54.74
-          / %x49.69 "-" %x4D.6D %x49.69 %x4E.6E %x47.67 %x4F.6F
-    
-    ; Character sets
-    LOWER = %x61-7A   ; a-z
-    ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
-    DIGIT = %x30-39   ; 0-9
-    ALNUM = ALPHA / DIGIT
-    ALNUMLOW = LOWER / DIGIT
-    
-    ; Constraints:
-    ; - No consecutive "." or "-" in ns-core or ext-seg.
-    ; - Each ext-seg can contain at most one "#".
-    ; - Overall namespace is 3–1000 chars.
-    ```
-  
 ## The `ssvc.namespaces` module
 
 The `ssvc.namespaces` module provides a way to access and use these namespaces.
 
 ::: ssvc.namespaces
-

@@ -1,10 +1,10 @@
 {
+  "namespace": "ssvc",
+  "key": "HVA",
+  "version": "1.0.0",
   "name": "High Value Asset",
   "description": "Denotes whether a system meets a high value asset definition.",
-  "namespace": "ssvc",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "HVA",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

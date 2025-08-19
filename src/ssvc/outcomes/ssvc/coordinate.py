@@ -24,7 +24,24 @@ _DECLINE = DecisionPointValue(name="Decline", key="D", description="Decline")
 
 _TRACK = DecisionPointValue(name="Track", key="T", description="Track")
 
-_COORDINATE = DecisionPointValue(name="Coordinate", key="C", description="Coordinate")
+_COORDINATE = DecisionPointValue(
+    name="Coordinate", key="C", description="Coordinate"
+)
+
+_DECLINE_2 = DecisionPointValue(
+    name="Decline", key="D", description="Do not act on the report."
+)
+_TRACK_2 = DecisionPointValue(
+    name="Track",
+    key="T",
+    description="Receive information about the vulnerability and monitor for status changes but do not take any overt actions.",
+)
+
+_COORDINATE_2 = DecisionPointValue(
+    name="Coordinate",
+    key="C",
+    description="Take action on the report.",
+)
 
 COORDINATE = SsvcDecisionPoint(
     name="Decline, Track, Coordinate",
@@ -41,7 +58,21 @@ COORDINATE = SsvcDecisionPoint(
 The coordinate outcome group.
 """
 
-VERSIONS = (COORDINATE,)
+
+COORDINATE_1_0_1 = SsvcDecisionPoint(
+    name="Decline, Track, Coordinate",
+    key="COORDINATE",
+    description="The coordinate outcome group.",
+    version="1.0.1",
+    values=(
+        _DECLINE_2,
+        _TRACK_2,
+        _COORDINATE_2,
+    ),
+)
+
+
+VERSIONS = (COORDINATE, COORDINATE_1_0_1)
 LATEST = VERSIONS[-1]
 
 

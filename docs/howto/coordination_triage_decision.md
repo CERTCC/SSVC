@@ -28,13 +28,13 @@ SSVC can be applied to either the initial report or to the results of such refin
 We take three priority levels in our decision about whether and how to [coordinate](https://certcc.github.io/CERT-Guide-to-CVD/tutorials/cvd_is_a_process/)
 a vulnerability based on an incoming report:
 
-!!! info "Coordinator Triage Priority"
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.coord_triage import LATEST as DT
+from ssvc.doc_helpers import example_block
 
-    | Triage Priority | Description |
-    | :---            | :----------  |
-    | Decline         | Do not act on the report. |
-    | Track           | Receive information about the vulnerability and monitor for status changes but do not take any overt actions. |
-    | Coordinate      | Take action on the report. “Action” may include any one or more of: technical analysis, reproduction, notifying vendors, publication, and assist another party. |
+dp = DT.decision_points[DT.outcome]
+print(example_block(dp))
+```
 
 - *Decline* — Do not act on the report. May take different forms, including ignoring the report as well as an
    acknowledgement to the reporter that we will not act and suggest the reporter to go to vendor or publish if unresponsive.
@@ -42,8 +42,12 @@ a vulnerability based on an incoming report:
 - *Coordinate* — Take action on the report. “Action” may include any one or more of: technical analysis, reproduction,
    notifying vendors, lead coordination (notify, communicate, and publish), publish only (amplify public message),
    advise only, secondary coordinator (assist another lead coordinator).
-   See the [FIRST CSIRT Services Framework](https://www.first.org/standards/frameworks/csirts/csirt_services_framework_v2.1#7-Service-Area-Vulnerability-Management)
-   for additional vulnerability management services a coordinator may provide.
+
+!!! tip "FIRST CSIRT Services Framework"
+
+    The [FIRST CSIRT Services Framework](https://www.first.org/standards/frameworks/csirts/csirt_services_framework_v2.1#7-Service-Area-Vulnerability-Management)
+    describes the services that a coordinator may provide in the area of vulnerability management.
+    It includes services such as vulnerability coordination, vulnerability analysis, and vulnerability reporting.
 
 ## Coordinator Triage Decision Points
 
@@ -82,16 +86,10 @@ The remaining five decision points are:
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.ssvc.report_public import LATEST as RP
-from ssvc.decision_points.ssvc.supplier_contacted import LATEST as SC
-from ssvc.decision_points.ssvc.report_credibility import LATEST as RC
-from ssvc.decision_points.ssvc.supplier_cardinality import LATEST as SI
-from ssvc.decision_points.ssvc.supplier_engagement import LATEST as SE
-from ssvc.decision_points.ssvc.utility import LATEST as U
-from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PSI
+from ssvc.decision_tables.ssvc.coord_triage import LATEST as DT
 from ssvc.doc_helpers import example_block
 
-for dp in [RP, SC, RC, SI, SE, U, PSI]:
+for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
     print(example_block(dp))
 ```
 
@@ -105,13 +103,30 @@ Other coordinators should consider customizing the tree to their needs, as descr
     CISA has customized an SSVC decision model to suit their coordination needs.
     It is available at [https://www.cisa.gov/ssvc](https://www.cisa.gov/ssvc).
 
-<embed src="../../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
-style="width: 100%;"
-height = "700" />
+### Decision Model Visualization
+
+The following diagram shows the decision model for the coordinator triage decision.
+
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.coord_triage import LATEST as DT
+from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
+
+rows = DT.mapping
+title = mermaid_title_from_dt(DT)
+print(mapping2mermaid(rows, title=title))
+```
 
 ### Table of Values
 
+The table below shows the values for the decision model.
+Each row of the table corresponds to a path through the decision model diagram above.
+
 {% include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
 
-<!-- relative to /data/csvs/ -->
-{{ read_csv('coord-triage-options.csv') }}
+```python exec="true" idprefix=""
+
+from ssvc.decision_tables.ssvc.coord_triage import LATEST as DT
+from ssvc.decision_tables.helpers import dt2df_md
+
+print(dt2df_md(DT))
+```

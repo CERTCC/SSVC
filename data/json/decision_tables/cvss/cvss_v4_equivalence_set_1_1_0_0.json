@@ -1,0 +1,334 @@
+{
+  "namespace": "cvss",
+  "key": "DT_CVSS4_EQ1",
+  "version": "1.0.0",
+  "name": "CVSS v4 Equivalence Set 1",
+  "description": "This decision table models equivalence set 1 from CVSS v4. Factors include Attack Vector (AV), Privileges Required (PR), and User Interaction (UI).",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "cvss:AV:3.0.1": {
+      "namespace": "cvss",
+      "key": "AV",
+      "version": "3.0.1",
+      "name": "Attack Vector",
+      "description": "This metric reflects the context by which vulnerability exploitation is possible. This metric value (and consequently the resulting severity) will be larger the more remote (logically, and physically) an attacker can be in order to exploit the vulnerable system. The assumption is that the number of potential attackers for a vulnerability that could be exploited from across a network is larger than the number of potential attackers that could exploit a vulnerability requiring physical access to a device, and therefore warrants a greater severity.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "P",
+          "name": "Physical",
+          "description": "The attack requires the attacker to physically touch or manipulate the vulnerable system. Physical interaction may be brief (e.g., evil maid attack1) or persistent."
+        },
+        {
+          "key": "L",
+          "name": "Local",
+          "description": "The vulnerable system is not bound to the network stack and the attacker’s path is via read/write/execute capabilities. Either: the attacker exploits the vulnerability by accessing the target system locally (e.g., keyboard, console), or through terminal emulation (e.g., SSH); or the attacker relies on User Interaction by another person to perform actions required to exploit the vulnerability (e.g., using social engineering techniques to trick a legitimate user into opening a malicious document)."
+        },
+        {
+          "key": "A",
+          "name": "Adjacent",
+          "description": "The vulnerable system is bound to a protocol stack, but the attack is limited at the protocol level to a logically adjacent topology. This can mean an attack must be launched from the same shared proximity (e.g., Bluetooth, NFC, or IEEE 802.11) or logical network (e.g., local IP subnet), or from within a secure or otherwise limited administrative domain (e.g., MPLS, secure VPN within an administrative network zone)."
+        },
+        {
+          "key": "N",
+          "name": "Network",
+          "description": "The vulnerable system is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet. Such a vulnerability is often termed “remotely exploitable” and can be thought of as an attack being exploitable at the protocol level one or more network hops away (e.g., across one or more routers)."
+        }
+      ]
+    },
+    "cvss:PR:1.0.1": {
+      "namespace": "cvss",
+      "key": "PR",
+      "version": "1.0.1",
+      "name": "Privileges Required",
+      "description": "This metric describes the level of privileges an attacker must possess prior to successfully exploiting the vulnerability. The method by which the attacker obtains privileged credentials prior to the attack (e.g., free trial accounts), is outside the scope of this metric. Generally, self-service provisioned accounts do not constitute a privilege requirement if the attacker can grant themselves privileges as part of the attack.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "H",
+          "name": "High",
+          "description": "The attacker is authorized with (i.e., requires) privileges that provide significant (e.g., administrative) control over the vulnerable system allowing full access to the vulnerable system’s settings and files."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "The attacker is authorized with (i.e., requires) privileges that provide basic capabilities that are typically limited to settings and resources owned by a single low-privileged user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources."
+        },
+        {
+          "key": "N",
+          "name": "None",
+          "description": "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files to carry out an attack."
+        }
+      ]
+    },
+    "cvss:UI:2.0.0": {
+      "namespace": "cvss",
+      "key": "UI",
+      "version": "2.0.0",
+      "name": "User Interaction",
+      "description": "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable system. This metric determines whether the vulnerability can be exploited solely at the will of the attacker, or whether a separate user (or user-initiated process) must participate in some manner. The resulting score is greatest when no user interaction is required.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "A",
+          "name": "Active",
+          "description": "Successful exploitation of this vulnerability requires a targeted user to perform specific, conscious interactions with the vulnerable system and the attacker’s payload, or the user’s interactions would actively subvert protection mechanisms which would lead to exploitation of the vulnerability."
+        },
+        {
+          "key": "P",
+          "name": "Passive",
+          "description": "Successful exploitation of this vulnerability requires limited interaction by the targeted user with the vulnerable system and the attacker’s payload. These interactions would be considered involuntary and do not require that the user actively subvert protections built into the vulnerable system."
+        },
+        {
+          "key": "N",
+          "name": "None",
+          "description": "The vulnerable system can be exploited without interaction from any human user, other than the attacker."
+        }
+      ]
+    },
+    "cvss:EQ1:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ1",
+      "version": "1.0.0",
+      "name": "Equivalence Set 1",
+      "description": "AV/PR/UI with 3 levels specified in Table 24",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: AV:P or not(AV:N or PR:N or UI:N)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: AV:N and PR:N and UI:N"
+        }
+      ]
+    }
+  },
+  "outcome": "cvss:EQ1:1.0.0",
+  "mapping": [
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "P",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "L"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "A",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "H",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "L",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "P",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "L",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "A",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "M"
+    },
+    {
+      "cvss:AV:3.0.1": "N",
+      "cvss:PR:1.0.1": "N",
+      "cvss:UI:2.0.0": "N",
+      "cvss:EQ1:1.0.0": "H"
+    }
+  ]
+}

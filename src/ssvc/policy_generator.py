@@ -92,7 +92,9 @@ class PolicyGenerator:
             # validate that the outcome weights sum to 1.0
             total = sum(outcome_weights)
             if not math.isclose(total, 1.0):
-                raise ValueError(f"Outcome weights must sum to 1.0, but sum to {total}")
+                raise ValueError(
+                    f"Outcome weights must sum to 1.0, but sum to {total}"
+                )
 
             self.outcome_weights = outcome_weights
         logger.debug(f"Outcome weights: {self.outcome_weights}")
@@ -165,18 +167,20 @@ class PolicyGenerator:
 
     def _create_policy(self):
         rows = []
+        dps = list(self.dpg.decision_points.values())
+
         for node in self.G.nodes:
             row = {}
             for i in range(len(node)):
                 # turn the numerical indexes back into decision point names
-                col1 = f"{self.dpg.decision_points[i].str}"
-                row[col1] = self.dpg.decision_points[i].value_summaries_str[node[i]]
+                col1 = f"{dps[i].id}"
+                row[col1] = dps[i].value_summaries[node[i]]
                 # numerical values
-                col2 = f"idx_{self.dpg.decision_points[i].str}"
+                col2 = f"idx_{dps[i].str}"
                 row[col2] = node[i]
 
             oc_idx = self.G.nodes[node]["outcome"]
-            row["outcome"] = self.outcomes.value_summaries_str[oc_idx]
+            row["outcome"] = self.outcomes.value_summaries[oc_idx]
 
             row["idx_outcome"] = oc_idx
             rows.append(row)
@@ -211,7 +215,9 @@ class PolicyGenerator:
         logger.debug(f"Layer count: {len(layers)}")
         logger.debug(f"Layer sizes: {[len(layer) for layer in layers]}")
 
-        outcome_counts = [round(node_count * weight) for weight in self.outcome_weights]
+        outcome_counts = [
+            round(node_count * weight) for weight in self.outcome_weights
+        ]
 
         toposort = list(nx.topological_sort(self.G))
         logger.debug(f"Toposort: {toposort[:4]}...{toposort[-4:]}")
@@ -277,7 +283,7 @@ class PolicyGenerator:
         # for each decision point in the group, get an enumeration of the values
         # so [[a,b,c],[d,e],[f,g,h]] becomes [[0,1,2],[0,1],[0,1,2]]
         vec = []
-        for dp in self.dpg.decision_points:
+        for dp in self.dpg.decision_points.values():
             vec.append(tuple(range(len(dp.values))))
 
         logger.debug(f"Enumerated vector: {vec}")
@@ -300,11 +306,15 @@ class PolicyGenerator:
         # all nodes must be in the graph
         for node in node_order:
             if node not in self.G.nodes:
-                raise ValueError(f"Node order contains node {node} not in the graph")
+                raise ValueError(
+                    f"Node order contains node {node} not in the graph"
+                )
 
         for node in self.G.nodes:
             if node not in node_order:
-                raise ValueError(f"Graph contains node {node} not in the node order")
+                raise ValueError(
+                    f"Graph contains node {node} not in the node order"
+                )
 
         node_idx = {node: i for i, node in enumerate(node_order)}
 

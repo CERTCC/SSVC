@@ -1,10 +1,10 @@
 {
+  "namespace": "ssvc",
+  "key": "MWI",
+  "version": "1.0.0",
   "name": "Mission and Well-Being Impact",
   "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
-  "namespace": "ssvc",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "MWI",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",

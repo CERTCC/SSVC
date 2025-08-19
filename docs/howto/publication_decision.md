@@ -88,12 +88,13 @@ based on some other criteria.
 
 For the CERT/CC, the publication decision is binary: publish or do not publish.
 
-!!! note "Coordinator Publish Priority"
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.coord_pub_dt import LATEST as DT
+from ssvc.doc_helpers import example_block
 
-    | Publish Priority | Description |
-    | :---             | :----------  |
-    | Do not publish   | Do not publish information about the vulnerability. |
-    | Publish          | Publish information about the vulnerability. |
+dp = DT.decision_points[DT.outcome]
+print(example_block(dp))
+```
 
 !!! tip "The Publication Decision is Time Sensitive"
 
@@ -133,14 +134,12 @@ and adds two new ones ([*Supplier Involvement*](../reference/decision_points/sup
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.ssvc.supplier_involvement import LATEST as SI
-from ssvc.decision_points.ssvc.exploitation import LATEST as EXP
-from ssvc.decision_points.ssvc.public_value_added import LATEST as PVA
-
+from ssvc.decision_tables.ssvc.coord_pub_dt import LATEST as DT
 from ssvc.doc_helpers import example_block
 
-for dp in [SI, EXP, PVA]:
+for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
     print(example_block(dp))
+
 ```
 
 ## Coordinator Publication Decision Model
@@ -149,124 +148,23 @@ An example coordinator publication decision model is shown below. The policy des
 publication decisions. Other organizations may have different publication criteria and may want to include other decision points
 in their publication decision model.
 
-<embed src="../../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
-style="width: 100%;"
-height = "600" />
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.coord_pub_dt import LATEST as DT
+from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
 
-<!--
-adh note 20240221:
-Temporarily commenting out the mermaid diagram below because we don't have the rest of the diagrams
-converted yet, and it looks weird if most of the trees are in PDF format while this one is in mermaid
--->
-
-<!-- 
-```mermaid
----
-title: Coordinator Publication Tree
----
-flowchart LR
-    si[Supplier<br/>Involvement]
-    e1[Exploitation]
-    e2[Exploitation]
-    e3[Exploitation]
-    si -->|fix ready| e1
-    si -->|cooperative| e2
-    si -->|uncooperative/<br/>unresponsive| e3
-    va1[Value<br/>Added]
-    va2[Value<br/>Added]
-    va3[Value<br/>Added]
-    e1 -->|none| va1
-    e1 -->|PoC| va2
-    e1 -->|active| va3
-    va4[Value<br/>Added]
-    va5[Value<br/>Added]
-    va6[Value<br/>Added]
-    e2 -->|none| va4
-    e2 -->|PoC| va5
-    e2 -->|active| va6
-    va7[Value<br/>Added]
-    va8[Value<br/>Added]
-    va9[Value<br/>Added]
-    e3 -->|none| va7
-    e3 -->|PoC| va8
-    e3 -->|active| va9
-    
-    p1[Publish]
-    p2[Don't Publish]
-    p3[Don't Publish]
-    
-    p4[Publish]
-    p5[Don't Publish]
-    p6[Don't Publish]
-    
-    p7[Publish]
-    p8[Publish]
-    p9[Don't Publish]
-    
-    p10[Publish]
-    p11[Don't Publish]
-    p12[Don't Publish]
-    
-    p13[Publish]
-    p14[Don't Publish]
-    p15[Don't Publish]
-    
-    p16[Publish]
-    p17[Publish]
-    p18[Don't Publish]
-    
-    p19[Publish]
-    p20[Don't Publish]
-    p21[Don't Publish]
-    
-    p22[Publish]
-    p23[Publish]
-    p24[Don't Publish]
-    
-    p25[Publish]
-    p26[Publish]
-    p27[Don't Publish]
-        
-    va1 -->|precedence| p1
-    va1 -->|ampliative| p2
-    va1 -->|limited| p3
-    
-    va2 -->|precedence| p4
-    va2 -->|ampliative| p5
-    va2 -->|limited| p6
-    
-    va3 -->|precedence| p7
-    va3 -->|ampliative| p8
-    va3 -->|limited| p9
-    
-    va4 -->|precedence| p10
-    va4 -->|ampliative| p11
-    va4 -->|limited| p12
-    
-    va5 -->|precedence| p13
-    va5 -->|ampliative| p14
-    va5 -->|limited| p15
-    
-    va6 -->|precedence| p16
-    va6 -->|ampliative| p17
-    va6 -->|limited| p18
-    
-    va7 -->|precedence| p19
-    va7 -->|ampliative| p20
-    va7 -->|limited| p21
-    
-    va8 -->|precedence| p22
-    va8 -->|ampliative| p23
-    va8 -->|limited| p24
-    
-    va9 -->|precedence| p25
-    va9 -->|ampliative| p26
-    va9 -->|limited| p27
-
+rows = DT.mapping
+title = mermaid_title_from_dt(DT)
+print(mapping2mermaid(rows, title=title))
 ```
---> 
 
 ### Table of Values
 
-<!-- relative to /data/csvs/ -->
-{{ read_csv('coord-publish-options.csv') }}
+The table below shows the values for the decision model.
+Each row of the table corresponds to a path through the decision model diagram above.
+
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.coord_pub_dt import LATEST as DT
+from ssvc.decision_tables.helpers import dt2df_md
+
+print(dt2df_md(DT))
+```

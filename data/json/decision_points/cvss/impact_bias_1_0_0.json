@@ -1,10 +1,10 @@
 {
+  "namespace": "cvss",
+  "key": "IB",
+  "version": "1.0.0",
   "name": "Impact Bias",
   "description": "This metric measures the impact bias of the vulnerability.",
-  "namespace": "cvss",
-  "version": "1.0.0",
-  "schemaVersion": "1-0-1",
-  "key": "IB",
+  "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",

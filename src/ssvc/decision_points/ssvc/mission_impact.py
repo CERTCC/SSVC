@@ -52,7 +52,9 @@ MI_NED = DecisionPointValue(
     description="Degradation of non-essential functions; chronic degradation would eventually harm essential functions",
 )
 
-MI_NONE = DecisionPointValue(name="None", key="N", description="Little to no impact")
+MI_NONE = DecisionPointValue(
+    name="None", key="N", description="Little to no impact"
+)
 
 # combine MI_NONE and MI_NED into a single value
 DEGRADED = DecisionPointValue(

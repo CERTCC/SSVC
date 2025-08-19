@@ -48,14 +48,22 @@ A deployer's decision centers on with what priority to deploy a given remediatio
 Similar to the [Supplier](supplier_tree.md) case, we consider four categories of priority, as outlined in the table below.
 While we've used the same priority names, the meaning of the priority may have different implications for the deployer than for the supplier.
 
-!!! note "Patch Deployer Priority"
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DT
+from ssvc.doc_helpers import example_block
 
-    | Deployer Priority | Description |
-    | :---              | :----------  |
-    | Defer            | Do not act at present. |
-    | Scheduled        | Act during regularly scheduled maintenance time. |
-    | Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
-    | Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
+dp = DT.decision_points[DT.outcome]
+print(example_block(dp))
+```
+
+A more specific interpretation for the priority levels for deployers is as follows:
+
+| Deployer Priority | Description |
+| :---              | :----------  |
+| Defer            | Do not act at present. |
+| Scheduled        | Act during regularly scheduled maintenance time. |
+| Out-of-cycle     | Act more quickly than usual to apply the mitigation or remediation out-of-cycle, during the next available opportunity, working overtime if necessary. |
+| Immediate        | Act immediately; focus all resources on applying the fix as quickly as possible, including, if necessary, pausing regular organization operations. |
 
 When remediation is available, usually the action is to apply it.
 When remediation is not yet available, the action space is more diverse, but it should involve mitigating the vulnerability
@@ -113,13 +121,10 @@ The Deployer Patch Deployment Priority decision model uses the following decisio
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.ssvc.exploitation import LATEST as EXP
-from ssvc.decision_points.ssvc.system_exposure import LATEST as SE
-from ssvc.decision_points.ssvc.utility import LATEST as U
-from ssvc.decision_points.ssvc.human_impact import LATEST as HI
+from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DT
 from ssvc.doc_helpers import example_block
 
-for dp in [EXP, SE, U, HI]:
+for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
     print(example_block(dp))
 ```
 
@@ -136,14 +141,28 @@ Below we provide an example deployer prioritization policy that maps the decisio
     - An [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
     - A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](../reference/decision_points/human_impact.md) is [_very high_](../reference/decision_points/human_impact.md), resulting in an *out-of-cycle* priority.
 
-{% include-markdown "../_includes/_tree_notation_tip.md" %}
+### Decision Model Visualization
 
-<embed src="../../pdf/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
- type="application/pdf"
- style="width: 100%;"
- height = "1000"/>
+The following diagram shows the decision model for the deployer decision.
+
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DT
+from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
+
+rows = DT.mapping
+title = mermaid_title_from_dt(DT)
+print(mapping2mermaid(rows, title=title))
+```
 
 ### Table of Values
 
-<!-- relative to /data/csvs/ -->
-{{ read_csv('deployer-options.csv') }}
+The table below shows the values for the decision model.
+Each row of the table corresponds to a path through the decision model diagram above.
+
+```python exec="true" idprefix=""
+
+from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DT
+from ssvc.decision_tables.helpers import dt2df_md
+
+print(dt2df_md(DT))
+```

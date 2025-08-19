@@ -1,0 +1,275 @@
+{
+  "namespace": "cvss",
+  "key": "DT_CVSS4_EQ3",
+  "version": "1.0.0",
+  "name": "CVSS v4 Equivalence Set 3",
+  "description": "This decision table models equivalence set 3 from CVSS v4.",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "cvss:VC:3.0.0": {
+      "namespace": "cvss",
+      "key": "VC",
+      "version": "3.0.0",
+      "name": "Confidentiality Impact to the Vulnerable System",
+      "description": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no loss of confidentiality within the impacted component."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is constrained. The information disclosure does not cause a direct, serious loss to the impacted component."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
+        }
+      ]
+    },
+    "cvss:VI:3.0.0": {
+      "namespace": "cvss",
+      "key": "VI",
+      "version": "3.0.0",
+      "name": "Integrity Impact to the Vulnerable System",
+      "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no loss of integrity within the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Vulnerable System."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is a total loss of integrity, or a complete loss of protection."
+        }
+      ]
+    },
+    "cvss:VA:3.0.0": {
+      "namespace": "cvss",
+      "key": "VA",
+      "version": "3.0.0",
+      "name": "Availability Impact to the Vulnerable System",
+      "description": "This metric measures the impact to the availability of the impacted system resulting from a successfully exploited vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no impact to availability within the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "There is reduced performance or interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the Vulnerable System are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the Vulnerable System."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+        }
+      ]
+    },
+    "cvss:EQ3:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ3",
+      "version": "1.0.0",
+      "name": "Equivalence Set 3",
+      "description": "VC/VI/VA with 3 levels specified in Table 26",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: not (VC:H or VI:H or VA:H)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: VC:H and VI:H"
+        }
+      ]
+    }
+  },
+  "outcome": "cvss:EQ3:1.0.0",
+  "mapping": [
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "L"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ3:1.0.0": "H"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "N",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ3:1.0.0": "H"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "M"
+    },
+    {
+      "cvss:VC:3.0.0": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ3:1.0.0": "H"
+    }
+  ]
+}

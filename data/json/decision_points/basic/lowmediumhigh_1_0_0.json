@@ -1,0 +1,25 @@
+{
+  "namespace": "basic",
+  "key": "LMH",
+  "version": "1.0.0",
+  "name": "LowMediumHigh",
+  "description": "A Low/Medium/High decision point / outcome group.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "L",
+      "name": "Low",
+      "description": "Low"
+    },
+    {
+      "key": "M",
+      "name": "Medium",
+      "description": "Medium"
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "description": "High"
+    }
+  ]
+}

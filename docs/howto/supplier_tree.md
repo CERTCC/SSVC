@@ -51,14 +51,22 @@ The organization considers several other factors to build the patch; refactoring
 be necessary for some patches, while others require relatively small changes.
 We focus only on the priority of building the patch, and we consider four categories of priority, as outlined in the table below.
 
-!!! note "Patch Supplier Priority"
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.supplier_dt import LATEST as DT
+from ssvc.doc_helpers import example_block
 
-    | Supplier Priority | Description |
-    | :---              | :----------  |
-    | Defer              | Do not work on the patch at present. |
-    | Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal. |
-    | Out-of-Cycle       | Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
-    | Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
+dp = DT.decision_points[DT.outcome]
+print(example_block(dp))
+```
+
+A more specific interpretation for the priority levels for suppliers is as follows:
+
+| Supplier Priority | Description |
+| :---              | :----------  |
+| Defer              | Do not work on the patch at present. |
+| Scheduled          | Develop a fix within regularly scheduled maintenance using supplier resources as normal. |
+| Out-of-Cycle       | Develop mitigation or remediation out-of-cycle, taking resources away from other projects and releasing the fix as a security patch when it is ready. |
+| Immediate          | Develop and release a fix as quickly as possible, drawing on all available resources, potentially including drawing on or coordinating resources from other parts of the organization. |
 
 ## Supplier Decision Points
 
@@ -72,14 +80,10 @@ The decision to create a patch is based on the following decision points:
 More detail about each of these decision points is provided at the links above, here we provide a brief summary of each.
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.ssvc.exploitation import LATEST as EXP
-from ssvc.decision_points.ssvc.utility import LATEST as U
-from ssvc.decision_points.ssvc.technical_impact import LATEST as TI
-from ssvc.decision_points.ssvc.public_safety_impact import LATEST as PSI
-
+from ssvc.decision_tables.ssvc.supplier_dt import LATEST as DT
 from ssvc.doc_helpers import example_block
 
-for dp in [EXP, U, TI, PSI]:
+for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
     print(example_block(dp))
 ```
 
@@ -94,13 +98,26 @@ The example supplier decision model below shows a prioritization policy for the 
 We display the decision model as a decision tree, which provides a compact representation of the policy,
 showing the relative priority of different situations.
 
-{% include-markdown "../_includes/_tree_notation_tip.md" %}
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.supplier_dt import LATEST as DT
+from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
 
-<embed src="../../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
-style="width: 100%;"
-height = "700" />
+rows = DT.mapping
+title = mermaid_title_from_dt(DT)
+print(mapping2mermaid(rows, title=title))
+```
 
 ### Table of Values
 
-<!-- relative to /data/csvs/ -->
-{{ read_csv('supplier-options.csv') }}
+The table below shows the values for the decision model.
+Each row of the table corresponds to a path through the decision model diagram above.
+
+% include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
+
+```python exec="true" idprefix=""
+
+from ssvc.decision_tables.ssvc.supplier_dt import LATEST as DT
+from ssvc.decision_tables.helpers import dt2df_md
+
+print(dt2df_md(DT))
+```

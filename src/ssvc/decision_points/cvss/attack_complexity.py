@@ -73,8 +73,8 @@ ACCESS_COMPLEXITY_1 = CvssDecisionPoint(
     key="AC",
     version="1.0.0",
     values=(
-        _LOW,
         _HIGH,
+        _LOW,
     ),
 )
 
@@ -85,9 +85,9 @@ ACCESS_COMPLEXITY_2 = CvssDecisionPoint(
     key="AC",
     version="2.0.0",
     values=(
-        _LOW_2,
-        _MEDIUM,
         _HIGH_2,
+        _MEDIUM,
+        _LOW_2,
     ),
 )
 
@@ -98,8 +98,8 @@ ATTACK_COMPLEXITY_3 = CvssDecisionPoint(
     key="AC",
     version="3.0.0",
     values=(
-        _LOW_3,
         _HIGH_3,
+        _LOW_3,
     ),
 )
 """
@@ -130,8 +130,8 @@ ATTACK_COMPLEXITY_3_0_1 = CvssDecisionPoint(
     key="AC",
     version="3.0.1",
     values=(
-        LOW_4,
         HIGH_4,
+        LOW_4,
     ),
 )
 """

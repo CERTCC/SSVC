@@ -9,13 +9,12 @@ consulted: @tschmidtb51
 ## Context and Problem Statement
 
 We need to include decision points and other objects that are not directly
-defined by the SSVC project team. For example, CVSS vector elements are a 
+defined by the SSVC project team. For example, CVSS vector elements are a
 rich source of structured data that can be used to inform SSVC decisions and
-modeled as SSVC decision point objects. However, the 
-[FIRST CVSS SIG](https://www.first.org/cvss) owns the definition of CVSS vector 
+modeled as SSVC decision point objects. However, the
+[FIRST CVSS SIG](https://www.first.org/cvss) owns the definition of CVSS vector
 elements. So we need a way to describe these objects in SSVC format
 without making them part of the SSVC specification.
-
 
 ## Decision Drivers
 
@@ -49,7 +48,7 @@ based on other sources).
     main project. We use the `cvss` namespace to contain CVSS vector elements.
 
 **Unregistered namespaces** for objects that we do not create or maintain, but
-that others may want for their own use. Unregistered namespaces must start with 
+that others may want for their own use. Unregistered namespaces must start with
 an `x_` prefix followed by a reverse domain name, such as `x_org.example`.
 Unregistered namespaces are intended for experimental or private use.
 
@@ -61,10 +60,10 @@ Unregistered namespaces are intended for experimental or private use.
     register their namespace with the SSVC project.
 
 **Namespace extensions** for objects that are derived from other objects in an
-registered or unregistered namespace. Extensions are not intended to be used to 
+registered or unregistered namespace. Extensions are not intended to be used to
 introduce new objects, but rather to refine existing objects with additional data
 or semantics.
-Namespace extensions can be used for refining the meaning of decision point 
+Namespace extensions can be used for refining the meaning of decision point
 values for a specific constituency, or adding additional nuance to
 interpretation of a decision point in a specific context.
 
@@ -83,7 +82,6 @@ interpretation of a decision point in a specific context.
   their own use, and share them with others
 - Facilitates language translation and localization of SSVC objects to specific
   constituencies
-
 
 #### Negative Consequences
 
@@ -113,7 +111,6 @@ SSVC specification under our control and objects that were derived from other so
 - Good, because it was simple and easy to understand
 - Bad, because it made it difficult to distinguish between SSVC project objects and
   objects based on specifications we neither created nor maintained
-
 
 <!-- This is an optional element. Feel free to remove. -->
 ## More Information
