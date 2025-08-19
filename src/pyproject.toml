@@ -43,7 +43,7 @@ dependencies = [
     "mkdocs-bibtex==4.4.0",
     "mkdocs-table-reader-plugin==3.1.0",
     "mkdocs-print-site-plugin==2.8",
-    "markdown-exec==1.11.0",
+    "markdown-exec[ansi]==1.11.0",
     "thefuzz==0.22.1",
     "scikit-learn==1.6.1",
     "networkx==3.4.2",

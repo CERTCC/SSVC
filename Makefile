@@ -25,6 +25,10 @@ docker_test:
 	@echo "Running tests in Docker..."
 	pushd $(DOCKER_DIR) && docker-compose run --rm test
 
+docs_local:
+	@echo "Building and running docs locally..."
+	uv run --project $(PROJECT_DIR) mkdocs serve
+
 docs:
 	@echo "Building and running docs in Docker..."
 	pushd $(DOCKER_DIR) && docker-compose up docs

@@ -244,6 +244,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/22/41/5551f05c0e6430e3d2dcbd40965840a4cf280c045a529552690f04b7c0a0/markdown_exec-1.11.0-py3-none-any.whl", hash = "sha256:0526957984980f55c02b425d32e8ac8bb21090c109c7012ff905d3ddcc468ceb", size = 34747, upload-time = "2025-06-28T10:30:42.265Z" },
 ]
 
+[package.optional-dependencies]
+ansi = [
+    { name = "pygments-ansi-color" },
+]
+
 [[package]]
 name = "markupsafe"
 version = "3.0.2"
@@ -694,6 +699,18 @@ wheels = [
 ]
 
 [[package]]
+name = "pygments-ansi-color"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pygments" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/50/f9/7f417aaee98a74b4f757f2b72971245181fcf25d824d2e7a190345669eaf/pygments-ansi-color-0.3.0.tar.gz", hash = "sha256:7018954cf5b11d1e734383a1bafab5af613213f246109417fee3f76da26d5431", size = 7317, upload-time = "2023-05-18T22:44:35.792Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/17/8306a0bcd8c88d7761c2e73e831b0be026cd6873ce1f12beb3b4c9a03ffa/pygments_ansi_color-0.3.0-py3-none-any.whl", hash = "sha256:7eb063feaecadad9d4d1fd3474cbfeadf3486b64f760a8f2a00fc25392180aba", size = 10242, upload-time = "2023-05-18T22:44:34.287Z" },
+]
+
+[[package]]
 name = "pymdown-extensions"
 version = "10.16.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1068,7 +1085,7 @@ name = "ssvc"
 source = { editable = "." }
 dependencies = [
     { name = "jsonschema" },
-    { name = "markdown-exec" },
+    { name = "markdown-exec", extra = ["ansi"] },
     { name = "mkdocs" },
     { name = "mkdocs-bibtex" },
     { name = "mkdocs-include-markdown-plugin" },
@@ -1095,7 +1112,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "jsonschema", specifier = "==4.25.0" },
-    { name = "markdown-exec", specifier = "==1.11.0" },
+    { name = "markdown-exec", extras = ["ansi"], specifier = "==1.11.0" },
     { name = "mkdocs", specifier = "==1.6.1" },
     { name = "mkdocs-bibtex", specifier = "==4.4.0" },
     { name = "mkdocs-include-markdown-plugin", specifier = "==7.1.6" },
