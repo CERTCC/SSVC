@@ -47,7 +47,7 @@ class TestNamespacePattern(unittest.TestCase):
             "ssvc//.de.bund.bsi#ref-arch-1/de-DE",  # BSI's official translation to German as used in Germany of its ref-arch-1 model which is originally written in English
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE",  # BSI's ref-arch-2 model which is originally written in German
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE/en-GB",  # BSI's official translation to English as used in GB of its ref-arch-2 model which is originally written in German
-            "ssvc//.example.organization#model/.com.example#foo",  # valid BCP-47 tag, two segments with one hash each
+            "ssvc//.example.organization#model/.com.example#foo",  # empty BCP-47 tag, two segments with one hash each
             "nist#800-30",  # NIST's registered model regarding its publication 800-30
             "x_gov.nist#800-30/de-DE",  # NIST's official translation to German as used in Germany of its model (regarding its publication) 800-30
             "x_gov.nist#800-30//.de.bund.bsi$de-DE",  # BSI's translation to German as used in Germany of NIST's model (regarding its publication) 800-30
