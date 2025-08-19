@@ -40,25 +40,25 @@ class TestNamespacePattern(unittest.TestCase):
             "cisa",
             "custom",  # not in enum, but valid for the pattern
             "abc",  # not in enum, but valid for the pattern
-            "x_com.example#foo/",
-            "x_com.example#foo//.org.example#bar",
+            "x_example.test#test/",
+            "x_example.test#test//.org.example#bar",
             "ssvc/de-DE/.org.example#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
             "ssvc//.de.bund.bsi$de-DE",  # BSI's translation of SSVC
             "ssvc//.de.bund.bsi#ref-arch-1/de-DE",  # BSI's official translation to German as used in Germany of its ref-arch-1 model which is originally written in English
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE",  # BSI's ref-arch-2 model which is originally written in German
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE/en-GB",  # BSI's official translation to English as used in GB of its ref-arch-2 model which is originally written in German
-            "ssvc//.example.organization#model/.com.example#foo",  # empty BCP-47 tag, two segments with one hash each
+            "ssvc//.example.organization#model/.example.test#test",  # empty BCP-47 tag, two segments with one hash each
             "nist#800-30",  # NIST's registered model regarding its publication 800-30
             "x_gov.nist#800-30/de-DE",  # NIST's official translation to German as used in Germany of its model (regarding its publication) 800-30
             "x_gov.nist#800-30//.de.bund.bsi$de-DE",  # BSI's translation to German as used in Germany of NIST's model (regarding its publication) 800-30
-            "x_com.example.test#bar/pl-PL/.com.example#foo/.org.example#bar/newfound",  # valid BCP-47 tag and multiple segments
-            "com.example",  # valid namespace with dots following reverse domain notation
-            "x_com.example#foo",  # valid namespace with x_ prefix and dots following reverse domain notation
+            "x_example.test.test#test/pl-PL/.example.test#test/.example.test#test/newfound",  # valid BCP-47 tag and multiple segments
+            "example.test",  # valid namespace with dots following reverse domain notation
+            "x_example.test#test",  # valid namespace with x_ prefix and dots following reverse domain notation
             "au.com.example",  # valid namespace with dots following reverse domain notation for 2-letter TLD
             "x_au.com.example#bar"  # valid namespace with x_ prefix and dots following reverse domain notation
-            "abc//.com.example#foo",
-            "abc//.com.au.example#foo",
-            "abc//.com.example#foo/.foo.bar#bar",
+            "abc//.example.test#test",
+            "abc//.com.au.example#test",
+            "abc//.example.test#test/.example.test#test",
             "foo.bar//.baz.quux#foo",
         ]
         self.expect_fail = [
@@ -110,9 +110,9 @@ class TestNamespacePattern(unittest.TestCase):
             "a",  # too short
             "9abc",  # starts with a number
             "x_foo",  # no x_ in base pattern
-            "com.example#foo",  # no hashes in base
-            "com.example##foo",  # double hash
-            "com.example#foo#bar",  # multiple hashes not allowed
+            "example.test#test",  # no hashes in base
+            "example.test##test",  # double hash
+            "example.test.test#test#test",  # multiple hashes not allowed
             "contains..double.dot",  # double dot
             "contains--double-dash",  # double dash
             "contains_underscore",  # underscore not allowed
@@ -131,7 +131,7 @@ class TestNamespacePattern(unittest.TestCase):
         x_success = [
             "abc",
             "abc-with-dashes",  # dashes are allowed in the base pattern
-            "x_example.com#foo",
+            "x_example.test#test",
         ]
         x_fail = [
             "9abc",  # starts with a number
@@ -209,8 +209,8 @@ class TestNamespacePattern(unittest.TestCase):
             "invalid.segment.",  # ends with a dot
             "invalid.segment-",  # ends with a dash
             "invalid/segment",  # slash not allowed
-            "com.example##foo",  # hashes not allows
-            "com.example#foo",  # hashes not allows
+            "example.test##test",  # hashes not allowed
+            "example.test#test",  # hashes not allowed
             "invalid#segment#with#multiple#hashes",  # multiple hashes not allowed
             "invalid/segment/",  # ends with a slash
         ]

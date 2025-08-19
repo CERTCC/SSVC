@@ -252,8 +252,8 @@ class SelectionList(_Timestamped, BaseModel):
                     "summary": "JSON representation of decision point 2",
                 },
                 {
-                    "uri": "https://example.com/ssvc/x_com.example/decision_points.json",
-                    "summary": "A JSON file containing extension decision points in the x_com.example namespace",
+                    "uri": "https://test.example/ssvc/x_example.test#test/decision_points.json",
+                    "summary": "A JSON file containing extension decision points in the x_example.test#test namespace",
                 },
             ],
         ],

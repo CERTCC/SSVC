@@ -85,7 +85,7 @@ class MyTestCase(unittest.TestCase):
             key="asdfasdf",
             description="asdfasdf",
             version="1.33.1",
-            namespace="x_com.example#foo",
+            namespace="x_example.test#test",
             values=tuple(self.values),
         )
 
