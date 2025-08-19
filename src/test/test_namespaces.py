@@ -32,16 +32,24 @@ class MyTestCase(unittest.TestCase):
         pass
 
     def test_ns_pattern(self):
+
+        # end pattern like in
+        # test_namespaces_pattern._test_successes_failures()
+        pattern_str = NS_PATTERN.pattern
+        if not pattern_str.endswith("$"):
+            pattern_str = pattern_str + "$"
+        pattern = re.compile(pattern_str)
+
         should_match = [
             "foo.bar#baz",
             "foo.bar.baz#quux",
-            "foo.bar#baz/jp-JP/bar.baz#foo/quux",
+            "foo.bar#baz/jp-JP/.bar.baz#foo/quux",
         ]
         should_match.extend([f"x_{ns}" for ns in should_match])
 
         for ns in should_match:
             with self.subTest(ns=ns):
-                self.assertTrue(NS_PATTERN.match(ns), ns)
+                self.assertTrue(pattern.match(ns), ns)
 
         should_not_match = [
             "",
@@ -55,13 +63,6 @@ class MyTestCase(unittest.TestCase):
         ]
 
         should_not_match.extend([f"_{ns}" for ns in should_not_match])
-
-        # end pattern just like in
-        # test_namespaces_pattern._test_successes_failures()
-        pattern_str = NS_PATTERN.pattern
-        if not pattern_str.endswith("$"):
-            pattern_str = pattern_str + "$"
-        pattern = re.compile(pattern_str)
 
         for ns in should_not_match:
             with self.subTest(ns=ns):
