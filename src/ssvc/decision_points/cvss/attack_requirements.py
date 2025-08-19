@@ -48,8 +48,8 @@ ATTACK_REQUIREMENTS_1 = CvssDecisionPoint(
     description="This metric captures the prerequisite deployment and execution conditions or variables of the "
     "vulnerable system that enable the attack.",
     values=(
-        _AT_NONE,
         _PRESENT,
+        _AT_NONE,
     ),
 )
 

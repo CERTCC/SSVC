@@ -59,7 +59,9 @@ class MyTestCase(unittest.TestCase):
                         namespace="x_example.test",
                         values=tuple(
                             [
-                                DecisionPointValue(name=v, key=v, description=v)
+                                DecisionPointValue(
+                                    name=v, key=v, description=v
+                                )
                                 for v in self.dp_values
                             ]
                         ),
@@ -272,7 +274,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(16, len(pg.policy))
 
         idx_cols = [col for col in pg.policy.columns if col.startswith("idx_")]
-        other_cols = [col for col in pg.policy.columns if not col.startswith("idx_")]
+        other_cols = [
+            col for col in pg.policy.columns if not col.startswith("idx_")
+        ]
 
         for c in self.dp_names:
 
@@ -283,7 +287,9 @@ class MyTestCase(unittest.TestCase):
         self.assertIn("idx_outcome", pg.policy.columns)
 
         for outcome in self.og_names:
-            self.assertTrue(any([outcome in val for val in pg.policy.outcome.values]))
+            self.assertTrue(
+                any([outcome in val for val in pg.policy.outcome.values])
+            )
 
     def test_validate_paths(self):
         pg = PolicyGenerator(
@@ -336,8 +342,12 @@ class MyTestCase(unittest.TestCase):
 
         self.assertIsNone(pg._confirm_topological_order([0, 1, 2, 3, 4, 5]))
         self.assertIsNone(pg._confirm_topological_order([0, 1, 3, 2, 4, 5]))
-        self.assertRaises(ValueError, pg._confirm_topological_order, [0, 1, 2, 4, 3, 5])
-        self.assertRaises(ValueError, pg._confirm_topological_order, [0, 1, 2, 3, 5])
+        self.assertRaises(
+            ValueError, pg._confirm_topological_order, [0, 1, 2, 4, 3, 5]
+        )
+        self.assertRaises(
+            ValueError, pg._confirm_topological_order, [0, 1, 2, 3, 5]
+        )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,6744 @@
+{
+  "namespace": "cvss",
+  "key": "DT_CVSS4_EQ6",
+  "version": "1.0.0",
+  "name": "CVSS v4 Equivalence Set 6",
+  "description": "This decision table models equivalence set 6 from CVSS v4.",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "cvss:CR_NoX:1.1.1": {
+      "namespace": "cvss",
+      "key": "CR_NoX",
+      "version": "1.1.1",
+      "name": "Confidentiality Requirement (without Not Defined)",
+      "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Confidentiality. This version does not include the Not Defined (X) option.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Loss of confidentiality is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "Loss of confidentiality is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "Loss of confidentiality is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        }
+      ]
+    },
+    "cvss:VC:3.0.0": {
+      "namespace": "cvss",
+      "key": "VC",
+      "version": "3.0.0",
+      "name": "Confidentiality Impact to the Vulnerable System",
+      "description": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no loss of confidentiality within the impacted component."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is constrained. The information disclosure does not cause a direct, serious loss to the impacted component."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
+        }
+      ]
+    },
+    "cvss:IR_NoX:1.1.1": {
+      "namespace": "cvss",
+      "key": "IR_NoX",
+      "version": "1.1.1",
+      "name": "Integrity Requirement (without Not Defined)",
+      "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Confidentiality. This version does not include the Not Defined (X) option.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Loss of integrity is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "Loss of integrity is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "Loss of integrity is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        }
+      ]
+    },
+    "cvss:VI:3.0.0": {
+      "namespace": "cvss",
+      "key": "VI",
+      "version": "3.0.0",
+      "name": "Integrity Impact to the Vulnerable System",
+      "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no loss of integrity within the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Vulnerable System."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is a total loss of integrity, or a complete loss of protection."
+        }
+      ]
+    },
+    "cvss:AR_NoX:1.1.1": {
+      "namespace": "cvss",
+      "key": "AR_NoX",
+      "version": "1.1.1",
+      "name": "Availability Requirement (without Not Defined)",
+      "description": "This metric enables the consumer to customize the assessment depending on the importance of the affected IT asset to the analyst’s organization, measured in terms of Availability. This version does not include the Not Defined (X) option.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Loss of availability is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "Loss of availability is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "Loss of availability is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)."
+        }
+      ]
+    },
+    "cvss:VA:3.0.0": {
+      "namespace": "cvss",
+      "key": "VA",
+      "version": "3.0.0",
+      "name": "Availability Impact to the Vulnerable System",
+      "description": "This metric measures the impact to the availability of the impacted system resulting from a successfully exploited vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "There is no impact to availability within the Vulnerable System."
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "There is reduced performance or interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the Vulnerable System are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the Vulnerable System."
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "There is total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+        }
+      ]
+    },
+    "cvss:EQ6:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ6",
+      "version": "1.0.0",
+      "name": "Equivalence Set 6",
+      "description": "VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "1: not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: (CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)"
+        }
+      ]
+    }
+  },
+  "outcome": "cvss:EQ6:1.0.0",
+  "mapping": [
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "L"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "N",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "L",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "N",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "L",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "N",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "L",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "L",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "M",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "L",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "M",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "L",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "M",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    },
+    {
+      "cvss:CR_NoX:1.1.1": "H",
+      "cvss:VC:3.0.0": "H",
+      "cvss:IR_NoX:1.1.1": "H",
+      "cvss:VI:3.0.0": "H",
+      "cvss:AR_NoX:1.1.1": "H",
+      "cvss:VA:3.0.0": "H",
+      "cvss:EQ6:1.0.0": "H"
+    }
+  ]
+}

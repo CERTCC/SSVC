@@ -7,9 +7,9 @@
   "schemaVersion": "2.0.0",
   "values": [
     {
-      "key": "L",
-      "name": "Low",
-      "description": "Specialized access conditions or extenuating circumstances do not exist."
+      "key": "H",
+      "name": "High",
+      "description": "Specialized access conditions exist."
     },
     {
       "key": "M",
@@ -17,9 +17,9 @@
       "description": "The access conditions are somewhat specialized."
     },
     {
-      "key": "H",
-      "name": "High",
-      "description": "Specialized access conditions exist."
+      "key": "L",
+      "name": "Low",
+      "description": "Specialized access conditions or extenuating circumstances do not exist."
     }
   ]
 }

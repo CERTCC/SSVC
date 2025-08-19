@@ -36,7 +36,9 @@ class RegistryTestCase(unittest.TestCase):
             name="test_registry", description="A test registry"
         )
         main_reg = get_registry()
-        main_reg.reset(force=True)  # reset the main registry to ensure a clean state
+        main_reg.reset(
+            force=True
+        )  # reset the main registry to ensure a clean state
 
     def tearDown(self):
         pass
@@ -73,8 +75,12 @@ class RegistryTestCase(unittest.TestCase):
             namespace="x_test",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
             ],
             registered=False,
         )
@@ -89,9 +95,15 @@ class RegistryTestCase(unittest.TestCase):
             namespace="x_test",
             key="TEST2",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
-                DecisionPointValue(key="C", name="CCC", description="Option C"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
+                DecisionPointValue(
+                    key="C", name="CCC", description="Option C"
+                ),
             ],
             registered=False,
         )
@@ -107,8 +119,12 @@ class RegistryTestCase(unittest.TestCase):
             version="2.0.0",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
             ],
             registered=False,
         )
@@ -128,11 +144,21 @@ class RegistryTestCase(unittest.TestCase):
             name="TestDP",
             description="A test decision point",
             values=(
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
-                DecisionPointValue(key="C", name="CCC", description="Option C"),
-                DecisionPointValue(key="D", name="DDD", description="Option D"),
-                DecisionPointValue(key="E", name="EEE", description="Option E"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
+                DecisionPointValue(
+                    key="C", name="CCC", description="Option C"
+                ),
+                DecisionPointValue(
+                    key="D", name="DDD", description="Option D"
+                ),
+                DecisionPointValue(
+                    key="E", name="EEE", description="Option E"
+                ),
             ),
             registered=False,
         )
@@ -143,9 +169,15 @@ class RegistryTestCase(unittest.TestCase):
             name="TestDP",
             description="A test decision point",
             values=(
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
-                DecisionPointValue(key="C", name="CCC", description="Option C"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
+                DecisionPointValue(
+                    key="C", name="CCC", description="Option C"
+                ),
             ),
             registered=False,
         )
@@ -182,7 +214,8 @@ class RegistryTestCase(unittest.TestCase):
         self.assertIsNotNone(ver.obj.mapping)
 
         self.assertEqual(
-            math.prod(len(dp.values) for dp in [dp1, dp2]), len(ver.obj.mapping)
+            math.prod(len(dp.values) for dp in [dp1, dp2]),
+            len(ver.obj.mapping),
         )
 
     @patch("ssvc.registry.base._NonValuedVersion")
@@ -239,8 +272,12 @@ class RegistryTestCase(unittest.TestCase):
             namespace="x_test",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
             ],
             registered=False,
         )
@@ -269,8 +306,12 @@ class RegistryTestCase(unittest.TestCase):
             namespace="x_test",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(
+                    key="A", name="AAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
             ],
             registered=False,
         )
@@ -281,8 +322,12 @@ class RegistryTestCase(unittest.TestCase):
             namespace="x_test",
             key="TEST",
             values=[
-                DecisionPointValue(key="AA", name="AAAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(
+                    key="AA", name="AAAA", description="Option A"
+                ),
+                DecisionPointValue(
+                    key="B", name="BBB", description="Option B"
+                ),
             ],
             registered=False,
         )
@@ -303,7 +348,9 @@ class RegistryTestCase(unittest.TestCase):
         for v in range(1, 100):
             version = str(
                 semver.Version(
-                    major=v, minor=random.randint(0, 20), patch=random.randint(0, 50)
+                    major=v,
+                    minor=random.randint(0, 20),
+                    patch=random.randint(0, 50),
                 )
             )
 
@@ -314,8 +361,12 @@ class RegistryTestCase(unittest.TestCase):
                 key="TEST",
                 version=version,
                 values=[
-                    DecisionPointValue(key="A", name=f"AAA{v}", description="Option A"),
-                    DecisionPointValue(key="B", name="BBB", description="Option B"),
+                    DecisionPointValue(
+                        key="A", name=f"AAA{v}", description="Option A"
+                    ),
+                    DecisionPointValue(
+                        key="B", name="BBB", description="Option B"
+                    ),
                 ],
                 registered=False,
             )

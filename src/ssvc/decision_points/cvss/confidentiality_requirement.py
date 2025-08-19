@@ -28,6 +28,7 @@ from ssvc.decision_points.cvss._not_defined import (
     NOT_DEFINED_X,
 )
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.cvss.helpers import no_x
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
 _HIGH = DecisionPointValue(
@@ -115,6 +116,9 @@ CONFIDENTIALITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
         NOT_DEFINED_X,
     ),
 )
+
+CR_NoX = no_x(CONFIDENTIALITY_REQUIREMENT_1_1_1)
+"""A version of the Confidentiality Requirement decision point without the Not Defined (X) option."""
 
 VERSIONS = (
     CONFIDENTIALITY_REQUIREMENT_1,

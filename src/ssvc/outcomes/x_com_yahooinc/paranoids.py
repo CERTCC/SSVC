@@ -41,7 +41,9 @@ _ATTEND_2 = DecisionPointValue(name="Attend 2", key="2", description="Attend")
 
 _ACT_1 = DecisionPointValue(name="Act 1", key="1", description="Act")
 
-_ACT_ASAP_0 = DecisionPointValue(name="Act ASAP 0", key="0", description="Act ASAP")
+_ACT_ASAP_0 = DecisionPointValue(
+    name="Act ASAP 0", key="0", description="Act ASAP"
+)
 
 THE_PARANOIDS = DecisionPoint(
     name="theParanoids",

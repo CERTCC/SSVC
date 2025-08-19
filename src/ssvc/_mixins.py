@@ -25,7 +25,13 @@ This module provides mixin classes for adding features to SSVC objects.
 from datetime import datetime, timezone
 from typing import Any, Optional
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    field_validator,
+    model_validator,
+)
 from semver import Version
 
 from ssvc.namespaces import NameSpace
@@ -64,7 +70,9 @@ class _SchemaVersioned(BaseModel):
     Mixin class for version
     """
 
-    schemaVersion: str = Field(..., description="Schema version of the SSVC object")
+    schemaVersion: str = Field(
+        ..., description="Schema version of the SSVC object"
+    )
 
     @model_validator(mode="before")
     def set_schema_version(cls, data):
@@ -118,7 +126,16 @@ class _Keyed(BaseModel):
         "(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
         pattern=r"^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\*))$",
         min_length=1,
-        examples=["E", "A", "SI", "L", "M", "H", "Mixed_case_OK", "alph4num3ric"],
+        examples=[
+            "E",
+            "A",
+            "SI",
+            "L",
+            "M",
+            "H",
+            "Mixed_case_OK",
+            "alph4num3ric",
+        ],
     )
 
 

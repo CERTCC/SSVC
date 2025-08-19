@@ -37,7 +37,9 @@ def notify_registration(obj):
     """Notify all hooks about a new registration."""
     for hook in _registration_hooks:
         try:
-            logger.debug(f"Notifying {hook.__name__} about registration of {obj.id}")
+            logger.debug(
+                f"Notifying {hook.__name__} about registration of {obj.id}"
+            )
             hook(obj)
         except Exception as e:
             logger.warning(f"Registration hook failed: {e}")

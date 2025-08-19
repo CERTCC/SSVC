@@ -1,0 +1,3104 @@
+{
+  "namespace": "cvss",
+  "key": "DT_CVSS_QSR",
+  "version": "4.0.0",
+  "name": "CVSS v4.0 Qualitative Severity Ratings",
+  "description": "CVSS v4.0  using MacroVectors and Interpolation. See https://www.first.org/cvss/specification-document#New-Scoring-System-Development for details",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "cvss:EQ1:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ1",
+      "version": "1.0.0",
+      "name": "Equivalence Set 1",
+      "description": "AV/PR/UI with 3 levels specified in Table 24",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: AV:P or not(AV:N or PR:N or UI:N)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: AV:N and PR:N and UI:N"
+        }
+      ]
+    },
+    "cvss:EQ2:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ2",
+      "version": "1.0.0",
+      "name": "Equivalence Set 2",
+      "description": "AC/AT with 2 levels specified in Table 25",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "1: not (AC:L and AT:N)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: AC:L and AT:N"
+        }
+      ]
+    },
+    "cvss:EQ3:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ3",
+      "version": "1.0.0",
+      "name": "Equivalence Set 3",
+      "description": "VC/VI/VA with 3 levels specified in Table 26",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: not (VC:H or VI:H or VA:H)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: VC:H and VI:H"
+        }
+      ]
+    },
+    "cvss:EQ4:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ4",
+      "version": "1.0.0",
+      "name": "Equivalence Set 4",
+      "description": "SC/SI/SA with 3 levels specified in Table 27",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: MSI:S or MSA:S"
+        }
+      ]
+    },
+    "cvss:EQ5:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ5",
+      "version": "1.0.0",
+      "name": "Equivalence Set 5",
+      "description": "E with 3 levels specified in Table 28",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "2: E:U"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "1: E:P"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: E:A"
+        }
+      ]
+    },
+    "cvss:EQ6:1.0.0": {
+      "namespace": "cvss",
+      "key": "EQ6",
+      "version": "1.0.0",
+      "name": "Equivalence Set 6",
+      "description": "VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "1: not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "0: (CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)"
+        }
+      ]
+    },
+    "cvss:CVSS:1.0.0": {
+      "namespace": "cvss",
+      "key": "CVSS",
+      "version": "1.0.0",
+      "name": "CVSS Qualitative Severity Rating Scale",
+      "description": "The CVSS Qualitative Severity Rating Scale group.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "description": "None (0.0)"
+        },
+        {
+          "key": "L",
+          "name": "Low",
+          "description": "Low (0.1-3.9)"
+        },
+        {
+          "key": "M",
+          "name": "Medium",
+          "description": "Medium (4.0-6.9)"
+        },
+        {
+          "key": "H",
+          "name": "High",
+          "description": "High (7.0-8.9)"
+        },
+        {
+          "key": "C",
+          "name": "Critical",
+          "description": "Critical (9.0-10.0)"
+        }
+      ]
+    }
+  },
+  "outcome": "cvss:CVSS:1.0.0",
+  "mapping": [
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "L"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "M"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "H"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "L",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "L",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "L",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "L",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "L",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "M",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "M",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "M",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "L",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "M",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    },
+    {
+      "cvss:EQ1:1.0.0": "H",
+      "cvss:EQ2:1.0.0": "H",
+      "cvss:EQ3:1.0.0": "H",
+      "cvss:EQ4:1.0.0": "H",
+      "cvss:EQ5:1.0.0": "H",
+      "cvss:EQ6:1.0.0": "H",
+      "cvss:CVSS:1.0.0": "C"
+    }
+  ]
+}

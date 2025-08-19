@@ -126,7 +126,8 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
             "key": decision_point.key,
             "version": decision_point.version,
             "values": [
-                MinimalDecisionPointValue(key=val.key) for val in decision_point.values
+                MinimalDecisionPointValue(key=val.key)
+                for val in decision_point.values
             ],
         }
         for attr in ("name", "description"):
@@ -157,7 +158,9 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
-                field for field in schema["required"] if field not in not_required
+                field
+                for field in schema["required"]
+                if field not in not_required
             ]
         return schema
 
@@ -180,7 +183,9 @@ class Reference(BaseModel):
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
-                field for field in schema["required"] if field not in not_required
+                field
+                for field in schema["required"]
+                if field not in not_required
             ]
         return schema
 
@@ -276,7 +281,9 @@ class SelectionList(_Timestamped, BaseModel):
     # target_ids should be a non-empty list if not None
     @field_validator("target_ids", mode="before")
     @classmethod
-    def validate_target_ids(cls, value: Optional[list[str]]) -> Optional[list[str]]:
+    def validate_target_ids(
+        cls, value: Optional[list[str]]
+    ) -> Optional[list[str]]:
         """
         Validate the target_ids field.
         If target_ids is provided, it must be a non-empty list of strings.
@@ -341,7 +348,9 @@ class SelectionList(_Timestamped, BaseModel):
                 if isinstance(prop, dict) and "required" in prop:
                     # remove non-required fields from the required list
                     prop["required"] = [
-                        r for r in prop["required"] if r not in non_required_fields
+                        r
+                        for r in prop["required"]
+                        if r not in non_required_fields
                     ]
 
         return order_schema(schema)
@@ -373,7 +382,11 @@ def main() -> None:
         ],
     )
 
-    print(selections.model_dump_json(indent=2, exclude_none=True, exclude_unset=True))
+    print(
+        selections.model_dump_json(
+            indent=2, exclude_none=True, exclude_unset=True
+        )
+    )
 
     print("# Schema for SelectionList")
     schema = SelectionList.model_json_schema()
