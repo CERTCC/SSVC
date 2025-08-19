@@ -1,11 +1,15 @@
 # Project-specific vars
 MKDOCS_PORT=8765
 DOCKER_DIR=docker
-
+PROJECT_DIR = ./src
 # Targets
 .PHONY: all test docs docker_test clean help mdlint_fix up down regenerate_json
 
 all: help
+
+dev:
+	@echo "Set up dev environment..."
+	uv sync --dev --project $(PROJECT_DIR)
 
 mdlint_fix:
 	@echo "Running markdownlint..."
@@ -13,7 +17,7 @@ mdlint_fix:
 
 test:
 	@echo "Running tests locally..."
-	pytest -v src/test
+	uv run --project $(PROJECT_DIR) pytest -v
 
 docker_test:
 	@echo "Building the latest test image..."
@@ -41,12 +45,13 @@ regenerate_json:
 clean:
 	@echo "Cleaning up Docker resources..."
 	pushd $(DOCKER_DIR) && docker-compose down --rmi local || true
-
+	rm -rf $(PROJECT_DIR)/.venv $(PROJECT_DIR)/uv.lock
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
 	@echo " all         - Display this help message"
+	@echo " dev        - Set up development environment"
 	@echo " mdlint_fix  - Run markdownlint with fix"
 	@echo " test       - Run tests locally"
 	@echo " docker_test - Run tests in Docker"
