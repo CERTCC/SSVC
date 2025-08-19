@@ -20,7 +20,7 @@ authors = [
 ]
 description = "Tools for working with a Stakeholder Specific Vulnerability Categorization (SSVC)"
 readme = {file="README.md", content-type="text/markdown"}
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 keywords =["ssvc","vulnerability management","vulnerability management"]
 license = {file="LICENSE.md"}
 classifiers = [
@@ -38,7 +38,7 @@ dependencies = [
     "mkdocstrings-python==1.16.12",
     "mkdocs-include-markdown-plugin==7.1.6",
     "pandas==2.3.1",
-    "scipy",
+    "scipy==1.16.1",
     "jsonschema==4.25.0",
     "mkdocs-bibtex==4.4.0",
     "mkdocs-table-reader-plugin==3.1.0",
@@ -83,4 +83,9 @@ minversion = "6.0"
 addopts = "-ra -q"
 testpaths = [
     "test",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
 ]
