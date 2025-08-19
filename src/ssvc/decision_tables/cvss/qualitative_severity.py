@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Models the CVSS v4.0 Qualitative Severity Ratings from Equivalency Set 1-6
+Models the CVSS v4.0 Qualitative Severity Ratings from Equivalence Set 1-6
 """
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE

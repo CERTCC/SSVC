@@ -21,6 +21,15 @@ nav:
           - About Coordination: 'howto/coordination_intro.md'
           - Coordination Triage: 'howto/coordination_triage_decision.md'
           - Publication Decision: 'howto/publication_decision.md'
+        - CVSS v4 Analyst Models:
+            - About CVSS v4: 'howto/cvss_v4/index.md'
+            - Equivalence Set 1: 'howto/cvss_v4/eq1.md'
+            - Equivalence Set 2: 'howto/cvss_v4/eq2.md'
+            - Equivalence Set 3: 'howto/cvss_v4/eq3.md'
+            - Equivalence Set 4: 'howto/cvss_v4/eq4.md'
+            - Equivalence Set 5: 'howto/cvss_v4/eq5.md'
+            - Equivalence Set 6: 'howto/cvss_v4/eq6.md'
+            - Qualitative Severity: 'howto/cvss_v4/qualitative.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
   - Understanding SSVC:
