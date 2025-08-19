@@ -23,12 +23,15 @@ Provides helper functions for decision tables in SSVC.
 #  DM24-0278
 
 
+import logging
+
 from ssvc.decision_tables.base import (
     DecisionTable,
     decision_table_to_longform_df,
     decision_table_to_shortform_df,
 )
 
+logger = logging.getLogger(__name__)
 
 EDGE_LIMIT = 500
 
@@ -196,7 +199,7 @@ def mapping2mermaid(rows: list[dict[str:str]], title: str = None) -> str:
                 )
                 diagrams.append(diagram)
             except ValueError as e:
-                print(f"Skipping {value} due to error: {e}")
+                logger.error(f"Skipping {title} {value} due to error: {e}")
 
         return (
             "\n\n".join(diagrams)
