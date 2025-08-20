@@ -306,13 +306,13 @@ class MyTestCase(unittest.TestCase):
             selections=[self.s1, self.s2],
             timestamp=datetime.now(),
             target_ids=["CVE-1900-0001"],
-            resources=[ref],
+            decision_point_resources=[ref],
             references=[ref],
         )
 
-        self.assertEqual(len(sel_list.resources), 1)
+        self.assertEqual(len(sel_list.decision_point_resources), 1)
         self.assertEqual(len(sel_list.references), 1)
-        self.assertEqual(sel_list.resources[0].uri, ref.uri)
+        self.assertEqual(sel_list.decision_point_resources[0].uri, ref.uri)
 
     def test_model_json_schema_customization(self):
         """Test that JSON schema is properly customized."""
@@ -334,7 +334,7 @@ class MyTestCase(unittest.TestCase):
             "name",
             "description",
             "target_ids",
-            "resources",
+            "decision_point_resources",
             "references",
         ]
         for field in optional_fields:

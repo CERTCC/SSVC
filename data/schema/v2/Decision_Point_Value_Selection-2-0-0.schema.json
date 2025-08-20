@@ -74,8 +74,8 @@
           "examples": [
             "ssvc",
             "cisa",
-            "x_com.example//com.example#private",
-            "ssvc/de-DE/example.organization#reference-arch-1"
+            "x_example.test#test//.example.test#private-extension",
+            "ssvc/de-DE/.example.organization#reference-arch-1"
           ],
           "maxLength": 1000,
           "minLength": 3,
@@ -202,9 +202,9 @@
       "minItems": 1,
       "type": "array"
     },
-    "resources": {
-      "title": "Resources",
-      "description": "A list of references to resources that provide additional context about the decision points found in this selection.",
+    "decision_point_resources": {
+      "title": "Decision Point Resources",
+      "description": "A list of resources that provide additional context about the decision points found in this selection.",
       "examples": [
         [
           {
@@ -229,7 +229,7 @@
     },
     "references": {
       "title": "References",
-      "description": "A list of references to resources that provide additional context about the specific values selected.",
+      "description": "A list of references that provide additional context about the specific values selected.",
       "examples": [
         [
           {
