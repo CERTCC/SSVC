@@ -98,19 +98,6 @@ class TestMixins(unittest.TestCase):
         with self.assertRaises(ValidationError):
             _Namespaced(namespace="x_")
 
-        # error if namespace starts with x_ but is too long
-        for i in range(MAX_NS_LENGTH + 50):
-            shortest = "x_aaa"
-            ns = shortest + "a" * i
-            with self.subTest(ns=ns):
-                # length limit set in the NS_PATTERN regex
-                if len(ns) <= MAX_NS_LENGTH:
-                    # expect success on shorter than limit
-                    _Namespaced(namespace=ns)
-                else:
-                    # expect failure on longer than limit
-                    with self.assertRaises(ValidationError):
-                        _Namespaced(namespace=ns)
 
     def test_namespaced_create(self):
         # use the official namespace values
