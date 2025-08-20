@@ -17,4 +17,35 @@
 #  subject to its own license.
 #  DM24-0278
 
-"""SSVC API module."""
+"""Decision Table API Router."""
+from fastapi import APIRouter, HTTPException
+
+from ssvc.api.helpers import _404_on_none
+from ssvc.decision_tables.base import DecisionTable
+from ssvc.registry.base import get_registry
+from ssvc.registry.base import lookup_version
+
+r = get_registry()
+router = APIRouter(prefix="/decision_table", tags=["Decision Table"])
+
+
+@router.get("/", response_model=DecisionTable)
+async def get_decision_table_by_id(id: str) -> DecisionTable:
+    """Returns a single DecisionTable object by its ID."""
+    try:
+        (namespace, key, version) = id.split(":")
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="ID must be in the format 'namespace:key:version'",
+        )
+
+    version = lookup_version(
+        objtype="DecisionTable",
+        namespace=namespace,
+        key=key,
+        version=version,
+        registry=r,
+    )
+    _404_on_none(version)
+    return version.obj

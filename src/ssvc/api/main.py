@@ -23,22 +23,21 @@ API for SSVC
 #  subject to its own license.
 #  DM24-0278
 
-from typing import Any
-
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 
 import ssvc  # noqa: F401
-from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
-from ssvc.decision_tables.base import DecisionTable
-from ssvc.registry import get_registry
+from ssvc.api.helpers import _404_on_none
+from ssvc.api.routers import (
+    decision_point,
+    decision_points,
+    decision_table,
+    decision_tables,
+)
 from ssvc.registry.base import (
     lookup_key,
-    lookup_latest,
     lookup_namespace,
     lookup_objtype,
-    lookup_version,
 )
-from ssvc.utils.api_helpers import DecisionPointDict, DecisionTableDict
 
 app = FastAPI(
     title="SSVC Object Registry API",
@@ -50,263 +49,15 @@ app = FastAPI(
         "email": "cert@cert.org",
     },
 )
-
-r = get_registry()
+app.include_router(decision_point.router)
+app.include_router(decision_points.router)
+app.include_router(decision_table.router)
+app.include_router(decision_tables.router)
 
 
 @app.get("/")
 def read_root():
     return {"Hello": "SSVC World"}
-
-
-def _404_on_none(obj: Any):
-    if obj is None:
-        raise HTTPException(status_code=404, detail=f"Item not found")
-
-
-@app.get("/decision_point", response_model=DecisionPoint)
-async def get_decision_point_by_id(id: str) -> DecisionPoint:
-    """Returns a single DecisionPoint object by its ID."""
-    try:
-        (namespace, key, version) = id.split(":")
-    except ValueError:
-        raise HTTPException(
-            status_code=400,
-            detail="ID must be in the format 'namespace:key:version'",
-        )
-
-    version = lookup_version(
-        objtype="DecisionPoint",
-        namespace=namespace,
-        key=key,
-        version=version,
-        registry=r,
-    )
-    _404_on_none(version)
-    return version.obj
-
-
-@app.get("/decision_points", response_model=DecisionPointDict)
-async def get_all_decision_points() -> DecisionPointDict:
-    result = lookup_objtype(objtype="DecisionPoint", registry=r)
-    _404_on_none(result)
-
-    objs = {}
-    # result has namespaces, namespaces have keys, keys have versions.
-    for ns in result.namespaces:
-        for k in result.namespaces[ns].keys:
-            for ver in result.namespaces[ns].keys[k].versions:
-                obj = result.namespaces[ns].keys[k].versions[ver].obj
-                objs[obj.id] = obj
-    return DecisionPointDict(**objs)
-
-
-@app.get("/decision_points/{namespace}", response_model=DecisionPointDict)
-async def get_all_decision_points_for_namespace(
-    namespace: str,
-) -> DecisionPointDict:
-    result = lookup_namespace(
-        objtype="DecisionPoint", namespace=namespace, registry=r
-    )
-    _404_on_none(result)
-
-    objs = {}
-    # result has keys, keys have versions, versions have objs.
-    for k in result.keys:
-        for ver in result.keys[k].versions:
-            obj = result.keys[k].versions[ver].obj
-            objs[obj.id] = obj
-    return DecisionPointDict(**objs)
-
-
-@app.get(
-    "/decision_points/{namespace}/{key}", response_model=DecisionPointDict
-)
-async def get_all_versions_of_decision_points_for_key(
-    namespace: str, key: str
-) -> DecisionPointDict:
-    """Returns a dictionary of DecisionPoint objects for the given namespace and key.
-    Dictionary keys are namespace:key:version."""
-    result = lookup_key(
-        objtype="DecisionPoint", namespace=namespace, key=key, registry=r
-    )
-    _404_on_none(result)
-    # result obj has versions.
-    objs = {}
-    for ver in result.versions:
-        obj = result.versions[ver].obj
-        objs[obj.id] = obj
-    return DecisionPointDict(**objs)
-
-
-@app.get(
-    "/decision_points/{namespace}/{key}/latest",
-    response_model=DecisionPoint,
-)
-async def get_latest_decision_point_for_key(
-    namespace: str, key: str
-) -> DecisionPoint:
-    """Returns the latest DecisionPoint object for the given namespace and key."""
-    result = lookup_latest(
-        objtype="DecisionPoint", namespace=namespace, key=key, registry=r
-    )
-    _404_on_none(result)
-    dp = result
-    return dp
-
-
-@app.get(
-    "/decision_points/{namespace}/{key}/{version}",
-    response_model=DecisionPoint,
-)
-async def get_decision_point_version(
-    namespace: str, key: str, version: str
-) -> DecisionPoint:
-    """Returns a single DecisionPoint object for the given namespace, key, and version."""
-    result = lookup_version(
-        objtype="DecisionPoint",
-        namespace=namespace,
-        key=key,
-        version=version,
-        registry=r,
-    )
-    _404_on_none(result)
-    dp = result.obj
-    return dp
-
-
-@app.get(
-    "/decision_points/{namespace}/{key}/{version}/values",
-    response_model=list[DecisionPointValue],
-)
-async def get_decision_point_values(
-    namespace: str, key: str, version: str
-) -> DecisionPoint:
-    """Returns the values of a single DecisionPoint object for the given namespace, key, and version."""
-    result = lookup_version(
-        objtype="DecisionPoint",
-        namespace=namespace,
-        key=key,
-        version=version,
-        registry=r,
-    )
-    _404_on_none(result)
-    dp = result.obj
-    return list(dp.values)
-
-
-@app.get("/decision_table", response_model=DecisionTable)
-async def get_decision_table_by_id(id: str) -> DecisionTable:
-    """Returns a single DecisionTable object by its ID."""
-    try:
-        (namespace, key, version) = id.split(":")
-    except ValueError:
-        raise HTTPException(
-            status_code=400,
-            detail="ID must be in the format 'namespace:key:version'",
-        )
-
-    version = lookup_version(
-        objtype="DecisionTable",
-        namespace=namespace,
-        key=key,
-        version=version,
-        registry=r,
-    )
-    _404_on_none(version)
-    return version.obj
-
-
-@app.get("/decision_tables", response_model=DecisionTableDict)
-async def get_decision_tables() -> DecisionTableDict:
-    # load registry and return decision tables
-    result = lookup_objtype(objtype="DecisionTable", registry=r)
-    _404_on_none(result)
-    # result obj has namespaces, namespaces have keys, keys have versions.
-    objs = {}
-    for ns in result.namespaces:
-        for k in result.namespaces[ns].keys:
-            for ver in result.namespaces[ns].keys[k].versions:
-                obj = result.namespaces[ns].keys[k].versions[ver].obj
-                objs[obj.id] = obj
-    return DecisionTableDict(**objs)
-
-
-@app.get("/decision_tables/{namespace}", response_model=DecisionTableDict)
-async def get_decision_tables_for_namespace(
-    namespace: str,
-) -> DecisionTableDict:
-
-    ns_obj = lookup_namespace(
-        objtype="DecisionTable", namespace=namespace, registry=r
-    )
-    _404_on_none(ns_obj)
-    # namespace obj has keys, keys have versions.
-    objs = {}
-    for k in ns_obj.keys.keys():
-        for ver in ns_obj.keys[k].versions.keys():
-            obj = ns_obj.keys[k].versions[ver].obj
-            objs[obj.id] = obj
-    return DecisionTableDict(**objs)
-
-
-@app.get(
-    "/decision_tables/{namespace}/{key}", response_model=DecisionTableDict
-)
-async def get_decision_tables_for_key(
-    namespace: str, key: str
-) -> DecisionTableDict:
-    """Returns a dictionary of DecisionTable objects for the given namespace and key.
-    Dictionary keys are version strings."""
-    results = lookup_key(
-        objtype="DecisionTable", namespace=namespace, key=key, registry=r
-    )
-    _404_on_none(results)
-
-    objs = {}
-    # results is a DecisionTableKey object with versions.
-    # versions is a dict of version strings to DecisionTableVersion objects.
-    # DecisionTableVersion objects have an obj attribute which is the DecisionTable.
-    for ver in results.versions.values():
-        obj = ver.obj
-        objs[obj.id] = obj
-    return DecisionTableDict(**objs)
-
-
-@app.get(
-    "/decision_tables/{namespace}/{key}/latest",
-    response_model=DecisionTable,
-)
-async def get_latest_decision_table_for_key(
-    namespace: str, key: str
-) -> DecisionTable:
-    """Returns the latest DecisionPoint object for the given namespace and key."""
-    result = lookup_latest(
-        objtype="DecisionTable", namespace=namespace, key=key, registry=r
-    )
-    _404_on_none(result)
-    dt = result
-    return dt
-
-
-@app.get(
-    "/decision_tables/{namespace}/{key}/{version}",
-    response_model=DecisionTable,
-)
-async def get_decision_table_version(
-    namespace: str, key: str, version: str
-) -> DecisionTable:
-    """Returns a single DecisionTable object for the given namespace, key, and version."""
-    dt_version = lookup_version(
-        objtype="DecisionTable",
-        namespace=namespace,
-        key=key,
-        version=version,
-        registry=r,
-    )
-    _404_on_none(dt_version)
-    dt = dt_version.obj
-    return dt
 
 
 @app.get("/namespaces", response_model=list[str])
