@@ -23,7 +23,9 @@ API for SSVC
 #  subject to its own license.
 #  DM24-0278
 
-from fastapi import FastAPI
+from typing import Any
+
+from fastapi import FastAPI, HTTPException
 
 from ssvc.registry import get_registry
 from ssvc.registry.base import (
@@ -45,12 +47,19 @@ r = get_registry()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Hello": "SSVC World"}
+
+
+def _404_on_none(obj: Any):
+    if obj is None:
+        raise HTTPException(status_code=404, detail=f"Item not found")
+    return obj
 
 
 @app.get("/decision_points")
 async def get_decision_points() -> _NsType:
     decision_points = lookup_objtype(objtype="DecisionPoint", registry=r)
+    _404_on_none(decision_points)
     return decision_points
 
 
@@ -59,6 +68,7 @@ async def get_decision_points(namespace: str) -> _Namespace:
     decision_points = lookup_namespace(
         objtype="DecisionPoint", namespace=namespace, registry=r
     )
+    _404_on_none(decision_points)
     return decision_points
 
 
@@ -67,6 +77,7 @@ async def get_decision_points(namespace: str, key: str) -> _Key:
     decision_points = lookup_key(
         objtype="DecisionPoint", namespace=namespace, key=key, registry=r
     )
+    _404_on_none(decision_points)
     return decision_points
 
 
@@ -81,6 +92,7 @@ async def get_decision_points(
         version=version,
         registry=r,
     )
+    _404_on_none(decision_points)
     return decision_points
 
 
@@ -88,6 +100,7 @@ async def get_decision_points(
 async def get_decision_tables() -> _NsType:
     # load registry and return decision tables
     decision_tables = lookup_objtype(objtype="DecisionTable", registry=r)
+    _404_on_none(decision_tables)
     return decision_tables
 
 
@@ -96,6 +109,7 @@ async def get_decision_tables_namespace(namespace: str) -> _Namespace:
     decision_tables = lookup_namespace(
         objtype="DecisionTable", namespace=namespace, registry=r
     )
+    _404_on_none(decision_tables)
     return decision_tables
 
 
@@ -104,6 +118,7 @@ async def get_decision_tables_key(namespace: str, key: str) -> _Key:
     decision_tables = lookup_key(
         objtype="DecisionTable", namespace=namespace, key=key, registry=r
     )
+    _404_on_none(decision_tables)
     return decision_tables
 
 
@@ -118,4 +133,5 @@ async def get_decision_tables_version(
         version=version,
         registry=r,
     )
+    _404_on_none(decision_tables)
     return decision_tables
