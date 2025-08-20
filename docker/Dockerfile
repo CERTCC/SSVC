@@ -1,26 +1,30 @@
 FROM python:3.12-slim-bookworm AS base
-RUN pip install --upgrade pip
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+RUN pip install --upgrade pip uv
 WORKDIR /app
 
 FROM base AS dependencies
 
-# install requirements
-COPY ../requirements.txt .
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+ARG BASE_DIR=..
+ARG SRC_DIR=${BASE_DIR}/src
+
 # Copy the files we need
-COPY .. /app
+COPY ${BASE_DIR}/ /app
 # Set the environment variable
 ENV PYTHONPATH=/app/src
+# install requirements
+RUN uv sync --project=/app/src --frozen
 
 
 FROM dependencies AS test
-# install pytest
-RUN pip install pytest
-# run the unit tests \
-CMD ["pytest","src/test"]
+ENV PYTHONPATH=/app/src
+# Install pytest and dev dependencies
+RUN uv sync --project=/app/src --frozen --dev
+# Run the unit tests
+CMD ["uv", "run", "--project=/app/src", "pytest"]
 
 FROM dependencies AS docs
-CMD ["mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+CMD ["uv", "run", "--project=/app/src", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
 
-FROM dependencies AS server
-CMD ["uvicorn", "src.main:app", "--host", "
+FROM dependencies AS registry_api
+CMD ["uv", "run", "--project=/app/src", "uvicorn", "ssvc.api:app", "--host", "0.0.0.0", "--port", "8000"]
