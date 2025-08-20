@@ -366,7 +366,7 @@ segment of the extension.
 The following technical requirements are enforced for SSVC namespaces,
 based on the implementation in `src/ssvc/namespaces.py`
 and the ABNF specification in
-[src/ssvc/utils/ssvc_namespace_pattern.abnf](src/ssvc/utils/ssvc_namespace_pattern.abnf):
+[src/ssvc/utils/ssvc_namespace_pattern.abnf](../../../src/ssvc/utils/ssvc_namespace_pattern.abnf):
 
 - Namespaces must be between 3 and 1000 characters long.
 
