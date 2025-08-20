@@ -42,7 +42,7 @@ api:
 	$(DOCKER_COMPOSE) up api
 
 api_dev:
-	$(UV_RUN) uvicorn ssvc.api:app --reload
+	$(UV_RUN) uvicorn ssvc.api.main:app --reload
 
 up:
 	@echo "Starting Docker services..."

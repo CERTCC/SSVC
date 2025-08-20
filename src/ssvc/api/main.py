@@ -40,7 +40,16 @@ from ssvc.registry.base import (
 )
 from ssvc.utils.api_helpers import DecisionPointDict, DecisionTableDict
 
-app = FastAPI()
+app = FastAPI(
+    title="SSVC Object Registry API",
+    description="An API for accessing SSVC decision points and decision tables.",
+    version="0.1.0",
+    contact={
+        "name": "CERT/CC SSVC Team",
+        "url": "https://certcc.github.io/SSVC/",
+        "email": "cert@cert.org",
+    },
+)
 
 r = get_registry()
 
@@ -337,4 +346,3 @@ def get_version_list_for_key(type: str, namespace: str, key: str) -> list[str]:
     k = lookup_key(objtype=type, namespace=namespace, key=key, registry=r)
     _404_on_none(k)
     return sorted(list(k.versions.keys()))
-
