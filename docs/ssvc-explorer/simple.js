@@ -4,7 +4,8 @@ const SSVC = {
     "decision_points": [],
     "decision_trees" : [],
     "form": null,
-    "dpMap":{}
+    "dpMap":{},
+    "namespaces": []
 };
 function dtreeSort(a, b) {
     const nameA = a.data.namespace.toUpperCase() + a.data.name.toUpperCase()
@@ -61,8 +62,11 @@ function topalert(msg,level,timeOut) {
     applyStyle(span,{position: "fixed", color: "white", padding: "1px",
 		     top: "0px", right: "0px", border:"1px solid white",
 		     "border-radius":"2px",margin:"3px"});
-    span.addEventListener("click", function(e) {
-	e.target.parentElement.remove();
+    span.addEventListener("click", function(ev) {
+	ev.target.parentElement.remove();
+    });
+    div.addEventListener("click", function(ev) {
+	ev.target.remove();
     });
     div.appendChild(span);    
     div.style.backgroundColor = colors[level] || colors["info"];
@@ -157,17 +161,13 @@ function lock_unlock(lock) {
     
 }
 function clear() {
-    if(SSVC.form.querySelectorAll("input:checked").length) {
-	SSVC.form.innerHTML = ""; 
-	createSSVC(this.getAttribute("data-csv"), false);
-    }
-    const customButton = document.querySelector("[data-customize]");
-    if(customButton.innerHTML != "Customize") {
-	const select = SSVC.form.parentElement.querySelector("select");
-	document.querySelector("[data-customize]").innerHTML = "Customize";
-	select.dispatchEvent(new Event("change"))
-	lock_unlock(false);
-    }
+    const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
+    sampletrees.style.display = "inline-block";
+    sampletrees.disabled = false;
+    sampletrees.dispatchEvent(new Event('change'));
+    sampletrees.nextElementSibling.style.display = "none" 
+    const cbtn = SSVC.form.parentElement.querySelector("[data-customize='1']");
+    cbtn.innerHTML = "Customize";
 }
 function toNumberTable(table, headers) {
     const encoders = {};
@@ -1035,6 +1035,7 @@ function selectCustom(name, datacsv, fIndex) {
 }
 function customize(w) {
     if(w.innerHTML == "Customize") {
+	topalert("Edit, Remove or Add Decision Points, update Outcomes to create a new Decision Model and save it as a Decision Tree","success",5);
 	toggleAll(true);
 	w.innerHTML = "Save Changes";
 	lock_unlock(true);
@@ -1098,7 +1099,7 @@ function customize(w) {
 	    current = sample.nextElementSibling.value;
 	}
 	
-	lock_unlock(false);	
+	lock_unlock(false);
 	SSVC.form.querySelectorAll("input[type='checkbox']").forEach(function(checkbox) {
 	    checkbox.disabled = false;
 	    checkbox.nextSibling.style.opacity = 1.0;
@@ -1122,9 +1123,9 @@ function customize(w) {
 	createSSVC(datacsv, false);
 	topalert("Latest values have been saved locally!","success",3);
 	const findex = SSVC.decision_trees.findIndex(function(dt) {
-	    if(dt.filename.indexOf("csv:") == 0)
+	    if(dt.filename && dt.filename.indexOf("csv:") == 0)
 		return dt.displayname == current;
-	    else if (dt.displayname == current)
+	    else if (dt.displayname && dt.displayname == current)
 		current = current + " (Custom)";
 	});
 	if(findex > -1) {
@@ -1449,12 +1450,12 @@ function updateTree() {
 	}
     }
     if(changed) {
-	if(dp.namespace.indexOf("/custom") < 0) 
-	    dp.namespace = dp.namespace + "/" + "custom";
-	while(dp.name in SSVC.dpMap) {
-	    let idx = 1;
-	    dp.name = dp.name + "-" +  idx;
-	    idx++;
+	if(!dp.namespace.toLowerCase().startsWith("x_")) {
+	    /* Only thing allowed is translation  */
+	    if(dp.namespace.match(/\[0-9a-z\-]+/i)) {
+		alert("Namespace cannot use reserved namespaces. Eitehr use x_ or a pure translation is allowed.");
+		return;
+	    }
 	}
 	/* Add data to dpMap and decision_points of global SSVC data */
 	SSVC.decision_points.push({"filename": "memory:" + dp.namespace
