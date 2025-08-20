@@ -55,6 +55,28 @@ def _404_on_none(obj: Any):
         raise HTTPException(status_code=404, detail=f"Item not found")
 
 
+@app.get("/decision_point", response_model=DecisionPoint)
+async def get_decision_point_by_id(id: str) -> DecisionPoint:
+    """Returns a single DecisionPoint object by its ID."""
+    try:
+        (namespace, key, version) = id.split(":")
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="ID must be in the format 'namespace:key:version'",
+        )
+
+    version = lookup_version(
+        objtype="DecisionPoint",
+        namespace=namespace,
+        key=key,
+        version=version,
+        registry=r,
+    )
+    _404_on_none(version)
+    return version.obj
+
+
 @app.get("/decision_points", response_model=DecisionPointDict)
 async def get_all_decision_points() -> DecisionPointDict:
     result = lookup_objtype(objtype="DecisionPoint", registry=r)
@@ -162,6 +184,28 @@ async def get_decision_point_values(
     _404_on_none(result)
     dp = result.obj
     return list(dp.values)
+
+
+@app.get("/decision_table", response_model=DecisionTable)
+async def get_decision_table_by_id(id: str) -> DecisionTable:
+    """Returns a single DecisionTable object by its ID."""
+    try:
+        (namespace, key, version) = id.split(":")
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="ID must be in the format 'namespace:key:version'",
+        )
+
+    version = lookup_version(
+        objtype="DecisionTable",
+        namespace=namespace,
+        key=key,
+        version=version,
+        registry=r,
+    )
+    _404_on_none(version)
+    return version.obj
 
 
 @app.get("/decision_tables", response_model=DecisionTableDict)
@@ -293,3 +337,4 @@ def get_version_list_for_key(type: str, namespace: str, key: str) -> list[str]:
     k = lookup_key(objtype=type, namespace=namespace, key=key, registry=r)
     _404_on_none(k)
     return sorted(list(k.versions.keys()))
+
