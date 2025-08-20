@@ -49,7 +49,7 @@ async def get_decision_tables() -> DecisionTableDict:
             for ver in result.namespaces[ns].keys[k].versions:
                 obj = result.namespaces[ns].keys[k].versions[ver].obj
                 objs[obj.id] = obj
-    return DecisionTableDict(**objs)
+    return objs
 
 
 @router.get("/{namespace}", response_model=DecisionTableDict)
@@ -67,7 +67,7 @@ async def get_decision_tables_for_namespace(
         for ver in ns_obj.keys[k].versions.keys():
             obj = ns_obj.keys[k].versions[ver].obj
             objs[obj.id] = obj
-    return DecisionTableDict(**objs)
+    return objs
 
 
 @router.get("/{namespace}/{key}", response_model=DecisionTableDict)
@@ -88,7 +88,7 @@ async def get_decision_tables_for_key(
     for ver in results.versions.values():
         obj = ver.obj
         objs[obj.id] = obj
-    return DecisionTableDict(**objs)
+    return objs
 
 
 @router.get(

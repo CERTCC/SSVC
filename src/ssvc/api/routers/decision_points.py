@@ -49,7 +49,7 @@ async def get_all_decision_points() -> DecisionPointDict:
             for ver in result.namespaces[ns].keys[k].versions:
                 obj = result.namespaces[ns].keys[k].versions[ver].obj
                 objs[obj.id] = obj
-    return DecisionPointDict(**objs)
+    return objs
 
 
 @router.get("/{namespace}", response_model=DecisionPointDict)
@@ -67,7 +67,7 @@ async def get_all_decision_points_for_namespace(
         for ver in result.keys[k].versions:
             obj = result.keys[k].versions[ver].obj
             objs[obj.id] = obj
-    return DecisionPointDict(**objs)
+    return objs
 
 
 @router.get("/{namespace}/{key}", response_model=DecisionPointDict)
@@ -85,7 +85,7 @@ async def get_all_versions_of_decision_points_for_key(
     for ver in result.versions:
         obj = result.versions[ver].obj
         objs[obj.id] = obj
-    return DecisionPointDict(**objs)
+    return objs
 
 
 @router.get(

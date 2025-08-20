@@ -34,10 +34,13 @@ from ssvc.api.routers import (
     decision_tables,
 )
 from ssvc.registry.base import (
+    get_registry,
     lookup_key,
     lookup_namespace,
     lookup_objtype,
 )
+
+r = get_registry()
 
 app = FastAPI(
     title="SSVC Object Registry API",
@@ -53,11 +56,6 @@ app.include_router(decision_point.router)
 app.include_router(decision_points.router)
 app.include_router(decision_table.router)
 app.include_router(decision_tables.router)
-
-
-@app.get("/")
-def read_root():
-    return {"Hello": "SSVC World"}
 
 
 @app.get("/namespaces", response_model=list[str])
