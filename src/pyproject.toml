@@ -88,5 +88,6 @@ testpaths = [
 
 [dependency-groups]
 dev = [
+    "linkchecker>=10.6.0",
     "pytest>=8.4.1",
 ]
