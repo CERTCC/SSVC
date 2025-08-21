@@ -38,8 +38,15 @@ router = APIRouter(
 r = get_registry()
 
 
-@router.get("/", response_model=NamespaceDictResponse)
-def get_object_type_namespaces() -> dict[str, dict[str, dict[str, list[str]]]]:
+@router.get(
+    "/",
+    summary="Get all object types and their namespaces",
+    description="Returns a dictionary of namespaces organized by object type.",
+    response_model=NamespaceDictResponse,
+)
+async def get_object_type_namespaces() -> (
+    dict[str, dict[str, dict[str, list[str]]]]
+):
     """Returns a dictionary of object types and their namespaces."""
     response = {}
     response["types"] = {}
@@ -51,8 +58,13 @@ def get_object_type_namespaces() -> dict[str, dict[str, dict[str, list[str]]]]:
     return response
 
 
-@router.get("/list", response_model=ListOfStringsResponse)
-def get_namespace_list() -> ListOfStringsType:
+@router.get(
+    "/list",
+    summary="Get a list (without surrounding dict) of all namespaces in the registry (regardless of object type)",
+    description="Returns a list of all namespaces in the registry.",
+    response_model=ListOfStringsResponse,
+)
+async def get_namespace_list() -> ListOfStringsType:
     """Returns a list of all namespaces in the registry."""
     namespaces = set()
     for objtype in r.types:
@@ -61,8 +73,13 @@ def get_namespace_list() -> ListOfStringsType:
     return sorted(list(namespaces))
 
 
-@router.get("/{objtype}", response_model=NamespaceDictResponse)
-def get_namespace_list_for_type(objtype: str) -> NamespaceDictType:
+@router.get(
+    "/{objtype}",
+    summary="Get the namespaces in the registry for a given object type",
+    description="Returns a dictionary containing a list of namespaces for a given object type in the registry, organized by object type.",
+    response_model=NamespaceDictResponse,
+)
+async def get_namespace_list_for_type(objtype: str) -> NamespaceDictType:
     """Returns a dict of all namespaces for a given object type in the registry."""
     result = lookup_objtype(objtype=objtype, registry=r)
     _404_on_none(result)
@@ -75,8 +92,13 @@ def get_namespace_list_for_type(objtype: str) -> NamespaceDictType:
     return response
 
 
-@router.get("/{objtype}/list", response_model=ListOfStringsResponse)
-def get_namespace_list_for_type(objtype: str) -> list[str]:
+@router.get(
+    "/{objtype}/list",
+    summary="Get a list of namespaces for a given object type",
+    description="Returns a list of namespaces (without surrounding dict) for a given object type in the registry.",
+    response_model=ListOfStringsResponse,
+)
+async def get_namespace_list_for_type(objtype: str) -> list[str]:
     """Returns a list of all namespaces for a given object type in the registry."""
     result = lookup_objtype(objtype=objtype, registry=r)
     _404_on_none(result)

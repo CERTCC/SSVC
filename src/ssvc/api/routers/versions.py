@@ -36,9 +36,11 @@ r = get_registry()
 
 @router.get(
     "/{objtype}/{namespace}/{key}",
+    summary="Get the version strings for a given object type, namespace, and key.",
+    description="Returns a dict for a specific object type, namespace, and key in the SSVC registry containing a list of version strings available.",
     response_model=VersionDictResponse,
 )
-def get_version_dict_for_key(
+async def get_version_dict_for_key(
     objtype: str, namespace: str, key: str
 ) -> VersionDictType:
     """Returns a dictionary of all versions for a given object type, namespace, and key in the registry."""
@@ -57,9 +59,11 @@ def get_version_dict_for_key(
 
 @router.get(
     "/{objtype}/{namespace}/{key}/list",
+    summary="Get the list (without the surrounding dict) of version strings for a given object type, namespace, and key.",
+    description="Returns a sorted list of version strings available for the specified object type, namespace, and key in the SSVC registry.",
     response_model=ListOfStringsResponse,
 )
-def get_version_list_for_key(
+async def get_version_list_for_key(
     objtype: str, namespace: str, key: str
 ) -> ListOfStringsType:
     """Returns a list of all versions for a given object type, namespace, and key in the registry."""

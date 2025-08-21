@@ -33,8 +33,13 @@ router = APIRouter(prefix="/keys", tags=["SSVC Keys"])
 r = get_registry()
 
 
-@router.get("/", response_model=KeyDictResponse)
-def get_key_dict() -> dict:
+@router.get(
+    "/",
+    summary="Get Key Dictionary",
+    description="Returns a dictionary of all keys in the registry, grouped by object type and namespace",
+    response_model=KeyDictResponse,
+)
+async def get_key_dict() -> dict:
     """Returns a dictionary of all keys in the registry, grouped by object type and namespace."""
     response = {}
     response["types"] = {}
@@ -54,8 +59,13 @@ def get_key_dict() -> dict:
     return response
 
 
-@router.get("/{objtype}", response_model=KeyDictResponse)
-def get_key_dict_for_type(objtype: str) -> dict:
+@router.get(
+    "/{objtype}",
+    summary="Get Key Dictionary for Type",
+    description="Returns a dictionary of all keys for a given object type in the registry, grouped by object type and namespace",
+    response_model=KeyDictResponse,
+)
+async def get_key_dict_for_type(objtype: str) -> dict:
     """Returns a dictionary of all keys for a given object type in the registry, grouped by object type and namespace."""
     object_type = r.types.get(objtype)
     _404_on_none(object_type)
@@ -69,8 +79,15 @@ def get_key_dict_for_type(objtype: str) -> dict:
     return response
 
 
-@router.get("/{objtype}/{namespace}", response_model=KeyDictResponse)
-def get_key_dict_for_type_and_namespace(objtype: str, namespace: str) -> dict:
+@router.get(
+    "/{objtype}/{namespace}",
+    summary="Get Key Dictionary for Type and Namespace",
+    description="Returns a dictionary of all keys for a given object type and namespace in the registry, grouped by object type and namespace",
+    response_model=KeyDictResponse,
+)
+async def get_key_dict_for_type_and_namespace(
+    objtype: str, namespace: str
+) -> dict:
     """Returns a dictionary of all keys for a given object type and namespace in the registry, grouped by object type and namespace."""
     ns = lookup_namespace(objtype=objtype, namespace=namespace, registry=r)
     _404_on_none(ns)
@@ -88,9 +105,12 @@ def get_key_dict_for_type_and_namespace(objtype: str, namespace: str) -> dict:
 
 
 @router.get(
-    "/{objtype}/{namespace}/list", response_model=ListOfStringsResponse
+    "/{objtype}/{namespace}/list",
+    summary="Get Key Dictionary for Type and Namespace",
+    description="Returns a list (without surrounding dict) of all keys for a given object type and namespace in the registry",
+    response_model=ListOfStringsResponse,
 )
-def get_key_list_for_type_and_namespace(
+async def get_key_list_for_type_and_namespace(
     objtype: str, namespace: str
 ) -> ListOfStringsType:
     """Returns a list of all keys for a given object type and namespace in the registry."""

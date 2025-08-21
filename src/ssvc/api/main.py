@@ -34,6 +34,7 @@ from ssvc.api.routers import (
     decision_tables,
     keys,
     namespaces,
+    objects,
     types,
     versions,
 )
@@ -61,10 +62,11 @@ app.include_router(types.router)
 app.include_router(namespaces.router)
 app.include_router(keys.router)
 app.include_router(versions.router)
+app.include_router(objects.router)
 
 
 # root should redirect to docs
 # at least until we have something better to show
 @app.get("/", include_in_schema=False)
-def redirect_root_to_docs():
+async def redirect_root_to_docs():
     return RedirectResponse(url="/docs")

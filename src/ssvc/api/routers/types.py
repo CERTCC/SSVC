@@ -29,7 +29,12 @@ r = get_registry()
 router = APIRouter(prefix="/objtypes", tags=["SSVC Object Types"])
 
 
-@router.get("/list", response_model=ListOfStringsResponse)
-def get_object_type_list() -> ListOfStringsType:
+@router.get(
+    "/list",
+    summary="Retrieve a list of available object types",
+    description="Returns a sorted list of all object types available in the SSVC registry.",
+    response_model=ListOfStringsResponse,
+)
+async def get_object_type_list() -> ListOfStringsType:
     """Returns a list of all object types in the registry."""
     return sorted(list(r.types.keys()))
