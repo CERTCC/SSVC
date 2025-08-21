@@ -67,7 +67,7 @@ class TestDecisionTableBase(unittest.TestCase):
             name="dp1",
             description="description for dp1",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="dp1",
             values=(self.dp1v1, self.dp1v2),
         )
@@ -75,7 +75,7 @@ class TestDecisionTableBase(unittest.TestCase):
             name="dp2",
             description="description for dp2",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="dp2",
             values=(self.dp2v1, self.dp2v2, self.dp2v3, self.dp2v4),
         )
@@ -94,7 +94,7 @@ class TestDecisionTableBase(unittest.TestCase):
             name="outcome",
             description="description for outcome",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="outcome",
             values=(self.ogv1, self.ogv2, self.ogv3),
         )
@@ -104,7 +104,7 @@ class TestDecisionTableBase(unittest.TestCase):
 
         self.dt = DecisionTable(
             key="TEST",
-            namespace="x_test",
+            namespace="test",
             name="Test Table",
             description="Describes the test table",
             decision_points=self.dpdict,
@@ -357,13 +357,13 @@ class TestDecisionTableBase(unittest.TestCase):
             name="dp_in",
             description="A single decision point",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="dp",
             values=(self.dp1v1, self.dp1v2),
             registered=False,
         )
         dp_out = DecisionPoint(
-            namespace="x_test",
+            namespace="test",
             key="outcome",
             name="Outcome",
             description="Outcome for single DP test",
@@ -374,7 +374,7 @@ class TestDecisionTableBase(unittest.TestCase):
 
         single_dt = DecisionTable(
             key="SINGLE_TEST",
-            namespace="x_test",
+            namespace="test",
             name="Single DP Test Table",
             description="Describes the single DP test table",
             decision_points={dp.id: dp for dp in [dp_in, dp_out]},

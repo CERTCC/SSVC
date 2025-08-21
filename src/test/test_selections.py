@@ -29,13 +29,13 @@ from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.s1 = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key_1",
             version="1.0.0",
             values=[{"key": "value11"}, {"key": "value12"}],
         )
         self.s2 = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key_2",
             version="1.0.0",
             values=[{"key": "value21"}, {"key": "value22"}],
@@ -142,7 +142,7 @@ class MyTestCase(unittest.TestCase):
         """Test the model validators for Selection."""
         # Test with minimal data
         selection_minimal = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
@@ -152,7 +152,7 @@ class MyTestCase(unittest.TestCase):
 
         # Test with empty strings
         selection_empty = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
@@ -286,7 +286,7 @@ class MyTestCase(unittest.TestCase):
         """Test the add_selection method."""
         initial_count = len(self.selections.selections)
         new_selection = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="new_key",
             version="1.0.0",
             values=[{"key": "new_value"}],
@@ -306,13 +306,13 @@ class MyTestCase(unittest.TestCase):
             selections=[self.s1, self.s2],
             timestamp=datetime.now(),
             target_ids=["CVE-1900-0001"],
-            resources=[ref],
+            decision_point_resources=[ref],
             references=[ref],
         )
 
-        self.assertEqual(len(sel_list.resources), 1)
+        self.assertEqual(len(sel_list.decision_point_resources), 1)
         self.assertEqual(len(sel_list.references), 1)
-        self.assertEqual(sel_list.resources[0].uri, ref.uri)
+        self.assertEqual(sel_list.decision_point_resources[0].uri, ref.uri)
 
     def test_model_json_schema_customization(self):
         """Test that JSON schema is properly customized."""
@@ -334,7 +334,7 @@ class MyTestCase(unittest.TestCase):
             "name",
             "description",
             "target_ids",
-            "resources",
+            "decision_point_resources",
             "references",
         ]
         for field in optional_fields:
@@ -344,7 +344,7 @@ class MyTestCase(unittest.TestCase):
         """Test that Selection requires at least one value."""
         with self.assertRaises(ValueError):
             selection.Selection(
-                namespace="x_example.test",
+                namespace="test",
                 key="test_key",
                 version="1.0.0",
                 values=[],  # Empty values should raise error
