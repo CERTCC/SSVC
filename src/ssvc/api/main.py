@@ -24,6 +24,7 @@ API for SSVC
 #  DM24-0278
 
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 
 import ssvc  # noqa: F401
 from ssvc.api.helpers import _404_on_none
@@ -32,6 +33,7 @@ from ssvc.api.routers import (
     decision_points,
     decision_table,
     decision_tables,
+    namespaces,
 )
 from ssvc.registry.base import (
     get_registry,
@@ -56,15 +58,14 @@ app.include_router(decision_point.router)
 app.include_router(decision_points.router)
 app.include_router(decision_table.router)
 app.include_router(decision_tables.router)
+app.include_router(namespaces.router)
 
 
-@app.get("/namespaces", response_model=list[str])
-def get_namespace_list() -> list[str]:
-    namespaces = set()
-    for objtype in r.types:
-        for namespace in r.types[objtype].namespaces:
-            namespaces.add(namespace)
-    return sorted(list(namespaces))
+# root should redirect to docs
+# at least until we have something better to show
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/types", response_model=list[str])
