@@ -21,7 +21,8 @@
 
 from fastapi import APIRouter
 
-from ssvc.registry.base import get_registry
+from ssvc.api.helpers import _404_on_none
+from ssvc.registry.base import get_registry, lookup_objtype
 
 router = APIRouter(
     prefix="/namespaces",
@@ -33,8 +34,17 @@ r = get_registry()
 
 @router.get("/list", response_model=list[str])
 def get_namespace_list() -> list[str]:
+    """Returns a list of all namespaces in the registry."""
     namespaces = set()
     for objtype in r.types:
         for namespace in r.types[objtype].namespaces:
             namespaces.add(namespace)
     return sorted(list(namespaces))
+
+
+@router.get("/{type}", response_model=list[str])
+def get_namespace_list_for_type(type: str) -> list[str]:
+    """Returns a list of all namespaces for a given object type in the registry."""
+    objtype = lookup_objtype(objtype=type, registry=r)
+    _404_on_none(objtype)
+    return sorted(list(objtype.namespaces.keys()))
