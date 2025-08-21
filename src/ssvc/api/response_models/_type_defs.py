@@ -21,9 +21,14 @@
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 
+# simple stuff first
 ListOfStringsType = list[str]
 DecisionPointValuesListType = list[DecisionPointValue]
+DecisionPointDictType = dict[str, DecisionPoint]
+DecisionTableDictType = dict[str, DecisionTable]
 
+
+# more complex types
 NamespaceDictType = dict[
     str,  # "types"
     dict[
@@ -69,5 +74,3 @@ VersionDictType = dict[
         ],
     ],
 ]
-DecisionPointDictType = dict[str, DecisionPoint]
-DecisionTableDictType = dict[str, DecisionTable]
