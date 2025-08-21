@@ -26,11 +26,33 @@ from ssvc.api.response_models import (
     ListOfStringsResponse,
     ListOfStringsType,
     VersionDictResponse,
+    VersionDictType,
 )
 from ssvc.registry.base import get_registry, lookup_key
 
 router = APIRouter(prefix="/versions", tags=["SSVC Versions"])
 r = get_registry()
+
+
+@router.get(
+    "/{objtype}/{namespace}/{key}",
+    response_model=VersionDictResponse,
+)
+def get_version_dict_for_key(
+    objtype: str, namespace: str, key: str
+) -> VersionDictType:
+    """Returns a dictionary of all versions for a given object type, namespace, and key in the registry."""
+    k = lookup_key(objtype=objtype, namespace=namespace, key=key, registry=r)
+    _404_on_none(k)
+
+    response = {
+        "types": {objtype: {"namespaces": {namespace: {"keys": {key: {}}}}}}
+    }
+    response["types"][objtype]["namespaces"][namespace]["keys"][key][
+        "versions"
+    ] = sorted(list(k.versions.keys()))
+
+    return response
 
 
 @router.get(
@@ -44,24 +66,3 @@ def get_version_list_for_key(
     k = lookup_key(objtype=objtype, namespace=namespace, key=key, registry=r)
     _404_on_none(k)
     return sorted(list(k.versions.keys()))
-
-
-@router.get(
-    "/{objtype}/{namespace}/{key}",
-    response_model=VersionDictResponse,
-)
-def get_version_dict_for_key(
-    objtype: str, namespace: str, key: str
-) -> VersionDictResponse:
-    """Returns a dictionary of all versions for a given object type, namespace, and key in the registry."""
-    k = lookup_key(objtype=objtype, namespace=namespace, key=key, registry=r)
-    _404_on_none(k)
-
-    response = {
-        "types": {objtype: {"namespaces": {namespace: {"keys": {key: {}}}}}}
-    }
-    response["types"][objtype]["namespaces"][namespace]["keys"][key][
-        "versions"
-    ] = sorted(list(k.versions.keys()))
-
-    return response
