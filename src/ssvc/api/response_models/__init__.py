@@ -79,11 +79,17 @@ class DecisionPointDictResponse(RootModel[DecisionPointDictType]):
         if not isinstance(value, dict):
             raise TypeError("Value must be a dictionary")
 
-        for k, v in value.items():
+        for k, obj in value.items():
             if not isinstance(k, str):
                 raise TypeError(f"Key '{k}' must be a string")
-            if not isinstance(v, DecisionPoint):
+            if not isinstance(obj, DecisionPoint):
                 raise TypeError(f"Value for key '{k}' must be a DecisionPoint")
+
+            # key must be the value.id
+            if k != obj.id:
+                raise ValueError(
+                    f"Key '{k}' does not match DecisionPoint id '{obj.id}'"
+                )
 
         return value
 
@@ -97,11 +103,17 @@ class DecisionTableDictResponse(RootModel[DecisionTableDictType]):
         if not isinstance(value, dict):
             raise TypeError("Value must be a dictionary")
 
-        for k, v in value.items():
+        for k, obj in value.items():
             if not isinstance(k, str):
                 raise TypeError(f"Key '{k}' must be a string")
-            if not isinstance(v, DecisionTable):
+            if not isinstance(obj, DecisionTable):
                 raise TypeError(f"Value for key '{k}' must be a DecisionTable")
+
+            # key must be the value.id
+            if k != obj.id:
+                raise ValueError(
+                    f"Key '{k}' does not match DecisionPoint id '{obj.id}'"
+                )
 
         return value
 
