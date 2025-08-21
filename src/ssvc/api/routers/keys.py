@@ -107,7 +107,7 @@ async def get_key_dict_for_type_and_namespace(
 @router.get(
     "/{objtype}/{namespace}/list",
     summary="Get Key Dictionary for Type and Namespace",
-    description="Returns a list (without surrounding dict) of all keys for a given object type and namespace in the registry",
+    description="Returns a list (without the enclosing dict) of all keys for a given object type and namespace in the registry",
     response_model=ListOfStringsResponse,
 )
 async def get_key_list_for_type_and_namespace(

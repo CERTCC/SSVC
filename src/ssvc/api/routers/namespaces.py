@@ -60,7 +60,7 @@ async def get_object_type_namespaces() -> (
 
 @router.get(
     "/list",
-    summary="Get a list (without surrounding dict) of all namespaces in the registry (regardless of object type)",
+    summary="Get a list (without the enclosing dict) of all namespaces in the registry (regardless of object type)",
     description="Returns a list of all namespaces in the registry.",
     response_model=ListOfStringsResponse,
 )
@@ -95,7 +95,7 @@ async def get_namespace_list_for_type(objtype: str) -> NamespaceDictType:
 @router.get(
     "/{objtype}/list",
     summary="Get a list of namespaces for a given object type",
-    description="Returns a list of namespaces (without surrounding dict) for a given object type in the registry.",
+    description="Returns a list of namespaces (without the enclosing dict) for a given object type in the registry.",
     response_model=ListOfStringsResponse,
 )
 async def get_namespace_list_for_type(objtype: str) -> list[str]:

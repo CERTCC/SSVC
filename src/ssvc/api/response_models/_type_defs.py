@@ -29,6 +29,11 @@ DecisionTableDictType = dict[str, DecisionTable]
 
 
 # more complex types
+TypesDictType = dict[
+    str,  # "types"
+    list[str],  # list of object types
+]
+
 NamespaceDictType = dict[
     str,  # "types"
     dict[

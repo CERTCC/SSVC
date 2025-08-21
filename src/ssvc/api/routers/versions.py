@@ -59,7 +59,7 @@ async def get_version_dict_for_key(
 
 @router.get(
     "/{objtype}/{namespace}/{key}/list",
-    summary="Get the list (without the surrounding dict) of version strings for a given object type, namespace, and key.",
+    summary="Get the list (without the enclosing dict) of version strings for a given object type, namespace, and key.",
     description="Returns a sorted list of version strings available for the specified object type, namespace, and key in the SSVC registry.",
     response_model=ListOfStringsResponse,
 )
