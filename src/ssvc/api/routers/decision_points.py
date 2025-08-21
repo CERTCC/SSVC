@@ -24,8 +24,10 @@ from ssvc.api.helpers import _404_on_none
 from ssvc.api.response_models import (
     DecisionPointDictResponse,
     DecisionPointDictType,
+    DecisionPointValueListResponse,
+    ListOfDecisionPointValuesType,
 )
-from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+from ssvc.decision_points.base import DecisionPoint
 from ssvc.registry.base import get_registry
 from ssvc.registry.base import (
     lookup_key,
@@ -40,7 +42,12 @@ r = get_registry()
 router = APIRouter(prefix="/decision_points", tags=["Decision Points"])
 
 
-@router.get("/", response_model=DecisionPointDictResponse)
+@router.get(
+    "/",
+    summary="Get all decision points",
+    description="Returns a dictionary of all DecisionPoint objects organized by their object id.",
+    response_model=DecisionPointDictResponse,
+)
 async def get_all_decision_points() -> DecisionPointDictType:
     result = lookup_objtype(objtype="DecisionPoint", registry=r)
     _404_on_none(result)
@@ -55,7 +62,12 @@ async def get_all_decision_points() -> DecisionPointDictType:
     return objs
 
 
-@router.get("/{namespace}", response_model=DecisionPointDictResponse)
+@router.get(
+    "/{namespace}",
+    summary="Get all decision points for a namespace",
+    description="Returns a dictionary of DecisionPoint objects for the given namespace organized by their object id.",
+    response_model=DecisionPointDictResponse,
+)
 async def get_all_decision_points_for_namespace(
     namespace: str,
 ) -> DecisionPointDictType:
@@ -73,7 +85,12 @@ async def get_all_decision_points_for_namespace(
     return objs
 
 
-@router.get("/{namespace}/{key}", response_model=DecisionPointDictResponse)
+@router.get(
+    "/{namespace}/{key}",
+    summary="Get all versions of a decision point for a key in a namespace",
+    description="Returns a dictionary of DecisionPoint objects for the given namespace and key organized by their object id.",
+    response_model=DecisionPointDictResponse,
+)
 async def get_all_versions_of_decision_points_for_key(
     namespace: str, key: str
 ) -> DecisionPointDictType:
@@ -93,6 +110,8 @@ async def get_all_versions_of_decision_points_for_key(
 
 @router.get(
     "/{namespace}/{key}/latest",
+    summary="Get the latest decision point for a key in a namespace",
+    description="Returns the latest DecisionPoint object for the given namespace and key.",
     response_model=DecisionPoint,
 )
 async def get_latest_decision_point_for_key(
@@ -109,6 +128,8 @@ async def get_latest_decision_point_for_key(
 
 @router.get(
     "/decision_points/{namespace}/{key}/{version}",
+    summary="Get a specific version of a decision point",
+    description="Returns a single DecisionPoint object for the given namespace, key, and version.",
     response_model=DecisionPoint,
 )
 async def get_decision_point_version(
@@ -129,11 +150,13 @@ async def get_decision_point_version(
 
 @router.get(
     "/decision_points/{namespace}/{key}/{version}/values",
-    response_model=list[DecisionPointValue],
+    summary="Get the values of a decision point",
+    description="Returns the list of values of a single DecisionPoint object for the given namespace, key, and version.",
+    response_model=DecisionPointValueListResponse,
 )
 async def get_decision_point_values(
     namespace: str, key: str, version: str
-) -> DecisionPoint:
+) -> ListOfDecisionPointValuesType:
     """Returns the values of a single DecisionPoint object for the given namespace, key, and version."""
     result = lookup_version(
         objtype="DecisionPoint",

@@ -25,18 +25,85 @@ from ssvc.api.response_models._type_defs import (
     DecisionPointDictType,
     DecisionTableDictType,
     KeyDictType,
+    ListOfDecisionPointValuesType,
     ListOfStringsType,
     NamespaceDictType,
     VersionDictType,
 )
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+from ssvc.decision_tables.base import DecisionTable
+
+
+class DecisionPointListResponse(RootModel[list[DecisionPoint]]):
+    """Response model for a list of DecisionPoint objects."""
+
+    @model_validator(mode="before")
+    @classmethod
+    def model_validate(cls, value):
+        if not isinstance(value, list):
+            raise TypeError("Value must be a list")
+
+        for item in value:
+            if not isinstance(item, DecisionPoint):
+                raise TypeError(
+                    f"Item '{item}' must be a DecisionPoint object"
+                )
+
+        return value
+
+
+class DecisionPointValueListResponse(RootModel[ListOfDecisionPointValuesType]):
+    """Response model for a list of DecisionPointValue objects."""
+
+    @model_validator(mode="before")
+    @classmethod
+    def model_validate(cls, value):
+        if not isinstance(value, list):
+            raise TypeError("Value must be a list")
+
+        for item in value:
+            if not isinstance(item, DecisionPointValue):
+                raise TypeError(
+                    f"Item '{item}' must be a DecisionPointValue object"
+                )
+
+        return value
 
 
 class DecisionPointDictResponse(RootModel[DecisionPointDictType]):
     """A dictionary of DecisionPoint objects with keys as 'namespace:key:version'."""
 
+    @model_validator(mode="before")
+    @classmethod
+    def model_validate(cls, value):
+        if not isinstance(value, dict):
+            raise TypeError("Value must be a dictionary")
+
+        for k, v in value.items():
+            if not isinstance(k, str):
+                raise TypeError(f"Key '{k}' must be a string")
+            if not isinstance(v, DecisionPoint):
+                raise TypeError(f"Value for key '{k}' must be a DecisionPoint")
+
+        return value
+
 
 class DecisionTableDictResponse(RootModel[DecisionTableDictType]):
     """A dictionary of DecisionTable objects with keys as 'namespace:key:version'."""
+
+    @model_validator(mode="before")
+    @classmethod
+    def model_validate(cls, value):
+        if not isinstance(value, dict):
+            raise TypeError("Value must be a dictionary")
+
+        for k, v in value.items():
+            if not isinstance(k, str):
+                raise TypeError(f"Key '{k}' must be a string")
+            if not isinstance(v, DecisionTable):
+                raise TypeError(f"Value for key '{k}' must be a DecisionTable")
+
+        return value
 
 
 class ListOfStringsResponse(RootModel[ListOfStringsType]):

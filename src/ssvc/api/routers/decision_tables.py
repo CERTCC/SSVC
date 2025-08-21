@@ -40,7 +40,12 @@ r = get_registry()
 router = APIRouter(prefix="/decision_tables", tags=["Decision Tables"])
 
 
-@router.get("/", response_model=DecisionTableDictResponse)
+@router.get(
+    "/",
+    summary="Get all decision tables",
+    description="Returns a dictionary of all decision tables in the registry organized by their object id.",
+    response_model=DecisionTableDictResponse,
+)
 async def get_decision_tables() -> DecisionTableDictType:
     # load registry and return decision tables
     result = lookup_objtype(objtype="DecisionTable", registry=r)
@@ -55,7 +60,12 @@ async def get_decision_tables() -> DecisionTableDictType:
     return objs
 
 
-@router.get("/{namespace}", response_model=DecisionTableDictResponse)
+@router.get(
+    "/{namespace}",
+    summary="Get decision tables for a namespace",
+    description="Returns a dictionary of DecisionTable objects for the given namespace organized by their object id.",
+    response_model=DecisionTableDictResponse,
+)
 async def get_decision_tables_for_namespace(
     namespace: str,
 ) -> DecisionTableDictType:
@@ -73,7 +83,12 @@ async def get_decision_tables_for_namespace(
     return objs
 
 
-@router.get("/{namespace}/{key}", response_model=DecisionTableDictResponse)
+@router.get(
+    "/{namespace}/{key}",
+    summary="Get decision tables for namespace and key",
+    description="Returns a dictionary of DecisionTable objects for the given namespace and key organized by their object id.",
+    response_model=DecisionTableDictResponse,
+)
 async def get_decision_tables_for_key(
     namespace: str, key: str
 ) -> DecisionTableDictType:
@@ -96,6 +111,8 @@ async def get_decision_tables_for_key(
 
 @router.get(
     "/{namespace}/{key}/latest",
+    summary="Get the latest decision table for a namespace and key",
+    description="Returns the latest DecisionTable object for the given namespace and key.",
     response_model=DecisionTable,
 )
 async def get_latest_decision_table_for_key(
@@ -112,6 +129,8 @@ async def get_latest_decision_table_for_key(
 
 @router.get(
     "/{namespace}/{key}/{version}",
+    summary="Get a specific version of a decision table",
+    description="Returns a specific version of a DecisionTable object for the given namespace, key, and version.",
     response_model=DecisionTable,
 )
 async def get_decision_table_version(

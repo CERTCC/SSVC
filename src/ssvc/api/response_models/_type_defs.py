@@ -18,10 +18,12 @@
 #  DM24-0278
 
 """Type definitions for use in response models and API endpoints."""
-from ssvc.decision_points.base import DecisionPoint
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 
 ListOfStringsType = list[str]
+ListOfDecisionPointValuesType = list[DecisionPointValue]
+
 NamespaceDictType = dict[
     str,  # "types"
     dict[
