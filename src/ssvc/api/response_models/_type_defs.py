@@ -22,10 +22,17 @@ from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 
 # simple stuff first
-ListOfStringsType = list[str]
+StringsListType = list[str]
+"""A list of strings, used for various purposes in the API."""
+
 DecisionPointValuesListType = list[DecisionPointValue]
+"""A list of decision point values."""
+
 DecisionPointDictType = dict[str, DecisionPoint]
+"""A dictionary mapping decision point IDs to their corresponding DecisionPoint objects."""
+
 DecisionTableDictType = dict[str, DecisionTable]
+"""A dictionary mapping decision table IDs to their corresponding DecisionTable objects."""
 
 
 # more complex types
@@ -33,16 +40,19 @@ TypesDictType = dict[
     str,  # "types"
     list[str],  # list of object types
 ]
+"""A dictionary containing a list of object types."""
 
 NamespaceDictType = dict[
     str,  # "types"
     dict[
         str,  # specific type
         dict[
-            str, ListOfStringsType  # "namespaces"  # list of namespace strings
+            str, StringsListType  # "namespaces"  # list of namespace strings
         ],
     ],
 ]
+"""A nested dictionary mapping object types to lists of namespaces for each type."""
+
 KeyDictType = dict[
     str,  # "types"
     dict[
@@ -51,11 +61,13 @@ KeyDictType = dict[
             str,  # "namespaces"
             dict[
                 str,  # specific namespace
-                dict[str, ListOfStringsType],  # "keys"  # list of keys
+                dict[str, StringsListType],  # "keys"  # list of keys
             ],
         ],
     ],
 ]
+"""A nested dictionary mapping object types to namespaces and keys for each type."""
+
 VersionDictType = dict[
     #   types     type      namespaces namespace keys
     str,  # "types"
@@ -71,7 +83,7 @@ VersionDictType = dict[
                         str,  # specific key
                         dict[
                             str,  # "versions"
-                            ListOfStringsType,  # list of version strings
+                            StringsListType,  # list of version strings
                         ],
                     ],
                 ],
@@ -79,3 +91,4 @@ VersionDictType = dict[
         ],
     ],
 ]
+"""A nested dictionary mapping object types to namespaces, keys, and versions for each type."""

@@ -25,7 +25,7 @@ from ssvc.api.helpers import _404_on_none
 from ssvc.api.response_models import (
     KeyDictResponse,
     ListOfStringsResponse,
-    ListOfStringsType,
+    StringsListType,
 )
 from ssvc.registry.base import get_registry, lookup_namespace
 
@@ -112,7 +112,7 @@ async def get_key_dict_for_type_and_namespace(
 )
 async def get_key_list_for_type_and_namespace(
     objtype: str, namespace: str
-) -> ListOfStringsType:
+) -> StringsListType:
     """Returns a list of all keys for a given object type and namespace in the registry."""
     ns = lookup_namespace(objtype=objtype, namespace=namespace, registry=r)
     _404_on_none(ns)

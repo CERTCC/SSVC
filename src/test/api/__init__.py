@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 """
-file: helpers
+file: __init__.py
 author: adh
-created_at: 8/20/25 4:35 PM
+created_at: 8/21/25 4:33 PM
 """
+
 
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -24,17 +25,10 @@ created_at: 8/20/25 4:35 PM
 #  subject to its own license.
 #  DM24-0278
 
-from typing import Any
 
-from fastapi import HTTPException
+def main():
+    pass
 
 
-def _404_on_none(obj: Any) -> None:
-    """
-    API helper function to raise a 404 HTTPException if the passed object is None.
-
-    Args:
-        obj: The object to check. If it is None, a 404 error will be raised.
-    """
-    if obj is None:
-        raise HTTPException(status_code=404, detail=f"Item not found")
+if __name__ == "__main__":
+    main()

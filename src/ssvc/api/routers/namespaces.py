@@ -22,12 +22,7 @@
 from fastapi import APIRouter
 
 from ssvc.api.helpers import _404_on_none
-from ssvc.api.response_models import (
-    ListOfStringsResponse,
-    ListOfStringsType,
-    NamespaceDictResponse,
-    NamespaceDictType,
-)
+from ssvc.api.response_models import (ListOfStringsResponse, NamespaceDictResponse, NamespaceDictType, StringsListType)
 from ssvc.registry.base import get_registry, lookup_objtype
 
 router = APIRouter(
@@ -64,7 +59,7 @@ async def get_object_type_namespaces() -> (
     description="Returns a list of all namespaces in the registry.",
     response_model=ListOfStringsResponse,
 )
-async def get_namespace_list() -> ListOfStringsType:
+async def get_namespace_list() -> StringsListType:
     """Returns a list of all namespaces in the registry."""
     namespaces = set()
     for objtype in r.types:

@@ -23,7 +23,7 @@ from fastapi import APIRouter
 
 from ssvc.api.response_models import (
     ListOfStringsResponse,
-    ListOfStringsType,
+    StringsListType,
     TypesDictResponse,
 )
 from ssvc.api.response_models._type_defs import TypesDictType
@@ -52,6 +52,6 @@ async def get_object_types() -> TypesDictType:
     description="Returns a sorted list (without the enclosing dict) of all object types available in the SSVC registry.",
     response_model=ListOfStringsResponse,
 )
-async def get_object_type_list() -> ListOfStringsType:
+async def get_object_type_list() -> StringsListType:
     """Returns a list of all object types in the registry."""
     return sorted(list(r.types.keys()))

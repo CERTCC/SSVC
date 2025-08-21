@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-"""
-file: helpers
-author: adh
-created_at: 8/20/25 4:35 PM
-"""
-
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -24,17 +17,28 @@ created_at: 8/20/25 4:35 PM
 #  subject to its own license.
 #  DM24-0278
 
-from typing import Any
+import unittest
 
 from fastapi import HTTPException
 
+from src.ssvc.api.helpers import _404_on_none
 
-def _404_on_none(obj: Any) -> None:
-    """
-    API helper function to raise a 404 HTTPException if the passed object is None.
 
-    Args:
-        obj: The object to check. If it is None, a 404 error will be raised.
-    """
-    if obj is None:
-        raise HTTPException(status_code=404, detail=f"Item not found")
+class Test404OnNone(unittest.TestCase):
+    def test_raises_404_on_none(self):
+        with self.assertRaises(HTTPException) as context:
+            _404_on_none(None)
+        self.assertEqual(context.exception.status_code, 404)
+        self.assertEqual(context.exception.detail, "Item not found")
+
+    def test_does_not_raise_on_not_none(self):
+        try:
+            _404_on_none("not none")
+        except HTTPException:
+            self.fail(
+                "HTTPException should not be raised when obj is not None"
+            )
+
+
+if __name__ == "__main__":
+    unittest.main()
