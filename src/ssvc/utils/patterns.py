@@ -38,47 +38,49 @@ BCP_47_PATTERN = r"(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,
 # --- Length constraint ---
 LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 
-# --- Base namespace ---
-NO_CONSECUTIVE_SEP = r"(?!.*[.-]{2,})"  # no consecutive '.' or '-'
 
-BASE_PATTERN = (
-    rf"{NO_CONSECUTIVE_SEP}"
-    r"[a-z][a-z0-9]+"  # starts with lowercase letter + 1+ alnum
-    r"(?:[.-][a-z0-9]+)*"  # optional dot or dash + alnum
+# fmt: off
+# --- the following section is generated with
+#  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf
+alnum = '[a-zA-Z0-9]'
+lower = '[a-z]'
+alnumlow = f'({lower}|[0-9])'
+dash = '-'
+alnumlowdash = f'({alnumlow}|{dash})'
+dot = '\\.'
+specialchar = f'({dot}|{dash})'
+alnumlowsc = f'({alnumlow}|{specialchar})'
+label = f'{alnumlow}(({alnumlowdash}){{,61}}{alnumlow})?'
+reverse_dns = f'{label}(\\.{label})+'
+fragment_seg = f'({alnumlow})+([.\\-]({alnumlow})+)*'
+x_name = f'{reverse_dns}\\#{fragment_seg}'
+x_base = f'x_{x_name}'
+ns_core = f'{lower}{alnumlow}([.\\-]?({alnumlow})+)+'
+reg_base = f'{ns_core}(\\#{fragment_seg})?'
+base_ns = f'({x_base}|{reg_base})'
+singleton = '[0-9A-WY-Za-wy-z]'
+bcp47 = (
+    '(([a-zA-Z]{2,3}(-[a-zA-Z]{3}(-[a-zA-Z]{3}){,2})?|[a-z'
+    'A-Z]{4,8})(-[a-zA-Z]{4})?(-([a-zA-Z]{2}|[0-9]{3}))?(-'
+    f'(({alnum}){{5,8}}|[0-9]({alnum}){{3}}))*(-{singleton}(-'
+    f'({alnum}){{2,8}})+)*(-[xX](-({alnum}){{2,8}})+)?|[xX](-'
+    f'({alnum}){{2,8}})+|i-default|i-mingo)'
 )
+translation = f'\\.({reverse_dns}|{x_name})\\${bcp47}'
+ext_seg = f'({bcp47}|\\.{x_name}|{translation})'
+lang_ext = f'(/|/{bcp47})'
+extensions = f'{lang_ext}((/{ext_seg})+)?'
+namespace = f'{base_ns}({extensions})?'
+# --- end of generated output
+# fmt: on
 
-BASE_NS_PATTERN = rf"(?:x_{BASE_PATTERN}|{BASE_PATTERN})"
-
-# --- Extension segments ---
-# A single ext-seg with at most one '#'
-EXT_SEGMENT_PATTERN = (
-    rf"{NO_CONSECUTIVE_SEP}"
-    r"[a-zA-Z][a-zA-Z0-9]*"  # start with a letter
-    r"(?:[.-][a-zA-Z0-9]+)*"  # dot or dash + alnum
-    r"(?:#[a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*)?"  # optional single hash section
-)
-
-# Subsequent ext-seg(s)
-SUBSEQUENT_EXT = rf"{EXT_SEGMENT_PATTERN}(?:\/{EXT_SEGMENT_PATTERN})*"
-
-
-# --- Language extension ---
-LANG_EXT = rf"(?:\/{BCP_47_PATTERN}\/|\/\/)"
+# --- define base patterns to be compatible with previously existing tests
+BASE_PATTERN = ns_core
+BASE_NS_PATTERN = base_ns
+EXT_SEGMENT_PATTERN = fragment_seg
 
 # --- Combine all parts into the full namespace pattern ---
-NS_PATTERN_STR = (
-    rf"^{LENGTH_CHECK_PATTERN}"
-    rf"{BASE_NS_PATTERN}"
-    rf"(?:{LANG_EXT}{SUBSEQUENT_EXT})?$"
-)
+NS_PATTERN_STR = rf"^{LENGTH_CHECK_PATTERN}" rf"{namespace}$"
 
 # Compile the regex with verbose flag for readability (if needed)
 NS_PATTERN = re.compile(NS_PATTERN_STR)
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()

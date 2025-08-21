@@ -49,15 +49,23 @@ based on other sources).
 
 **Unregistered namespaces** for objects that we do not create or maintain, but
 that others may want for their own use. Unregistered namespaces must start with
-an `x_` prefix followed by a reverse domain name, such as `x_org.example`.
+an `x_` prefix followed by a reverse domain name and conclude with a fragment,
+such as `x_example.test#test`.
 Unregistered namespaces are intended for experimental or private use.
 
 !!! example
 
     A government agency might create a set of decision points for internal use 
-    using the `x_example.agency` namespace. This allows them to use SSVC objects
-    of their own design alongside existig SSVC objects without needing to
+    using the `x_example.agency#internal` namespace. This allows them to use SSVC
+    objects of their own design alongside existig SSVC objects without needing to
     register their namespace with the SSVC project.
+
+!!! example
+
+    A government agency might create a set of decision points for interagency use 
+    using the `x_example.agency#interagency` namespace. This allows them to use,
+    organize and share SSVC objects based on their namespace value without the
+    need for maintaining an external list. 
 
 **Namespace extensions** for objects that are derived from other objects in an
 registered or unregistered namespace. Extensions are not intended to be used to
@@ -69,9 +77,10 @@ interpretation of a decision point in a specific context.
 
 !!! example
 
-    An ISAO (Information Sharing and Analyzing Organization) might want to refine the meaning of decision point values for their
-    constituency, and could use `ssvc//example.isao` as the namespace for their
-    collection of extensions.
+    An ISAO (Information Sharing and Analyzing Organization) might want to refine
+    the meaning of decision point values for their constituency, and could use
+    `ssvc//.example.isao#constituency-1` as the namespace for their collection
+    of extensions.
 
 ### Consequences
 
