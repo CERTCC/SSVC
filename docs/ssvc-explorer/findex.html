@@ -17,25 +17,27 @@
     <div>
       <div>
 	<form autocomplete="off">
-	  <span style="font-size: 20px;font-weight: bold;">Sample Decision Models:</span>
+	  <span style="font-size: 20px;font-weight: bold; vertical-align:top">Sample Decision Models:</span>
 	  <input type="file" name="fileupload" style="display:none" onchange="readFile(this)">
 	  <select onchange="loadSSVC(this.options[this.selectedIndex].value)" id="sampletrees"
 		  style="font-size: 18px;background: white;border-radius: 13px;padding: 0px 4px 0px 4px;font-weight: bolder;" autocomplete="off">
 	  </select>
 	  <span> </span>
-	  <button type="button" data-customize="1"
-		  style="display: inline-block; background-color: #007bff; padding: 2px; color: white; border-radius: 4px;"
-		  onclick="customize(this)">Customize</button>
-	  &nbsp;
-	  <button style="background-color: #dc3545; color: white;" type="button"
-		  data-csv=""> CLEAR </button>
-	  &nbsp;
-	  <button type="button" data-toggleall="1"
-		  style="display: inline-block; background-color: #007bff; padding: 2px; color: white; border-radius: 4px;"
-		  onclick="toggleAll()">Toggle All</button>
+	  <div style="vertical-align:top; display:inline-block">
+	    <button type="button" data-customize="1"
+		    style="display: inline-block; background-color: #007bff; padding: 2px; color: white; border-radius: 4px;"
+		    onclick="customize(this)">Customize</button>
+	    &nbsp;
+	    <button style="background-color: #dc3545; color: white;" type="button"
+		    data-clear=""> CLEAR </button>
+	    &nbsp;
+	    <button type="button" data-toggleall="1"
+		    style="display: inline-block; background-color: #007bff; padding: 2px; color: white; border-radius: 4px;"
+		    onclick="toggleAll()">Toggle All</button>
+	  </div>
 	  <div style="padding: 8px 0px 0px 0px;position: relative; display:none" data-session="1">
 	    SSVC Custom Trees
-	    <select style="font-size: 18px;background: white;border-radius: 8px;padding: 0px 4px 0px 4px;" onchange="this.selectedIndex=0">
+	    <select name="customdp" style="font-size: 18px;background: white;border-radius: 8px;padding: 0px 4px 0px 4px;" onchange="this.selectedIndex=0">
 	      <option>Manage </option>
 	      <option onclick="restore_session()">Restore Session</option>
 	      <option onclick="delete_session()">Delete Old Sessions</option>
@@ -59,7 +61,7 @@
 	  <h4 style="text-align: center">Customize Decision Point</h4>
 	  <form onSubmit="return false();" style="text-align:left" autocomplete="off">
 	    <div style="padding-bottom:10px">
-	      <select style="background: transparent; border-radius: 6px; padding: 0px 4px 0px 4px;font-weight: bolder;">
+	      <select name="customdp" style="background: transparent; border-radius: 6px; padding: 0px 4px 0px 4px;font-weight: bolder;">
 		<option value="">Choose/Create Decision Point</option>
 	      </select>
 	    </div>
@@ -107,7 +109,7 @@
 	  <h4 style="text-align: center">Customize Outcomes</h4>
 	  <form onSubmit="return false();" style="text-align:left" autocomplete="off">
 	    <div style="padding-bottom:10px">
-	      <select style="background: transparent; border-radius: 6px; padding: 0px 4px 0px 4px;font-weight: bolder;">
+	      <select name="customdp" style="background: transparent; border-radius: 6px; padding: 0px 4px 0px 4px;font-weight: bolder;">
 		<option value="">Choose/Customize Outcomes</option>
 	      </select>
 	    </div>

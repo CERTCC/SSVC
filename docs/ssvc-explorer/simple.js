@@ -5,6 +5,7 @@ const SSVC = {
     "decision_trees" : [],
     "form": null,
     "dpMap":{},
+    "default_namespace": "x_com.example#psirt",
     "namespaces": []
 };
 function dtreeSort(a, b) {
@@ -132,24 +133,53 @@ function lock_unlock(lock) {
     const select = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     const btnAll = SSVC.form.parentElement.querySelector("[data-toggleall]");
     if(lock) {
-	if(select.nextElementSibling.nodeName.toUpperCase() != "INPUT" &&
-	   select.value.indexOf("csv:") != 0 ) {
-	    select.style.display = "none";
-	    const input = document.createElement("input");
-	    input.placeholder = "Decision Tree Name";
-	    applyStyle(input, {"font-size": "18px", "background": "white",
-			       "border-radius": "13px","padding": "0px 4px",
-			       "font-weight": "bolder",
-			       "display": "inline-block",
-			       "border": "2px solid #198754"});
-	    select.after(input);
-	    select.setAttribute("disabled", true);
-	    btnAll.setAttribute("disabled", true);
-	    btnAll.style.opacity = 0.5;
-	    sessionStorage.setItem("ssvc-pending",1);	
+	select.style.display = "none";
+	select.parentElement.children[0].innerText = "Custom Decision Model";
+	const div = document.createElement("div");
+	const clbtn = SSVC.form.parentElement.querySelector("[data-clear]");
+	let dt;
+	if(clbtn.hasAttribute("data-json")) {
+	    dt = JSON.parse(clbtn.getAttribute("data-json"));
+	} else {
+	    dt = {namespace: SSVC.default_namespace,
+		  name: "Custom Decision Tree",
+		  description: "Uploaded Custom Decistion Tree from CSV",
+		  version: "1.0.1"};
 	}
+	div.style.display = "inline-block";
+	applyStyle(div, {border: "1px dotted darkblue",
+			 display: "inline-block",
+			 borderRadius: "2px",
+			 padding: "4px"
+			});
+	["name","namespace","description","version"].forEach(function(nprop) {
+	    const label = document.createElement("label");
+	    const input = document.createElement("input");
+	    input.name = nprop;
+	    const nproper = nprop.charAt(0).toUpperCase() + nprop.slice(1);
+	    input.placeholder = "Decision Tree " + nproper;
+	    input.value = dt[nprop];
+	    applyStyle(input, {background: "transparent",
+			       padding: "0px 2px",
+			       display: "inline",
+			       fontWeight: "bolder",
+			       border: "1px solid #198754"});
+	    applyStyle(label, {display: "block",
+			       textAlign: "right",
+			       fontWeight: "bolder"});
+	    label.innerText = nproper + ": ";
+	    label.append(input);
+	    div.append(label);
+	});
+	select.after(div);
+	select.setAttribute("disabled", true);
+	btnAll.setAttribute("disabled", true);
+	btnAll.style.opacity = 0.5;
+	sessionStorage.setItem("ssvc-pending",1);
     }else {
-	if(select.nextElementSibling.nodeName.toUpperCase() == "INPUT") {
+	select.parentElement.children[0].innerText = "Sample Decision Models::";
+	
+	if(select.nextElementSibling.nodeName.toUpperCase() == "DIV") {
 	    select.nextElementSibling.remove();
 	}
 	select.style.display = "inline-block";
@@ -162,6 +192,7 @@ function lock_unlock(lock) {
 }
 function clear() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
+    sessionStorage.removeItem("ssvc-pending");
     sampletrees.style.display = "inline-block";
     sampletrees.disabled = false;
     sampletrees.dispatchEvent(new Event('change'));
@@ -448,10 +479,9 @@ function createSSVC(csv, uploaded) {
 	hdiv.style.padding = "4px";
 	hdiv.style.borderBottom = "1px solid cyan";
 	hdiv.style.fontWeight = "bold";
-	if(i <  headers.length -1 ) {
-	    hdiv.setAttribute("data-dp",header);
-	    hdiv.setAttribute("data-dpIndex",i);
-	} else {
+	hdiv.setAttribute("data-dp",header);
+	hdiv.setAttribute("data-dpIndex",i);	
+	if(i == headers.length -1 ) {
 	    hdiv.setAttribute("data-outcomeName",header);
 	}
 	hdiv.addEventListener("mouseenter", helptip);
@@ -585,12 +615,15 @@ function createSSVC(csv, uploaded) {
     form.appendChild(h5button("CSV", null, "CSV"));
     form.appendChild (document.createTextNode (" "));
     form.appendChild(h5button("Graph", null, "GRAPH"));    
-    const btn = SSVC.form.parentElement.querySelector("[data-csv]");
+    const btn = SSVC.form.parentElement.querySelector("[data-clear]");
     btn.style.backgroundColor = "#dc3545";
     btn.style.color = "white";
     btn.innerText = " CLEAR ";
     btn.type = "button";
-    btn.setAttribute("data-csv",csv);
+    if(typeof(csv) == "object")
+	btn.setAttribute("data-json", JSON.stringify(csv));
+    else
+	btn.setAttribute("data-csv", csv);
     btn.addEventListener("click",clear);
     form.appendChild(allrows);
     const code = document.createElement("code");
@@ -924,11 +957,17 @@ function disable_current_dps(options) {
 }
 
 function popupEditDP(w) {
-    topalert();    
+    topalert();
     const rpopUp = popupStart("data-customdp");
     const dpForm = rpopUp.querySelector("form");
     const dpSelect = dpForm.querySelector("select");
     let options = dpSelect.querySelectorAll("option");
+    if(w.parentElement.hasAttribute("data-outcomeName")) {
+	dpSelect.setAttribute("data-outcomeName",
+			      w.parentElement.getAttribute("data-outcomeName"));
+    } else {
+	dpSelect.removeAttribute("data-outcomeName")
+    }
     let dpName = "-1";
     let dpIndex = "-1";
     options.forEach(function(option) {
@@ -976,6 +1015,7 @@ function popupEditDP(w) {
 	    clear_popup_form(dpSelect, rpopUp);
 	}
     }
+    
     dpForm.setAttribute("data-dpIndex", dpIndex);
     dpForm.setAttribute("data-dp", dpName);
     disable_current_dps(options);
@@ -1005,7 +1045,7 @@ function toggleAll(doselect) {
     }
 }
 function selectCustom(name, datacsv, fIndex) {
-    let clbutton = SSVC.form.parentElement.querySelector("[data-csv]");
+    let clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
     clbutton.setAttribute("data-csv",datacsv);
     const sample = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     if(sample.querySelector("[selected]"))
@@ -1034,8 +1074,10 @@ function selectCustom(name, datacsv, fIndex) {
     toggleAll(true);
 }
 function customize(w) {
+    const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
     if(w.innerHTML == "Customize") {
-	topalert("Edit, Remove or Add Decision Points, update Outcomes to create a new Decision Model and save it as a Decision Tree","success",5);
+	clbutton.removeAttribute("data-changed");
+	topalert("Edit, Remove or Add Decision Points, update Outcomes to create a new Decision Model and save it as a Decision Tree","success",0);
 	toggleAll(true);
 	w.innerHTML = "Save Changes";
 	lock_unlock(true);
@@ -1048,7 +1090,7 @@ function customize(w) {
 	span.innerHTML = "&#9998;";
 	span.style.color = "#007bff";
 	span.addEventListener("click",function() {
-	    popupEditOutcome(this);
+	    popupEditDP(this);
 	});
 	divOutcome.appendChild(span);
 	const alldps = SSVC.form.querySelectorAll("[data-dp]");
@@ -1086,16 +1128,23 @@ function customize(w) {
 	SSVC.form.querySelectorAll("[data-outcome]").forEach(function(el) {
 	    const inp = document.createElement("input");
 	    inp.value = el.innerText;
+	    inp.dataset.initialvalue = el.innerText;
+	    inp.addEventListener('change', function() {
+		if (inp.value !== inp.dataset.initialValue) {
+		    clbutton.setAttribute("data-changed", "1");
+		}
+	    });
 	    el.innerText = "";
 	    el.appendChild(inp);
 	});
-    }
-    else {
+    } else {
+	if(!clbutton.hasAttribute("data-changed")) {
+	    return alert("Nothing has changed!");
+	}
 	w.innerHTML = "Customize";
 	const sample = SSVC.form.parentElement.querySelector("[id='sampletrees']");
 	let current = sample.options[sample.selectedIndex].innerText;	
-	if(sample.nextElementSibling.nodeName.toUpperCase() == "INPUT" &&
-	   sample.nextElementSibling.value != "") {
+	if(sample.nextElementSibling.nodeName.toUpperCase() == "DIV") {
 	    current = sample.nextElementSibling.value;
 	}
 	
@@ -1108,26 +1157,30 @@ function customize(w) {
 	    if(el.querySelector("span"))
 		el.querySelector("span").remove();
 	});
-	let clbutton = SSVC.form.parentElement.querySelector("[data-csv]");
-	let datacsv =  clbutton.getAttribute("data-csv").split("\n").shift()+"\n";
-	document.querySelectorAll("[data-row]").forEach(function(div,i) {
-	    /* datacsv += String(i+1) + ","; no row numbering for this csv*/
-	    div.childNodes.forEach(function(el) {
-		if(el.children.length)
-		    datacsv += el.childNodes[0].value + "\n";
-		else 
-		    datacsv += el.innerText + ",";
+	if(clbutton.hasAttribute("data-json")) {
+
+	} else {
+	    let datacsv =  clbutton.getAttribute("data-csv").split("\n").shift()+"\n";
+	    document.querySelectorAll("[data-row]").forEach(function(div,i) {
+		/* datacsv += String(i+1) + ","; no row numbering for this csv*/
+		div.childNodes.forEach(function(el) {
+		    if(el.children.length)
+			datacsv += el.childNodes[0].value + "\n";
+		    else 
+			datacsv += el.innerText + ",";
+		});
 	    });
-	});
+	}
 	SSVC.form.innerHTML = "";
 	createSSVC(datacsv, false);
-	topalert("Latest values have been saved locally!","success",3);
 	const findex = SSVC.decision_trees.findIndex(function(dt) {
 	    if(dt.filename && dt.filename.indexOf("csv:") == 0)
 		return dt.displayname == current;
 	    else if (dt.displayname && dt.displayname == current)
 		current = current + " (Custom)";
 	});
+	
+	topalert("Latest values have been saved locally!","success",3);
 	if(findex > -1) {
 	    SSVC.decision_trees[findex]["filename"] = "csv:"+ datacsv;
 	} else {	    
@@ -1228,6 +1281,7 @@ function restore_session() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Dom content loaded");
     SSVC.form = document.getElementById('ssvcForm');
     get_decision_points();
     if(localStorage.getItem("SSVC")) {
@@ -1430,11 +1484,38 @@ function updateOutcomes(w) {
 	     +") table below that have been evenly distributed for " +
 	     "convenience and \"Save Changes\" once done!","warn");
 }
+function find_key(dp,dt) {
+    /* Find a decision points' key attribute in a decision tree*/
+    if('decision_points' in dt) {
+	for (const [fkey, fdp] of Object.entries(dt.decision_points)) {
+	    if(['name','namespace','version'].every(function(prop) {
+		return prop in fdp && prop in dp && dp[prop] == fdp[prop];
+	    }))
+		return fkey;
+	}
+    }
+    return; 
+}
+function uniq_key(obj, arr) {
+    let xkey = obj.name.toUpperCase().substr(0,2);
+    let counter = 0;
+    while(arr.findIndex(xdp => xdp.key == xkey) > -1) {
+	xkey = xkey + "_" + String(counter++);
+    }
+    return xkey;
+
+}
 function updateTree() {
+    const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
+    let jsonTree = {};
+    if(clbutton.hasAttribute("data-json")) {
+	jsonTree = JSON.parse(clbutton.getAttribute("data-json"));
+    }
     const popUp = popupEnd();
     const dpForm = popUp.querySelector("[data-customdp]")
 	  .querySelector("form");
     const dpSelect = dpForm.querySelector("select");
+    const dpOutcome = dpSelect.getAttribute("data-outcomeName");
     let changed = false;
     const inputs = dpForm.querySelectorAll("input,textarea");
     let dp = deepGet(inputs);
@@ -1449,11 +1530,17 @@ function updateTree() {
 	    break;
 	}
     }
+    let olddp = {};
+    if(dpSelect.hasAttribute("data-selectdp")) 
+	/* Get previous decision point and compare to the current */
+	olddp = JSON.parse(dpSelect
+			      .getAttribute("data-selectdp"));
+    
     if(changed) {
 	if(!dp.namespace.toLowerCase().startsWith("x_")) {
 	    /* Only thing allowed is translation  */
-	    if(dp.namespace.match(/\[0-9a-z\-]+/i)) {
-		alert("Namespace cannot use reserved namespaces. Eitehr use x_ or a pure translation is allowed.");
+	    if(!dp.namespace.match(/\/[a-z\-0-9]*\//i)) {
+		alert("Namespace cannot use reserved namespaces. Either use x_ or a pure translation is allowed.");
 		return;
 	    }
 	}
@@ -1462,17 +1549,17 @@ function updateTree() {
 				   + dp.name, "data": dp});
 	SSVC.dpMap[dp.name] = {"namespace": dp.namespace, "version": dp.version};
     } else  {
-	if(dpSelect.hasAttribute("data-selectdp")) {
-	    /* Get previous decision point and compare to the current */
-	    const selectdp = JSON.parse(dpSelect
-					.getAttribute("data-selectdp"));
-	    if(match_dp({"data": dp},selectdp)) {
-		alert("Nothing has changed");
-		return;
-	    }
+	if(match_dp({"data": dp}, olddp)) {
+	    alert("Nothing has changed");
+	    return;
 	}
     }
-
+    let oldkey = find_key(olddp,jsonTree);
+    /* Enforce unique keys for values*/
+    dp.values.forEach(function(val,i) {
+	dp.values[i].key = uniq_key(val, dp.values);
+    });
+    dp.key = uniq_key(dp, SSVC.decision_points.map(x => x.data));
     const info = dp.namespace + "/" + dp.name + " (" +
 	  dp.version + ")";
     let opt = Array.from(dpSelect.querySelectorAll("option"))
@@ -1485,6 +1572,21 @@ function updateTree() {
 	opt = new Option(info, JSON.stringify(dp));
 	dpSelect.appendChild(opt);
     }
+    if(dpOutcome) {
+    
+    } else if(olddp.values && olddp.values.length == dp.values.length) {
+	/* Leave the Outcomes as-is*/
+	if(oldkey) {
+	    delete jsonTree[oldKey]
+	    jsonTree.decision_points[xkey] = dp;
+	    jsonTree.mapping.forEach(function(tmap) {
+		
+	    });
+	}
+    }
+
+
+
     const dpName = dpForm.getAttribute("data-dp");
     const dpCombo = {[dp.name]: dp.values.map(function(value) {
 	return value.name; })};
@@ -1657,6 +1759,21 @@ function computeFI(features,labels) {
 }
 
 const graphModule = (function() {
+    const showFullTree = true;
+    const acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
+		     "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
+    const lcolors = {};
+    let raw;
+    let treeData;
+    let selector = '#graph';
+
+
+    function pathclick() {};
+    function showdiv() {};
+    function hidediv() {};
+    function dorightclick() {};
+    function doclick() {};
+    function togglehelp() {};
 
     function create_raw(dt) {
 	const kmap = {};
@@ -1771,8 +1888,8 @@ const graphModule = (function() {
 	    const vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
 	    $('svg.mgraph').attr('viewBox',vbox);
 	}
-	$('#graph').html('').append(zdiv.append(zinp));
-	svg = d3.select("#graph").append("svg")
+	$(selector).html('').append(zdiv.append(zinp));
+	svg = d3.select(selector).append("svg")
 	    .attr("xmlns","http://www.w3.org/2000/svg")
 	    .attr("preserveAspectRatio","none")
 	    .attr("class","mgraph")
@@ -1964,19 +2081,6 @@ const graphModule = (function() {
 	return b
     }
 
-    function pathclick() {};
-    function showdiv() {};
-    function hidediv() {};
-    function dorightclick() {};
-    function doclick() {};
-    function togglehelp() {};
-    let showFullTree = true;
-    var acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
-		     "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
-    var lcolors = {};
-    let raw;
-    let treeData;
-
     function arrayReduce(arr,n) {
 	if(n > arr.length)
 	    return arr.concat(Array(n-arr.length).fill(arr.at(-1)))
@@ -2076,7 +2180,9 @@ const graphModule = (function() {
 
     return {
 	graph_dynamic: graph_dynamic,
-	dt_graph: dt_graph
+	dt_graph: dt_graph,
+	selector: "#graph",
+	__version__: "1.0.9"
     };
 })();
 
