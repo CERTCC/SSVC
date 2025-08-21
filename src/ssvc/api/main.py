@@ -27,7 +27,6 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
 import ssvc  # noqa: F401
-from ssvc.api.helpers import _404_on_none
 from ssvc.api.routers import (
     decision_point,
     decision_points,
@@ -36,10 +35,10 @@ from ssvc.api.routers import (
     keys,
     namespaces,
     types,
+    versions,
 )
 from ssvc.registry.base import (
     get_registry,
-    lookup_key,
 )
 
 r = get_registry()
@@ -61,18 +60,11 @@ app.include_router(decision_tables.router)
 app.include_router(types.router)
 app.include_router(namespaces.router)
 app.include_router(keys.router)
+app.include_router(versions.router)
 
 
 # root should redirect to docs
 # at least until we have something better to show
 @app.get("/", include_in_schema=False)
-def root():
+def redirect_root_to_docs():
     return RedirectResponse(url="/docs")
-
-
-@app.get("/versions/{type}/{namespace}/{key}", response_model=list[str])
-def get_version_list_for_key(type: str, namespace: str, key: str) -> list[str]:
-    """Returns a list of all versions for a given object type, namespace, and key in the registry."""
-    k = lookup_key(objtype=type, namespace=namespace, key=key, registry=r)
-    _404_on_none(k)
-    return sorted(list(k.versions.keys()))

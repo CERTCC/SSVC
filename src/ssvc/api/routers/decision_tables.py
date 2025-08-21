@@ -22,6 +22,10 @@
 from fastapi import APIRouter
 
 from ssvc.api.helpers import _404_on_none
+from ssvc.api.response_models import (
+    DecisionTableDictResponse,
+    DecisionTableDictType,
+)
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.registry.base import get_registry
 from ssvc.registry.base import (
@@ -31,14 +35,13 @@ from ssvc.registry.base import (
     lookup_objtype,
     lookup_version,
 )
-from ssvc.utils.api_helpers import DecisionTableDict
 
 r = get_registry()
 router = APIRouter(prefix="/decision_tables", tags=["Decision Tables"])
 
 
-@router.get("/", response_model=DecisionTableDict)
-async def get_decision_tables() -> DecisionTableDict:
+@router.get("/", response_model=DecisionTableDictResponse)
+async def get_decision_tables() -> DecisionTableDictType:
     # load registry and return decision tables
     result = lookup_objtype(objtype="DecisionTable", registry=r)
     _404_on_none(result)
@@ -52,10 +55,10 @@ async def get_decision_tables() -> DecisionTableDict:
     return objs
 
 
-@router.get("/{namespace}", response_model=DecisionTableDict)
+@router.get("/{namespace}", response_model=DecisionTableDictResponse)
 async def get_decision_tables_for_namespace(
     namespace: str,
-) -> DecisionTableDict:
+) -> DecisionTableDictType:
 
     ns_obj = lookup_namespace(
         objtype="DecisionTable", namespace=namespace, registry=r
@@ -70,10 +73,10 @@ async def get_decision_tables_for_namespace(
     return objs
 
 
-@router.get("/{namespace}/{key}", response_model=DecisionTableDict)
+@router.get("/{namespace}/{key}", response_model=DecisionTableDictResponse)
 async def get_decision_tables_for_key(
     namespace: str, key: str
-) -> DecisionTableDict:
+) -> DecisionTableDictType:
     """Returns a dictionary of DecisionTable objects for the given namespace and key.
     Dictionary keys are version strings."""
     results = lookup_key(

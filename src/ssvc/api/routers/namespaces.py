@@ -22,6 +22,12 @@
 from fastapi import APIRouter
 
 from ssvc.api.helpers import _404_on_none
+from ssvc.api.response_models import (
+    ListOfStringsResponse,
+    ListOfStringsType,
+    NamespaceDictResponse,
+    NamespaceDictType,
+)
 from ssvc.registry.base import get_registry, lookup_objtype
 
 router = APIRouter(
@@ -32,8 +38,21 @@ router = APIRouter(
 r = get_registry()
 
 
-@router.get("/list", response_model=list[str])
-def get_namespace_list() -> list[str]:
+@router.get("/", response_model=NamespaceDictResponse)
+def get_object_type_namespaces() -> dict[str, dict[str, dict[str, list[str]]]]:
+    """Returns a dictionary of object types and their namespaces."""
+    response = {}
+    response["types"] = {}
+    for objtype in r.types:
+        response["types"][objtype] = {}
+        response["types"][objtype]["namespaces"] = sorted(
+            list(r.types[objtype].namespaces.keys())
+        )
+    return response
+
+
+@router.get("/list", response_model=ListOfStringsResponse)
+def get_namespace_list() -> ListOfStringsType:
     """Returns a list of all namespaces in the registry."""
     namespaces = set()
     for objtype in r.types:
@@ -42,9 +61,23 @@ def get_namespace_list() -> list[str]:
     return sorted(list(namespaces))
 
 
-@router.get("/{type}", response_model=list[str])
-def get_namespace_list_for_type(type: str) -> list[str]:
+@router.get("/{objtype}", response_model=NamespaceDictResponse)
+def get_namespace_list_for_type(objtype: str) -> NamespaceDictType:
+    """Returns a dict of all namespaces for a given object type in the registry."""
+    result = lookup_objtype(objtype=objtype, registry=r)
+    _404_on_none(result)
+    response = {"types": {}}
+    response["types"][objtype] = {}
+    response["types"][objtype]["namespaces"] = sorted(
+        list(r.types[objtype].namespaces.keys())
+    )
+
+    return response
+
+
+@router.get("/{objtype}/list", response_model=ListOfStringsResponse)
+def get_namespace_list_for_type(objtype: str) -> list[str]:
     """Returns a list of all namespaces for a given object type in the registry."""
-    objtype = lookup_objtype(objtype=type, registry=r)
-    _404_on_none(objtype)
-    return sorted(list(objtype.namespaces.keys()))
+    result = lookup_objtype(objtype=objtype, registry=r)
+    _404_on_none(result)
+    return sorted(list(result.namespaces.keys()))

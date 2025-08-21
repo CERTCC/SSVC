@@ -21,6 +21,10 @@
 from fastapi import APIRouter
 
 from ssvc.api.helpers import _404_on_none
+from ssvc.api.response_models import (
+    DecisionPointDictResponse,
+    DecisionPointDictType,
+)
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.registry.base import get_registry
 from ssvc.registry.base import (
@@ -30,15 +34,14 @@ from ssvc.registry.base import (
     lookup_objtype,
     lookup_version,
 )
-from ssvc.utils.api_helpers import DecisionPointDict
 
 r = get_registry()
 
 router = APIRouter(prefix="/decision_points", tags=["Decision Points"])
 
 
-@router.get("/", response_model=DecisionPointDict)
-async def get_all_decision_points() -> DecisionPointDict:
+@router.get("/", response_model=DecisionPointDictResponse)
+async def get_all_decision_points() -> DecisionPointDictType:
     result = lookup_objtype(objtype="DecisionPoint", registry=r)
     _404_on_none(result)
 
@@ -52,10 +55,10 @@ async def get_all_decision_points() -> DecisionPointDict:
     return objs
 
 
-@router.get("/{namespace}", response_model=DecisionPointDict)
+@router.get("/{namespace}", response_model=DecisionPointDictResponse)
 async def get_all_decision_points_for_namespace(
     namespace: str,
-) -> DecisionPointDict:
+) -> DecisionPointDictType:
     result = lookup_namespace(
         objtype="DecisionPoint", namespace=namespace, registry=r
     )
@@ -70,10 +73,10 @@ async def get_all_decision_points_for_namespace(
     return objs
 
 
-@router.get("/{namespace}/{key}", response_model=DecisionPointDict)
+@router.get("/{namespace}/{key}", response_model=DecisionPointDictResponse)
 async def get_all_versions_of_decision_points_for_key(
     namespace: str, key: str
-) -> DecisionPointDict:
+) -> DecisionPointDictType:
     """Returns a dictionary of DecisionPoint objects for the given namespace and key.
     Dictionary keys are namespace:key:version."""
     result = lookup_key(

@@ -20,54 +20,82 @@
 #  DM24-0278
 
 from fastapi import APIRouter
-from pydantic import RootModel
 
 from ssvc.api.helpers import _404_on_none
+from ssvc.api.response_models import (
+    KeyDictResponse,
+    ListOfStringsResponse,
+    ListOfStringsType,
+)
 from ssvc.registry.base import get_registry, lookup_namespace
 
 router = APIRouter(prefix="/keys", tags=["SSVC Keys"])
 r = get_registry()
 
 
-class KeyDictResponse(RootModel[dict[str, dict[str, list[str]]]]):
-    """Response model for key list grouped by object type and namespace."""
-
-
 @router.get("/", response_model=KeyDictResponse)
-def get_key_list() -> dict:
-    """Returns a list of all keys in the registry, grouped by object type and namespace."""
+def get_key_dict() -> dict:
+    """Returns a dictionary of all keys in the registry, grouped by object type and namespace."""
     response = {}
+    response["types"] = {}
+
     for object_type in r.types.keys():
-        response[object_type] = {}
+        response["types"][object_type] = {"namespaces": {}}
 
         for namespace in r.types[object_type].namespaces.keys():
             ns = lookup_namespace(
                 objtype=object_type, namespace=namespace, registry=r
             )
             if ns is not None:
-                response[object_type][namespace] = sorted(list(ns.keys.keys()))
+                response["types"][object_type]["namespaces"][namespace] = {}
+                response["types"][object_type]["namespaces"][namespace][
+                    "keys"
+                ] = sorted(list(ns.keys.keys()))
     return response
 
 
 @router.get("/{objtype}", response_model=KeyDictResponse)
-def get_key_list_for_type(objtype: str) -> dict:
-    """Returns a list of all keys for a given object type in the registry, grouped by namespace."""
+def get_key_dict_for_type(objtype: str) -> dict:
+    """Returns a dictionary of all keys for a given object type in the registry, grouped by object type and namespace."""
     object_type = r.types.get(objtype)
     _404_on_none(object_type)
-
-    response = {objtype: {}}
+    response = {"types": {objtype: {"namespaces": {}}}}
     for namespace in object_type.namespaces:
         ns = lookup_namespace(objtype=objtype, namespace=namespace, registry=r)
         if ns:
-            response[objtype][namespace] = sorted(list(ns.keys.keys()))
+            response["types"][objtype]["namespaces"][namespace] = {
+                "keys": (sorted(list(ns.keys.keys())))
+            }
     return response
 
 
 @router.get("/{objtype}/{namespace}", response_model=KeyDictResponse)
-def get_key_list_for_type_and_namespace(objtype: str, namespace: str) -> dict:
+def get_key_dict_for_type_and_namespace(objtype: str, namespace: str) -> dict:
+    """Returns a dictionary of all keys for a given object type and namespace in the registry, grouped by object type and namespace."""
+    ns = lookup_namespace(objtype=objtype, namespace=namespace, registry=r)
+    _404_on_none(ns)
+
+    response = {
+        "types": {
+            objtype: {
+                "namespaces": {
+                    namespace: {"keys": sorted(list(ns.keys.keys()))}
+                }
+            }
+        }
+    }
+    return response
+
+
+@router.get(
+    "/{objtype}/{namespace}/list", response_model=ListOfStringsResponse
+)
+def get_key_list_for_type_and_namespace(
+    objtype: str, namespace: str
+) -> ListOfStringsType:
     """Returns a list of all keys for a given object type and namespace in the registry."""
     ns = lookup_namespace(objtype=objtype, namespace=namespace, registry=r)
     _404_on_none(ns)
 
-    response = {objtype: {namespace: sorted(list(ns.keys.keys()))}}
+    response = sorted(list(ns.keys.keys()))
     return response

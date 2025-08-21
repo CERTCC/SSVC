@@ -21,14 +21,15 @@
 
 from fastapi import APIRouter
 
+from ssvc.api.response_models import ListOfStringsResponse, ListOfStringsType
 from ssvc.registry.base import get_registry
 
 r = get_registry()
 
-router = APIRouter(prefix="/types", tags=["SSVC Object Types"])
+router = APIRouter(prefix="/objtypes", tags=["SSVC Object Types"])
 
 
-@router.get("/", response_model=list[str])
-def get_type_list() -> list[str]:
+@router.get("/list", response_model=ListOfStringsResponse)
+def get_object_type_list() -> ListOfStringsType:
     """Returns a list of all object types in the registry."""
     return sorted(list(r.types.keys()))
