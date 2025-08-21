@@ -33,12 +33,13 @@ from ssvc.api.routers import (
     decision_points,
     decision_table,
     decision_tables,
+    keys,
     namespaces,
+    types,
 )
 from ssvc.registry.base import (
     get_registry,
     lookup_key,
-    lookup_namespace,
 )
 
 r = get_registry()
@@ -57,7 +58,9 @@ app.include_router(decision_point.router)
 app.include_router(decision_points.router)
 app.include_router(decision_table.router)
 app.include_router(decision_tables.router)
+app.include_router(types.router)
 app.include_router(namespaces.router)
+app.include_router(keys.router)
 
 
 # root should redirect to docs
@@ -65,20 +68,6 @@ app.include_router(namespaces.router)
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse(url="/docs")
-
-
-@app.get("/types", response_model=list[str])
-def get_type_list() -> list[str]:
-    """Returns a list of all object types in the registry."""
-    return sorted(list(r.types.keys()))
-
-
-@app.get("/keys/{type}/{namespace}", response_model=list[str])
-def get_key_list_for_namespace(type: str, namespace: str) -> list[str]:
-    """Returns a list of all keys for a given object type and namespace in the registry."""
-    ns = lookup_namespace(objtype=type, namespace=namespace, registry=r)
-    _404_on_none(ns)
-    return sorted(list(ns.keys.keys()))
 
 
 @app.get("/versions/{type}/{namespace}/{key}", response_model=list[str])
