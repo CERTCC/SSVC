@@ -25,7 +25,7 @@ from ssvc.api.response_models import (
     DecisionPointDictResponse,
     DecisionPointDictType,
     DecisionPointValueListResponse,
-    ListOfDecisionPointValuesType,
+    DecisionPointValuesListType,
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.registry.base import get_registry
@@ -127,7 +127,7 @@ async def get_latest_decision_point_for_key(
 
 
 @router.get(
-    "/decision_points/{namespace}/{key}/{version}",
+    "/{namespace}/{key}/{version}",
     summary="Get a specific version of a decision point",
     description="Returns a single DecisionPoint object for the given namespace, key, and version.",
     response_model=DecisionPoint,
@@ -149,14 +149,32 @@ async def get_decision_point_version(
 
 
 @router.get(
-    "/decision_points/{namespace}/{key}/{version}/values",
+    "/{namespace}/{key}/latest/values",
+    summary="Get the latest decision point for a key in a namespace",
+    description="Returns the latest DecisionPoint object for the given namespace and key.",
+    response_model=DecisionPointValueListResponse,
+)
+async def get_latest_decision_point_for_key(
+    namespace: str, key: str
+) -> DecisionPointValuesListType:
+    """Returns the latest DecisionPoint object for the given namespace and key."""
+    result = lookup_latest(
+        objtype="DecisionPoint", namespace=namespace, key=key, registry=r
+    )
+    _404_on_none(result)
+    dp = result
+    return list(dp.values)
+
+
+@router.get(
+    "/{namespace}/{key}/{version}/values",
     summary="Get the values of a decision point",
     description="Returns the list of values of a single DecisionPoint object for the given namespace, key, and version.",
     response_model=DecisionPointValueListResponse,
 )
 async def get_decision_point_values(
     namespace: str, key: str, version: str
-) -> ListOfDecisionPointValuesType:
+) -> DecisionPointValuesListType:
     """Returns the values of a single DecisionPoint object for the given namespace, key, and version."""
     result = lookup_version(
         objtype="DecisionPoint",

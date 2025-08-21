@@ -22,7 +22,7 @@ from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 
 ListOfStringsType = list[str]
-ListOfDecisionPointValuesType = list[DecisionPointValue]
+DecisionPointValuesListType = list[DecisionPointValue]
 
 NamespaceDictType = dict[
     str,  # "types"

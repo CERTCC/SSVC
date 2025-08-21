@@ -23,9 +23,9 @@ from pydantic import RootModel, model_validator
 
 from ssvc.api.response_models._type_defs import (
     DecisionPointDictType,
+    DecisionPointValuesListType,
     DecisionTableDictType,
     KeyDictType,
-    ListOfDecisionPointValuesType,
     ListOfStringsType,
     NamespaceDictType,
     VersionDictType,
@@ -52,7 +52,7 @@ class DecisionPointListResponse(RootModel[list[DecisionPoint]]):
         return value
 
 
-class DecisionPointValueListResponse(RootModel[ListOfDecisionPointValuesType]):
+class DecisionPointValueListResponse(RootModel[DecisionPointValuesListType]):
     """Response model for a list of DecisionPointValue objects."""
 
     @model_validator(mode="before")
