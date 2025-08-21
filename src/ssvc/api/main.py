@@ -70,3 +70,24 @@ app.include_router(objects.router)
 @app.get("/", include_in_schema=False)
 async def redirect_root_to_docs():
     return RedirectResponse(url="/docs")
+
+
+if __name__ == "__main__":
+    from tabulate import tabulate
+
+    rows = []
+    for route in app.routes:
+        methods = ",".join(sorted(route.methods - {"HEAD", "OPTIONS"}))
+        response_model = getattr(route, "response_model", None)
+        response_model_name = response_model.__name__ if response_model else ""
+        description = getattr(route, "summary", "") or getattr(
+            route, "description", ""
+        )
+        rows.append([route.path, methods, response_model_name, description])
+
+    table = tabulate(
+        rows,
+        headers=["Path", "Methods", "Response Model", "Description"],
+        tablefmt="github",
+    )
+    print(table)

@@ -21,7 +21,11 @@
 
 from fastapi import APIRouter
 
-from ssvc.api.response_models import ListOfStringsResponse, ListOfStringsType
+from ssvc.api.response_models import (
+    ListOfStringsResponse,
+    ListOfStringsType,
+    TypesDictResponse,
+)
 from ssvc.api.response_models._type_defs import TypesDictType
 from ssvc.registry.base import get_registry
 
@@ -34,7 +38,7 @@ router = APIRouter(prefix="/objtypes", tags=["SSVC Object Types"])
     "/",
     summary="Get all object types",
     description="Returns a dictionary containing a list of all object types available in the SSVC registry.",
-    response_model=TypesDictType,
+    response_model=TypesDictResponse,
 )
 async def get_object_types() -> TypesDictType:
     """Returns a dictionary of all object types in the registry."""

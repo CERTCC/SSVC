@@ -28,6 +28,7 @@ from ssvc.api.response_models._type_defs import (
     KeyDictType,
     ListOfStringsType,
     NamespaceDictType,
+    TypesDictType,
     VersionDictType,
 )
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
@@ -130,6 +131,28 @@ class ListOfStringsResponse(RootModel[ListOfStringsType]):
         for item in value:
             if not isinstance(item, str):
                 raise TypeError(f"Item '{item}' must be a string")
+
+        return value
+
+
+class TypesDictResponse(RootModel[TypesDictType]):
+    """Response model for the list of object types."""
+
+    @model_validator(mode="before")
+    @classmethod
+    def model_validate(cls, value):
+        if not isinstance(value, dict):
+            raise TypeError("Value must be a dictionary")
+
+        if "types" not in value:
+            raise ValueError('Top-level key must be "types"')
+
+        if not isinstance(value["types"], list):
+            raise TypeError('"types" must be a list')
+
+        for item in value["types"]:
+            if not isinstance(item, str):
+                raise TypeError(f'Object type "{item}" must be a string')
 
         return value
 
