@@ -7046,8 +7046,8 @@
             }
           }
         },
-        "x_com.yahooinc": {
-          "namespace": "x_com.yahooinc",
+        "x_com.yahooinc#prioritized-risk-remediation": {
+          "namespace": "x_com.yahooinc#prioritized-risk-remediation",
           "keys": {
             "PARANOIDS": {
               "key": "PARANOIDS",
@@ -7055,7 +7055,7 @@
                 "1.0.0": {
                   "version": "1.0.0",
                   "obj": {
-                    "namespace": "x_com.yahooinc",
+                    "namespace": "x_com.yahooinc#prioritized-risk-remediation",
                     "key": "PARANOIDS",
                     "version": "1.0.0",
                     "name": "theParanoids",
