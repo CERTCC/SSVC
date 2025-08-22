@@ -32,6 +32,8 @@ services:
     image: docs:latest
     depends_on:
       - dependencies
+    volumes:
+      - ..:/app
     ports:
       - "8000:8000"
 
@@ -43,5 +45,7 @@ services:
     image: registry_api:latest
     depends_on:
       - dependencies
+    volumes:
+      - ..:/app
     ports:
       - "8001:8000"
