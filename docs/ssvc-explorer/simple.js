@@ -834,18 +834,13 @@ function deepSet(form, obj, path) {
 	}
     }
 }
-function match_dp(dp,selectdp) {
-    const qs = ["name", "namespace", "version"];
-    for(let i=0; i < qs.length; i++) {
-	if(dp.data.hasOwnProperty(qs[i]) &&
-	   selectdp.hasOwnProperty(qs[i]) &&
-	   (dp.data[qs[i]] == selectdp[qs[i]])) {
-	    continue;
-	} else {
-	    return false;
-	}
-    }
-    return true;
+function match_name_ns_vers(obj,selectobj) {
+    const props = ["name", "namespace", "version"];
+    return props.every(function(prop) {
+	return obj.data.hasOwnProperty(prop) &&
+	    selectobj.hasOwnProperty(prop) &&
+	    obj.data[prop] == selectobj[prop];
+    });
 }
 function prepare_form(vForm, vSelect, selectdp, preFill, vars) {
     vSelect.addEventListener("change",function(ev) {
@@ -876,7 +871,7 @@ function prepare_form(vForm, vSelect, selectdp, preFill, vars) {
 	else
 	    info = obj.data.name;
 	const opt = new Option(info, JSON.stringify(obj.data));
-	if(selectdp.name  && match_dp(obj,selectdp)) {
+	if(selectdp.name  && match_name_ns_vers(obj,selectdp)) {
 	    opt.selected = true;
 	    selectdp['obj'] = true; 
 	}
@@ -960,7 +955,7 @@ function disable_current_dps(options) {
 	    try {
 		const odp = JSON.parse(option.value);
 		current_dps.forEach(function(cdp) {
-		    if(match_dp({"data": odp},cdp))
+		    if(match_name_ns_vers({"data": odp},cdp))
 			option.setAttribute("disabled",1);
 		});
 	    } catch(err) {
@@ -1017,7 +1012,7 @@ function popupEditDP(w) {
 	if(selectdp.name) {
 	    dpSelect.setAttribute("data-selectdp", JSON.stringify(selectdp));
 	    const i = SSVC.decision_points.findIndex(function(dp) {
-		return match_dp(dp,selectdp);
+		return match_name_ns_vers(dp,selectdp);
 	    });
 	    if (i > -1) {
 		dpSelect.options.selectedIndex = i + 1;
@@ -1060,11 +1055,19 @@ function toggleAll(doselect) {
 }
 function selectCustom(name, datatree, fIndex) {
     let clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
-    clbutton.setAttribute("data-json",datatree);
+    clbutton.setAttribute("data-json", JSON.stringify(datatree));
     const sample = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     if(sample.querySelector("[selected]"))
 	sample.querySelector("[selected]").removeAttribute("selected");
     if(fIndex < 0) {
+	if(fIndex != SSVC.decision_trees.length - 1) {
+	    /* This option does not exist so add it to local Decision
+	       Trees*/
+	    if(!name)
+		name = "Custom Uploaded";
+	    SSVC.decision_trees.push({data: JSON.stringify(datatree),
+				      custom: 1, name: name});
+	}
 	const opt = new Option(name, String(fIndex * -1), false, true);
 	if(name) {
 	    opt.text = name;
@@ -1557,7 +1560,7 @@ function updateTree() {
 				   + dp.name, "data": dp});
 	SSVC.dpMap[dp.name] = {"namespace": dp.namespace, "version": dp.version};
     } else  {
-	if(match_dp({"data": dp}, olddp)) {
+	if(match_name_ns_vers({"data": dp}, olddp)) {
 	    alert("Nothing has changed");
 	    return;
 	}
@@ -1675,12 +1678,15 @@ function schemaTransform(dtnew) {
 
 }
 function import_json(json, name) {
+    /* Convert everything to JSON 2.0.0 schema before loading */
     let outcomeName = "Priority";
     if(('schemaVersion' in json) && (json.schemaVersion == "2.0.0")) {
 	if(('outcome' in json) && ('decision_points' in json) &&
 	   (json.outcome in json.decision_points)) {
 	    if('name' in json)
 		name = json.name;
+	    else
+		name = "Custom Uploaded ";
 	    SSVC.form.innerHTML = "";
 	    createSSVC(json, false);
 	    if(name)
@@ -1714,7 +1720,7 @@ function readFile(input) {
 	    const json = JSON.parse(data);
 	    import_json(json, name);
 	} else {
-	    /* Assume CSV */
+	    /* Assume CSV convert it to JSON schema version 2.0.0*/
 	    SSVC.form.innerHTML = "";
 	    createSSVC(data, true);
 	    selectCustom(name, data, -1);
