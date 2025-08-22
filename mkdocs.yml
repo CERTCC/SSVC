@@ -32,6 +32,8 @@ nav:
             - Qualitative Severity: 'howto/cvss_v4/qualitative.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
+    - SSVC Tools:
+        - Docker Containers: 'howto/tools/containers.md'
   - Understanding SSVC:
     - Intro: 'topics/index.md'
     - State of Practice: 'topics/state_of_practice.md'
