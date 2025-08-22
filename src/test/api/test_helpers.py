@@ -21,7 +21,7 @@ import unittest
 
 from fastapi import HTTPException
 
-from src.ssvc.api.helpers import _404_on_none
+from ssvc.api.helpers import _404_on_none
 
 
 class Test404OnNone(unittest.TestCase):
