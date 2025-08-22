@@ -1065,24 +1065,17 @@ function selectCustom(name, datatree, fIndex) {
     if(sample.querySelector("[selected]"))
 	sample.querySelector("[selected]").removeAttribute("selected");
     if(fIndex < 0) {
-	let opt;
-	if(typeof(datatree) === "object")
-	    opt = new Option(name, "json:" + JSON.stringify(datatree), false, true);
-	else
-	    opt = new Option(name, "csv:" + datatree, false, true);	    
+	const opt = new Option(name, String(fIndex * -1), false, true);
 	if(name) {
 	    opt.text = name;
 	    opt.selected = true;
+	    opt.setAttribute("data-customdt",1);
 	}
 	sample.appendChild(opt);
     } else {
 	sample.querySelectorAll("option").forEach(function(option) {
 	    if(option.textContent == name) {
-		if(typeof(datatree) === "object")
-		    option.value = "json:" + JSON.stringify(datatree);
-		else
-		    option.value = "csv:" + datatree;
-	    }
+		option.value = fIndex;
 	});
     }
     toggleAll(true);
@@ -1182,19 +1175,23 @@ function customize(w) {
 	});
 	SSVC.form.innerHTML = "";
 	createSSVC(jsonTree, false);
-	/* Find if this is already a custom built tree and update it if needed */
+	/* Find if this is already a custom built tree and
+	   update it if needed */
 	const findex = SSVC.decision_trees.findIndex(function(dt) {
-	    if(dt.filename && dt.filename.indexOf("json:") == 0)
+	    if(dt.custom)
 		return dt.displayname == current;
-	    else if (dt.displayname && dt.displayname == current)
-		current = current + " (Custom)";
+	    else 
+		current = jsonTree.name;
 	});
 	
 	topalert("Latest values have been saved locally!","success",3);
 	if(findex > -1) {
 	    SSVC.decision_trees[findex]["data"] = jsonTree;
-	} else {	    
-	    SSVC.decision_trees.push({data: jsonTree, displayname: current});
+	} else {
+	    /* Now findex will basicaly represent the last element
+	     in the SSVC.decision_trees */
+	    findex = -1 * SSVC.decision_trees.length;
+	    SSVC.decision_trees.push({data: jsonTree, displayname: current, custom: 1});
 	}
 	selectCustom(current, jsonTree, findex);
 	localStorage.setItem("SSVC", JSON.stringify(SSVC));
@@ -1205,7 +1202,10 @@ function load_trees() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     sampletrees.innerHTML = "";
     SSVC.decision_trees.forEach(function(decision_tree, i) {
-	sampletrees.appendChild(new Option(decision_tree.displayname, i , decision_tree.selected, decision_tree.selected));
+	const opt = new Option(decision_tree.displayname, i , decision_tree.selected, decision_tree.selected);
+	if(decision_tree.custom)
+	    opt.setAttribute("data-customdt","1");
+	sampletrees.appendChild(opt);
 	if(decision_tree.selected)
 	    loadSSVC(String(i));
     });
@@ -1231,19 +1231,12 @@ async function delete_session() {
 async function delete_dtree() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     const delete_tree = sampletrees.options[sampletrees.selectedIndex].innerText;
-    if((sampletrees.value.indexOf("csv:") != 0)  && 
-       (sampletrees.value.indexOf("json:") != 0)) {
+    const opt = sampletrees.querySelector("[selected]");
+    if(!opt.hasAtribute("data-customdt")) {
 	return alert("The default trees cannot be deleted");
     }
     if(await popupConfirm("Are you sure, you want to delete custom Decision Tree \""+ delete_tree  + "\"?") == "Yes") {
-	for (let i = 0; i < SSVC.decision_trees.length; i++) {
-	    if('displayname' in SSVC.decision_trees[i] &&
-	       SSVC.decision_trees[i].displayname == delete_tree &&
-	       'filename' in SSVC.decision_trees[i] &&
-	       SSVC.decision_trees[i].filename.indexOf("csv:") == 0) {
-		SSVC.decision_tree.splice(i, 1);
-		i--;
-	    }
+	SSVC.decision_tree.splice(parseInt(opt.value), 1);
 	}
 	sampletrees.options[sampletrees.selectedIndex].remove();
 	sampletrees.dispatchEvent(new Event("change"));	
@@ -1263,8 +1256,7 @@ function rename_dtree() {
     for (let i = 0; i < SSVC.decision_trees.length; i++) {
 	if('displayname' in SSVC.decision_trees[i] &&
 	   SSVC.decision_trees[i].displayname == old_tree &&
-	   'filename' in SSVC.decision_trees[i] &&
-	   SSVC.decision_trees[i].filename.indexOf("csv:") == 0) {
+	   'custom' in SSVC.decision_trees[i]) {
 	    SSVC.decision_trees[i].displayname = newname;
 	    break;
 	}
@@ -1279,9 +1271,9 @@ function download_ssvc(dtype) {
 function restore_session() {
     if(localStorage.getItem("SSVC")) {
 	const saved = JSON.parse(localStorage.getItem("SSVC"));
+	delete saved.form;
 	Object.keys(saved).forEach(function(item) {
-	    if(item != 'form')
-		SSVC[item] = saved[item];
+	    SSVC[item] = saved[item];
 	});
 	load_trees();
 	topalert("Session variables have been restored!","success",3);
