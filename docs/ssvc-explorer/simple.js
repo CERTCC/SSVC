@@ -1278,7 +1278,7 @@ async function delete_session() {
     if(await popupConfirm("Are you sure, you want to delete all custom Decision Trees?") == "Yes") {
 	localStorage.removeItem("custom_ssvc");
 	for (let i = 0; i < SSVC.decision_trees.length; i++) {
-	    id(SSVC.decision_tree[i].custom) {
+	    if(SSVC.decision_tree[i].custom) {
 		SSVC.decision_tree.splice(i, 1);
 		i--; 
 	    }
@@ -1581,34 +1581,40 @@ function find_key(dp,dt) {
     }
     return; 
 }
-function uniq_key(obj, arr) {
-    /* The name could be unicode so clean it up*/
+function uniq_key(obj, arr, prefix, copyLength) {
+    if(!prefix)
+	prefix = "";
+    if(copyLength && String(copyLength).match(/^[0-9]$/)) {
+	copyLength = parseInt(copyLength);
+    } else {
+	copyLength = 0;
+    }
     let base = obj.name.normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .toUpperCase()
-        .replace(/[^A-Z0-9]/g, "");
+        .replace(/[^a-zA-Z0-9_]/g, "")
+        .toUpperCase();
+
+    if (copyLength && copyLength > 0) {
+        base = base.substring(0, copyLength);
+    }
+
+    if (!base[0] || !/[A-Z0-9]/.test(base[0])) {
+        base = "A" + base; 
+    }
 
     if (base.length === 0) {
-        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let idx = arr.length % alphabet.length; 
-        let key = alphabet[idx];
-        let counter = 1;
-        while (arr.some(xdp => xdp.key === key)) {
-            key = alphabet[idx] + "_" + counter++;
-        }
-        return key;
+        base = "A";
     }
-    let key = base[0];
+
+    let xkey = prefix + base;
     let counter = 0;
-    while (arr.some(xdp => xdp.key === key)) {
-        if (counter < base.length) {
-            key = base.substr(0, counter + 1);
-        } else {
-            key = base + "_" + (counter - base.length + 1);
-        }
+
+    while (arr.findIndex(xdp => xdp.key === xkey) > -1) {
         counter++;
+        xkey = prefix + base + "_" + counter;
     }
-    return key;
+
+    return xkey;
 }
 
 function validate_namespace(namespace) {
@@ -1774,7 +1780,7 @@ function updateTree() {
 	    })) {
 		console.log("success");
 		SSVC.form.innerHTML = "";
-		console.log(jsonTree);
+		jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
 		createSSVC(jsonTree, false);
 		customize({innerHTML: "Customize"});
 		clbutton.setAttribute("data-changed","1")
@@ -1795,6 +1801,7 @@ function updateTree() {
     jsonTree.mapping = [];
     jsonTree.mapping = enumerateCombinations(jsonTree);
     SSVC.form.innerHTML = "";
+    jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
     createSSVC(jsonTree, false);
     customize({innerHTML: "Customize"});
     clbutton.setAttribute("data-changed","1");
