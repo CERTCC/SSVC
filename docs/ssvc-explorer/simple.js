@@ -211,7 +211,7 @@ function lock_unlock(lock) {
 		label.innerText = nproper + ": ";
 		label.append(input);
 		div.append(label);
-	    
+		
 	    });
 	    select.after(div);
 	}
@@ -764,7 +764,7 @@ function createSSVC(csv, uploaded) {
 	h5.innerText = "-- SSVC Table (selected " + text + ") -- ";
 	exporter.ssvcV1_0_1.timestamp =  (new Date()).toISOString();
 	/* always display JSON Tree
-	  code.innerHTML = JSON.stringify(exporter, null, 4);
+	   code.innerHTML = JSON.stringify(exporter, null, 4);
 	*/
 	update_stats();
     }
@@ -1229,7 +1229,7 @@ function customize(w) {
 	    SSVC.decision_trees[findex]["data"] = jsonTree;
 	} else {
 	    /* Now findex will basicaly represent the last element
-	     in the SSVC.decision_trees */
+	       in the SSVC.decision_trees */
 	    findex = -1 * SSVC.decision_trees.length;
 	    SSVC.decision_trees.push({data: jsonTree, displayname: current, custom: 1});
 	}
@@ -1569,6 +1569,45 @@ function validate_namespace(namespace) {
     }
     return true;
 }
+function enumerateCombinations(dtree) {
+    const decisionPoints = dtree.decision_points;
+    const outcomeKey = dtree.outcome;
+
+    const relevantPoints = Object.entries(decisionPoints)
+	  .filter(([key]) => key !== outcomeKey);
+
+    const pointsWithValues = relevantPoints.map(([id, dp]) => ({
+	id: id,
+	values: dp.values.map(v => v.key)
+    }));
+
+    function cartesianProduct(index, current, result) {
+	if (index === pointsWithValues.length) {
+	    current[outcomeKey] = "0";
+	    result.push(Object.assign({}, current));
+	    return;
+	}
+
+	const point = pointsWithValues[index];
+	Array.from(point.values).forEach(function (value) {
+	    current[point.id] = value;
+	    cartesianProduct(index + 1, current, result);
+	});
+    }
+
+    const result = [];
+    cartesianProduct(0, {}, result);
+
+    const outcomeValues = decisionPoints[outcomeKey].values.map(v => v.key);
+    const outcomeCount = outcomeValues.length;
+    /* Spread outcome evenly across the results array*/
+    result.forEach((item, idx) => {
+	item[outcomeKey] = outcomeValues[idx % outcomeCount];
+    });
+    return result;
+}
+
+
 function updateTree() {
     const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
     clbutton.removeAttribute("data-changed")
@@ -1599,7 +1638,7 @@ function updateTree() {
     if(dpSelect.hasAttribute("data-selectdp")) 
 	/* Get previous decision point and compare to the current */
 	olddp = JSON.parse(dpSelect
-			      .getAttribute("data-selectdp"));
+			   .getAttribute("data-selectdp"));
     
     if(changed) {
 	if(!validate_namespace(dp.namespace))
@@ -1633,14 +1672,14 @@ function updateTree() {
 	dpSelect.appendChild(opt);
     }
     if(dpOutcome) {
-    
+	
     } else if(oldKey) {
+	const oldvalues = simpleCopy(jsonTree.decision_points[oldKey].values);
+	delete jsonTree.decision_points[oldKey];
+	const newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
+	jsonTree.decision_points[newKey] = dp;
 	if (olddp.values && olddp.values.length == dp.values.length) {
 	    /* Leave the Outcomes as-is*/
-	    const oldvalues = simpleCopy(jsonTree.decision_points[oldKey].values);
-	    delete jsonTree.decision_points[oldKey];
-	    const newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
-	    jsonTree.decision_points[newKey] = dp;
 	    if(jsonTree.mapping.every(function(tmap,i) {
 		let fI = oldvalues.findIndex(value => value.key == tmap[oldKey])
 		if(fI > -1) {
@@ -1660,32 +1699,16 @@ function updateTree() {
 		console.log("Failed");
 		console.log(jsonTree,dp);
 	    }
-	} else {
-
-
-	}
+	} 
     }
-    const dpName = dpForm.getAttribute("data-dp");
-    const dpCombo = {[dp.name]: dp.values.map(function(value) {
-	return value.name; })};
-    const outcomeName = SSVC.form.querySelector("[data-outcomeName]")
-	  .getAttribute("data-outcomeName");
-    for(let i=0; i< SSVC.decision_table.length; i++) {
-	let decisions = SSVC.decision_table[i];
-	delete decisions[dpName];
-	delete decisions[outcomeName];
-	Object.keys(decisions).forEach(function(keepdp) {
-	    if(dpCombo[keepdp]) {
-		if(dpCombo[keepdp].includes(decisions[keepdp]))
-		    return;
-		dpCombo[keepdp].push(decisions[keepdp]);
-	    } else {
-		dpCombo[keepdp] = [decisions[keepdp]];
-	    }
-	});
-    }
-    const rows = enumerate_dps(dpCombo);
-    makeTree(rows, outcomeName, null);
+    jsonTree.mapping = [];
+    jsonTree.mapping = enumerateCombinations(jsonTree);
+    topalert("New Decision Tree has outcomes that are evenly laid out! Please update these " +
+	     "as appropriate for your decision model ","warn",0);
+    SSVC.form.innerHTML = "";
+    createSSVC(jsonTree, false);
+    customize({innerHTML: "Customize"});
+    clbutton.setAttribute("data-changed","1");
 }
 function schemaTransform(dtnew) {
     const dtobj = simpleCopy(dtnew);
@@ -1852,7 +1875,7 @@ function fun_execute(w) {
 const graphModule = (function() {
     const showFullTree = true;
     const acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
-		     "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
+		       "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
     const lcolors = {};
     let raw;
     let treeData;
