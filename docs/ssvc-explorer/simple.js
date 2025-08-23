@@ -235,11 +235,13 @@ function lock_unlock(lock) {
 }
 function clear() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
+    const nextel = sampletrees.nextElementSibling;
+    if(nextel.tagName.toUpperCase() == "DIV")
+	nextel.remove();
     sessionStorage.removeItem("ssvc-pending");
     sampletrees.style.display = "inline-block";
     sampletrees.disabled = false;
     sampletrees.dispatchEvent(new Event('change'));
-    sampletrees.nextElementSibling.style.display = "none" 
     const cbtn = SSVC.form.parentElement.querySelector("[data-customize='1']");
     cbtn.innerHTML = "Customize";
 }
