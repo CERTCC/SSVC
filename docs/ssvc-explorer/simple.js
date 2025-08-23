@@ -68,60 +68,75 @@ function applyStyle(div, props) {
 	div.style[k[0]] = k[1];
     });
 }
-function topalert(msg,level,timeOut) {
-    const colors = {"danger": "#dc3545", "info": "#0d6efd", "warn": "#ffc107",
-		    "success": "#198754"};
-    let div = document.createElement("div");
-    if(document.querySelector("[data-topalert]")) {
-	div = document.querySelector("[data-topalert]");
-	if(div.hasAttribute("data-timer")) {
-	    clearInterval(parseInt(div.getAttribute("data-timer")));
-	    div.style.opacity = 0.9;
-	}
-    } else {
-	div.setAttribute("data-topalert",1);
-	const props = {position: "absolute",width: "100%", top: "0px",
-		       left: "0px", "text-align": "center","color": "white",
-		       border: "2px solid transparent",
-		       "border-radius": "4px", padding: "12px",
-		       opacity: 0.9,"font-size": "1.2em"}
-	applyStyle(div,props);
+function topalert(msg, level, timeOut) {
+    const colors = {
+        "danger": "#dc3545",
+        "info": "#0d6efd",
+        "warn": "#ffc107",
+        "success": "#198754"
+    };
+
+    let div = document.querySelector("[data-topalert]");
+    if (!div) {
+        div = document.createElement("div");
+        div.setAttribute("data-topalert", "1");
+        const props = {
+            width: "100%",
+            top: "0px",
+            left: "0px",
+            "text-align": "center",
+            color: "white",
+            border: "2px solid transparent",
+            "border-radius": "4px",
+            padding: "12px",
+            opacity: 0,
+            "font-size": "1.2em",
+            "transition": "opacity 0.5s ease",
+            "z-index": "9999",
+            "background-color": "transparent",
+            position: "relative"   
+        };
+        applyStyle(div, props);
+        document.body.prepend(div);
     }
-    if(!msg) {
-	div.style.opacity = 0;
-	return;
+
+    if (!msg) {
+        div.style.opacity = 0;
+        div.style.backgroundColor = "transparent";
+        div.innerHTML = "";
+        return;
     }
-    div.innerText = msg;
+
+    div.innerHTML = ""; 
+    div.innerText = msg + " ";
+
     const span = document.createElement("span");
     span.innerHTML = "&#x2715;";
-    applyStyle(span,{position: "fixed", color: "white", padding: "1px",
-		     top: "0px", right: "0px", border:"1px solid white",
-		     "border-radius":"2px",margin:"3px"});
-    span.addEventListener("click", function(ev) {
-	ev.target.parentElement.remove();
+    applyStyle(span, {
+        cursor: "pointer",
+        color: "white",
+        padding: "2px 6px",
+        border: "1px solid white",
+        "border-radius": "2px",
+        margin: "3px"
     });
-    div.addEventListener("click", function(ev) {
-	ev.target.remove();
-    });
-    div.appendChild(span);    
+    div.appendChild(span);
+
+    div.onclick = () => div.remove();
+
     div.style.backgroundColor = colors[level] || colors["info"];
     div.style.display = "block";
-    document.body.appendChild(div);
-    if(timeOut) {
-	let op = 1;
-	const timer = setInterval(function () {
-	    const step = 0.1/timeOut;
-	    if (op <= step){
-		clearInterval(timer);
-		div.removeAttribute("data-timer");
-		div.remove();
-	    }
-	    div.style.opacity = op;
-	    op = op - op * step;
-	}, timeOut*50);
-	div.setAttribute("data-timer",String(timer));
+    div.style.opacity = 0.95;
+
+    if (timeOut) {
+        if (div._timer) clearTimeout(div._timer);
+        div._timer = setTimeout(() => {
+            div.style.opacity = 0;
+            setTimeout(() => div.remove(), 600); 
+        }, timeOut * 1000); 
     }
 }
+
 
 function compareObj(o1,o2) {
     const keys = Object.keys(o1);
@@ -244,6 +259,9 @@ function clear() {
     sampletrees.dispatchEvent(new Event('change'));
     const cbtn = SSVC.form.parentElement.querySelector("[data-customize='1']");
     cbtn.innerHTML = "Customize";
+    const btnAll = SSVC.form.parentElement.querySelector("[data-toggleall]");
+    btnAll.disabled = false;
+    btnAll.style.opacity = 1.0;
 }
 function toNumberTable(table, headers) {
     const encoders = {};
@@ -966,19 +984,6 @@ function clear_popup_form(iSelect, rpopUp) {
 	input.value="";
     });
 }
-function popupEditOutcome(w) {
-    topalert();
-    const rpopUp = popupStart('data-customoutcome');
-    const outcomeForm = rpopUp.querySelector("form")
-    const outcomeSelect = rpopUp.querySelector("select");
-    const options = outcomeSelect.querySelectorAll("option");
-    if(options.length < 2) {
-	prepare_form(outcomeForm, outcomeSelect, {}, SSVC.outcomes, "outcomes");
-    } else {
-	/* Clear this form everytime popped up*/
-	clear_popup_form(outcomeSelect, rpopUp);
-    }
-}
 
 function disable_current_dps(options) {
     /* Disable already used DPs */
@@ -1015,8 +1020,11 @@ function popupEditDP(w) {
     if(w.parentElement.hasAttribute("data-outcomeName")) {
 	dpSelect.setAttribute("data-outcomeName",
 			      w.parentElement.getAttribute("data-outcomeName"));
+	rpopUp.querySelector("h4").innerHTML = "Customize Outcome";	
+	
     } else {
-	dpSelect.removeAttribute("data-outcomeName")
+	dpSelect.removeAttribute("data-outcomeName");
+	rpopUp.querySelector("h4").innerHTML = "Customize Decision Point";
     }
     let dpName = "-1";
     let dpIndex = "-1";
@@ -1039,7 +1047,7 @@ function popupEditDP(w) {
 	options = dpSelect.querySelectorAll("option");	
     }
     
-    if(typeof(w) == "string") {
+    if(w.hasAttribute("data-adddp")) {
 	/* This is a new Decision Point so Add Decision Point is the action */
 	rpopUp.querySelector("h4").innerHTML = "Add Decision Point";
 	rpopUp.querySelector("[data-update]").innerText = "Add";
@@ -1157,12 +1165,13 @@ function customize(w) {
 	    delspan.style.color = "red";
 	    el.appendChild(span);
 	    el.appendChild(delspan);
-	    if(i == dplength -1) {
+	    if(i == dplength - 2) {
 		const addspan = document.createElement("span");
 		addspan.innerHTML = "&#8853";
 		addspan.style.color = "#28a745";
+		addspan.setAttribute("data-adddp",1);
 		addspan.addEventListener("click", function(ev) {
-		    popupEditDP("add");
+		    popupEditDP(this);
 		});
 		el.appendChild(addspan);
 	    }
@@ -1234,7 +1243,15 @@ function customize(w) {
 	    SSVC.decision_trees.push({data: jsonTree, displayname: current, custom: 1});
 	}
 	selectCustom(current, jsonTree, findex);
-	localStorage.setItem("SSVC", JSON.stringify(SSVC));
+	let custom_ssvc = {};
+	["decision_trees","decision_points"].forEach(function(dtype) {
+	    custom_ssvc[dtype] = [];
+	    SSVC[dtype].forEach(function(dtdp) {
+		if(dtdp.custom)
+		    custom_ssvc[dtype].push(dtdp);
+	    });
+	})
+	localStorage.setItem("custom_ssvc", JSON.stringify(custom_ssvc));
 	SSVC.form.parentElement.querySelector("[data-session]").style.display = "block";
     }
 }
@@ -1259,10 +1276,9 @@ function load_trees() {
 }
 async function delete_session() {
     if(await popupConfirm("Are you sure, you want to delete all custom Decision Trees?") == "Yes") {
-	localStorage.removeItem("SSVC");
+	localStorage.removeItem("custom_ssvc");
 	for (let i = 0; i < SSVC.decision_trees.length; i++) {
-	    if ('filename' in SSVC &&
-		SSVC.decision_tree[i].filename.indexOf("csv:") == 0) {
+	    id(SSVC.decision_tree[i].custom) {
 		SSVC.decision_tree.splice(i, 1);
 		i--; 
 	    }
@@ -1282,10 +1298,17 @@ async function delete_dtree() {
 	return alert("The default trees cannot be deleted");
     }
     if(await popupConfirm("Are you sure, you want to delete custom Decision Tree \""+ delete_tree  + "\"?") == "Yes") {
+	let old_tree = simpleCopy(SSVC.decision_tree[parseInt(opt.value)]);
 	SSVC.decision_tree.splice(parseInt(opt.value), 1);
 	sampletrees.options[sampletrees.selectedIndex].remove();
-	sampletrees.dispatchEvent(new Event("change"));	
-	localStorage.setItem("SSVC", JSON.stringify(SSVC));
+	sampletrees.dispatchEvent(new Event("change"));
+	const saved = JSON.parse(localStorage.getItem("custom_ssvc"));
+	let savedIndex = saved.decision_trees.findIndex(function(dt) {
+	    return match_name_ns_vers(dt,old_tree.data);
+	});
+	if(savedIndex > -1)
+	    saved.decision_trees.splice(savedIndex,1);
+	localStorage.setItem("custom_ssvc", JSON.stringify(saved));
     } else {
 	topalert("Good! Nothing was deleted!", "success", 3);
     }
@@ -1299,12 +1322,19 @@ function rename_dtree() {
     }
     const old_index = parseInt(sampletrees.options[sampletrees.selectedIndex].value);
     if(SSVC.decision_trees[old_index] && SSVC.decision_trees[old_index].data) {
-	const old_name = SSVC.decision_trees[old_index].data.name;
+	const old_tree = SSVC.decision_trees[old_index];
+	const old_name = old_tree.data.name;
 	const new_name = prompt("Enter new name for the current decision tree \"" + old_name + "\":");
 	SSVC.decision_trees[old_index].data.name = new_name;
 	opt.innerText = name_version(SSVC.decision_trees[old_index].data);
-	SSVC.decision_trees[old_index].displayname = opt.innerText
-	localStorage.setItem("SSVC", JSON.stringify(SSVC));
+	SSVC.decision_trees[old_index].displayname = opt.innerText;
+	const saved = JSON.parse(localStorage.getItem("custom_ssvc"));
+        let savedIndex = saved.decision_trees.findIndex(function(dt) {
+            return match_name_ns_vers(dt,old_tree.data);
+	});
+        if(savedIndex > -1)
+            saved.decision_trees[savedIndex] = SSVC.decision_trees[old_index];
+	localStorage.setItem("custom_ssvc", JSON.stringify(saved));
     }
 }
 function download_ssvc_csv() {
@@ -1318,11 +1348,12 @@ function download_ssvc(dtype) {
     btn.click();
 }
 function restore_session() {
-    if(localStorage.getItem("SSVC")) {
-	const saved = JSON.parse(localStorage.getItem("SSVC"));
+    if(localStorage.getItem("custom_ssvc")) {
+	const saved = JSON.parse(localStorage.getItem("custom_ssvc"));
 	delete saved.form;
-	Object.keys(saved).forEach(function(item) {
-	    SSVC[item] = saved[item];
+	["decision_points","decision_trees"].forEach(function(item) {
+	    console.log(saved[item]);
+	    SSVC[item].push.apply(SSVC[item],saved[item]);
 	});
 	load_trees();
 	topalert("Session variables have been restored!","success",3);
@@ -1335,7 +1366,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Dom content loaded");
     SSVC.form = document.getElementById('ssvcForm');
     get_decision_points();
-    if(localStorage.getItem("SSVC")) {
+    if(localStorage.getItem("custom_ssvc")) {
 	topalert("You have some custom Decision Trees saved from earlier session. " +
 		 "use \"Restore Session\" under \"Custom Trees\" to restore & manage these",
 		 "success",0);
@@ -1551,14 +1582,35 @@ function find_key(dp,dt) {
     return; 
 }
 function uniq_key(obj, arr) {
-    let xkey = obj.name.toUpperCase().substr(0,2);
-    let counter = 0;
-    while(arr.findIndex(xdp => xdp.key == xkey) > -1) {
-	xkey = xkey + "_" + String(counter++);
-    }
-    return xkey;
+    /* The name could be unicode so clean it up*/
+    let base = obj.name.normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, "");
 
+    if (base.length === 0) {
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let idx = arr.length % alphabet.length; 
+        let key = alphabet[idx];
+        let counter = 1;
+        while (arr.some(xdp => xdp.key === key)) {
+            key = alphabet[idx] + "_" + counter++;
+        }
+        return key;
+    }
+    let key = base[0];
+    let counter = 0;
+    while (arr.some(xdp => xdp.key === key)) {
+        if (counter < base.length) {
+            key = base.substr(0, counter + 1);
+        } else {
+            key = base + "_" + (counter - base.length + 1);
+        }
+        counter++;
+    }
+    return key;
 }
+
 function validate_namespace(namespace) {
     if(!namespace.toLowerCase().startsWith("x_")) {
 	/* Only thing allowed is translation  */
@@ -1601,9 +1653,21 @@ function enumerateCombinations(dtree) {
     const outcomeValues = decisionPoints[outcomeKey].values.map(v => v.key);
     const outcomeCount = outcomeValues.length;
     /* Spread outcome evenly across the results array*/
-    result.forEach((item, idx) => {
-	item[outcomeKey] = outcomeValues[idx % outcomeCount];
-    });
+    const m = result.length;
+    const n = outcomeValues.length;
+    const blockSize = Math.floor(m / n);
+    let remainder = m % n;
+    
+    let index = 0;
+    for (let i = 0; i < n; i++) {
+	let size = blockSize + (remainder > 0 ? 1 : 0);
+	remainder = Math.max(0, remainder - 1);
+	
+	for (let j = 0; j < size; j++) {
+	    result[index][outcomeKey] = outcomeValues[i];
+	    index++;
+	}
+    }
     return result;
 }
 
@@ -1616,6 +1680,7 @@ function updateTree() {
 	jsonTree = JSON.parse(clbutton.getAttribute("data-json"));
     }
     const popUp = SSVC.form.parentElement.parentElement.querySelector("[id='ssvcPopup']");
+    const updatebtn = popUp.querySelector("[data-update]");    
     const dpForm = popUp.querySelector("[data-customdp]")
 	  .querySelector("form");
     const dpSelect = dpForm.querySelector("select");
@@ -1634,18 +1699,24 @@ function updateTree() {
 	    break;
 	}
     }
+    /*Check if this decision point is in our registry */
+    let registered = SSVC.decision_points.some(function(x) {
+	if(match_name_ns_vers(x, dp)) {
+	    /* */
+	    dp = x.data;
+	    return true;
+	}
+    });
     let olddp = {};
+    /* Get previous decision point so we can compare it to the current */
     if(dpSelect.hasAttribute("data-selectdp")) 
-	/* Get previous decision point and compare to the current */
 	olddp = JSON.parse(dpSelect
 			   .getAttribute("data-selectdp"));
-    
     if(changed) {
-	if(!validate_namespace(dp.namespace))
+	if((!registered) && (!validate_namespace(dp.namespace))) {
 	    return;
+	}
 	/* Add data to dpMap and decision_points of global SSVC data */
-	SSVC.decision_points.push({"filename": "memory:" + dp.namespace
-				   + dp.name, "data": dp});
 	SSVC.dpMap[dp.name] = {"namespace": dp.namespace, "version": dp.version};
     } else  {
 	if(match_name_ns_vers({"data": dp}, olddp)) {
@@ -1653,33 +1724,45 @@ function updateTree() {
 	    return;
 	}
     }
+    let dpvkeys = {}
+    /* Doube verify and make sure tke key uniqueness */
+    dp.values.forEach(function(val,i) {
+	if(!dp.values[i].key)
+	    dp.values[i].key = uniq_key(val, dp.values);
+	if(dp.values[i].key in dpvkeys)
+	    dp.values[i].key = uniq_key(val, dp.values);
+	dpvkeys[dp.values[i].key] = 1;
+    });
     popupEnd();
     let oldKey = find_key(olddp,jsonTree);
-    /* Enforce unique keys for values*/
-    dp.values.forEach(function(val,i) {
-	dp.values[i].key = uniq_key(val, dp.values);
-    });
-    dp.key = uniq_key(dp, SSVC.decision_points.map(x => x.data));
-    const info = dp.namespace + "/" + name_version(dp);
-    let opt = Array.from(dpSelect.querySelectorAll("option"))
-	.filter(function(x) {
-	    return x.innerText == info
-	});
-    if(opt.length) {
-	opt[0].value = JSON.stringify(dp);
-    } else {
-	opt = new Option(info, JSON.stringify(dp));
-	dpSelect.appendChild(opt);
+    if(!registered) {
+	/* Enforce unique keys for values*/
+	dp.key = uniq_key(dp, SSVC.decision_points.map(x => x.data));
+	const info = dp.namespace + "/" + name_version(dp);
+	let opt = Array.from(dpSelect.querySelectorAll("option"))
+	    .filter(function(x) {
+		return x.innerText == info
+	    });
+	if(opt.length) {
+	    opt[0].value = JSON.stringify(dp);
+	} else {
+	    opt = new Option(info, JSON.stringify(dp));
+	    dpSelect.appendChild(opt);
+	}
+	SSVC.decision_points.push({"filename": "memory:" + dp.namespace
+				   + dp.name, "data": dp, custom: 1});	
     }
-    if(dpOutcome) {
-	
-    } else if(oldKey) {
+    if(oldKey) {
+	/* This is to replace a decision point */
 	const oldvalues = simpleCopy(jsonTree.decision_points[oldKey].values);
 	delete jsonTree.decision_points[oldKey];
 	const newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
 	jsonTree.decision_points[newKey] = dp;
+	if(dpOutcome) {
+	    jsonTree.outcome = newKey;
+	} 
 	if (olddp.values && olddp.values.length == dp.values.length) {
-	    /* Leave the Outcomes as-is*/
+	    /* Leave the Tree Outcomes as-is*/
 	    if(jsonTree.mapping.every(function(tmap,i) {
 		let fI = oldvalues.findIndex(value => value.key == tmap[oldKey])
 		if(fI > -1) {
@@ -1691,6 +1774,7 @@ function updateTree() {
 	    })) {
 		console.log("success");
 		SSVC.form.innerHTML = "";
+		console.log(jsonTree);
 		createSSVC(jsonTree, false);
 		customize({innerHTML: "Customize"});
 		clbutton.setAttribute("data-changed","1")
@@ -1700,15 +1784,23 @@ function updateTree() {
 		console.log(jsonTree,dp);
 	    }
 	} 
+    } else if(updatebtn.innerText == "Add") {
+	const newKey = dp.namespace + ":" + dp.key + ":" + dp.version;
+	jsonTree.decision_points[newKey] = dp;
+    } else {
+	topalert("Error: Unable to find if this is a new Decision Point or a replacement",
+		 "danger");
     }
+    /* Somethings have majorly changed, we have to update the decision tree mappings */
     jsonTree.mapping = [];
     jsonTree.mapping = enumerateCombinations(jsonTree);
-    topalert("New Decision Tree has outcomes that are evenly laid out! Please update these " +
-	     "as appropriate for your decision model ","warn",0);
     SSVC.form.innerHTML = "";
     createSSVC(jsonTree, false);
     customize({innerHTML: "Customize"});
     clbutton.setAttribute("data-changed","1");
+    topalert();
+    topalert("New Decision Tree has Outcomes that are evenly laid out! Please update these " +
+	     "as appropriate for your Decision Model, before Saving it!","warn",0);
 }
 function schemaTransform(dtnew) {
     const dtobj = simpleCopy(dtnew);
