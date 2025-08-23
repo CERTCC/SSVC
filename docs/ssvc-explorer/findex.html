@@ -37,14 +37,14 @@
 	  </div>
 	  <div style="padding: 8px 0px 0px 0px;position: relative; display:none" data-session="1">
 	    SSVC Custom Trees
-	    <select name="customdp" style="font-size: 18px;background: white;border-radius: 8px;padding: 0px 4px 0px 4px;" onchange="this.selectedIndex=0">
+	    <select name="customdp" style="font-size: 18px;background: white;border-radius: 8px;padding: 0px 4px 0px 4px;" onchange="fun_execute(this)">
 	      <option>Manage </option>
-	      <option onclick="restore_session()">Restore Session</option>
-	      <option onclick="delete_session()">Delete Old Sessions</option>
-	      <option onclick="delete_dtree()">Delete Current Tree</option>
-	      <option onclick="rename_dtree()">Rename Current Tree</option>
-	      <option onclick="download_ssvc('json')">Download (JSON)</option>
-	      <option onclick="download_ssvc('csv')">Download (CSV)</option>
+	      <option value="restore_session">Restore Session</option>
+	      <option value="delete_session">Delete Old Sessions</option>
+	      <option value="delete_dtree">Delete Current Tree</option>
+	      <option value="rename_dtree">Rename Current Tree</option>
+	      <option value="download_ssvc_json">Download (JSON)</option>
+	      <option value="download_ssvc_csv">Download (CSV)</option>
 	    </select>
 	    <a style="display:none" data-download-json="1">Download (JSON)</a>
 	    <a style="display:none" data-download-csv="1">Download (CSV)</a>

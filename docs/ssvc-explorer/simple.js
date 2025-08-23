@@ -8,6 +8,37 @@ const SSVC = {
     "default_namespace": "x_com.example#psirt",
     "namespaces": []
 };
+function niceString(str) {
+    if (str.length)
+	return str.charAt(0).toUpperCase() + str.slice(1);
+    return "";
+}
+function add_dash_n(str, strSet) {
+    if(!(str in strSet))
+	return str;
+    const regex = /(-\d+)$/;
+    const match = str.match(regex);
+    let newNumber = -1;
+    let nstr = str + newNumber.toString();
+    if (match) {
+	const numberPart = parseInt(match[1], 10); 
+	newNumber = numberPart - 1;
+	nstr = str.replace(regex, newNumber.toString());
+    } 
+    while(nstr in strSet) {
+	newNumber = newNumber - 1;
+	nstr = str.replace(regex, newNumber.toString());
+    }
+    return nstr;
+}
+function name_version(obj) {
+    if(obj.name && obj.version)
+	return obj.name + " (" + obj.version + ")";
+    else if (obj.name)
+	return obj.name + " (0.0.1)";
+    else
+	return "";
+}
 function dtreeSort(a, b) {
     const nameA = a.data.namespace.toUpperCase() + a.data.name.toUpperCase()
 	  + a.data.version.toUpperCase();
@@ -166,7 +197,7 @@ function lock_unlock(lock) {
 		const label = document.createElement("label");
 		const input = document.createElement("input");
 		input.name = nprop;
-		const nproper = nprop.charAt(0).toUpperCase() + nprop.slice(1);
+		const nproper = niceString(nprop);
 		input.placeholder = "Decision Tree " + nproper;
 		input.value = dt[nprop];
 		applyStyle(input, {background: "transparent",
@@ -299,7 +330,15 @@ function update_stats() {
 	encodeURIComponent(JSON.stringify(SSVC,null,2));
     btn.setAttribute("download", download_filename);
     const btncsv = SSVC.form.parentElement.querySelector("[data-download-csv]");
-    let CSV = SSVC.form.parentElement.querySelector("[data-tab='CSV']").innerText;
+    let CSV = SSVC.form.parentElement.querySelector("[data-tab='CSV']").dataset.csv;
+    if(!CSV) {
+	/* Force render to ensure the elment is visible properly*/
+	let tab = SSVC.form.parentElement.querySelector("[data-tab='CSV']");
+	let oldv = tab.style.display;
+	tab.style.display = "block";
+	CSV = SSVC.form.parentElement.querySelector("[data-tab='CSV']").innerText;
+	tab.style.display = oldv;
+    }
     btncsv.href = "data:text/plain;charset=utf-8," +
 	encodeURIComponent(CSV);
     const csv_filename = "SSVC_Custom_" + dtstamp + ".csv";    
@@ -654,6 +693,7 @@ function createSSVC(csv, uploaded) {
     const tcode = code.cloneNode();
     tcode.setAttribute("data-tab","CSV");
     tcode.innerText = CSV;
+    tcode.dataset.csv = CSV;
     form.appendChild(tcode);
     const tgraph = document.createElement("div");
     tgraph.id = "graph"
@@ -799,7 +839,7 @@ async function get_decision_points() {
 			for (const version in keyEntry.versions) {
 			    const versionEntry = keyEntry.versions[version];
 			    if (versionEntry.obj && versionEntry.obj.decision_points) {
-				let mdata = {data: versionEntry.obj, displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
+				let mdata = {data: versionEntry.obj, displayname: name_version(versionEntry.obj)};
 				if(versionEntry.obj.name.indexOf("Deployer") > -1)
 				    mdata['selected'] = true;
 				SSVC.decision_trees.push(mdata);
@@ -866,8 +906,7 @@ function prepare_form(vForm, vSelect, selectdp, preFill, vars) {
 	let info;
 	/* Drop down for decision points has more information*/
 	if (obj.data.namespace && obj.data.name && obj.data.version) 
-	    info = obj.data.namespace + "/" + obj.data.name + " (" +
-	    obj.data.version + ")";
+	    info = obj.data.namespace + "/" + name_version(obj.data);
 	else
 	    info = obj.data.name;
 	const opt = new Option(info, JSON.stringify(obj.data));
@@ -991,8 +1030,7 @@ function popupEditDP(w) {
 	/* Add any new Decision Points that were imported or added */
 	for(let i=options.length - 1; i < SSVC.decision_points.length; i++) {
 	    const obj = SSVC.decision_points[i];
-	    const info = obj.data.namespace + "/" + obj.data.name + " (" +
-		  obj.data.version + ")";
+	    const info = obj.data.namespace + "/" + name_version(obj.data);
 	    const opt = new Option(info, JSON.stringify(obj.data));
 	    dpSelect.appendChild(opt);
 	}
@@ -1060,24 +1098,16 @@ function selectCustom(name, datatree, fIndex) {
     if(sample.querySelector("[selected]"))
 	sample.querySelector("[selected]").removeAttribute("selected");
     if(fIndex < 0) {
-	if(fIndex != SSVC.decision_trees.length - 1) {
-	    /* This option does not exist so add it to local Decision
-	       Trees*/
-	    if(!name)
-		name = "Custom Uploaded";
-	    SSVC.decision_trees.push({data: JSON.stringify(datatree),
-				      custom: 1, name: name});
-	}
 	const opt = new Option(name, String(fIndex * -1), false, true);
 	if(name) {
-	    opt.text = name;
+	    opt.text = "[Private] " + name
 	    opt.selected = true;
 	    opt.setAttribute("data-customdt",1);
 	}
 	sample.appendChild(opt);
     } else {
 	sample.querySelectorAll("option").forEach(function(option) {
-	    if(option.textContent == name) {
+	    if(option.textContent == name) 
 		option.value = fIndex;
 	});
     }
@@ -1161,9 +1191,14 @@ function customize(w) {
 	let current = sample[sample.selectedIndex].innerText
 	if(nextel.tagName.toUpperCase() == "DIV") {
 	    nextel.querySelectorAll("input").forEach(function(inp) {
+		if(!inp.value) 
+		    jsonTree["error"] = "Value for " + niceString(inp.name) 
+		    + " CANNOT be empty!";
 		jsonTree[inp.name] = inp.value;
 	    });
 	}
+	if(jsonTree.error)
+	    return alert(jsonTree.error);
 	if(!validate_namespace(jsonTree.namespace)) 
 	    return;
 	w.innerHTML = "Customize";
@@ -1180,11 +1215,11 @@ function customize(w) {
 	createSSVC(jsonTree, false);
 	/* Find if this is already a custom built tree and
 	   update it if needed */
-	const findex = SSVC.decision_trees.findIndex(function(dt) {
+	let findex = SSVC.decision_trees.findIndex(function(dt) {
 	    if(dt.custom)
 		return dt.displayname == current;
 	    else 
-		current = jsonTree.name;
+		current = name_version(jsonTree);
 	});
 	
 	topalert("Latest values have been saved locally!","success",3);
@@ -1204,13 +1239,19 @@ function customize(w) {
 function load_trees() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     sampletrees.innerHTML = "";
+    const displaySet = {};
     SSVC.decision_trees.forEach(function(decision_tree, i) {
 	const opt = new Option(decision_tree.displayname, i , decision_tree.selected, decision_tree.selected);
-	if(decision_tree.custom)
+	if(decision_tree.custom) {
 	    opt.setAttribute("data-customdt","1");
+	    opt.innerText =  "[Private] " +opt.innerText
+	}
+	if(displaySet[opt.innerText])
+	    opt.innerText = add_dash_n(opt.innerText, displaySet);
 	sampletrees.appendChild(opt);
 	if(decision_tree.selected)
 	    loadSSVC(String(i));
+	displaySet[opt.innerText] = 1;
     });
     sampletrees.appendChild(new Option("Upload CSV/JSON","upload_file"));
 }
@@ -1234,13 +1275,12 @@ async function delete_session() {
 async function delete_dtree() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     const delete_tree = sampletrees.options[sampletrees.selectedIndex].innerText;
-    const opt = sampletrees.querySelector("[selected]");
-    if(!opt.hasAtribute("data-customdt")) {
+    const opt = sampletrees.options[sampletrees.selectedIndex];
+    if(!opt.hasAttribute("data-customdt")) {
 	return alert("The default trees cannot be deleted");
     }
     if(await popupConfirm("Are you sure, you want to delete custom Decision Tree \""+ delete_tree  + "\"?") == "Yes") {
 	SSVC.decision_tree.splice(parseInt(opt.value), 1);
-	}
 	sampletrees.options[sampletrees.selectedIndex].remove();
 	sampletrees.dispatchEvent(new Event("change"));	
 	localStorage.setItem("SSVC", JSON.stringify(SSVC));
@@ -1250,22 +1290,26 @@ async function delete_dtree() {
 }
 function rename_dtree() {
     const sampletrees = SSVC.form.parentElement.querySelector("[id='sampletrees']");
-    if(sampletrees.value.indexOf("csv:") != 0) {
-	return alert("Default trees cannot be renamed");
+    const opt = sampletrees.options[sampletrees.selectedIndex];
+    if(!opt.hasAttribute("data-customdt")) {
+        alert("The default trees cannot be deleted");
+	return;
     }
-    const old_tree = sampletrees.options[sampletrees.selectedIndex].innerText;    
-    const newname = prompt("Enter new name for the current decision tree \"" + old_tree + "\":")
-    sampletrees.options[sampletrees.selectedIndex].innerText = newname;
-    for (let i = 0; i < SSVC.decision_trees.length; i++) {
-	if('displayname' in SSVC.decision_trees[i] &&
-	   SSVC.decision_trees[i].displayname == old_tree &&
-	   'custom' in SSVC.decision_trees[i]) {
-	    SSVC.decision_trees[i].displayname = newname;
-	    break;
-	}
+    const old_index = parseInt(sampletrees.options[sampletrees.selectedIndex].value);
+    if(SSVC.decision_trees[old_index] && SSVC.decision_trees[old_index].data) {
+	const old_name = SSVC.decision_trees[old_index].data.name;
+	const new_name = prompt("Enter new name for the current decision tree \"" + old_name + "\":");
+	SSVC.decision_trees[old_index].data.name = new_name;
+	opt.innerText = name_version(SSVC.decision_trees[old_index].data);
+	SSVC.decision_trees[old_index].displayname = opt.innerText
+	localStorage.setItem("SSVC", JSON.stringify(SSVC));
     }
-    localStorage.setItem("SSVC", JSON.stringify(SSVC));
-    
+}
+function download_ssvc_csv() {
+    download_ssvc('csv');
+}
+function download_ssvc_json() {
+    download_ssvc('json');
 }
 function download_ssvc(dtype) {
     const btn = SSVC.form.parentElement.querySelector("[data-download-" + dtype + "]");
@@ -1290,6 +1334,9 @@ document.addEventListener("DOMContentLoaded", function () {
     SSVC.form = document.getElementById('ssvcForm');
     get_decision_points();
     if(localStorage.getItem("SSVC")) {
+	topalert("You have some custom Decision Trees saved from earlier session. " +
+		 "use \"Restore Session\" under \"Custom Trees\" to restore & manage these",
+		 "success",0);
 	SSVC.form.parentElement.querySelector("[data-session]").style.display = "block";
     }
 });
@@ -1572,8 +1619,7 @@ function updateTree() {
 	dp.values[i].key = uniq_key(val, dp.values);
     });
     dp.key = uniq_key(dp, SSVC.decision_points.map(x => x.data));
-    const info = dp.namespace + "/" + dp.name + " (" +
-	  dp.version + ")";
+    const info = dp.namespace + "/" + name_version(dp);
     let opt = Array.from(dpSelect.querySelectorAll("option"))
 	.filter(function(x) {
 	    return x.innerText == info
@@ -1612,6 +1658,9 @@ function updateTree() {
 		console.log("Failed");
 		console.log(jsonTree,dp);
 	    }
+	} else {
+
+
 	}
     }
     const dpName = dpForm.getAttribute("data-dp");
@@ -1787,7 +1836,17 @@ function computeFI(features,labels) {
     });
     return fI;
 }
-
+function fun_execute(w) {
+    if(w.selectedIndex) {
+	try {
+	    let find_fun = new Function("return " + w.value + "()");
+	    find_fun();
+	} catch(err) {
+	    console.log("Error when trying to find dynamic function ", err);
+	}
+	w.selectedIndex = 0;		
+    }
+}
 const graphModule = (function() {
     const showFullTree = true;
     const acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
