@@ -958,7 +958,10 @@ function popupStart(selector) {
     return rpopup;
 }
 function popupEnd() {
-    const popUp = SSVC.form.parentElement.parentElement.querySelector("[id='ssvcPopup']"); 
+    const popUp = SSVC.form.parentElement.parentElement.querySelector("[id='ssvcPopup']");
+    popUp.querySelectorAll('input[type="text"]').forEach(function(inp) {
+	inp.removeEventListener('input');
+    })    
     popUp.previousElementSibling.style.opacity = "1.0";
     popUp.previousElementSibling.style.pointerEvents = "all";
     popUp.style.display = "none";
@@ -1015,6 +1018,11 @@ function popupEditDP(w) {
     topalert();
     const rpopUp = popupStart("data-customdp");
     const dpForm = rpopUp.querySelector("form");
+    dpForm.querySelectorAll('input[type="text"]').forEach(function(inp) {
+	inp.addEventListener('input', function(event) {
+	    console.log('Input value changed by user:', event.target.value);
+	});
+    });
     const dpSelect = dpForm.querySelector("select");
     let options = dpSelect.querySelectorAll("option");
     if(w.parentElement.hasAttribute("data-outcomeName")) {
@@ -1278,8 +1286,8 @@ async function delete_session() {
     if(await popupConfirm("Are you sure, you want to delete all custom Decision Trees?") == "Yes") {
 	localStorage.removeItem("custom_ssvc");
 	for (let i = 0; i < SSVC.decision_trees.length; i++) {
-	    if(SSVC.decision_tree[i].custom) {
-		SSVC.decision_tree.splice(i, 1);
+	    if(SSVC.decision_trees[i].custom) {
+		SSVC.decision_trees.splice(i, 1);
 		i--; 
 	    }
 	}
@@ -1524,50 +1532,6 @@ async function deleteDP(el) {
 	const rows = enumerate_dps(dpCombo);
 	makeTree(rows, "Priority", null);
     }
-}
-function updateOutcomes(w) {
-    topalert();
-    const popUp = popupEnd();
-    const outForm = popUp.querySelector("[data-customoutcome]").querySelector("form");
-    const inputs = outForm.querySelectorAll("input,textarea");
-    for(let i=0; i<inputs.length; i++) {
-	if(!inputs[i].value) {
-	    topalert("All values should be filled","danger");
-	    return;
-	}
-    }
-    const outcomeObj = deepGet(inputs);
-    let outcomeSet = [];
-    SSVC.form.querySelectorAll("[data-result]").forEach(function(el) {
-	el.remove();
-    });
-    
-    let outcomeDiv = SSVC.form.querySelector("[data-outcomename]").parentElement;
-    outcomeObj.outcomes.forEach(function(outcome) {
-	outcomeSet.push(outcome.name);
-	const inputDiv = document.createElement("div");
-	const vlabel = document.createElement('label');
-	vlabel.innerText = outcome.name;
-	inputDiv.setAttribute("data-result",outcome.name);
-	inputDiv.style.opacity = 0.6;
-	inputDiv.style.fontWeight = "bolder";
-	inputDiv.style.border = "1px solid cyan";
-	const spanCount = document.createElement("span");
-	spanCount.innerText = " ()";
-	vlabel.appendChild(spanCount);
-	inputDiv.append(vlabel);
-	outcomeDiv.append(inputDiv);
-    });
-    const nInputs = SSVC.form.querySelectorAll("[data-tab='table'] input");
-    nInputs.forEach(function(input,i) {
-	const index = Math.floor((i * outcomeSet.length)/nInputs.length);
-	input.value = outcomeSet[index];
-    });
-    let Priority = SSVC.form.querySelector("[data-outcomename]").innerText;
-    update_stats();
-    topalert("Please update the Outcomes ("+Priority
-	     +") table below that have been evenly distributed for " +
-	     "convenience and \"Save Changes\" once done!","warn");
 }
 function find_key(dp,dt) {
     /* Find a decision points' key attribute in a decision tree*/
