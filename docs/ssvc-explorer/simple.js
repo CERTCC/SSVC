@@ -347,9 +347,11 @@ function update_stats() {
     });
     const dtstamp = (new Date()).toISOString().replace(/[^0-9a-zA-Z]/g,"-")
     const download_filename = "SSVC_Custom_" + dtstamp + "_json.txt";
+    let clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
+    let jsonTreedump = clbutton.getAttribute("data-json");
     const btn = SSVC.form.parentElement.querySelector("[data-download-json]");
     btn.href = "data:text/plain;charset=utf-8,"+
-	encodeURIComponent(JSON.stringify(SSVC,null,2));
+	encodeURIComponent(jsonTreedump);
     btn.setAttribute("download", download_filename);
     const btncsv = SSVC.form.parentElement.querySelector("[data-download-csv]");
     let CSV = SSVC.form.parentElement.querySelector("[data-tab='CSV']").dataset.csv;
@@ -696,7 +698,7 @@ function createSSVC(csv, uploaded) {
     btn.innerText = " CLEAR ";
     btn.type = "button";
     if(typeof(csv) == "object")
-	btn.setAttribute("data-json", JSON.stringify(csv));
+	btn.setAttribute("data-json", JSON.stringify(csv,null,2));
     else
 	btn.setAttribute("data-csv", csv);
     btn.addEventListener("click",clear);
@@ -1105,7 +1107,7 @@ function toggleAll(doselect) {
 }
 function selectCustom(name, datatree, fIndex) {
     let clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
-    clbutton.setAttribute("data-json", JSON.stringify(datatree));
+    clbutton.setAttribute("data-json", JSON.stringify(datatree, null, 2));
     const sample = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     if(sample.querySelector("[selected]"))
 	sample.querySelector("[selected]").removeAttribute("selected");
