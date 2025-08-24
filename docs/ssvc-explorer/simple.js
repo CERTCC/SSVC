@@ -1,3 +1,4 @@
+const __version__ = "1.0.8";
 const SSVC = {
     "outcomes": [],
     "results": {},
@@ -6,7 +7,8 @@ const SSVC = {
     "form": null,
     "dpMap":{},
     "default_namespace": "x_com.example#psirt",
-    "namespaces": []
+    "namespaces": [],
+    "__version__": __version__
 };
 function niceString(str) {
     if (str.length)
@@ -903,25 +905,27 @@ function match_name_ns_vers(obj,selectobj) {
     });
 }
 function prepare_form(vForm, vSelect, selectdp, preFill, vars) {
-    vSelect.addEventListener("change",function(ev) {
-	const el = ev.target;
-	if(!el.value)
-	    return clear_popup_form(vSelect, vForm);
-	const obj = JSON.parse(el.value);
-	Object.keys(obj).forEach(function(key) {
-	    vForm.querySelectorAll("[data-temp]").forEach(function(div) {
-		div.remove();
-	    });
-	    if(vars in obj) {
-		const drows = obj[vars].length * 2;
-		const crows = vForm.querySelectorAll("[data-clone]").length;
-		const diff = (drows - crows)/2;
-		for(let i=0; i < diff; i++)
-		    vForm.querySelector("button").click();
-	    }
-	    deepSet(vForm, obj);
-	});
-    });
+    if(!vSelect.hasAttribute("detect-change"))
+       vSelect.addEventListener("change",function(ev) {
+	   const el = ev.target;
+	   if(!el.value)
+	       return clear_popup_form(vSelect, vForm);
+	   const obj = JSON.parse(el.value);
+	   Object.keys(obj).forEach(function(key) {
+	       vForm.querySelectorAll("[data-temp]").forEach(function(div) {
+		   div.remove();
+	       });
+	       if(vars in obj) {
+		   const drows = obj[vars].length * 2;
+		   const crows = vForm.querySelectorAll("[data-clone]").length;
+		   const diff = (drows - crows)/2;
+		   for(let i=0; i < diff; i++)
+		       vForm.querySelector("button").click();
+	       }
+	       deepSet(vForm, obj);
+	   });
+       }); 
+    vSelect.setAttribute("detect-change","1");
     preFill.forEach(function(obj) {
 	let info;
 	/* Drop down for decision points has more information*/
@@ -959,9 +963,6 @@ function popupStart(selector) {
 }
 function popupEnd() {
     const popUp = SSVC.form.parentElement.parentElement.querySelector("[id='ssvcPopup']");
-    popUp.querySelectorAll('input[type="text"]').forEach(function(inp) {
-	inp.removeEventListener('input');
-    })    
     popUp.previousElementSibling.style.opacity = "1.0";
     popUp.previousElementSibling.style.pointerEvents = "all";
     popUp.style.display = "none";
@@ -1018,22 +1019,8 @@ function popupEditDP(w) {
     topalert();
     const rpopUp = popupStart("data-customdp");
     const dpForm = rpopUp.querySelector("form");
-    dpForm.querySelectorAll('input[type="text"]').forEach(function(inp) {
-	inp.addEventListener('input', function(event) {
-	    console.log('Input value changed by user:', event.target.value);
-	});
-    });
     const dpSelect = dpForm.querySelector("select");
     let options = dpSelect.querySelectorAll("option");
-    if(w.parentElement.hasAttribute("data-outcomeName")) {
-	dpSelect.setAttribute("data-outcomeName",
-			      w.parentElement.getAttribute("data-outcomeName"));
-	rpopUp.querySelector("h4").innerHTML = "Customize Outcome";	
-	
-    } else {
-	dpSelect.removeAttribute("data-outcomeName");
-	rpopUp.querySelector("h4").innerHTML = "Customize Decision Point";
-    }
     let dpName = "-1";
     let dpIndex = "-1";
     options.forEach(function(option) {
@@ -1054,12 +1041,19 @@ function popupEditDP(w) {
 	}
 	options = dpSelect.querySelectorAll("option");	
     }
-    
-    if(w.hasAttribute("data-adddp")) {
+
+    if(w.parentElement.hasAttribute("data-outcomeName")) {
+	dpSelect.setAttribute("data-outcomeName",
+			      w.parentElement.getAttribute("data-outcomeName"));
+	rpopUp.querySelector("h4").innerHTML = "Customize Outcome";	
+	
+    } else if(w.hasAttribute("data-adddp")) {
+	dpSelect.removeAttribute("data-outcomeName");
 	/* This is a new Decision Point so Add Decision Point is the action */
 	rpopUp.querySelector("h4").innerHTML = "Add Decision Point";
 	rpopUp.querySelector("[data-update]").innerText = "Add";
     } else {
+	dpSelect.removeAttribute("data-outcomeName");
 	rpopUp.querySelector("h4").innerHTML = "Customize Decision Point";
 	rpopUp.querySelector("[data-update]").innerText = "Update";	
 	dpName = w.parentElement.getAttribute("data-dp");
@@ -1172,8 +1166,10 @@ function customize(w) {
 	    });
 	    delspan.style.color = "red";
 	    el.appendChild(span);
-	    el.appendChild(delspan);
-	    if(i == dplength - 2) {
+	    if(!((i == dplength -1) || (i == dplength*2 -1)))
+		el.appendChild(delspan);
+	    el.setAttribute("TM",String(i) + "- " + String(dplength));
+	    if((i == dplength - 2) || (i == dplength*2 - 2)) {
 		const addspan = document.createElement("span");
 		addspan.innerHTML = "&#8853";
 		addspan.style.color = "#28a745";
@@ -1585,7 +1581,7 @@ function validate_namespace(namespace) {
     if(!namespace.toLowerCase().startsWith("x_")) {
 	/* Only thing allowed is translation  */
 	if(!namespace.match(/\/[a-z\-0-9]*\//i)) {
-	    alert("Namespace cannot use reserved namespaces. Either use x_com.example#psirt format or a pure translation ssvc/de-DE/ is allowed.");
+	    alert("Changed Decision Point or Tree Namespace cannot use reserved namespaces. Either use x_com.example#psirt format or a pure translation ssvc/de-DE/ is allowed.");
 	    return false;
 	}
     }
@@ -1659,31 +1655,33 @@ function updateTree() {
     const inputs = dpForm.querySelectorAll("input,textarea");
     let dp = deepGet(inputs);
     for(let i=0; i<inputs.length; i++) {
+	if(inputs[i].type == "checkbox") continue;
 	if(inputs[i].value == "") {
 	    topalert("All input fields are required for a Decision Point",
 		     "danger");
 	    return;
 	}
-	if(inputs[i].defaultValue != inputs[i].value) {
+	if(inputs[i].defaultValue && inputs[i].defaultValue != inputs[i].value) {
 	    changed = true;
 	    break;
 	}
     }
-    /*Check if this decision point is in our registry */
-    let registered = SSVC.decision_points.some(function(x) {
-	if(match_name_ns_vers(x, dp)) {
-	    /* */
-	    dp = x.data;
-	    return true;
-	}
-    });
     let olddp = {};
     /* Get previous decision point so we can compare it to the current */
     if(dpSelect.hasAttribute("data-selectdp")) 
 	olddp = JSON.parse(dpSelect
 			   .getAttribute("data-selectdp"));
+    /*Check if this decision point is in our registry */
+    let registered = SSVC.decision_points.some(function(x) {
+	if(match_name_ns_vers(x, dp)) {
+	    dp = x.data;
+	    return true;
+	}
+    });
+    
     if(changed) {
-	if((!registered) && (!validate_namespace(dp.namespace))) {
+	/*Check if it is a translation. */
+	if(!validate_namespace(dp.namespace)) {
 	    return;
 	}
 	/* Add data to dpMap and decision_points of global SSVC data */
