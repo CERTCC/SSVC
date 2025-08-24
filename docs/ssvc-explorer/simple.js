@@ -1587,7 +1587,7 @@ function uniq_key(obj, arr, prefix, copyLength) {
     if(copyLength && String(copyLength).match(/^[0-9]$/)) {
 	copyLength = parseInt(copyLength);
     } else {
-	copyLength = 0;
+	copyLength = 1;
     }
     let base = obj.name.normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -1866,22 +1866,50 @@ function import_json(json, name) {
 		selectCustom(name, json, -1);
 	    return;
 	}
-    }
-    if ('decisions_table' in json) {
-	makeTree(json.decisions_table, outcomeName, name);
-    } else if('decision_points' in json) {
-	let dpCombo = {};
-	for(let i=0; i<json.decision_points.length; i ++) {
-	    dp = json.decision_points[i];
-	    dpCombo[dp.name] = dp.values.map(function(value) { return value.name; });
-	}
-	const rows = enumerate_dps(dpCombo);	
-	makeTree(rows, outcomeName, name);
     } else {
 	topalert("Unknown JSON file format","danger");
     }
     
 }
+function simpleCSV(csvString) {
+    const rows = [];
+    let row = [];
+    let value = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < csvString.length; i++) {
+        const char = csvString[i];
+        const nextChar = csvString[i + 1];
+
+        if (char === '"' && inQuotes && nextChar === '"') {
+            value += '"';
+            i++; 
+        } else if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            row.push(value);
+            value = '';
+        } else if ((char === '\n' || char === '\r') && !inQuotes) {
+            if (value || row.length > 0) {
+                row.push(value);
+                rows.push(row);
+                row = [];
+                value = '';
+            }
+            if (char === '\r' && nextChar === '\n') i++;
+        } else {
+            value += char;
+        }
+    }
+
+    if (value || row.length > 0) {
+        row.push(value);
+        rows.push(row);
+    }
+
+    return rows;
+}
+
 function readFile(input) {
     const file = input.files[0];
     const reader = new FileReader();
@@ -1894,9 +1922,57 @@ function readFile(input) {
 	    import_json(json, name);
 	} else {
 	    /* Assume CSV convert it to JSON schema version 2.0.0*/
-	    SSVC.form.innerHTML = "";
-	    createSSVC(data, true);
-	    selectCustom(name, data, -1);
+	    const rows = simpleCSV(data);
+	    let json = simpleCopy(SSVC.decision_trees[0].data);
+	    json.decision_points = {};
+	    json.mapping = [];
+	    json.name = name.substr(0,name.lastIndexOf('.'));
+	    json.key = uniq_key({name: json.name}, SSVC.decision_trees.map(x => x.data));
+	    json.namespace = SSVC.default_namespace + "/csvupload";
+	    json.description = json.name + " uploaded as CSV";
+	    let headers = rows.shift();
+	    let hasrowIndex = false;
+	    if(headers[0] == "row") {
+		headers.shift();
+		hasrowIndex = true;
+	    }
+	    let keymap = [];
+	    headers.forEach(function(header,i ) {
+		let head = header;
+		if(header.indexOf(":") > -1)
+		    head = header.split(":")[1];
+		let dpkey = uniq_key({name:head},Object.values(json.decision_points));
+		keymap[i] = json.namespace.substr(0,3) + ":" + dpkey
+		json.decision_points[keymap[i]] = {name: head, namespace: json.namespace,
+						   description: head,
+						   key: dpkey};
+	    });
+	    json.outcome = keymap.at(-1);
+	    let valueSet = result = Array.from({ length: headers.length }, () => []);
+	    let mapping = [];
+	    rows.forEach(function(row) {
+		let nmap = {}
+		row.forEach(function(value,i) {
+		    if(!valueSet[i].some(function(values) { return values.name == value})) {
+			let mkey = uniq_key({name:value}, valueSet[i]);
+			valueSet[i].push({name: value, description: value,
+					  key: mkey});
+			nmap[keymap[i]] = mkey; 
+		    } else {
+			let lfind = valueSet[i].find(function(valset) {
+			    return valset.name == value;
+			});
+			nmap[keymap[i]] = lfind.key;
+		    }
+		    
+		});
+		mapping.push(nmap);
+	    });
+	    json.mapping = mapping;
+	    console.log(json,valueSet);
+	    for(let i=0; i<Object.keys(json.decision_points).length; i++)
+		json.decision_points[keymap[i]].values = valueSet[i];
+	    import_json(json, json.name);
 	}
     };
     reader.onerror = function() {
@@ -1906,7 +1982,6 @@ function readFile(input) {
 }
 function computeFI(features,labels) {
     /* compute feature Importance */
-
     /* Decision Tree Classifier */
     function DecisionTreeClassifier() {
 	this.rules = null;
