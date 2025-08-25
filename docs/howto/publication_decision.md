@@ -11,7 +11,7 @@ While other stakeholders may also have to make a publication decision, here we f
     the combination of the stakeholder and the decision being modeled. In this case, the stakeholder is the 
     **Coordinator** and the decision is **whether to publish an advisory about the vulnerability**.
 
-## Policy Constraints and Publication Decisions
+## Decision Table Constraints and Publication Decisions
 
 !!! tip inline end "Other Stakeholders' Publication Decisions"
 
@@ -144,7 +144,7 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 
 ## Coordinator Publication Decision Model
 
-An example coordinator publication decision model is shown below. The policy described by the model is based on CERT/CC
+An example coordinator publication decision model is shown below. The decision table described by the model is based on CERT/CC
 publication decisions. Other organizations may have different publication criteria and may want to include other decision points
 in their publication decision model.
 

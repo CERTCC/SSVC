@@ -39,9 +39,9 @@ subgraph prep [Prepare to use SSVC]
   ddf[/Data Definition/]
  end
     l7((1))
- subgraph policy [Policy Development]
-  dfp{{Define Policy}}
-  p[/Policy/]
+ subgraph policy [Decision Table Development]
+  dfp{{Define Decision Table}}
+  p[/Decision Table/]
  end
     subgraph gov [Governance]
         eg{{Establish Governance Process}}
@@ -60,7 +60,7 @@ end
 subgraph runtime [Use SSVC]
  mdp[[Apply Decision Point Mapping to Data]]
  dp[/Decision Point Values/]
- ap[[Apply Policy]]
+ ap[[Apply Decision Table]]
  oc[/Outcome/]
 end
 r[Vulnerability Response]

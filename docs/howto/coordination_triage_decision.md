@@ -95,7 +95,7 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 
 ## Coordinator Triage Decision Model
 
-The following example decision model is a policy that closely follows our own decision model at the CERT/CC.
+The following example decision model is a decision table that closely follows our own decision model at the CERT/CC.
 Other coordinators should consider customizing the tree to their needs, as described in [Tree Construction and Customization Guidance](tree_customization.md).
 
 !!! tip "SSVC Customization in Action: CISA"

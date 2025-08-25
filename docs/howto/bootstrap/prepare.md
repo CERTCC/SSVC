@@ -1,13 +1,13 @@
 # Prepare to Use SSVC
 
 Preparing to use SSVC involves defining a decision you want to make,
-the information you need to make that decision, and the policy you want to use to make that decision.
+the information you need to make that decision, and the decision table you want to use to make that decision.
 
 !!! tip "Stakeholder Involvement"
 
     Multiple organizational stakeholders should be involved in the SSVC adoption process.
     
-    - _Risk Owners_ must be involved in the development of the risk management policy represented by SSVC.
+    - _Risk Owners_ must be involved in the development of the risk management decision table represented by SSVC.
     - _Vulnerability Management_ stakeholders, including IT Security and IT Service Management (ITSM), should 
       be involved in the decision modeling and data mapping processes as well.
     - _Other Roles_ depend on the organization and specific decision models being developed. For example, a Supplier
@@ -32,8 +32,8 @@ flowchart
         decisionpoints[Define Inputs]
         dataeng[Data Mapping]
         dm[/Data Map/]
-        policy[Policy Development]
-        p[/Policy/]        
+        policy[Decision Table Development]
+        p[/Decision Table/]        
     end
     dcd --> outcomes
     dcd --> governance
@@ -181,18 +181,18 @@ flowchart LR
      device safety regulations. So, the medical device manufacturer might define a decision point called _Regulated_ with
      the values _Regulated Device_, _Non-Regulated Device_, and _Support Service_.
 
-## Define Policy
+## Define Decision Table
 
 So far, you have chosen a decision to model, defined the possible outcomes for that decision, and defined the information you need to make that decision.
-Now, you need to define the policy you want to use to make that decision.
-A policy is a function that takes a set of decision point values as input and returns an outcome as output.
-While we often choose to represent policies as decision trees, they can be represented in other ways as well.
-In fact, we find that it is often useful to represent policies in tabular form, for example as a CSV file.
-We have provided a number of example policies in the [SSVC documentation](../index.md), but you can define your own policy to meet your needs.
+Now, you need to define the decision table you want to use to make that decision.
+A decision table is a function that takes a set of decision point values as input and returns an outcome as output.
+While we often choose to represent decision tables as decision trees, they can be represented in other ways as well.
+In fact, we find that it is often useful to represent decision tables in tabular form, for example as a CSV file.
+We have provided a number of example decision tables in the [SSVC documentation](../index.md), but you can define your own decision table to meet your needs.
 
 ```mermaid
 ---
-title: Policy Definition Process
+title: Decision Table Definition Process
 ---
 flowchart LR
     subgraph do[Define Outcomes]
@@ -201,9 +201,9 @@ flowchart LR
     subgraph di [Define Inputs]
     dps[/Decision Point Set/]
     end
-    subgraph policy [Policy Development]
-        dfp{{Define Policy}}
-        p[/Policy/]
+    subgraph policy [Decision Table Development]
+        dfp{{Define Decision Table}}
+        p[/Decision Table/]
     end
     oc --> dfp
     dps --> dfp
@@ -217,10 +217,10 @@ flowchart LR
      decision model and decide that both the outcome set and the decision point set that define the structure of the
      decision model are appropriate for their needs. They map the 48 hour requirement to the _Immediate_ outcome, because
      it essentially represents their highest priority response.
-     However, they notice that the specific policy given in the [Deployer Prioritization](../supplier_tree.md)
+     However, they notice that the specific decision table given in the [Deployer Prioritization](../supplier_tree.md)
      example&mdash;that is, the mapping from decision point values to outcomes&mdash;is not appropriate for their needs
      because it has too few _Immediate_ outcomes to suit their policy.
-     Therefore, the bank decides to reuse the same decision point set and outcome set but define their own policy.
+     Therefore, the bank decides to reuse the same decision point set and outcome set but define their own decision table.
 
 ## Map Data to Model Inputs
 
@@ -298,10 +298,10 @@ SSVC. Each of the items we discussed above could be reviewed in turn, ensuring t
 - The decision itself remains relevant to the organization
 - The outcomes remain relevant to the decision
 - The decision points remain relevant to the decision
-- The policy remains relevant to the organization's needs
+- The decision table remains relevant to the organization's needs
 - The data sources remain relevant to informing the decision points
 
-Depending on the review, any necessary adjustments can be made to the outcomes, decision points, policy, data map,
+Depending on the review, any necessary adjustments can be made to the outcomes, decision points, decision table, data map,
 or operational processes.
 
 ```mermaid
@@ -314,13 +314,13 @@ subgraph Governance
     direction LR
     ro[/Modify Outcomes?\]
     mdp[/Modify Decision Points?\]
-    rp[/Modify Policy?\]
+    rp[/Modify Decision Table?\]
     rds[/Modify Data Mapping?\]
     oc[/Outcomes/]
     dp[/Decision Points/]
     dm[/Data Map/]
-    um{{Update Policy}}
-    po[/Policy/]
+    um{{Update Decision Table}}
+    po[/Decision Table/]
 end
 
 ro -->|yes| oc
@@ -355,10 +355,10 @@ um --> po
         - Are there decision points that are not as useful as we thought they would be?
         - Are there new decision points we should add?
     
-    - Does the policy still reflect our understanding and expectations of how we want to make this decision?
+    - Does the decision table still reflect our understanding and expectations of how we want to make this decision?
 
-        - Have there been instances where the policy has led to a decision that we later regretted?
-        - Are there new constraints or requirements that the policy mapping does not capture?
+        - Have there been instances where the decision table has led to a decision that we later regretted?
+        - Are there new constraints or requirements that the decision table mapping does not capture?
 
     - Do we have the right data to inform the decision points in the decision model?
         

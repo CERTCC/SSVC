@@ -39,9 +39,9 @@ If their decisions are explicit, then the decision makers can use the recommenda
     their decisions. For example, one organization might need to map their decisions to three priority levels, while another
     might need to map their decisions to five priority levels.
 
-    Variation can also arise from different organization goals or risk tolerance that alters the policy mapping the
+    Variation can also arise from different organization goals or risk tolerance that alters the decision table mapping the
     decision points to priority outcomes. The decision points themselves are often the same for the 
-    stakeholder-decision pairing, but the policy that maps the decision points to priority outcomes is different.
+    stakeholder-decision pairing, but the decision table that maps the decision points to priority outcomes is different.
 
     The salient information required to make a specific kind of decision in a specific context is often the same across
     organizations.

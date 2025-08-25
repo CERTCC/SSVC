@@ -35,9 +35,9 @@ SSVC models individual vulnerability management decisions. It is built around th
   possible result of the decision.
 - **Outcome Values** are the possible values for an Outcome. Outcomes are similarly defined as an ordered set of
   enumerated values, usually indicating a priority or urgency.
-- A **Policy** is a mapping from each combination of decision point values to the set of outcome values.
+- A **Decision Table** is a mapping from each combination of decision point values to the set of outcome values.
 - A **Decision Function** is a function that accepts a set of decision point values and returns an outcome value based
-  on a policy.
+  on a decision table.
 
 ```mermaid
 ---
@@ -50,7 +50,7 @@ flowchart LR
         dp1 --> dv2[Decision Value 2]
         dp1 --> dv3[Decision Value 3]
     end
-    subgraph Policy
+    subgraph Policy[Decision Table]
         direction LR
         dp1dv1[Decision Point 1 Decision Value 1] --> o1ov1[Outcome 1 Value 1]
         dp1dv2[Decision Point 1 Decision Value 2] --> o1ov2[Outcome 1 Value 2]
@@ -71,7 +71,7 @@ flowchart LR
     Our initial concept for SSVC's decision modeling was based on decision trees.
     A decision tree represents important elements of a decision, possible decision values, and possible outcomes.
     We often represent a decision function as a decision tree because it is a convenient way to represent
-    a **Policy** as a branching decision structure.    
+    a **Decision Table** as a branching decision structure.    
     We do not claim this approach is the only viable option.
 
     In particular, we have received feedback that decision trees are not always the best way to represent
