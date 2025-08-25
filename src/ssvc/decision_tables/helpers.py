@@ -102,7 +102,7 @@ def _mapping2mermaid(mapping: list[dict[str:str]], title: str = None) -> str:
         # add the yaml front matter for the title
         lines.extend(["---", f"title: {title}", "---"])
 
-    lines.extend(["graph LR", "n1(( ))"])
+    lines.extend(["graph LR", "subgraph inputs[Inputs]", "n1(( ))"])
     columns = list(mapping[0].keys())
 
     node_ids = {}  # (col_idx, path_tuple) -> node_id
@@ -110,6 +110,11 @@ def _mapping2mermaid(mapping: list[dict[str:str]], title: str = None) -> str:
 
     # Build subgraphs + nodes
     for col_idx, col in enumerate(columns):
+        # if it's the last column, close the Inputs subgraph and start the Outputs subgraph
+        if col_idx == len(columns) - 1:
+            lines.append("end")
+            lines.append("subgraph outputs[Outcome]")
+
         subgraph_name = f's{col_idx+1}["{col}"]'
         lines.append(f"subgraph {subgraph_name}")
         seen_paths = set()
@@ -124,6 +129,7 @@ def _mapping2mermaid(mapping: list[dict[str:str]], title: str = None) -> str:
             lines.append(f"{node_id}([{label}])")
             node_ids[(col_idx, path)] = node_id
         lines.append("end")
+    lines.append("end")  # close the outputs subgraph
 
     # Root → level 0
     for row in mapping:
