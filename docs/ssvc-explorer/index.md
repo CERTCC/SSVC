@@ -4,13 +4,12 @@ hide:
   - title
 ---
 
-# Dryad SSVC Calculator
+# SSVC Policy Explorer
 
 <style>
 .sembed {
   min-width: 1200px;
   min-height: 1100px;
-  margin-top: -5%;
   z-index: 1;
   position: relative;
 }
