@@ -1,4 +1,4 @@
-const __version__ = "1.0.8";
+const __version__ = "1.0.9";
 const SSVC = {
     "outcomes": [],
     "results": {},
