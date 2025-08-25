@@ -119,6 +119,7 @@ nav:
         - Intro: 'reference/code/index.md'
         - Decision Points: 'reference/code/decision_points.md'
         - Decision Tables: 'reference/code/decision_tables.md'
+        - Decision Point Groups: 'reference/code/decision_point_groups.md'
         - Outcomes: 'reference/code/outcomes.md'
         - Namespaces: 'reference/code/namespaces.md'
         - Selections: 'reference/code/selection.md'
