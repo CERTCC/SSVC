@@ -49,7 +49,7 @@ THE_PARANOIDS = DecisionPoint(
     name="theParanoids",
     key="PARANOIDS",
     description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
-    namespace="x_com.yahooinc",
+    namespace="x_com.yahooinc#prioritized-risk-remediation",
     version="1.0.0",
     values=(
         _TRACK_5,

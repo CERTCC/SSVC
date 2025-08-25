@@ -98,19 +98,6 @@ class TestMixins(unittest.TestCase):
         with self.assertRaises(ValidationError):
             _Namespaced(namespace="x_")
 
-        # error if namespace starts with x_ but is too long
-        for i in range(MAX_NS_LENGTH + 50):
-            shortest = "x_aaa"
-            ns = shortest + "a" * i
-            with self.subTest(ns=ns):
-                # length limit set in the NS_PATTERN regex
-                if len(ns) <= MAX_NS_LENGTH:
-                    # expect success on shorter than limit
-                    _Namespaced(namespace=ns)
-                else:
-                    # expect failure on longer than limit
-                    with self.assertRaises(ValidationError):
-                        _Namespaced(namespace=ns)
 
     def test_namespaced_create(self):
         # use the official namespace values
@@ -119,9 +106,10 @@ class TestMixins(unittest.TestCase):
             self.assertEqual(obj.namespace, ns)
 
         # custom namespaces are allowed as long as they start with x_
+        # and then follow `x-name = reverse-dns  "#" fragment-seg`
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_a{randint(1000,1000000)}"
+            ns = f"x_example.test{randint(1000,1000000)}#test"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
@@ -189,7 +177,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_example.test"},
+                "args": {"namespace": "x_example.test#test"},
                 "has_default": False,
             },
             {

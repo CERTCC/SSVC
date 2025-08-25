@@ -201,10 +201,10 @@ class SelectionList(_Timestamped, BaseModel):
     Optional fields include
 
     - `target_ids`: If present, a non-empty list of identifiers for the item or items being evaluated.
-    - `resources`: If present, a non-empty list of references to resources that provide additional context about the decision points
+    - `decision_point_resources`: If present, a non-empty list of resources that provide information related to the decision points
         found in this selection. Resources point to documentation, JSON files, or other relevant information that
         describe what the decision points are and how they should be interpreted.
-    - `references`: If present, a non-empty list of references to resources that provide additional context about the specific values selected.
+    - `references`: If present, a non-empty list of resources that provide additional context about the specific values selected.
         References point to reports, advisories, or other relevant information that describe why the selected values were chosen.
     """
 
@@ -237,10 +237,10 @@ class SelectionList(_Timestamped, BaseModel):
         description="Timestamp of the selections, in RFC 3339 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
-    resources: list[Reference] = Field(
+    decision_point_resources: list[Reference] = Field(
         default_factory=list,
         min_length=1,
-        description="A list of references to resources that provide additional context about the decision points found in this selection.",
+        description="A list of resources that provide additional context about the decision points found in this selection.",
         examples=[
             [
                 {
@@ -261,7 +261,7 @@ class SelectionList(_Timestamped, BaseModel):
     references: list[Reference] = Field(
         default_factory=list,
         min_length=1,
-        description="A list of references to resources that provide additional context about the specific values selected.",
+        description="A list of references that provide additional context about the specific values selected.",
         examples=[
             [
                 {
@@ -329,7 +329,7 @@ class SelectionList(_Timestamped, BaseModel):
             "name",
             "description",
             "target_ids",
-            "resources",
+            "decision_point_resources",
             "references",
         ]
 
@@ -377,7 +377,7 @@ def main() -> None:
         references=[
             Reference(
                 uri="https://example.com/report",
-                description="A report on which the selections were based",
+                summary="A report on which the selections were based",
             )
         ],
     )
