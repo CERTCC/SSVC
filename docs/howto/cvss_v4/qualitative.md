@@ -71,7 +71,7 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 
 ## Analyst Decision Model
 
-Below we provide an example deployer prioritization policy that maps the decision points just listed to the outcomes described above.
+Below we provide an example deployer prioritization decision table that maps the decision points just listed to the outcomes described above.
 
 ### Decision Model Visualization
 
