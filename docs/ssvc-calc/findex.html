@@ -104,7 +104,9 @@
 	    <option value="">Select</option>
 	    <option value="import">Import Tree</option>
 	  </select>
-	  <button class="btn btn-sm btn-outline-info" onclick="promptMultipleCVEs()">Multiple CVEs</button>
+	  <button class="btn btn-sm btn-outline-info" onclick="promptMultipleCVEs()">
+	    Multiple CVEs
+	  </button>
 	  <div class="cover_heading_append d-none">
 	    (CISA Coordinator v2)
 	  </div>
@@ -112,8 +114,8 @@
 		  data-toggle="tooltip" data-placement="bottom"
 		  title="Show Export" style="display:none"
 		  onclick="export_show(false)">
-	    Export</button>
-	  
+	    Export
+	  </button>
 	</h4>
 	<div class="alert" id="topalert" role="alert">
 	  This is an alert!
@@ -422,7 +424,7 @@
     <div id="exporter" class="d-none">
       <div class="row justify-content-center position-absolute exportdiv">
 	<div class="export-header">
-	  <h3> Export Calculated Score</h3>
+	  <h3> Export Calculated SSVC Score</h3>
 	  <button type="button" aria-label="Close" class="close h3" onclick="$(this).parent().parent().remove()">
 	    <span aria-hidden="true">×</span>
 	  </button>
@@ -432,49 +434,30 @@
 	      <tbody>
 		<tr>
 		  <td>
-		    <input type="text" placeholder="ID CVE/VU#"
-			   class="form-control exportId">
+		    <input type="text" placeholder="timestamp UTC like 2025-01-01T12:00:00Z" name="timestamp"
+			   class="form-control timestamp" pattern="^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))$">
+		    <label> <input type="checkbox" name="export-optional" onclick="export_optional(this.checked)"> Provide extra information</label>
 		  </td>
 		</tr>
-		<tr>
+		<tr class="export-optional d-none">
 		  <td>
-		    <select  class="form-control exportRole">
-		      <option value="" disabled selected>Select Role</option>
-		      <option>Coordinator</option>
-		      <option>Supplier</option>
-		      <option>Deployer</option>
-		      <option>Other</option>
-		    </select>
+		    <input type="text" placeholder="URL of Decision Tree or Decision Point Group schema" class="form-control">
+		    <input type="text" placeholder="Description of the URL" class="form-control">
 		  </td>
 		</tr>
-		<tr>
+		<tr class="export-optional d-none">
 		  <td>
-		    <div>
-		      <span class="text ssvcvector d-inline">
-		      </span>
-		      <span onclick="copym('#graph .ssvcvector')">
-			<img src="icons8-copy-60.png"
-			     class="icon8"/>
-		      </span>
-		      <span onclick="create_permalink('copy')">
-			<img src="icons8-copy-link-48.png"
-			     class="icon8"/>
-		      </span>
-		      <br/>
-		      <span class="permalink d-none"
-			    style="font-size:1px; position:fixed">
-		      </span>
-		    </div>
+		    <input type="text" placeholder="URL of any resources used in making specific selections" class="form-control">
+		    <input type="text" placeholder="Description of the URL " class="form-control">
 		    
+		  </td>
+		</tr>		
+		<tr>
+		  <td>
 		    <input type="checkbox" class="includetree" unchecked>
 		    <span class="text-muted">
 		      Include decision tree in export
 		    </span>
-		    <div>
-		      Contact: 
-		      <input type="text" id="contact" class="form-control"
-			     value="DHS CISA can be contacted at cisa@cisa.dhs.gov"/>
-		    </div>
 		    <br/>
 		    <div class="btn-group primary-button Exporter">
 		      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

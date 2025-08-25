@@ -24,7 +24,7 @@ const _version = "5.1.9"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false;
 /* The registryurl is now relative to local folder using symlink for convenience*/
-const registry_url = "ssvc_object_registry.json";
+const registry_url = "https://raw.githubusercontent.com/CERTCC/SSVC/refs/heads/main/data/json/ssvc_object_registry.json";
 const SSVC = {"tool_version": _version, decision_points: [], decision_trees: []}
 var diagonal,tree,svg,duration,root
 var treeData = []
@@ -36,9 +36,8 @@ var acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
 		 "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
 var lcolors = {};
 var ssvc_short_keys = {};
-/* These variables are for decision tree schema JSON aka SSVC Provision Schema */
-var export_schema = {decision_points: [],decisions_table: [], lang: "en",
-		     version: "2.0", title: "SSVC Provision table"}
+/* These variables are for decision Selection schema */
+var export_schema = {"timestamp": "2025-08-24T15:05:00Z",  "schemaVersion": "2.0.0", "target_ids": ["CVE-2024-7344"], "selections": [], "decision_point_resources" : [], "references": []};
 /* If a new analysis is being done use this for export */
 var current_score = [];
 var current_schema = "SSVC_Computed.schema.json";
@@ -73,6 +72,12 @@ function check_all(ev) {
     dto.each(function(_,dinput) {
 	outcome_set(dinput, true);
     });
+}
+function export_optional(show) {
+    if(show)
+	$('tr.export-optional').removeClass("d-none");
+    else
+	$('tr.export-optional').addClass("d-none");	
 }
 function reset_form() {
     /* This is to clear stupid Firefox cached form values*/
@@ -257,25 +262,8 @@ function dynamic_mwb(w) {
     return result;
 }
 function export_show(novector) {
-    console.log(novector);
-    $('#exportopen').show();
-    var ptranslate = "translate(120,-250)";
-    if(window.innerWidth <= 1000)
-	ptranslate = "translate(30,-90) scale(0.4,0.4)";
-    d3.select("#pgroup").transition()
-	.duration(600).attr("transform", ptranslate);
-    var q = $('#exporter').html();
-    $('.exportActive .exportdiv').remove();
-    $('.exportActive').removeClass('exportActive');
-    if($('#graph-ungraph').val() == "Analyst")
-	$('#ungraph').append(q).addClass('exportActive');
-    else
-	$('#graph').append(q).addClass('exportActive');
-    if($('#cve_samples').val().match(/^(cve|vu)/i))
-	$('.exportId').val($('#cve_samples').val())
-    if(novector == true)
-	return
-    setTimeout(make_ssvc_vector,1000);
+    $('#exporter').removeClass('d-none');
+    $('#exporter .timestamp').val((new Date()).toISOString());
 }
 function make_ssvc_vector() {
     console.log($('.exportId').val());
@@ -363,38 +351,15 @@ function export_tree() {
 }
 function export_json() {
     var includetree = $('.exportActive .includetree').is(':checked')
-    $('.Exporter').css({'pointer-events':'none'});
-    var tstamp = new Date()
-    var oexport = { role: $('.exportActive .exportRole').val() || "Unknown",
-		    id: $('.exportActive .exportId').val() || "Unspecified",
-		    version: "2.0",
-		    generator: _tool
-		  }
-    oexport['computed'] = $('.exportActive .ssvcvector').html();
-    
-    oexport['timestamp'] =  $('.exportActive .ssvcvector').html().split('/').
-	slice(-2,-1)[0]
-    final_outcome = $('#graph svg g.node text:last').text();
-    /* If final_outcome is empty look for analyst mode value */
-    if($('#graph-ungraph').val() == "Analyst" || (!final_outcome)) {
-	final_outcome = $('h4.hfinal').html();
-    }
-    /* Copy current_score as is to options that were selected */
-    oexport['options'] = current_score;
-    if(current_score.findIndex(x => final_keyword in x) < 0) {
-	/* Add final_keywrod only if not exists see GitHub issue #190 */
-	var last_option = {};
-	last_option[final_keyword] = final_outcome;
-	oexport['options'].push(last_option);
-    }
-    oexport['$schema'] = location.origin + location.pathname + current_schema
+
     var a = document.createElement("a")
     var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
     if (includetree) {
 	oexport['decision_tree'] = export_schema
 	download_filename = "tree_and_path-"+ oexport.id + "_" + oexport.role +
 	    "_json.txt"	
-    } 
+    }
+    
     a.href = "data:text/plain;charset=utf-8,"+
 	encodeURIComponent(JSON.stringify(oexport,null,2))
     a.setAttribute("download", download_filename)
@@ -928,8 +893,14 @@ function process_ssvc(ssvc, winput) {
 }				 
 
 function cve_get(ev) {
-    let api_url = "https://cveawg.mitre.org/api/cve/";
     const winput = ev.target;
+    if(winput.value) {
+	$('#exportopen').show();
+    }
+    const checkbox = winput.parentElement.parentElement.querySelector("input[name='use_public']");
+    if(checkbox && (!checkbox.checked))
+	return;
+    let api_url = "https://cveawg.mitre.org/api/cve/";
     const vuid = winput.value.toUpperCase();
     const ssvc = {};
     if(vuid.match(/^CVE-(1999|2\d{3})-(?!0{4})(0\d{3}|[1-9]\d{3,})$/)) {
@@ -1210,8 +1181,12 @@ function parse_json(xraw,paused) {
     });
     let cve_input = $("<input>").addClass("form-control vuid").attr({"placeholder":"CVE/Identifier"})
     cve_input[0].addEventListener('blur', cve_get);
+    cve_input[0].addEventListener('keydown', function(ev) {
+	if (event.key === 'Enter') 
+	    cve_get(ev);
+    });
     let cve_div = $("<label>").append(cve_input).css({padding: "0px 4px 0px 4px"});
-    let autoscore_div = $("<label>").append($("<input>").attr({"type": "checkbox","checked": true})).append($("<span>").text("Use available public scores")).css({padding: "0px 4px 0px 4px"});
+    let autoscore_div = $("<label>").append($("<input>").attr({"type": "checkbox","name":"use_public","checked": true})).append($("<span>").text("Use public CVE API data")).css({padding: "0px 4px 0px 4px"});
     let check_allb = $("<button>").addClass("btn btn-danger").html("Check All").on("click",check_all);
     let line_div = $("<div>").append(cve_div).append(autoscore_div).append(check_allb);
     $('#evaluate_section').append($("<div>").css({border: "1px solid rgba(1,1,1,0.1)",
@@ -1265,29 +1240,27 @@ function promptMultipleCVEs() {
     }).then((result) => {
 	if (result.isConfirmed && result.value) {
 	    let cves = result.value.cves;
+	    let useAPI = result.value.useAPI;
 	    if(cves.length > 0) {
-		$('#graph').hide();
-		
-        let container = $('#evaluate_section');
-        let currentDivs = container.children('div');
-        let currentCount = currentDivs.length;
-        if (currentCount > cves.length) {
-            currentDivs.slice(cves.length).remove();
-        } else if (currentCount < cves.length) {
-            let template = currentDivs.first();
-            for (let i = currentCount; i < cves.length; i++) {
-                template.clone(true).appendTo(container);
-            }
-        }
-        container.children('div').each(function (i) {
-            let cve_input = $(this).find('.vuid').val(cves[i]);
-	    cve_get({target: cve_input[0]});
-        });
-		
-		
-	    } else {
-		$('#graph').show();
-	    }
+		if(cves.length > 1) 
+		    $('#graph').hide();		
+		let container = $('#evaluate_section');
+		let currentDivs = container.children('div');
+		let currentCount = currentDivs.length;
+		if (currentCount > cves.length) {
+		    currentDivs.slice(cves.length).remove();
+		} else if (currentCount < cves.length) {
+		    let template = currentDivs.first();
+		    for (let i = currentCount; i < cves.length; i++) {
+			template.clone(true).appendTo(container);
+		    }
+		}
+		container.children('div').each(function (i) {
+		    $(this).find('input[name="use_public"]').attr("checked",useAPI);
+		    let cve_input = $(this).find('.vuid').val(cves[i]);
+		    cve_get({target: cve_input[0]});
+		});
+	    } 
 	}
     });
 }
