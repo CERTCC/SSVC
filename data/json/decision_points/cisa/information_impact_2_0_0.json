@@ -1,0 +1,50 @@
+{
+  "namespace": "cisa",
+  "key": "II",
+  "version": "2.0.0",
+  "name": "Information Impact",
+  "description": "Describes the type of information lost, compromised, or corrupted.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "N",
+      "name": "No Impact",
+      "description": "No known data impact."
+    },
+    {
+      "key": "S",
+      "name": "Suspected But Not Identified",
+      "description": "A data loss or impact to availability is suspected, but no direct confirmation exists."
+    },
+    {
+      "key": "P",
+      "name": "Privacy Data Breach",
+      "description": "The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised."
+    },
+    {
+      "key": "R",
+      "name": "Proprietary Information Breach",
+      "description": "The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised."
+    },
+    {
+      "key": "D",
+      "name": "Destruction of Non-Critical Systems",
+      "description": "Destructive techniques, such as master boot record (MBR) overwrite; have been used against a non-critical system."
+    },
+    {
+      "key": "C",
+      "name": "Critical Systems Data Breach",
+      "description": "Data pertaining to a critical system has been exfiltrated."
+    },
+    {
+      "key": "O",
+      "name": "Core Credential Compromise",
+      "description": "Core system credentials (such as domain or enterprise administrative credentials) or credentials for critical systems have been exfiltrated."
+    },
+    {
+      "key": "E",
+      "name": "Destruction of Critical System",
+      "description": "Destructive techniques, such as MBR overwrite; have been used against a critical system."
+    }
+  ]
+}
