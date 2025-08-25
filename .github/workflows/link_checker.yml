@@ -29,19 +29,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install linkchecker
-
-      - name: Install our python stuff
-        run: |
-          python -m pip install -e src
+          python -m pip install --upgrade pip uv
+          uv sync --dev --project src
 
       - name: Build Site
         run: |
-          mkdocs build --verbose --clean --config-file mkdocs.yml       
+          uv run --project=src mkdocs build --verbose --clean --config-file mkdocs.yml
 
       - name: Check links
         run: |
-          linkchecker site/index.html
+          uv run --project=src linkchecker site/index.html
           

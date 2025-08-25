@@ -1,0 +1,40 @@
+{
+  "namespace": "x_com.yahooinc#prioritized-risk-remediation",
+  "key": "PARANOIDS",
+  "version": "1.0.0",
+  "name": "theParanoids",
+  "description": "PrioritizedRiskRemediation outcome group based on TheParanoids.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "5",
+      "name": "Track 5",
+      "description": "Track"
+    },
+    {
+      "key": "4",
+      "name": "Track Closely 4",
+      "description": "Track Closely"
+    },
+    {
+      "key": "3",
+      "name": "Attend 3",
+      "description": "Attend"
+    },
+    {
+      "key": "2",
+      "name": "Attend 2",
+      "description": "Attend"
+    },
+    {
+      "key": "1",
+      "name": "Act 1",
+      "description": "Act"
+    },
+    {
+      "key": "0",
+      "name": "Act ASAP 0",
+      "description": "Act ASAP"
+    }
+  ]
+}

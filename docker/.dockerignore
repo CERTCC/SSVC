@@ -1,0 +1,17 @@
+# Ignore unnecessary files
+*.pyc
+*.pyo
+*.log
+#.gitignore
+.DS_Store
+# ignore all files in the following directories
+#**/.git/
+**/__pycache__/
+**/node_modules/
+**/dist/
+**/build/
+*.egg-info/
+**/site/
+**/.venv/
+**/.ipynb_checkpoints/
+**/obsolete/

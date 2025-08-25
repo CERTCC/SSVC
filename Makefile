@@ -1,11 +1,19 @@
 # Project-specific vars
 MKDOCS_PORT=8765
 DOCKER_DIR=docker
+PROJECT_DIR = ./src
+DOCKER_COMPOSE=docker-compose --project-directory $(DOCKER_DIR)
+UV_RUN=uv run --project $(PROJECT_DIR)
 
 # Targets
-.PHONY: all test docs docker_test clean help mdlint_fix up down regenerate_json
+.PHONY: all test docs api docker_test clean help mdlint_fix up down regenerate_json
+
 
 all: help
+
+dev:
+	@echo "Set up dev environment..."
+	uv sync --dev --project $(PROJECT_DIR)
 
 mdlint_fix:
 	@echo "Running markdownlint..."
@@ -13,25 +21,36 @@ mdlint_fix:
 
 test:
 	@echo "Running tests locally..."
-	pytest -v src/test
+	uv run --project $(PROJECT_DIR) pytest -v
 
 docker_test:
 	@echo "Building the latest test image..."
-	pushd $(DOCKER_DIR) && docker-compose build test
+	$(DOCKER_COMPOSE) build test
 	@echo "Running tests in Docker..."
-	pushd $(DOCKER_DIR) && docker-compose run --rm test
+	$(DOCKER_COMPOSE) run --rm test
+
+docs_local:
+	@echo "Building and running docs locally..."
+	$(UV_RUN) mkdocs serve
 
 docs:
 	@echo "Building and running docs in Docker..."
-	pushd $(DOCKER_DIR) && docker-compose up docs
+	$(DOCKER_COMPOSE) up docs
+
+api:
+	@echo "Building and running API in Docker..."
+	$(DOCKER_COMPOSE) up api
+
+api_dev:
+	$(UV_RUN) uvicorn ssvc.api.main:app --reload
 
 up:
 	@echo "Starting Docker services..."
-	pushd $(DOCKER_DIR) && docker-compose up -d
+	$(DOCKER_COMPOSE) up -d
 
 down:
 	@echo "Stopping Docker services..."
-	pushd $(DOCKER_DIR) && docker-compose down
+	$(DOCKER_COMPOSE) down
 
 regenerate_json:
 	@echo "Regenerating JSON files..."
@@ -40,20 +59,30 @@ regenerate_json:
 
 clean:
 	@echo "Cleaning up Docker resources..."
-	pushd $(DOCKER_DIR) && docker-compose down --rmi local || true
-
+	$(DOCKER_COMPOSE) down --rmi local || true
+	rm -rf $(PROJECT_DIR)/.venv $(PROJECT_DIR)/uv.lock
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
 	@echo " all         - Display this help message"
+
+	@echo " dev        - Set up development environment"
 	@echo " mdlint_fix  - Run markdownlint with fix"
 	@echo " test       - Run tests locally"
 	@echo " docker_test - Run tests in Docker"
+
 	@echo " docs       - Build and run documentation in Docker"
+	@echo " docs_local - Build and run documentation locally"
+
+	@echo " api        - Build and run API in Docker"
+	@echo " api_dev    - Run API locally with auto-reload"
+
 	@echo " up         - Start Docker services"
 	@echo " down       - Stop Docker services"
+
 	@echo " regenerate_json - Regenerate JSON files from python modules"
+
 	@echo " clean      - Clean up Docker resources"
 	@echo " help       - Display this help message"
 

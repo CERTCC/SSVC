@@ -46,6 +46,8 @@ SSVCv1 = DecisionPointGroup(
         PATCH_APPLIER_1, PATCH_DEVELOPER_1
     ),
 )
+"""SSVC version 1 decision point group."""
+
 SSVCv2 = DecisionPointGroup(
     name="SSVCv2",
     description="The second version of the SSVC.",
@@ -54,6 +56,8 @@ SSVCv2 = DecisionPointGroup(
         COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_2, SUPPLIER_2
     ),
 )
+"""SSVC version 2 decision point group."""
+
 SSVCv2_1 = DecisionPointGroup(
     name="SSVCv2.1",
     description="The second version of the SSVC.",
@@ -62,6 +66,7 @@ SSVCv2_1 = DecisionPointGroup(
         COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_3, SUPPLIER_2
     ),
 )
+"""SSVC version 2.1 decision point group."""
 
 VERSIONS = (SSVCv1, SSVCv2, SSVCv2_1)
 LATEST = VERSIONS[-1]
