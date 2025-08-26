@@ -5,8 +5,8 @@ SSVC to make decisions about how to respond to vulnerabilities.
 
 ```mermaid
 flowchart LR
-    subgraph pd[Policy Development]
-        p[/Policy/]
+    subgraph pd[Decision Table Development]
+        p[/Decision Table/]
     end
     subgraph dmp[Data Mapping]
         dm[/Data Map/]
@@ -18,7 +18,7 @@ flowchart LR
     subgraph runtime [Use SSVC]
         mdp[[Apply Decision Point Mapping to Data]]
         dp[/Decision Point Values/]
-        ap[[Apply Policy]]
+        ap[[Apply Decision Table]]
         oc[/Outcome/]
     end
     dm --> mdp
@@ -42,14 +42,14 @@ flowchart LR
     matches their existing process.
     These same requirements also led them to define a decision function based on a custom selection of existing decision
     points.
-    They've mapped their agency policy to a decision policy that assigns specific decision point values to specific outcomes.
+    They've mapped their agency policy to a decision table that assigns specific decision point values to specific outcomes.
     They have also enumerated the data they need to inform the relevant decision point values.
     The agency has a process for collecting the data they need, and they have collected the data for a particular
     vulnerability. 
     Now they are ready to use SSVC to decide how to respond to a vulnerability.
 
     Taking the data they have collected, they first combine it with the data map to produce a set of decision point values.
-    Then they apply the policy to the decision point values to produce an outcome.
+    Then they apply the decision table to the decision point values to produce an outcome.
     The outcome is a prioritization decision that they can use to inform their response to the vulnerability.
 
 ## Respond to Vulnerabilities

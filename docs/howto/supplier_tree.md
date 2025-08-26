@@ -94,8 +94,8 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 
 ## Supplier Decision Model
 
-The example supplier decision model below shows a prioritization policy for the supplier.
-We display the decision model as a decision tree, which provides a compact representation of the policy,
+The example supplier decision model below shows a prioritization decision table for the supplier.
+We display the decision model as a decision tree, which provides a compact representation of the decision table,
 showing the relative priority of different situations.
 
 ```python exec="true" idprefix=""

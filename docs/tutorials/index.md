@@ -12,10 +12,10 @@ For technical reference, including a list of decision points, see [Reference](..
 !!! info "SSVC in a Nutshell"
 
     SSVC is built around the concept of a **Decision Model** that takes a set of input **Decision Points** and
-    applies a **Policy** to produce a set of output **Outcomes**.
+    applies a **Decision Table** to produce a set of output **Outcomes**.
     The **Decision Points** are the factors that influence the decision, and the **Outcomes** are the possible results of the decision.
     Both **Decision Points** and **Outcomes** are defined as ordered sets of enumerated values.
-    The **Policy** is a mapping from each combination of decision point values to the set of outcome values.
+    The **Decision Table** is a mapping from each combination of decision point values to the set of outcome values.
     One of SSVC's goals is to provide a methodology to develop risk-informed guidance at a human scale, while enabling
     data-driven decision-making.
 

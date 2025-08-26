@@ -44,15 +44,15 @@ Many Suppliers and Deployers will want to resolve *Defer* vulnerabilities in due
 
 ### Prioritization categories for Coordinators
 
-Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work). Because we make separate decisions for triage and publication, we provide separate example trees, each of which has different prioritizations at the end. These trees represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
+Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work). Because we make separate decisions for triage and publication, we provide separate example decision tables, each of which has different prioritizations at the end. These decision tables represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
 
-A triage tree might have:
+A triage decision table might have:
 
 - *Decline* to act on the report.
 - *Track* information about the reported vulnerability, but do not take overt actions.
 - *Coordinate* a response to the vulnerabilty report, potentially including technical analysis, reproduction, notifying vendors, publication, and assisting another party.
 
-Whereas a publication tree might have:
+Whereas a publication decision table might have:
 
 - *Don't publish* information about the vulnerability.
 - *Publish* information about the vulnerability.
