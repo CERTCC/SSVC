@@ -37,7 +37,8 @@ var acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
 var lcolors = {};
 var ssvc_short_keys = {};
 /* These variables are for decision Selection schema */
-var export_schema = {"timestamp": "2025-08-24T15:05:00Z",  "schemaVersion": "2.0.0", "target_ids": ["CVE-2024-7344"], "selections": [], "decision_point_resources" : [], "references": []};
+var export_schema = { };
+var valueselect_schema = { "timestamp": "2025-08-24T15:05:00Z",  "schemaVersion": "2.0.0", "target_ids": ["CVE-2024-7344"], "selections": [], "decision_point_resources" : [], "references": []};
 /* If a new analysis is being done use this for export */
 var current_score = [];
 var current_schema = "SSVC_Computed.schema.json";
@@ -262,8 +263,13 @@ function dynamic_mwb(w) {
     return result;
 }
 function export_show(novector) {
+    $('.cover-container').css({opacity:0.5,pointerEvents:"none"});
     $('#exporter').removeClass('d-none');
     $('#exporter .timestamp').val((new Date()).toISOString());
+}
+function export_close() {
+    $('.cover-container').css({opacity:1.0,pointerEvents:"revert"})
+    $('#exporter').addClass('d-none');
 }
 function make_ssvc_vector() {
     console.log($('.exportId').val());
@@ -349,9 +355,56 @@ function export_tree() {
        {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
        {"Decision":"defer"}]" */
 }
+function simpleCopy(objin) {
+    try {
+	return JSON.parse(JSON.stringify(objin));
+    } catch(err) {
+	console.log("Perhaps not a JSON object",err);
+	return {}
+    }
+}
+function add_selection(value_selection,inp) {
+    let h4 = inp.parentElement.parentElement.parentElement.childNodes[0];
+    const dp = JSON.parse(h4.getAttribute("data-dp"));
+    const valueSet = {key: inp.getAttribute("data-dpvkey"),
+		      name: inp.value};
+    let findex = value_selection.selections.findIndex(function(selectdp) {
+	console.log(selectdp,dp);
+	return selectdp.version == dp.version &&
+	    selectdp.namespace == dp.namespace &&
+	    selectdp.key == dp.key
+    });
+    if(findex > -1) {
+	value_selection.selections[findex].values.push(valueSet)
+    } else {
+	value_selection.selections.push({values:[valueSet],
+					 name: inp.name,
+					 version: dp.version,
+					 namespace: dp.namespace,
+					 description: dp.description,
+					 key: dp.key});
+    }
+}
 function export_json() {
-    var includetree = $('.exportActive .includetree').is(':checked')
-
+    let oexport = {};
+    let value_selections = [];
+    let add_outcome = $('#exporter input[name="include_outcome"]').is(':checked');
+    $('#evaluate_section > div').each(function(i,div) {
+	value_selection = simpleCopy(valueselect_schema);
+	value_selection.timestamp = $('#exporter .timestamp').val();
+	div.querySelectorAll("input").forEach(function(inp) {
+	    /* Add checks if outcome should be included*/
+	    if(inp.classList.contains("dt_outcome") && (!add_outcome))
+		return;
+	    if(inp.classList.contains('vuid'))
+		value_selection.target_ids.push(inp.value);
+	    else if(inp.checked && inp.hasAttribute("data-dpvkey"))
+		add_selection(value_selection, inp);
+	});
+	value_selections.push(value_selection);
+    });
+    console.log(value_selections);
+    let includetree = $('.exportActive .includetree').is(':checked')
     var a = document.createElement("a")
     var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
     if (includetree) {
@@ -686,7 +739,7 @@ function create_short_keys(x,uniq_keys) {
     }
 }
 function schemaTransform(dtnew) {
-    const dtobj = JSON.parse(JSON.stringify(dtnew));
+    const dtobj = simpleCopy(dtnew);
     const dtold = {};
     let finalkey;
     if('outcome' in dtobj)
@@ -1098,6 +1151,7 @@ function parse_json(xraw,paused) {
 					     checked: true,
 					     name: x.label,
 					     value: r.label,
+					     "data-dpvkey": r.key,
 					     "data-dpdepth": index,
 					     "data-dpvdepth": i});
 	    const label = $("<label>").css({padding: '0px 0px 0px 2px',
@@ -1990,7 +2044,7 @@ function dt_start() {
     $('svg.mgraph').remove();
     $('.exportActive .exportdiv').remove();
     $('#exportopen').hide();
-    var xraw = JSON.parse(JSON.stringify(raw));
+    var xraw = simpleCopy(raw);
     treeData=grapharray_open(xraw);
     draw_graph();
 }
@@ -2009,7 +2063,7 @@ function show_full_tree() {
     showFullTree = true;
     $('.exportActive .exportdiv').remove();
     $('svg.mgraph').remove();
-    var xraw = JSON.parse(JSON.stringify(raw));
+    var xraw = simpleCopy(raw);
     treeData=grapharray_open(xraw);
     draw_graph();
 }
