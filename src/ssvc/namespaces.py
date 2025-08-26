@@ -61,7 +61,6 @@ class NameSpace(StrEnum):
     EXAMPLE = auto()
     TEST = auto()
     INVALID = auto()
-    X_INVALID = auto()
 
     @classmethod
     def validate(cls, value: str) -> str:
@@ -79,6 +78,13 @@ class NameSpace(StrEnum):
             ValueError: if the value is not a valid namespace
 
         """
+
+        if value in cls.__members__.values():
+            # value is an unadorned registered namespace
+            # so we're done
+            return value
+
+        # check against known pattern
         valid = NS_PATTERN.match(value)
 
         if valid:
