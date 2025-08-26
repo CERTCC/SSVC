@@ -1,4 +1,4 @@
-const __version__ = "1.0.8";
+const __version__ = "1.0.9";
 const SSVC = {
     "outcomes": [],
     "results": {},
@@ -398,7 +398,7 @@ function createSSVC(csv, uploaded) {
 		/* Dynamically build the name map per Tree. Assumption is there
 		   are NO two decision points with the same name */
 		if(dp.name in SSVC.dpMap)
-		    topalert("danger", "Duplicate Names found in Decision Table can ause confusion", 0);
+		    topalert("danger", "Duplicate Names found in Decision Table can cause confusion", 0);
 		SSVC.dpMap[dp.name] = {name: dp.name, version: dp.version,
 				       namespace: dp.namespace, data: dp};
 		if(k != jsonTree.outcome) {
@@ -485,7 +485,7 @@ function createSSVC(csv, uploaded) {
 		if(dp.description) 
 		    dpInput.parentElement.parentElement.setAttribute("data-help",JSON.stringify(dp));
 	    }
-	}
+	} 
 	if(dp.values) {	 
 	    for(let i=0; i<dp.values.length; i++) {
 		if(dp.values[i].name.toLowerCase() == dpInput.value.toLowerCase()) {
@@ -1465,70 +1465,49 @@ function deepGet(inputs) {
 	return fdp.obj;
     return {};
 }
-function enumerate_dps(obj) {
-    const keys = Object.keys(obj);
-    const values = Object.values(obj);
-    
-    return values.reduce(function(acc, curr) {
-	const result = [];
-	acc.forEach(function(row) {
-	    curr.forEach(function(value) {
-		result.push(row.concat(value));
-	    });
-	});
-	return result;
-    }, [[]]).map(function(combination) {
-	return combination.reduce(function (acc, value, index) {
-	    acc[keys[index]] = value;
-	    return acc;
-	}, {});
-    });
-}
-function makeTree(rows, outcomeName, name) {
-    const heads = Object.keys(rows[0]);
-    let datacsv = heads.join(",");
-    let endcsv = "\n";
-    if(heads.includes(outcomeName)) {
-	datacsv = datacsv + endcsv;
-    } else {
-	/* If final field is not provided add it with unknown as the outcome */
-	datacsv  =  datacsv + "," + outcomeName + "\n";
-	endcsv  = ",Unknown\n";
-    }
-    rows.forEach(function(row) {
-	datacsv += heads.map(function(head) { return row[head]}).join(",") + endcsv;
-    });
+function makeTree(jsonTree) {
+    const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");    
+    jsonTree.mapping = [];
+    jsonTree.mapping = enumerateCombinations(jsonTree);
     SSVC.form.innerHTML = "";
-    createSSVC(datacsv, false);
-    if(name) 
-	selectCustom(name, datacsv, -1);
-    else 
-	customize({innerHTML: "Customize"});
+    jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
+    createSSVC(jsonTree, false);
+    customize({innerHTML: "Customize"});
+    clbutton.setAttribute("data-changed","1");
+    topalert();
+    topalert("New Decision Tree has Outcomes that are evenly laid out! Please update these " +
+	     "as appropriate for your Decision Model, before Saving it!","warn",0);
 }
 async function deleteDP(el) {
     const dpName = el.parentElement.childNodes[0].textContent;
     const confirm = await popupConfirm('Do you want to delete Decision Point "' + dpName + '"');
     if(confirm == "Yes") {
-	const delDP = el.parentElement.getAttribute("data-dp");
-	const alldps = Array.from(SSVC.form.querySelectorAll("main [data-dp]")).map(function(el) { return el.getAttribute("data-dp")});
-	if(alldps.length < 3) {
-	    topalert("Minimum two decision points are needed", "danger");
-	    return false;
-	}
-	const dpCombo = alldps.reduce(function(combo,dp) { combo[dp] = []; return combo; }, {});
-	delete dpCombo[delDP];
-	SSVC.decision_table.forEach(function(row) {
-	    delete row[delDP];
-	    Object.keys(row).forEach(function(dp) {
-		/* Ignore the dp which is actually result/priority */
-		if(!dpCombo[dp])
-		    return;
-		if(!dpCombo[dp].includes(row[dp]))
-		    dpCombo[dp].push(row[dp]);
+	try { 
+	    const delDP = el.parentElement.getAttribute("data-dp");
+	    const alldps = Array.from(SSVC.form.querySelectorAll("main [data-dp]")).map(function(el) { return el.getAttribute("data-dp")});
+	    if(alldps.length < 3) {
+		topalert("Minimum two decision points are needed", "danger");
+		return false;
+	    }
+	    const removedp = JSON.parse(el.parentElement.parentElement.getAttribute("data-help"));
+	    console.log(removedp);
+	    const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
+	    const jsonTree =  JSON.parse(clbutton.getAttribute("data-json"));
+	    const matched = Object.keys(jsonTree.decision_points).some(function(dpkey) {
+		const dp = jsonTree.decision_points[dpkey];
+		if(match_name_ns_vers({data: dp},removedp)) {
+		    delete jsonTree.decision_points[dpkey];
+		    return true;
+		}
+		return false;
 	    });
-	});
-	const rows = enumerate_dps(dpCombo);
-	makeTree(rows, "Priority", null);
+	    if(matched)
+		makeTree(jsonTree);
+	    else
+		throw "Could not delete decision point"; 
+	} catch(err) {
+	    topalert(err,"danger");
+	}
     }
 }
 function find_key(dp,dt) {
@@ -1726,7 +1705,9 @@ function updateTree() {
 	/* This is to replace a decision point */
 	const oldvalues = simpleCopy(jsonTree.decision_points[oldKey].values);
 	delete jsonTree.decision_points[oldKey];
-	const newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
+	let newKey = dp.namespace + ":" + dp.key + ":" + dp.version;
+	if(dp.namespace.indexOf("x_") > -1)
+	    newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
 	jsonTree.decision_points[newKey] = dp;
 	if(dpOutcome) {
 	    jsonTree.outcome = newKey;
@@ -1755,6 +1736,8 @@ function updateTree() {
 	    }
 	} 
     } else if(updatebtn.innerText == "Add") {
+	if(!dp.version)
+	    dp.version = "1.0.0";
 	const newKey = dp.namespace + ":" + dp.key + ":" + dp.version;
 	jsonTree.decision_points[newKey] = dp;
     } else {
@@ -1762,16 +1745,7 @@ function updateTree() {
 		 "danger");
     }
     /* Somethings have majorly changed, we have to update the decision tree mappings */
-    jsonTree.mapping = [];
-    jsonTree.mapping = enumerateCombinations(jsonTree);
-    SSVC.form.innerHTML = "";
-    jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
-    createSSVC(jsonTree, false);
-    customize({innerHTML: "Customize"});
-    clbutton.setAttribute("data-changed","1");
-    topalert();
-    topalert("New Decision Tree has Outcomes that are evenly laid out! Please update these " +
-	     "as appropriate for your Decision Model, before Saving it!","warn",0);
+    makeTree(jsonTree);
 }
 function schemaTransform(dtnew) {
     const dtobj = simpleCopy(dtnew);
@@ -1826,9 +1800,29 @@ function import_json(json, name) {
 		name = "Custom Uploaded ";
 	    SSVC.form.innerHTML = "";
 	    createSSVC(json, false);
-	    if(name)
-		selectCustom(name, json, -1);
-	    return;
+	    /* Insert a new element in the array*/
+	    let fIndex = SSVC.decision_trees.findIndex(function(dtobj) {
+		return match_name_ns_vers(dtobj,json);
+	    });
+	    if(fIndex < 0) {
+		const newname = name_version(json);
+		Object.values(json.decision_points).forEach(function(newdp) {
+		    if(!(SSVC.decision_points.some(function(dtobj) {
+			return match_name_ns_vers(dtobj,newdp);
+		    }))) {
+			if(!newdp.version)
+			    newdp.version = "1.0.0";
+			SSVC.decision_points.push({data: newdp});
+		    }
+		});
+		selectCustom(newname, json, -1*(SSVC.decision_trees.length));
+		SSVC.decision_trees.push({data:json,displayname: newname});
+	    } else {
+		const select = SSVC.form.parentElement.querySelector("[id='sampletrees']");
+		select.value = fIndex;
+		select.dispatchEvent(new Event('change'));
+		topalert("Imported JSON is already in the registry","warn");
+	    }
 	}
     } else {
 	topalert("Unknown JSON file format","danger");
@@ -1906,7 +1900,7 @@ function readFile(input) {
 		if(header.indexOf(":") > -1)
 		    head = header.split(":")[1];
 		let dpkey = uniq_key({name:head},Object.values(json.decision_points));
-		keymap[i] = json.namespace.substr(0,3) + ":" + dpkey
+		keymap[i] = json.namespace.substr(0,3) + ":" + dpkey + ":1.0.0";
 		json.decision_points[keymap[i]] = {name: head, namespace: json.namespace,
 						   description: head,
 						   key: dpkey};
