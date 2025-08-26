@@ -224,6 +224,7 @@ class SelectionList(_Timestamped, BaseModel):
             ["VU#999999", "GHSA-0123-4567-89ab"],
         ],
         min_length=1,
+        json_schema_extra={"uniqueItems": True},
     )
     selections: list[Selection] = Field(
         ...,
@@ -297,6 +298,8 @@ class SelectionList(_Timestamped, BaseModel):
         for item in value:
             if not isinstance(item, str):
                 raise ValueError("Each target_id must be a string.")
+        if len(value) != len(set(value)):
+            raise ValueError("target_ids must not contain duplicates.")
         return value
 
     def add_selection(self, selection: Selection) -> None:
