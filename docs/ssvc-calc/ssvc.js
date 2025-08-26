@@ -1180,7 +1180,7 @@ function parse_json(xraw,paused) {
 	    if(index == tm.decision_points.length -1) {
 		lcolors[r.label] = ocolors[i];
 		ldiv.css({"background": ocolors[i]});
-		input.attr({disabled: true}).addClass("dt_outcome");
+		input.addClass("dt_outcome");
 	    } else {
 		/* Decision Point Input */
 		input.addClass("dp_input").click(check_select);
