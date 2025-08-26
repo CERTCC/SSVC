@@ -282,6 +282,15 @@ class MyTestCase(unittest.TestCase):
                 target_ids=[123],  # Invalid: not a string
             )
 
+        # Test invalid target_ids (duplicate items)
+        with self.assertRaises(ValueError):
+            SelectionList(
+                selections=[self.s1],
+                timestamp=datetime.now(),
+                # Invalid: due to duplicates
+                target_ids=["CVE-1900-1234","CVE-1900-1234"],
+            )
+
     def test_add_selection_method(self):
         """Test the add_selection method."""
         initial_count = len(self.selections.selections)
