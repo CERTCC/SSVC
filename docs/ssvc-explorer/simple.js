@@ -1465,25 +1465,6 @@ function deepGet(inputs) {
 	return fdp.obj;
     return {};
 }
-function enumerate_dps(obj) {
-    const keys = Object.keys(obj);
-    const values = Object.values(obj);
-    
-    return values.reduce(function(acc, curr) {
-	const result = [];
-	acc.forEach(function(row) {
-	    curr.forEach(function(value) {
-		result.push(row.concat(value));
-	    });
-	});
-	return result;
-    }, [[]]).map(function(combination) {
-	return combination.reduce(function (acc, value, index) {
-	    acc[keys[index]] = value;
-	    return acc;
-	}, {});
-    });
-}
 function makeTree(jsonTree) {
     const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");    
     jsonTree.mapping = [];
@@ -1724,7 +1705,9 @@ function updateTree() {
 	/* This is to replace a decision point */
 	const oldvalues = simpleCopy(jsonTree.decision_points[oldKey].values);
 	delete jsonTree.decision_points[oldKey];
-	const newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
+	let newKey = dp.namespace + ":" + dp.key + ":" + dp.version;
+	if(dp.namespace.indexOf("x_") > -1)
+	    newKey = dp.namespace.substr(0,3) + ":" + dp.key + ":" + dp.version;
 	jsonTree.decision_points[newKey] = dp;
 	if(dpOutcome) {
 	    jsonTree.outcome = newKey;
@@ -1753,6 +1736,8 @@ function updateTree() {
 	    }
 	} 
     } else if(updatebtn.innerText == "Add") {
+	if(!dp.version)
+	    dp.version = "1.0.0";
 	const newKey = dp.namespace + ":" + dp.key + ":" + dp.version;
 	jsonTree.decision_points[newKey] = dp;
     } else {
@@ -1915,7 +1900,7 @@ function readFile(input) {
 		if(header.indexOf(":") > -1)
 		    head = header.split(":")[1];
 		let dpkey = uniq_key({name:head},Object.values(json.decision_points));
-		keymap[i] = json.namespace.substr(0,3) + ":" + dpkey
+		keymap[i] = json.namespace.substr(0,3) + ":" + dpkey + ":1.0.0";
 		json.decision_points[keymap[i]] = {name: head, namespace: json.namespace,
 						   description: head,
 						   key: dpkey};
