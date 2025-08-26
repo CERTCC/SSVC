@@ -383,6 +383,7 @@ function createSSVC(csv, uploaded) {
     let outcomeTitle;
     let lines = [];
     let headers = [];
+    let dset = [[]];
     if(typeof(csv) === "object") {
 	/* This is JSON data more powerful use it */
 	jsonTree = simpleCopy(csv);
@@ -394,13 +395,14 @@ function createSSVC(csv, uploaded) {
 		outcomeTitle = jsonTree.decision_points[jsonTree.outcome].name;
 	    let hkeys = [];
 	    SSVC.dpMap = {};
-	    Object.entries(jsonTree.decision_points).forEach(function([k,dp]) {
+	    Object.entries(jsonTree.decision_points).forEach(function([k,dp], i) {
 		/* Dynamically build the name map per Tree. Assumption is there
 		   are NO two decision points with the same name */
 		if(dp.name in SSVC.dpMap)
 		    topalert("danger", "Duplicate Names found in Decision Table can cause confusion", 0);
 		SSVC.dpMap[dp.name] = {name: dp.name, version: dp.version,
 				       namespace: dp.namespace, data: dp};
+		dset[i] = dp.values.map(x => x.name)
 		if(k != jsonTree.outcome) {
 		    headers.push(dp.name);
 		    hkeys.push(k);
@@ -568,11 +570,16 @@ function createSSVC(csv, uploaded) {
 	chdiv.style.border = "1px solid cyan";
 	chdiv.style.display = "table-cell";
 	rowDiv.appendChild(chdiv);
-	let dset = new Set(ssvcTable.map(function(row) {
-	    return row[header];
-	}));
+	if(!dset[i].length) {
+	    /* We may not get the right order for CSV imports*/
+	    dset[i] = ssvcTable.reduce(function(acc,row) {
+		if(!acc.includes(row[header]))
+		    acc.push(row[header]);
+		return acc;
+	    }, []);
+	}
 	let j = -1;
-	dset.forEach(function(value) {
+	dset[i].forEach(function(value) {
 	    j++;
 	    const inputDiv = document.createElement('div');
 	    inputDiv.style.padding = "4px";
