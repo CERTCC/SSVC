@@ -441,29 +441,29 @@
 		    <br>
 		    <label> <input type="checkbox" name="include_outcome" checked> Include Outcomes</label>
 		    <br>
-		    <label> <input type="checkbox" name="export-optional" onclick="export_optional(this.checked)"> Provide extra information</label>
+		    <div class="custom-control custom-switch">
+		      <input type="checkbox" class="custom-control-input" id="export-optional"
+			     onclick="export_optional(this.checked)">
+		      <label class="custom-control-label" for="export-optional">Provide resource information</label>
+		    </div>
 		  </td>
 		</tr>
 		<tr class="export-optional d-none">
 		  <td>
-		    <input type="text" placeholder="URL of Decision Tree or Decision Point Group schema" class="form-control">
-		    <input type="text" placeholder="Description of the URL" class="form-control">
-		  </td>
-		</tr>
-		<tr class="export-optional d-none">
-		  <td>
-		    <input type="text" placeholder="URL of any resources used in making specific selections" class="form-control">
-		    <input type="text" placeholder="Description of the URL " class="form-control">
-		    
-		  </td>
-		</tr>		
-		<tr>
-		  <td>
+		    <input type="text" placeholder="URL of Decision Tree schema" name="decision_point_resources.0.uri"class="form-control">
+		    <input type="text" placeholder="Description of Decision Tree URL" name="decision_point_resources.0.summary" class="form-control">
+		    <input type="text" placeholder="URL of any resources used in making specific selections" name="references.0.uri" class="form-control">
+		    <input type="text" placeholder="Description of the Resources URL" name="references.0.summary" class="form-control">
 		    <input type="checkbox" class="includetree" unchecked>
 		    <span class="text-muted">
 		      Include decision tree in export
 		    </span>
 		    <br/>
+		    
+		  </td>
+		</tr>		
+		<tr>
+		  <td>
 		    <div class="btn-group primary-button Exporter">
 		      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			Export

@@ -38,7 +38,7 @@ var lcolors = {};
 var ssvc_short_keys = {};
 /* These variables are for decision Selection schema */
 var export_schema = { };
-var valueselect_schema = { "timestamp": "2025-08-24T15:05:00Z",  "schemaVersion": "2.0.0", "target_ids": ["CVE-2024-7344"], "selections": [], "decision_point_resources" : [], "references": []};
+var valueselect_schema = { "timestamp": "2025-08-24T15:05:00Z",  "schemaVersion": "2.0.0", "target_ids": [], "selections": [], "decision_point_resources" : [], "references": []};
 /* If a new analysis is being done use this for export */
 var current_score = [];
 var current_schema = "SSVC_Computed.schema.json";
@@ -389,6 +389,8 @@ function export_json() {
     let oexport = {};
     let value_selections = [];
     let add_outcome = $('#exporter input[name="include_outcome"]').is(':checked');
+    let download_filename = "SSVC_" + (new Date()).toISOString().replace(":","-")  + "_json.txt"
+    
     $('#evaluate_section > div').each(function(i,div) {
 	value_selection = simpleCopy(valueselect_schema);
 	value_selection.timestamp = $('#exporter .timestamp').val();
@@ -397,28 +399,41 @@ function export_json() {
 	    if(inp.classList.contains("dt_outcome") && (!add_outcome))
 		return;
 	    if(inp.classList.contains('vuid'))
-		value_selection.target_ids.push(inp.value);
+		value_selection.target_ids.push(inp.value.toUpperCase());
 	    else if(inp.checked && inp.hasAttribute("data-dpvkey"))
 		add_selection(value_selection, inp);
 	});
 	value_selections.push(value_selection);
     });
-    console.log(value_selections);
-    let includetree = $('.exportActive .includetree').is(':checked')
-    var a = document.createElement("a")
-    var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
-    if (includetree) {
-	oexport['decision_tree'] = export_schema
-	download_filename = "tree_and_path-"+ oexport.id + "_" + oexport.role +
-	    "_json.txt"	
+    if($('#export-optional').is(':checked')){
+	$('.export-optional input').each(function(i,inp) {
+	    if(inp.value) {
+		
+	    }
+	});
+	let includetree = $('.exportActive .includetree').is(':checked');
+	if (includetree) {
+	    oexport['decision_tree'] = export_schema
+	}
+    } else {
+	value_selections.forEach(function(_,i) {
+	    delete value_selections[i].decision_point_resources;
+	    delete value_selections[i].references;
+	});
     }
+    if(value_selections.length == 1)
+	download_filename = "SSVC_" + value_selections[0].target_ids[0] +
+	(new Date()).toISOString().replace(":","-")  + "_json.txt"
+    oexport.selections = value_selections;
+	
+    var a = document.createElement("a")
     
     a.href = "data:text/plain;charset=utf-8,"+
 	encodeURIComponent(JSON.stringify(oexport,null,2))
     a.setAttribute("download", download_filename)
     a.click()
     a.remove()
-    $('.Exporter').css({'pointer-events':'all'});    
+    export_close();
 }
 
 function readFile(input) {
