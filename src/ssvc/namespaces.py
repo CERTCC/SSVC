@@ -60,6 +60,8 @@ class NameSpace(StrEnum):
     BASIC = auto()
     EXAMPLE = auto()
     TEST = auto()
+    INVALID = auto()
+    X_INVALID = auto()
 
     @classmethod
     def validate(cls, value: str) -> str:
