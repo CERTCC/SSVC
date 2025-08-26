@@ -32,6 +32,8 @@ nav:
             - Qualitative Severity: 'howto/cvss_v4/qualitative.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
+    - SSVC Tools:
+        - Docker Containers: 'howto/tools/containers.md'
   - Understanding SSVC:
     - Intro: 'topics/index.md'
     - State of Practice: 'topics/state_of_practice.md'
@@ -115,11 +117,14 @@ nav:
             - Target Distribution: 'reference/decision_points/cvss/target_distribution.md'
     - Code:
         - Intro: 'reference/code/index.md'
+        - Decision Points: 'reference/code/decision_points.md'
+        - Decision Tables: 'reference/code/decision_tables.md'
+        - Decision Point Groups: 'reference/code/decision_point_groups.md'
+        - Outcomes: 'reference/code/outcomes.md'
         - Namespaces: 'reference/code/namespaces.md'
         - Selections: 'reference/code/selection.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
         - Policy Generator: 'reference/code/policy_generator.md'
-        - Outcomes: 'reference/code/outcomes.md'
         - Doctools: 'reference/code/doctools.md'
     - Learning SSVC:
         - Tutorials: 'tutorials/index.md'

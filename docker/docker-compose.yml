@@ -32,5 +32,20 @@ services:
     image: docs:latest
     depends_on:
       - dependencies
+    volumes:
+      - ..:/app
     ports:
       - "8000:8000"
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: registry_api
+    image: registry_api:latest
+    depends_on:
+      - dependencies
+    volumes:
+      - ..:/app
+    ports:
+      - "8001:8000"

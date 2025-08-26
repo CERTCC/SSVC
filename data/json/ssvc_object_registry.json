@@ -7046,8 +7046,8 @@
             }
           }
         },
-        "x_com.yahooinc": {
-          "namespace": "x_com.yahooinc",
+        "x_com.yahooinc#prioritized-risk-remediation": {
+          "namespace": "x_com.yahooinc#prioritized-risk-remediation",
           "keys": {
             "PARANOIDS": {
               "key": "PARANOIDS",
@@ -7055,7 +7055,7 @@
                 "1.0.0": {
                   "version": "1.0.0",
                   "obj": {
-                    "namespace": "x_com.yahooinc",
+                    "namespace": "x_com.yahooinc#prioritized-risk-remediation",
                     "key": "PARANOIDS",
                     "version": "1.0.0",
                     "name": "theParanoids",
@@ -7136,6 +7136,404 @@
     "DecisionTable": {
       "type": "DecisionTable",
       "namespaces": {
+        "cisa": {
+          "namespace": "cisa",
+          "keys": {
+            "DT_CO": {
+              "key": "DT_CO",
+              "versions": {
+                "2.0.3": {
+                  "version": "2.0.3",
+                  "obj": {
+                    "namespace": "cisa",
+                    "key": "DT_CO",
+                    "version": "2.0.3",
+                    "name": "CISA Coordinator",
+                    "description": "CISA Coordinator decision table for SSVC",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "ssvc:E:1.1.0": {
+                        "namespace": "ssvc",
+                        "key": "E",
+                        "version": "1.1.0",
+                        "name": "Exploitation",
+                        "description": "The present state of exploitation of the vulnerability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "None",
+                            "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+                          },
+                          {
+                            "key": "P",
+                            "name": "Public PoC",
+                            "description": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
+                          },
+                          {
+                            "key": "A",
+                            "name": "Active",
+                            "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+                          }
+                        ]
+                      },
+                      "ssvc:A:2.0.0": {
+                        "namespace": "ssvc",
+                        "key": "A",
+                        "version": "2.0.0",
+                        "name": "Automatable",
+                        "description": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "No",
+                            "description": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
+                          },
+                          {
+                            "key": "Y",
+                            "name": "Yes",
+                            "description": "Attackers can reliably automate steps 1-4 of the kill chain."
+                          }
+                        ]
+                      },
+                      "ssvc:TI:1.0.0": {
+                        "namespace": "ssvc",
+                        "key": "TI",
+                        "version": "1.0.0",
+                        "name": "Technical Impact",
+                        "description": "The technical impact of the vulnerability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "P",
+                            "name": "Partial",
+                            "description": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
+                          },
+                          {
+                            "key": "T",
+                            "name": "Total",
+                            "description": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+                          }
+                        ]
+                      },
+                      "ssvc:MWI:1.0.0": {
+                        "namespace": "ssvc",
+                        "key": "MWI",
+                        "version": "1.0.0",
+                        "name": "Mission and Well-Being Impact",
+                        "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "L",
+                            "name": "Low",
+                            "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
+                          },
+                          {
+                            "key": "M",
+                            "name": "Medium",
+                            "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
+                          },
+                          {
+                            "key": "H",
+                            "name": "High",
+                            "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
+                          }
+                        ]
+                      },
+                      "cisa:CISA:1.1.0": {
+                        "namespace": "cisa",
+                        "key": "CISA",
+                        "version": "1.1.0",
+                        "name": "CISA Levels",
+                        "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "T",
+                            "name": "Track",
+                            "description": "The vulnerability does not require action at this time. The organization would continue to track the vulnerability and reassess it if new information becomes available. CISA recommends remediating Track vulnerabilities within standard update timelines."
+                          },
+                          {
+                            "key": "T*",
+                            "name": "Track*",
+                            "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
+                          },
+                          {
+                            "key": "AT",
+                            "name": "Attend",
+                            "description": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
+                          },
+                          {
+                            "key": "AC",
+                            "name": "Act",
+                            "description": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "cisa:CISA:1.1.0",
+                    "mapping": [
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "T*"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "T*"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T*"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T*"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "P",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "T"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AC"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AC"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "L",
+                        "cisa:CISA:1.1.0": "AT"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "M",
+                        "cisa:CISA:1.1.0": "AC"
+                      },
+                      {
+                        "ssvc:E:1.1.0": "A",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "ssvc:MWI:1.0.0": "H",
+                        "cisa:CISA:1.1.0": "AC"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "cvss": {
           "namespace": "cvss",
           "keys": {
@@ -21471,6 +21869,93 @@
                 }
               }
             },
+            "DT_PSI": {
+              "key": "DT_PSI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "ssvc",
+                    "key": "DT_PSI",
+                    "version": "1.0.0",
+                    "name": "Public Safety Impact",
+                    "description": "Public Safety Impact Decision Table",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "ssvc:SI:2.0.0": {
+                        "namespace": "ssvc",
+                        "key": "SI",
+                        "version": "2.0.0",
+                        "name": "Safety Impact",
+                        "description": "The safety impact of the vulnerability. (based on IEC 61508)",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "Negligible",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Minor injuries at worst (IEC 61508 Negligible).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard.<br/>- *System resiliency*: Small reduction in built-in system safety margins; OR small reduction in system functional capabilities that support safe operation.<br/>- *Environment*: Minor externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses, which are not readily absorbable, to multiple persons.<br/>- *Psychological*: Emotional or psychological harm, sufficient to be cause for counselling or therapy, to multiple persons."
+                          },
+                          {
+                            "key": "M",
+                            "name": "Marginal",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Major injuries to one or more persons (IEC 61508 Marginal).<br/>- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard.<br/>- *System resiliency*: System safety margin effectively eliminated but no actual harm; OR failure of system functional capabilities that support safe operation.<br/>- *Environment*: Major externalities (property damage, environmental damage, etc.) imposed on other parties.<br/>- *Financial*: Financial losses that likely lead to bankruptcy of multiple persons.<br/>- *Psychological*: Widespread emotional or psychological harm, sufficient to be cause for counselling or therapy, to populations of people."
+                          },
+                          {
+                            "key": "R",
+                            "name": "Critical",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Loss of life (IEC 61508 Critical).<br/>- *Operator resiliency*: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly.<br/>- *System resiliency*: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact.<br/>- *Environment*: Serious externalities (threat to life as well as property, widespread environmental damage, measurable public health risks, etc.) imposed on other parties.<br/>- *Financial*: Socio-technical system (elections, financial grid, etc.) of which the affected component is a part is actively destabilized and enters unsafe state.<br/>- *Psychological*: N/A."
+                          },
+                          {
+                            "key": "C",
+                            "name": "Catastrophic",
+                            "description": "Any one or more of these conditions hold.<br/><br/>- *Physical harm*: Multiple loss of life (IEC 61508 Catastrophic).<br/>- *Operator resiliency*: Operator incapacitated (includes fatality or otherwise incapacitated).<br/>- *System resiliency*: Total loss of whole cyber-physical system, of which the software is a part.<br/>- *Environment*: Extreme externalities (immediate public health threat, environmental damage leading to small ecosystem collapse, etc.) imposed on other parties.<br/>- *Financial*: Social systems (elections, financial grid, etc.) supported by the software collapse.<br/>- *Psychological*: N/A."
+                          }
+                        ]
+                      },
+                      "ssvc:PSI:2.0.1": {
+                        "namespace": "ssvc",
+                        "key": "PSI",
+                        "version": "2.0.1",
+                        "name": "Public Safety Impact",
+                        "description": "A coarse-grained representation of impact to public safety.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "M",
+                            "name": "Minimal",
+                            "description": "Safety Impact:Negligible"
+                          },
+                          {
+                            "key": "S",
+                            "name": "Significant",
+                            "description": "Safety Impact:(Marginal OR Critical OR Catastrophic)"
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "ssvc:PSI:2.0.1",
+                    "mapping": [
+                      {
+                        "ssvc:SI:2.0.0": "N",
+                        "ssvc:PSI:2.0.1": "M"
+                      },
+                      {
+                        "ssvc:SI:2.0.0": "M",
+                        "ssvc:PSI:2.0.1": "S"
+                      },
+                      {
+                        "ssvc:SI:2.0.0": "R",
+                        "ssvc:PSI:2.0.1": "S"
+                      },
+                      {
+                        "ssvc:SI:2.0.0": "C",
+                        "ssvc:PSI:2.0.1": "S"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
             "DT_SP": {
               "key": "DT_SP",
               "versions": {
@@ -21964,404 +22449,6 @@
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:VD:1.0.0": "C",
                         "ssvc:U:1.0.1": "S"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        "cisa": {
-          "namespace": "cisa",
-          "keys": {
-            "DT_CO": {
-              "key": "DT_CO",
-              "versions": {
-                "2.0.3": {
-                  "version": "2.0.3",
-                  "obj": {
-                    "namespace": "cisa",
-                    "key": "DT_CO",
-                    "version": "2.0.3",
-                    "name": "CISA Coordinator",
-                    "description": "CISA Coordinator decision table for SSVC",
-                    "schemaVersion": "2.0.0",
-                    "decision_points": {
-                      "ssvc:E:1.1.0": {
-                        "namespace": "ssvc",
-                        "key": "E",
-                        "version": "1.1.0",
-                        "name": "Exploitation",
-                        "description": "The present state of exploitation of the vulnerability.",
-                        "schemaVersion": "2.0.0",
-                        "values": [
-                          {
-                            "key": "N",
-                            "name": "None",
-                            "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
-                          },
-                          {
-                            "key": "P",
-                            "name": "Public PoC",
-                            "description": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
-                          },
-                          {
-                            "key": "A",
-                            "name": "Active",
-                            "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
-                          }
-                        ]
-                      },
-                      "ssvc:A:2.0.0": {
-                        "namespace": "ssvc",
-                        "key": "A",
-                        "version": "2.0.0",
-                        "name": "Automatable",
-                        "description": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
-                        "schemaVersion": "2.0.0",
-                        "values": [
-                          {
-                            "key": "N",
-                            "name": "No",
-                            "description": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
-                          },
-                          {
-                            "key": "Y",
-                            "name": "Yes",
-                            "description": "Attackers can reliably automate steps 1-4 of the kill chain."
-                          }
-                        ]
-                      },
-                      "ssvc:TI:1.0.0": {
-                        "namespace": "ssvc",
-                        "key": "TI",
-                        "version": "1.0.0",
-                        "name": "Technical Impact",
-                        "description": "The technical impact of the vulnerability.",
-                        "schemaVersion": "2.0.0",
-                        "values": [
-                          {
-                            "key": "P",
-                            "name": "Partial",
-                            "description": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
-                          },
-                          {
-                            "key": "T",
-                            "name": "Total",
-                            "description": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
-                          }
-                        ]
-                      },
-                      "ssvc:MWI:1.0.0": {
-                        "namespace": "ssvc",
-                        "key": "MWI",
-                        "version": "1.0.0",
-                        "name": "Mission and Well-Being Impact",
-                        "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
-                        "schemaVersion": "2.0.0",
-                        "values": [
-                          {
-                            "key": "L",
-                            "name": "Low",
-                            "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
-                          },
-                          {
-                            "key": "M",
-                            "name": "Medium",
-                            "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
-                          },
-                          {
-                            "key": "H",
-                            "name": "High",
-                            "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
-                          }
-                        ]
-                      },
-                      "cisa:CISA:1.1.0": {
-                        "namespace": "cisa",
-                        "key": "CISA",
-                        "version": "1.1.0",
-                        "name": "CISA Levels",
-                        "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
-                        "schemaVersion": "2.0.0",
-                        "values": [
-                          {
-                            "key": "T",
-                            "name": "Track",
-                            "description": "The vulnerability does not require action at this time. The organization would continue to track the vulnerability and reassess it if new information becomes available. CISA recommends remediating Track vulnerabilities within standard update timelines."
-                          },
-                          {
-                            "key": "T*",
-                            "name": "Track*",
-                            "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
-                          },
-                          {
-                            "key": "AT",
-                            "name": "Attend",
-                            "description": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
-                          },
-                          {
-                            "key": "AC",
-                            "name": "Act",
-                            "description": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
-                          }
-                        ]
-                      }
-                    },
-                    "outcome": "cisa:CISA:1.1.0",
-                    "mapping": [
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "T*"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "N",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "T*"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T*"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T*"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "P",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "T"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "N",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AC"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "P",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AC"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "L",
-                        "cisa:CISA:1.1.0": "AT"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "M",
-                        "cisa:CISA:1.1.0": "AC"
-                      },
-                      {
-                        "ssvc:E:1.1.0": "A",
-                        "ssvc:A:2.0.0": "Y",
-                        "ssvc:TI:1.0.0": "T",
-                        "ssvc:MWI:1.0.0": "H",
-                        "cisa:CISA:1.1.0": "AC"
                       }
                     ]
                   }

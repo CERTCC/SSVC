@@ -27,16 +27,17 @@ jobs:
         python-version: "3.12"
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install pytest build
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m pip install --upgrade pip uv
+        uv sync --project=src --dev --frozen
+#        pip install pytest build
+#        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 #    - uses: psf/black@stable
     - name: Test with pytest
       run: |
-        pytest
+        uv run --project=src pytest
     - name: Build
       run: |
-        python -m build src
+        uv build --project=src
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
