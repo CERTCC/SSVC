@@ -37,31 +37,29 @@ class MyTestCase(unittest.TestCase):
 
         self.og = DecisionPoint(
             name="test",
-            description="test",
+            definition="test",
             key="TEST",
             namespace="test",
             values=tuple(
                 [
-                    DecisionPointValue(key=c, name=c, description=c)
+                    DecisionPointValue(key=c, name=c, definition=c)
                     for c in self.og_names
                 ]
             ),
         )
         self.dpg = DecisionPointGroup(
             name="test",
-            description="test",
+            definition="test",
             decision_points=tuple(
                 [
                     DecisionPoint(
                         name=c,
-                        description=c,
+                        definition=c,
                         key=c,
                         namespace="test",
                         values=tuple(
                             [
-                                DecisionPointValue(
-                                    name=v, key=v, description=v
-                                )
+                                DecisionPointValue(name=v, key=v, definition=v)
                                 for v in self.dp_values
                             ]
                         ),

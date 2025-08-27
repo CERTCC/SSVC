@@ -25,14 +25,14 @@ from ssvc.decision_points.base import (
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.namespaces import NameSpace
 
-_LOW = DecisionPointValue(name="Low", key="L", description="Low")
-_MEDIUM = DecisionPointValue(name="Medium", key="M", description="Medium")
-_HIGH = DecisionPointValue(name="High", key="H", description="High")
+_LOW = DecisionPointValue(name="Low", key="L", definition="Low")
+_MEDIUM = DecisionPointValue(name="Medium", key="M", definition="Medium")
+_HIGH = DecisionPointValue(name="High", key="H", definition="High")
 
 V1_0_0 = DecisionPoint(
     name="LowMediumHigh",
     key="LMH",
-    description="A Low/Medium/High decision point / outcome group.",
+    definition="A Low/Medium/High decision point / outcome group.",
     version="1.0.0",
     namespace=NameSpace.BASIC,
     values=(

@@ -40,7 +40,7 @@ from ssvc.dp_groups.ssvc.supplier import PATCH_DEVELOPER_1, SUPPLIER_2
 
 SSVCv1 = DecisionPointGroup(
     name="SSVCv1",
-    description="The first version of the SSVC.",
+    definition="The first version of the SSVC.",
     version="1.0.0",
     decision_points=get_all_decision_points_from(
         PATCH_APPLIER_1, PATCH_DEVELOPER_1
@@ -50,7 +50,7 @@ SSVCv1 = DecisionPointGroup(
 
 SSVCv2 = DecisionPointGroup(
     name="SSVCv2",
-    description="The second version of the SSVC.",
+    definition="The second version of the SSVC.",
     version="2.0.0",
     decision_points=get_all_decision_points_from(
         COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_2, SUPPLIER_2
@@ -60,7 +60,7 @@ SSVCv2 = DecisionPointGroup(
 
 SSVCv2_1 = DecisionPointGroup(
     name="SSVCv2.1",
-    description="The second version of the SSVC.",
+    definition="The second version of the SSVC.",
     version="2.1.0",
     decision_points=get_all_decision_points_from(
         COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_3, SUPPLIER_2

@@ -76,13 +76,13 @@ class MyTestCase(unittest.TestCase):
             name="Decision Point 1",
             key="DP1",
             version="1.0.0",
-            description="Test DP 1",
+            definition="Test DP 1",
             values=[
                 DecisionPointValue(
-                    name="Value 1", key="V1", description="value 1 description"
+                    name="Value 1", key="V1", definition="value 1 description"
                 ),
                 DecisionPointValue(
-                    name="Value 2", key="V2", description="value 2 description"
+                    name="Value 2", key="V2", definition="value 2 description"
                 ),
             ],
         )
@@ -91,13 +91,13 @@ class MyTestCase(unittest.TestCase):
             name="Decision Point 2",
             key="DP2",
             version="1.0.0",
-            description="Test DP 2",
+            definition="Test DP 2",
             values=[
                 DecisionPointValue(
-                    name="Value A", key="VA", description="value A description"
+                    name="Value A", key="VA", definition="value A description"
                 ),
                 DecisionPointValue(
-                    name="Value B", key="VB", description="value B description"
+                    name="Value B", key="VB", definition="value B description"
                 ),
             ],
         )

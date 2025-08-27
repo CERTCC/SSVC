@@ -158,13 +158,13 @@ class DecisionPoint(
 
 def main():
     opt_none = DecisionPointValue(
-        name="None", key="N", description="No exploit available"
+        name="None", key="N", definition="No exploit available"
     )
     opt_poc = DecisionPointValue(
-        name="PoC", key="P", description="Proof of concept exploit available"
+        name="PoC", key="P", definition="Proof of concept exploit available"
     )
     opt_active = DecisionPointValue(
-        name="Active", key="A", description="Active exploitation observed"
+        name="Active", key="A", definition="Active exploitation observed"
     )
     opts = [opt_none, opt_poc, opt_active]
 
@@ -172,7 +172,7 @@ def main():
         _comment="This is an optional comment that will be included in the object.",
         values=opts,
         name="Exploitation",
-        description="Is there an exploit available?",
+        definition="Is there an exploit available?",
         key="E",
         version="1.0.0",
     )

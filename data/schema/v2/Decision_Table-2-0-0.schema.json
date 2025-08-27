@@ -54,8 +54,8 @@
           "title": "Name",
           "type": "string"
         },
-        "description": {
-          "title": "Description",
+        "definition": {
+          "title": "Definition",
           "type": "string"
         },
         "schemaVersion": {
@@ -75,7 +75,7 @@
         "namespace",
         "key",
         "name",
-        "description",
+        "definition",
         "schemaVersion",
         "values"
       ],
@@ -106,15 +106,15 @@
           "title": "Name",
           "type": "string"
         },
-        "description": {
-          "title": "Description",
+        "definition": {
+          "title": "Definition",
           "type": "string"
         }
       },
       "required": [
         "key",
         "name",
-        "description"
+        "definition"
       ],
       "type": "object"
     }
@@ -167,8 +167,8 @@
       "title": "Name",
       "type": "string"
     },
-    "description": {
-      "title": "Description",
+    "definition": {
+      "title": "Definition",
       "type": "string"
     },
     "schemaVersion": {
@@ -207,7 +207,7 @@
     "namespace",
     "key",
     "name",
-    "description",
+    "definition",
     "schemaVersion",
     "decision_points",
     "outcome"

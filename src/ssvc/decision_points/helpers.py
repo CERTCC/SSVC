@@ -73,8 +73,8 @@ def dp_diff(dp1: DecisionPoint, dp2: DecisionPoint) -> list[str]:
             maybe_minor = True
 
     # did the description change?
-    desc1 = dp1.description.strip()
-    desc2 = dp2.description.strip()
+    desc1 = dp1.definition.strip()
+    desc2 = dp2.definition.strip()
 
     if desc1 != desc2:
         diffs.append(f"(patch) {dp2.name} v{dp2.version} description changed")
@@ -152,13 +152,13 @@ def dp_diff(dp1: DecisionPoint, dp2: DecisionPoint) -> list[str]:
     # did the value descriptions change?
     for name in intersection:
         v1 = {
-            value["name"]: value["description"]
+            value["name"]: value["definition"]
             for value in dp1.model_dump()["values"]
         }
         v1 = v1[name]
 
         v2 = {
-            value["name"]: value["description"]
+            value["name"]: value["definition"]
             for value in dp2.model_dump()["values"]
         }
         v2 = v2[name]

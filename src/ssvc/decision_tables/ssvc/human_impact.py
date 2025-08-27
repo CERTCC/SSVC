@@ -42,7 +42,7 @@ HUMAN_IMPACT_1 = DecisionTable(
     key="HI",
     version="1.0.0",
     name="Human Impact",
-    description="Human Impact decision table for SSVC",
+    definition="Human Impact decision table for SSVC",
     decision_points={
         dp.id: dp for dp in [SituatedSafetyImpact, MissionImpact, HumanImpact]
     },

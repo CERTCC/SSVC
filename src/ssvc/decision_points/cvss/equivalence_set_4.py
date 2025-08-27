@@ -32,22 +32,22 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 TWO = DecisionPointValue(
     name="Low",
     key="L",
-    description="2: not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)",
+    definition="2: not (MSI:S or MSA:S) and not (SC:H or SI:H or SA:H)",
 )
 ONE = DecisionPointValue(
     name="Medium",
     key="M",
-    description="1: not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)",
+    definition="1: not (MSI:S or MSA:S) and (SC:H or SI:H or SA:H)",
 )
 ZERO = DecisionPointValue(
     name="High",
     key="H",
-    description="0: MSI:S or MSA:S",
+    definition="0: MSI:S or MSA:S",
 )
 EQ4 = CvssDecisionPoint(
     name="Equivalence Set 4",
     key="EQ4",
-    description="SC/SI/SA with 3 levels specified in Table 27",
+    definition="SC/SI/SA with 3 levels specified in Table 27",
     version="1.0.0",
     values=(
         TWO,

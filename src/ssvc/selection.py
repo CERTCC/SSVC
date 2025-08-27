@@ -64,7 +64,7 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
         if "name" not in data:
             data["name"] = ""
         if "description" not in data:
-            data["description"] = ""
+            data["definition"] = ""
 
         return data
 
@@ -76,8 +76,8 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
         """
         if not data.name:
             data.name = None
-        if not data.description:
-            data.description = None
+        if not data.definition:
+            data.definition = None
         return data
 
 
@@ -141,15 +141,15 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
         if "name" not in data:
             data["name"] = ""
         if "description" not in data:
-            data["description"] = ""
+            data["definition"] = ""
         return data
 
     @model_validator(mode="after")
     def validate_values(cls, data):
         if not data.name:
             data.name = None
-        if not data.description:
-            data.description = None
+        if not data.definition:
+            data.definition = None
         return data
 
     def model_json_schema(cls, **kwargs):

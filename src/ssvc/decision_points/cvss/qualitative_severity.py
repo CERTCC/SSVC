@@ -28,34 +28,34 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 QS_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="No severity rating (0.0)",
+    definition="No severity rating (0.0)",
 )
 
 LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="Low (0.1 - 3.9)",
+    definition="Low (0.1 - 3.9)",
 )
 MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
-    description="Medium (4.0 - 6.9)",
+    definition="Medium (4.0 - 6.9)",
 )
 HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="High (7.0 - 8.9)",
+    definition="High (7.0 - 8.9)",
 )
 CRITICAL = DecisionPointValue(
     name="Critical",
     key="C",
-    description="Critical (9.0 - 10.0)",
+    definition="Critical (9.0 - 10.0)",
 )
 
 QUALITATIVE_SEVERITY = CvssDecisionPoint(
     name="CVSS Qualitative Severity Rating Scale",
     key="QS",
-    description="The CVSS Qualitative Severity Rating Scale provides "
+    definition="The CVSS Qualitative Severity Rating Scale provides "
     "a categorical representation of a CVSS Score.",
     version="1.0.0",
     values=(

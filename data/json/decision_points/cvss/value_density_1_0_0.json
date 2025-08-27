@@ -3,23 +3,23 @@
   "key": "V",
   "version": "1.0.0",
   "name": "Value Density",
-  "description": "Value Density describes the resources that the attacker will gain control over with a single exploitation event. It has two possible values, diffuse and concentrated.",
+  "definition": "Value Density describes the resources that the attacker will gain control over with a single exploitation event. It has two possible values, diffuse and concentrated.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     },
     {
       "key": "D",
       "name": "Diffuse",
-      "description": "The vulnerable system has limited resources. That is, the resources that the attacker will gain control over with a single exploitation event are relatively small."
+      "definition": "The vulnerable system has limited resources. That is, the resources that the attacker will gain control over with a single exploitation event are relatively small."
     },
     {
       "key": "C",
       "name": "Concentrated",
-      "description": "The vulnerable system is rich in resources. Heuristically, such systems are often the direct responsibility of \"system operators\" rather than users."
+      "definition": "The vulnerable system is rich in resources. Heuristically, such systems are often the direct responsibility of \"system operators\" rather than users."
     }
   ]
 }

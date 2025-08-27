@@ -29,22 +29,18 @@ from ssvc.decision_points.base import (
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.namespaces import NameSpace
 
-_DELETE = DecisionPointValue(name="Delete", key="D", description="Delete")
+_DELETE = DecisionPointValue(name="Delete", key="D", definition="Delete")
 
-_DELEGATE = DecisionPointValue(
-    name="Delegate", key="G", description="Delegate"
-)
+_DELEGATE = DecisionPointValue(name="Delegate", key="G", definition="Delegate")
 
-_SCHEDULE = DecisionPointValue(
-    name="Schedule", key="S", description="Schedule"
-)
+_SCHEDULE = DecisionPointValue(name="Schedule", key="S", definition="Schedule")
 
-_DO = DecisionPointValue(name="Do", key="O", description="Do")
+_DO = DecisionPointValue(name="Do", key="O", definition="Do")
 
 EISENHOWER = DecisionPoint(
     name="Do, Schedule, Delegate, Delete",
     key="IKE",
-    description="The Eisenhower outcome group.",
+    definition="The Eisenhower outcome group.",
     namespace=NameSpace.BASIC,
     version="1.0.0",
     values=(

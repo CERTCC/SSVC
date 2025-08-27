@@ -3,23 +3,23 @@
   "key": "C",
   "version": "1.0.0",
   "name": "Confidentiality Impact",
-  "description": "This metric measures the impact on confidentiality of a successful exploit of the vulnerability on the target system.",
+  "definition": "This metric measures the impact on confidentiality of a successful exploit of the vulnerability on the target system.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "None",
-      "description": "No impact on confidentiality."
+      "definition": "No impact on confidentiality."
     },
     {
       "key": "P",
       "name": "Partial",
-      "description": "There is considerable informational disclosure. Access to critical system files is possible. There is a loss of important information, but the attacker doesn't have control over what is obtainable or the scope of the loss is constrained."
+      "definition": "There is considerable informational disclosure. Access to critical system files is possible. There is a loss of important information, but the attacker doesn't have control over what is obtainable or the scope of the loss is constrained."
     },
     {
       "key": "C",
       "name": "Complete",
-      "description": "A total compromise of critical system information. A complete loss of system protection resulting in all critical system files being revealed. The attacker has sovereign control to read all of the system's data (memory, files, etc)."
+      "definition": "A total compromise of critical system information. A complete loss of system protection resulting in all critical system files being revealed. The attacker has sovereign control to read all of the system's data (memory, files, etc)."
     }
   ]
 }

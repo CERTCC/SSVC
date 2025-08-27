@@ -28,18 +28,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="The supplier has been contacted.",
+    definition="The supplier has been contacted.",
 )
 
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="The supplier has not been contacted.",
+    definition="The supplier has not been contacted.",
 )
 
 SUPPLIER_CONTACTED_1 = SsvcDecisionPoint(
     name="Supplier Contacted",
-    description="Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?",
+    definition="Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?",
     key="SCON",
     version="1.0.0",
     values=(

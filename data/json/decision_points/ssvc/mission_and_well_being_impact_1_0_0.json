@@ -3,23 +3,23 @@
   "key": "MWI",
   "version": "1.0.0",
   "name": "Mission and Well-Being Impact",
-  "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
+  "definition": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Low",
-      "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
+      "definition": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
     },
     {
       "key": "M",
       "name": "Medium",
-      "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
+      "definition": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
     },
     {
       "key": "H",
       "name": "High",
-      "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
+      "definition": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
     }
   ]
 }

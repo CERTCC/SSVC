@@ -3,7 +3,7 @@
   "key": "DT_COORD_TRIAGE",
   "version": "1.0.0",
   "name": "Coordinator Triage",
-  "description": "Decision table for coordinator triage",
+  "definition": "Decision table for coordinator triage",
   "schemaVersion": "2.0.0",
   "decision_points": {
     "ssvc:RP:1.0.0": {
@@ -11,18 +11,18 @@
       "key": "RP",
       "version": "1.0.0",
       "name": "Report Public",
-      "description": "Is a viable report of the details of the vulnerability already publicly available?",
+      "definition": "Is a viable report of the details of the vulnerability already publicly available?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "Y",
           "name": "Yes",
-          "description": "A public report of the vulnerability exists."
+          "definition": "A public report of the vulnerability exists."
         },
         {
           "key": "N",
           "name": "No",
-          "description": "No public report of the vulnerability exists."
+          "definition": "No public report of the vulnerability exists."
         }
       ]
     },
@@ -31,18 +31,18 @@
       "key": "SCON",
       "version": "1.0.0",
       "name": "Supplier Contacted",
-      "description": "Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?",
+      "definition": "Has the reporter made a good-faith effort to contact the supplier of the vulnerable component using a quality contact method?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "N",
           "name": "No",
-          "description": "The supplier has not been contacted."
+          "definition": "The supplier has not been contacted."
         },
         {
           "key": "Y",
           "name": "Yes",
-          "description": "The supplier has been contacted."
+          "definition": "The supplier has been contacted."
         }
       ]
     },
@@ -51,18 +51,18 @@
       "key": "RC",
       "version": "1.0.0",
       "name": "Report Credibility",
-      "description": "Is the report credible?",
+      "definition": "Is the report credible?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "NC",
           "name": "Not Credible",
-          "description": "The report is not credible."
+          "definition": "The report is not credible."
         },
         {
           "key": "C",
           "name": "Credible",
-          "description": "The report is credible."
+          "definition": "The report is credible."
         }
       ]
     },
@@ -71,18 +71,18 @@
       "key": "SC",
       "version": "1.0.0",
       "name": "Supplier Cardinality",
-      "description": "How many suppliers are responsible for the vulnerable component and its remediation or mitigation plan?",
+      "definition": "How many suppliers are responsible for the vulnerable component and its remediation or mitigation plan?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "O",
           "name": "One",
-          "description": "There is only one supplier of the vulnerable component."
+          "definition": "There is only one supplier of the vulnerable component."
         },
         {
           "key": "M",
           "name": "Multiple",
-          "description": "There are multiple suppliers of the vulnerable component."
+          "definition": "There are multiple suppliers of the vulnerable component."
         }
       ]
     },
@@ -91,18 +91,18 @@
       "key": "SE",
       "version": "1.0.0",
       "name": "Supplier Engagement",
-      "description": "Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
+      "definition": "Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "A",
           "name": "Active",
-          "description": "The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort."
+          "definition": "The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort."
         },
         {
           "key": "U",
           "name": "Unresponsive",
-          "description": "The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort."
+          "definition": "The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort."
         }
       ]
     },
@@ -111,23 +111,23 @@
       "key": "U",
       "version": "1.0.1",
       "name": "Utility",
-      "description": "The Usefulness of the Exploit to the Adversary",
+      "definition": "The Usefulness of the Exploit to the Adversary",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "L",
           "name": "Laborious",
-          "description": "Automatable:No AND Value Density:Diffuse"
+          "definition": "Automatable:No AND Value Density:Diffuse"
         },
         {
           "key": "E",
           "name": "Efficient",
-          "description": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
+          "definition": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
         },
         {
           "key": "S",
           "name": "Super Effective",
-          "description": "Automatable:Yes AND Value Density:Concentrated"
+          "definition": "Automatable:Yes AND Value Density:Concentrated"
         }
       ]
     },
@@ -136,18 +136,18 @@
       "key": "PSI",
       "version": "2.0.1",
       "name": "Public Safety Impact",
-      "description": "A coarse-grained representation of impact to public safety.",
+      "definition": "A coarse-grained representation of impact to public safety.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "M",
           "name": "Minimal",
-          "description": "Safety Impact:Negligible"
+          "definition": "Safety Impact:Negligible"
         },
         {
           "key": "S",
           "name": "Significant",
-          "description": "Safety Impact:(Marginal OR Critical OR Catastrophic)"
+          "definition": "Safety Impact:(Marginal OR Critical OR Catastrophic)"
         }
       ]
     },
@@ -156,23 +156,23 @@
       "key": "COORDINATE",
       "version": "1.0.1",
       "name": "Decline, Track, Coordinate",
-      "description": "The coordinate outcome group.",
+      "definition": "The coordinate outcome group.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "D",
           "name": "Decline",
-          "description": "Do not act on the report."
+          "definition": "Do not act on the report."
         },
         {
           "key": "T",
           "name": "Track",
-          "description": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
+          "definition": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
         },
         {
           "key": "C",
           "name": "Coordinate",
-          "description": "Take action on the report."
+          "definition": "Take action on the report."
         }
       ]
     }

@@ -201,7 +201,7 @@ class _Base(BaseModel):
     """
 
     name: str
-    description: str
+    definition: str
 
 
 class _KeyedBaseModel(_Base, _Keyed, BaseModel):

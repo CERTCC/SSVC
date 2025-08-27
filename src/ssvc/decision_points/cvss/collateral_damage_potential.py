@@ -31,49 +31,49 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _MEDIUM_HIGH = DecisionPointValue(
     name="Medium-High",
     key="MH",
-    description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
+    definition="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
 _LOW_MEDIUM = DecisionPointValue(
     name="Low-Medium",
     key="LM",
-    description="A successful exploit of this vulnerability may result in moderate physical or property damage or loss.",
+    definition="A successful exploit of this vulnerability may result in moderate physical or property damage or loss.",
 )
 
 _CDP_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no potential for loss of life, physical assets, productivity or revenue.",
+    definition="There is no potential for loss of life, physical assets, productivity or revenue.",
 )
 
 _HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area.",
+    definition="A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area.",
 )
 
 _MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
-    description="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
+    definition="A successful exploit of this vulnerability may result in significant physical or property damage or loss.",
 )
 
 _LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="A successful exploit of this vulnerability may result in light physical or property damage or loss. The system itself may be damaged or destroyed.",
+    definition="A successful exploit of this vulnerability may result in light physical or property damage or loss. The system itself may be damaged or destroyed.",
 )
 
 _CDP_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no potential for physical or property damage.",
+    definition="There is no potential for physical or property damage.",
 )
 
 
 COLLATERAL_DAMAGE_POTENTIAL_1 = CvssDecisionPoint(
     name="Collateral Damage Potential",
-    description="This metric measures the potential for a loss in physical equipment, property damage or loss of life or limb.",
+    definition="This metric measures the potential for a loss in physical equipment, property damage or loss of life or limb.",
     key="CDP",
     version="1.0.0",
     values=(
@@ -89,7 +89,7 @@ Defines None, Low, Medium, and High values for CVSS Collateral Damage Potential.
 
 COLLATERAL_DAMAGE_POTENTIAL_2 = CvssDecisionPoint(
     name="Collateral Damage Potential",
-    description="This metric measures the potential for loss of life or physical assets.",
+    definition="This metric measures the potential for loss of life or physical assets.",
     key="CDP",
     version="2.0.0",
     values=(

@@ -97,7 +97,7 @@ def _modify_4(dp: DecisionPoint):
         for v in _dp_dict["values"]:
             if v["key"] == "N":
                 v["name"] = "Negligible"
-                v["description"] = v["description"].replace(
+                v["definition"] = v["definition"].replace(
                     " no ", " negligible "
                 )
                 # we need to bump the version for this change
@@ -112,7 +112,7 @@ def _modify_4(dp: DecisionPoint):
         _SAFETY = DecisionPointValue(
             name="Safety",
             key="S",
-            description="The Safety metric value measures the impact regarding the Safety of a human actor or "
+            definition="The Safety metric value measures the impact regarding the Safety of a human actor or "
             "participant that can be predictably injured as a result of the vulnerability being exploited.",
         )
         values = list(_dp_dict["values"])
@@ -139,8 +139,8 @@ def no_x(dp: CvssDecisionPoint) -> CvssDecisionPoint:
         key=f"{dp.key}_NoX",
         version=dp.version,
         name=f"{dp.name} (without Not Defined)",
-        description=(
-            f"{dp.description} This version does not include the Not Defined (X) option."
+        definition=(
+            f"{dp.definition} This version does not include the Not Defined (X) option."
         ),
         values=tuple([v for v in dp.values if v.key != "X"]),
     )

@@ -28,7 +28,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _SA_HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="There is a total loss of availability, resulting in the attacker being able to fully deny access to "
+    definition="There is a total loss of availability, resulting in the attacker being able to fully deny access to "
     "resources in the Subsequent System; this loss is either sustained (while the attacker continues to "
     "deliver the attack) or persistent (the condition persists even after the attack has completed).",
 )
@@ -36,7 +36,7 @@ _SA_HIGH = DecisionPointValue(
 _SA_LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="Performance is reduced or there are interruptions in resource availability. Even if repeated "
+    definition="Performance is reduced or there are interruptions in resource availability. Even if repeated "
     "exploitation of the vulnerability is possible, the attacker does not have the ability to completely "
     "deny service to legitimate users.",
 )
@@ -44,14 +44,14 @@ _SA_LOW = DecisionPointValue(
 _SA_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no impact to availability within the Subsequent System or all availability impact is "
+    definition="There is no impact to availability within the Subsequent System or all availability impact is "
     "constrained to the Vulnerable System.",
 )
 
 
 SUBSEQUENT_AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
     name="Availability Impact to the Subsequent System",
-    description="This metric measures the impact on availability a successful exploit of the vulnerability will have "
+    definition="This metric measures the impact on availability a successful exploit of the vulnerability will have "
     "on the Subsequent System.",
     key="SA",
     version="1.0.0",

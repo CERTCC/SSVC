@@ -36,10 +36,10 @@ _dp_dict = {
     "version": "1.0.0",
     "key": "DPT",
     "name": "Decision Point Test",
-    "description": "This is a test decision point.",
+    "definition": "This is a test decision point.",
     "values": (
-        {"key": "N", "name": "No", "description": "No means no"},
-        {"key": "Y", "name": "Yes", "description": "Yes means yes"},
+        {"key": "N", "name": "No", "definition": "No means no"},
+        {"key": "Y", "name": "Yes", "definition": "Yes means yes"},
     ),
 }
 

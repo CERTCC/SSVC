@@ -31,17 +31,17 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 ONE = DecisionPointValue(
     name="Low",
     key="L",
-    description="1: not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)",
+    definition="1: not (CR:H and VC:H) and not (IR:H and VI:H) and not (AR:H and VA:H)",
 )
 ZERO = DecisionPointValue(
     name="High",
     key="H",
-    description="0: (CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)",
+    definition="0: (CR:H and VC:H) or (IR:H and VI:H) or (AR:H and VA:H)",
 )
 EQ6 = CvssDecisionPoint(
     name="Equivalence Set 6",
     key="EQ6",
-    description="VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
+    definition="VC/VI/VA+CR/CI/CA with 2 levels specified in Table 29",
     version="1.0.0",
     values=(
         ONE,

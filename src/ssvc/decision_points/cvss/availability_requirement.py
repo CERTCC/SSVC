@@ -35,28 +35,28 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
+    definition="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 _MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
-    description="Loss of availability is likely to have a serious adverse effect on the organization or individuals "
+    definition="Loss of availability is likely to have a serious adverse effect on the organization or individuals "
     "associated with the organization (e.g., employees, customers).",
 )
 
 _LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="Loss of availability is likely to have only a limited adverse effect on the organization or "
+    definition="Loss of availability is likely to have only a limited adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 
 AVAILABILITY_REQUIREMENT_1 = CvssDecisionPoint(
     name="Availability Requirement",
-    description="This metric measures the impact to the availability of a successfully exploited vulnerability.",
+    definition="This metric measures the impact to the availability of a successfully exploited vulnerability.",
     key="AR",
     version="1.0.0",
     values=(
@@ -72,7 +72,7 @@ Defines Low, Medium, High, and Not Defined values for CVSS Availability Requirem
 
 AVAILABILITY_REQUIREMENT_1_1 = CvssDecisionPoint(
     name="Availability Requirement",
-    description="This metric measures the impact to the availability of a successfully exploited vulnerability.",
+    definition="This metric measures the impact to the availability of a successfully exploited vulnerability.",
     key="AR",
     version="1.1.0",
     values=(
@@ -87,27 +87,27 @@ AVAILABILITY_REQUIREMENT_1_1 = CvssDecisionPoint(
 _HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
-    description="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
+    definition="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 _MEDIUM_2 = DecisionPointValue(
     name="Medium",
     key="M",
-    description="Loss of availability is likely to have a serious adverse effect on the organization or "
+    definition="Loss of availability is likely to have a serious adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 _LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Loss of availability is likely to have only a limited adverse effect on the organization or "
+    definition="Loss of availability is likely to have only a limited adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 AVAILABILITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     name="Availability Requirement",
-    description="This metric enables the consumer to customize the assessment depending on the importance of the "
+    definition="This metric enables the consumer to customize the assessment depending on the importance of the "
     "affected IT asset to the analyst’s organization, measured in terms of Availability.",
     key="AR",
     version="1.1.1",

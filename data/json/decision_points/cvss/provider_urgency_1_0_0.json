@@ -3,33 +3,33 @@
   "key": "U",
   "version": "1.0.0",
   "name": "Provider Urgency",
-  "description": "Many vendors currently provide supplemental severity ratings to consumers via product security advisories. Other vendors publish Qualitative Severity Ratings from the CVSS Specification Document in their advisories. To facilitate a standardized method to incorporate additional provider-supplied assessment, an optional \"pass-through\" Supplemental Metric called Provider Urgency is available.",
+  "definition": "Many vendors currently provide supplemental severity ratings to consumers via product security advisories. Other vendors publish Qualitative Severity Ratings from the CVSS Specification Document in their advisories. To facilitate a standardized method to incorporate additional provider-supplied assessment, an optional \"pass-through\" Supplemental Metric called Provider Urgency is available.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     },
     {
       "key": "C",
       "name": "Clear",
-      "description": "Provider has assessed the impact of this vulnerability as having no urgency (Informational)."
+      "definition": "Provider has assessed the impact of this vulnerability as having no urgency (Informational)."
     },
     {
       "key": "G",
       "name": "Green",
-      "description": "Provider has assessed the impact of this vulnerability as having a reduced urgency."
+      "definition": "Provider has assessed the impact of this vulnerability as having a reduced urgency."
     },
     {
       "key": "A",
       "name": "Amber",
-      "description": "Provider has assessed the impact of this vulnerability as having a moderate urgency."
+      "definition": "Provider has assessed the impact of this vulnerability as having a moderate urgency."
     },
     {
       "key": "R",
       "name": "Red",
-      "description": "Provider has assessed the impact of this vulnerability as having the highest urgency."
+      "definition": "Provider has assessed the impact of this vulnerability as having the highest urgency."
     }
   ]
 }

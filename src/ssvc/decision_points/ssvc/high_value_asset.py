@@ -29,18 +29,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="System meets a high value asset definition.",
+    definition="System meets a high value asset definition.",
 )
 
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="System does not meet a high value asset definition.",
+    definition="System does not meet a high value asset definition.",
 )
 
 HIGH_VALUE_ASSET_1 = SsvcDecisionPoint(
     name="High Value Asset",
-    description="Denotes whether a system meets a high value asset definition.",
+    definition="Denotes whether a system meets a high value asset definition.",
     key="HVA",
     version="1.0.0",
     values=(

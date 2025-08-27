@@ -20,33 +20,33 @@ from ssvc.decision_points.base import DecisionPointValue as DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-_DECLINE = DecisionPointValue(name="Decline", key="D", description="Decline")
+_DECLINE = DecisionPointValue(name="Decline", key="D", definition="Decline")
 
-_TRACK = DecisionPointValue(name="Track", key="T", description="Track")
+_TRACK = DecisionPointValue(name="Track", key="T", definition="Track")
 
 _COORDINATE = DecisionPointValue(
-    name="Coordinate", key="C", description="Coordinate"
+    name="Coordinate", key="C", definition="Coordinate"
 )
 
 _DECLINE_2 = DecisionPointValue(
-    name="Decline", key="D", description="Do not act on the report."
+    name="Decline", key="D", definition="Do not act on the report."
 )
 _TRACK_2 = DecisionPointValue(
     name="Track",
     key="T",
-    description="Receive information about the vulnerability and monitor for status changes but do not take any overt actions.",
+    definition="Receive information about the vulnerability and monitor for status changes but do not take any overt actions.",
 )
 
 _COORDINATE_2 = DecisionPointValue(
     name="Coordinate",
     key="C",
-    description="Take action on the report.",
+    definition="Take action on the report.",
 )
 
 COORDINATE = SsvcDecisionPoint(
     name="Decline, Track, Coordinate",
     key="COORDINATE",
-    description="The coordinate outcome group.",
+    definition="The coordinate outcome group.",
     version="1.0.0",
     values=(
         _DECLINE,
@@ -62,7 +62,7 @@ The coordinate outcome group.
 COORDINATE_1_0_1 = SsvcDecisionPoint(
     name="Decline, Track, Coordinate",
     key="COORDINATE",
-    description="The coordinate outcome group.",
+    definition="The coordinate outcome group.",
     version="1.0.1",
     values=(
         _DECLINE_2,

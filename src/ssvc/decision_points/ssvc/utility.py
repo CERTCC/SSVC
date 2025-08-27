@@ -30,42 +30,42 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 SUPER_EFFECTIVE_2 = DecisionPointValue(
     name="Super Effective",
     key="S",
-    description="Automatable:Yes AND Value Density:Concentrated",
+    definition="Automatable:Yes AND Value Density:Concentrated",
 )
 
 EFFICIENT_2 = DecisionPointValue(
     name="Efficient",
     key="E",
-    description="(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)",
+    definition="(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)",
 )
 
 LABORIOUS_2 = DecisionPointValue(
     name="Laborious",
     key="L",
-    description="Automatable:No AND Value Density:Diffuse",
+    definition="Automatable:No AND Value Density:Diffuse",
 )
 
 SUPER_EFFECTIVE = DecisionPointValue(
     name="Super Effective",
     key="S",
-    description="Virulence:Rapid and Value Density:Concentrated",
+    definition="Virulence:Rapid and Value Density:Concentrated",
 )
 
 EFFICIENT = DecisionPointValue(
     name="Efficient",
     key="E",
-    description="Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated",
+    definition="Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated",
 )
 
 LABORIOUS = DecisionPointValue(
     name="Laborious",
     key="L",
-    description="Virulence:Slow and Value Density:Diffuse",
+    definition="Virulence:Slow and Value Density:Diffuse",
 )
 
 UTILITY_1 = SsvcDecisionPoint(
     name="Utility",
-    description="The Usefulness of the Exploit to the Adversary",
+    definition="The Usefulness of the Exploit to the Adversary",
     key="U",
     version="1.0.0",
     values=(
@@ -77,7 +77,7 @@ UTILITY_1 = SsvcDecisionPoint(
 
 UTILITY_1_0_1 = SsvcDecisionPoint(
     name="Utility",
-    description="The Usefulness of the Exploit to the Adversary",
+    definition="The Usefulness of the Exploit to the Adversary",
     key="U",
     version="1.0.1",
     values=(

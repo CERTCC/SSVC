@@ -33,23 +33,23 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 TWO = DecisionPointValue(
     name="Low",
     key="L",
-    description="2: not (VC:H or VI:H or VA:H)",
+    definition="2: not (VC:H or VI:H or VA:H)",
 )
 ONE = DecisionPointValue(
     name="Medium",
     key="M",
-    description="1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)",
+    definition="1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)",
 )
 ZERO = DecisionPointValue(
     name="High",
     key="H",
-    description="0: VC:H and VI:H",
+    definition="0: VC:H and VI:H",
 )
 
 EQ3 = CvssDecisionPoint(
     name="Equivalence Set 3",
     key="EQ3",
-    description="VC/VI/VA with 3 levels specified in Table 26",
+    definition="VC/VI/VA with 3 levels specified in Table 26",
     version="1.0.0",
     values=(
         TWO,

@@ -49,7 +49,7 @@ V1_0_0 = DecisionTable(
     key="COORD_TRIAGE",
     version="1.0.0",
     name="Coordinator Triage",
-    description="Decision table for coordinator triage",
+    definition="Decision table for coordinator triage",
     decision_points={
         dp.id: dp
         for dp in [

@@ -3,23 +3,23 @@
   "key": "AC",
   "version": "2.0.0",
   "name": "Access Complexity",
-  "description": "This metric measures the complexity of the attack required to exploit the vulnerability once an attacker has gained access to the target system.",
+  "definition": "This metric measures the complexity of the attack required to exploit the vulnerability once an attacker has gained access to the target system.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "H",
       "name": "High",
-      "description": "Specialized access conditions exist."
+      "definition": "Specialized access conditions exist."
     },
     {
       "key": "M",
       "name": "Medium",
-      "description": "The access conditions are somewhat specialized."
+      "definition": "The access conditions are somewhat specialized."
     },
     {
       "key": "L",
       "name": "Low",
-      "description": "Specialized access conditions or extenuating circumstances do not exist."
+      "definition": "Specialized access conditions or extenuating circumstances do not exist."
     }
   ]
 }

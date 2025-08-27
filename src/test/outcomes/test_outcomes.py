@@ -27,27 +27,27 @@ ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 class MyTestCase(unittest.TestCase):
     def test_outcome_value(self):
         for x in ALPHABET:
-            ov = OutcomeValue(key=x, name=x, description=x)
+            ov = OutcomeValue(key=x, name=x, definition=x)
             self.assertEqual(ov.key, x)
             self.assertEqual(ov.name, x)
-            self.assertEqual(ov.description, x)
+            self.assertEqual(ov.definition, x)
 
     def test_outcome_group(self):
         values = []
         for x in ALPHABET:
-            values.append(OutcomeValue(key=x, name=x, description=x))
+            values.append(OutcomeValue(key=x, name=x, definition=x))
 
         og = OutcomeGroup(
             name="Outcome Group",
             key="OGX",
-            description="an outcome group",
+            definition="an outcome group",
             namespace="test",
             values=tuple(values),
         )
 
         self.assertEqual(og.name, "Outcome Group")
         self.assertEqual(og.key, "OGX")
-        self.assertEqual(og.description, "an outcome group")
+        self.assertEqual(og.definition, "an outcome group")
 
         self.assertEqual(len(og), len(ALPHABET))
 
@@ -55,7 +55,7 @@ class MyTestCase(unittest.TestCase):
         for i, letter in enumerate(ALPHABET):
             self.assertEqual(og_outcomes[i].key, letter)
             self.assertEqual(og_outcomes[i].name, letter)
-            self.assertEqual(og_outcomes[i].description, letter)
+            self.assertEqual(og_outcomes[i].definition, letter)
 
 
 if __name__ == "__main__":

@@ -29,88 +29,88 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 LOW_1 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal",
+    definition="Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal",
 )
 
 LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)",
+    definition="Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
 LOW_3 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)",
+    definition="Safety Impact:(Negligible) AND Mission Impact:(None OR Degraded OR Crippled)",
 )
 
 LOW_4 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)",
+    definition="Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)",
 )
 
 
 MEDIUM_1 = DecisionPointValue(
     name="Medium",
     key="M",
-    description="Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)",
+    definition="Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)",
 )
 
 MEDIUM_2 = DecisionPointValue(
     name="Medium",
     key="M",
-    description="(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))",
+    definition="(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
 MEDIUM_3 = DecisionPointValue(
     name="Medium",
     key="M",
-    description="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))",
+    definition="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(None OR Degraded OR Crippled))",
 )
 
 MEDIUM_4 = DecisionPointValue(
     name="Medium",
     key="M",
-    description="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))",
+    definition="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))",
 )
 
 
 HIGH_1 = DecisionPointValue(
     name="High",
     key="H",
-    description="Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)",
+    definition="Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)",
 )
 
 
 HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
-    description="(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)",
+    definition="(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)",
 )
 
 HIGH_3 = DecisionPointValue(
     name="High",
     key="H",
-    description="(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
+    definition="(Safety Impact:Critical AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
 )
 
 HIGH_4 = DecisionPointValue(
     name="High",
     key="H",
-    description="(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
+    definition="(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
 )
 
 VERY_HIGH_1 = DecisionPointValue(
     name="Very High",
     key="VH",
-    description="Safety Impact:Catastrophic OR Mission Impact:Mission Failure",
+    definition="Safety Impact:Catastrophic OR Mission Impact:Mission Failure",
 )
 
 
 MISSION_AND_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(
     name="Mission and Well-Being Impact",
-    description="Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
+    definition="Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
     key="MWI",
     version="1.0.0",
     values=(
@@ -123,7 +123,7 @@ MISSION_AND_WELL_BEING_IMPACT_1 = SsvcDecisionPoint(
 
 HUMAN_IMPACT_2 = SsvcDecisionPoint(
     name="Human Impact",
-    description="Human Impact is a combination of Safety and Mission impacts.",
+    definition="Human Impact is a combination of Safety and Mission impacts.",
     key="HI",
     version="2.0.0",
     values=(
@@ -136,7 +136,7 @@ HUMAN_IMPACT_2 = SsvcDecisionPoint(
 
 HUMAN_IMPACT_2_0_1 = SsvcDecisionPoint(
     name="Human Impact",
-    description="Human Impact is a combination of Safety and Mission impacts.",
+    definition="Human Impact is a combination of Safety and Mission impacts.",
     key="HI",
     version="2.0.1",
     values=(
@@ -149,7 +149,7 @@ HUMAN_IMPACT_2_0_1 = SsvcDecisionPoint(
 
 HUMAN_IMPACT_2_0_2 = SsvcDecisionPoint(
     name="Human Impact",
-    description="Human Impact is a combination of Safety and Mission impacts.",
+    definition="Human Impact is a combination of Safety and Mission impacts.",
     key="HI",
     version="2.0.2",
     values=(

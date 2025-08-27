@@ -3,33 +3,33 @@
   "key": "CDP",
   "version": "2.0.0",
   "name": "Collateral Damage Potential",
-  "description": "This metric measures the potential for loss of life or physical assets.",
+  "definition": "This metric measures the potential for loss of life or physical assets.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "None",
-      "description": "There is no potential for loss of life, physical assets, productivity or revenue."
+      "definition": "There is no potential for loss of life, physical assets, productivity or revenue."
     },
     {
       "key": "LM",
       "name": "Low-Medium",
-      "description": "A successful exploit of this vulnerability may result in moderate physical or property damage or loss."
+      "definition": "A successful exploit of this vulnerability may result in moderate physical or property damage or loss."
     },
     {
       "key": "MH",
       "name": "Medium-High",
-      "description": "A successful exploit of this vulnerability may result in significant physical or property damage or loss."
+      "definition": "A successful exploit of this vulnerability may result in significant physical or property damage or loss."
     },
     {
       "key": "H",
       "name": "High",
-      "description": "A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area."
+      "definition": "A successful exploit of this vulnerability may result in catastrophic physical or property damage and loss. The range of effect may be over a wide area."
     },
     {
       "key": "ND",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

@@ -3,18 +3,18 @@
   "key": "AV",
   "version": "1.0.0",
   "name": "Access Vector",
-  "description": "This metric measures whether or not the vulnerability is exploitable locally or remotely.",
+  "definition": "This metric measures whether or not the vulnerability is exploitable locally or remotely.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Local",
-      "description": "The vulnerability is only exploitable locally (i.e., it requires physical access or authenticated login to the target system)"
+      "definition": "The vulnerability is only exploitable locally (i.e., it requires physical access or authenticated login to the target system)"
     },
     {
       "key": "R",
       "name": "Remote",
-      "description": "The vulnerability is exploitable remotely."
+      "definition": "The vulnerability is exploitable remotely."
     }
   ]
 }

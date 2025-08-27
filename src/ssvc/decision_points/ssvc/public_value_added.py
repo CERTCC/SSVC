@@ -30,24 +30,24 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 LIMITED = DecisionPointValue(
     name="Limited",
     key="L",
-    description="Minimal value added to the existing public information because existing information is already high quality and in multiple outlets.",
+    definition="Minimal value added to the existing public information because existing information is already high quality and in multiple outlets.",
 )
 
 AMPLIATIVE = DecisionPointValue(
     name="Ampliative",
     key="A",
-    description="Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.",
+    definition="Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc.",
 )
 
 PRECEDENCE = DecisionPointValue(
     name="Precedence",
     key="P",
-    description="The publication would be the first publicly available, or be coincident with the first publicly available.",
+    definition="The publication would be the first publicly available, or be coincident with the first publicly available.",
 )
 
 PUBLIC_VALUE_ADDED_1 = SsvcDecisionPoint(
     name="Public Value Added",
-    description="How much value would a publication from the coordinator benefit the broader community?",
+    definition="How much value would a publication from the coordinator benefit the broader community?",
     key="PVA",
     version="1.0.0",
     values=(LIMITED, AMPLIATIVE, PRECEDENCE),

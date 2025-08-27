@@ -3,18 +3,18 @@
   "key": "YN",
   "version": "1.0.0",
   "name": "YesNo",
-  "description": "A Yes/No decision point / outcome group.",
+  "definition": "A Yes/No decision point / outcome group.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "No",
-      "description": "No"
+      "definition": "No"
     },
     {
       "key": "Y",
       "name": "Yes",
-      "description": "Yes"
+      "definition": "Yes"
     }
   ]
 }

@@ -14,8 +14,8 @@
           "title": "Name",
           "type": "string"
         },
-        "description": {
-          "title": "Description",
+        "definition": {
+          "title": "Definition",
           "type": "string"
         },
         "key": {
@@ -37,6 +37,7 @@
         }
       },
       "required": [
+        "definition",
         "key"
       ],
       "type": "object"
@@ -114,8 +115,8 @@
           "title": "Name",
           "type": "string"
         },
-        "description": {
-          "title": "Description",
+        "definition": {
+          "title": "Definition",
           "type": "string"
         },
         "values": {
@@ -153,6 +154,7 @@
         "namespace",
         "key",
         "version",
+        "definition",
         "values"
       ],
       "type": "object"

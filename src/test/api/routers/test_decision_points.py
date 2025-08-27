@@ -37,17 +37,17 @@ class TestDecisionPointsRouter(unittest.TestCase):
             key="key1",
             version="1.0.0",
             name="Test DP",
-            description="desc",
+            definition="desc",
             values=(
                 DecisionPointValue(
                     key="value1",
                     name="Value 1",
-                    description="Description for value 1",
+                    definition="Description for value 1",
                 ),
                 DecisionPointValue(
                     key="value2",
                     name="Value 2",
-                    description="Description for value 2",
+                    definition="Description for value 2",
                 ),
             ),
         )
