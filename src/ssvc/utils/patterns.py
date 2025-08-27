@@ -41,13 +41,14 @@ LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 
 # fmt: off
 # --- the following section is generated with
-#  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf
+#  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf | \
+#    sed 's/{,/{0,/g'
 alnum = '[a-zA-Z0-9]'
 lower = '[a-z]'
 alnumlow = f'({lower}|[0-9])'
 dash = '-'
 alnumlowdash = f'({alnumlow}|{dash})'
-label = f'{alnumlow}(({alnumlowdash}){{,61}}{alnumlow})?'
+label = f'{alnumlow}(({alnumlowdash}){{0,61}}{alnumlow})?'
 reverse_dns = f'{label}(\\.{label})+'
 dot = '\\.'
 specialchar = f'({dot}|{dash})'
@@ -59,7 +60,7 @@ reg_base = f'{ns_core}(\\#{fragment_seg})?'
 base_ns = f'({x_base}|{reg_base})'
 singleton = '[0-9A-WY-Za-wy-z]'
 bcp47 = (
-    '(([a-zA-Z]{2,3}(-[a-zA-Z]{3}(-[a-zA-Z]{3}){,2})?|[a-z'
+    '(([a-zA-Z]{2,3}(-[a-zA-Z]{3}(-[a-zA-Z]{3}){0,2})?|[a-z'
     'A-Z]{4,8})(-[a-zA-Z]{4})?(-([a-zA-Z]{2}|[0-9]{3}))?(-'
     f'(({alnum}){{5,8}}|[0-9]({alnum}){{3}}))*(-{singleton}(-'
     f'({alnum}){{2,8}})+)*(-[xX](-({alnum}){{2,8}})+)?|[xX](-'
@@ -81,5 +82,4 @@ EXT_SEGMENT_PATTERN = fragment_seg
 # --- Combine all parts into the full namespace pattern ---
 NS_PATTERN_STR = rf"^{LENGTH_CHECK_PATTERN}" rf"{namespace}$"
 
-# Compile the regex with verbose flag for readability (if needed)
 NS_PATTERN = re.compile(NS_PATTERN_STR)

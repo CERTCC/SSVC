@@ -72,7 +72,8 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(self.s1.version, str)
         self.assertRegex(
             self.s1.version,
-            VERSION_PATTERN,
+            # enable re.ASCII so that `\d` is interpreted like in Javascript
+            "(?a:" + VERSION_PATTERN + ")",
             "Version does not match the required pattern",
         )
 
