@@ -14,7 +14,7 @@ reg-base = ns-core [ "#" fragment-seg ]
 ; ns-core starts with a lowercase letter and may have '.' or '-' separators.
 ; Consecutive '.' or '-' are not allowed.
 ; It needs at least 3 characters.
-ns-core = LOWER ALNUMLOW 1*( SPECIALCHAR 1*ALNUMLOW)
+ns-core = LOWER ALNUMLOW 1*( [ SPECIALCHAR ] 1*ALNUMLOW )
 
 x-name = reverse-dns "#" fragment-seg
 
@@ -23,16 +23,16 @@ x-name = reverse-dns "#" fragment-seg
 reverse-dns = label 1*("." label)
 
 ; Each label must be between 1 and 63 characters long
-label = ALNUMLOW [ *61(ALNUMLOWDASH)  ALNUMLOW ]
+label = ALNUMLOW [ *61ALNUMLOWDASH ALNUMLOW ]
 
 fragment-seg = 1*ALNUMLOW *( SPECIALCHAR 1*ALNUMLOW )
 
-extensions = lang-ext [ 1*("/" ext-seg) ]
+extensions = lang-ext [ 1*( "/" ext-seg ) ]
 
 ; Language extension: either / (empty language extension)
 ; or /<bcp47> (BCP-47 language code)
 
-lang-ext = "/" /  ( "/" bcp47 )
+lang-ext = "/" / ( "/" bcp47 )
 
 ; Extension segment between slashes.
 ; - is either a language or
@@ -48,7 +48,7 @@ bcp47 = ( 2*3ALPHA
         [ "-" 4ALPHA ]
         [ "-" ( 2ALPHA / 3DIGIT ) ]
         *( "-" ( 5*8ALNUM / (DIGIT 3ALNUM) ) )
-        *( "-"  singleton 1*("-" (2*8ALNUM)))
+        *( "-"  singleton 1*( "-" 2*8ALNUM ) )
         [ "-" "x" 1*( "-" 2*8ALNUM ) ]
       / "x" 1*( "-" 2*8ALNUM )
       / "i-default"
