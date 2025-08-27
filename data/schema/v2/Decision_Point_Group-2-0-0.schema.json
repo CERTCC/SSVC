@@ -1,6 +1,6 @@
 {
   "title": "DecisionPointGroup",
-  "description": "Models a group of decision points as a dictionary, keyed by their ID.",
+  "description": "**DEPRECATED:** `DecisionPointGroup` has been superseded by `DecisionTable`.\nNew development should use `DecisionTable` instead.\nWe are keeping this class around for backward compatibility, but it may be removed in future releases.\n\nModels a group of decision points as a dictionary, keyed by their ID.",
   "type": "object",
   "$defs": {
     "DecisionPoint": {

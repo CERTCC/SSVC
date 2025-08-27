@@ -5,9 +5,11 @@ specific purpose.
 
 With the introduction of [Decision Tables](decision_tables.md), 
 Decision Point groups are less important than they once were, and may be
-deprecated in a future release.
+removed in a future release.
 However, they can still be useful for documentation and
 for some programmatic uses.
+
+::: ssvc.dp_groups.base
 
 ## SSVC Decision Point Groups
 
