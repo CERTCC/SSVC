@@ -82,5 +82,4 @@ EXT_SEGMENT_PATTERN = fragment_seg
 # --- Combine all parts into the full namespace pattern ---
 NS_PATTERN_STR = rf"^{LENGTH_CHECK_PATTERN}" rf"{namespace}$"
 
-# Compile the regex with verbose flag for readability (if needed)
 NS_PATTERN = re.compile(NS_PATTERN_STR)
