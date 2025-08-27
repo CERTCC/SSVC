@@ -1,0 +1,5 @@
+row,Attack Complexity v3.0.1 (cvss),Attack Requirements v1.0.0 (cvss),Equivalence Set 2 v1.0.0 (cvss)
+0,high,present,low
+1,low,present,low
+2,high,none,low
+3,low,none,high

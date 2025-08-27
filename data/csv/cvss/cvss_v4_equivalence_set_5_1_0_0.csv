@@ -1,0 +1,4 @@
+row,Exploit Maturity (without Not Defined) v2.0.0 (cvss),Equivalence Set 5 v1.0.0 (cvss)
+0,unreported,low
+1,proof-of-concept,medium
+2,attacked,high

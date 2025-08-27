@@ -55,7 +55,7 @@ down:
 regenerate_json:
 	@echo "Regenerating JSON files..."
 	rm -rf data/json/decision_points
-	export PYTHONPATH=$(PWD)/src && ./src/ssvc/doctools.py --jsondir=./data/json/decision_points --overwrite
+	export PYTHONPATH=$(PWD)/src && ./src/ssvc/doctools.py --datadir=./data --overwrite
 
 clean:
 	@echo "Cleaning up Docker resources..."
