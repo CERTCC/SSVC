@@ -602,14 +602,13 @@ function createSSVC(csv, uploaded) {
 		const spanCount = document.createElement("span");
 		spanCount.innerText = " ()";
 		vlabel.appendChild(spanCount);
-	    } else {
-		/* Add this except for last row
-		   Last row is our results row. */
-		vlabel.addEventListener("click", function(el) {
-		    this.previousSibling.click();
-		});
-		inputDiv.append(input);		      
 	    }
+	    /* Add this except for last row
+	       Last row is our results row. */
+	    vlabel.addEventListener("click", function(el) {
+		this.previousSibling.click();
+	    });
+	    inputDiv.append(input);
 	    inputDiv.append(vlabel);
 	    inputDiv.addEventListener("mouseenter", helptip);
 	    inputDiv.addEventListener("mouseleave", destroytip);
@@ -736,6 +735,59 @@ function createSSVC(csv, uploaded) {
 	graphModule.dt_graph(csv);
     function filterData(ev) {
 	exporter.ssvcV1_0_1.selections = [];
+	if(main.querySelectorAll("input:checked").length == 0) {
+	    SSVC.form.querySelectorAll('[data-row]').forEach(function(row) {
+		row.style.display="none";
+	    });
+	    return update_stats();
+	}
+	const div = ev.target.parentElement;
+	const ldivs = Array.from(SSVC.form.querySelectorAll("main > div"));
+	ldivs.pop();
+	ldivs.forEach(function(div) {
+	    div.style.opacity = 1.0;
+	});
+	if(div && div.hasAttribute("data-result")) {
+	    const results = div.parentElement.querySelectorAll("input:checked");
+	    main.querySelectorAll("input").forEach(inp => inp.checked= false);
+	    if(results.length == 0) {
+		SSVC.form.querySelectorAll('[data-row]').forEach(function(row) {
+                    row.style.display="none";
+		});
+		return update_stats();
+	    }
+	    /* This is clicking on outcome be wary */
+	    topalert("When filtering by Outcome the Decision Point values can look confounded!","warn",4);
+	    ldivs.forEach(function(div) {
+		div.style.opacity = 0.6;
+	    });
+	    let counter = 0;
+	    ssvcTable.forEach(function(mrow,i) {
+		let row = simpleCopy(mrow);
+		let drows = SSVC.form.querySelectorAll("[data-row]");
+		drows[i].style.display = "none";
+		results.forEach(function(result) {
+		    result.checked = true;
+		    result.parentElement.style.opacity = 1.0;
+		    if(row[result.name] == result.value) {
+			counter++;
+			drows[i].style.display = "table-row";
+			delete row[result.name];
+			Object.entries(row).forEach(function([dpname,dpvalue]) {
+			    let sel = 'input[name="'+dpname +
+				'"][value="'+dpvalue+'"]';
+			    let inp = SSVC.form.querySelector(sel);
+			    if(inp)
+				inp.checked = true;
+			});
+		    }
+		});
+	    });
+	    const h5 = form.querySelector("h5");
+            let text = String(counter) + " of " + String(ssvcTable.length)
+            h5.innerText = "-- SSVC Table (selected " + text + ") -- ";
+	    return update_stats();
+	}
 	if(ev.target && ev.target.tagName.toUpperCase() == "INPUT"
 	   && ev.target.type.toLowerCase() == "checkbox") {
 	    graphModule.graph_dynamic(ev.target);
@@ -743,15 +795,16 @@ function createSSVC(csv, uploaded) {
 	main.querySelectorAll("[data-result]").forEach(function(result) {
 	    result.style.fontWeight = "normal";
 	    result.style.opacity = "0.6";
+	    const inp = result.querySelector("input");
+	    if(inp)
+		inp.checked = false;
 	});
 	const selections = {};
-	if(main.querySelectorAll("input:checked").length == 0) {
-	    SSVC.form.querySelectorAll('[data-row]').forEach(function(row) {
-		row.style.display="none";
-	    });
-	    return update_stats();
-	}
 	main.querySelectorAll("input:checked").forEach(function(input) {
+	    const div = input.parentElement;
+	    /*Ignoore outcome checkboxes that are checked */
+	    if(div && div.hasAttribute("data-result"))
+		return;
 	    if(input.name in selections)
 		selections[input.name].push(input.value);
 	    else
@@ -786,6 +839,9 @@ function createSSVC(csv, uploaded) {
 	    main.querySelectorAll('[data-result="'+rowTitle+'"]').forEach(function(result) {
 		result.style.fontWeight = "bolder";
 		result.style.opacity = "1.0";
+		const inp = result.querySelector("input");
+		if(inp)
+		    inp.checked = true;
 	    });
 	});
 	const h5 = form.querySelector("h5");

@@ -1179,8 +1179,9 @@ function parse_json(xraw,paused) {
 					 "margin-bottom": "3px"});
 	    if(index == tm.decision_points.length -1) {
 		lcolors[r.label] = ocolors[i];
-		ldiv.css({"background": ocolors[i]});
-		input.addClass("dt_outcome");
+		/* When colors are present assume white for font*/
+		ldiv.css({"background": ocolors[i], color: "white"});
+		input.addClass("dt_outcome").css({display:"none"});
 	    } else {
 		/* Decision Point Input */
 		input.addClass("dp_input").click(check_select);
