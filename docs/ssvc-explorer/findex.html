@@ -90,8 +90,8 @@
 	      <input required type="text" style="min-width: 300px;display:table-cell" name="obj-version" placeholder="Version (1.0.0)">
 	    </div>
 	    <div style="display: table-row">
-	      <label style="display:table-cell">Description</label>
-	      <textarea required style="display:table-cell; min-height: 30px; min-width: 300px;" name="obj-description" placeholder="Description" onchange="textAreaAutoSize(this)"></textarea>
+	      <label style="display:table-cell">Definition</label>
+	      <textarea required style="display:table-cell; min-height: 30px; min-width: 300px;" name="obj-definition" placeholder="Definition" onchange="textAreaAutoSize(this)"></textarea>
 	    </div>
 	    <div style="display: table-row">
 	      <label style="display: table-cell">Decision Point Values</label>
@@ -102,16 +102,16 @@
 	      <input required type="text" name="obj-values-0-name" style="min-width: 300px;display: table-cell">
 	    </div>
 	    <div style="display: table-row" data-clone="1">
-	      <label style="border-left: 1px solid cyan; display: table-cell;"> &nbsp; Description</label>
-	      <textarea required name="obj-values-0-description" style="display: table-cell; min-height: 30px; min-width: 300px;" onchange="textAreaAutoSize(this)"></textarea>
+	      <label style="border-left: 1px solid cyan; display: table-cell;"> &nbsp; Definition</label>
+	      <textarea required name="obj-values-0-definition" style="display: table-cell; min-height: 30px; min-width: 300px;" onchange="textAreaAutoSize(this)"></textarea>
 	    </div>
 	    <div style="display: table-row" data-clone="1">
 	      <label style="border-left: 1px solid cyan; display: table-cell"> &nbsp; Value</label>
 	      <input required type="text" name="obj-values-1-name" style="min-width: 300px;display: table-cell">
 	    </div>
 	    <div style="display: table-row" data-clone="1">
-	      <label style="border-left: 1px solid cyan; display: table-cell;"> &nbsp; Description</label>
-	      <textarea required name="obj-values-1-description" style="display: table-cell;min-height: 30px; min-width: 300px;" onchange="textAreaAutoSize(this)"></textarea>
+	      <label style="border-left: 1px solid cyan; display: table-cell;"> &nbsp; Definition</label>
+	      <textarea required name="obj-values-1-definition" style="display: table-cell;min-height: 30px; min-width: 300px;" onchange="textAreaAutoSize(this)"></textarea>
 	    </div>
 	  </form>
 	  <button onclick="updateTree()" data-update="1" style="margin-top: 10px;padding: 8px 12px;border: none;background-color: #007bff;color: #fff;border-radius: 4px;cursor: pointer; float:right">Update</button>
