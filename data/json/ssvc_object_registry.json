@@ -9,6 +9,46 @@
         "basic": {
           "namespace": "basic",
           "keys": {
+            "BP": {
+              "key": "BP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "BP",
+                    "version": "1.0.0",
+                    "name": "Boundary Proximity",
+                    "definition": "Indicates whether another value is near a boundary condition, indicating that special consideration may be needed.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "NN",
+                        "name": "Not Near Boundary",
+                        "definition": "The value is not near a boundary condition"
+                      },
+                      {
+                        "key": "NB",
+                        "name": "Near Boundary",
+                        "definition": "The value is near a boundary condition"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "NN": {
+                      "key": "NN",
+                      "name": "Not Near Boundary",
+                      "definition": "The value is not near a boundary condition"
+                    },
+                    "NB": {
+                      "key": "NB",
+                      "name": "Near Boundary",
+                      "definition": "The value is near a boundary condition"
+                    }
+                  }
+                }
+              }
+            },
             "CIS_WEP": {
               "key": "CIS_WEP",
               "versions": {
