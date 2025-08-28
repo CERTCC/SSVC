@@ -28,30 +28,30 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _AVAILABILITY = DecisionPointValue(
     name="Availability",
     key="A",
-    description="Availability Impact is assigned greater weight than Confidentiality Impact or Integrity Impact.",
+    definition="Availability Impact is assigned greater weight than Confidentiality Impact or Integrity Impact.",
 )
 
 _INTEGRITY = DecisionPointValue(
     name="Integrity",
     key="I",
-    description="Integrity Impact is assigned greater weight than Confidentiality Impact or Availability Impact.",
+    definition="Integrity Impact is assigned greater weight than Confidentiality Impact or Availability Impact.",
 )
 
 _CONFIDENTIALITY = DecisionPointValue(
     name="Confidentiality",
     key="C",
-    description="Confidentiality impact is assigned greater weight than Integrity Impact or Availability Impact.",
+    definition="Confidentiality impact is assigned greater weight than Integrity Impact or Availability Impact.",
 )
 
 _NORMAL = DecisionPointValue(
     name="Normal",
     key="N",
-    description="Confidentiality Impact, Integrity Impact, and Availability Impact are all assigned the same weight.",
+    definition="Confidentiality Impact, Integrity Impact, and Availability Impact are all assigned the same weight.",
 )
 
 IMPACT_BIAS_1 = CvssDecisionPoint(
     name="Impact Bias",
-    description="This metric measures the impact bias of the vulnerability.",
+    definition="This metric measures the impact bias of the vulnerability.",
     key="IB",
     version="1.0.0",
     values=(

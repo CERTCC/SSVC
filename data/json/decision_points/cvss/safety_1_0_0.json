@@ -3,23 +3,23 @@
   "key": "SF",
   "version": "1.0.0",
   "name": "Safety",
-  "description": "The Safety decision point is a measure of the potential for harm to humans or the environment.",
+  "definition": "The Safety decision point is a measure of the potential for harm to humans or the environment.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     },
     {
       "key": "P",
       "name": "Present",
-      "description": "Consequences of the vulnerability meet definition of IEC 61508 consequence categories of \"marginal,\" \"critical,\" or \"catastrophic.\""
+      "definition": "Consequences of the vulnerability meet definition of IEC 61508 consequence categories of \"marginal,\" \"critical,\" or \"catastrophic.\""
     },
     {
       "key": "N",
       "name": "Negligible",
-      "description": "Consequences of the vulnerability meet definition of IEC 61508 consequence category \"negligible.\""
+      "definition": "Consequences of the vulnerability meet definition of IEC 61508 consequence category \"negligible.\""
     }
   ]
 }

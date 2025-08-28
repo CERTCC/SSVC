@@ -30,7 +30,7 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 CATASTROPHIC = DecisionPointValue(
     name="Catastrophic",
     key="C",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: Multiple immediate fatalities (Emergency response probably cannot save the victims.) "
     "Operator resiliency: Operator incapacitated (includes fatality or otherwise incapacitated). "
     "System resiliency: Total loss of whole cyber-physical system, of which the software is a part. "
@@ -42,7 +42,7 @@ CATASTROPHIC = DecisionPointValue(
 HAZARDOUS = DecisionPointValue(
     name="Hazardous",
     key="H",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: Serious or fatal injuries, where fatalities are plausibly preventable via emergency services or other measures. "
     "Operator resiliency: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly. "
     "System resiliency: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact. "
@@ -54,7 +54,7 @@ HAZARDOUS = DecisionPointValue(
 MAJOR = DecisionPointValue(
     name="Major",
     key="J",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: Physical distress and injuries for users (not operators) of the system. "
     "Operator resiliency: Requires action by system operator to maintain safe system state as a result of exploitation of the "
     "vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard. "
@@ -67,7 +67,7 @@ MAJOR = DecisionPointValue(
 MINOR = DecisionPointValue(
     name="Minor",
     key="M",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: Physical discomfort for users (not operators) of the system. "
     "Operator resiliency: Requires action by system operator to maintain safe system state as a result of exploitation of the "
     "vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard. "
@@ -80,7 +80,7 @@ MINOR = DecisionPointValue(
 SAF_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="The effect is below the threshold for all aspects described in Minor.",
+    definition="The effect is below the threshold for all aspects described in Minor.",
 )
 
 ## Based on the IEC 61508 standard
@@ -89,7 +89,7 @@ SAF_NONE = DecisionPointValue(
 CATASTROPHIC_2 = DecisionPointValue(
     name="Catastrophic",
     key="C",
-    description="Any one or more of these conditions hold.<br/><br/>"
+    definition="Any one or more of these conditions hold.<br/><br/>"
     "- *Physical harm*: Multiple loss of life (IEC 61508 Catastrophic).<br/>"
     "- *Operator resiliency*: Operator incapacitated (includes fatality or otherwise incapacitated).<br/>"
     "- *System resiliency*: Total loss of whole cyber-physical system, of which the software is a part.<br/>"
@@ -101,7 +101,7 @@ CATASTROPHIC_2 = DecisionPointValue(
 CRITICAL = DecisionPointValue(
     name="Critical",
     key="R",
-    description="Any one or more of these conditions hold.<br/><br/>"
+    definition="Any one or more of these conditions hold.<br/><br/>"
     "- *Physical harm*: Loss of life (IEC 61508 Critical).<br/>"
     "- *Operator resiliency*: Actions that would keep the system in a safe state are beyond system operator capabilities, resulting in adverse conditions; OR great physical distress to system operators such that they cannot be expected to operate the system properly.<br/>"
     "- *System resiliency*: Parts of the cyber-physical system break; system’s ability to recover lost functionality remains intact.<br/>"
@@ -113,7 +113,7 @@ CRITICAL = DecisionPointValue(
 MARGINAL = DecisionPointValue(
     name="Marginal",
     key="M",
-    description="Any one or more of these conditions hold.<br/><br/>"
+    definition="Any one or more of these conditions hold.<br/><br/>"
     "- *Physical harm*: Major injuries to one or more persons (IEC 61508 Marginal).<br/>"
     "- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the "
     "vulnerability where operator actions would be within their capabilities but the actions require their full attention and effort; OR significant distraction or discomfort to operators; OR causes significant occupational safety hazard.<br/>"
@@ -126,7 +126,7 @@ MARGINAL = DecisionPointValue(
 NEGLIGIBLE = DecisionPointValue(
     name="Negligible",
     key="N",
-    description="Any one or more of these conditions hold.<br/><br/>"
+    definition="Any one or more of these conditions hold.<br/><br/>"
     "- *Physical harm*: Minor injuries at worst (IEC 61508 Negligible).<br/>"
     "- *Operator resiliency*: Requires action by system operator to maintain safe system state as a result of exploitation of the "
     "vulnerability where operator actions would be well within expected operator abilities; OR causes a minor occupational safety hazard.<br/>"
@@ -139,7 +139,7 @@ NEGLIGIBLE = DecisionPointValue(
 
 SAFETY_IMPACT_1 = SsvcDecisionPoint(
     name="Safety Impact",
-    description="The safety impact of the vulnerability.",
+    definition="The safety impact of the vulnerability.",
     key="SI",
     version="1.0.0",
     values=(
@@ -154,7 +154,7 @@ SAFETY_IMPACT_1 = SsvcDecisionPoint(
 
 SAFETY_IMPACT_2 = SsvcDecisionPoint(
     name="Safety Impact",
-    description="The safety impact of the vulnerability. (based on IEC 61508)",
+    definition="The safety impact of the vulnerability. (based on IEC 61508)",
     key="SI",
     version="2.0.0",
     values=(

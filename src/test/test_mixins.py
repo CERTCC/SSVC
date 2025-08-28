@@ -30,17 +30,17 @@ from ssvc._mixins import (
     _Versioned,
 )
 from ssvc.namespaces import NameSpace
-from ssvc.utils.defaults import DEFAULT_VERSION, MAX_NS_LENGTH
+from ssvc.utils.defaults import DEFAULT_VERSION
 
 
 class TestMixins(unittest.TestCase):
     def setUp(self) -> None:
-        self.obj = _Base(name="foo", description="baz")
+        self.obj = _Base(name="foo", definition="baz")
 
     def test_ssvc_base_create(self):
-        obj = _Base(name="foo", description="baz")
+        obj = _Base(name="foo", definition="baz")
         self.assertEqual(obj.name, "foo")
-        self.assertEqual(obj.description, "baz")
+        self.assertEqual(obj.definition, "baz")
 
         # empty
         self.assertRaises(ValidationError, _Base)
@@ -55,16 +55,16 @@ class TestMixins(unittest.TestCase):
         # is it a string?
         self.assertIsInstance(json, str)
         # does it look right?
-        self.assertEqual(json, '{"name":"foo","description":"baz"}')
+        self.assertEqual(json, '{"name":"foo","definition":"baz"}')
 
         # modify the raw json string
         json = json.replace("foo", "quux")
-        self.assertEqual(json, '{"name":"quux","description":"baz"}')
+        self.assertEqual(json, '{"name":"quux","definition":"baz"}')
 
         # does it load?
         obj2 = _Base.model_validate_json(json)
         self.assertEqual(obj2.name, "quux")
-        self.assertEqual(obj2.description, "baz")
+        self.assertEqual(obj2.definition, "baz")
 
     def test_asdict_roundtrip(self):
 
@@ -73,7 +73,7 @@ class TestMixins(unittest.TestCase):
 
         self.assertIsInstance(d, dict)
         self.assertEqual(d["name"], "foo")
-        self.assertEqual(d["description"], "baz")
+        self.assertEqual(d["definition"], "baz")
 
         # modify the dict
         d["name"] = "quux"
@@ -81,7 +81,7 @@ class TestMixins(unittest.TestCase):
         # does it load?
         obj2 = _Base(**d)
         self.assertEqual(obj2.name, "quux")
-        self.assertEqual(obj2.description, "baz")
+        self.assertEqual(obj2.definition, "baz")
 
     def test_namespaced_create_errors(self):
         # error if no namespace given
@@ -97,7 +97,6 @@ class TestMixins(unittest.TestCase):
         # error if namespace starts with x_ but is too short
         with self.assertRaises(ValidationError):
             _Namespaced(namespace="x_")
-
 
     def test_namespaced_create(self):
         # use the official namespace values
@@ -213,7 +212,7 @@ class TestMixins(unittest.TestCase):
 
                     if k in keys_with_defaults:
                         # expect success
-                        obj = Foo(name="foo", description="baz", **args_copy)
+                        obj = Foo(name="foo", definition="baz", **args_copy)
                         # make sure the key is defaulted
                         self.assertIsNotNone(getattr(obj, k))
                     else:
@@ -226,9 +225,9 @@ class TestMixins(unittest.TestCase):
                         )
 
                 # instantiate the object
-                obj = Foo(name="foo", description="baz", **args)
+                obj = Foo(name="foo", definition="baz", **args)
                 self.assertEqual(obj.name, "foo")
-                self.assertEqual(obj.description, "baz")
+                self.assertEqual(obj.definition, "baz")
                 # make sure the args are set
                 for k, v in args.items():
                     self.assertEqual(getattr(obj, k), v)
@@ -239,7 +238,7 @@ class TestMixins(unittest.TestCase):
                 self.assertIsInstance(json, str)
                 # does it look right?
                 self.assertIn('"name":"foo"', json)
-                self.assertIn('"description":"baz"', json)
+                self.assertIn('"definition":"baz"', json)
                 for k, v in args.items():
                     self.assertIn(f'"{k}":"{v}"', json)
                 # change the name and description
@@ -248,7 +247,7 @@ class TestMixins(unittest.TestCase):
                 # does it load?
                 obj2 = Foo.model_validate_json(json)
                 self.assertEqual(obj2.name, "quux")
-                self.assertEqual(obj2.description, "fizz")
+                self.assertEqual(obj2.definition, "fizz")
                 # make sure the args are set
                 for k, v in args.items():
                     self.assertEqual(getattr(obj2, k), v)

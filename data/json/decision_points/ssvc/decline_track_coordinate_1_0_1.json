@@ -3,23 +3,23 @@
   "key": "COORDINATE",
   "version": "1.0.1",
   "name": "Decline, Track, Coordinate",
-  "description": "The coordinate outcome group.",
+  "definition": "The coordinate outcome group.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "D",
       "name": "Decline",
-      "description": "Do not act on the report."
+      "definition": "Do not act on the report."
     },
     {
       "key": "T",
       "name": "Track",
-      "description": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
+      "definition": "Receive information about the vulnerability and monitor for status changes but do not take any overt actions."
     },
     {
       "key": "C",
       "name": "Coordinate",
-      "description": "Take action on the report."
+      "definition": "Take action on the report."
     }
   ]
 }

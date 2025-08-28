@@ -354,9 +354,9 @@ def _compare(new: _RegisterableClass, existing: _RegisterableClass) -> None:
     else:
         should_be_version = True
 
-    if existing.description != new.description:
+    if existing.definition != new.definition:
         diffs.append(
-            f"Description mismatch: {existing.description} != {new.description}"
+            f"Description mismatch: {existing.definition} != {new.definition}"
         )
 
     if hasattr(existing, "values") and hasattr(new, "values"):

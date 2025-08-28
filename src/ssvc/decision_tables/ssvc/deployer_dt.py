@@ -44,7 +44,7 @@ DEPLOYER_1 = DecisionTable(
     key="DP",
     version="1.0.0",
     name="Deployer Patch Application Priority",
-    description="Decision table for evaluating deployer's patch application priority in SSVC",
+    definition="Decision table for evaluating deployer's patch application priority in SSVC",
     decision_points={
         dp.id: dp
         for dp in [Exploitation, Exposure, Automatable, HumanImpact, DSOI]

@@ -29,18 +29,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="System meets a critical software definition.",
+    definition="System meets a critical software definition.",
 )
 
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="System does not meet a critical software definition.",
+    definition="System does not meet a critical software definition.",
 )
 
 CRITICAL_SOFTWARE_1 = SsvcDecisionPoint(
     name="Critical Software",
-    description="Denotes whether a system meets a critical software definition.",
+    definition="Denotes whether a system meets a critical software definition.",
     key="CS",
     version="1.0.0",
     values=(

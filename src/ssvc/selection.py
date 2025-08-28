@@ -64,7 +64,7 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
         if "name" not in data:
             data["name"] = ""
         if "description" not in data:
-            data["description"] = ""
+            data["definition"] = ""
 
         return data
 
@@ -76,8 +76,8 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
         """
         if not data.name:
             data.name = None
-        if not data.description:
-            data.description = None
+        if not data.definition:
+            data.definition = None
         return data
 
 
@@ -141,15 +141,15 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
         if "name" not in data:
             data["name"] = ""
         if "description" not in data:
-            data["description"] = ""
+            data["definition"] = ""
         return data
 
     @model_validator(mode="after")
     def validate_values(cls, data):
         if not data.name:
             data.name = None
-        if not data.description:
-            data.description = None
+        if not data.definition:
+            data.definition = None
         return data
 
     def model_json_schema(cls, **kwargs):
@@ -360,56 +360,7 @@ class SelectionList(_Timestamped, BaseModel):
 
 
 def main() -> None:
-    """
-    Prints example selections and their schema in JSON format.
-
-    Returns:
-        None
-    """
-    from ssvc.decision_points.ssvc.automatable import LATEST as dp1
-    from ssvc.decision_points.ssvc.safety_impact import LATEST as dp2
-    import json
-
-    a1 = Selection.from_decision_point(dp1)
-    a2 = Selection.from_decision_point(dp2)
-    selections = SelectionList(
-        schemaVersion=SCHEMA_VERSION,
-        selections=[a1, a2],
-        timestamp=datetime.now(),
-        target_ids=["CVE-1900-0001", "GHSA-0123-4567-89ab"],
-        references=[
-            Reference(
-                uri="https://example.com/report",
-                summary="A report on which the selections were based",
-            )
-        ],
-    )
-
-    print(
-        selections.model_dump_json(
-            indent=2, exclude_none=True, exclude_unset=True
-        )
-    )
-
-    print("# Schema for SelectionList")
-    schema = SelectionList.model_json_schema()
-
-    print(json.dumps(schema, indent=2))
-
-    # find local path to this file
-    import os
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # construct the path to the schema file
-    schema_path = (
-        "../../data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
-    )
-    schema_path = os.path.abspath(os.path.join(current_dir, schema_path))
-
-    with open(schema_path, "w") as f:
-        print(f"Writing schema to {schema_path}")
-        json.dump(schema, f, indent=2)
-        f.write("\n")  # Ensure the file ends with a newline
+    print("Please use doctools.py for schema generation and unit tests for verification")
 
 
 if __name__ == "__main__":

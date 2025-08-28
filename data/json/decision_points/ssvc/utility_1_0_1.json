@@ -3,23 +3,23 @@
   "key": "U",
   "version": "1.0.1",
   "name": "Utility",
-  "description": "The Usefulness of the Exploit to the Adversary",
+  "definition": "The Usefulness of the Exploit to the Adversary",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Laborious",
-      "description": "Automatable:No AND Value Density:Diffuse"
+      "definition": "Automatable:No AND Value Density:Diffuse"
     },
     {
       "key": "E",
       "name": "Efficient",
-      "description": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
+      "definition": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
     },
     {
       "key": "S",
       "name": "Super Effective",
-      "description": "Automatable:Yes AND Value Density:Concentrated"
+      "definition": "Automatable:Yes AND Value Density:Concentrated"
     }
   ]
 }

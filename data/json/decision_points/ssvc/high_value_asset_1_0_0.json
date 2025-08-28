@@ -3,18 +3,18 @@
   "key": "HVA",
   "version": "1.0.0",
   "name": "High Value Asset",
-  "description": "Denotes whether a system meets a high value asset definition.",
+  "definition": "Denotes whether a system meets a high value asset definition.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "No",
-      "description": "System does not meet a high value asset definition."
+      "definition": "System does not meet a high value asset definition."
     },
     {
       "key": "Y",
       "name": "Yes",
-      "description": "System meets a high value asset definition."
+      "definition": "System meets a high value asset definition."
     }
   ]
 }

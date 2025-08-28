@@ -29,18 +29,18 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 DIFFUSE = DecisionPointValue(
     name="Diffuse",
     key="D",
-    description="The vulnerable system has limited resources. That is, the resources that the attacker will "
+    definition="The vulnerable system has limited resources. That is, the resources that the attacker will "
     "gain control over with a single exploitation event are relatively small.",
 )
 CONCENTRATED = DecisionPointValue(
     name="Concentrated",
     key="C",
-    description="The vulnerable system is rich in resources. Heuristically, such systems are often the direct "
+    definition="The vulnerable system is rich in resources. Heuristically, such systems are often the direct "
     'responsibility of "system operators" rather than users.',
 )
 VALUE_DENSITY_1 = CvssDecisionPoint(
     name="Value Density",
-    description="Value Density describes the resources that the attacker will gain control over with a single "
+    definition="Value Density describes the resources that the attacker will gain control over with a single "
     "exploitation event. It has two possible values, diffuse and concentrated.",
     key="V",
     version="1.0.0",

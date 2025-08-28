@@ -29,24 +29,20 @@ from ssvc.decision_points.base import (
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.namespaces import NameSpace
 
-_DROP = DecisionPointValue(name="Drop", key="D", description="Drop")
+_DROP = DecisionPointValue(name="Drop", key="D", definition="Drop")
 
 _RECONSIDER = DecisionPointValue(
-    name="Reconsider Later", key="R", description="Reconsider Later"
+    name="Reconsider Later", key="R", definition="Reconsider Later"
 )
 
-_EASY_WIN = DecisionPointValue(
-    name="Easy Win", key="E", description="Easy Win"
-)
+_EASY_WIN = DecisionPointValue(name="Easy Win", key="E", definition="Easy Win")
 
-_DO_FIRST = DecisionPointValue(
-    name="Do First", key="F", description="Do First"
-)
+_DO_FIRST = DecisionPointValue(name="Do First", key="F", definition="Do First")
 
 VALUE_COMPLEXITY = DecisionPoint(
     name="Value, Complexity",
     key="VALUE_COMPLEXITY",
-    description="The Value/Complexity outcome group.",
+    definition="The Value/Complexity outcome group.",
     version="1.0.0",
     namespace=NameSpace.BASIC,
     values=(

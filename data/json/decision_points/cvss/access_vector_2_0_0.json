@@ -3,23 +3,23 @@
   "key": "AV",
   "version": "2.0.0",
   "name": "Access Vector",
-  "description": "This metric reflects the context by which vulnerability exploitation is possible.",
+  "definition": "This metric reflects the context by which vulnerability exploitation is possible.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Local",
-      "description": "A vulnerability exploitable with only local access requires the attacker to have either physical access to the vulnerable system or a local (shell) account."
+      "definition": "A vulnerability exploitable with only local access requires the attacker to have either physical access to the vulnerable system or a local (shell) account."
     },
     {
       "key": "A",
       "name": "Adjacent Network",
-      "description": "A vulnerability exploitable with adjacent network access requires the attacker to have access to either the broadcast or collision domain of the vulnerable software."
+      "definition": "A vulnerability exploitable with adjacent network access requires the attacker to have access to either the broadcast or collision domain of the vulnerable software."
     },
     {
       "key": "N",
       "name": "Network",
-      "description": "A vulnerability exploitable with network access means the vulnerable software is bound to the network stack and the attacker does not require local network access or local access. Such a vulnerability is often termed 'remotely exploitable'."
+      "definition": "A vulnerability exploitable with network access means the vulnerable software is bound to the network stack and the attacker does not require local network access or local access. Such a vulnerability is often termed 'remotely exploitable'."
     }
   ]
 }

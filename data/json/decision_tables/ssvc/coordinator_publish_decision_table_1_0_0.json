@@ -3,7 +3,7 @@
   "key": "DT_COORD_PUBLISH",
   "version": "1.0.0",
   "name": "Coordinator Publish Decision Table",
-  "description": "This decision table is used to determine the priority of a coordinator publish.",
+  "definition": "This decision table is used to determine the priority of a coordinator publish.",
   "schemaVersion": "2.0.0",
   "decision_points": {
     "ssvc:SINV:1.0.0": {
@@ -11,23 +11,23 @@
       "key": "SINV",
       "version": "1.0.0",
       "name": "Supplier Involvement",
-      "description": "What is the state of the supplier’s work on addressing the vulnerability?",
+      "definition": "What is the state of the supplier’s work on addressing the vulnerability?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "FR",
           "name": "Fix Ready",
-          "description": "The supplier has provided a patch or fix."
+          "definition": "The supplier has provided a patch or fix."
         },
         {
           "key": "C",
           "name": "Cooperative",
-          "description": "The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time."
+          "definition": "The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time."
         },
         {
           "key": "UU",
           "name": "Uncooperative/Unresponsive",
-          "description": "The supplier has not responded, declined to generate a remediation, or no longer exists."
+          "definition": "The supplier has not responded, declined to generate a remediation, or no longer exists."
         }
       ]
     },
@@ -36,23 +36,23 @@
       "key": "E",
       "version": "1.1.0",
       "name": "Exploitation",
-      "description": "The present state of exploitation of the vulnerability.",
+      "definition": "The present state of exploitation of the vulnerability.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "N",
           "name": "None",
-          "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+          "definition": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
         },
         {
           "key": "P",
           "name": "Public PoC",
-          "description": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
+          "definition": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
         },
         {
           "key": "A",
           "name": "Active",
-          "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+          "definition": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
         }
       ]
     },
@@ -61,23 +61,23 @@
       "key": "PVA",
       "version": "1.0.0",
       "name": "Public Value Added",
-      "description": "How much value would a publication from the coordinator benefit the broader community?",
+      "definition": "How much value would a publication from the coordinator benefit the broader community?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "L",
           "name": "Limited",
-          "description": "Minimal value added to the existing public information because existing information is already high quality and in multiple outlets."
+          "definition": "Minimal value added to the existing public information because existing information is already high quality and in multiple outlets."
         },
         {
           "key": "A",
           "name": "Ampliative",
-          "description": "Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc."
+          "definition": "Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc."
         },
         {
           "key": "P",
           "name": "Precedence",
-          "description": "The publication would be the first publicly available, or be coincident with the first publicly available."
+          "definition": "The publication would be the first publicly available, or be coincident with the first publicly available."
         }
       ]
     },
@@ -86,18 +86,18 @@
       "key": "PUBLISH",
       "version": "1.0.0",
       "name": "Publish, Do Not Publish",
-      "description": "The publish outcome group.",
+      "definition": "The publish outcome group.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "N",
           "name": "Do Not Publish",
-          "description": "Do Not Publish"
+          "definition": "Do Not Publish"
         },
         {
           "key": "P",
           "name": "Publish",
-          "description": "Publish"
+          "definition": "Publish"
         }
       ]
     }

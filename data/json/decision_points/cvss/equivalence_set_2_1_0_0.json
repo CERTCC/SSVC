@@ -3,18 +3,18 @@
   "key": "EQ2",
   "version": "1.0.0",
   "name": "Equivalence Set 2",
-  "description": "AC/AT with 2 levels specified in Table 25",
+  "definition": "AC/AT with 2 levels specified in Table 25",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Low",
-      "description": "1: not (AC:L and AT:N)"
+      "definition": "1: not (AC:L and AT:N)"
     },
     {
       "key": "H",
       "name": "High",
-      "description": "0: AC:L and AT:N"
+      "definition": "0: AC:L and AT:N"
     }
   ]
 }

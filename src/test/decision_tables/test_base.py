@@ -43,29 +43,29 @@ class TestDecisionTableBase(unittest.TestCase):
 
         # Create dummy decision point values
         self.dp1v1 = DecisionPointValue(
-            name="a", key="a", description="A value"
+            name="a", key="a", definition="A value"
         )
         self.dp1v2 = DecisionPointValue(
-            name="b", key="b", description="B value"
+            name="b", key="b", definition="B value"
         )
 
         self.dp2v1 = DecisionPointValue(
-            name="x", key="x", description="X value"
+            name="x", key="x", definition="X value"
         )
         self.dp2v2 = DecisionPointValue(
-            name="y", key="y", description="Y value"
+            name="y", key="y", definition="Y value"
         )
         self.dp2v3 = DecisionPointValue(
-            name="z", key="z", description="Z value"
+            name="z", key="z", definition="Z value"
         )
         self.dp2v4 = DecisionPointValue(
-            name="w", key="w", description="W value"
+            name="w", key="w", definition="W value"
         )
 
         # Create dummy decision points and group
         self.dp1 = DecisionPoint(
             name="dp1",
-            description="description for dp1",
+            definition="description for dp1",
             version="1.0.0",
             namespace="test",
             key="dp1",
@@ -73,7 +73,7 @@ class TestDecisionTableBase(unittest.TestCase):
         )
         self.dp2 = DecisionPoint(
             name="dp2",
-            description="description for dp2",
+            definition="description for dp2",
             version="1.0.0",
             namespace="test",
             key="dp2",
@@ -81,18 +81,18 @@ class TestDecisionTableBase(unittest.TestCase):
         )
         # Create dummy outcome group
         self.ogv1 = DecisionPointValue(
-            name="o1", key="o1", description="Outcome 1"
+            name="o1", key="o1", definition="Outcome 1"
         )
         self.ogv2 = DecisionPointValue(
-            name="o2", key="o2", description="Outcome 2"
+            name="o2", key="o2", definition="Outcome 2"
         )
         self.ogv3 = DecisionPointValue(
-            name="o3", key="o3", description="Outcome 3"
+            name="o3", key="o3", definition="Outcome 3"
         )
 
         self.og = OutcomeGroup(
             name="outcome",
-            description="description for outcome",
+            definition="description for outcome",
             version="1.0.0",
             namespace="test",
             key="outcome",
@@ -106,7 +106,7 @@ class TestDecisionTableBase(unittest.TestCase):
             key="TEST",
             namespace="test",
             name="Test Table",
-            description="Describes the test table",
+            definition="Describes the test table",
             decision_points=self.dpdict,
             outcome=self.og.id,
         )
@@ -355,7 +355,7 @@ class TestDecisionTableBase(unittest.TestCase):
         # Create a DecisionTable with a single DecisionPoint
         dp_in = DecisionPoint(
             name="dp_in",
-            description="A single decision point",
+            definition="A single decision point",
             version="1.0.0",
             namespace="test",
             key="dp",
@@ -366,7 +366,7 @@ class TestDecisionTableBase(unittest.TestCase):
             namespace="test",
             key="outcome",
             name="Outcome",
-            description="Outcome for single DP test",
+            definition="Outcome for single DP test",
             version="1.0.0",
             values=(self.ogv1, self.ogv2, self.ogv3),
             registered=False,
@@ -376,7 +376,7 @@ class TestDecisionTableBase(unittest.TestCase):
             key="SINGLE_TEST",
             namespace="test",
             name="Single DP Test Table",
-            description="Describes the single DP test table",
+            definition="Describes the single DP test table",
             decision_points={dp.id: dp for dp in [dp_in, dp_out]},
             outcome=dp_out.id,
             registered=False,
