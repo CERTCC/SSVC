@@ -84,12 +84,15 @@ CIS_CTI_WEP = BasicDecisionPoint(
     ),
 )
 
-VERSIONS =[CIS_CTI_WEP,]
+VERSIONS = [
+    CIS_CTI_WEP,
+]
 LATEST = VERSIONS[-1]
+
 
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

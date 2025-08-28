@@ -1,6 +1,7 @@
 """
 Provides SSVC decision points in the `basic` namespace.
 """
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.

@@ -360,7 +360,9 @@ class SelectionList(_Timestamped, BaseModel):
 
 
 def main() -> None:
-    print("Please use doctools.py for schema generation and unit tests for verification")
+    print(
+        "Please use doctools.py for schema generation and unit tests for verification"
+    )
 
 
 if __name__ == "__main__":

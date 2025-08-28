@@ -62,10 +62,11 @@ QUARTILES = BasicDecisionPoint(
 VERSIONS = [QUARTILES]
 LATEST = VERSIONS[-1]
 
+
 def main():
     print_versions_and_diffs(VERSIONS)
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

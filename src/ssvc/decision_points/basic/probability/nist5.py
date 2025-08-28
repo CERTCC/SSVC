@@ -70,9 +70,10 @@ P5X = BasicDecisionPoint(
 VERSIONS = [P5X]
 LATEST_VERSION = VERSIONS[-1]
 
+
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

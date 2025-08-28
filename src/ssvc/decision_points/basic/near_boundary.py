@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Provides quintile-based decision points for SSVC
+Provides a boolean decision point that can be used to indicate if another value is near a boundary condition.
 """
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -25,53 +25,33 @@ from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.basic.base import BasicDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-FIRST_QUINTILE = DecisionPointValue(
-    name="First Quintile",
-    key="Q1",
-    definition="Quantile < 0.20. The lowest 20% of the range of possible values.",
+NEAR_BOUNDARY = DecisionPointValue(
+    name="Near Boundary",
+    key="NB",
+    definition="The value is near a boundary condition",
 )
-SECOND_QUINTILE = DecisionPointValue(
-    name="Second Quintile",
-    key="Q2",
-    definition="0.20 <= Quantile < 0.40. The second lowest 20% of the range of possible values.",
+NOT_NEAR_BOUNDARY = DecisionPointValue(
+    name="Not Near Boundary",
+    key="NN",
+    definition="The value is not near a boundary condition",
 )
-THIRD_QUINTILE = DecisionPointValue(
-    name="Third Quintile",
-    key="Q3",
-    definition="0.40 <= Quantile < 0.60. The middle 20% of the range of possible values.",
-)
-FOURTH_QUINTILE = DecisionPointValue(
-    name="Fourth Quintile",
-    key="Q4",
-    definition="0.60 <= Quantile < 0.80. The second highest 20% of the range of possible values.",
-)
-FIFTH_QUINTILE = DecisionPointValue(
-    name="Fifth Quintile",
-    key="Q5",
-    definition="0.80 <= Quantile <= 1.0. The highest 20% of the range of possible values.",
-)
-
-QUINTILES = BasicDecisionPoint(
-    name="Quintiles",
-    definition="A quintile is one of five equal groups that a population can be divided into according to the distribution of values of a particular variable.",
-    key="QUINTILES",
+BOUNDARY_PROXIMITY = BasicDecisionPoint(
+    name="Boundary Proximity",
+    key="BP",
+    definition="Indicates whether another value is near a boundary condition, indicating that special consideration may be needed.",
     version="1.0.0",
     values=(
-        FIRST_QUINTILE,
-        SECOND_QUINTILE,
-        THIRD_QUINTILE,
-        FOURTH_QUINTILE,
-        FIFTH_QUINTILE,
+        NOT_NEAR_BOUNDARY,
+        NEAR_BOUNDARY,
     ),
 )
 
-VERSIONS = [QUINTILES]
+VERSIONS = (BOUNDARY_PROXIMITY,)
 LATEST = VERSIONS[-1]
 
 
 def main():
     print_versions_and_diffs(VERSIONS)
-    pass
 
 
 if __name__ == "__main__":

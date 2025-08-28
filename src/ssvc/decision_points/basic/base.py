@@ -27,6 +27,5 @@ from ssvc.decision_points.base import DecisionPoint
 from ssvc.namespaces import NameSpace
 
 
-class BasicDecisionPoint(DecisionPoint,BaseModel):
-    namespace:str = NameSpace.BASIC
-
+class BasicDecisionPoint(DecisionPoint, BaseModel):
+    namespace: str = NameSpace.BASIC

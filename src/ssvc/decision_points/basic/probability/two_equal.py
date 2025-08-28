@@ -49,9 +49,10 @@ P2A = BasicDecisionPoint(
 VERSIONS = [P2A]
 LATEST_VERSION = VERSIONS[-1]
 
+
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
