@@ -201,7 +201,7 @@ function lock_unlock(lock) {
 	    } else {
 		dt = {namespace: SSVC.default_namespace,
 		      name: "Custom Decision Tree",
-		      description: "Uploaded Custom Decistion Tree from CSV",
+		      definition: "Uploaded Custom Decistion Tree from CSV",
 		      version: "1.0.1"};
 	    }
 	    div.style.display = "inline-block";
@@ -210,7 +210,7 @@ function lock_unlock(lock) {
 			     borderRadius: "2px",
 			     padding: "4px"
 			    });
-	    ["name","namespace","description","version"].forEach(function(nprop) {
+	    ["name","namespace","definition","version"].forEach(function(nprop) {
 		const label = document.createElement("label");
 		const input = document.createElement("input");
 		input.name = nprop;
@@ -467,8 +467,8 @@ function createSSVC(csv, uploaded) {
 	    if(event.target.hasAttribute(fdp)) {
 		/* A Decision Point help tip  */
 		dp = get_decision_point(event.target.getAttribute(fdp));
-		if(dp.description) {
-		    tooltip(event, dp.description);
+		if(dp.definition) {
+		    tooltip(event, dp.definition);
 		    return true;
 		}
 	    }
@@ -484,14 +484,14 @@ function createSSVC(csv, uploaded) {
 		dp = JSON.parse(dpInput.parentElement.parentElement.getAttribute("data-help"));
 	    } else {
 		dp = get_decision_point(dpInput.name);
-		if(dp.description) 
+		if(dp.definition) 
 		    dpInput.parentElement.parentElement.setAttribute("data-help",JSON.stringify(dp));
 	    }
 	} 
 	if(dp.values) {	 
 	    for(let i=0; i<dp.values.length; i++) {
 		if(dp.values[i].name.toLowerCase() == dpInput.value.toLowerCase()) {
-		    return tooltip(event,dp.values[i].description);
+		    return tooltip(event,dp.values[i].definition);
 		}
 	    }
 	}
@@ -626,7 +626,7 @@ function createSSVC(csv, uploaded) {
 			    "data": {"namespace": namespace,
 				     "name": name,
 				     "version": version,
-				     "description": name,
+				     "definition": name,
 				     "schemaVersion": "1-0-1",
 				     "values": []
 				    }
@@ -640,7 +640,7 @@ function createSSVC(csv, uploaded) {
 		if(newdps[dpName]) {
 		    if(newdps[dpName].data.values.findIndex(function(nvalue) {
 			return nvalue.name == value;}) < 0) {
-			newdps[dpName].data.values.push({"name": value, "description": value, "key": value[0]});
+			newdps[dpName].data.values.push({"name": value, "definition": value, "key": value[0]});
 		    }
 		}
 
@@ -1950,7 +1950,7 @@ function readFile(input) {
 	    json.name = name.substr(0,name.lastIndexOf('.'));
 	    json.key = uniq_key({name: json.name}, SSVC.decision_trees.map(x => x.data));
 	    json.namespace = SSVC.default_namespace + "/csvupload";
-	    json.description = json.name + " uploaded as CSV";
+	    json.definition = json.name + " uploaded as CSV";
 	    let headers = rows.shift();
 	    let hasrowIndex = false;
 	    if(headers[0] == "row") {
@@ -1965,7 +1965,7 @@ function readFile(input) {
 		let dpkey = uniq_key({name:head},Object.values(json.decision_points));
 		keymap[i] = json.namespace.substr(0,3) + ":" + dpkey + ":1.0.0";
 		json.decision_points[keymap[i]] = {name: head, namespace: json.namespace,
-						   description: head,
+						   definition: head,
 						   key: dpkey};
 	    });
 	    json.outcome = keymap.at(-1);
@@ -1976,7 +1976,7 @@ function readFile(input) {
 		row.forEach(function(value,i) {
 		    if(!valueSet[i].some(function(values) { return values.name == value})) {
 			let mkey = uniq_key({name:value}, valueSet[i]);
-			valueSet[i].push({name: value, description: value,
+			valueSet[i].push({name: value, definition: value,
 					  key: mkey});
 			nmap[keymap[i]] = mkey; 
 		    } else {

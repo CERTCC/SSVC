@@ -20,7 +20,7 @@
  */
 
 /* SSVC code for graph building */
-const _version = "5.1.9"
+const _version = "6.0.2"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false;
 /* The registryurl is now relative to local folder using symlink for convenience*/
@@ -331,10 +331,10 @@ function export_tree() {
 	   reduce((z,y,i) => {
 	       z[yhead[i]] = y
 	       if(!toptions[i]) {
-		   toptions[i] = [{label: y, description: y}]
+		   toptions[i] = [{label: y, definition: y}]
 	       }
 	       else if (!toptions[i].find(t => t.label == y))
-		   toptions[i].push({label: y, description:y})
+		   toptions[i].push({label: y, definition:y})
 	       return z
 	   },{}))
     /* Now the decision points should be moved to the end of the array */
@@ -381,7 +381,7 @@ function add_selection(value_selection,inp) {
 					 name: inp.name,
 					 version: dp.version,
 					 namespace: dp.namespace,
-					 description: dp.description,
+					 definition: dp.definition,
 					 key: dp.key});
     }
 }
@@ -1191,12 +1191,12 @@ function parse_json(xraw,paused) {
 	    label.append($("<span>").text(r.label));
 	    dpcol.append(ldiv.append(label));
 	    create_short_keys(r,ouniq_keys);
-	    options_data[r.label] = r.description;
+	    options_data[r.label] = r.definition;
 	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1);
 	    var spclass = 'popup-'+safedivname(r.label);
 	    var div_add = $('<div>').addClass('popupidiv '+ spclass)
 		.append($('<b>').css({color:ocolors[i]}).text(rlabel))
-		.append($('<span>').text(" " + r.description))
+		.append($('<span>').text(" " + r.definition))
 		.append($('<hr>'));
 	    return  h + div_add[0].outerHTML;
 	}, h5.outerHTML)
@@ -1274,7 +1274,7 @@ function parse_json(xraw,paused) {
 	}
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
 				     css({color:r.color}).html(r.label))
-	    .append("&nbsp"+r.description+"<hr>")
+	    .append("&nbsp"+r.definition+"<hr>")
 	    .addClass("popupidiv popup-"+srlabel)[0].outerHTML;
     },"<h5>"+final_keyword+"</h5>")
     if($("."+classes[0]).length != 1) {
@@ -1371,7 +1371,7 @@ function create_export_schema_dtable(yi,x) {
 	/* Add labels that do not exist */
 	if(export_schema.decision_points[c]['options']
 	   .filter(d => ('label' in d) && (d.label == b)).length != 1)
-	    export_schema.decision_points[c]['options'].push({label: b, description:b})
+	    export_schema.decision_points[c]['options'].push({label: b, definition:b})
 	a[x[c]] = b
 	return a; },{}))
 }
@@ -2734,7 +2734,7 @@ function appendtree(doc,dfilename) {
 	    var clabel = y.label[0].toUpperCase()+y.label.substr(1);
 	    doc.text(clabel,20,ynow);
 	    doc.setTextColor(0,0,0);
-	    var tinfo = y.description;
+	    var tinfo = y.definition;
 	    var f = tinfo.match(/.{1,45}(\s|$)/g);
 	    doc.setFont("courier",'normal');
 	    q = doc.getStringUnitWidth(clabel)
