@@ -1,0 +1,35 @@
+{
+  "namespace": "basic",
+  "key": "P_5X",
+  "version": "1.0.0",
+  "name": "Probability Scale in 5 weighted levels, ascending",
+  "definition": "A probability scale with finer resolution at both extremes",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "VL",
+      "name": "Very Low",
+      "definition": "0% <= Probability < 5%. Highly unlikely."
+    },
+    {
+      "key": "L",
+      "name": "Low",
+      "definition": "5% <= Probability < 21%. Unlikely."
+    },
+    {
+      "key": "M",
+      "name": "Moderate",
+      "definition": "21% <= Probability < 80%. Somewhat likely."
+    },
+    {
+      "key": "H",
+      "name": "High",
+      "definition": "80% <= Probability < 96%. Highly likely."
+    },
+    {
+      "key": "VH",
+      "name": "Very High",
+      "definition": "96% <= Probability <= 100%. Almost certain."
+    }
+  ]
+}

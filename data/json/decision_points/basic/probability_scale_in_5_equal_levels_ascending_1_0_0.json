@@ -1,0 +1,35 @@
+{
+  "namespace": "basic",
+  "key": "P_5A",
+  "version": "1.0.0",
+  "name": "Probability Scale in 5 equal levels, ascending",
+  "definition": "A probability scale with 20% increments",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "P0_20",
+      "name": "Less than 20%",
+      "definition": "Probability < 0.2"
+    },
+    {
+      "key": "P20_40",
+      "name": "20% to 40%",
+      "definition": "0.2 <= Probability < 0.4"
+    },
+    {
+      "key": "P40_60",
+      "name": "40% to 60%",
+      "definition": "0.4 <= Probability < 0.6"
+    },
+    {
+      "key": "P60_80",
+      "name": "60% to 80%",
+      "definition": "0.6 <= Probability < 0.8"
+    },
+    {
+      "key": "P80_100",
+      "name": "Greater than 80%",
+      "definition": "0.8 <= Probability <= 1.0"
+    }
+  ]
+}
