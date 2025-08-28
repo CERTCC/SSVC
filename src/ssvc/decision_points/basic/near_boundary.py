@@ -25,11 +25,17 @@ from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.basic.base import BasicDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-NEAR_BOUNDARY = DecisionPointValue(
-    name="Near Boundary",
-    key="NB",
-    definition="The value is near a boundary condition",
+JUST_BELOW_BOUNDARY = DecisionPointValue(
+    name="Just Below Boundary",
+    key="JB",
+    definition="The value is just below a boundary condition",
 )
+JUST_ABOVE_BOUNDARY = DecisionPointValue(
+    name="Just Above Boundary",
+    key="JA",
+    definition="The value is just above a boundary condition",
+)
+
 NOT_NEAR_BOUNDARY = DecisionPointValue(
     name="Not Near Boundary",
     key="NN",
@@ -42,7 +48,8 @@ BOUNDARY_PROXIMITY = BasicDecisionPoint(
     version="1.0.0",
     values=(
         NOT_NEAR_BOUNDARY,
-        NEAR_BOUNDARY,
+        JUST_ABOVE_BOUNDARY,
+        JUST_BELOW_BOUNDARY,
     ),
 )
 

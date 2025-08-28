@@ -12,9 +12,14 @@
       "definition": "The value is not near a boundary condition"
     },
     {
-      "key": "NB",
-      "name": "Near Boundary",
-      "definition": "The value is near a boundary condition"
+      "key": "JA",
+      "name": "Just Above Boundary",
+      "definition": "The value is just above a boundary condition"
+    },
+    {
+      "key": "JB",
+      "name": "Just Below Boundary",
+      "definition": "The value is just below a boundary condition"
     }
   ]
 }

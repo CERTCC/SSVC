@@ -65,7 +65,7 @@ P5A = BasicDecisionPoint(
 )
 
 VERSIONS = [P5A]
-LATEST_VERSION = VERSIONS[-1]
+LATEST = VERSIONS[-1]
 
 
 def main():
