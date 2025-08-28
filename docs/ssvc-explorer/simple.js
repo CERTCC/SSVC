@@ -856,6 +856,43 @@ function createSSVC(csv, uploaded) {
     main.addEventListener('change', filterData);
     update_stats();
 }
+
+
+function calculateEntropy(decision_table, targetCol) {
+  const valueCounts = {};
+  decision_table.forEach(row => {
+    const value = row[targetCol];
+    valueCounts[value] = (valueCounts[value] || 0) + 1;
+  });
+
+  const totalCount = decision_table.length;
+  let entropy = 0;
+  for (const count of Object.values(valueCounts)) {
+    const p = count / totalCount;
+    entropy -= p * Math.log2(p);
+  }
+  return entropy;
+}
+
+function calculateInformationGain(decision_table,featureCol, targetCol) {
+    const totalEntropy = calculateEntropy(decision_table, targetCol);
+    const featureSet = new Set(decision_table.map(row => row[featureCol]));
+    const featureValues = Array.from(featureSet);
+
+  let weightedEntropy = 0;
+  featureValues.forEach(value => {
+      const subset = decision_table.filter(row => row[featureCol] === value);
+      const subsetEntropy = calculateEntropy(subset, targetCol);
+      const subsetWeight = subset.length / decision_table.length;
+      weightedEntropy += subsetWeight * subsetEntropy;
+  });
+
+  return totalEntropy - weightedEntropy;
+}
+
+/* const entropyMain = calculateEntropy(SSVC.decision_table, outcome); */
+/* calculateInformationGain(SSVC.decision_table, decision_point, outcome); */
+
 function loadSSVC(fileurl) {
     SSVC.form.innerHTML = "";
     if(fileurl == "upload_file") {
