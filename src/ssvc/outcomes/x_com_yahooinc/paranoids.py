@@ -29,26 +29,26 @@ from ssvc.decision_points.base import (
 )
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_TRACK_5 = DecisionPointValue(name="Track 5", key="5", description="Track")
+_TRACK_5 = DecisionPointValue(name="Track 5", key="5", definition="Track")
 
 _TRACK_CLOSELY_4 = DecisionPointValue(
-    name="Track Closely 4", key="4", description="Track Closely"
+    name="Track Closely 4", key="4", definition="Track Closely"
 )
 
-_ATTEND_3 = DecisionPointValue(name="Attend 3", key="3", description="Attend")
+_ATTEND_3 = DecisionPointValue(name="Attend 3", key="3", definition="Attend")
 
-_ATTEND_2 = DecisionPointValue(name="Attend 2", key="2", description="Attend")
+_ATTEND_2 = DecisionPointValue(name="Attend 2", key="2", definition="Attend")
 
-_ACT_1 = DecisionPointValue(name="Act 1", key="1", description="Act")
+_ACT_1 = DecisionPointValue(name="Act 1", key="1", definition="Act")
 
 _ACT_ASAP_0 = DecisionPointValue(
-    name="Act ASAP 0", key="0", description="Act ASAP"
+    name="Act ASAP 0", key="0", definition="Act ASAP"
 )
 
 THE_PARANOIDS = DecisionPoint(
     name="theParanoids",
     key="PARANOIDS",
-    description="PrioritizedRiskRemediation outcome group based on TheParanoids.",
+    definition="PrioritizedRiskRemediation outcome group based on TheParanoids.",
     namespace="x_com.yahooinc#prioritized-risk-remediation",
     version="1.0.0",
     values=(

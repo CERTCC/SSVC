@@ -3,23 +3,23 @@
   "key": "U",
   "version": "1.0.0",
   "name": "Utility",
-  "description": "The Usefulness of the Exploit to the Adversary",
+  "definition": "The Usefulness of the Exploit to the Adversary",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Laborious",
-      "description": "Virulence:Slow and Value Density:Diffuse"
+      "definition": "Virulence:Slow and Value Density:Diffuse"
     },
     {
       "key": "E",
       "name": "Efficient",
-      "description": "Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated"
+      "definition": "Virulence:Rapid and Value Density:Diffuse OR Virulence:Slow and Value Density:Concentrated"
     },
     {
       "key": "S",
       "name": "Super Effective",
-      "description": "Virulence:Rapid and Value Density:Concentrated"
+      "definition": "Virulence:Rapid and Value Density:Concentrated"
     }
   ]
 }

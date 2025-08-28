@@ -3,18 +3,18 @@
   "key": "KEV",
   "version": "1.0.0",
   "name": "In KEV",
-  "description": "Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
+  "definition": "Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "No",
-      "description": "Vulnerability is not listed in KEV."
+      "definition": "Vulnerability is not listed in KEV."
     },
     {
       "key": "Y",
       "name": "Yes",
-      "description": "Vulnerability is listed in KEV."
+      "definition": "Vulnerability is listed in KEV."
     }
   ]
 }

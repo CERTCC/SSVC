@@ -29,19 +29,19 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
+    definition="Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for "
     "some reason. These steps are reconnaissance, weaponization, delivery, and exploitation.",
 )
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
+    definition="Attackers can reliably automate all 4 steps of the kill chain. These steps are "
     "reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is "
     '"wormable").',
 )
 AUTOMATABLE_1 = CvssDecisionPoint(
     name="Automatable",
-    description='The "Automatable" metric captures the answer to the question "Can an attacker automate exploitation '
+    definition='The "Automatable" metric captures the answer to the question "Can an attacker automate exploitation '
     'events for this vulnerability across multiple targets?" based on steps 1-4 of the kill chain.',
     key="AU",
     version="1.0.0",

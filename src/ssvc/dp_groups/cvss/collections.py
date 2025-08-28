@@ -159,7 +159,7 @@ ENVIRONMENTAL_1 = [
 CVSSv1_B = DecisionPointGroup(
     name="CVSS",
     version="1.0.0",
-    description="CVSS v1 decision points",
+    definition="CVSS v1 decision points",
     decision_points=tuple(BASE_1),
 )
 """CVSS v1 Base Metrics"""
@@ -167,7 +167,7 @@ CVSSv1_B = DecisionPointGroup(
 CVSSv1_BT = DecisionPointGroup(
     name="CVSS",
     version="1.0.0",
-    description="CVSS v1 decision points",
+    definition="CVSS v1 decision points",
     decision_points=tuple(BASE_1 + TEMPORAL_1),
 )
 """CVSS v1 Base and Temporal Metrics"""
@@ -175,7 +175,7 @@ CVSSv1_BT = DecisionPointGroup(
 CVSSv1_BTE = DecisionPointGroup(
     name="CVSS",
     version="1.0.0",
-    description="CVSS v1 decision points",
+    definition="CVSS v1 decision points",
     decision_points=tuple(BASE_1 + TEMPORAL_1 + ENVIRONMENTAL_1),
 )
 """CVSS v1 Base, Temporal, and Environmental Metrics"""
@@ -212,7 +212,7 @@ ENVIRONMENTAL_2 = [
 
 CVSSv2_B = DecisionPointGroup(
     name="CVSS Version 2 Base Metrics",
-    description="Base metrics for CVSS v2",
+    definition="Base metrics for CVSS v2",
     version="2.0.0",
     decision_points=tuple(BASE_2),
 )
@@ -220,7 +220,7 @@ CVSSv2_B = DecisionPointGroup(
 
 CVSSv2_BT = DecisionPointGroup(
     name="CVSS Version 2 Base and Temporal Metrics",
-    description="Base and Temporal metrics for CVSS v2",
+    definition="Base and Temporal metrics for CVSS v2",
     version="2.0.0",
     decision_points=tuple(BASE_2 + TEMPORAL_2),
 )
@@ -228,7 +228,7 @@ CVSSv2_BT = DecisionPointGroup(
 
 CVSSv2_BTE = DecisionPointGroup(
     name="CVSS Version 2 Base, Temporal, and Environmental Metrics",
-    description="Base, Temporal, and Environmental metrics for CVSS v2",
+    definition="Base, Temporal, and Environmental metrics for CVSS v2",
     version="2.0.0",
     decision_points=tuple(BASE_2 + TEMPORAL_2 + ENVIRONMENTAL_2),
 )
@@ -266,7 +266,7 @@ ENVIRONMENTAL_3 = [modify_3(dp) for dp in BASE_3] + [
 
 CVSSv3_B = DecisionPointGroup(
     name="CVSS Version 3 Base Metrics",
-    description="Base metrics for CVSS v3",
+    definition="Base metrics for CVSS v3",
     version="3.0.0",
     decision_points=tuple(BASE_3),
 )
@@ -274,7 +274,7 @@ CVSSv3_B = DecisionPointGroup(
 
 CVSSv3_BT = DecisionPointGroup(
     name="CVSS Version 3 Base and Temporal Metrics",
-    description="Base and Temporal metrics for CVSS v3",
+    definition="Base and Temporal metrics for CVSS v3",
     version="3.0.0",
     decision_points=tuple(BASE_3 + TEMPORAL_3),
 )
@@ -282,7 +282,7 @@ CVSSv3_BT = DecisionPointGroup(
 
 CVSSv3_BTE = DecisionPointGroup(
     name="CVSS Version 3 Base, Temporal, and Environmental Metrics",
-    description="Base, Temporal, and Environmental metrics for CVSS v3",
+    definition="Base, Temporal, and Environmental metrics for CVSS v3",
     version="3.0.0",
     decision_points=tuple(BASE_3 + TEMPORAL_3 + ENVIRONMENTAL_3),
 )
@@ -340,7 +340,7 @@ SUPPLEMENTAL_4 = [
 # CVSS-B	Base metrics
 CVSSv4_B = DecisionPointGroup(
     name="CVSSv4 Base Metrics",
-    description="Base metrics for CVSS v4",
+    definition="Base metrics for CVSS v4",
     version="4.0.0",
     decision_points=tuple(BASE_4),
 )
@@ -349,7 +349,7 @@ CVSSv4_B = DecisionPointGroup(
 # CVSS-BE	Base and Environmental metrics
 CVSSv4_BE = DecisionPointGroup(
     name="CVSSv4 Base and Environmental Metrics",
-    description="Base and Environmental metrics for CVSS v4",
+    definition="Base and Environmental metrics for CVSS v4",
     version="4.0.0",
     decision_points=tuple(BASE_4 + ENVIRONMENTAL_4),
 )
@@ -358,7 +358,7 @@ CVSSv4_BE = DecisionPointGroup(
 # CVSS-BT	Base and Threat metrics
 CVSSv4_BT = DecisionPointGroup(
     name="CVSSv4 Base and Threat Metrics",
-    description="Base and Threat metrics for CVSS v4",
+    definition="Base and Threat metrics for CVSS v4",
     version="4.0.0",
     decision_points=tuple(BASE_4 + THREAT_4),
 )
@@ -367,7 +367,7 @@ CVSSv4_BT = DecisionPointGroup(
 # CVSS-BTE
 CVSSv4_BTE = DecisionPointGroup(
     name="CVSSv4 Base, Threat, and Environmental Metrics",
-    description="Base, Threat, and Environmental metrics for CVSS v4",
+    definition="Base, Threat, and Environmental metrics for CVSS v4",
     version="4.0.0",
     decision_points=tuple(BASE_4 + THREAT_4 + ENVIRONMENTAL_4),
 )
@@ -375,7 +375,7 @@ CVSSv4_BTE = DecisionPointGroup(
 
 CVSSv4 = DecisionPointGroup(
     name="CVSSv4",
-    description="All decision points for CVSS v4 (including supplemental metrics)",
+    definition="All decision points for CVSS v4 (including supplemental metrics)",
     version="4.0.0",
     decision_points=tuple(
         BASE_4 + THREAT_4 + ENVIRONMENTAL_4 + SUPPLEMENTAL_4
@@ -385,7 +385,7 @@ CVSSv4 = DecisionPointGroup(
 
 CVSSv4_Equivalence_Sets = DecisionPointGroup(
     name="CVSSv4 EQ Sets",
-    description="Equivalence Sets for CVSS v4",
+    definition="Equivalence Sets for CVSS v4",
     version="4.0.0",
     decision_points=(
         EQ1,

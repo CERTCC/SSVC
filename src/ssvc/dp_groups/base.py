@@ -21,7 +21,13 @@
 
 """
 Provides a DecisionPointGroup object for use in SSVC.
+
+!!! warning "`ssvc.dp_groups` is deprecated"
+
+    This module is *deprecated*. New development should focus on [`ssvc.decision_tables`](decision_tables.md).
+
 """
+import warnings
 from collections.abc import MutableMapping
 from typing import Literal
 
@@ -39,12 +45,24 @@ class DecisionPointGroup(
     _Base, _SchemaVersioned, _Versioned, BaseModel, MutableMapping
 ):
     """
+    **DEPRECATED:** `DecisionPointGroup` has been superseded by `DecisionTable`.
+    New development should use `DecisionTable` instead.
+    We are keeping this class around for backward compatibility, but it may be removed in future releases.
+
     Models a group of decision points as a dictionary, keyed by their ID.
     """
 
     decision_points: dict[str, DecisionPoint]
 
     schemaVersion: Literal[SCHEMA_VERSION]
+
+    def __init__(self, *args, **kwargs):
+        warnings.warn(
+            f"{self.__class__.__name__} is deprecated; use `DecisionTable` instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        super().__init__(*args, **kwargs)
 
     @model_validator(mode="before")
     @classmethod

@@ -29,24 +29,24 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 UNCOOPERATIVE = DecisionPointValue(
     name="Uncooperative/Unresponsive",
     key="UU",
-    description="The supplier has not responded, declined to generate a remediation, or no longer exists.",
+    definition="The supplier has not responded, declined to generate a remediation, or no longer exists.",
 )
 
 COOPERATIVE = DecisionPointValue(
     name="Cooperative",
     key="C",
-    description="The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.",
+    definition="The supplier is actively generating a patch or fix; they may or may not have provided a mitigation or work-around in the mean time.",
 )
 
 FIX_READY = DecisionPointValue(
     name="Fix Ready",
     key="FR",
-    description="The supplier has provided a patch or fix.",
+    definition="The supplier has provided a patch or fix.",
 )
 
 SUPPLIER_INVOLVEMENT_1 = SsvcDecisionPoint(
     name="Supplier Involvement",
-    description="What is the state of the supplier’s work on addressing the vulnerability?",
+    definition="What is the state of the supplier’s work on addressing the vulnerability?",
     key="SINV",
     version="1.0.0",
     values=(

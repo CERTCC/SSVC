@@ -28,15 +28,15 @@ class MyTestCase(unittest.TestCase):
         self.dp = DecisionPoint(
             namespace="test",
             name="test name",
-            description="test description",
+            definition="test description",
             key="TK",
             version="1.0.0",
             values=(
                 DecisionPointValue(
-                    name="A", key="A", description="A Definition"
+                    name="A", key="A", definition="A Definition"
                 ),
                 DecisionPointValue(
-                    name="B", key="B", description="B Definition"
+                    name="B", key="B", definition="B Definition"
                 ),
             ),
         )
@@ -84,7 +84,7 @@ class MyTestCase(unittest.TestCase):
 
         for value in self.dp.values:
             self.assertIn(value.name, result)
-            self.assertIn(value.description, result)
+            self.assertIn(value.definition, result)
 
 
 if __name__ == "__main__":

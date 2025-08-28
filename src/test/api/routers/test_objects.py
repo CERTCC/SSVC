@@ -41,17 +41,17 @@ class TestObjectsRouter(unittest.TestCase):
             key="key1",
             version="1.0.0",
             name="Test DP 1",
-            description="desc1",
+            definition="desc1",
             values=(
                 DecisionPointValue(
                     key="value1",
                     name="Value 1",
-                    description="Description for value 1",
+                    definition="Description for value 1",
                 ),
                 DecisionPointValue(
                     key="value2",
                     name="Value 2",
-                    description="Description for value 2",
+                    definition="Description for value 2",
                 ),
             ),
         )
@@ -60,17 +60,17 @@ class TestObjectsRouter(unittest.TestCase):
             key="key2",
             version="1.0.0",
             name="Test DP 2",
-            description="desc2",
+            definition="desc2",
             values=(
                 DecisionPointValue(
                     key="value1",
                     name="Value 1",
-                    description="Description for value 1",
+                    definition="Description for value 1",
                 ),
                 DecisionPointValue(
                     key="value2",
                     name="Value 2",
-                    description="Description for value 2",
+                    definition="Description for value 2",
                 ),
             ),
         )
@@ -79,22 +79,22 @@ class TestObjectsRouter(unittest.TestCase):
             key="key3",
             version="1.0.0",
             name="Test DP 3",
-            description="desc3",
+            definition="desc3",
             values=(
                 DecisionPointValue(
                     key="value1",
                     name="Value 1",
-                    description="Description for value 1",
+                    definition="Description for value 1",
                 ),
                 DecisionPointValue(
                     key="value2",
                     name="Value 2",
-                    description="Description for value 2",
+                    definition="Description for value 2",
                 ),
                 DecisionPointValue(
                     key="value3",
                     name="Value 3",
-                    description="Description for value 3",
+                    definition="Description for value 3",
                 ),
             ),
         )
@@ -103,7 +103,7 @@ class TestObjectsRouter(unittest.TestCase):
             key="key2",
             version="2.0.0",
             name="Test DT",
-            description="desc",
+            definition="desc",
             decision_points={
                 dp.id: dp for dp in (self.dp1, self.dp2, self.dp3)
             },
@@ -139,7 +139,7 @@ class TestObjectsRouter(unittest.TestCase):
         self.assertEqual(response.json()["key"], dt.key)
         self.assertEqual(response.json()["version"], dt.version)
         self.assertEqual(response.json()["name"], dt.name)
-        self.assertEqual(response.json()["description"], dt.description)
+        self.assertEqual(response.json()["definition"], dt.definition)
 
     @patch("ssvc.api.routers.objects.lookup_by_id")
     def test_get_decision_table_not_found(self, mock_lookup):

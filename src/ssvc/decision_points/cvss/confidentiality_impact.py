@@ -28,7 +28,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="There is total loss of confidentiality, resulting in all resources within the impacted component "
+    definition="There is total loss of confidentiality, resulting in all resources within the impacted component "
     "being divulged to the attacker. Alternatively, access to only some restricted information is "
     "obtained, but the disclosed information presents a direct, serious impact. For example, an attacker "
     "steals the administrator's password, or private encryption keys of a web server.",
@@ -37,7 +37,7 @@ _HIGH = DecisionPointValue(
 _LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="There is some loss of confidentiality. Access to some restricted information is obtained, "
+    definition="There is some loss of confidentiality. Access to some restricted information is obtained, "
     "but the attacker does not have control over what information is obtained, or the amount or kind of "
     "loss is constrained. The information disclosure does not cause a direct, serious loss to the "
     "impacted component.",
@@ -46,13 +46,13 @@ _LOW = DecisionPointValue(
 _CI_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no loss of confidentiality within the impacted component.",
+    definition="There is no loss of confidentiality within the impacted component.",
 )
 
 _COMPLETE = DecisionPointValue(
     name="Complete",
     key="C",
-    description="A total compromise of critical system information. A complete loss of system protection resulting in "
+    definition="A total compromise of critical system information. A complete loss of system protection resulting in "
     "all critical system files being revealed. The attacker has sovereign control to read all of the "
     "system's data (memory, files, etc).",
 )
@@ -60,7 +60,7 @@ _COMPLETE = DecisionPointValue(
 _PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
-    description="There is considerable informational disclosure. Access to critical system files is possible. There "
+    definition="There is considerable informational disclosure. Access to critical system files is possible. There "
     "is a loss of important information, but the attacker doesn't have control over what is obtainable or "
     "the scope of the loss is constrained.",
 )
@@ -68,12 +68,12 @@ _PARTIAL = DecisionPointValue(
 _CI_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="No impact on confidentiality.",
+    definition="No impact on confidentiality.",
 )
 
 CONFIDENTIALITY_IMPACT_1 = CvssDecisionPoint(
     name="Confidentiality Impact",
-    description="This metric measures the impact on confidentiality of a successful exploit of the vulnerability on "
+    definition="This metric measures the impact on confidentiality of a successful exploit of the vulnerability on "
     "the target system.",
     key="C",
     version="1.0.0",
@@ -89,7 +89,7 @@ Defines None, Partial, and Complete values for CVSS Confidentiality Impact.
 
 CONFIDENTIALITY_IMPACT_2 = CvssDecisionPoint(
     name="Confidentiality Impact",
-    description="This metric measures the impact to the confidentiality of the information resources managed by a "
+    definition="This metric measures the impact to the confidentiality of the information resources managed by a "
     "software component due to a successfully exploited vulnerability.",
     key="C",
     version="2.0.0",
@@ -107,7 +107,7 @@ Updates None. Removes Partial and Complete. Adds Low and High values for CVSS Co
 _HIGH_1 = DecisionPointValue(
     name="High",
     key="H",
-    description="There is total loss of confidentiality, resulting in all resources within the impacted component "
+    definition="There is total loss of confidentiality, resulting in all resources within the impacted component "
     "being divulged to the attacker. Alternatively, access to only some restricted information is "
     "obtained, but the disclosed information presents a direct, serious impact. For example, an attacker "
     "steals the administrator's password, or private encryption keys of a web server.",
@@ -116,7 +116,7 @@ _HIGH_1 = DecisionPointValue(
 _LOW_1 = DecisionPointValue(
     name="Low",
     key="L",
-    description="There is some loss of confidentiality. Access to some restricted information is obtained, "
+    definition="There is some loss of confidentiality. Access to some restricted information is obtained, "
     "but the attacker does not have control over what information is obtained, or the amount or kind of "
     "loss is constrained. The information disclosure does not cause a direct, serious loss to the "
     "impacted component.",
@@ -125,12 +125,12 @@ _LOW_1 = DecisionPointValue(
 _CI_NONE_3 = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no loss of confidentiality within the impacted component.",
+    definition="There is no loss of confidentiality within the impacted component.",
 )
 
 CONFIDENTIALITY_IMPACT_3_0_0 = CvssDecisionPoint(
     name="Confidentiality Impact to the Vulnerable System",
-    description="This metric measures the impact to the confidentiality of the information managed by the system due "
+    definition="This metric measures the impact to the confidentiality of the information managed by the system due "
     "to a successfully exploited vulnerability. Confidentiality refers to limiting information access "
     "and disclosure to only authorized users, as well as preventing access by, or disclosure to, "
     "unauthorized ones.",

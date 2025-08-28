@@ -28,18 +28,18 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="Vulnerability is listed in KEV.",
+    definition="Vulnerability is listed in KEV.",
 )
 
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="Vulnerability is not listed in KEV.",
+    definition="Vulnerability is not listed in KEV.",
 )
 
 IN_KEV_1 = CisaDecisionPoint(
     name="In KEV",
-    description="Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
+    definition="Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
     key="KEV",
     version="1.0.0",
     values=(

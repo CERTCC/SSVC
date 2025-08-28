@@ -25,14 +25,14 @@ from ssvc.decision_points.base import (
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.namespaces import NameSpace
 
-_NO = DecisionPointValue(name="No", key="N", description="No")
+_NO = DecisionPointValue(name="No", key="N", definition="No")
 
-_YES = DecisionPointValue(name="Yes", key="Y", description="Yes")
+_YES = DecisionPointValue(name="Yes", key="Y", definition="Yes")
 
 YES_NO = DecisionPoint(
     name="YesNo",
     key="YN",
-    description="A Yes/No decision point / outcome group.",
+    definition="A Yes/No decision point / outcome group.",
     version="1.0.0",
     namespace=NameSpace.BASIC,
     values=(

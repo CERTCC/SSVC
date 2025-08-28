@@ -130,14 +130,14 @@ class MyTestCase(unittest.TestCase):
         # Test set_optional_fields validator
         value = MinimalDecisionPointValue(key="test_key")
         self.assertIsNone(value.name)
-        self.assertIsNone(value.description)
+        self.assertIsNone(value.definition)
 
         # Test with empty strings
         value_empty = MinimalDecisionPointValue(
-            key="test_key", name="", description=""
+            key="test_key", name="", definition=""
         )
         self.assertIsNone(value_empty.name)
-        self.assertIsNone(value_empty.description)
+        self.assertIsNone(value_empty.definition)
 
     def test_selection_validators(self):
         """Test the model validators for Selection."""
@@ -149,7 +149,7 @@ class MyTestCase(unittest.TestCase):
             values=[{"key": "value1"}],
         )
         self.assertIsNone(selection_minimal.name)
-        self.assertIsNone(selection_minimal.description)
+        self.assertIsNone(selection_minimal.definition)
 
         # Test with empty strings
         selection_empty = selection.Selection(
@@ -158,10 +158,10 @@ class MyTestCase(unittest.TestCase):
             version="1.0.0",
             values=[{"key": "value1"}],
             name="",
-            description="",
+            definition="",
         )
         self.assertIsNone(selection_empty.name)
-        self.assertIsNone(selection_empty.description)
+        self.assertIsNone(selection_empty.definition)
 
     def test_from_decision_point(self):
         """Test converting a decision point to a selection."""
@@ -289,7 +289,7 @@ class MyTestCase(unittest.TestCase):
                 selections=[self.s1],
                 timestamp=datetime.now(),
                 # Invalid: due to duplicates
-                target_ids=["CVE-1900-1234","CVE-1900-1234"],
+                target_ids=["CVE-1900-1234", "CVE-1900-1234"],
             )
 
     def test_add_selection_method(self):

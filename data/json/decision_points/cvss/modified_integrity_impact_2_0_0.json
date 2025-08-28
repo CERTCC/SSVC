@@ -3,28 +3,28 @@
   "key": "MI",
   "version": "2.0.0",
   "name": "Modified Integrity Impact",
-  "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+  "definition": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "None",
-      "description": "There is no impact to the integrity of the system."
+      "definition": "There is no impact to the integrity of the system."
     },
     {
       "key": "L",
       "name": "Low",
-      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is constrained. The data modification does not have a direct, serious impact on the impacted component."
+      "definition": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is constrained. The data modification does not have a direct, serious impact on the impacted component."
     },
     {
       "key": "H",
       "name": "High",
-      "description": "There is a total loss of integrity, or a complete loss of protection."
+      "definition": "There is a total loss of integrity, or a complete loss of protection."
     },
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

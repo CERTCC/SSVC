@@ -37,7 +37,7 @@ class TestDecisionTablesRouter(unittest.TestCase):
 
         # create a new registry for testing
         self.r = SsvcObjectRegistry(
-            name="test registry", description="test registry"
+            name="test registry", definition="test registry"
         )
         self.r.reset(force=True)
         # make sure it's empty
@@ -50,11 +50,11 @@ class TestDecisionTablesRouter(unittest.TestCase):
             key="A",
             version="1.0.0",
             name="Test Decision Point",
-            description="This is a test decision point.",
+            definition="This is a test decision point.",
             values=(
-                DecisionPointValue(name="value1", description=".", key="K1"),
-                DecisionPointValue(name="value2", description=".", key="K2"),
-                DecisionPointValue(name="value3", description=".", key="K3"),
+                DecisionPointValue(name="value1", definition=".", key="K1"),
+                DecisionPointValue(name="value2", definition=".", key="K2"),
+                DecisionPointValue(name="value3", definition=".", key="K3"),
             ),
             registered=False,
         )
@@ -63,10 +63,10 @@ class TestDecisionTablesRouter(unittest.TestCase):
             key="B",
             version="1.0.0",
             name="Test Decision Point",
-            description="This is a test decision point.",
+            definition="This is a test decision point.",
             values=(
-                DecisionPointValue(name="value1", description=".", key="K1"),
-                DecisionPointValue(name="value2", description=".", key="K2"),
+                DecisionPointValue(name="value1", definition=".", key="K1"),
+                DecisionPointValue(name="value2", definition=".", key="K2"),
             ),
             registered=False,
         )
@@ -75,7 +75,7 @@ class TestDecisionTablesRouter(unittest.TestCase):
             key="DT_1",
             version="1.0.0",
             name="Test Decision Table",
-            description="This is a test decision table.",
+            definition="This is a test decision table.",
             decision_points={dp.id: dp for dp in (self.dp1, self.dp2)},
             outcome=self.dp2.id,
             registered=False,

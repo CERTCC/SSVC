@@ -29,19 +29,19 @@ class MyTestCase(unittest.TestCase):
         self.dp1 = DecisionPoint(
             name="Test DP",
             key="test_dp",
-            description="This is a test decision point",
+            definition="This is a test decision point",
             version="1.0.0",
             namespace="test",
             values=(
                 DecisionPointValue(
                     name="Yes",
                     key="yes",
-                    description="Yes",
+                    definition="Yes",
                 ),
                 DecisionPointValue(
                     name="No",
                     key="no",
-                    description="No",
+                    definition="No",
                 ),
             ),
         )
@@ -54,7 +54,7 @@ class MyTestCase(unittest.TestCase):
         # if name, key, and description are the same, then it's not a new object
         self.assertEqual(self.dp1.name, self.dp2.name)
         self.assertEqual(self.dp1.key, self.dp2.key)
-        self.assertEqual(self.dp1.description, self.dp2.description)
+        self.assertEqual(self.dp1.definition, self.dp2.definition)
 
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)
@@ -71,7 +71,7 @@ class MyTestCase(unittest.TestCase):
         text = "\n".join(results)
         self.assertNotIn("new object", text)
 
-        self.dp2.description = "This is a new test decision point"
+        self.dp2.definition = "This is a new test decision point"
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)
 
@@ -101,7 +101,7 @@ class MyTestCase(unittest.TestCase):
             DecisionPointValue(
                 name="Maybe",
                 key="maybe",
-                description="Maybe",
+                definition="Maybe",
             )
         )
         self.dp2.values = tuple(vals)
@@ -120,7 +120,7 @@ class MyTestCase(unittest.TestCase):
             DecisionPointValue(
                 name="Maybe",
                 key="maybe",
-                description="Maybe",
+                definition="Maybe",
             )
         )
         self.dp2.values = tuple(vals)
@@ -165,7 +165,7 @@ class MyTestCase(unittest.TestCase):
         #   * the decision point description changes in a way that does not affect
         #     semantics, _OR_
 
-        self.dp2.description = "This is a new test decision point"
+        self.dp2.definition = "This is a new test decision point"
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)
         self.assertIn("patch", text)
@@ -173,7 +173,7 @@ class MyTestCase(unittest.TestCase):
     def test_patch_version_when_value_description_changes(self):
         #   * a value description changes in a way that does not affect semantics
         self.dp2.values = deepcopy(self.dp1.values)
-        self.dp2.values[0].description = "New Yes"
+        self.dp2.values[0].definition = "New Yes"
         results = dp_diff(self.dp1, self.dp2)
         text = "\n".join(results)
         self.assertIn("patch", text)

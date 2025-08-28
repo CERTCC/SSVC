@@ -3,23 +3,23 @@
   "key": "AU",
   "version": "1.0.0",
   "name": "Automatable",
-  "description": "The \"Automatable\" metric captures the answer to the question \"Can an attacker automate exploitation events for this vulnerability across multiple targets?\" based on steps 1-4 of the kill chain.",
+  "definition": "The \"Automatable\" metric captures the answer to the question \"Can an attacker automate exploitation events for this vulnerability across multiple targets?\" based on steps 1-4 of the kill chain.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "No",
-      "description": "Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation."
+      "definition": "Attackers cannot reliably automate all 4 steps of the kill chain for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation."
     },
     {
       "key": "Y",
       "name": "Yes",
-      "description": "Attackers can reliably automate all 4 steps of the kill chain. These steps are reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is \"wormable\")."
+      "definition": "Attackers can reliably automate all 4 steps of the kill chain. These steps are reconnaissance, weaponization, delivery, and exploitation (e.g., the vulnerability is \"wormable\")."
     },
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

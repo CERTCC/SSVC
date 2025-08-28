@@ -29,7 +29,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="There is total loss of availability, resulting in the attacker being able to fully deny access to "
+    definition="There is total loss of availability, resulting in the attacker being able to fully deny access to "
     "resources in the impacted component; this loss is either sustained (while the attacker continues to "
     "deliver the attack) or persistent (the condition persists even after the attack has completed).",
 )
@@ -37,36 +37,36 @@ _HIGH = DecisionPointValue(
 _LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="There is reduced performance or interruptions in resource availability.",
+    definition="There is reduced performance or interruptions in resource availability.",
 )
 
 _NONE_2 = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no impact to the availability of the system.",
+    definition="There is no impact to the availability of the system.",
 )
 
 _COMPLETE = DecisionPointValue(
     name="Complete",
     key="C",
-    description="Total shutdown of the affected resource. The attacker can render the resource completely unavailable.",
+    definition="Total shutdown of the affected resource. The attacker can render the resource completely unavailable.",
 )
 
 _PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
-    description="Considerable lag in or interruptions in resource availability. For example, a network-based flood "
+    definition="Considerable lag in or interruptions in resource availability. For example, a network-based flood "
     "attack that reduces available bandwidth to a web server farm to such an extent that only a small "
     "number of connections successfully complete.",
 )
 
 _NONE_1 = DecisionPointValue(
-    name="None", key="N", description="No impact on availability."
+    name="None", key="N", definition="No impact on availability."
 )
 
 AVAILABILITY_IMPACT_1 = CvssDecisionPoint(
     name="Availability Impact",
-    description="This metric measures the impact on availability a successful exploit of the vulnerability will have "
+    definition="This metric measures the impact on availability a successful exploit of the vulnerability will have "
     "on the target system.",
     key="A",
     version="1.0.0",
@@ -82,7 +82,7 @@ Defines None, Partial, and Complete values for CVSS Availability Impact.
 
 AVAILABILITY_IMPACT_2 = CvssDecisionPoint(
     name="Availability Impact",
-    description="This metric measures the impact to availability of a successfully exploited vulnerability.",
+    definition="This metric measures the impact to availability of a successfully exploited vulnerability.",
     key="A",
     version="2.0.0",
     values=(
@@ -98,7 +98,7 @@ Updates None. Removes Partial and Complete. Adds Low and High values for CVSS Av
 _HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
-    description="There is total loss of availability, resulting in the attacker being able to fully deny access to "
+    definition="There is total loss of availability, resulting in the attacker being able to fully deny access to "
     "resources in the impacted component; this loss is either sustained (while the attacker continues to "
     "deliver the attack) or persistent (the condition persists even after the attack has completed).",
 )
@@ -106,7 +106,7 @@ _HIGH_2 = DecisionPointValue(
 _LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
-    description="There is reduced performance or interruptions in resource availability. Even if repeated "
+    definition="There is reduced performance or interruptions in resource availability. Even if repeated "
     "exploitation of the vulnerability is possible, the attacker does not have the ability to completely "
     "deny service to legitimate users. The resources in the Vulnerable System are either partially "
     "available all of the time, or fully available only some of the time, but overall there is no direct, "
@@ -116,13 +116,13 @@ _LOW_2 = DecisionPointValue(
 _NONE_3 = DecisionPointValue(
     name="None",
     key="N",
-    description="There is no impact to availability within the Vulnerable System.",
+    definition="There is no impact to availability within the Vulnerable System.",
 )
 
 
 AVAILABILITY_IMPACT_3_0_0 = CvssDecisionPoint(
     name="Availability Impact to the Vulnerable System",
-    description="This metric measures the impact to the availability of the impacted system resulting from a "
+    definition="This metric measures the impact to the availability of the impacted system resulting from a "
     "successfully exploited vulnerability.",
     key="VA",
     version="3.0.0",

@@ -30,24 +30,24 @@ def fake_ms_impacts() -> list[CvssDecisionPoint]:
     for key in ["MSC", "MSI", "MSA"]:
         dp = CvssDecisionPoint(
             name=f"{key} test",
-            description=f"{key} test",
+            definition=f"{key} test",
             version="1.0.0",
             key=key,
             values=(
                 DecisionPointValue(
                     name="None",
                     key="N",
-                    description="No impact",
+                    definition="No impact",
                 ),
                 DecisionPointValue(
                     name="Low",
                     key="L",
-                    description="Low impact",
+                    definition="Low impact",
                 ),
                 DecisionPointValue(
                     name="High",
                     key="H",
-                    description="High impact",
+                    definition="High impact",
                 ),
             ),
         )
@@ -66,18 +66,18 @@ class TestCvssHelpers(unittest.TestCase):
         for i in range(3):
             dp = CvssDecisionPoint(
                 name=f"test_{i}",
-                description=f"test_{i}",
+                definition=f"test_{i}",
                 version="1.0.0",
                 key=f"TDP{i}",
                 values=(
                     DecisionPointValue(
                         name=f"yes_{i}",
-                        description=f"yes_{i}",
+                        definition=f"yes_{i}",
                         key=f"Y{i}",
                     ),
                     DecisionPointValue(
                         name=f"no_{i}",
-                        description=f"no_{i}",
+                        definition=f"no_{i}",
                         key=f"N{i}",
                     ),
                 ),

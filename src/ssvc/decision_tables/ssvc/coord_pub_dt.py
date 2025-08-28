@@ -39,7 +39,7 @@ V1_0_0 = DecisionTable(
     key="COORD_PUBLISH",
     version="1.0.0",
     name="Coordinator Publish Decision Table",
-    description="This decision table is used to determine the priority of a coordinator publish.",
+    definition="This decision table is used to determine the priority of a coordinator publish.",
     decision_points={
         dp.id: dp
         for dp in [

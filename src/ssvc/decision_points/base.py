@@ -157,27 +157,7 @@ class DecisionPoint(
 
 
 def main():
-    opt_none = DecisionPointValue(
-        name="None", key="N", description="No exploit available"
-    )
-    opt_poc = DecisionPointValue(
-        name="PoC", key="P", description="Proof of concept exploit available"
-    )
-    opt_active = DecisionPointValue(
-        name="Active", key="A", description="Active exploitation observed"
-    )
-    opts = [opt_none, opt_poc, opt_active]
-
-    dp = DecisionPoint(
-        _comment="This is an optional comment that will be included in the object.",
-        values=opts,
-        name="Exploitation",
-        description="Is there an exploit available?",
-        key="E",
-        version="1.0.0",
-    )
-
-    print(dp.model_dump_json(indent=2))
+    print("Please use doctools.py for schema generation and unit tests for verification")
 
 
 if __name__ == "__main__":

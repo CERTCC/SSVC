@@ -3,28 +3,28 @@
   "key": "HI",
   "version": "2.0.0",
   "name": "Human Impact",
-  "description": "Human Impact is a combination of Safety and Mission impacts.",
+  "definition": "Human Impact is a combination of Safety and Mission impacts.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Low",
-      "description": "Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)"
+      "definition": "Safety Impact:(None OR Minor) AND Mission Impact:(None OR Degraded OR Crippled)"
     },
     {
       "key": "M",
       "name": "Medium",
-      "description": "(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))"
+      "definition": "(Safety Impact:(None OR Minor) AND Mission Impact:MEF Failure) OR (Safety Impact:Major AND Mission Impact:(None OR Degraded OR Crippled))"
     },
     {
       "key": "H",
       "name": "High",
-      "description": "(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)"
+      "definition": "(Safety Impact:Hazardous AND Mission Impact:(None OR Degraded OR Crippled)) OR (Safety Impact:Major AND Mission Impact:MEF Failure)"
     },
     {
       "key": "VH",
       "name": "Very High",
-      "description": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
+      "definition": "Safety Impact:Catastrophic OR Mission Impact:Mission Failure"
     }
   ]
 }

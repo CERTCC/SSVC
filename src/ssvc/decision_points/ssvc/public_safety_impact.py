@@ -29,13 +29,13 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 MINIMAL_1 = DecisionPointValue(
     name="Minimal",
-    description="The effect is below the threshold for all aspects described in material. ",
+    definition="The effect is below the threshold for all aspects described in material. ",
     key="M",
 )
 
 MATERIAL = DecisionPointValue(
     name="Material",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: Does one or more of the following: "
     "(a) Causes physical distress or injury to system users. "
     "(b) Introduces occupational safety hazards. "
@@ -50,7 +50,7 @@ MATERIAL = DecisionPointValue(
 
 MATERIAL_1 = DecisionPointValue(
     name="Material",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: Does one or more of the following: "
     "(a) Causes physical distress or injury to system users. "
     "(b) Introduces occupational safety hazards. "
@@ -66,7 +66,7 @@ MATERIAL_1 = DecisionPointValue(
 
 IRREVERSIBLE = DecisionPointValue(
     name="Irreversible",
-    description="Any one or more of these conditions hold. "
+    definition="Any one or more of these conditions hold. "
     "Physical harm: One or both of the following are true: (a) Multiple fatalities are likely."
     "(b) The cyber-physical system, of which the vulnerable componen is a part, is likely lost or destroyed. "
     " Environment: Extreme or serious externalities (immediate public health threat, environmental damage leading to small "
@@ -79,22 +79,22 @@ IRREVERSIBLE = DecisionPointValue(
 
 SIGNIFICANT = DecisionPointValue(
     name="Significant",
-    description="Safety Impact:(Major OR Hazardous OR Catastrophic)",
+    definition="Safety Impact:(Major OR Hazardous OR Catastrophic)",
     key="S",
 )
 
 MINIMAL_2 = DecisionPointValue(
-    name="Minimal", description="Safety Impact:(None OR Minor)", key="M"
+    name="Minimal", definition="Safety Impact:(None OR Minor)", key="M"
 )
 
 SIGNIFICANT_1 = DecisionPointValue(
     name="Significant",
-    description="Safety Impact:(Marginal OR Critical OR Catastrophic)",
+    definition="Safety Impact:(Marginal OR Critical OR Catastrophic)",
     key="S",
 )
 
 MINIMAL_3 = DecisionPointValue(
-    name="Minimal", description="Safety Impact:Negligible", key="M"
+    name="Minimal", definition="Safety Impact:Negligible", key="M"
 )
 
 # This version is deprecated because it had two values with the same key.
@@ -113,7 +113,7 @@ MINIMAL_3 = DecisionPointValue(
 
 PUBLIC_WELL_BEING_IMPACT_1_1 = SsvcDecisionPoint(
     name="Public Well-Being Impact",
-    description="A coarse-grained representation of impact to public well-being.",
+    definition="A coarse-grained representation of impact to public well-being.",
     key="PWI",
     version="1.1.0",
     values=(
@@ -126,7 +126,7 @@ PUBLIC_WELL_BEING_IMPACT_1_1 = SsvcDecisionPoint(
 
 PUBLIC_SAFETY_IMPACT_2 = SsvcDecisionPoint(
     name="Public Safety Impact",
-    description="A coarse-grained representation of impact to public safety.",
+    definition="A coarse-grained representation of impact to public safety.",
     key="PSI",
     version="2.0.0",
     values=(
@@ -137,7 +137,7 @@ PUBLIC_SAFETY_IMPACT_2 = SsvcDecisionPoint(
 
 PUBLIC_SAFETY_IMPACT_2_0_1 = SsvcDecisionPoint(
     name="Public Safety Impact",
-    description="A coarse-grained representation of impact to public safety.",
+    definition="A coarse-grained representation of impact to public safety.",
     key="PSI",
     version="2.0.1",
     values=(

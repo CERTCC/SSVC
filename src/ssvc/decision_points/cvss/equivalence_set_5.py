@@ -32,22 +32,22 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 TWO = DecisionPointValue(
     name="Low",
     key="L",
-    description="2: E:U",
+    definition="2: E:U",
 )
 ONE = DecisionPointValue(
     name="Medium",
     key="M",
-    description="1: E:P",
+    definition="1: E:P",
 )
 ZERO = DecisionPointValue(
     name="High",
     key="H",
-    description="0: E:A",
+    definition="0: E:A",
 )
 EQ5 = CvssDecisionPoint(
     name="Equivalence Set 5",
     key="EQ5",
-    description="E with 3 levels specified in Table 28",
+    definition="E with 3 levels specified in Table 28",
     version="1.0.0",
     values=(
         TWO,

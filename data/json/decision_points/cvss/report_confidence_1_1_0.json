@@ -3,28 +3,28 @@
   "key": "RC",
   "version": "1.1.0",
   "name": "Report Confidence",
-  "description": "This metric measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details.",
+  "definition": "This metric measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "UC",
       "name": "Unconfirmed",
-      "description": "A single unconfirmed source or possibly several conflicting reports. There is little confidence in the validity of the report."
+      "definition": "A single unconfirmed source or possibly several conflicting reports. There is little confidence in the validity of the report."
     },
     {
       "key": "UR",
       "name": "Uncorroborated",
-      "description": "Multiple non-official sources; possibily including independent security companies or research organizations. At this point there may be conflicting technical details or some other lingering ambiguity."
+      "definition": "Multiple non-official sources; possibily including independent security companies or research organizations. At this point there may be conflicting technical details or some other lingering ambiguity."
     },
     {
       "key": "C",
       "name": "Confirmed",
-      "description": "Vendor or author of the affected technology has acknowledged that the vulnerability exists. This value may also be set when existence of a vulnerability is confirmed with absolute confidence through some other event, such as publication of functional proof of concept exploit code or widespread exploitation."
+      "definition": "Vendor or author of the affected technology has acknowledged that the vulnerability exists. This value may also be set when existence of a vulnerability is confirmed with absolute confidence through some other event, such as publication of functional proof of concept exploit code or widespread exploitation."
     },
     {
       "key": "ND",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

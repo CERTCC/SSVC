@@ -33,7 +33,7 @@ from ssvc.dp_groups.base import DecisionPointGroup
 
 COORDINATOR_PUBLICATION_1 = DecisionPointGroup(
     name="Coordinator Publication",
-    description="The decision points used by the coordinator during publication.",
+    definition="The decision points used by the coordinator during publication.",
     version="1.0.0",
     decision_points=(
         SUPPLIER_INVOLVEMENT_1,
