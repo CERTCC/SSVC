@@ -1,0 +1,20 @@
+{
+  "namespace": "basic",
+  "key": "MEDIAN",
+  "version": "1.0.0",
+  "name": "Median Split",
+  "definition": "A median split divides a distribution into two equal parts, with 50% of the values falling below the median and 50% above it.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "B",
+      "name": "Below Median",
+      "definition": "Quantile < 0.50. The lower half of the range of possible values."
+    },
+    {
+      "key": "A",
+      "name": "Above Median",
+      "definition": "0.50 <= Quantile <= 1.0. The upper half of the range of possible values."
+    }
+  ]
+}

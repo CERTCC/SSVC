@@ -1,0 +1,20 @@
+{
+  "namespace": "basic",
+  "key": "P_2A",
+  "version": "1.0.0",
+  "name": "Probability Scale in 2 equal levels, ascending",
+  "definition": "A probability scale that divides between less than 50% and greater than or equal to 50%",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "LT50",
+      "name": "Less than 50%",
+      "definition": "0.0 <= Probability < 0.5"
+    },
+    {
+      "key": "GT50",
+      "name": "Greater than 50%",
+      "definition": "0.5 <= Probability <= 1.0"
+    }
+  ]
+}

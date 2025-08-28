@@ -1,3 +1,7 @@
+"""
+Provides SSVC decision points in the `basic` namespace.
+"""
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -16,12 +20,3 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-"""
-Provides SSVC outcome groups for the `basic` namespace
-"""
-
-from .ike import LATEST as EISENHOWER
-from .lmh import LATEST as LMH
-from .mscw import LATEST as MSCW
-from .value_complexity import LATEST as VALUE_COMPLEXITY
-from .yn import LATEST as YES_NO

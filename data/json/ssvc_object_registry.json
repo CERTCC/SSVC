@@ -6,6 +6,841 @@
     "DecisionPoint": {
       "type": "DecisionPoint",
       "namespaces": {
+        "basic": {
+          "namespace": "basic",
+          "keys": {
+            "BP": {
+              "key": "BP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "BP",
+                    "version": "1.0.0",
+                    "name": "Boundary Proximity",
+                    "definition": "Indicates whether another value is near a boundary condition, indicating that special consideration may be needed.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "NN",
+                        "name": "Not Near Boundary",
+                        "definition": "The value is not near a boundary condition"
+                      },
+                      {
+                        "key": "JA",
+                        "name": "Just Above Boundary",
+                        "definition": "The value is just above a boundary condition"
+                      },
+                      {
+                        "key": "JB",
+                        "name": "Just Below Boundary",
+                        "definition": "The value is just below a boundary condition"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "NN": {
+                      "key": "NN",
+                      "name": "Not Near Boundary",
+                      "definition": "The value is not near a boundary condition"
+                    },
+                    "JA": {
+                      "key": "JA",
+                      "name": "Just Above Boundary",
+                      "definition": "The value is just above a boundary condition"
+                    },
+                    "JB": {
+                      "key": "JB",
+                      "name": "Just Below Boundary",
+                      "definition": "The value is just below a boundary condition"
+                    }
+                  }
+                }
+              }
+            },
+            "CIS_WEP": {
+              "key": "CIS_WEP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "CIS_WEP",
+                    "version": "1.0.0",
+                    "name": "CIS-CTI Words of Estimative Probability",
+                    "definition": "A scale for expressing the likelihood of an event or outcome.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "ANC",
+                        "name": "Almost No Chance",
+                        "definition": "Probability < 0.05. Almost no chance, remote"
+                      },
+                      {
+                        "key": "VU",
+                        "name": "Very Unlikely",
+                        "definition": "0.05 <= Probability < 0.20. Very unlikely, highly improbable."
+                      },
+                      {
+                        "key": "U",
+                        "name": "Unlikely",
+                        "definition": "0.20 <= Probability < 0.45. Unlikely, improbable."
+                      },
+                      {
+                        "key": "REC",
+                        "name": "Roughly Even Chance",
+                        "definition": "0.45 <= Probability < 0.55. Roughly even chance, roughly even odds."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Likely",
+                        "definition": "0.55 <= Probability < 0.80. Likely, probable."
+                      },
+                      {
+                        "key": "VL",
+                        "name": "Very Likely",
+                        "definition": "0.80 <= Probability < 0.95. Very likely, highly probable."
+                      },
+                      {
+                        "key": "AC",
+                        "name": "Almost Certain",
+                        "definition": "0.95 <= Probability. Almost certain, nearly certain."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "ANC": {
+                      "key": "ANC",
+                      "name": "Almost No Chance",
+                      "definition": "Probability < 0.05. Almost no chance, remote"
+                    },
+                    "VU": {
+                      "key": "VU",
+                      "name": "Very Unlikely",
+                      "definition": "0.05 <= Probability < 0.20. Very unlikely, highly improbable."
+                    },
+                    "U": {
+                      "key": "U",
+                      "name": "Unlikely",
+                      "definition": "0.20 <= Probability < 0.45. Unlikely, improbable."
+                    },
+                    "REC": {
+                      "key": "REC",
+                      "name": "Roughly Even Chance",
+                      "definition": "0.45 <= Probability < 0.55. Roughly even chance, roughly even odds."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Likely",
+                      "definition": "0.55 <= Probability < 0.80. Likely, probable."
+                    },
+                    "VL": {
+                      "key": "VL",
+                      "name": "Very Likely",
+                      "definition": "0.80 <= Probability < 0.95. Very likely, highly probable."
+                    },
+                    "AC": {
+                      "key": "AC",
+                      "name": "Almost Certain",
+                      "definition": "0.95 <= Probability. Almost certain, nearly certain."
+                    }
+                  }
+                }
+              }
+            },
+            "P_5A": {
+              "key": "P_5A",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "P_5A",
+                    "version": "1.0.0",
+                    "name": "Probability Scale in 5 equal levels, ascending",
+                    "definition": "A probability scale with 20% increments",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "P0_20",
+                        "name": "Less than 20%",
+                        "definition": "Probability < 0.2"
+                      },
+                      {
+                        "key": "P20_40",
+                        "name": "20% to 40%",
+                        "definition": "0.2 <= Probability < 0.4"
+                      },
+                      {
+                        "key": "P40_60",
+                        "name": "40% to 60%",
+                        "definition": "0.4 <= Probability < 0.6"
+                      },
+                      {
+                        "key": "P60_80",
+                        "name": "60% to 80%",
+                        "definition": "0.6 <= Probability < 0.8"
+                      },
+                      {
+                        "key": "P80_100",
+                        "name": "Greater than 80%",
+                        "definition": "0.8 <= Probability <= 1.0"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "P0_20": {
+                      "key": "P0_20",
+                      "name": "Less than 20%",
+                      "definition": "Probability < 0.2"
+                    },
+                    "P20_40": {
+                      "key": "P20_40",
+                      "name": "20% to 40%",
+                      "definition": "0.2 <= Probability < 0.4"
+                    },
+                    "P40_60": {
+                      "key": "P40_60",
+                      "name": "40% to 60%",
+                      "definition": "0.4 <= Probability < 0.6"
+                    },
+                    "P60_80": {
+                      "key": "P60_80",
+                      "name": "60% to 80%",
+                      "definition": "0.6 <= Probability < 0.8"
+                    },
+                    "P80_100": {
+                      "key": "P80_100",
+                      "name": "Greater than 80%",
+                      "definition": "0.8 <= Probability <= 1.0"
+                    }
+                  }
+                }
+              }
+            },
+            "P_5W": {
+              "key": "P_5W",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "P_5W",
+                    "version": "1.0.0",
+                    "name": "Probability Scale in 5 weighted levels, ascending",
+                    "definition": "A probability scale with higher resolution as probability increases",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "P0_30",
+                        "name": "Less than 30%",
+                        "definition": "Probability < 0.3"
+                      },
+                      {
+                        "key": "P30_55",
+                        "name": "30% to 55%",
+                        "definition": "0.3 <= Probability < 0.55"
+                      },
+                      {
+                        "key": "P55_75",
+                        "name": "55% to 75%",
+                        "definition": "0.55 <= Probability < 0.75"
+                      },
+                      {
+                        "key": "P75_90",
+                        "name": "75% to 90%",
+                        "definition": "0.75 <= Probability < 0.9"
+                      },
+                      {
+                        "key": "P90_100",
+                        "name": "Greater than 90%",
+                        "definition": "0.9 <= Probability <= 1.0"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "P0_30": {
+                      "key": "P0_30",
+                      "name": "Less than 30%",
+                      "definition": "Probability < 0.3"
+                    },
+                    "P30_55": {
+                      "key": "P30_55",
+                      "name": "30% to 55%",
+                      "definition": "0.3 <= Probability < 0.55"
+                    },
+                    "P55_75": {
+                      "key": "P55_75",
+                      "name": "55% to 75%",
+                      "definition": "0.55 <= Probability < 0.75"
+                    },
+                    "P75_90": {
+                      "key": "P75_90",
+                      "name": "75% to 90%",
+                      "definition": "0.75 <= Probability < 0.9"
+                    },
+                    "P90_100": {
+                      "key": "P90_100",
+                      "name": "Greater than 90%",
+                      "definition": "0.9 <= Probability <= 1.0"
+                    }
+                  }
+                }
+              }
+            },
+            "P_5X": {
+              "key": "P_5X",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "P_5X",
+                    "version": "1.0.0",
+                    "name": "Probability Scale in 5 weighted levels, ascending",
+                    "definition": "A probability scale with finer resolution at both extremes",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "VL",
+                        "name": "Very Low",
+                        "definition": "0% <= Probability < 5%. Highly unlikely."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "definition": "5% <= Probability < 21%. Unlikely."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Moderate",
+                        "definition": "21% <= Probability < 80%. Somewhat likely."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "definition": "80% <= Probability < 96%. Highly likely."
+                      },
+                      {
+                        "key": "VH",
+                        "name": "Very High",
+                        "definition": "96% <= Probability <= 100%. Almost certain."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "VL": {
+                      "key": "VL",
+                      "name": "Very Low",
+                      "definition": "0% <= Probability < 5%. Highly unlikely."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "definition": "5% <= Probability < 21%. Unlikely."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Moderate",
+                      "definition": "21% <= Probability < 80%. Somewhat likely."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "definition": "80% <= Probability < 96%. Highly likely."
+                    },
+                    "VH": {
+                      "key": "VH",
+                      "name": "Very High",
+                      "definition": "96% <= Probability <= 100%. Almost certain."
+                    }
+                  }
+                }
+              }
+            },
+            "P_2A": {
+              "key": "P_2A",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "P_2A",
+                    "version": "1.0.0",
+                    "name": "Probability Scale in 2 equal levels, ascending",
+                    "definition": "A probability scale that divides between less than 50% and greater than or equal to 50%",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "LT50",
+                        "name": "Less than 50%",
+                        "definition": "0.0 <= Probability < 0.5"
+                      },
+                      {
+                        "key": "GT50",
+                        "name": "Greater than 50%",
+                        "definition": "0.5 <= Probability <= 1.0"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "LT50": {
+                      "key": "LT50",
+                      "name": "Less than 50%",
+                      "definition": "0.0 <= Probability < 0.5"
+                    },
+                    "GT50": {
+                      "key": "GT50",
+                      "name": "Greater than 50%",
+                      "definition": "0.5 <= Probability <= 1.0"
+                    }
+                  }
+                }
+              }
+            },
+            "MEDIAN": {
+              "key": "MEDIAN",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "MEDIAN",
+                    "version": "1.0.0",
+                    "name": "Median Split",
+                    "definition": "A median split divides a distribution into two equal parts, with 50% of the values falling below the median and 50% above it.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "B",
+                        "name": "Below Median",
+                        "definition": "Quantile < 0.50. The lower half of the range of possible values."
+                      },
+                      {
+                        "key": "A",
+                        "name": "Above Median",
+                        "definition": "0.50 <= Quantile <= 1.0. The upper half of the range of possible values."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "B": {
+                      "key": "B",
+                      "name": "Below Median",
+                      "definition": "Quantile < 0.50. The lower half of the range of possible values."
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Above Median",
+                      "definition": "0.50 <= Quantile <= 1.0. The upper half of the range of possible values."
+                    }
+                  }
+                }
+              }
+            },
+            "QUARTILES": {
+              "key": "QUARTILES",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "QUARTILES",
+                    "version": "1.0.0",
+                    "name": "Quartiles",
+                    "definition": "A quartile is one of four equal groups that a population can be divided into according to the distribution of values of a particular variable.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "Q1",
+                        "name": "First Quartile",
+                        "definition": "Quantile < 0.25. The lowest 25% of the range of possible values."
+                      },
+                      {
+                        "key": "Q2",
+                        "name": "Second Quartile",
+                        "definition": "0.25 <= Quantile < 0.50. The second lowest 25% of the range of possible values."
+                      },
+                      {
+                        "key": "Q3",
+                        "name": "Third Quartile",
+                        "definition": "0.50 <= Quantile < 0.75. The second highest 25% of the range of possible values."
+                      },
+                      {
+                        "key": "Q4",
+                        "name": "Fourth Quartile",
+                        "definition": "0.75 <= Quantile <= 1.0. The highest 25% of the range of possible values."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "Q1": {
+                      "key": "Q1",
+                      "name": "First Quartile",
+                      "definition": "Quantile < 0.25. The lowest 25% of the range of possible values."
+                    },
+                    "Q2": {
+                      "key": "Q2",
+                      "name": "Second Quartile",
+                      "definition": "0.25 <= Quantile < 0.50. The second lowest 25% of the range of possible values."
+                    },
+                    "Q3": {
+                      "key": "Q3",
+                      "name": "Third Quartile",
+                      "definition": "0.50 <= Quantile < 0.75. The second highest 25% of the range of possible values."
+                    },
+                    "Q4": {
+                      "key": "Q4",
+                      "name": "Fourth Quartile",
+                      "definition": "0.75 <= Quantile <= 1.0. The highest 25% of the range of possible values."
+                    }
+                  }
+                }
+              }
+            },
+            "QUINTILES": {
+              "key": "QUINTILES",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "QUINTILES",
+                    "version": "1.0.0",
+                    "name": "Quintiles",
+                    "definition": "A quintile is one of five equal groups that a population can be divided into according to the distribution of values of a particular variable.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "Q1",
+                        "name": "First Quintile",
+                        "definition": "Quantile < 0.20. The lowest 20% of the range of possible values."
+                      },
+                      {
+                        "key": "Q2",
+                        "name": "Second Quintile",
+                        "definition": "0.20 <= Quantile < 0.40. The second lowest 20% of the range of possible values."
+                      },
+                      {
+                        "key": "Q3",
+                        "name": "Third Quintile",
+                        "definition": "0.40 <= Quantile < 0.60. The middle 20% of the range of possible values."
+                      },
+                      {
+                        "key": "Q4",
+                        "name": "Fourth Quintile",
+                        "definition": "0.60 <= Quantile < 0.80. The second highest 20% of the range of possible values."
+                      },
+                      {
+                        "key": "Q5",
+                        "name": "Fifth Quintile",
+                        "definition": "0.80 <= Quantile <= 1.0. The highest 20% of the range of possible values."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "Q1": {
+                      "key": "Q1",
+                      "name": "First Quintile",
+                      "definition": "Quantile < 0.20. The lowest 20% of the range of possible values."
+                    },
+                    "Q2": {
+                      "key": "Q2",
+                      "name": "Second Quintile",
+                      "definition": "0.20 <= Quantile < 0.40. The second lowest 20% of the range of possible values."
+                    },
+                    "Q3": {
+                      "key": "Q3",
+                      "name": "Third Quintile",
+                      "definition": "0.40 <= Quantile < 0.60. The middle 20% of the range of possible values."
+                    },
+                    "Q4": {
+                      "key": "Q4",
+                      "name": "Fourth Quintile",
+                      "definition": "0.60 <= Quantile < 0.80. The second highest 20% of the range of possible values."
+                    },
+                    "Q5": {
+                      "key": "Q5",
+                      "name": "Fifth Quintile",
+                      "definition": "0.80 <= Quantile <= 1.0. The highest 20% of the range of possible values."
+                    }
+                  }
+                }
+              }
+            },
+            "IKE": {
+              "key": "IKE",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "IKE",
+                    "version": "1.0.0",
+                    "name": "Do, Schedule, Delegate, Delete",
+                    "definition": "The Eisenhower outcome group.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "D",
+                        "name": "Delete",
+                        "definition": "Delete"
+                      },
+                      {
+                        "key": "G",
+                        "name": "Delegate",
+                        "definition": "Delegate"
+                      },
+                      {
+                        "key": "S",
+                        "name": "Schedule",
+                        "definition": "Schedule"
+                      },
+                      {
+                        "key": "O",
+                        "name": "Do",
+                        "definition": "Do"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "D": {
+                      "key": "D",
+                      "name": "Delete",
+                      "definition": "Delete"
+                    },
+                    "G": {
+                      "key": "G",
+                      "name": "Delegate",
+                      "definition": "Delegate"
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Schedule",
+                      "definition": "Schedule"
+                    },
+                    "O": {
+                      "key": "O",
+                      "name": "Do",
+                      "definition": "Do"
+                    }
+                  }
+                }
+              }
+            },
+            "LMH": {
+              "key": "LMH",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "LMH",
+                    "version": "1.0.0",
+                    "name": "LowMediumHigh",
+                    "definition": "A Low/Medium/High decision point / outcome group.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "definition": "Low"
+                      },
+                      {
+                        "key": "M",
+                        "name": "Medium",
+                        "definition": "Medium"
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "definition": "High"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "definition": "Low"
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Medium",
+                      "definition": "Medium"
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "definition": "High"
+                    }
+                  }
+                }
+              }
+            },
+            "MSCW": {
+              "key": "MSCW",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "MSCW",
+                    "version": "1.0.0",
+                    "name": "MoSCoW",
+                    "definition": "The MoSCoW (Must, Should, Could, Won't) outcome group.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "W",
+                        "name": "Won't",
+                        "definition": "Won't"
+                      },
+                      {
+                        "key": "C",
+                        "name": "Could",
+                        "definition": "Could"
+                      },
+                      {
+                        "key": "S",
+                        "name": "Should",
+                        "definition": "Should"
+                      },
+                      {
+                        "key": "M",
+                        "name": "Must",
+                        "definition": "Must"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "W": {
+                      "key": "W",
+                      "name": "Won't",
+                      "definition": "Won't"
+                    },
+                    "C": {
+                      "key": "C",
+                      "name": "Could",
+                      "definition": "Could"
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Should",
+                      "definition": "Should"
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Must",
+                      "definition": "Must"
+                    }
+                  }
+                }
+              }
+            },
+            "VALUE_COMPLEXITY": {
+              "key": "VALUE_COMPLEXITY",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "VALUE_COMPLEXITY",
+                    "version": "1.0.0",
+                    "name": "Value, Complexity",
+                    "definition": "The Value/Complexity outcome group.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "D",
+                        "name": "Drop",
+                        "definition": "Drop"
+                      },
+                      {
+                        "key": "R",
+                        "name": "Reconsider Later",
+                        "definition": "Reconsider Later"
+                      },
+                      {
+                        "key": "E",
+                        "name": "Easy Win",
+                        "definition": "Easy Win"
+                      },
+                      {
+                        "key": "F",
+                        "name": "Do First",
+                        "definition": "Do First"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "D": {
+                      "key": "D",
+                      "name": "Drop",
+                      "definition": "Drop"
+                    },
+                    "R": {
+                      "key": "R",
+                      "name": "Reconsider Later",
+                      "definition": "Reconsider Later"
+                    },
+                    "E": {
+                      "key": "E",
+                      "name": "Easy Win",
+                      "definition": "Easy Win"
+                    },
+                    "F": {
+                      "key": "F",
+                      "name": "Do First",
+                      "definition": "Do First"
+                    }
+                  }
+                }
+              }
+            },
+            "YN": {
+              "key": "YN",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "basic",
+                    "key": "YN",
+                    "version": "1.0.0",
+                    "name": "YesNo",
+                    "definition": "A Yes/No decision point / outcome group.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "No",
+                        "definition": "No"
+                      },
+                      {
+                        "key": "Y",
+                        "name": "Yes",
+                        "definition": "Yes"
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "No",
+                      "definition": "No"
+                    },
+                    "Y": {
+                      "key": "Y",
+                      "name": "Yes",
+                      "definition": "Yes"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "cisa": {
           "namespace": "cisa",
           "keys": {
@@ -6764,281 +7599,6 @@
                       "key": "P",
                       "name": "Publish",
                       "definition": "Publish"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "basic": {
-          "namespace": "basic",
-          "keys": {
-            "IKE": {
-              "key": "IKE",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "basic",
-                    "key": "IKE",
-                    "version": "1.0.0",
-                    "name": "Do, Schedule, Delegate, Delete",
-                    "definition": "The Eisenhower outcome group.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "D",
-                        "name": "Delete",
-                        "definition": "Delete"
-                      },
-                      {
-                        "key": "G",
-                        "name": "Delegate",
-                        "definition": "Delegate"
-                      },
-                      {
-                        "key": "S",
-                        "name": "Schedule",
-                        "definition": "Schedule"
-                      },
-                      {
-                        "key": "O",
-                        "name": "Do",
-                        "definition": "Do"
-                      }
-                    ]
-                  },
-                  "values": {
-                    "D": {
-                      "key": "D",
-                      "name": "Delete",
-                      "definition": "Delete"
-                    },
-                    "G": {
-                      "key": "G",
-                      "name": "Delegate",
-                      "definition": "Delegate"
-                    },
-                    "S": {
-                      "key": "S",
-                      "name": "Schedule",
-                      "definition": "Schedule"
-                    },
-                    "O": {
-                      "key": "O",
-                      "name": "Do",
-                      "definition": "Do"
-                    }
-                  }
-                }
-              }
-            },
-            "MSCW": {
-              "key": "MSCW",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "basic",
-                    "key": "MSCW",
-                    "version": "1.0.0",
-                    "name": "MoSCoW",
-                    "definition": "The MoSCoW (Must, Should, Could, Won't) outcome group.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "W",
-                        "name": "Won't",
-                        "definition": "Won't"
-                      },
-                      {
-                        "key": "C",
-                        "name": "Could",
-                        "definition": "Could"
-                      },
-                      {
-                        "key": "S",
-                        "name": "Should",
-                        "definition": "Should"
-                      },
-                      {
-                        "key": "M",
-                        "name": "Must",
-                        "definition": "Must"
-                      }
-                    ]
-                  },
-                  "values": {
-                    "W": {
-                      "key": "W",
-                      "name": "Won't",
-                      "definition": "Won't"
-                    },
-                    "C": {
-                      "key": "C",
-                      "name": "Could",
-                      "definition": "Could"
-                    },
-                    "S": {
-                      "key": "S",
-                      "name": "Should",
-                      "definition": "Should"
-                    },
-                    "M": {
-                      "key": "M",
-                      "name": "Must",
-                      "definition": "Must"
-                    }
-                  }
-                }
-              }
-            },
-            "VALUE_COMPLEXITY": {
-              "key": "VALUE_COMPLEXITY",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "basic",
-                    "key": "VALUE_COMPLEXITY",
-                    "version": "1.0.0",
-                    "name": "Value, Complexity",
-                    "definition": "The Value/Complexity outcome group.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "D",
-                        "name": "Drop",
-                        "definition": "Drop"
-                      },
-                      {
-                        "key": "R",
-                        "name": "Reconsider Later",
-                        "definition": "Reconsider Later"
-                      },
-                      {
-                        "key": "E",
-                        "name": "Easy Win",
-                        "definition": "Easy Win"
-                      },
-                      {
-                        "key": "F",
-                        "name": "Do First",
-                        "definition": "Do First"
-                      }
-                    ]
-                  },
-                  "values": {
-                    "D": {
-                      "key": "D",
-                      "name": "Drop",
-                      "definition": "Drop"
-                    },
-                    "R": {
-                      "key": "R",
-                      "name": "Reconsider Later",
-                      "definition": "Reconsider Later"
-                    },
-                    "E": {
-                      "key": "E",
-                      "name": "Easy Win",
-                      "definition": "Easy Win"
-                    },
-                    "F": {
-                      "key": "F",
-                      "name": "Do First",
-                      "definition": "Do First"
-                    }
-                  }
-                }
-              }
-            },
-            "YN": {
-              "key": "YN",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "basic",
-                    "key": "YN",
-                    "version": "1.0.0",
-                    "name": "YesNo",
-                    "definition": "A Yes/No decision point / outcome group.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "No",
-                        "definition": "No"
-                      },
-                      {
-                        "key": "Y",
-                        "name": "Yes",
-                        "definition": "Yes"
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "No",
-                      "definition": "No"
-                    },
-                    "Y": {
-                      "key": "Y",
-                      "name": "Yes",
-                      "definition": "Yes"
-                    }
-                  }
-                }
-              }
-            },
-            "LMH": {
-              "key": "LMH",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "basic",
-                    "key": "LMH",
-                    "version": "1.0.0",
-                    "name": "LowMediumHigh",
-                    "definition": "A Low/Medium/High decision point / outcome group.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "definition": "Low"
-                      },
-                      {
-                        "key": "M",
-                        "name": "Medium",
-                        "definition": "Medium"
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "definition": "High"
-                      }
-                    ]
-                  },
-                  "values": {
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "definition": "Low"
-                    },
-                    "M": {
-                      "key": "M",
-                      "name": "Medium",
-                      "definition": "Medium"
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "definition": "High"
                     }
                   }
                 }

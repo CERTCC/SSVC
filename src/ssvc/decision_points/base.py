@@ -157,7 +157,9 @@ class DecisionPoint(
 
 
 def main():
-    print("Please use doctools.py for schema generation and unit tests for verification")
+    print(
+        "Please use doctools.py for schema generation and unit tests for verification"
+    )
 
 
 if __name__ == "__main__":

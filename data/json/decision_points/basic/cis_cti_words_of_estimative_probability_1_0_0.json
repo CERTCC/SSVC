@@ -1,0 +1,45 @@
+{
+  "namespace": "basic",
+  "key": "CIS_WEP",
+  "version": "1.0.0",
+  "name": "CIS-CTI Words of Estimative Probability",
+  "definition": "A scale for expressing the likelihood of an event or outcome.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "ANC",
+      "name": "Almost No Chance",
+      "definition": "Probability < 0.05. Almost no chance, remote"
+    },
+    {
+      "key": "VU",
+      "name": "Very Unlikely",
+      "definition": "0.05 <= Probability < 0.20. Very unlikely, highly improbable."
+    },
+    {
+      "key": "U",
+      "name": "Unlikely",
+      "definition": "0.20 <= Probability < 0.45. Unlikely, improbable."
+    },
+    {
+      "key": "REC",
+      "name": "Roughly Even Chance",
+      "definition": "0.45 <= Probability < 0.55. Roughly even chance, roughly even odds."
+    },
+    {
+      "key": "L",
+      "name": "Likely",
+      "definition": "0.55 <= Probability < 0.80. Likely, probable."
+    },
+    {
+      "key": "VL",
+      "name": "Very Likely",
+      "definition": "0.80 <= Probability < 0.95. Very likely, highly probable."
+    },
+    {
+      "key": "AC",
+      "name": "Almost Certain",
+      "definition": "0.95 <= Probability. Almost certain, nearly certain."
+    }
+  ]
+}

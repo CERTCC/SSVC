@@ -1,0 +1,30 @@
+{
+  "namespace": "basic",
+  "key": "QUARTILES",
+  "version": "1.0.0",
+  "name": "Quartiles",
+  "definition": "A quartile is one of four equal groups that a population can be divided into according to the distribution of values of a particular variable.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "Q1",
+      "name": "First Quartile",
+      "definition": "Quantile < 0.25. The lowest 25% of the range of possible values."
+    },
+    {
+      "key": "Q2",
+      "name": "Second Quartile",
+      "definition": "0.25 <= Quantile < 0.50. The second lowest 25% of the range of possible values."
+    },
+    {
+      "key": "Q3",
+      "name": "Third Quartile",
+      "definition": "0.50 <= Quantile < 0.75. The second highest 25% of the range of possible values."
+    },
+    {
+      "key": "Q4",
+      "name": "Fourth Quartile",
+      "definition": "0.75 <= Quantile <= 1.0. The highest 25% of the range of possible values."
+    }
+  ]
+}
