@@ -45,20 +45,22 @@ The data folder contains detailed data files that define suggested prioritizatio
 
 There are both `.csv` and `.json` files in this directory.
 
-### `/data/csvs/*`
+### `/data/csv/*`
 
-The `.csv` files are the primary data files used by the `ssvc.py` module.
+The `.csv` files are generated from the python `ssvc` module.
 
-Also included in data are the lookup tables as csv files which `ssvc_v2.py` reads in.
-These files define one row per possible path through the trees as described in the documentation.
+These files define one row per possible path through the decision tables as described in the documentation.
 Customizing the "outcome" column in this csv is the primary recommended way that stakeholders might adapt SSVC to their environment.
 
 ### `/data/json/*`
 
-These json files are generated examples from the python `ssvc` module.
+These json files are generated examples from the python `ssvc` module,
+which uses `pydantic` to define the data models.
 
 ### `/data/schema/*` and `/data/schema_examples/*`
 
+These json schema files are used to validate the structure of the `.json` files in `/data/json/*`.
+They are generated from the python `ssvc` module, which uses `pydantic` to define the data models.
 These files are used by the `ssvc-calc` module.
 
 ## `/docker/*`
@@ -84,15 +86,6 @@ The `ssvc` python module provides tools to work with decision points, decision p
 These modules are used to generate documentation for various [Decision Points](https://certcc.github.io/SSVC/reference/decision_points/)
 
 Documentation for the `ssvc` module can be found at [https://certcc.github.io/SSVC/reference/code/](https://certcc.github.io/SSVC/reference/code/)
-
-### `src/ssvc_v2.py`
-
-A basic Python module for interacting with the SSVC trees. `ssvc_v2.py` has
-two methods: `applier_tree()` and `developer_tree()`
-
-The two methods just loop through their respective lookup tables until
-they hit a match, then return the outcome. Maybe not the best implementation,
-but it worked well enough for what was needed at the time.
 
 ## Local development
 

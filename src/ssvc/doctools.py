@@ -45,7 +45,10 @@ from ssvc.decision_points.base import (
     DecisionPoint,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
-from ssvc.decision_tables.base import DecisionTable
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    decision_table_to_longform_df,
+)
 from ssvc.registry import get_registry
 from ssvc.registry.base import SsvcObjectRegistry, get_all
 from ssvc.selection import SelectionList
@@ -306,21 +309,53 @@ def dump_decision_table(
             logger.warning(
                 f"File {json_file} already exists, use --overwrite to replace"
             )
-    return str(json_file)
+
+
+def dump_decision_table_csv(
+    csvdir: str, dt: DecisionTable, overwrite: bool
+) -> None:
+    basename = (
+        _filename_friendly(dt.name) + f"_{_filename_friendly(dt.version)}"
+    )
+    filename = f"{basename}.csv"
+    parts = [
+        csvdir,
+    ]
+    parts.append(_filename_friendly(dt.namespace))
+    dirname = os.path.join(*parts)
+    parts.append(filename)
+    csv_file = os.path.join(*parts)
+    if overwrite:
+        remove_if_exists(csv_file)
+    with EnsureDirExists(dirname):
+        try:
+            logger.info("Writing {csv_file}")
+            with open(csv_file, "x") as f:
+                df = decision_table_to_longform_df(dt=dt)
+                # set the index title
+                df.index.name = "row"
+                f.write(df.to_csv(index=True))
+        except FileExistsError:
+            logger.warning(
+                f"File {csv_file} already exists, use --overwrite to replace"
+            )
 
 
 def main():
-    # we are going to generate three files for each decision point:
-    # - a markdown table that can be used in the decision point documentation
-    # - a json example that can be used in the decision point documentation
-    # - a markdown file that builds an mkdocs table to switch between the markdown description and the json
-    #   example using markdown-include plugin of mkdocs
+    """Generate the json examples for decision points and decision tables.
 
-    # parse command line args
+    Emits the following files:
+    - json examples for each decision point in datadir/json/decision_points/<namespace>/
+    - json examples for each decision table in datadir/json/decision_tables/<namespace>/
+    - csv examples for each decision table in datadir/csv/<namespace>/
+    - the ssvc object registry in datadir/json/ssvc_object_registry.json
+    - the json schemas for decision points, decision tables, selection lists, and the registry in datadir/schema/v2/
+    """
+
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Generate decision point documentation"
+        description="Generate json, json schema, and csv examples for SSVC Decision Points and Decision Tables"
     )
     parser.add_argument(
         "--overwrite",
@@ -330,12 +365,13 @@ def main():
     )
 
     parser.add_argument(
-        "--jsondir", help="json output directory", default="./tmp/json_out"
+        "--datadir", help="json output directory", default="./tmp"
     )
     args = parser.parse_args()
 
     overwrite = args.overwrite
-    jsondir = args.jsondir
+    jsondir = os.path.join(os.path.abspath(args.datadir), "json")
+    csvdir = os.path.join(os.path.abspath(args.datadir), "csv")
 
     dp_dir = os.path.join(os.path.abspath(jsondir), "decision_points")
     dt_dir = os.path.join(os.path.abspath(jsondir), "decision_tables")
@@ -357,6 +393,7 @@ def main():
     # for each decision table:
     for dt in get_all("DecisionTable", registry=registry):
         dump_decision_table(dt_dir, dt, overwrite)
+        dump_decision_table_csv(csvdir, dt, overwrite)
 
     # dump the registry
     registry_json = os.path.join(jsondir, "ssvc_object_registry.json")
