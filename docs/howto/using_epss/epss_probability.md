@@ -1,8 +1,7 @@
 # Combining EPSS with other Exploitation-Related Decision Points
 
-
 SSVC users might want to combine exploitation-related information from multiple
-sources into a single decision point for use downstream in a decision table 
+sources into a single decision point for use downstream in a decision table
 such as the SSVC [Deployer Decision Model](../deployer_tree.md).
 
 One such source is the EPSS probability score.
@@ -12,11 +11,10 @@ One such source is the EPSS probability score.
     The EPSS probability score is a number between 0 and 1 that indicates the likelihood of
     a vulnerability being exploited in the wild within the next 30 days.
 
-   
 ## Other Exploitation-Related Information Sources
 
 However, EPSS is not the only source of exploitation-related information.
-The 
+The
 [CISA Known Exploited Vulnerabilities (KEV) catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
 is another important source.
 Additional exploitation-related information can be found in the
@@ -35,7 +33,7 @@ for dp in [CISA_KEV, CVSS_E]:
 ```
 
 !!! note inline end "EPSS on Probability Binning"
- 
+
     In a [blog post](https://www.first.org/epss/articles/prob_percentile_bins) on the
     [EPSS website](https://www.first.org/epss), the EPSS SIG discusses the challenges of
     binning probabilities.
@@ -60,10 +58,10 @@ We have also provided a few basic SSVC Decision Points to capture probability-ba
 information in different ways.
 Because SSVC is based on categorical decision points, we need to bin the
 continuous probability scores into discrete categories.
-However, as the EPSS SIG points out (see sidebar), there are _always_ tradeoffs
+However, as the EPSS SIG points out (see sidebar), there are *always* tradeoffs
 involved in binning.
 That's why we provide several different options for binning probabilities so that
-SSVC users can choose one that best fits their needs (or create their own if 
+SSVC users can choose one that best fits their needs (or create their own if
 none of the provided options is suitable).
 Expand the example below to see the currently available options.
 
@@ -80,7 +78,7 @@ Expand the example below to see the currently available options.
         print(example_block(dp))
     ```
 
-For this example, let's say you decide to use the _Probability Scale in 5 weighted levels, ascending_
+For this example, let's say you decide to use the *Probability Scale in 5 weighted levels, ascending*
 decision point:
 
 ```python exec="true" idprefix=""
@@ -96,8 +94,8 @@ a more nuanced view of exploitation risk.
 
 ## Designing an Exploitation-focused Decision Table
 
-Let's say you decide to create a new Decision Table that combines the 
-EPSS probability information with the other exploitation-related decision 
+Let's say you decide to create a new Decision Table that combines the
+EPSS probability information with the other exploitation-related decision
 points to determine a more informed outcome using the SSVC [Exploitation](../../reference/decision_points/exploitation.md) decision point.
 
 As a reminder, the SSVC [Exploitation](../../reference/decision_points/exploitation.md) decision point has the following values:

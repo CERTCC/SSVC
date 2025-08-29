@@ -17,14 +17,13 @@ In the following pages, we'll demonstrate a few different ways to incorporate EP
 
     ---
 
-    How to use EPSS probability scores to augment other data sources to 
+    How to use EPSS probability scores to augment other data sources to
     inform the SSVC Exploitation decision point.
   
-
 - :material-percent: [Using EPSS Percentiles to Amplify SSVC Decisions](epss_percentiles.md)
 
     ---
- 
+
     How to use EPSS percentiles to amplify the output of an existing SSVC decision model.
 
 </div>

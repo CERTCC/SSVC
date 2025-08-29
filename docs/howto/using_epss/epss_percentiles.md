@@ -14,13 +14,13 @@
         You can get EPSS data from the [EPSS website](https://www.first.org/epss/)
         or use their [API](https://www.first.org/epss/api) to fetch scores programmatically.
 
-In [another how-to](epss_probability.md), we showed how to use EPSS 
-probability scores as one of a few different inputs to inform the 
+In [another how-to](epss_probability.md), we showed how to use EPSS
+probability scores as one of a few different inputs to inform the
 SSVC [Exploitation](../../reference/decision_points/exploitation.md) decision point.
-This approach can be a useful approach to refine or augment the _input_ to an existing SSVC decision model.
+This approach can be a useful approach to refine or augment the *input* to an existing SSVC decision model.
 
 In this how-to, we'll explore a different approach that uses EPSS percentiles
-as an amplifier to adjust the _output_ of an existing SSVC decision model.
+as an amplifier to adjust the *output* of an existing SSVC decision model.
 
 ## Starting Out with the SSVC Deployer Decision Model
 
@@ -41,7 +41,7 @@ you realize that you would like to use EPSS percentiles to amplify the output of
     we showed how to use probabilities in [another how-to](epss_probability.md).
     Either approach can be valid depending on your specific needs and context.
 
-One straightforward way to use EPSS is to create bins based on the EPSS score 
+One straightforward way to use EPSS is to create bins based on the EPSS score
 and use these bins as amplifiers in your SSVC decision-making process.
 
 !!! tip "See Also"
@@ -63,9 +63,9 @@ Expand the example below to see the currently available options.
         print(example_block(dp))
     ```
 
-Now, your primary concern is to ensure that you are addressing the 
+Now, your primary concern is to ensure that you are addressing the
 vulnerabilities that are most likely to be exploited.
-In conversations with your organization's risk owners, you determine that 
+In conversations with your organization's risk owners, you determine that
 they'd like to apply a policy that is consistent with the following:
 
 - If the EPSS percentile is significantly higher than the median, the vulnerability
@@ -102,11 +102,10 @@ from ssvc.decision_tables.example.epss_quartile import update_map_doc
 print(update_map_doc())
 ```
 
-
 ## Building the Decision Table  
 
-Given the rules outlined above, you build a new Decision Table that takes the 
-default outcome from the 
+Given the rules outlined above, you build a new Decision Table that takes the
+default outcome from the
 [SSVC Deployer Decision Model](../deployer_tree.md) and applies the EPSS quartile
 information to amplify it. The resulting decision table looks like this:
 
@@ -152,7 +151,7 @@ the prioritization of vulnerabilities based on their EPSS percentiles.
 In this how-to, we've demonstrated how to use EPSS percentiles as an amplifier
 to adjust the output of an existing SSVC decision model.
 While the example provided is considerably more aggressive than we would recommend
-in practice, it illustrates one way to incorporate EPSS data into an established SSVC-based 
+in practice, it illustrates one way to incorporate EPSS data into an established SSVC-based
 vulnerability management strategy.
 By incorporating statistical insights from EPSS, you can prioritize
 vulnerabilities more effectively based on their likelihood of exploitation.
