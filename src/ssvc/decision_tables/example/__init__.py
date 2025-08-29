@@ -1,3 +1,4 @@
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -17,10 +18,4 @@
 #  subject to its own license.
 #  DM24-0278
 
-"""Provides basic quantile bin decision points."""
-
-from .median import LATEST as MEDIAN
-from .quartiles import LATEST as QUARTILES
-from .quintiles import LATEST as QUINTILES
-
-DECISION_POINTS = {dp.id: dp for dp in (MEDIAN, QUARTILES, QUINTILES)}
+"""Provides example decision tables for SSVC."""

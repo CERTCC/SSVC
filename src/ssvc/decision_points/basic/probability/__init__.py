@@ -18,3 +18,11 @@
 #  DM24-0278
 
 """Provides basic probability bin decision points."""
+
+from .cis_wep import LATEST as CIS_WEP
+from .five_equal import LATEST as FIVE_EQUAL
+from .five_weighted import LATEST as FIVE_WEIGHTED
+from .nist5 import LATEST as NIST_5
+from .two_equal import LATEST as TWO_EQUAL
+
+DECISION_POINTS = {dp.id:dp for dp in (TWO_EQUAL,FIVE_EQUAL,FIVE_WEIGHTED,NIST_5,CIS_WEP)}
