@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+"""
+Provides a 2-level ascending probability scale decision point for SSVC
+"""
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -16,12 +20,39 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-"""
-Provides SSVC outcome groups for the `basic` namespace
-"""
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.basic.base import BasicDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
-from .ike import LATEST as EISENHOWER
-from .lmh import LATEST as LMH
-from .mscw import LATEST as MSCW
-from .value_complexity import LATEST as VALUE_COMPLEXITY
-from .yn import LATEST as YES_NO
+P0_50 = DecisionPointValue(
+    name="Less than 50%",
+    key="LT50",
+    definition="0.0 <= Probability < 0.5",
+)
+P50_100 = DecisionPointValue(
+    name="Greater than 50%",
+    key="GT50",
+    definition="0.5 <= Probability <= 1.0",
+)
+
+P2A = BasicDecisionPoint(
+    key="P_2A",
+    version="1.0.0",
+    name="Probability Scale in 2 equal levels, ascending",
+    definition="A probability scale that divides between less than 50% and greater than or equal to 50%",
+    values=(
+        P0_50,
+        P50_100,
+    ),
+)
+
+VERSIONS = [P2A]
+LATEST = VERSIONS[-1]
+
+
+def main():
+    print_versions_and_diffs(VERSIONS)
+
+
+if __name__ == "__main__":
+    main()
