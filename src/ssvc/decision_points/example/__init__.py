@@ -17,10 +17,4 @@
 #  subject to its own license.
 #  DM24-0278
 
-"""Provides basic quantile bin decision points."""
-
-from .median import LATEST as MEDIAN
-from .quartiles import LATEST as QUARTILES
-from .quintiles import LATEST as QUINTILES
-
-DECISION_POINTS = {dp.id: dp for dp in (MEDIAN, QUARTILES, QUINTILES)}
+"""Provides an example decision point module for SSVC"""

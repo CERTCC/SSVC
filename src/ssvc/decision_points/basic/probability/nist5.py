@@ -57,7 +57,7 @@ P5X = BasicDecisionPoint(
     key="P_5X",
     version="1.0.0",
     name="Probability Scale in 5 weighted levels, ascending",
-    definition="A probability scale with finer resolution at both extremes",
+    definition="A probability scale with finer resolution at both extremes, based on NIST SP 800-30 Rev. 1 Appendix G",
     values=(
         VERY_LOW,
         LOW,
