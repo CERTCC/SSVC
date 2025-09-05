@@ -265,7 +265,34 @@ function dynamic_mwb(w) {
 function export_show(novector) {
     $('.cover-container').css({opacity:0.5,pointerEvents:"none"});
     $('#exporter').removeClass('d-none');
+    $('#exporter input').each(function(_,inp) {
+	inp.value = "";
+    });
+    
     $('#exporter .timestamp').val((new Date()).toISOString());
+    $('#exporter .duplicated').remove();
+    let vuls = $('#evaluate_section > div');
+    let resources = $('.export-optional > td > div');
+    let diff = vuls.length - resources.length;
+    if (diff > 0) {
+	let pr = resources[0].parentElement;
+	for (let i = 0; i < diff; i++) 
+            pr.appendChild(resources[0].cloneNode(true));
+    } else if (diff < 0) {
+	for (let i = resources.length - 1; i >= vuls.length; i--) 
+            resources[i].remove();
+    }
+    resources = $('.export-optional > td > div');
+    for(let i=0; i<vuls.length; i++) {
+	const vuel = vuls[i].querySelector('.vuid')
+	let span = resources[i].querySelector('.vulninfo');
+	if(vuel && span) {
+	    if(vuel.value)
+		span.innerText = vuel.value;
+	    else
+		span.innerText = String(i);
+	}
+    }
 }
 function export_close() {
     $('.cover-container').css({opacity:1.0,pointerEvents:"revert"})
@@ -369,7 +396,6 @@ function add_selection(value_selection,inp) {
     const valueSet = {key: inp.getAttribute("data-dpvkey"),
 		      name: inp.value};
     let findex = value_selection.selections.findIndex(function(selectdp) {
-	console.log(selectdp,dp);
 	return selectdp.version == dp.version &&
 	    selectdp.namespace == dp.namespace &&
 	    selectdp.key == dp.key
@@ -385,12 +411,53 @@ function add_selection(value_selection,inp) {
 					 key: dp.key});
     }
 }
+function duplicate(li) {
+    const lastli = li.parentElement.lastElementChild;
+    if(li.dataset.xdelete == "delete") {
+	return lastli.remove();
+    }
+    const nli = lastli.cloneNode(1);
+    nli.querySelectorAll("input").forEach(function(inp) {
+	let regex = new RegExp("^([^\-]+)\-([0-9]+)\-([^\-]+)$")
+	inp.name = inp.name.replace(regex,function() {
+	    let args = Array.from(arguments);
+	    if(args.length > 2 && args[2].match(/^[0-9]+$/)) {
+		let incr = parseInt(args[2]) + 1;
+		args[2] = incr;
+		/*Remove first and last two elements */
+		return args.slice(1,-2).join("-");
+	    }
+	    return inp.name
+	});
+    });
+    const btn = nli.querySelector("button");
+    if(btn) {
+	btn.innerHTML = "&#8854";
+	btn.style.color = "red";
+	nli.dataset.xdelete = "delete";
+	nli.classList.add("duplicated");
+	li.parentElement.appendChild(nli);
+    }
+}
+
 function export_json() {
     let oexport = {};
     let value_selections = [];
     let add_outcome = $('#exporter input[name="include_outcome"]').is(':checked');
     let download_filename = "SSVC_" + (new Date()).toISOString().replace(":","-")  + "_json.txt"
-    
+    let export_options;
+    if($('.export-resources').is(':checked')){
+	export_options = Array.from($('.export-optional > td > div'));
+	let includetree = $('#exporter .includetree').is(':checked');
+	if (includetree) {
+	    let rindex = $('#tree_samples').val();
+	    if(rindex.match(/^[0-9]+$/)) { 
+		let index = parseInt(rindex);
+		if(SSVC.decision_trees[index] && SSVC.decision_trees[index].data)
+		    oexport['decision_tree'] = SSVC.decision_trees[index].data;
+	    }
+	}	
+    }
     $('#evaluate_section > div').each(function(i,div) {
 	value_selection = simpleCopy(valueselect_schema);
 	value_selection.timestamp = $('#exporter .timestamp').val();
@@ -403,28 +470,25 @@ function export_json() {
 	    else if(inp.checked && inp.hasAttribute("data-dpvkey"))
 		add_selection(value_selection, inp);
 	});
+	/* If export_options is enabled go ahead and add them*/
+	if(export_options[i]) {
+	    export_options[i].querySelectorAll("input").forEach(function(inp) {
+		if(inp.value) 
+                    value_selection = set_deep(value_selection,inp.name,inp.value);
+	    });
+	}
 	value_selections.push(value_selection);
     });
-    if($('#export-optional').is(':checked')){
-	$('.export-optional input').each(function(i,inp) {
-	    if(inp.value) {
-		
-	    }
-	});
-	let includetree = $('.exportActive .includetree').is(':checked');
-	if (includetree) {
-	    oexport['decision_tree'] = export_schema
-	}
-    } else {
-	value_selections.forEach(function(_,i) {
-	    delete value_selections[i].decision_point_resources;
-	    delete value_selections[i].references;
-	});
-    }
+    value_selections.forEach(function(_,i) {
+	['decision_point_resources','references'].forEach(function(res) {
+	    if(!value_selections[i][res].length)
+		delete value_selections[i][res];
+	})
+    });
     if(value_selections.length == 1)
 	download_filename = "SSVC_" + value_selections[0].target_ids[0] +
 	(new Date()).toISOString().replace(":","-")  + "_json.txt"
-    oexport.selections = value_selections;
+    oexport.evaluations = value_selections;
 	
     var a = document.createElement("a")
     
@@ -962,9 +1026,6 @@ function process_ssvc(ssvc, winput) {
 
 function cve_get(ev) {
     const winput = ev.target;
-    if(winput.value) {
-	$('#exportopen').show();
-    }
     const checkbox = winput.parentElement.parentElement.querySelector("input[name='use_public']");
     if(checkbox && (!checkbox.checked))
 	return;
@@ -1256,7 +1317,7 @@ function parse_json(xraw,paused) {
 	    cve_get(ev);
     });
     let cve_div = $("<label>").append(cve_input).css({padding: "0px 4px 0px 4px"});
-    let autoscore_div = $("<label>").append($("<input>").attr({"type": "checkbox","name":"use_public","checked": true})).append($("<span>").text("Use public CVE API data")).css({padding: "0px 4px 0px 4px"});
+    let autoscore_div = $("<label>").addClass("custom-control custom-switch d-inline-block").append($("<input>").attr({"type": "checkbox","name":"use_public","class": "custom-control-input","checked": true})).append($("<span>").addClass("custom-control-label").text(" Use public CVE API data").css("padding-right","3px")) 
     let check_allb = $("<button>").addClass("btn btn-danger").html("Check All").on("click",check_all);
     let line_div = $("<div>").append(cve_div).append(autoscore_div).append(check_allb);
     $('#evaluate_section').append($("<div>").css({border: "1px solid rgba(1,1,1,0.1)",
@@ -2059,7 +2120,6 @@ function dt_start() {
     showFullTree = true;
     $('svg.mgraph').remove();
     $('.exportActive .exportdiv').remove();
-    $('#exportopen').hide();
     var xraw = simpleCopy(raw);
     treeData=grapharray_open(xraw);
     draw_graph();
@@ -2072,7 +2132,6 @@ function dt_clear() {
     $('#zoomcontrol').hide();
     $('svg.mgraph').remove();
     $('#graph').html('');
-    $('#exportopen').hide();
 }
 
 function show_full_tree() {
@@ -2129,6 +2188,48 @@ function createHeaders(keys) {
     }
     return result;
 }
+function set_deep(obj,prop,val) {
+    /* For the Object obj set the property of a prop to val
+       recursively. example set_deep({a:{b:{c:{"good"}}}},"a-b-c","bad")
+       will return {a:{b:{c:{"bad"}}}} */
+    if(typeof(obj) != "object")
+	return undefined;
+    let fobj = simpleCopy(obj);
+    var x = fobj;
+    let props = prop.split("-");
+    let fprop = props.pop();
+    for(var i=0; i<props.length; i++) {
+	if(props[i] in x) {
+	    x = x[props[i]];
+	    continue;
+	} else {
+	    if(i+1 < props.length) {
+		if (props[i+1].match(/^\d+$/))
+		    x[props[i]] = [];
+		else
+		    x[props[i]] = {};
+	    } else if (fprop.match(/^\d+$/))  {
+		/* Last element and is an array */
+		x[props[i]] = [];
+	    } else {
+		x[props[i]] = {};
+	    }
+	    x = x[props[i]];
+	}
+    }
+    /* If the value is being set to be undefined then delete this property
+       of this object */
+    if(val === undefined) {
+	if (fprop.match(/^\d+$/)) {
+	    x.splice(parseInt(fprop),1);
+	} else {
+	    delete x[fprop];
+	}
+    } else {
+	x[fprop] = val;
+    }
+    return fobj;
+}
 function deepsearch(obj,dir) {
     var xobj = obj
     var path = dir.split(".")
@@ -2140,18 +2241,25 @@ function deepsearch(obj,dir) {
     }
     return xobj
 }
-
+function fake_pdf() {
+    $('body').append($('<div>').addClass('exportActive'))
+    $('.exportActive').append($('<input>').addClass('exportRole').val('developer'))
+    $('.exportActive').append($('<input>').addClass('exportId').val('developer'))
+    $('.exportActive').append($('<input>').attr({id:'contact',value:'developer'}))
+    $('.exportActive').append($('<div>').addClass('ssvcvector').html('developer'))
+    $('.exportActive').append($('<input>').addClass('includetree').attr({type: 'checkbox','checked':1}))
+}
 function export_pdf() {
     $('.Exporter').css({'pointer-events':'none'})
-    var vul = $('.exportActive .exportId').val().toUpperCase();
+    var vul = $('#evaluate_section .vuid').val().toUpperCase();
     if((vul == "") || (vul.indexOf("CVE") < 0)) {
 	createPDF(vul,"No further information available");
 	console.log("No vul information such as CVE");
 	return;
     }
-    var cve_json_url = "https://olbat.github.io/nvdcve/";
-    $.getJSON(cve_json_url+vul+".json").done(function(d) {
-	var f = deepsearch(d,"cve.description.description_data.0.value");
+    var cve_json_url = "https://cveawg.mitre.org/api/cve/"
+    $.getJSON(cve_json_url+vul.toUpperCase()).done(function(d) {
+	var f = deepsearch(d,"containers.cna.descriptions.0.value");
 	if((!f) || (f == ""))
 	    f = "No further information available"
 	createPDF(vul,f);
@@ -2165,13 +2273,12 @@ function export_pdf() {
 }
 function createPDF(vulnerability,cveinfo) {
     //    Requirements for new updates for the ssvc-calc tool.
-    var role = $('.exportActive .exportRole').val() || "Unknown";
-    var vulid = $('.exportActive .exportId').val() || "Unspecified";
-    var includetree = $('.exportActive .includetree').is(':checked');        
+    var role = "Evaluator";
+    var vulid = vulnerability;
+    var includetree = true;
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({putOnlyUsedFonts:true});
     var coord = $('.cover_heading_append').html().replace(/^\s+(.+)\s+/g,'$1')
-    var vulnerability = $('.exportActive .exportId').val();
     if(vulnerability == "")
 	vulnerability = "ID-Pending"
     var title = "SSVC score for "+vulnerability+" "+coord
@@ -2253,7 +2360,7 @@ function createPDF(vulnerability,cveinfo) {
     xOffset = 12;
     doc.text("Summary",xOffset,yOffset+13);
     doc.setFontSize(12);
-    var vector_string = $('.exportActive .ssvcvector').html()
+    var vector_string = "SSVC v2"
 
     doc.setFont("helvetica","normal");
     doc.text("Recommendation:",xOffset,yOffset+20);    
@@ -2389,7 +2496,7 @@ function createPDF(vulnerability,cveinfo) {
     doc.setFont("helvetica",'bold');
     doc.text("Contact:",xOffset,ynow);
     doc.setFont("courier",'normal');
-    doc.text($('#contact').val(),xOffset+20,ynow);
+    doc.text("SSVC Contact",xOffset+20,ynow);
     var safetime = ts.toGMTString().replace(/[^a-z0-9]+/ig,'-');
     var fulltree = includetree ? "-with-full-tree" : ""
     var dfilename = "SSVC-"+role+"-"+vulid+"-"+safetime+fulltree+".pdf";

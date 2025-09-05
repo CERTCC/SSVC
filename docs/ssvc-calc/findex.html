@@ -112,7 +112,7 @@
 	  </div>
 	  <button type="button" class="btn btn-secondary" id="exportopen"
 		  data-toggle="tooltip" data-placement="bottom"
-		  title="Show Export" style="display:none"
+		  title="Show Export" 
 		  onclick="export_show(false)">
 	    Export
 	  </button>
@@ -423,7 +423,7 @@
     </div>
     <div id="exporter" class="d-none">
       <div class="row justify-content-center position-absolute exportdiv">
-	<div class="export-header">
+	<div class="export-header" style="padding-bottom:8px">
 	  <h3> Export Calculated SSVC Score</h3>
 	  <button type="button" aria-label="Close" class="close h3" onclick="export_close()">
 	    <span aria-hidden="true">×</span>
@@ -433,37 +433,60 @@
 	    <table class="table table-borderless w-auto">
 	      <tbody>
 		<tr>
-		  <td>
+		  <td style="padding:2px">
 		    <label>
 		    Timestamp: <input type="text" placeholder="timestamp UTC like 2025-01-01T12:00:00Z" name="timestamp"
 			   class="form-control timestamp" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?Z" style="width:auto; display:inline-block;min-width:24ch;">
 		    </label>
-		    <br>
-		    <label> <input type="checkbox" name="include_outcome" checked> Include Outcomes</label>
-		    <br>
-		    <div class="custom-control custom-switch">
-		      <input type="checkbox" class="custom-control-input" id="export-optional"
-			     onclick="export_optional(this.checked)">
-		      <label class="custom-control-label" for="export-optional">Provide resource information</label>
-		    </div>
+		    <label class="custom-control custom-switch">
+		      <input class="custom-control-input" type="checkbox" name="include_outcome" checked>
+		      <span class="custom-control-label">Include Outcomes</span>
+		    </label>
+		    <label class="custom-control custom-switch">
+		      <input type="checkbox" class="custom-control-input export-resources"
+			     onchange="export_optional(this.checked)">
+		      <span class="custom-control-label text-muted">Provide resource information</span>
+		    </label>
 		  </td>
 		</tr>
 		<tr class="export-optional d-none">
-		  <td>
-		    <input type="text" placeholder="URL of Decision Tree schema" name="decision_point_resources.0.uri"class="form-control">
-		    <input type="text" placeholder="Description of Decision Tree URL" name="decision_point_resources.0.summary" class="form-control">
-		    <input type="text" placeholder="URL of any resources used in making specific selections" name="references.0.uri" class="form-control">
-		    <input type="text" placeholder="Description of the Resources URL" name="references.0.summary" class="form-control">
-		    <input type="checkbox" class="includetree" unchecked>
-		    <span class="text-muted">
-		      Include decision tree in export
-		    </span>
-		    <br/>
+		  <td style="padding:2px">
+		    <div style="border: 1px dotted grey">
+		      For Vulnerability:
+		     <span class="vulninfo text-muted"></span>
 		    
+		    <ul style="margin-bottom:1px">
+		      <li style="list-style:none; position:relative; border: 1px dashed grey;">
+		      <input type="text" placeholder="URL of Decision Tree schema" name="decision_point_resources-0-uri"class="form-control">
+		      <input type="text" placeholder="Description of Decision Tree URL" name="decision_point_resources-0-summary" class="form-control">
+		      <button class="btn" title="Add Row" style="position:absolute; right:0px; bottom: 0px"
+			      aria-label="Add Row"
+			      onclick="duplicate(this.parentNode)">
+			 <span aria-hidden="true">&#8853;</span>
+		      </button>
+		      </li>
+		    </ul>
+		    <ul style="margin-bottom:1px">
+		      <li style="list-style:none; position:relative; border: 1px dashed grey;">
+			<input type="text" placeholder="URL of resources used for selection" name="references-0-uri" class="form-control">
+			<input type="text" placeholder="Description of the Resources URL" name="references-0-summary" class="form-control">
+			<button class="btn" title="Add Row" style="position:absolute; right:0px; bottom: 0px"
+			      aria-label="Add Row"
+			      onclick="duplicate(this.parentNode)">
+			  <span aria-hidden="true">&#8853;</span>
+			</button>			
+		      </li>
+		    </ul>
+		    </div>
 		  </td>
 		</tr>		
 		<tr>
-		  <td>
+		  <td style="padding:2px">
+		    <label class="custom-control custom-switch">
+			<input type="checkbox" unchecked="" class="custom-control-input includetree" value="">
+			<span class="custom-control-label text-muted">Include decision tree in export</span>
+		    </label>
+		    
 		    <div class="btn-group primary-button Exporter">
 		      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			Export
