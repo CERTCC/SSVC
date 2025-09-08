@@ -79,12 +79,20 @@ class NameSpace(StrEnum):
         """
         valid = NS_PATTERN.match(value)
 
+        ext_sep = "/"
+        frag_sep = "#"
+
         if valid:
             # pattern matches, so we can proceed with further checks
             # partition always returns three parts: the part before the separator, the separator itself, and the part after the separator
-            (base_ns, _, extension) = value.partition("/")
+            (base_ns, _, extension) = value.partition(ext_sep)
             # and we don't care about the extension beyond the pattern match above
             # so base_ns is either the full value or the part before the first slash
+
+            # but base_ns might have a fragment
+            # so we need to split that off if present
+            if "#" in base_ns:
+                (base_ns, _, fragment) = base_ns.partition(frag_sep)
 
             if base_ns in cls.__members__.values():
                 # base_ns is a registered namespaces

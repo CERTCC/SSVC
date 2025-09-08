@@ -40,6 +40,8 @@ class TestNamespacePattern(unittest.TestCase):
             "cisa",
             "custom",  # not in enum, but valid for the pattern
             "abc",  # not in enum, but valid for the pattern
+            "ssvc#reference-arch-1",  # valid namespace with hash
+            "x_example.test#test",
             "x_example.test#test/",
             "x_example.test#test//.org.example#bar",
             "ssvc/de-DE/.org.example#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
