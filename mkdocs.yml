@@ -32,6 +32,10 @@ nav:
             - Qualitative Severity: 'howto/cvss_v4/qualitative.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
+    - Using EPSS with SSVC:
+        - 'howto/using_epss/index.md'
+        - EPSS Probability as input to Exploitation: 'howto/using_epss/epss_probability.md'
+        - EPSS Percentiles as an Amplifier: 'howto/using_epss/epss_percentiles.md'
     - SSVC Tools:
         - Docker Containers: 'howto/tools/containers.md'
   - Understanding SSVC:
