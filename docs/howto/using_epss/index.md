@@ -7,7 +7,7 @@
 The [Exploit Prediction Scoring System](https://www.first.org/epss) ([EPSS](https://www.first.org/epss)) is a statistical model that estimates the likelihood of a vulnerability being exploited in the wild. EPSS can be a valuable input when assessing the exploitation risk associated with vulnerabilities. EPSS provides two key metrics:
 
 - **EPSS Score**: A score between 0 and 1 indicating the probability of exploitation.
-- **EPSS Percentile**: A ranking that indicates how the EPSS score compares to other vulnerabilities.
+- **EPSS Percentile**: A ranking percentile that indicates how the EPSS score compares to other vulnerabilities.
 
 In the following pages, we'll demonstrate a few different ways to incorporate EPSS data into your SSVC decision models.
 

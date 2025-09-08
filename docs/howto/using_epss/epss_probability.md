@@ -4,7 +4,8 @@ SSVC users might want to combine exploitation-related information from multiple
 sources into a single decision point for use downstream in a decision table
 such as the SSVC [Deployer Decision Model](../deployer_tree.md).
 
-One such source is the EPSS probability score.
+One such source is the [Exploit Prediction Scoring System](https://www.first.org/epss/)
+([EPSS](https://www.first.org/epss)) probability score.
 
 !!! question "What is the EPSS Probability Score?"
 

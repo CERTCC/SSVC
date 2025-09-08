@@ -14,7 +14,8 @@
         You can get EPSS data from the [EPSS website](https://www.first.org/epss/)
         or use their [API](https://www.first.org/epss/api) to fetch scores programmatically.
 
-In [another how-to](epss_probability.md), we showed how to use EPSS
+In [another how-to](epss_probability.md), we showed how to use the [Exploit Prediction Scoring System](https://www.first.org/epss/)
+([EPSS](https://www.first.org/epss))
 probability scores as one of a few different inputs to inform the
 SSVC [Exploitation](../../reference/decision_points/exploitation.md) decision point.
 This approach can be a useful approach to refine or augment the *input* to an existing SSVC decision model.
