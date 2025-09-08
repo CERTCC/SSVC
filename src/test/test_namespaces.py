@@ -18,7 +18,6 @@
 #  DM24-0278
 
 import unittest
-import re
 
 from ssvc.namespaces import NameSpace
 from ssvc.utils.patterns import NS_PATTERN
@@ -88,6 +87,8 @@ class MyTestCase(unittest.TestCase):
             "x_example.test#bar",
             "x_example.test#baz",
             "x_example.test#quux",
+            "ssvc",
+            "ssvc#test",
         ]:
             self.assertEqual(ns, NameSpace.validate(ns))
 
