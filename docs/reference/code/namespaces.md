@@ -51,7 +51,7 @@ subgraph base_ns[Base Namespace]
         direction LR
         base_registered[Registered Base Namespace]
         base_fragment[Fragment]
-        base_registered --> base_fragment
+        base_registered -.->|optional| base_fragment
     end
     registered ~~~|OR| unregistered
 end
@@ -65,8 +65,8 @@ end
     examples where a registered namespace is needed.
     No production use of the `example` or `x_example` namespace is intended.
 
-    - `test` and `x_test` are _reserved_ for use as a registered
-    namespace for use in testing of current or new SSVC related code.
+    - `test` and `x_test` are _reserved_ for use in testing of current 
+    or new SSVC related code.
     No production use of the `test` namespace is intended.
 
     - `invalid` and `x_invalid` are _reserved_ and must not be used as
@@ -311,11 +311,11 @@ subgraph exts[Extensions]
             direction LR
             t_dot[.]
             t_reverse_ns_ext[Reverse Domain Name Notation]
-            t_fragment[#Optional Fragment]
+            t_fragment[#Fragment]
             t_dollar[$]
             t_lang[Language Tag]
             
-            t_dot --> t_reverse_ns_ext -.-> t_fragment -.-> t_dollar --> t_lang
+            t_dot --> t_reverse_ns_ext -.->|optional| t_fragment -.-> t_dollar --> t_lang
             t_reverse_ns_ext --> t_dollar
         end
         
