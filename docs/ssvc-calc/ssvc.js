@@ -20,28 +20,27 @@
  */
 
 /* SSVC code for graph building */
-const _version = "5.1.8"
+const _version = "6.0.2"
 const _tool = "Dryad SSVC Calculator "+_version
-var showFullTree = false
+var showFullTree = false;
+/* The registryurl is now relative to local folder using symlink for convenience*/
+const registry_url = "https://raw.githubusercontent.com/CERTCC/SSVC/refs/heads/main/data/json/ssvc_object_registry.json";
+const SSVC = {"tool_version": _version, decision_points: [], decision_trees: []}
 var diagonal,tree,svg,duration,root
 var treeData = []
-/* Deefault color array of possible color options */
-var acolors = ["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
-var lcolors = {"Track":"#28a745","Track*":"#ffc107","Attend":"#EE8733","Act":"#dc3545"}
+/* Default color array of possible color options
+["#28a745","#ffc107","#EE8733","#dc3545","#ff0000","#aa0000","#ff0000"]
+
+ */
+var acolors = [  "#28a745", "#72b741", "#b0c13f", "#e6be3d", "#ffc107",
+		 "#fba145", "#f37d4f", "#e65b53", "#d93f4e", "#dc3545"];
+var lcolors = {};
 var ssvc_short_keys = {};
-/* These variables are for decision tree schema JSON aka SSVC Provision Schema */
-var export_schema = {decision_points: [],decisions_table: [], lang: "en",
-		     version: "2.0", title: "SSVC Provision table"}
+/* These variables are for decision Selection schema */
+var export_schema = { };
+var valueselect_schema = { "timestamp": "2025-08-24T15:05:00Z",  "schemaVersion": "2.0.0", "target_ids": [], "selections": [], "decision_point_resources" : [], "references": []};
 /* If a new analysis is being done use this for export */
 var current_score = [];
-var current_tree = "Deployer.json";
-var roll_tree_map = {
-		     "Supplier": "Supplier.json",
-		     "Deployer": "Deployer.json",
-		     "Coordinator-Publish": "Coordinator-Publish.json",
-		     "Coordinator-Triage": "Coordinator-Triage.json",
-			 "CISA-Coordinator" : "CISA-Coordinator.json"
-		    };
 var current_schema = "SSVC_Computed.schema.json";
 /* A dictionary of elements that are children of a decision point*/
 var ischild = {};
@@ -63,6 +62,24 @@ jQuery.fn.simClick = function () {
 	e.dispatchEvent(evt);
     });
 };
+function check_all(ev) {
+    const mdiv = ev.target.parentElement.parentElement;
+    const els = $(mdiv).find('input[type="checkbox"].dp_input');
+    const dto = $(mdiv).find('input[type="checkbox"].dt_outcome');
+    els.each(function(_,el) {
+	el.checked = true;
+    });
+    show_full_tree();
+    dto.each(function(_,dinput) {
+	outcome_set(dinput, true);
+    });
+}
+function export_optional(show) {
+    if(show)
+	$('tr.export-optional').removeClass("d-none");
+    else
+	$('tr.export-optional').addClass("d-none");	
+}
 function reset_form() {
     /* This is to clear stupid Firefox cached form values*/
     $('select').prop('selectedIndex',0);	    
@@ -83,48 +100,81 @@ function select_add_option(s,opt) {
 		 .html(opt));
     };
 }
-$(function () {
-    reset_form();
-    Object.keys(roll_tree_map).forEach(function(x) {
-	var display = roll_tree_map[x].replace(".json","");
-	$('#tree_samples').append($('<option>')
-				  .attr({value:roll_tree_map[x]})
-				  .html(display))
+function arrayReduce(arr,n) {
+    if(n > arr.length)
+	return arr.concat(Array(n-arr.length).fill(arr.at(-1)))
+    return arr.filter(function(_,i) {
+        if (i === 0 || i === arr.length - 1) return true;
+        const step = (arr.length-1)/(n-1);
+        for (let j = 1; j < n - 1; j++) 
+            if (Math.round(j * step) === i)
+		return true;
+        return false;
     });
+}
+
+$(function () {
+    /* document.ready() */
+    reset_form();
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
-    $('[data-toggle="tooltip"]').tooltip();
-    if(localStorage.getItem("beenhere")) {
-	tooltip_cycle_through();
-    } else {
-	$('#helper').show();
-	localStorage.setItem("beenhere",1);
-    }
-    //load_tsv_score();
-    //tree_process("CISA-Coordinator-v2.01.json");
-    if(location.hash != "") {
-	/*  IF location specifies are tree and its valid, preload the right tree
-	   "SSVCv2/E:A/V:S/T:T/M:H/D:C/1632171335/&CVE-2014-01-01&Coordinator" 
-	*/	
-	plparts = location.hash.substr(1).split("&");
-	if((plparts.length > 1) && (plparts[1] in roll_tree_map)) {
-	    current_tree = roll_tree_map[plparts[1]];
-	    $('#tree_samples').val(current_tree);
+    $.getJSON(registry_url).done(function(registry) {
+	let defaultTree;
+	if (registry.types && registry.types.DecisionPoint &&
+	    registry.types.DecisionPoint.namespaces) {
+	    const namespaces = registry.types.DecisionPoint.namespaces;
+	    for (const nsKey in namespaces) {
+		const namespace = namespaces[nsKey];
+		if (namespace.keys) {
+		    for (const key in namespace.keys) {
+			const keyEntry = namespace.keys[key];
+			if (keyEntry.versions) {
+			    for (const version in keyEntry.versions) {
+				const versionEntry = keyEntry.versions[version];
+				if (versionEntry.obj && versionEntry.values) {
+				    let mdata = {data: versionEntry.obj};
+				    SSVC.decision_points.push(mdata);
+				}
+			    }
+			}
+		    }
+		}
+	    }
 	}
-	/* For some reason when .val() is used the cloning of this export does not
-	 carry over the value .attr of "value" works right */
-	if((plparts.length > 2) && (plparts[2] != "")) 
-	    $('.exportId').attr("value",plparts[2]);
-    }
-    select_add_option($('#tree_samples'),current_tree);    
-    $.getJSON(current_tree).done(function(idata) {
-	parse_json(idata);
-    }).fail(function() {
-	console.log("Failed to Load CISA tree.  Loading default tree");
+	if (registry.types && registry.types.DecisionTable &&
+	    registry.types.DecisionTable.namespaces) {
+	    const namespaces = registry.types.DecisionTable.namespaces;
+	    for (const nsKey in namespaces) {
+		const namespace = namespaces[nsKey];
+		if (namespace.keys) {
+		    for (const key in namespace.keys) {
+			const keyEntry = namespace.keys[key];
+			if (keyEntry.versions) {
+			    for (const version in keyEntry.versions) {
+				const versionEntry = keyEntry.versions[version];
+				if (versionEntry.obj && versionEntry.obj.decision_points) {
+				    let mdata = {data : versionEntry.obj, displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
+				    if(versionEntry.obj.name.indexOf("Deployer") > -1) {
+					mdata['selected'] = true;
+					defaultTree = versionEntry.obj;
+				    }
+				    SSVC.decision_trees.push(mdata);
+				}
+			    }
+			}
+		    }
+		}
+	    }
+	}
+	parse_json(defaultTree);
+	SSVC.decision_trees.forEach(function(dpd, i) {
+	    $('#tree_samples').append($('<option>')
+				      .attr({value: i, selected: dpd.selected})
+				      .text(dpd.displayname));
+	});
     });
-    export_tree();
-    load_tsv_score();
-})
+
+});
 var raw = [];
 
 document.onkeyup = function(evt) {
@@ -213,25 +263,40 @@ function dynamic_mwb(w) {
     return result;
 }
 function export_show(novector) {
-    console.log(novector);
-    $('#exportopen').show();
-    var ptranslate = "translate(120,-250)";
-    if(window.innerWidth <= 1000)
-	ptranslate = "translate(30,-90) scale(0.4,0.4)";
-    d3.select("#pgroup").transition()
-	.duration(600).attr("transform", ptranslate);
-    var q = $('#exporter').html();
-    $('.exportActive .exportdiv').remove();
-    $('.exportActive').removeClass('exportActive');
-    if($('#graph-ungraph').val() == "Analyst")
-	$('#ungraph').append(q).addClass('exportActive');
-    else
-	$('#graph').append(q).addClass('exportActive');
-    if($('#cve_samples').val().match(/^(cve|vu)/i))
-	$('.exportId').val($('#cve_samples').val())
-    if(novector == true)
-	return
-    setTimeout(make_ssvc_vector,1000);
+    $('.cover-container').css({opacity:0.5,pointerEvents:"none"});
+    $('#exporter').removeClass('d-none');
+    $('#exporter input').each(function(_,inp) {
+	inp.value = "";
+    });
+    
+    $('#exporter .timestamp').val((new Date()).toISOString());
+    $('#exporter .duplicated').remove();
+    let vuls = $('#evaluate_section > div');
+    let resources = $('.export-optional > td > div');
+    let diff = vuls.length - resources.length;
+    if (diff > 0) {
+	let pr = resources[0].parentElement;
+	for (let i = 0; i < diff; i++) 
+            pr.appendChild(resources[0].cloneNode(true));
+    } else if (diff < 0) {
+	for (let i = resources.length - 1; i >= vuls.length; i--) 
+            resources[i].remove();
+    }
+    resources = $('.export-optional > td > div');
+    for(let i=0; i<vuls.length; i++) {
+	const vuel = vuls[i].querySelector('.vuid')
+	let span = resources[i].querySelector('.vulninfo');
+	if(vuel && span) {
+	    if(vuel.value)
+		span.innerText = vuel.value;
+	    else
+		span.innerText = String(i);
+	}
+    }
+}
+function export_close() {
+    $('.cover-container').css({opacity:1.0,pointerEvents:"revert"})
+    $('#exporter').addClass('d-none');
 }
 function make_ssvc_vector() {
     console.log($('.exportId').val());
@@ -293,10 +358,10 @@ function export_tree() {
 	   reduce((z,y,i) => {
 	       z[yhead[i]] = y
 	       if(!toptions[i]) {
-		   toptions[i] = [{label: y, description: y}]
+		   toptions[i] = [{label: y, definition: y}]
 	       }
 	       else if (!toptions[i].find(t => t.label == y))
-		   toptions[i].push({label: y, description:y})
+		   toptions[i].push({label: y, definition:y})
 	       return z
 	   },{}))
     /* Now the decision points should be moved to the end of the array */
@@ -317,48 +382,127 @@ function export_tree() {
        {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
        {"Decision":"defer"}]" */
 }
+function simpleCopy(objin) {
+    try {
+	return JSON.parse(JSON.stringify(objin));
+    } catch(err) {
+	console.log("Perhaps not a JSON object",err);
+	return {}
+    }
+}
+function add_selection(value_selection,inp) {
+    let h4 = inp.parentElement.parentElement.parentElement.childNodes[0];
+    const dp = JSON.parse(h4.getAttribute("data-dp"));
+    const valueSet = {key: inp.getAttribute("data-dpvkey"),
+		      name: inp.value};
+    let findex = value_selection.selections.findIndex(function(selectdp) {
+	return selectdp.version == dp.version &&
+	    selectdp.namespace == dp.namespace &&
+	    selectdp.key == dp.key
+    });
+    if(findex > -1) {
+	value_selection.selections[findex].values.push(valueSet)
+    } else {
+	value_selection.selections.push({values:[valueSet],
+					 name: inp.name,
+					 version: dp.version,
+					 namespace: dp.namespace,
+					 definition: dp.definition,
+					 key: dp.key});
+    }
+}
+function duplicate(li) {
+    const lastli = li.parentElement.lastElementChild;
+    if(li.dataset.xdelete == "delete") {
+	return lastli.remove();
+    }
+    const nli = lastli.cloneNode(1);
+    nli.querySelectorAll("input").forEach(function(inp) {
+	let regex = new RegExp("^([^\-]+)\-([0-9]+)\-([^\-]+)$")
+	inp.name = inp.name.replace(regex,function() {
+	    let args = Array.from(arguments);
+	    if(args.length > 2 && args[2].match(/^[0-9]+$/)) {
+		let incr = parseInt(args[2]) + 1;
+		args[2] = incr;
+		/*Remove first and last two elements */
+		return args.slice(1,-2).join("-");
+	    }
+	    return inp.name
+	});
+    });
+    const btn = nli.querySelector("button");
+    if(btn) {
+	btn.innerHTML = "&#8854";
+	btn.style.color = "red";
+	nli.dataset.xdelete = "delete";
+	nli.classList.add("duplicated");
+	li.parentElement.appendChild(nli);
+    }
+}
+
 function export_json() {
-    var includetree = $('.exportActive .includetree').is(':checked')
-    $('.Exporter').css({'pointer-events':'none'});
-    var tstamp = new Date()
-    var oexport = { role: $('.exportActive .exportRole').val() || "Unknown",
-		    id: $('.exportActive .exportId').val() || "Unspecified",
-		    version: "2.0",
-		    generator: _tool
-		  }
-    oexport['computed'] = $('.exportActive .ssvcvector').html();
-    
-    oexport['timestamp'] =  $('.exportActive .ssvcvector').html().split('/').
-	slice(-2,-1)[0]
-    final_outcome = $('#graph svg g.node text:last').text();
-    /* If final_outcome is empty look for analyst mode value */
-    if($('#graph-ungraph').val() == "Analyst" || (!final_outcome)) {
-	final_outcome = $('h4.hfinal').html();
+    let oexport = {};
+    let value_selections = [];
+    let add_outcome = $('#exporter input[name="include_outcome"]').is(':checked');
+    let download_filename = "SSVC_" + (new Date()).toISOString().replace(":","-")  + "_json.txt"
+    let export_options = [];
+    if($('.export-resources').is(':checked')){
+	export_options = Array.from($('.export-optional > td > div'));
+	let includetree = $('#exporter .includetree').is(':checked');
+	if (includetree) {
+	    if(export_schema.current_tree &&
+	       export_schema.current_tree.schemaVersion == "2.0.0") {
+		oexport['decision_tree'] = expot_schema.current_tree;
+	    } else  {
+		let rindex = $('#tree_samples').val();
+		if(rindex.match(/^[0-9]+$/)) { 
+		    let index = parseInt(rindex);
+		    if(SSVC.decision_trees[index] && SSVC.decision_trees[index].data)
+			oexport['decision_tree'] = SSVC.decision_trees[index].data;
+		}
+	    }
+	}	
     }
-    /* Copy current_score as is to options that were selected */
-    oexport['options'] = current_score;
-    if(current_score.findIndex(x => final_keyword in x) < 0) {
-	/* Add final_keywrod only if not exists see GitHub issue #190 */
-	var last_option = {};
-	last_option[final_keyword] = final_outcome;
-	oexport['options'].push(last_option);
-    }
-    oexport['$schema'] = location.origin + location.pathname + current_schema
-    oexport['decision_tree_url'] = location.origin + location.pathname +
-	current_tree;
+    $('#evaluate_section > div').each(function(i,div) {
+	value_selection = simpleCopy(valueselect_schema);
+	value_selection.timestamp = $('#exporter .timestamp').val();
+	div.querySelectorAll("input").forEach(function(inp) {
+	    /* Add checks if outcome should be included*/
+	    if(inp.classList.contains("dt_outcome") && (!add_outcome))
+		return;
+	    if(inp.classList.contains('vuid'))
+		value_selection.target_ids.push(inp.value.toUpperCase());
+	    else if(inp.checked && inp.hasAttribute("data-dpvkey"))
+		add_selection(value_selection, inp);
+	});
+	/* If export_options is enabled go ahead and add them*/
+	if(export_options[i]) {
+	    export_options[i].querySelectorAll("input").forEach(function(inp) {
+		if(inp.value) 
+                    value_selection = set_deep(value_selection,inp.name,inp.value);
+	    });
+	}
+	value_selections.push(value_selection);
+    });
+    value_selections.forEach(function(_,i) {
+	['decision_point_resources','references'].forEach(function(res) {
+	    if(!value_selections[i][res].length)
+		delete value_selections[i][res];
+	})
+    });
+    if(value_selections.length == 1)
+	download_filename = "SSVC_" + value_selections[0].target_ids[0] +
+	(new Date()).toISOString().replace(":","-")  + "_json.txt"
+    oexport.evaluations = value_selections;
+	
     var a = document.createElement("a")
-    var download_filename = oexport.id+"_"+oexport.role+"_json.txt"
-    if (includetree) {
-	oexport['decision_tree'] = export_schema
-	download_filename = "tree_and_path-"+ oexport.id + "_" + oexport.role +
-	    "_json.txt"	
-    } 
+    
     a.href = "data:text/plain;charset=utf-8,"+
 	encodeURIComponent(JSON.stringify(oexport,null,2))
     a.setAttribute("download", download_filename)
     a.click()
     a.remove()
-    $('.Exporter').css({'pointer-events':'all'});    
+    export_close();
 }
 
 function readFile(input) {
@@ -411,6 +555,17 @@ function tree_process(w) {
 	} else 
 	    $('#dtreecsvload').click()
 	return
+    }
+    if(ptree.match(/^\d+$/)) {
+        const index = parseInt(ptree);
+        if( index in SSVC.decision_trees && SSVC.decision_trees[index].data) {
+            /* This is a SSVC.decision_point index find it and return */
+            return parse_json(SSVC.decision_trees[index].data);
+        }
+    }
+    if(ptree.indexOf("json:") == 0) {
+        /* ptree itself is the payload with json: in the front*/
+        return parse_json(JSON.parse(ptree.substring(5)));
     }
     $.get(ptree, function(idata) {
         if(ptree.match(/\.json$/i))
@@ -668,7 +823,7 @@ function create_short_keys(x,uniq_keys) {
     }
 }
 function schemaTransform(dtnew) {
-    const dtobj = JSON.parse(JSON.stringify(dtnew));
+    const dtobj = simpleCopy(dtnew);
     const dtold = {};
     let finalkey;
     if('outcome' in dtobj)
@@ -708,10 +863,239 @@ function schemaTransform(dtnew) {
     return dtold;
 
 }
+function evaluate_vuls() {
+    $('#evaluate_section').toggle();
+}
+function outcome_set(dinput, enabled) {
+    if(enabled) {	
+	dinput.parentElement.style.opacity = 1.0;
+	dinput.checked = true;
+    } else {
+	dinput.parentElement.style.opacity = 0.4;
+	dinput.checked = false;
+    }
+}
+function check_select(ev) {
+    const input = ev.target;
+    /* Container for this decision point */
+    const dpContainer = input.parentElement.parentElement.parentElement;
+    const groupContainer = dpContainer.parentElement;
+    let valueSet = {};
+    valueSet[final_keyword] = [];
+    groupContainer.querySelectorAll('input[type="checkbox"].dp_input').forEach(function(xinput) {
+	if(xinput.checked) {
+	    if((xinput.name in valueSet) &&(!valueSet[xinput.name].includes(xinput.value)))
+		valueSet[xinput.name].push(xinput.value);
+	    else
+		valueSet[xinput.name] = [xinput.value]
+	}
+    });
+    export_schema.decisions_table.forEach(function(dt) {
+	let matched = Object.keys(valueSet).every(function(key) {
+	    if(key == final_keyword)
+		return true;
+	    if((key in dt) && (valueSet[key].includes(dt[key]))) {
+		return true;
+	    } else {
+		return false;
+	    }
+	    console.log(key,dt[key],valueSet[key], matched);
+	});
+	//console.log(dt,matched);
+	if(matched && (!valueSet[final_keyword].includes(dt[final_keyword]))) {
+	    valueSet[final_keyword].push(dt[final_keyword]);
+	}
+    });
+    //console.log(valueSet);
+    const outcomes = Array.from(groupContainer.querySelectorAll("input.dt_outcome"));
+    groupContainer.querySelectorAll("input.dt_outcome").forEach(function(dinput) {
+	//console.log(dinput.value,valueSet[final_keyword]);
+	if(!valueSet[final_keyword].includes(dinput.value)) {
+	    outcome_set(dinput, false);
+	} else {
+	    outcome_set(dinput, true);
+	}
+    });
+    const finddpIndex = $(input).data("dpdepth");
+    const nodes = d3.selectAll("g.node.depth-"+String(finddpIndex));
+    function traverse_remove(xnode) {
+	if(!xnode.__data__) {
+	    console.log("Error no nodes to descend!");
+	}
+	if(!xnode.__data__._schildren) {
+	    console.log("Error no node _schildren data to restore from!");
+	}
+	let removeValues = [];
+	xnode.__data__.children = Array.from(xnode.__data__._schildren);
+	dpContainer.querySelectorAll("input").forEach(function(cinput) {
+	    if(!cinput.checked) 
+		removeValues.push($(cinput).data("dpvdepth"));
+	});
+	removeValues.reverse().forEach(function(rindex) {
+	    removevalueIndex = parseInt(rindex);
+	    xnode.__data__.children.splice(removevalueIndex,1);
+	});
+	update(xnode.__data__);
+    }    
+    
+    if(nodes.length) {
+	nodes[0].forEach(function(xnode) {
+	    if(xnode.__data__) {
+		if(xnode.__data__._schildren) {
+		    traverse_remove(xnode);
+		} else if(xnode.__data__.children) {
+		    let removevalueIndex = $(input).data("dpvdepth");
+		    xnode.__data__._schildren = Array.from(xnode.__data__.children);
+		    xnode.__data__.children.splice(removevalueIndex,1);
+		    update(xnode.__data__);
+		}
+	    }
+	});
+    }
+}
+function process_ssvc(ssvc, winput) {
+    /* Assume flat SSVC namespace for now */
+    function set_ssvc(dpInput, ssvc) {
+	dpInput.setAttribute("public-update", ssvc.data.timestamp);
+	dpInput.setAttribute("public-provider", ssvc.provider);
+	/* Update the title like Exploitation with this data*/
+	try {
+	    let h4 =  dpInput.parentElement.parentElement.parentElement.childNodes[0];
+	    h4.setAttribute("title", "Updated using public provider "
+			    + ssvc.provider +  " on " + ssvc.data.timestamp);
+	    
+	} catch (err) {
+	    console.log(err);
+	}
+    }
+    function reset_dp(dpInput) {
+	/* Check if dpInput has been changed by logic above*/
+	if(dpInput.checked && (!dpInput.hasAttribute("public-update"))) {
+	    dpInput.click();
+	} else if((!dpInput.checked) && dpInput.getAttribute("public-update")) {
+	    dpInput.click();
+	}
+	/* below will also work but for readability above is better.
+	   if (dpInput.checked !== Boolean(dpInput.getAttribute("public-update"))) {
+	   dpInput.click();
+	   }
+	*/
+    }
+    let dpContainer = winput.parentElement.parentElement.nextSibling;
+    if('data' in ssvc && 'schemaVersion' in ssvc.data) {
+	/* Uses official SSVC schema*/
+	if(ssvc.data.schemaVersion == "1-0-1") {
+	    ssvc.data.selections.forEach(function(selection, i) {
+		//const name = selection.name.toLowerCase();
+		//const value = '\\"label\\":\\"' + name + '\\"';
+		//const match = '[data-dp*="' + value + '" i]';
+		const match = 'input[name*="' + selection.name.toLowerCase() + '" i]';
+		const dpInputs = dpContainer.querySelectorAll(match);
+		dpInputs.forEach(function(dpInput) {
+		    dpInput.removeAttribute("public-update");
+		    selection.values.forEach(function(value) {
+			if(value.toLowerCase() == dpInput.value.toLowerCase()) 
+			    set_ssvc(dpInput, ssvc);
+		    });
+		    reset_dp(dpInput);
+		});
+	    });
+	}
+    } else if(ssvc.data.version == "2.0.3") {
+	ssvc.data.options.forEach(function(option) {
+	    const name = Object.keys(option).pop().toLowerCase();
+	    const value = Object.values(option).pop();
+            const match = 'input[name*="' + name + '" i]';
+            const dpInputs = dpContainer.querySelectorAll(match);
+            dpInputs.forEach(function(dpInput) {
+		dpInput.removeAttribute("public-update");
+		try {
+		    dpInput.parentElement.parentElement.parentElement.childNodes[0].removeAttribute("title");
+		} catch(err) {
+		    console.log(err);
+		}		
+		if(Array.isArray(value)) {
+		    value.forEach(function(tvalue) {
+			if(tvalue.toLowerCase() == dpInput.value.toLowerCase()) 
+			    set_ssvc(dpInput, ssvc);
+		    });
+		} else {
+		    if(value.toLowerCase() == dpInput.value.toLowerCase())
+			set_ssvc(dpInput, ssvc);
+		}
+		reset_dp(dpInput);
+	    });
+	});
+    }
+}				 
+
+function cve_get(ev) {
+    const winput = ev.target;
+    const checkbox = winput.parentElement.parentElement.querySelector("input[name='use_public']");
+    if(checkbox && (!checkbox.checked))
+	return;
+    let api_url = "https://cveawg.mitre.org/api/cve/";
+    const vuid = winput.value.toUpperCase();
+    const ssvc = {};
+    if(vuid.match(/^CVE-(1999|2\d{3})-(?!0{4})(0\d{3}|[1-9]\d{3,})$/)) {
+	$.getJSON(api_url + vuid).done(function(cveJson) {
+	    if(!('containers' in cveJson))
+		return;
+	    winput.removeAttribute("data-ssvc");
+	    winput.setAttribute("data-cve", JSON.stringify(cveJson));
+	    /* Match either cna or adp in that order for first SSVC record */
+	    if(('cna' in cveJson.containers) &&
+	       ('metrics' in cveJson.containers['cna']) &&
+	       (cveJson.containers['cna'].metrics.length > 0)) {
+		let provider = "cna";
+		let cna = cveJson.containers['cna'];
+		if(cna.providerMetadata && cna.providerMetadata.shortName)
+                        provider = "cna:" + cna.providerMetadata.shortName;
+		if(cna.metrics.some(function(metric) {
+		    if(('other' in metric) && ('type' in metric.other) &&
+		       (metric.other.type.toLowerCase() == "ssvc")) {
+			ssvc['provider'] = provider;
+			ssvc['data'] = metric.other.content;
+			return true;
+		    }
+		})) {
+		    winput.setAttribute("data-ssvc",JSON.stringify(ssvc));
+		    process_ssvc(ssvc, winput);
+		    return true;
+		}
+	    }
+	    if('adp' in cveJson.containers) {
+		if(cveJson.containers.adp.some(function(adp) {
+		    let provider = "adp";
+		    if(adp.providerMetadata && adp.providerMetadata.shortName)
+			provider = "adp:" + adp.providerMetadata.shortName;
+		    if(('metrics' in adp) && (adp.metrics.length > 0)) {
+			return adp.metrics.some(function(metric) {
+			    if(('other' in metric) && ('type' in metric.other) &&
+			       (metric.other.type.toLowerCase() == "ssvc")) {
+				ssvc['provider'] = provider;
+				ssvc['data'] = metric.other.content;
+				return true;
+			    }
+			});
+		    }
+		})) {
+                    winput.setAttribute("data-ssvc",JSON.stringify(ssvc));
+                    process_ssvc(ssvc, winput);
+                    return true;
+		}
+	    }
+	});
+    } else {
+	console.log("Not a CVE Record "+vuid);
+    }
+    /* https://cveawg.mitre.org/api/cve/CVE-2025-6241 */
+}
 function parse_json(xraw,paused) {
     $('.bcomplex').remove();
     $('.graphy').not('#zoomcontrol').show();
     $('#ungraph').addClass('d-none');
+    $('#evaluate_section').html('');
     var zraw = [];
     isparent = {};
     var tm;
@@ -727,6 +1111,7 @@ function parse_json(xraw,paused) {
 	   schemas together*/
 	tm = tm.decision_tree;
     }
+    tm.current_tree = xraw;
     /* Clear also non grphic trees */
     $('#ughtr').html('');
     $('#ugbtr').html('');
@@ -749,6 +1134,7 @@ function parse_json(xraw,paused) {
     ischild = tm.decision_points.reduce(
 	(x,y) => {
 	    /* Use either key or label to create a hash of everyone */
+	    
 	    xkeys[y.label] = y;
 	    if("key" in y)
 		xkeys[y.key] = y.label
@@ -829,18 +1215,59 @@ function parse_json(xraw,paused) {
     var duniq_keys = {};
     /* unique keys for choices under decision points*/
     var ouniq_keys = {};
-    lcolors = {};    
-    tm.decision_points.map(x => {
+    lcolors = {};
+    let evaluate_div = $("<div>").css({display: "flex","justify-content":"center"});
+    tm.decision_points.map((x,index) => {
+	let h4 = $("<h4>").text(x.label)
+	    .css({"border-bottom": "2px solid aqua","font-size": "unset"})
+	    .attr({"data-dp":JSON.stringify(x),title: x.label});
+	const dpcol = $("<div>").append(h4);
+	dpcol.css({display: "inline-block", padding: "2px",border: "2px solid aqua"});
 	create_short_keys(x,duniq_keys);
-	var options_data = {}
-	var options_html = x.options.reduce((h,r) => {
+	var options_data = {};
+	const ocolors = arrayReduce(acolors, x.options.length);
+	const h5 = document.createElement("h5");
+	h5.innerText = x.label;
+	var options_html = x.options.reduce((h,r,i) => {
+	    const input = $("<input>").attr({type: "checkbox",
+					     checked: true,
+					     name: x.label,
+					     value: r.label,
+					     "data-dpvkey": r.key,
+					     "data-dpdepth": index,
+					     "data-dpvdepth": i});
+	    const label = $("<label>").css({padding: '0px 0px 0px 2px',
+							  margin: "0px"});
+	    const ldiv = $("<div>").css({"text-align": "left",
+					 "border": "1px solid steelblue",
+					 "width": "fit-content",
+					 "padding": "0px 8px 0px 8px",
+					 "border-radius": "3px",
+					 "margin-bottom": "3px"});
+	    if(index == tm.decision_points.length -1) {
+		lcolors[r.label] = ocolors[i];
+		/* When colors are present assume white for font*/
+		ldiv.css({"background": ocolors[i], color: "white"});
+		input.addClass("dt_outcome").css({display:"none"});
+	    } else {
+		/* Decision Point Input */
+		input.addClass("dp_input").click(check_select);
+	    }
+	    /* ADA compliant with id field*/
+	    label.append(input);
+	    label.append($("<span>").text(r.label));
+	    dpcol.append(ldiv.append(label));
 	    create_short_keys(r,ouniq_keys);
-	    options_data[r.label] = r.description;
+	    options_data[r.label] = r.definition;
 	    var rlabel = r.label[0].toLocaleUpperCase()+r.label.substr(1);
 	    var spclass = 'popup-'+safedivname(r.label);
-	    var div_add = "<div class='popupidiv "+spclass+"'><b>"+rlabel+"</b>&nbsp;"+r.description+"<hr /></div>";
-	    return  h + div_add;
-	},"<h5>"+x.label+"</h5>")
+	    var div_add = $('<div>').addClass('popupidiv '+ spclass)
+		.append($('<b>').css({color:ocolors[i]}).text(rlabel))
+		.append($('<span>').text(" " + r.definition))
+		.append($('<hr>'));
+	    return  h + div_add[0].outerHTML;
+	}, h5.outerHTML)
+	evaluate_div.append(dpcol);
 	var hdiv = safedivname(x.label)
 	if($("."+hdiv).length != 1) {
 	    //console.log(hdiv,"new");	    
@@ -889,38 +1316,90 @@ function parse_json(xraw,paused) {
 	//console.log(options_data);
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
+    let cve_input = $("<input>").addClass("form-control vuid").attr({"placeholder":"CVE/Identifier"})
+    cve_input[0].addEventListener('blur', cve_get);
+    cve_input[0].addEventListener('keydown', function(ev) {
+	if (event.key === 'Enter') 
+	    cve_get(ev);
+    });
+    let cve_div = $("<label>").append(cve_input).css({padding: "0px 4px 0px 4px"});
+    let autoscore_div = $("<label>").addClass("custom-control custom-switch d-inline-block").append($("<input>").attr({"type": "checkbox","name":"use_public","class": "custom-control-input","checked": true})).append($("<span>").addClass("custom-control-label").text(" Use public CVE API data").css("padding-right","3px")) 
+    let check_allb = $("<button>").addClass("btn btn-danger").html("Check All").on("click",check_all);
+    let line_div = $("<div>").append(cve_div).append(autoscore_div).append(check_allb);
+    $('#evaluate_section').append($("<div>").css({border: "1px solid rgba(1,1,1,0.1)",
+						  padding: "1px"}).append(line_div).append(evaluate_div));
     $("."+lastdiv).addClass("Decision");
-    var classes = []
+    var classes = [];
+    const ocolors = arrayReduce(acolors, decisions[0].options.length);    
     var decision_div = decisions[0].options.reduce((h,r,ir) => {
 	var srlabel = safedivname(r.label);
 	classes.push(srlabel);
-	if(("color" in r) && (r.color)) {
-	    lcolors[r.label] = r.color;
-	} else if(acolors[ir]) {
-	    r.color = acolors[ir];
+	if(ocolors[ir]) {
+	    r.color = ocolors[ir];
 	} else {
 	    r.color = "#fefefe";
 	}
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
 				     css({color:r.color}).html(r.label))
-	    .append("&nbsp"+r.description+"<hr>")
+	    .append("&nbsp"+r.definition+"<hr>")
 	    .addClass("popupidiv popup-"+srlabel)[0].outerHTML;
     },"<h5>"+final_keyword+"</h5>")
     if($("."+classes[0]).length != 1) {
 	$("."+classes[0]).remove()
 	$('body').append($('<div/>').addClass("d-none "+classes[0]))
     }
-    //console.log(classes)
-    //console.log(decision_div)
     $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
-    var currentRole = Object.keys(roll_tree_map)
-	.filter(x => roll_tree_map[x] == current_tree).shift()
-    if(currentRole)
-	select_add_option($('.exportRole'),currentRole);
     /* If a new tree is loaded and the user is in Simple mode
      just start simple mode decision */
     permalink();
     $('#dtreecsvload').hide();
+}
+function promptMultipleCVEs() {
+    Swal.fire({
+	title: 'Enter multiple CVEs',
+	input: 'textarea',
+	inputPlaceholder: 'CVE-2023-12345\nCVE-2024-67890\nCVE-2025-00001',
+	inputAttributes: {'aria-label': 'Type CVEs here' },
+	footer: '<label style="display:flex;align-items:center;gap:6px;"> ' +
+	    '<input type="checkbox" id="swal-use-public-cve" checked><span>Use public CVE API data</span></label>',
+	showCancelButton: true,
+	confirmButtonText: 'Add CVEs',
+	cancelButtonText: 'Cancel',
+	preConfirm: (value) => {
+	    let cves = value.split(/[\n,]+/).map(c => c.trim()).filter(Boolean);
+	    let useAPI = document.getElementById('swal-use-public-cve').checked;
+	    if (cves.length === 0) {
+		Swal.showValidationMessage('Please enter at least one CVE');
+		return false;
+	    }
+	    return { cves, useAPI };
+	}
+    }).then((result) => {
+	if (result.isConfirmed && result.value) {
+	    let cves = result.value.cves;
+	    let useAPI = result.value.useAPI;
+	    if(cves.length > 0) {
+		if(cves.length > 1) 
+		    $('#graph').hide();		
+		let container = $('#evaluate_section');
+		let currentDivs = container.children('div');
+		let currentCount = currentDivs.length;
+		if (currentCount > cves.length) {
+		    currentDivs.slice(cves.length).remove();
+		} else if (currentCount < cves.length) {
+		    let template = currentDivs.first();
+		    for (let i = currentCount; i < cves.length; i++) {
+			template.clone(true).appendTo(container);
+		    }
+		}
+		container.children('div').each(function (i) {
+		    $(this).find('input[name="use_public"]').attr("checked",useAPI);
+		    let cve_input = $(this).find('.vuid').val(cves[i]);
+		    cve_get({target: cve_input[0]});
+		});
+	    } 
+	}
+    });
 }
 function shwhelp(w) {
     var iconPos = w.getBoundingClientRect();
@@ -959,7 +1438,7 @@ function create_export_schema_dtable(yi,x) {
 	/* Add labels that do not exist */
 	if(export_schema.decision_points[c]['options']
 	   .filter(d => ('label' in d) && (d.label == b)).length != 1)
-	    export_schema.decision_points[c]['options'].push({label: b, description:b})
+	    export_schema.decision_points[c]['options'].push({label: b, definition:b})
 	a[x[c]] = b
 	return a; },{}))
 }
@@ -1042,9 +1521,9 @@ function parse_file(xraw) {
 	detect_version = "v1"
     topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
 	     y.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success")
-    dt_clear()
+    dt_clear();
     export_schema.decision_points[export_schema.decision_points.length-1].
-	options.map((x,i) => lcolors[x.label] = acolors[i] )
+	options.map((x,i) => lcolors[x.label] = ocolors[i] )
 }
 
 function add_invalid_feedback(xel,msg) {
@@ -1118,7 +1597,7 @@ function draw_graph() {
 	if(window.innerWidth <= 750)
 	    default_translate =  "translate(30,0) scale(0.42)"
     }
-    $('#zoomcontrol').show();
+    $('#zoomcontrol').removeClass('d-none').show();
     $('#zoomcontrol input').val(100);
     $('#graph').html($('<div>').attr({"id":"frbdiv"}).css({"position": "fixed","font-size": "x-small"})
 			.on("click",togglehelp).append($('<input>')
@@ -1183,22 +1662,20 @@ function update(source) {
 	.on("contextmenu",dorightclick)
 	.on("mouseover",showdiv)
 	.on("mouseout",hidediv);
-
     nodeEnter.append("circle")
 	.attr("r", 1e-6)
-	.attr("class",function(d) {
+	.attr("class",function(d, i) {
 	    if(!('children' in d))
-		return "junction gvisible finale";
+		return "junction gvisible finale ";
 	    return "junction gvisible"
 	})
-	.style("fill", function(d) {
+	.style("fill", function(d, i) {
 	    if(d._children) return "lightsteelblue"
 	    if(!('children' in d)) {
 		/* Last node no children */
 		var dname = d.name.split(":").shift();
 		if(dname in lcolors) 
 		    return undefined;
-
 	    }
 	    return undefined;
 	}  );
@@ -1334,6 +1811,12 @@ function update(source) {
 	}
     }
     setTimeout(update_links,1500);
+    var xMin = d3.min(nodes, function(d) { return d.x; });
+    var xMax = d3.max(nodes, function(d) { return d.x; });
+
+    var yOffset = 90;
+    var xOffset = -xMin + yOffset;
+    svg.attr("transform", "translate(" + 100 + "," + xOffset + ")");
 }
 function pathclick(w) {
     var sid = $(this).attr("csid")
@@ -1518,6 +2001,8 @@ function revert(d) {
     console.log(d);
 }
 function doclick(d) {
+    console.log(d);
+    return;
     if(showFullTree === false) {
 	hidediv();
 	if(('clickkill' in d) &&
@@ -1638,39 +2123,30 @@ function showme(divid,vul_flag) {
 
 function dt_start() {
     current_score = [];
-    showFullTree = false
+    showFullTree = true;
     $('svg.mgraph').remove();
     $('.exportActive .exportdiv').remove();
-    $('#exportopen').hide();
-    var xraw = JSON.parse(JSON.stringify(raw));
-    treeData=grapharray(xraw);
+    var xraw = simpleCopy(raw);
+    treeData=grapharray_open(xraw);
     draw_graph();
-    /* reset all Complex decision select boxes*/
-    $('.bcomplex select').each(function(_,x) { console.log(x.selectedIndex = 0)});    
-    setTimeout(function() {
-	$('circle.junction').parent().simClick()
-	/* Disable click on the first node */
-	treeData[0].clickkill = true
-    }, 900)
 }
 function dt_clear() {
-    showFullTree = false;
+    showFullTree = true;
     current_score = [];
     raw.map(x => {  x.children=[]; delete x._children;});
     /* Clear all graph to start */
     $('#zoomcontrol').hide();
     $('svg.mgraph').remove();
     $('#graph').html('');
-    $('#exportopen').hide();
 }
 
 function show_full_tree() {
-    showFullTree = true
-    $('.exportActive .exportdiv').remove()
-    $('svg.mgraph').remove()
-    var xraw = JSON.parse(JSON.stringify(raw))
-    treeData=grapharray_open(xraw)
-    draw_graph()
+    showFullTree = true;
+    $('.exportActive .exportdiv').remove();
+    $('svg.mgraph').remove();
+    var xraw = simpleCopy(raw);
+    treeData=grapharray_open(xraw);
+    draw_graph();
 }
 
 
@@ -1718,6 +2194,48 @@ function createHeaders(keys) {
     }
     return result;
 }
+function set_deep(obj,prop,val) {
+    /* For the Object obj set the property of a prop to val
+       recursively. example set_deep({a:{b:{c:{"good"}}}},"a-b-c","bad")
+       will return {a:{b:{c:{"bad"}}}} */
+    if(typeof(obj) != "object")
+	return undefined;
+    let fobj = simpleCopy(obj);
+    var x = fobj;
+    let props = prop.split("-");
+    let fprop = props.pop();
+    for(var i=0; i<props.length; i++) {
+	if(props[i] in x) {
+	    x = x[props[i]];
+	    continue;
+	} else {
+	    if(i+1 < props.length) {
+		if (props[i+1].match(/^\d+$/))
+		    x[props[i]] = [];
+		else
+		    x[props[i]] = {};
+	    } else if (fprop.match(/^\d+$/))  {
+		/* Last element and is an array */
+		x[props[i]] = [];
+	    } else {
+		x[props[i]] = {};
+	    }
+	    x = x[props[i]];
+	}
+    }
+    /* If the value is being set to be undefined then delete this property
+       of this object */
+    if(val === undefined) {
+	if (fprop.match(/^\d+$/)) {
+	    x.splice(parseInt(fprop),1);
+	} else {
+	    delete x[fprop];
+	}
+    } else {
+	x[fprop] = val;
+    }
+    return fobj;
+}
 function deepsearch(obj,dir) {
     var xobj = obj
     var path = dir.split(".")
@@ -1729,18 +2247,25 @@ function deepsearch(obj,dir) {
     }
     return xobj
 }
-
+function fake_pdf() {
+    $('body').append($('<div>').addClass('exportActive'))
+    $('.exportActive').append($('<input>').addClass('exportRole').val('developer'))
+    $('.exportActive').append($('<input>').addClass('exportId').val('developer'))
+    $('.exportActive').append($('<input>').attr({id:'contact',value:'developer'}))
+    $('.exportActive').append($('<div>').addClass('ssvcvector').html('developer'))
+    $('.exportActive').append($('<input>').addClass('includetree').attr({type: 'checkbox','checked':1}))
+}
 function export_pdf() {
     $('.Exporter').css({'pointer-events':'none'})
-    var vul = $('.exportActive .exportId').val().toUpperCase();
+    var vul = $('#evaluate_section .vuid').val().toUpperCase();
     if((vul == "") || (vul.indexOf("CVE") < 0)) {
 	createPDF(vul,"No further information available");
 	console.log("No vul information such as CVE");
 	return;
     }
-    var cve_json_url = "https://olbat.github.io/nvdcve/";
-    $.getJSON(cve_json_url+vul+".json").done(function(d) {
-	var f = deepsearch(d,"cve.description.description_data.0.value");
+    var cve_json_url = "https://cveawg.mitre.org/api/cve/"
+    $.getJSON(cve_json_url+vul.toUpperCase()).done(function(d) {
+	var f = deepsearch(d,"containers.cna.descriptions.0.value");
 	if((!f) || (f == ""))
 	    f = "No further information available"
 	createPDF(vul,f);
@@ -1754,13 +2279,15 @@ function export_pdf() {
 }
 function createPDF(vulnerability,cveinfo) {
     //    Requirements for new updates for the ssvc-calc tool.
-    var role = $('.exportActive .exportRole').val() || "Unknown";
-    var vulid = $('.exportActive .exportId').val() || "Unspecified";
-    var includetree = $('.exportActive .includetree').is(':checked');        
+    var role = "Evaluator";
+    var vulid = vulnerability;
+    var includetree = true;
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({putOnlyUsedFonts:true});
-    var coord = $('.cover_heading_append').html().replace(/^\s+(.+)\s+/g,'$1')
-    var vulnerability = $('.exportActive .exportId').val();
+    let coord = "";
+    if(export_schema.current_tree && export_schema.current_tree.definition) {
+	coord = export_schema.current_tree.definition;
+    }    
     if(vulnerability == "")
 	vulnerability = "ID-Pending"
     var title = "SSVC score for "+vulnerability+" "+coord
@@ -1842,7 +2369,7 @@ function createPDF(vulnerability,cveinfo) {
     xOffset = 12;
     doc.text("Summary",xOffset,yOffset+13);
     doc.setFontSize(12);
-    var vector_string = $('.exportActive .ssvcvector').html()
+    var vector_string = "SSVC v2"
 
     doc.setFont("helvetica","normal");
     doc.text("Recommendation:",xOffset,yOffset+20);    
@@ -1854,7 +2381,7 @@ function createPDF(vulnerability,cveinfo) {
     doc.setFont("courier",'italic');
     var ycve = vulnerability.toUpperCase()
     if(ycve.indexOf("CVE") == 0) {
-	var link = 'https://nvd.nist.gov/vuln/detail/'+ycve
+	var link = 'https://www.cve.org/CVERecord?id=' + ycve
 	doc.setTextColor(0,0,255);
 	doc.textWithLink(vulnerability, xOffset+40, yOffset+40, {url: link});
 	doc.setLineWidth(0.5);
@@ -1978,7 +2505,7 @@ function createPDF(vulnerability,cveinfo) {
     doc.setFont("helvetica",'bold');
     doc.text("Contact:",xOffset,ynow);
     doc.setFont("courier",'normal');
-    doc.text($('#contact').val(),xOffset+20,ynow);
+    doc.text("SSVC Contact",xOffset+20,ynow);
     var safetime = ts.toGMTString().replace(/[^a-z0-9]+/ig,'-');
     var fulltree = includetree ? "-with-full-tree" : ""
     var dfilename = "SSVC-"+role+"-"+vulid+"-"+safetime+fulltree+".pdf";
@@ -2166,8 +2693,12 @@ function appendtree(doc,dfilename) {
     doc.setFontSize(16);
     doc.setFont("helvetica",'bold');
     doc.setTextColor(0);
-    var coord = $('.cover_heading_append').html().replace(/^\s+(.+)\s+/g,'$1')
-    doc.text("Full SSVC Tree "+coord,10,10);
+    let coord = "";
+    if(export_schema.current_tree && export_schema.current_tree.definition) {
+	coord = export_schema.current_tree.definition;
+    }
+    doc.text("Full SSVC Tree " + coord,10,10);
+    
     /* top left corner */
     var tlc = 180;
     var gap = 8;
@@ -2181,17 +2712,17 @@ function appendtree(doc,dfilename) {
 	var drawColor = "#4682b4";
 	/* Gloabl values to sigmoid_connect can also use it*/
 	var m = ax.decisions_table[index][final_keyword];
-	doc.setFontSize(14)
+	doc.setFontSize(10)
 	doc.setFont("courier",'bold');
 	doc.setTextColor(0);
 	if(m in lcolors) {
 	    doc.setTextColor(lcolors[m]);
 	    fillColor = lcolors[m];
-	    // silver lining?
 	    drawColor = "#505050";
 	}
+	/* This text is outcome in plain english like Defer, Scheduled etc.*/
 	doc.text(m,tlc+5, yc)
-	if(index%3 == 1) {
+	if(index%3 == 1 && mdecision_points.length >= 2) {
 	    doc.setFont("helvetica",'bold');
 	    doc.setTextColor(0)
 	    doc.setFontSize(12)
@@ -2204,7 +2735,7 @@ function appendtree(doc,dfilename) {
 	    doc.text(ax.decisions_table[0][m],tlc-10,yc-7,12)
 	    doc.text(ax.decisions_table[2][m],tlc-10,yc+5,-12)
 	}
-	if(index%6 == 3) {
+	if(index%6 == 3 && mdecision_points.length >= 3) {
 	    doc.setTextColor(0)
 	    /* (r,flen,xstart,yc) */
 	    doc.setFont("helvetica",'bold');
@@ -2219,7 +2750,7 @@ function appendtree(doc,dfilename) {
 	    doc.text(ax.decisions_table[3][m],tlc-60,yc+10,-20)
 	}
 
-	if(index%12 == 6) {
+	if(index%12 == 6 && mdecision_points.length >= 4) {
 	    doc.setTextColor(0)
 	    doc.setFont("helvetica",'bold');
 	    /* (r,flen,xstart,yc) */
@@ -2234,7 +2765,7 @@ function appendtree(doc,dfilename) {
 	    doc.text(ax.decisions_table[6][m],tlc-103,yc+5,-45)
 	}
 
-	if(index%36 == 18) {
+	if(index%36 == 18 && mdecision_points.length >= 5) {
 	    doc.setTextColor(0)
 	    /* (r,flen,xstart,yc) */
 	    doc.setFont("helvetica",'bold');
@@ -2251,7 +2782,7 @@ function appendtree(doc,dfilename) {
 	doc.setLineWidth(0.6);
 	doc.setDrawColor(drawColor);
 	doc.setFillColor(fillColor);
-	circles.push([tlc,yc,3,"FD",drawColor,fillColor])
+	circles.push([tlc,yc,2,"FD",drawColor,fillColor])
 	//doc.circle(tlc,yc,3,"FD");
     }
     //doc.circle(circles[0][0],circles[0][1],circles[0][2],circles[0][3])
@@ -2323,7 +2854,7 @@ function appendtree(doc,dfilename) {
 	    var clabel = y.label[0].toUpperCase()+y.label.substr(1);
 	    doc.text(clabel,20,ynow);
 	    doc.setTextColor(0,0,0);
-	    var tinfo = y.description;
+	    var tinfo = y.definition;
 	    var f = tinfo.match(/.{1,45}(\s|$)/g);
 	    doc.setFont("courier",'normal');
 	    q = doc.getStringUnitWidth(clabel)
@@ -2434,14 +2965,9 @@ function copym(containerid,ispurl) {
 }
 
 function svgzoom(w) {
-    var zf = w.value/w.max;
-    if(zf > 0.95) {
-	var vbox = $('svg.mgraph').attr('viewBox');
-	console.log("The viewbox should be left as-is "+vbox);
-	return;
-    }
-    var fh = parseInt($('svg.mgraph').attr("height"));
-    var fw = parseInt($('svg.mgraph').attr("width"));
-    var vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
+    const zf = w.value/w.max;
+    const fh = parseInt($('svg.mgraph').attr("height"));
+    const fw = parseInt($('svg.mgraph').attr("width"));
+    const vbox = "0 0 "+String(parseInt(fw/zf)) + " " + String(parseInt(fh/zf))
     $('svg.mgraph').attr('viewBox',vbox);
 }
