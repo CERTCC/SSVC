@@ -19,7 +19,7 @@
 
 import unittest
 
-from ssvc.namespaces import NameSpace
+from ssvc.namespaces import NameSpace, RESERVED_NS
 from ssvc.utils.patterns import NS_PATTERN
 
 
@@ -78,6 +78,10 @@ class MyTestCase(unittest.TestCase):
             self.assertTrue(NameSpace.validate(ns.value))
 
         for ns in ["foo", "bar", "baz", "quux"]:
+            with self.assertRaises(ValueError):
+                NameSpace.validate(ns)
+
+        for ns in RESERVED_NS:
             with self.assertRaises(ValueError):
                 NameSpace.validate(ns)
 
