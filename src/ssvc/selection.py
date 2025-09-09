@@ -154,7 +154,7 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
 
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
-        not_required = ["definition"]
+        not_required = ["name","definition"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
@@ -329,6 +329,7 @@ class SelectionList(_Timestamped, BaseModel):
         )
 
         non_required_fields = [
+            "name",
             "definition",
             "target_ids",
             "decision_point_resources",
