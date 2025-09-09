@@ -57,6 +57,24 @@ subgraph base_ns[Base Namespace]
 end
 ```
 
+!!! warning "Reserved Namespace Strings"
+    
+    The SSVC project has _reserved_ the following namespace strings:
+
+    - `example` and `x_example`are _reserved_ for use in documentation or as 
+    examples where a registered namespace is needed.
+    No production use of the `example` or `x_example` namespace is intended.
+
+    - `test` and `x_test` are _reserved_ for use as a registered
+    namespace for use in testing of current or new SSVC related code.
+    No production use of the `test` namespace is intended.
+
+    - `invalid` and `x_invalid` are _reserved_ and must not be used as
+    registered or unregistered namespaces, respectively. Attempting to create an
+    object using either of these strings will result in an error in the Python
+    implementation of SSVC.
+
+
 !!! info inline end "Current Registered Namespaces"
 
     The SSVC project currently has a set of registered namespaces that are
@@ -71,12 +89,6 @@ end
         print(f"- {ns.value}")
     ```
 
-!!! warning "Reserved Namespace Strings"
-
-    The strings `invalid` and `x_invalid` are reserved and must not be used as
-    registered or unregistered namespaces, respectively. Attempting to create an
-    object using either of these strings will result in an error in the Python
-    implementation of SSVC.
 
 
 #### Registered Namespace
