@@ -39,7 +39,7 @@ title: Base Namespace Structure
 flowchart LR
     
 subgraph base_ns[Base Namespace]
-    direction LR
+    direction TB
     subgraph unregistered[Unregistered Namespace]
         direction LR
         xpfx[x_]
@@ -50,6 +50,8 @@ subgraph base_ns[Base Namespace]
     subgraph registered[Registered Namespace]
         direction LR
         base_registered[Registered Base Namespace]
+        base_fragment[Fragment]
+        base_registered --> base_fragment
     end
     registered ~~~|OR| unregistered
 end
@@ -68,6 +70,14 @@ end
     for ns in NameSpace:
         print(f"- {ns.value}")
     ```
+
+!!! warning "Reserved Namespace Strings"
+
+    The strings `invalid` and `x_invalid` are reserved and must not be used as
+    registered or unregistered namespaces, respectively. Attempting to create an
+    object using either of these strings will result in an error in the Python
+    implementation of SSVC.
+
 
 #### Registered Namespace
 
