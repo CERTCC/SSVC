@@ -62,7 +62,7 @@ end
     The SSVC project has _reserved_ the following namespace strings:
 
     - `example` and `x_example`are _reserved_ for use in documentation or as 
-    examples where a registered namespace is needed.
+    examples where a registered or unregistered namespace is needed, respectively.
     No production use of the `example` or `x_example` namespace is intended.
 
     - `test` and `x_test` are _reserved_ for use in testing of current 
