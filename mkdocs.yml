@@ -133,6 +133,7 @@ nav:
     - Learning SSVC:
         - Tutorials: 'tutorials/index.md'
   - Calculator: 'ssvc-calc/index.md'
+  - Policy Explorer: 'ssvc-explorer/index.md'  
   - About:
     - Intro: 'about/index.md'
     - Community Engagement: 'about/contributing.md'
