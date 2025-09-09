@@ -350,7 +350,7 @@ base_ns -->|/| first
 
 !!! tip "Extension Order Matters"
 
-    Extension order matters. 
+    SSVC namespace extension order carries semantic meaning. 
     
     | Example | Meaning |
     |---------|---------|
@@ -429,7 +429,7 @@ and the ABNF specification in
 
 - Namespaces must be between 3 and 1000 characters long.
 
-(The ABNF is used to generated the regular expressions in
+(The ABNF is used to generate the regular expressions in
 `src/ssvc/utils/patterns.py`, see the comment in the source code there.)
 
 ## The `ssvc.namespaces` module
