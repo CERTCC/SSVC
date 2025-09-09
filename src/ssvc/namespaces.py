@@ -23,7 +23,7 @@ for SSVC and provides a method to validate namespace values.
 #  subject to its own license.
 #  DM24-0278
 
-from enum import StrEnum, auto
+from enum import StrEnum
 
 from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH, X_PFX
 from ssvc.utils.patterns import NS_PATTERN
@@ -62,12 +62,13 @@ class NameSpace(StrEnum):
 
     # auto() is used to automatically assign values to the members.
     # when used in a StrEnum, auto() assigns the lowercase name of the member as the value
-    SSVC = auto()
-    CVSS = auto()
-    CISA = auto()
-    BASIC = auto()
-    EXAMPLE = auto()
-    TEST = auto()
+    SSVC = "ssvc"
+    CVSS = "cvss"
+    CISA = "cisa"
+    BASIC = "basic"
+    EXAMPLE = "example"
+    TEST = "test"
+    NIST = "nist"
 
     @classmethod
     def validate(cls, value: str) -> str:

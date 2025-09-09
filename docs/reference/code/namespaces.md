@@ -136,10 +136,24 @@ Registered namespaces are intended to be used as follows:
     Suggestions for changes to the CVSS specifications should be directed to the
     [FIRST CVSS Special Interest Group](https://www.first.org/cvss/) (SIG).
 
-!!! example "Potential Standards-based namespaces"
+!!! note "Use of (Optional) Fragments in Registered Namespaces"
+
+    The optional fragment string following the `#` character in a registered 
+    namespace is used to indicate a grouping or subset of decision points within
+    the same namespace.
+    This allows us to organize decision points that are related or share a common
+    context within the same namespace.
+    
+!!! example "Fragment Usage in Registered Namespaces"
+    
+    We use the `nist` namespace for decision points based on NIST standards, and
+    fragments to differentiate between decision points based on different NIST publications,
+    e.g., `nist#800-30` for decision points based on NIST Special Publication 800-30.
 
     We may in the future add namespaces when needed to reflect different standards 
-    bodies like `nist`, `iso-iec`, `ietf`, `oasis`, etc. 
+    bodies like `iso-iec`, `ietf`, `oasis`, etc. We would expect to use fragments
+    in a similar way to differentiate between different standards or publications
+    from the same standards body.
 
 !!! question "How do I request a new registered namespace?"
 

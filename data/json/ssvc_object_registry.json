@@ -289,76 +289,6 @@
                 }
               }
             },
-            "P_5X": {
-              "key": "P_5X",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "basic",
-                    "key": "P_5X",
-                    "version": "1.0.0",
-                    "name": "Probability Scale in 5 weighted levels, ascending",
-                    "definition": "A probability scale with finer resolution at both extremes, based on NIST SP 800-30 Rev. 1 Appendix G",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "VL",
-                        "name": "Very Low",
-                        "definition": "0% <= Probability < 5%. Highly unlikely."
-                      },
-                      {
-                        "key": "L",
-                        "name": "Low",
-                        "definition": "5% <= Probability < 21%. Unlikely."
-                      },
-                      {
-                        "key": "M",
-                        "name": "Moderate",
-                        "definition": "21% <= Probability < 80%. Somewhat likely."
-                      },
-                      {
-                        "key": "H",
-                        "name": "High",
-                        "definition": "80% <= Probability < 96%. Highly likely."
-                      },
-                      {
-                        "key": "VH",
-                        "name": "Very High",
-                        "definition": "96% <= Probability <= 100%. Almost certain."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "VL": {
-                      "key": "VL",
-                      "name": "Very Low",
-                      "definition": "0% <= Probability < 5%. Highly unlikely."
-                    },
-                    "L": {
-                      "key": "L",
-                      "name": "Low",
-                      "definition": "5% <= Probability < 21%. Unlikely."
-                    },
-                    "M": {
-                      "key": "M",
-                      "name": "Moderate",
-                      "definition": "21% <= Probability < 80%. Somewhat likely."
-                    },
-                    "H": {
-                      "key": "H",
-                      "name": "High",
-                      "definition": "80% <= Probability < 96%. Highly likely."
-                    },
-                    "VH": {
-                      "key": "VH",
-                      "name": "Very High",
-                      "definition": "96% <= Probability <= 100%. Almost certain."
-                    }
-                  }
-                }
-              }
-            },
             "P_2A": {
               "key": "P_2A",
               "versions": {
@@ -5979,6 +5909,81 @@
                       "key": "X",
                       "name": "Not Defined",
                       "definition": "This metric value is not defined. See CVSS documentation for details."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "nist#800-30": {
+          "namespace": "nist#800-30",
+          "keys": {
+            "P_5X": {
+              "key": "P_5X",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "nist#800-30",
+                    "key": "P_5X",
+                    "version": "1.0.0",
+                    "name": "Probability Scale in 5 weighted levels, ascending",
+                    "definition": "A probability scale with finer resolution at both extremes, based on NIST SP 800-30 Rev. 1 Appendix G",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "VL",
+                        "name": "Very Low",
+                        "definition": "0% <= Probability < 5%. Highly unlikely."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "definition": "5% <= Probability < 21%. Unlikely."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Moderate",
+                        "definition": "21% <= Probability < 80%. Somewhat likely."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "definition": "80% <= Probability < 96%. Highly likely."
+                      },
+                      {
+                        "key": "VH",
+                        "name": "Very High",
+                        "definition": "96% <= Probability <= 100%. Almost certain."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "VL": {
+                      "key": "VL",
+                      "name": "Very Low",
+                      "definition": "0% <= Probability < 5%. Highly unlikely."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "definition": "5% <= Probability < 21%. Unlikely."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Moderate",
+                      "definition": "21% <= Probability < 80%. Somewhat likely."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "definition": "80% <= Probability < 96%. Highly likely."
+                    },
+                    "VH": {
+                      "key": "VH",
+                      "name": "Very High",
+                      "definition": "96% <= Probability <= 100%. Almost certain."
                     }
                   }
                 }

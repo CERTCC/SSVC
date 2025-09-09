@@ -21,8 +21,9 @@ Provides a 5-level ascending probability scale decision point for SSVC
 #  subject to its own license.
 #  DM24-0278
 from ssvc.decision_points.base import DecisionPointValue
-from ssvc.decision_points.basic.base import BasicDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
+from ssvc.decision_points.nist.base import NISTDecisionPoint
+from ssvc.namespaces import FRAG_SEP, NameSpace
 
 # These ranges are based on NIST SP 800-30 Rev. 1 Appendix G
 
@@ -53,7 +54,8 @@ VERY_LOW = DecisionPointValue(
 )
 
 
-P5X = BasicDecisionPoint(
+P5X = NISTDecisionPoint(
+    namespace=FRAG_SEP.join((NameSpace.NIST, "800-30")),
     key="P_5X",
     version="1.0.0",
     name="Probability Scale in 5 weighted levels, ascending",
