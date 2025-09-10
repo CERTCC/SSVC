@@ -25,6 +25,11 @@ For technical reference, including a list of decision points, see [Reference](..
     The decisions modeled in the calculator are based on the [Supplier](../howto/supplier_tree.md),
     [Deployer](../howto/deployer_tree.md), and [Coordinator](../howto/coordination_intro.md) decision models.
 
+!!! tip "SSVC Policy Explorer"
+
+    Ready to explore analyzing SSVC policies and writing your own policy? [SSVC Policy Explorer](../ssvc-explorer/index.md) to help you understand how SSVC decision models can be developed, organized in an interactive way.
+    The decisions modeled in the policy explorer also use the SSVC Registry. 
+
 SSVC can be used in conjunction with other tools and methodologies to help prioritize vulnerability response.
 
 !!! example "CVSS and SSVC"
