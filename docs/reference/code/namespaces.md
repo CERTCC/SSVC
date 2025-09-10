@@ -39,7 +39,7 @@ title: Base Namespace Structure
 flowchart LR
     
 subgraph base_ns[Base Namespace]
-    direction LR
+    direction TB
     subgraph unregistered[Unregistered Namespace]
         direction LR
         xpfx[x_]
@@ -50,10 +50,30 @@ subgraph base_ns[Base Namespace]
     subgraph registered[Registered Namespace]
         direction LR
         base_registered[Registered Base Namespace]
+        base_fragment[Fragment]
+        base_registered -.->|optional| base_fragment
     end
     registered ~~~|OR| unregistered
 end
 ```
+
+!!! warning "Reserved Namespace Strings"
+    
+    The SSVC project has _reserved_ the following namespace strings:
+
+    - `example` and `x_example`are _reserved_ for use in documentation or as 
+    examples where a registered or unregistered namespace is needed, respectively.
+    No production use of the `example` or `x_example` namespace is intended.
+
+    - `test` and `x_test` are _reserved_ for use in testing of current 
+    or new SSVC related code.
+    No production use of the `test` namespace is intended.
+
+    - `invalid` and `x_invalid` are _reserved_ and must not be used as
+    registered or unregistered namespaces, respectively. Attempting to create an
+    object using either of these strings will result in an error in the Python
+    implementation of SSVC.
+
 
 !!! info inline end "Current Registered Namespaces"
 
@@ -68,6 +88,8 @@ end
     for ns in NameSpace:
         print(f"- {ns.value}")
     ```
+
+
 
 #### Registered Namespace
 
@@ -114,10 +136,24 @@ Registered namespaces are intended to be used as follows:
     Suggestions for changes to the CVSS specifications should be directed to the
     [FIRST CVSS Special Interest Group](https://www.first.org/cvss/) (SIG).
 
-!!! example "Potential Standards-based namespaces"
+!!! note "Use of (Optional) Fragments in Registered Namespaces"
+
+    The optional fragment string following the `#` character in a registered 
+    namespace is used to indicate a grouping or subset of decision points within
+    the same namespace.
+    This allows us to organize decision points that are related or share a common
+    context within the same namespace.
+    
+!!! example "Fragment Usage in Registered Namespaces"
+    
+    We use the `nist` namespace for decision points based on NIST standards, and
+    fragments to differentiate between decision points based on different NIST publications,
+    e.g., `nist#800-30` for decision points based on NIST Special Publication 800-30.
 
     We may in the future add namespaces when needed to reflect different standards 
-    bodies like `nist`, `iso-iec`, `ietf`, `oasis`, etc. 
+    bodies like `iso-iec`, `ietf`, `oasis`, etc. We would expect to use fragments
+    in a similar way to differentiate between different standards or publications
+    from the same standards body.
 
 !!! question "How do I request a new registered namespace?"
 
@@ -142,11 +178,16 @@ we expect that this will rarely lead to conflicts in practice.
       notation of a domain under their control to ensure uniqueness.
     - After the reverse domain name, a fragment separated by `#` must follow.
     - The construct of reverse domain name followed by `#` and a fragment is called `x-name`.
+    - For any domain using other characters, DNS Punycode must be used
     - Aside from the required `x_` prefix and the fragment separator `#`, unregistered
       namespaces must contain only alphanumeric characters, dots (`.`), and dashes (`-`).
 
-- For any domain using other characters, DNS Punycode must be used
+!!! note "Fragment Usage is Required in Unregistered Namespaces"
 
+    In unregistered namespaces, the fragment is _required_. This is different from
+    registered namespaces, where the fragment is _optional_.
+
+    
 !!! warning "Namespace Conflicts"
 
     Conflicts are possible in the `x_` prefix space - especially as the control over a
@@ -155,7 +196,8 @@ we expect that this will rarely lead to conflicts in practice.
     `x_example.test#test`, and there are no guarantees of global uniqueness for the
     decision points in the `x_example.test#test` namespace.
 
- !!! info "Documentation and Test Namespaces"
+
+!!! info "Documentation and Test Namespaces"
 
     Any namespace starting with `x_example` can be used in documentation or as examples,
     where a unregistered namespace is needed.
@@ -164,7 +206,7 @@ we expect that this will rarely lead to conflicts in practice.
     The namespace `x_example.test#documentation` is recommended for use in documentation
     or as examples.
 
- !!! tip "Test Namespace"
+!!! tip "Test Namespace"
 
     The `x_example.test#test` namespace is commonly used for testing purposes and is not
     intended for production use. It is used to test the SSVC framework and its components,
@@ -178,7 +220,8 @@ Extensions are optional and may be used to refine or clarify existing decision p
 Extensions allow SSVC users to create decision points that are specific to their
 constituencies or to provide translations of existing decision points.
 
-!!! info "Namespace Extension Requirements"
+
+!!! info "Namespace Extension Semantic Requirements"
 
     Extensions must follow the following requirements:
     
@@ -189,22 +232,28 @@ constituencies or to provide translations of existing decision points.
     - Extensions may reduce the set of values for a decision point in the parent
       namespace, but must not add new values.
 
+    See also the "Namespace Extension Structural Requirements" below.
+
+!!! question "Why are the Namespace Extension Semantic Requirements important?"
+
+    The way extensions are built enables tools to process the decision points even if
+    they do not know the defined extension. As long as the tool knows the base
+    namespace, it can process the decision point.
+
 !!! question "What if I want to create a new decision point?"
 
-    If you want to create a new decision point, please use a private/experimental namespace
+    If you want to create a new decision point, please use an unregistered namespace
     as described above instead of an extension.
     Extensions are not intended to be used to create new decision points.
 
-!!! question "Why is that important?"
-
-    The way extensions are build enables tools to process the decision points even if
-    they do not know the defined extension. As long as the tool knows the base
-    namespace, it can process the decision point.
 
 #### Namespace Extension Structure
 
 The first extension segment is reserved for an optional BCP-47 language tag, which may be left empty.
-When empty, the default language (`en-US`) is implied.
+
+!!! info "Default language is `en-US`"
+
+    If the first extension segment is left empty, the default language (`en-US`) is implied.
 
 Subsequent extension segments must either
 
@@ -230,7 +279,7 @@ The following diagram illustrates the structure of namespace extensions:
 
 ```mermaid
 ---
-title: Namespace Extensions
+title: Namespace Extension Structure
 ---
 flowchart LR
 
@@ -243,22 +292,34 @@ subgraph exts[Extensions]
         lang ~~~|OR| empty_lang
     end
     subgraph ext[Subsequent Extension Segments]
-        direction LR
-        e_lang[Language Tag]
-        dot[.]
-        reverse_ns_ext[Reverse Domain Name Notation]
-        fragment[#Fragment]
-        subgraph translation[Translation]
+        direction TB
+        
+        subgraph lang_seg[Language Only Segment]
+            e_lang[Language Tag]
+        end
+        
+        subgraph e_dot[Extension Segment]
+            direction LR
+            dot[.]
+            reverse_ns_ext[Reverse Domain Name Notation]
+            fragment[#Fragment]
+    
+            dot --> reverse_ns_ext --> fragment
+        end
+        
+        subgraph translation[Translation Segment]
             direction LR
             t_dot[.]
             t_reverse_ns_ext[Reverse Domain Name Notation]
-            t_fragment[#Optional Fragment]
+            t_fragment[#Fragment]
             t_dollar[$]
             t_lang[Language Tag]
             
-            t_dot --> t_reverse_ns_ext --> t_fragment --> t_dollar --> t_lang
+            t_dot --> t_reverse_ns_ext -.->|optional| t_fragment -.-> t_dollar --> t_lang
+            t_reverse_ns_ext --> t_dollar
         end
-        lang ~~~|OR| dot --> reverse_ns_ext --> fragment ~~~|OR| translation
+        
+        lang_seg ~~~|OR| e_dot ~~~|OR| translation
     end
     first -->|/| ext
     ext -->|/| ext
@@ -269,7 +330,7 @@ base_ns -->|/| first
 
 ```
 
-!!! info "Namespace Extension Requirements"
+!!! info "Namespace Extension Structural Requirements"
 
     Extensions must follow the following structure:
   
@@ -286,17 +347,15 @@ base_ns -->|/| first
     The structure of the namespace string is intended to show inheritance for
     variations on SSVC objects. 
 
+
 !!! tip "Extension Order Matters"
 
-    Extension order matters. `ssvc/de-DE/.example.organization#ref-arch-1`
-    denotes that (a) an official German (Germany) translation of the SSVC decision points
-    is available, and (b) that this translation has been extended with an extension
-    by `organization.example` to fit their specific needs for `ref-arch-1`.
-
-    On the other hand, `ssvc//.example.organization#ref-arch-1/de-DE`
-    denotes that (a) the `.example.organization#ref-arch-1` extension is
-    available in the default language (`en-US`), and (b) that this extension has
-    been translated into German (Germany).
+    SSVC namespace extension order carries semantic meaning. 
+    
+    | Example | Meaning |
+    |---------|---------|
+    | `ssvc/de-DE/.example.organization#ref-arch-1` | Denotes (a) an official German (Germany) translation of the SSVC decision points is available, and (b) that this translation has been extended with an extension by `organization.example` to fit their specific needs for `ref-arch-1`.|
+    | `ssvc//.example.organization#ref-arch-1/de-DE` | Denotes that (a) the `.example.organization#ref-arch-1` extension is available in the default language (`en-US`), and (b) that this extension has been translated into German (Germany). |
 
 !!! example "Use of fragment identifiers and language tags"
 
@@ -370,7 +429,7 @@ and the ABNF specification in
 
 - Namespaces must be between 3 and 1000 characters long.
 
-(The ABNF is used to generated the regular expressions in
+(The ABNF is used to generate the regular expressions in
 `src/ssvc/utils/patterns.py`, see the comment in the source code there.)
 
 ## The `ssvc.namespaces` module

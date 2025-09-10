@@ -17,13 +17,8 @@
 #  subject to its own license.
 #  DM24-0278
 
-"""Provides basic probability bin decision points."""
+"""Provides decision points based on NIST standards"""
 
-from .cis_wep import LATEST as CIS_WEP
-from .five_equal import LATEST as FIVE_EQUAL
-from .five_weighted import LATEST as FIVE_WEIGHTED
-from .two_equal import LATEST as TWO_EQUAL
+from .sp800_30_r1_g import LATEST as PROB_W5_SP800_30_R1_G
 
-DECISION_POINTS = {
-    dp.id: dp for dp in (TWO_EQUAL, FIVE_EQUAL, FIVE_WEIGHTED, CIS_WEP)
-}
+DECISION_POINTS = {dp.id: dp for dp in (PROB_W5_SP800_30_R1_G,)}

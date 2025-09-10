@@ -23,10 +23,18 @@ for SSVC and provides a method to validate namespace values.
 #  subject to its own license.
 #  DM24-0278
 
-from enum import StrEnum, auto
+from enum import StrEnum
 
 from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH, X_PFX
 from ssvc.utils.patterns import NS_PATTERN
+
+EXT_SEP = "/"
+FRAG_SEP = "#"
+
+# The following namespace strings are RESERVED and cannot be used
+# as the base of a namespace (i.e., before any fragment or extension),
+# even if they otherwise meet the pattern requirements.
+RESERVED_NS = ("invalid", "x_invalid")
 
 
 class NameSpace(StrEnum):
@@ -54,12 +62,13 @@ class NameSpace(StrEnum):
 
     # auto() is used to automatically assign values to the members.
     # when used in a StrEnum, auto() assigns the lowercase name of the member as the value
-    SSVC = auto()
-    CVSS = auto()
-    CISA = auto()
-    BASIC = auto()
-    EXAMPLE = auto()
-    TEST = auto()
+    SSVC = "ssvc"
+    CVSS = "cvss"
+    CISA = "cisa"
+    BASIC = "basic"
+    EXAMPLE = "example"
+    TEST = "test"
+    NIST = "nist"
 
     @classmethod
     def validate(cls, value: str) -> str:
@@ -79,20 +88,22 @@ class NameSpace(StrEnum):
         """
         valid = NS_PATTERN.match(value)
 
-        ext_sep = "/"
-        frag_sep = "#"
-
         if valid:
             # pattern matches, so we can proceed with further checks
             # partition always returns three parts: the part before the separator, the separator itself, and the part after the separator
-            (base_ns, _, extension) = value.partition(ext_sep)
+            (base_ns, _, extension) = value.partition(EXT_SEP)
             # and we don't care about the extension beyond the pattern match above
             # so base_ns is either the full value or the part before the first slash
 
             # but base_ns might have a fragment
             # so we need to split that off if present
+            # because partition always returns three parts, we can ignore the second and third parts here
             if "#" in base_ns:
-                (base_ns, _, fragment) = base_ns.partition(frag_sep)
+                (base_ns, _, _) = base_ns.partition(FRAG_SEP)
+
+            # reject reserved namespaces
+            if base_ns in RESERVED_NS:
+                raise ValueError(f"Invalid namespace: '{value}' is reserved.")
 
             if base_ns in cls.__members__.values():
                 # base_ns is a registered namespaces

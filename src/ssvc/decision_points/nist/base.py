@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+"""
+Provides base classes for NIST-based decision points.
+"""
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -16,14 +20,13 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+from pydantic import BaseModel
 
-"""Provides basic probability bin decision points."""
+from ssvc.decision_points.base import DecisionPoint
+from ssvc.namespaces import NameSpace
 
-from .cis_wep import LATEST as CIS_WEP
-from .five_equal import LATEST as FIVE_EQUAL
-from .five_weighted import LATEST as FIVE_WEIGHTED
-from .two_equal import LATEST as TWO_EQUAL
 
-DECISION_POINTS = {
-    dp.id: dp for dp in (TWO_EQUAL, FIVE_EQUAL, FIVE_WEIGHTED, CIS_WEP)
-}
+class NISTDecisionPoint(DecisionPoint, BaseModel):
+    """Base class for NIST-based decision points."""
+
+    namespace: str = NameSpace.NIST

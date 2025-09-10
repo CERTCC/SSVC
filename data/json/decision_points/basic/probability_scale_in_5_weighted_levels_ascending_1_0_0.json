@@ -1,35 +1,35 @@
 {
   "namespace": "basic",
-  "key": "P_5X",
+  "key": "P_5W",
   "version": "1.0.0",
   "name": "Probability Scale in 5 weighted levels, ascending",
-  "definition": "A probability scale with finer resolution at both extremes, based on NIST SP 800-30 Rev. 1 Appendix G",
+  "definition": "A probability scale with higher resolution as probability increases",
   "schemaVersion": "2.0.0",
   "values": [
     {
-      "key": "VL",
-      "name": "Very Low",
-      "definition": "0% <= Probability < 5%. Highly unlikely."
+      "key": "P0_30",
+      "name": "Less than 30%",
+      "definition": "Probability < 0.3"
     },
     {
-      "key": "L",
-      "name": "Low",
-      "definition": "5% <= Probability < 21%. Unlikely."
+      "key": "P30_55",
+      "name": "30% to 55%",
+      "definition": "0.3 <= Probability < 0.55"
     },
     {
-      "key": "M",
-      "name": "Moderate",
-      "definition": "21% <= Probability < 80%. Somewhat likely."
+      "key": "P55_75",
+      "name": "55% to 75%",
+      "definition": "0.55 <= Probability < 0.75"
     },
     {
-      "key": "H",
-      "name": "High",
-      "definition": "80% <= Probability < 96%. Highly likely."
+      "key": "P75_90",
+      "name": "75% to 90%",
+      "definition": "0.75 <= Probability < 0.9"
     },
     {
-      "key": "VH",
-      "name": "Very High",
-      "definition": "96% <= Probability <= 100%. Almost certain."
+      "key": "P90_100",
+      "name": "Greater than 90%",
+      "definition": "0.9 <= Probability <= 1.0"
     }
   ]
 }
