@@ -10,7 +10,7 @@ We have organized the SSVC documentation into four main sections:
 
 <div class="grid cards" markdown>
 
-- :fontawesome-regular-eye:{ .lg .middle } **SSVC Overview**
+- :fontawesome-regular-eye:{ .lg .middle } [**SSVC Overview**](ssvc_overview.md)
 
     ---
 
@@ -19,7 +19,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: An Overview of SSVC](ssvc_overview.md)
 
-- :material-clipboard-check:{ .lg .middle } **SSVC How To**
+- :material-clipboard-check:{ .lg .middle } [**SSVC How To**](howto/index.md)
 
     ---
 
@@ -28,7 +28,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: SSVC How To](howto/index.md)
 
-- :fontawesome-solid-book:{ .lg .middle } **More about SSVC**
+- :fontawesome-solid-book:{ .lg .middle } [**More about SSVC**](topics/index.md)
 
     ---
 
@@ -37,7 +37,7 @@ We have organized the SSVC documentation into four main sections:
 
     [:octicons-arrow-right-24: Understanding SSVC](topics/index.md)
 
-- :material-book-open-page-variant:{ .lg .middle } **SSVC Reference**
+- :material-book-open-page-variant:{ .lg .middle } [**SSVC Reference**](reference/index.md)
 
     ---
 
