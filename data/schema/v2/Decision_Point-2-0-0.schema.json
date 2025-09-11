@@ -1,8 +1,8 @@
 {
   "title": "DecisionPoint",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point-2-0-0.schema.json",
-  "description": "This schema defines the structure to represent an SSVC Decision Point.",
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/DecisionPoint_2_0_0.schema.json",
+  "description": "This schema defines the structure to represent an SSVC DecisionPoint object.",
   "type": "object",
   "$defs": {
     "DecisionPointValue": {
