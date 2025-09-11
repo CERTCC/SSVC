@@ -3,7 +3,7 @@
 This module provides mixin classes for adding features to SSVC objects.
 """
 
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -22,6 +22,7 @@ This module provides mixin classes for adding features to SSVC objects.
 #  subject to its own license.
 #  DM24-0278
 
+import os
 from datetime import datetime, timezone
 from typing import Any, ClassVar, Optional
 from urllib.parse import urljoin
@@ -38,7 +39,11 @@ from semver import Version
 
 from ssvc.namespaces import NameSpace
 from ssvc.registry.events import notify_registration
-from ssvc.utils.defaults import DEFAULT_VERSION, SCHEMA_VERSION
+from ssvc.utils.defaults import (
+    DEFAULT_VERSION,
+    SCHEMA_BASE_URL,
+    SCHEMA_VERSION,
+)
 from ssvc.utils.field_specs import NamespaceString, VersionString
 from ssvc.utils.misc import filename_friendly, order_schema
 
@@ -94,26 +99,57 @@ class _SchemaVersioned(BaseModel):
         """
         schema = super().model_json_schema(**kwargs)
 
-        base_url = "https://certcc.github.io/SSVC/data/schema/"
-        # parse SCHEMA_VERSION with semver to get the major, minor, patch
-        ver = semver.Version.parse(cls._schema_version)
-        verpath = f"v{ver.major}/"
-
-        ver_url = urljoin(base_url, verpath)
-        filename_base = f"{cls.__name__}-{str(ver)}"
-        # make sure filename is URL friendly
-        filename_base = filename_friendly(filename_base, to_lower=False)
-        ext = ".schema.json"
-        filename = f"{filename_base}{ext}"
-        id_url = urljoin(ver_url, filename)
-
         schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = id_url
+        schema["$id"] = cls.schema_url()
         schema["description"] = (
             f"This schema defines the structure to represent an SSVC {cls.__name__} object."
         )
 
         return order_schema(schema)
+
+    @classmethod
+    def schema_version_relpath(cls):
+        """
+        Return the schema version relative path for the object.
+        """
+        ver = semver.Version.parse(cls._schema_version)
+        verpath = f"v{ver.major}/"
+
+        return verpath
+
+    @classmethod
+    def schema_filename(cls):
+        """
+        Return the schema filename for the object.
+        """
+        ver = semver.Version.parse(cls._schema_version)
+
+        # construct the filename
+        filename_base = f"{cls.__name__}-{str(ver)}"
+        filename_base = filename_friendly(filename_base, to_lower=False)
+        ext = ".schema.json"
+        filename = f"{filename_base}{ext}"
+        return filename
+
+    @classmethod
+    def schema_relpath(cls):
+        """
+        Return the schema relative path for the object.
+        """
+        verpath = cls.schema_version_relpath()
+        filename = cls.schema_filename()
+
+        relpath = os.path.join(verpath, filename)
+        return relpath
+
+    @classmethod
+    def schema_url(cls) -> str:
+        """
+        Return the schema URL for the object.
+        """
+        base_url = SCHEMA_BASE_URL
+        id_url = urljoin(base_url, cls.schema_relpath())
+        return id_url
 
 
 class _Namespaced(BaseModel):
