@@ -1,4 +1,4 @@
-const __version__ = "1.0.11";
+const __version__ = "1.0.12";
 const SSVC = {
     "outcomes": [],
     "results": {},
@@ -180,6 +180,11 @@ function h5button(text, current, type) {
     });
     return h5;
 }
+function rand_namespace(dtype) {
+    if(!dtype)
+	dtype = "generic"
+    return "x_example." + crypto.randomUUID() + "#" + dtype.toLowerCase();
+}
 function lock_unlock(lock) {
     const select = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     const btnAll = SSVC.form.parentElement.querySelector("[data-toggleall]");
@@ -216,7 +221,10 @@ function lock_unlock(lock) {
 		input.name = nprop;
 		const nproper = niceString(nprop);
 		input.placeholder = "Decision Tree " + nproper;
-		input.value = dt[nprop];
+		if(nprop != "namespace")
+		    input.value = dt[nprop];
+		else 
+		    input.value = rand_namespace("decisiontables");
 		applyStyle(input, {background: "transparent",
 				   padding: "0px 2px",
 				   display: "inline",
@@ -1240,7 +1248,8 @@ function verify_update_mapping(inp, clbutton) {
 	let outcomedp = jsonTree.decision_points[jsonTree.outcome];
 	let dpv = outcomedp.values.find(dpv => dpv.name == val);
 	if(!dpv) {
-	    return alert("The Outcome is not part of the planned Outcomes")
+	    alert("The Outcome is not part of the planned Outcomes");
+	    return false;
 	}
 	let index = -1;
 	SSVC.form.querySelectorAll("input[data-initialvalue]")
@@ -1249,12 +1258,15 @@ function verify_update_mapping(inp, clbutton) {
 		    index = i;
 	    });
 	if(index < 0) {
-	    return alert("Unable to find matching row in SSVC.mapping");
+	    alert("Unable to find matching row in SSVC.mapping");
+	    return false;
 	}
 	jsonTree.mapping[index][jsonTree.outcome] = dpv.key;
 	clbutton.setAttribute("data-json",JSON.stringify(jsonTree));
+	return true;
     } else {
-	return alert("Unable to update new Outcome");
+	alert("Unable to update new Outcome");
+	return false;
     }
 }
 function customize(w) {
@@ -1317,11 +1329,17 @@ function customize(w) {
 	    inp.value = el.innerText;
 	    inp.dataset.initialvalue = el.innerText;
 	    inp.addEventListener('change', function(e) {
+		const inp = e.target;
+		inp.style.border = "1px solid grey";
 		if(!inp.value)
 		    return alert("Outcome cannot be empty!");
 		if (inp.value !== inp.dataset.initialValue) {
-		    clbutton.setAttribute("data-changed", "1");
-		    verify_update_mapping(e.target,clbutton);
+		    if(verify_update_mapping(inp,clbutton)) {
+			clbutton.setAttribute("data-changed", "1");
+		    } else {
+			inp.style.border = "2px solid red";
+			inp.focus();
+		    }
 		}
 	    });
 	    el.innerText = "";
@@ -1330,7 +1348,7 @@ function customize(w) {
     } else {
 	/* new Decision Tree Setup  */
 	if(!clbutton.hasAttribute("data-changed")) {
-	    return alert("Nothing has changed!");
+	    return alert("Nothing has changed or error field not fixed!");
 	}
 	let jsonTree = {};
 	if(clbutton.hasAttribute("data-json")) {
@@ -1606,6 +1624,7 @@ function makeTree(jsonTree) {
     jsonTree.mapping = enumerateCombinations(jsonTree);
     SSVC.form.innerHTML = "";
     jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
+    console.log(jsonTree);
     createSSVC(jsonTree, false);
     customize({innerHTML: "Customize"});
     clbutton.setAttribute("data-changed","1");
