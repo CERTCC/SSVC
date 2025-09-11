@@ -27,11 +27,11 @@ Examples
 
 To generate the documentation for the decision points, use the following command:
 
-    python -m ssvc.doctools --overwrite --jsondir ./tmp/json_out`
+    python -m ssvc.doctools --overwrite --datadir ./tmp/json_out`
 
 To regenerate the existing docs, use the following command:
 
-    python -m ssvc.doctools --overwrite --jsondir data/json
+    python -m ssvc.doctools --overwrite --datadir data
 
 """
 import importlib
