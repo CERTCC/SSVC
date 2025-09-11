@@ -25,9 +25,9 @@ import unittest
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.doctools import (
     EnsureDirExists,
-    _filename_friendly,
     dump_decision_point,
     dump_json,
+    filename_friendly as _filename_friendly,
     remove_if_exists,
 )
 

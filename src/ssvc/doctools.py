@@ -38,7 +38,6 @@ import importlib
 import json
 import logging
 import os
-import re
 
 import ssvc.dp_groups.base
 from ssvc.decision_points.base import (
@@ -52,7 +51,7 @@ from ssvc.decision_tables.base import (
 from ssvc.registry import get_registry
 from ssvc.registry.base import SsvcObjectRegistry, get_all
 from ssvc.selection import SelectionList
-from ssvc.utils.misc import order_schema
+from ssvc.utils.misc import filename_friendly, order_schema
 
 logger = logging.getLogger(__name__)
 
@@ -85,25 +84,6 @@ def find_modules_to_import(
                 except ImportError as e:
                     logger.error(f"Failed to import {full_module_name}: {e}")
     return imported_modules
-
-
-def _filename_friendly(name: str, replacement="_") -> str:
-    """
-    Given a string, return a version that is friendly for use in a filename.
-
-    Args:
-        name (str): The string to make friendly for use in a filename.
-
-    Returns:
-        str: A version of the string that is friendly for use in a filename.
-    """
-    # replace all non-alphanumeric characters with underscores and convert to lowercase
-    name = re.sub(r"[^a-zA-Z0-9]", replacement, name)
-    name = name.lower()
-    # replace any sequence of underscores with a single underscore
-    name = re.sub(rf"{replacement}+", replacement, name)
-
-    return name
 
 
 # create a runtime context that ensures that dir exists
@@ -163,9 +143,7 @@ def dump_decision_point(
             - json_file: The path to the json example file.
     """
     # make dp.name safe for use in a filename
-    basename = (
-        _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
-    )
+    basename = filename_friendly(dp.name) + f"_{filename_friendly(dp.version)}"
     # - generate json example
     dump_json(basename, dp, jsondir, overwrite)
 
@@ -190,7 +168,7 @@ def dump_json(
     parts = [
         jsondir,
     ]
-    parts.append(_filename_friendly(dp.namespace))
+    parts.append(filename_friendly(dp.namespace))
     dirname = os.path.join(*parts)
 
     parts.append(filename)
@@ -229,13 +207,13 @@ def dump_schemas(jsondir):
     schemapaths: list[dict(str, str)] = []
 
     # selection schema
-    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement='-')}.schema.json"
+    schemafile = f"Decision_Point_Value_Selection-{filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement='-')}.schema.json"
     schemapath = os.path.join(schemadir, schemafile)
     selection_schema = SelectionList.model_json_schema()
     schemapaths.append({"filepath": schemapath, "schema": selection_schema})
 
     # registry schema
-    registry_schema_file = f"Ssvc_Object_Registry-{_filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    registry_schema_file = f"Ssvc_Object_Registry-{filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
     registry_schema_path = os.path.join(schemadir, registry_schema_file)
     registry_schema = SsvcObjectRegistry.model_json_schema()
     schemapaths.append(
@@ -243,13 +221,13 @@ def dump_schemas(jsondir):
     )
 
     # decision point schema
-    dp_schema_file = f"Decision_Point-{_filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    dp_schema_file = f"Decision_Point-{filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
     dp_schema_path = os.path.join(schemadir, dp_schema_file)
     dp_schema = DecisionPoint.model_json_schema()
     schemapaths.append({"filepath": dp_schema_path, "schema": dp_schema})
 
     # decision table schema
-    decision_table_schema_file = f"Decision_Table-{_filename_friendly(ssvc.decision_tables.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    decision_table_schema_file = f"Decision_Table-{filename_friendly(ssvc.decision_tables.base.SCHEMA_VERSION, replacement='-')}.schema.json"
     decision_table_schema_path = os.path.join(
         schemadir, decision_table_schema_file
     )
@@ -262,7 +240,7 @@ def dump_schemas(jsondir):
     )
 
     # decision point group schema
-    dp_group_schema_file = f"Decision_Point_Group-{_filename_friendly(ssvc.dp_groups.base.SCHEMA_VERSION, replacement='-')}.schema.json"
+    dp_group_schema_file = f"Decision_Point_Group-{filename_friendly(ssvc.dp_groups.base.SCHEMA_VERSION, replacement='-')}.schema.json"
     dp_group_schema_path = os.path.join(schemadir, dp_group_schema_file)
     dp_group_schema = (
         ssvc.dp_groups.base.DecisionPointGroup.model_json_schema()
@@ -282,15 +260,13 @@ def dump_decision_table(
     jsondir: str, dt: DecisionTable, overwrite: bool
 ) -> None:
     # make dp.name safe for use in a filename
-    basename = (
-        _filename_friendly(dt.name) + f"_{_filename_friendly(dt.version)}"
-    )
+    basename = filename_friendly(dt.name) + f"_{filename_friendly(dt.version)}"
 
     filename = f"{basename}.json"
     parts = [
         jsondir,
     ]
-    parts.append(_filename_friendly(dt.namespace))
+    parts.append(filename_friendly(dt.namespace))
     dirname = os.path.join(*parts)
 
     parts.append(filename)
@@ -314,14 +290,12 @@ def dump_decision_table(
 def dump_decision_table_csv(
     csvdir: str, dt: DecisionTable, overwrite: bool
 ) -> None:
-    basename = (
-        _filename_friendly(dt.name) + f"_{_filename_friendly(dt.version)}"
-    )
+    basename = filename_friendly(dt.name) + f"_{filename_friendly(dt.version)}"
     filename = f"{basename}.csv"
     parts = [
         csvdir,
     ]
-    parts.append(_filename_friendly(dt.namespace))
+    parts.append(filename_friendly(dt.namespace))
     dirname = os.path.join(*parts)
     parts.append(filename)
     csv_file = os.path.join(*parts)
