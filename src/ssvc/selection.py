@@ -318,18 +318,6 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
 
-        schema["title"] = "Decision Point Value Selection List"
-        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = (
-            "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
-        )
-        schema["description"] = (
-            "This schema defines the structure for representing selected values from SSVC Decision Points. "
-            "Each selection list can have multiple selection objects, each representing a decision point, and each "
-            "selection object can have multiple selected values when full certainty (i.e., a singular value selection) "
-            "is not available."
-        )
-
         non_required_fields = [
             "name",
             "definition",
