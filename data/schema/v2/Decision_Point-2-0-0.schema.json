@@ -1,6 +1,8 @@
 {
   "title": "DecisionPoint",
-  "description": "Models a single decision point as a list of values.\n\nDecision points should have the following attributes:\n\n- name (str): The name of the decision point\n- description (str): A description of the decision point\n- version (str): A semantic version string for the decision point\n- namespace (str): The namespace (a short, unique string): For example, \"ssvc\" or \"cvss\" to indicate the source of the decision point\n- key (str): A key (a short, unique string within the namespace) that can be used to identify the decision point in a shorthand way\n- values (tuple): A tuple of DecisionPointValue objects",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point-2-0-0.schema.json",
+  "description": "This schema defines the structure to represent an SSVC Decision Point.",
   "type": "object",
   "$defs": {
     "DecisionPointValue": {

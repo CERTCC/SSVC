@@ -1,5 +1,8 @@
 {
   "title": "SsvcObjectRegistry",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Ssvc_Object_Registry-2-0-0.schema.json",
+  "description": "This schema defines the structure to represent an SSVC Object Registry. ",
   "type": "object",
   "$defs": {
     "DecisionPoint": {

@@ -36,6 +36,7 @@ from ssvc._mixins import (
     _Valued,
 )
 from ssvc.utils.defaults import FIELD_DELIMITER
+from ssvc.utils.misc import order_schema
 
 logger = logging.getLogger(__name__)
 
@@ -155,7 +156,21 @@ class DecisionPoint(
         """
         return list(self.value_dict.keys())
 
-    # TODO: address #901 - $schema and $id missing
+    # override schema generation to ensure it's the way we want it
+    @classmethod
+    def model_json_schema(cls, **kwargs):
+        schema = super().model_json_schema(**kwargs)
+
+        # schema["title"] = "Decision Point Value Selection List"
+        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+        schema["$id"] = (
+            "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point-2-0-0.schema.json"
+        )
+        schema["description"] = (
+            "This schema defines the structure to represent an SSVC Decision Point."
+        )
+
+        return order_schema(schema)
 
 
 def main():

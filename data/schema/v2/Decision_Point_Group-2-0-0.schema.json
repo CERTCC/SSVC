@@ -1,6 +1,8 @@
 {
   "title": "DecisionPointGroup",
-  "description": "**DEPRECATED:** `DecisionPointGroup` has been superseded by `DecisionTable`.\nNew development should use `DecisionTable` instead.\nWe are keeping this class around for backward compatibility, but it may be removed in future releases.\n\nModels a group of decision points as a dictionary, keyed by their ID.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Group-2-0-0.schema.json",
+  "description": "This schema defines the structure to represent an SSVC Decision Point Group. ",
   "type": "object",
   "$defs": {
     "DecisionPoint": {
