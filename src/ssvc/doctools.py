@@ -39,7 +39,6 @@ import json
 import logging
 import os
 
-import ssvc.dp_groups.base
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
@@ -48,6 +47,7 @@ from ssvc.decision_tables.base import (
     DecisionTable,
     decision_table_to_longform_df,
 )
+from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.registry import get_registry
 from ssvc.registry.base import SsvcObjectRegistry, get_all
 from ssvc.selection import SelectionList
@@ -199,61 +199,26 @@ def dump_schema(filepath: str, schema: dict) -> None:
 
 
 def dump_schemas(jsondir):
-    import ssvc.selection
-    import ssvc.decision_tables.base
-
     # dump the selection schema
-    schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
-    schemapaths: list[dict(str, str)] = []
+    schema_base_dir = os.path.abspath(os.path.join(jsondir, "..", "schema"))
 
-    # selection schema
-    schemafile = f"Decision_Point_Value_Selection-{filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement='-')}.schema.json"
-    schemapath = os.path.join(schemadir, schemafile)
-    selection_schema = SelectionList.model_json_schema()
-    schemapaths.append({"filepath": schemapath, "schema": selection_schema})
+    for _class in (
+        DecisionPoint,
+        DecisionTable,
+        SsvcObjectRegistry,
+        DecisionPointGroup,
+        SelectionList,
+    ):
+        schema_file = _class.schema_filename()
 
-    # registry schema
-    registry_schema_file = f"Ssvc_Object_Registry-{filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    registry_schema_path = os.path.join(schemadir, registry_schema_file)
-    registry_schema = SsvcObjectRegistry.model_json_schema()
-    schemapaths.append(
-        {"filepath": registry_schema_path, "schema": registry_schema}
-    )
+        ver_relpath = _class.schema_version_relpath()
+        folder = os.path.join(schema_base_dir, ver_relpath)
 
-    # decision point schema
-    dp_schema_file = f"Decision_Point-{filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    dp_schema_path = os.path.join(schemadir, dp_schema_file)
-    dp_schema = DecisionPoint.model_json_schema()
-    schemapaths.append({"filepath": dp_schema_path, "schema": dp_schema})
+        schema_path = os.path.join(schema_base_dir, ver_relpath, schema_file)
+        schema = _class.model_json_schema()
 
-    # decision table schema
-    decision_table_schema_file = f"Decision_Table-{filename_friendly(ssvc.decision_tables.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    decision_table_schema_path = os.path.join(
-        schemadir, decision_table_schema_file
-    )
-    decision_table_schema = DecisionTable.model_json_schema()
-    schemapaths.append(
-        {
-            "filepath": decision_table_schema_path,
-            "schema": decision_table_schema,
-        }
-    )
-
-    # decision point group schema
-    dp_group_schema_file = f"Decision_Point_Group-{filename_friendly(ssvc.dp_groups.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    dp_group_schema_path = os.path.join(schemadir, dp_group_schema_file)
-    dp_group_schema = (
-        ssvc.dp_groups.base.DecisionPointGroup.model_json_schema()
-    )
-    schemapaths.append(
-        {"filepath": dp_group_schema_path, "schema": dp_group_schema}
-    )
-
-    with EnsureDirExists(schemadir):
-        for d in schemapaths:
-            path = d["filepath"]
-            schema = d["schema"]
-            dump_schema(filepath=path, schema=schema)
+        with EnsureDirExists(folder):
+            dump_schema(schema_path, schema)
 
 
 def dump_decision_table(

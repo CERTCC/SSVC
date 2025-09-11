@@ -22,7 +22,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  DM24-0278
 
 from datetime import datetime
-from typing import Literal, Optional
+from typing import ClassVar, Literal, Optional
 
 from pydantic import (
     AnyUrl,
@@ -37,6 +37,7 @@ from ssvc._mixins import (
     _Base,
     _GenericSsvcObject,
     _Keyed,
+    _SchemaVersioned,
     _Timestamped,
     _Valued,
 )
@@ -154,7 +155,7 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
 
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
-        not_required = ["name","definition"]
+        not_required = ["name", "definition"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
@@ -190,7 +191,7 @@ class Reference(BaseModel):
         return schema
 
 
-class SelectionList(_Timestamped, BaseModel):
+class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
     """
     A list decision point selections that represent an evaluation at a specific time of evaluation.
     Individual selections are derived from decision points, and each selection
@@ -209,6 +210,7 @@ class SelectionList(_Timestamped, BaseModel):
     """
 
     model_config = ConfigDict(extra="forbid")
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
         ...,
         description="The schema version of this selection list.",
@@ -360,7 +362,9 @@ class SelectionList(_Timestamped, BaseModel):
 
 
 def main() -> None:
-    print("Please use doctools.py for schema generation and unit tests for verification")
+    print(
+        "Please use doctools.py for schema generation and unit tests for verification"
+    )
 
 
 if __name__ == "__main__":
