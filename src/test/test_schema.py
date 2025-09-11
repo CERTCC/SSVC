@@ -33,9 +33,6 @@ from ssvc.registry import get_registry
 from ssvc.registry.base import get_all
 
 
-# importing these causes the decision points to register themselves
-
-
 def retrieve_local(uri: str) -> Resource:
     # retrieve_local gets called anytime we're trying to get a schema.
     # Because our schemas refer to each other by https: uris, we need this function
