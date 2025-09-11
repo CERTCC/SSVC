@@ -1606,7 +1606,6 @@ function makeTree(jsonTree) {
     jsonTree.mapping = enumerateCombinations(jsonTree);
     SSVC.form.innerHTML = "";
     jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
-    console.log(jsonTree);
     createSSVC(jsonTree, false);
     customize({innerHTML: "Customize"});
     clbutton.setAttribute("data-changed","1");
