@@ -111,6 +111,23 @@ class DecisionPointGroup(
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
 
+    @classmethod
+    def model_json_schema(cls, **kwargs):
+        """
+        Overrides schema generation to ensure it's the way we want it
+        """
+        schema = super().model_json_schema(**kwargs)
+
+        deprecation_warning = f"\n\n**DEPRECATED**: {cls.__name__} is deprecated; use `DecisionTable` instead."
+
+        # append a deprecation warning to the description
+        if "description" in schema:
+            schema["description"] += deprecation_warning
+        else:
+            schema["description"] = deprecation_warning.strip()
+
+        return schema
+
 
 def get_all_decision_points_from(
     *groups: list[DecisionPointGroup],
