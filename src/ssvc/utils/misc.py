@@ -113,6 +113,6 @@ def filename_friendly(name: str, replacement="_", to_lower=True) -> str:
         name = name.lower()
 
     # replace any sequence of underscores with a single underscore
-    name = re.sub(rf"{replacement}+", replacement, name)
+    name = re.sub(rf"{re.escape(replacement)}+", replacement, name)
 
     return name
