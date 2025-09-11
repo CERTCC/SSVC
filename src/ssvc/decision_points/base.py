@@ -24,9 +24,7 @@ Defines the formatting for SSVC Decision Points.
 
 import logging
 from typing import Literal
-from urllib.parse import urljoin
 
-import semver
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from ssvc._mixins import (
@@ -38,7 +36,6 @@ from ssvc._mixins import (
     _Valued,
 )
 from ssvc.utils.defaults import FIELD_DELIMITER
-from ssvc.utils.misc import filename_friendly, order_schema
 
 logger = logging.getLogger(__name__)
 
@@ -158,31 +155,6 @@ class DecisionPoint(
         """
         return list(self.value_dict.keys())
 
-    # override schema generation to ensure it's the way we want it
-    @classmethod
-    def model_json_schema(cls, **kwargs):
-        schema = super().model_json_schema(**kwargs)
-
-        base_url = "https://certcc.github.io/SSVC/data/schema/"
-        # parse SCHEMA_VERSION with semver to get the major, minor, patch
-        ver = semver.Version.parse(SCHEMA_VERSION)
-        verpath = f"v{ver.major}/"
-
-        ver_url = urljoin(base_url, verpath)
-        filename_base = f"{cls.__name__}-{str(ver)}"
-        # make sure filename is URL friendly
-        filename_base = filename_friendly(filename_base, to_lower=False)
-        ext = ".schema.json"
-        filename = f"{filename_base}{ext}"
-        id_url = urljoin(ver_url, filename)
-
-        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = id_url
-        schema["description"] = (
-            f"This schema defines the structure to represent an SSVC {cls.__name__} object."
-        )
-
-        return order_schema(schema)
 
 
 def main():

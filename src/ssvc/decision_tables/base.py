@@ -37,7 +37,7 @@ from ssvc._mixins import (
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.registry import get_registry
 from ssvc.utils.field_specs import DecisionPointDict
-from ssvc.utils.misc import obfuscate_dict, order_schema
+from ssvc.utils.misc import obfuscate_dict
 from ssvc.utils.toposort import dplist_to_toposort
 
 logger = logging.getLogger(__name__)
@@ -349,21 +349,6 @@ class DecisionTable(
 
         return new_table
 
-    # override schema generation to ensure it's the way we want it
-    @classmethod
-    def model_json_schema(cls, **kwargs):
-        schema = super().model_json_schema(**kwargs)
-
-        # schema["title"] = "Decision Point Value Selection List"
-        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = (
-            "https://certcc.github.io/SSVC/data/schema/v2/Decision_Table-2-0-0.schema.json"
-        )
-        schema["description"] = (
-            "This schema defines the structure to represent an SSVC Decision Table. "
-        )
-
-        return order_schema(schema)
 
 
 def decision_table_to_df(dt: DecisionTable, longform=False) -> pd.DataFrame:

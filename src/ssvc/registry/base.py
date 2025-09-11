@@ -37,7 +37,6 @@ from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.registry import get_registry
 from ssvc.utils.field_specs import VersionString
-from ssvc.utils.misc import order_schema
 
 logger = logging.getLogger(__name__)
 
@@ -226,21 +225,6 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         return lookup_by_id(objtype=objtype, objid=objid, registry=self)
 
-    # override schema generation to ensure it's the way we want it
-    @classmethod
-    def model_json_schema(cls, **kwargs):
-        schema = super().model_json_schema(**kwargs)
-
-        # schema["title"] = "Decision Point Value Selection List"
-        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = (
-            "https://certcc.github.io/SSVC/data/schema/v2/Ssvc_Object_Registry-2-0-0.schema.json"
-        )
-        schema["description"] = (
-            "This schema defines the structure to represent an SSVC Object Registry. "
-        )
-
-        return order_schema(schema)
 
 
 def register(

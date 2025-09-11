@@ -24,7 +24,9 @@ This module provides mixin classes for adding features to SSVC objects.
 
 from datetime import datetime, timezone
 from typing import Any, Optional
+from urllib.parse import urljoin
 
+import semver
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -38,6 +40,7 @@ from ssvc.namespaces import NameSpace
 from ssvc.registry.events import notify_registration
 from ssvc.utils.defaults import DEFAULT_VERSION, SCHEMA_VERSION
 from ssvc.utils.field_specs import NamespaceString, VersionString
+from ssvc.utils.misc import filename_friendly, order_schema
 
 
 class _Versioned(BaseModel):
@@ -82,6 +85,34 @@ class _SchemaVersioned(BaseModel):
         if "schemaVersion" not in data:
             data["schemaVersion"] = SCHEMA_VERSION
         return data
+
+    @classmethod
+    def model_json_schema(cls, **kwargs):
+        """
+        Overrides schema generation to ensure it's the way we want it
+        """
+        schema = super().model_json_schema(**kwargs)
+
+        base_url = "https://certcc.github.io/SSVC/data/schema/"
+        # parse SCHEMA_VERSION with semver to get the major, minor, patch
+        ver = semver.Version.parse(cls.schemaVersion)
+        verpath = f"v{ver.major}/"
+
+        ver_url = urljoin(base_url, verpath)
+        filename_base = f"{cls.__name__}-{str(ver)}"
+        # make sure filename is URL friendly
+        filename_base = filename_friendly(filename_base, to_lower=False)
+        ext = ".schema.json"
+        filename = f"{filename_base}{ext}"
+        id_url = urljoin(ver_url, filename)
+
+        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+        schema["$id"] = id_url
+        schema["description"] = (
+            f"This schema defines the structure to represent an SSVC {cls.__name__} object."
+        )
+
+        return order_schema(schema)
 
 
 class _Namespaced(BaseModel):

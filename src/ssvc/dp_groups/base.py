@@ -37,7 +37,6 @@ from ssvc._mixins import _Base, _SchemaVersioned, _Versioned
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
-from ssvc.utils.misc import order_schema
 
 SCHEMA_VERSION = "2.0.0"
 
@@ -121,22 +120,6 @@ class DecisionPointGroup(
 
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
-
-    # override schema generation to ensure it's the way we want it
-    @classmethod
-    def model_json_schema(cls, **kwargs):
-        schema = super().model_json_schema(**kwargs)
-
-        # schema["title"] = "Decision Point Value Selection List"
-        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = (
-            "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Group-2-0-0.schema.json"
-        )
-        schema["description"] = (
-            "This schema defines the structure to represent an SSVC Decision Point Group. "
-        )
-
-        return order_schema(schema)
 
 
 def get_all_decision_points_from(
