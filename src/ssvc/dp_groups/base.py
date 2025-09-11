@@ -118,11 +118,13 @@ class DecisionPointGroup(
         """
         schema = super().model_json_schema(**kwargs)
 
-        deprecation_warning = f"\n\n**DEPRECATED**: {cls.__name__} is deprecated; use `DecisionTable` instead."
+        deprecation_warning = f"**DEPRECATED:** `{cls.__name__}` has been superseded by `DecisionTable`.\nNew development should use `DecisionTable` instead.\nWe are keeping this class around for backward compatibility, but it may be removed in future releases.\n\n"
 
         # append a deprecation warning to the description
         if "description" in schema:
-            schema["description"] += deprecation_warning
+            schema["description"] = (
+                deprecation_warning + schema["description"].strip()
+            )
         else:
             schema["description"] = deprecation_warning.strip()
 

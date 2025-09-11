@@ -2,7 +2,7 @@
   "title": "DecisionPointGroup",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://certcc.github.io/SSVC/data/schema/v2/DecisionPointGroup_2_0_0.schema.json",
-  "description": "This schema defines the structure to represent an SSVC DecisionPointGroup object.\n\n**DEPRECATED**: DecisionPointGroup is deprecated; use `DecisionTable` instead.",
+  "description": "**DEPRECATED:** `DecisionPointGroup` has been superseded by `DecisionTable`.\nNew development should use `DecisionTable` instead.\nWe are keeping this class around for backward compatibility, but it may be removed in future releases.\n\nThis schema defines the structure to represent an SSVC DecisionPointGroup object.",
   "type": "object",
   "$defs": {
     "DecisionPoint": {
