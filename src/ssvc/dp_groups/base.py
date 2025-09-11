@@ -121,6 +121,8 @@ class DecisionPointGroup(
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
 
+    # TODO: address #901 - $schema and $id missing
+
 
 def get_all_decision_points_from(
     *groups: list[DecisionPointGroup],

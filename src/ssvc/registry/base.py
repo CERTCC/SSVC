@@ -225,6 +225,8 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         """
         return lookup_by_id(objtype=objtype, objid=objid, registry=self)
 
+    # TODO: address #901 - $schema and $id missing
+
 
 def register(
     obj: _RegisterableClass, registry: SsvcObjectRegistry = None

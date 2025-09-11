@@ -349,6 +349,8 @@ class DecisionTable(
 
         return new_table
 
+    # TODO: address #901 - $schema and $id missing
+
 
 def decision_table_to_df(dt: DecisionTable, longform=False) -> pd.DataFrame:
     """
