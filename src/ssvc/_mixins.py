@@ -23,7 +23,7 @@ This module provides mixin classes for adding features to SSVC objects.
 #  DM24-0278
 
 from datetime import datetime, timezone
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 from urllib.parse import urljoin
 
 import semver
@@ -73,6 +73,7 @@ class _SchemaVersioned(BaseModel):
     Mixin class for version
     """
 
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: str = Field(
         ..., description="Schema version of the SSVC object"
     )
@@ -83,7 +84,7 @@ class _SchemaVersioned(BaseModel):
         Set the schema version to the default if not provided.
         """
         if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
+            data["schemaVersion"] = cls._schema_version
         return data
 
     @classmethod
@@ -95,7 +96,7 @@ class _SchemaVersioned(BaseModel):
 
         base_url = "https://certcc.github.io/SSVC/data/schema/"
         # parse SCHEMA_VERSION with semver to get the major, minor, patch
-        ver = semver.Version.parse(cls.schemaVersion)
+        ver = semver.Version.parse(cls._schema_version)
         verpath = f"v{ver.major}/"
 
         ver_url = urljoin(base_url, verpath)
