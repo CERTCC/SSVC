@@ -43,20 +43,20 @@ RAIN = DecisionPointValue(
     definition="Weather is rainy."
 )
 
-WEATHER_OUTLOOK_1 = SsvcDecisionPoint(
-    name="Weather Outlook",
+WEATHER_FORECAST_1 = SsvcDecisionPoint(
+    name="Weather Forecast",
     namespace="x_example.com#forecast",
     definition="Weather is the forecast that describes general weather patterns ",
     key="W",
     version="1.0.0",
     values=(
-        SUNNY,
+        RAIN,
         OVERCAST,
-        RAIN
+        SUNNY,
     ),
 )
 
-VERSIONS = (WEATHER_OUTLOOK_1,)
+VERSIONS = (WEATHER_FORECAST_1,)
 LATEST = VERSIONS[-1]
 
 

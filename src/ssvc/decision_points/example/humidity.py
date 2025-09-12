@@ -37,14 +37,14 @@ HIGH = DecisionPointValue(
     definition="Humidity is high, above 40%"
 )
 HUMIDITY_1 = SsvcDecisionPoint(
-    name="Humidity values",
+    name="Humidity Value above 40% ",
     namespace="x_example.com#forecast",
-    definition="Humidity is the amount of water vapor in the air",
+    definition="Humidity is the amount of water vapor in the air. Above 40% is High in this context.",
     key="H",
     version="1.0.0",
     values=(
-        LOW,
-        HIGH
+        HIGH,
+        LOW
     ),
 )
 

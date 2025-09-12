@@ -32,7 +32,7 @@ from ssvc.namespaces import NameSpace
 dp_dict = {
     dp.id: dp for dp in [WEATHER, HUMIDITY, YESNO]
 }
-print(dp_dict)
+
 
 TOPLAY_1 = DecisionTable(
     namespace="x_com.example#play",
@@ -45,36 +45,36 @@ TOPLAY_1 = DecisionTable(
     },
     outcome=YESNO.id,
     mapping=[
-        {
-            "x_example.com#forecast:W:1.0.0": "S",
-            "x_example.com#forecast:H:1.0.0": "L",
-            "basic:YN:1.0.0": "Y"
-        },
-        {
-            "x_example.com#forecast:W:1.0.0": "S",
-            "x_example.com#forecast:H:1.0.0": "H",
-            "basic:YN:1.0.0": "N"
-        },
-        {
-            "x_example.com#forecast:W:1.0.0": "O",
-            "x_example.com#forecast:H:1.0.0": "L",
-            "basic:YN:1.0.0": "Y"
-        },
-        {
-            "x_example.com#forecast:W:1.0.0": "O",
-            "x_example.com#forecast:H:1.0.0": "H",
-            "basic:YN:1.0.0": "Y"
-        },
-        {
-            "x_example.com#forecast:W:1.0.0": "R",
-            "x_example.com#forecast:H:1.0.0": "L",
-            "basic:YN:1.0.0": "N"
-        },
-        {
-            "x_example.com#forecast:W:1.0.0": "R",
-            "x_example.com#forecast:H:1.0.0": "H",
-            "basic:YN:1.0.0": "N"
-        }
+    {
+      "x_example.com#forecast:W:1.0.0": "R",
+      "x_example.com#forecast:H:1.0.0": "H",
+      "basic:YN:1.0.0": "N"
+    },
+    {
+      "x_example.com#forecast:W:1.0.0": "O",
+      "x_example.com#forecast:H:1.0.0": "H",
+      "basic:YN:1.0.0": "N"
+    },
+    {
+      "x_example.com#forecast:W:1.0.0": "R",
+      "x_example.com#forecast:H:1.0.0": "L",
+      "basic:YN:1.0.0": "N"
+    },
+    {
+      "x_example.com#forecast:W:1.0.0": "S",
+      "x_example.com#forecast:H:1.0.0": "H",
+      "basic:YN:1.0.0": "N"
+    },
+    {
+      "x_example.com#forecast:W:1.0.0": "O",
+      "x_example.com#forecast:H:1.0.0": "L",
+      "basic:YN:1.0.0": "Y"
+    },
+    {
+      "x_example.com#forecast:W:1.0.0": "S",
+      "x_example.com#forecast:H:1.0.0": "L",
+      "basic:YN:1.0.0": "Y"
+    }
     ],
 )
 
@@ -90,7 +90,7 @@ def main():
     print()
     print(TOPLAY_1.model_dump_json(indent=2))
 
-    print("## Human Impact Decision Table Longform DataFrame CSV")
+    print("## To Play Decision Table Longform DataFrame CSV")
     print()
     from ssvc.decision_tables.base import decision_table_to_longform_df
 
