@@ -1,20 +1,33 @@
-# Code
+CERTCC SSVC
+===========
 
-This directory holds helper scripts that can make managing or using SSVC easier.
+This is the official Python package for the CERT/CC Stakeholder-Specific Vulnerability Categorization (SSVC) project.
 
-## csv-to-latex
+Installation
+------------
+You can install the latest release from PyPI:
 
-This python script takes a CSV of the format in the `../data` directory and gets you (most of the way) to a pretty decision tree visualization. It creates a LaTeX file that can create a PDF (and from there, a PNG or whatever you want).
+    pip install certcc-ssvc
 
-`python SSVC_csv-to-latex.py --help` works and should explain all your options.
-When the script finishes, it will also print a message with instructions for creating the PDF or PNG from the tex. A potential future improvement is to call `latexmk` directly from the python script.
+Usage
+-----
+After installation, import the package and explore the examples:
 
-Example usage:
+    import ssvc
 
-```
- python SSVC_csv-to-latex.py --input=../data/ssvc_2_deployer_simplified.csv --output=tmp.tex --delim="," --columns="0,2,1" --label="3" --header-row --priorities="defer, scheduled, out-of-cycle, immediate"
-```
+    # Example decision point usage
+    from ssvc.decision_points.example import base as dp_example
+    dp_example.run()
 
-Dependencies: LaTeX.
-To install latex, see <https://www.latex-project.org/get/>
-`latexmk` is a helper script that is not included in all distributions by default; if you need it, see <https://ctan.org/pkg/latexmk/?lang=en>
+    # Example decision table usage
+    from ssvc.decision_tables.example import base as dt_example
+    dt_example.run()
+
+The modules in `ssvc/decision_points/example/base.py` and
+`ssvc/decision_tables/example/base.py` demonstrate core SSVC decision
+points and decision tables.
+
+Resources
+---------
+Source code and full documentation:
+https://github.com/CERTCC/SSVC
