@@ -42,7 +42,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
+          python -m pip install uv
+          uv sync --project=src --no-dev
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,7 +51,7 @@ jobs:
       - name: Build Site
         run: |
           export PYTHONPATH=src:$PYTHONPATH
-          mkdocs build --verbose --clean --config-file mkdocs.yml       
+          uv run --project=src mkdocs build --clean --config-file mkdocs.yml       
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
