@@ -20,8 +20,10 @@ probability scores as one of a few different inputs to inform the
 SSVC [Exploitation](../../reference/decision_points/exploitation.md) decision point.
 This approach can be a useful approach to refine or augment the *input* to an existing SSVC decision model.
 
-In this how-to, we'll explore a different approach that uses EPSS percentiles
-as an amplifier to adjust the *output* of an existing SSVC decision model.
+!!! question "What's in this How-To?"
+
+    In this how-to, we'll explore a different approach that uses EPSS percentiles
+    as an amplifier to adjust the *output* of an existing SSVC decision model.
 
 ## Starting Out with the SSVC Deployer Decision Model
 
@@ -146,6 +148,18 @@ And here is a JSON object representation of the decision table for programmatic 
 
 Now you can use this decision table in your SSVC implementation to adjust
 the prioritization of vulnerabilities based on their EPSS percentiles.
+
+!!! question "How can I sort work items within a given SSVC outcome category?"
+
+    While we don't usually recommend sorting within a given SSVC outcome category,
+    we recognize that some organizations may want to do this.
+
+    If you want to sort vulnerabilities within a given SSVC outcome (e.g., all vulnerabilities
+    that are classified as "Immediate"), you can use the raw EPSS probability score
+    as a secondary sorting key.
+    This way, even if multiple vulnerabilities fall into the same SSVC category,
+    you can still prioritize them based on their predicted likelihood of exploitation.
+
 
 ## Conclusion
 
