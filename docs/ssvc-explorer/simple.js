@@ -1,4 +1,4 @@
-const __version__ = "1.0.10";
+const __version__ = "1.0.12";
 const SSVC = {
     "outcomes": [],
     "results": {},
@@ -180,6 +180,11 @@ function h5button(text, current, type) {
     });
     return h5;
 }
+function rand_namespace(dtype) {
+    if(!dtype)
+	dtype = "generic"
+    return "x_example." + crypto.randomUUID() + "#" + dtype.toLowerCase();
+}
 function lock_unlock(lock) {
     const select = SSVC.form.parentElement.querySelector("[id='sampletrees']");
     const btnAll = SSVC.form.parentElement.querySelector("[data-toggleall]");
@@ -216,7 +221,10 @@ function lock_unlock(lock) {
 		input.name = nprop;
 		const nproper = niceString(nprop);
 		input.placeholder = "Decision Tree " + nproper;
-		input.value = dt[nprop];
+		if(nprop != "namespace")
+		    input.value = dt[nprop];
+		else 
+		    input.value = rand_namespace("decisiontables");
 		applyStyle(input, {background: "transparent",
 				   padding: "0px 2px",
 				   display: "inline",
@@ -330,7 +338,8 @@ function update_stats() {
 		SSVC.results[outcome] = 0;
 	}
     });
-    let outcomeMax = Math.max.apply(this, Object.values(SSVC.results));
+ 
+    let outcomeMax = Math.max.apply(null, Object.values(SSVC.results));
     Object.keys(SSVC.results).forEach( function(outcome) {
 	outcome = outcome.replaceAll('"','\\"');	    
 	let rlabel = SSVC.form.querySelector('[data-result="'+outcome+'"] > label > span');
@@ -383,7 +392,7 @@ function createSSVC(csv, uploaded) {
     let outcomeTitle;
     let lines = [];
     let headers = [];
-    let dset = [[]];
+    let dset = [];
     if(typeof(csv) === "object") {
 	/* This is JSON data more powerful use it */
 	jsonTree = simpleCopy(csv);
@@ -395,19 +404,24 @@ function createSSVC(csv, uploaded) {
 		outcomeTitle = jsonTree.decision_points[jsonTree.outcome].name;
 	    let hkeys = [];
 	    SSVC.dpMap = {};
-	    Object.entries(jsonTree.decision_points).forEach(function([k,dp], i) {
+	    let outcomeset = [];
+	    Object.entries(jsonTree.decision_points).forEach(function([k,dp]) {
 		/* Dynamically build the name map per Tree. Assumption is there
 		   are NO two decision points with the same name */
 		if(dp.name in SSVC.dpMap)
 		    topalert("danger", "Duplicate Names found in Decision Table can cause confusion", 0);
 		SSVC.dpMap[dp.name] = {name: dp.name, version: dp.version,
 				       namespace: dp.namespace, data: dp};
-		dset[i] = dp.values.map(x => x.name)
 		if(k != jsonTree.outcome) {
+		    dset.push(dp.values.map(x => x.name));
 		    headers.push(dp.name);
 		    hkeys.push(k);
+		} else {
+		    /* Make sure the dset has the last entry as outcome*/
+		    outcomeset = dp.values.map(x => x.name);
 		}
 	    });
+	    dset.push(outcomeset);
 	    headers.push(outcomeTitle);
 	    hkeys.push(jsonTree.outcome);
 	    if('mapping' in jsonTree)
@@ -1227,6 +1241,34 @@ function selectCustom(name, datatree, fIndex) {
     }
     toggleAll(true);
 }
+function verify_update_mapping(inp, clbutton) {
+    let val = inp.value;
+    let jsonTree = JSON.parse(clbutton.getAttribute("data-json"));
+    if(jsonTree && jsonTree.mapping) {
+	let outcomedp = jsonTree.decision_points[jsonTree.outcome];
+	let dpv = outcomedp.values.find(dpv => dpv.name == val);
+	if(!dpv) {
+	    alert("The Outcome is not part of the planned Outcomes");
+	    return false;
+	}
+	let index = -1;
+	SSVC.form.querySelectorAll("input[data-initialvalue]")
+	    .forEach(function(cinp,i) {
+		if(cinp == inp)
+		    index = i;
+	    });
+	if(index < 0) {
+	    alert("Unable to find matching row in SSVC.mapping");
+	    return false;
+	}
+	jsonTree.mapping[index][jsonTree.outcome] = dpv.key;
+	clbutton.setAttribute("data-json",JSON.stringify(jsonTree));
+	return true;
+    } else {
+	alert("Unable to update new Outcome");
+	return false;
+    }
+}
 function customize(w) {
     const clbutton = SSVC.form.parentElement.querySelector("[data-clear]");
     if(w.innerHTML == "Customize") {
@@ -1286,9 +1328,18 @@ function customize(w) {
 	    const inp = document.createElement("input");
 	    inp.value = el.innerText;
 	    inp.dataset.initialvalue = el.innerText;
-	    inp.addEventListener('change', function() {
+	    inp.addEventListener('change', function(e) {
+		const inp = e.target;
+		inp.style.border = "1px solid grey";
+		if(!inp.value)
+		    return alert("Outcome cannot be empty!");
 		if (inp.value !== inp.dataset.initialValue) {
-		    clbutton.setAttribute("data-changed", "1");
+		    if(verify_update_mapping(inp,clbutton)) {
+			clbutton.setAttribute("data-changed", "1");
+		    } else {
+			inp.style.border = "2px solid red";
+			inp.focus();
+		    }
 		}
 	    });
 	    el.innerText = "";
@@ -1297,12 +1348,13 @@ function customize(w) {
     } else {
 	/* new Decision Tree Setup  */
 	if(!clbutton.hasAttribute("data-changed")) {
-	    return alert("Nothing has changed!");
+	    return alert("Nothing has changed or error field not fixed!");
 	}
 	let jsonTree = {};
 	if(clbutton.hasAttribute("data-json")) {
 	    jsonTree = JSON.parse(clbutton.getAttribute("data-json"));
 	}
+	/* Do we need to update mapping?*/
 	const sample = SSVC.form.parentElement.querySelector("[id='sampletrees']");
 	const nextel = sample.nextElementSibling;
 	let current = sample[sample.selectedIndex].innerText
@@ -1324,6 +1376,7 @@ function customize(w) {
 	    checkbox.disabled = false;
 	    checkbox.nextSibling.style.opacity = 1.0;
 	});
+	/* Update JSON Tree Mapping */
 	SSVC.form.querySelectorAll("[data-dp]").forEach(function(el) {
 	    if(el.querySelector("span"))
 		el.querySelector("span").remove();
@@ -1571,6 +1624,7 @@ function makeTree(jsonTree) {
     jsonTree.mapping = enumerateCombinations(jsonTree);
     SSVC.form.innerHTML = "";
     jsonTree.key = uniq_key(jsonTree, SSVC.decision_trees.map(x => x.data),"DT_", 2);
+    console.log(jsonTree);
     createSSVC(jsonTree, false);
     customize({innerHTML: "Customize"});
     clbutton.setAttribute("data-changed","1");
