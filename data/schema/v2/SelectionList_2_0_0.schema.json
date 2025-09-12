@@ -1,8 +1,8 @@
 {
-  "title": "Decision Point Value Selection List",
+  "title": "SelectionList",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json",
-  "description": "This schema defines the structure for representing selected values from SSVC Decision Points. Each selection list can have multiple selection objects, each representing a decision point, and each selection object can have multiple selected values when full certainty (i.e., a singular value selection) is not available.",
+  "$id": "https://certcc.github.io/SSVC/data/schema/v2/SelectionList_2_0_0.schema.json",
+  "description": "This schema defines the structure to represent an SSVC SelectionList object.",
   "type": "object",
   "$defs": {
     "MinimalDecisionPointValue": {

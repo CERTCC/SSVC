@@ -22,10 +22,10 @@ Work in progress on an experimental registry object for SSVC.
 #  DM24-0278
 
 import logging
-from typing import Any, Literal, Optional, Union
+from typing import Any, ClassVar, Literal, Optional, Union
 
 import semver
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field
 
 from ssvc._mixins import (
     _Base,
@@ -136,6 +136,7 @@ class _NsType(BaseModel):
 
 
 class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
         ...,
         description="The schema version of this selection list.",
@@ -145,15 +146,6 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         default_factory=dict,
         description="A dictionary mapping type names to NsType objects.",
     )
-
-    @model_validator(mode="before")
-    def set_schema_version(cls, data):
-        """
-        Set the schema version to the default if not provided.
-        """
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
 
     def register(self, obj: _GenericSsvcObject) -> None:
         """

@@ -23,7 +23,7 @@ Defines the formatting for SSVC Decision Points.
 #  DM24-0278
 
 import logging
-from typing import Literal
+from typing import ClassVar, Literal
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
@@ -78,7 +78,7 @@ class DecisionPoint(
     - key (str): A key (a short, unique string within the namespace) that can be used to identify the decision point in a shorthand way
     - values (tuple): A tuple of DecisionPointValue objects
     """
-
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION]
     values: tuple[DecisionPointValue, ...]
     model_config = ConfigDict(revalidate_instances="always")
@@ -154,6 +154,7 @@ class DecisionPoint(
         Return a list of value summaries.
         """
         return list(self.value_dict.keys())
+
 
 
 def main():

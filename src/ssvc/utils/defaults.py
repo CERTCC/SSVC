@@ -56,6 +56,9 @@ SCHEMA_ORDER = (
 
 
 SCHEMA_VERSION = "2.0.0"
+
+SCHEMA_BASE_URL = "https://certcc.github.io/SSVC/data/schema/"
+
 IMPORTABLES = [
     "ssvc.decision_points",
     "ssvc.outcomes",
