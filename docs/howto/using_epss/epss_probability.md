@@ -4,6 +4,12 @@ SSVC users might want to combine exploitation-related information from multiple
 sources into a single decision point for use downstream in a decision table
 such as the SSVC [Deployer Decision Model](../deployer_tree.md).
 
+!!! question "What's in this How-To?"
+
+    This How-To explores how to combine information from multiple sources
+    via SSVC Decision Points and Decision Tables to create a more nuanced view
+    of exploitation risk.
+
 One such source is the [Exploit Prediction Scoring System](https://www.first.org/epss/)
 ([EPSS](https://www.first.org/epss)) probability score.
 
