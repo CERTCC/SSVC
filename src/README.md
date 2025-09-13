@@ -17,15 +17,14 @@ After installation, import the package and explore the examples:
 
     # Example decision point usage. A Weather Forecast and Humidity Value decision point
     from ssvc.decision_points.example import weather
-    weather.main()
+    print(weather.LATEST.model_dump_json(indent=2))
     from ssvc.decision_points.example import humidity
-    humidity.main()
-    from ssvc.decision_points.example import base as dp_example
-    dp_example.run()
+    print(humidity.LATEST.model_dump_json(indent=2))
+
 
     # Example decision table usage
     from ssvc.decision_tables.example import to_play
-    to_play.main()
+    print(to_play.LATEST.model_dump_json(indent=2))
 
 Explanation
 ------
