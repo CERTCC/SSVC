@@ -9,7 +9,7 @@ You can install the latest release from PyPI:
 
     pip install certcc-ssvc
 
-Usage
+Demo to explore SSVC decision making
 -----
 After installation, import the package and explore the examples:
 
@@ -40,8 +40,42 @@ Imagine the decision tree as a series of questions. To find the outcome (the Yes
 
 The YesNo column is the Outcome Decision Point, and the other two Decision Points are inputs that will be collected. 
 
+Usage
+---------
+
+For usage in vulnerability management scenarios consider the following popular SSVC decisions
+
+    import ssvc
+
+    # Example decision point usage. Exploitation as a Decision Point
+    from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
+    print(Exploitation.model_dump_json(indent=2))
+    # Try a CVSS metic Attack Vector using SSVC 
+    from ssvc.decision_points.cvss.attack_vector import LATEST as AttackVector
+    print(AttackVector.model_dump_json(indent=2))
+    from ssvc.decision_points.cisa.in_kev import LATEST as InKEV
+    print(InKEV.model_dump_json(indent=2))
+
+    # Example decision table for a Supplier deciding Patch Development Priority
+    from ssvc.decision_tables.ssvc.supplier_dt import LATEST as SupplierDT
+    print(SupplierDT.model_dump_json(indent=2))
+
+    # Example decision table for a Deployer decision Patch Application Priority
+    from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DeployerDT
+    print(DeployerDT.model_dump_json(indent=2))
+
+    # View CISA Decision Table as Coordinator for Vulnerability Management writ large
+    from ssvc.decision_tables.cisa.cisa_coordinate_dt import LATEST as CISACoordinate
+    print(CISACoordinate.model_dump_json(indent=2))
+
 
 Resources
 ---------
 Source code and full documentation:
 https://github.com/CERTCC/SSVC
+
+SSVC Policy Explorer:
+https://certcc.github.io/SSVC/ssvc-explorer/
+
+SSVC Calculator:
+https://certcc.github.io/SSVC/ssvc-calc/
