@@ -36,7 +36,7 @@ Imagine the decision tree as a series of questions. To find the outcome (the Yes
 
 * Step 1: Look at the Weather Forecast column (e.g., rain, overcast, sunny).
 * Step 2: Look at the Humidity Value above 40% column (e.g., high, low).
-*  Step 3: Based on the combination of these two conditions, the YesNo column will give you the Decision as "Yes" to play and "No" to not to play.
+* Step 3: Based on the combination of these two conditions, the YesNo column will give you the Decision as "Yes" to play and "No" to not to play.
 
 The YesNo column is the Outcome Decision Point, and the other two Decision Points are inputs that will be collected. 
 
