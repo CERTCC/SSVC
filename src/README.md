@@ -26,6 +26,10 @@ After installation, import the package and explore the examples:
     from ssvc.decision_tables.example import to_play
     print(to_play.LATEST.model_dump_json(indent=2))
 
+    #Show decision tree in ascii text art
+    from ssvc.decision_tables.base import ascii_tree
+    print(ascii_tree(to_play.LATEST))
+
 Explanation
 ------
 
@@ -37,7 +41,27 @@ Imagine the decision tree as a series of questions. To find the outcome (the Yes
 * Step 2: Look at the Humidity Value above 40% column (e.g., high, low).
 * Step 3: Based on the combination of these two conditions, the YesNo column will give you the Decision as "Yes" to play and "No" to not to play.
 
-The YesNo column is the Outcome Decision Point, and the other two Decision Points are inputs that will be collected. 
+The YesNo column is the Outcome Decision Point, and the other two Decision Points are inputs that will be collected. This decision tree looks like below in ascii form
+
+```
+Weather Fore.. | Humidity Val.. | YesNo v1.0.0.. | 
+---------------------------------------------------
+├── rain    
+│               ├── high    
+│               │               └── [no]
+│               └── low    
+│                               └── [no]
+├── overcast    
+│               ├── high    
+│               │               └── [no]
+│               └── low    
+│                               └── [yes]
+└── sunny    
+                ├── high    
+                │               └── [no]
+                └── low    
+                                └── [yes]
+```
 
 Usage
 ---------
@@ -63,9 +87,13 @@ For usage in vulnerability management scenarios consider the following popular S
     from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DeployerDT
     print(DeployerDT.model_dump_json(indent=2))
 
-    # View CISA Decision Table as Coordinator for Vulnerability Management writ large
+    # Example CISA Decision Table as Coordinator for Vulnerability Management writ large
     from ssvc.decision_tables.cisa.cisa_coordinate_dt import LATEST as CISACoordinate
     print(CISACoordinate.model_dump_json(indent=2))
+
+    #Print CISA Decision Table as an ascii tree
+    from ssvc.decision_tables.base import ascii_tree
+    print(ascii_tree(CISACoordinate))
 
 
 Resources
