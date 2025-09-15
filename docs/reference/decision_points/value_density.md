@@ -7,6 +7,10 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
+!!! tip "Gathering Information about Value Density"
+
+      See this [HowTo](../../howto/gathering_info/value_density.md) for advice on gathering information about the Value Density decision point.
+
 !!! tip "See also"
 
     Value Density combines with [Automatability](./automatable.md) to inform 

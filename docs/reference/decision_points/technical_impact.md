@@ -7,6 +7,10 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
+!!! tip "Gathering Information about Technical Impact"
+
+      See this [HowTo](../../howto/gathering_info/technical_impact.md) for advice on gathering information about the Technical Impact decision point.
+
 When evaluating *Technical Impact*, recall the scope definition in the [Scope Section](../../topics/scope.md).
 Total control is relative to the affected component where the vulnerability resides.
 If a vulnerability discloses authentication or authorization credentials to the system, this information disclosure should also be scored as “total” if those credentials give an adversary total control of the component.

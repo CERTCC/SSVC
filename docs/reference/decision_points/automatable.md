@@ -7,6 +7,10 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
+!!! tip "Gathering Information about Automatable"
+
+      See this [HowTo](../../howto/gathering_info/automatable.md) for advice on gathering information about the Automatable decision point.
+
 !!! tip "See also"
 
     Automatable combines with [Value Density](./value_density.md) to inform 

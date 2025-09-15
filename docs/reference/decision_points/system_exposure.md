@@ -7,6 +7,10 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
+!!! tip "Gathering Information about System Exposure"
+
+      See this [HowTo](../../howto/gathering_info/system_exposure.md) for advice on gathering information about the System Exposure decision point.
+
 Measuring the attack surface precisely is difficult, and we do not propose to perfectly delineate between small and controlled access.
 Exposure should be judged against the system in its deployed context, which may differ from how it is commonly expected to be deployed.
 For example, the exposure of a device on a vehicle's CAN bus will vary depending on the presence of a cellular telemetry device on the same bus.

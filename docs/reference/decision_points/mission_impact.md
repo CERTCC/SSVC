@@ -7,6 +7,10 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
+!!! tip "Gathering Information about Mission Impact"
+
+      See this [HowTo](../../howto/gathering_info/mission_impact.md) for advice on gathering information about the Mission Impact decision point.
+
 !!! tip "See also"
 
     Mission Impact combines with [Safety Impact](./safety_impact.md) to inform 

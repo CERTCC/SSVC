@@ -1,5 +1,12 @@
 # Gathering Information about Automatable
 
+``` python exec="true" idprefix=""
+from ssvc.decision_points.ssvc.automatable import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 An analyst should be able to sketch the automation scenario and how it either does or does not satisfy each of the four kill chain steps.
 Once one step is not satisfied, the analyst can stop and select [*no*](automatable.md).
 Code that demonstrably automates all four kill chain steps certainly satisfies as a sketch.

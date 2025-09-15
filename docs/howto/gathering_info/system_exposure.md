@@ -1,5 +1,12 @@
 # Gathering Information About System Exposure
 
+```python exec="true" idprefix=""
+from ssvc.decision_points.ssvc.automatable import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 *System Exposure* is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
 Therefore, it generally has a concrete answer, even though it may vary from vulnerable component to vulnerable component, based on their respective configurations.
 

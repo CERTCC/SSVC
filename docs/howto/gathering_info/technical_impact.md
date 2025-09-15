@@ -1,5 +1,12 @@
 # Gathering Information About Technical Impact
 
+```python exec="true" idprefix=""
+from ssvc.decision_points.ssvc.automatable import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
+```
+
 Assessing *Technical Impact* amounts to assessing the degree of control over the vulnerable component the attacker stands to gain by exploiting the vulnerability.
 One way to approach this analysis is to ask whether the control gained is *total* or not.
 If it is not total, it is *partial*.
