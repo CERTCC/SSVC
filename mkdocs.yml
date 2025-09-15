@@ -8,7 +8,8 @@ nav:
   - SSVC Overview: 'ssvc_overview.md'
   - SSVC How-To:
     - Overview: 'howto/index.md'
-    - Gathering Info about Decision Points:
+    - Gathering Info about Decision Points: 
+      - Intro: howto/gathering_info/index.md
       - Automatable: howto/gathering_info/automatable.md
       - Exploitation: howto/gathering_info/exploitation.md
       - Mission Impact: howto/gathering_info/mission_impact.md
