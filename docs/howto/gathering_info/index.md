@@ -1,6 +1,6 @@
 # Gathering Information
 
-For some decision points, we offer additional guidance on how to gather information about some decision points so that you can determine the corresponding decision values.
+We offer additional guidance on how to gather information about some decision points so that you can determine the corresponding decision values.
 
 !!! note
     As a reminder, while we encourage stakeholders to customize end priority labels, we discourage modifying the provided decision points.
