@@ -66,6 +66,6 @@ The CalVer scheme will be applied via Git tags and GitHub releases.
 
 ## References
 
-- [SSVC Decision Point Versioning Rules](0003-ssvc-decision-points-are-versioned.md)  
+- [SSVC Decision Point Versioning Rules](0003-ssvc-decision-point-versioning-rules.md)
 - [CalVer](https://calver.org/)  
 - [SemVer](https://semver.org/)  
