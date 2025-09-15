@@ -21,12 +21,12 @@
 
 from fastapi import APIRouter
 
-from ssvc.api.response_models import (
+from ssvc.api.v1.response_models import (
     ListOfStringsResponse,
     StringsListType,
     TypesDictResponse,
 )
-from ssvc.api.response_models._type_defs import TypesDictType
+from ssvc.api.v1.response_models._type_defs import TypesDictType
 from ssvc.registry.base import get_registry
 
 r = get_registry()

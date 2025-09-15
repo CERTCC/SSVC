@@ -23,7 +23,7 @@ from unittest.mock import patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import types
+from ssvc.api.v1.routers import types
 
 
 class TestTypesRouter(unittest.TestCase):

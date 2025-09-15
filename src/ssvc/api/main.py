@@ -27,17 +27,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
 import ssvc  # noqa: F401
-from ssvc.api.routers import (
-    decision_point,
-    decision_points,
-    decision_table,
-    decision_tables,
-    keys,
-    namespaces,
-    objects,
-    types,
-    versions,
-)
+from ssvc.api.v1 import router as router_v1
 from ssvc.registry.base import (
     get_registry,
 )
@@ -54,15 +44,8 @@ app = FastAPI(
         "email": "cert@cert.org",
     },
 )
-app.include_router(decision_point.router)
-app.include_router(decision_points.router)
-app.include_router(decision_table.router)
-app.include_router(decision_tables.router)
-app.include_router(types.router)
-app.include_router(namespaces.router)
-app.include_router(keys.router)
-app.include_router(versions.router)
-app.include_router(objects.router)
+
+app.include_router(router_v1)
 
 
 # root should redirect to docs
