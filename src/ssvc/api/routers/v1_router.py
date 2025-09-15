@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-file: v1_router
-author: adh
-created_at: 9/15/25 9:55 AM
+API version 1 router for SSVC
 """
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
