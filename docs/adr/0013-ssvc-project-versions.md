@@ -45,6 +45,9 @@ CalVer suits SSVC’s character as a living framework:
 
 Individual SSVC objects will continue to use SemVer for backward compatibility.  
 
+PyPI releases are expected to follow a similar CalVer scheme, but may include higher-resolution
+date-time stamps for individual builds (e.g., `2025.6.141053`).
+
 ## Consequences
 
 - **Good:** Versions clearly indicate recency and distinguish project vs. object evolution  
