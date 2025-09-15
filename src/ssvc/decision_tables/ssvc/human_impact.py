@@ -28,7 +28,7 @@ from ssvc.decision_points.ssvc.mission_impact import (
     MISSION_IMPACT_2 as MissionImpact,
 )
 from ssvc.decision_points.ssvc.safety_impact import (
-    SAFETY_IMPACT_2 as SituatedSafetyImpact,
+    SAFETY_IMPACT_2_0_1 as SituatedSafetyImpact,
 )
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
@@ -48,22 +48,22 @@ HUMAN_IMPACT_1 = DecisionTable(
     },
     outcome=HumanImpact.id,
     mapping=[
-        {"ssvc:SI:2.0.0": "N", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "L"},
-        {"ssvc:SI:2.0.0": "N", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "L"},
-        {"ssvc:SI:2.0.0": "N", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "M"},
-        {"ssvc:SI:2.0.0": "N", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
-        {"ssvc:SI:2.0.0": "M", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "L"},
-        {"ssvc:SI:2.0.0": "M", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "L"},
-        {"ssvc:SI:2.0.0": "M", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "M"},
-        {"ssvc:SI:2.0.0": "M", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
-        {"ssvc:SI:2.0.0": "R", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "M"},
-        {"ssvc:SI:2.0.0": "R", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "H"},
-        {"ssvc:SI:2.0.0": "R", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "H"},
-        {"ssvc:SI:2.0.0": "R", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
-        {"ssvc:SI:2.0.0": "C", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "VH"},
-        {"ssvc:SI:2.0.0": "C", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "VH"},
-        {"ssvc:SI:2.0.0": "C", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "VH"},
-        {"ssvc:SI:2.0.0": "C", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "N", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "L"},
+        {"ssvc:SI:2.0.1": "N", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "L"},
+        {"ssvc:SI:2.0.1": "N", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "M"},
+        {"ssvc:SI:2.0.1": "N", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "M", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "L"},
+        {"ssvc:SI:2.0.1": "M", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "L"},
+        {"ssvc:SI:2.0.1": "M", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "M"},
+        {"ssvc:SI:2.0.1": "M", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "R", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "M"},
+        {"ssvc:SI:2.0.1": "R", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "H"},
+        {"ssvc:SI:2.0.1": "R", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "H"},
+        {"ssvc:SI:2.0.1": "R", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "C", "ssvc:MI:2.0.0": "D", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "C", "ssvc:MI:2.0.0": "MSC", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "C", "ssvc:MI:2.0.0": "MEF", "ssvc:HI:2.0.2": "VH"},
+        {"ssvc:SI:2.0.1": "C", "ssvc:MI:2.0.0": "MF", "ssvc:HI:2.0.2": "VH"},
     ],
 )
 

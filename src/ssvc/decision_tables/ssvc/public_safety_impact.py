@@ -25,7 +25,7 @@ Public Safety Impact Decision Table
 from ssvc.decision_points.ssvc.public_safety_impact import (
     PUBLIC_SAFETY_IMPACT_2_0_1 as PSI,
 )
-from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_2 as SI
+from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_2_0_1 as SI
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
@@ -57,10 +57,10 @@ V1_0_0 = DecisionTable(
     decision_points={dp.id: dp for dp in [SI, PSI]},
     outcome=PSI.id,
     mapping=[
-        {"ssvc:SI:2.0.0": "N", "ssvc:PSI:2.0.1": "M"},
-        {"ssvc:SI:2.0.0": "M", "ssvc:PSI:2.0.1": "S"},
-        {"ssvc:SI:2.0.0": "R", "ssvc:PSI:2.0.1": "S"},
-        {"ssvc:SI:2.0.0": "C", "ssvc:PSI:2.0.1": "S"},
+        {"ssvc:SI:2.0.1": "N", "ssvc:PSI:2.0.1": "M"},
+        {"ssvc:SI:2.0.1": "M", "ssvc:PSI:2.0.1": "S"},
+        {"ssvc:SI:2.0.1": "R", "ssvc:PSI:2.0.1": "S"},
+        {"ssvc:SI:2.0.1": "C", "ssvc:PSI:2.0.1": "S"},
     ],
 )
 
