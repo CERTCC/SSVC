@@ -1,7 +1,7 @@
 # Gathering Information About Value Density
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.ssvc.automatable import LATEST
+from ssvc.decision_points.ssvc.value_density import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
