@@ -20,35 +20,5 @@ API version 1 router for SSVC
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-from fastapi import APIRouter
 
-from ssvc.api.routers import (
-    decision_point,
-    decision_points,
-    decision_table,
-    decision_tables,
-    keys,
-    namespaces,
-    objects,
-    types,
-    versions,
-)
-
-router_v1 = APIRouter(prefix="/v1", tags=["v1"])
-router_v1.include_router(decision_point.router)
-router_v1.include_router(decision_points.router)
-router_v1.include_router(decision_table.router)
-router_v1.include_router(decision_tables.router)
-router_v1.include_router(types.router)
-router_v1.include_router(namespaces.router)
-router_v1.include_router(keys.router)
-router_v1.include_router(versions.router)
-router_v1.include_router(objects.router)
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
+from ssvc.api.v1.routers.v1_router import router_v1 as router  # noqa: F401

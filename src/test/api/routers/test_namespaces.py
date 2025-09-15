@@ -23,7 +23,7 @@ from unittest.mock import MagicMock, patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import namespaces
+from ssvc.api.v1.routers import namespaces
 
 
 class TestNamespacesRouter(unittest.TestCase):
@@ -62,8 +62,8 @@ class TestNamespacesRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(sorted(response.json()), ["ns1", "ns2", "ns3"])
 
-    @patch("ssvc.api.routers.namespaces.lookup_objtype")
-    @patch("ssvc.api.routers.namespaces._404_on_none")
+    @patch("ssvc.api.v1.routers.namespaces.lookup_objtype")
+    @patch("ssvc.api.v1.routers.namespaces._404_on_none")
     def test_get_namespace_list_for_type(self, mock_404, mock_lookup):
 
         self.mock_registry.types = {

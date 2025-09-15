@@ -21,9 +21,16 @@
 
 from pydantic import RootModel, model_validator
 
-from ssvc.api.response_models._type_defs import (DecisionPointDictType, DecisionPointValuesListType,
-                                                 DecisionTableDictType, KeyDictType, NamespaceDictType, StringsListType,
-                                                 TypesDictType, VersionDictType)
+from ssvc.api.v1.response_models._type_defs import (
+    DecisionPointDictType,
+    DecisionPointValuesListType,
+    DecisionTableDictType,
+    KeyDictType,
+    NamespaceDictType,
+    StringsListType,
+    TypesDictType,
+    VersionDictType,
+)
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 

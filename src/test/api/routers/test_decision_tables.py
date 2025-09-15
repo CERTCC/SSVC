@@ -23,7 +23,7 @@ from unittest.mock import MagicMock, patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import decision_tables
+from ssvc.api.v1.routers import decision_tables
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.registry.base import SsvcObjectRegistry
@@ -81,7 +81,7 @@ class TestDecisionTablesRouter(unittest.TestCase):
             registered=False,
         )
 
-    @patch("ssvc.api.routers.decision_tables.lookup_objtype")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_objtype")
     def test_get_all_decision_tables_success(self, mock_lookup):
         result_mock = MagicMock()
         result_mock.namespaces = {
@@ -98,13 +98,13 @@ class TestDecisionTablesRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.dt.id, response.json())
 
-    @patch("ssvc.api.routers.decision_tables.lookup_objtype")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_objtype")
     def test_get_all_decision_tables_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/decision_tables/")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.decision_tables.lookup_namespace")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_namespace")
     def test_get_decision_tables_for_namespace_success(self, mock_lookup):
         ns_mock = MagicMock()
         ns_mock.keys = {
@@ -117,13 +117,13 @@ class TestDecisionTablesRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.dt.id, response.json())
 
-    @patch("ssvc.api.routers.decision_tables.lookup_namespace")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_namespace")
     def test_get_decision_tables_for_namespace_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get(f"/decision_tables/{self.dt.namespace}")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.decision_tables.lookup_key")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_key")
     def test_get_decision_tables_for_key_success(self, mock_lookup):
         key_mock = MagicMock()
         key_mock.versions = {self.dt.version: MagicMock(obj=self.dt)}
@@ -134,7 +134,7 @@ class TestDecisionTablesRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.dt.id, response.json())
 
-    @patch("ssvc.api.routers.decision_tables.lookup_key")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_key")
     def test_get_decision_tables_for_key_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get(
@@ -142,7 +142,7 @@ class TestDecisionTablesRouter(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.decision_tables.lookup_latest")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_latest")
     def test_get_latest_decision_table_for_key_success(self, mock_lookup):
         latest_dt = self.dt
         mock_lookup.return_value = latest_dt
@@ -155,7 +155,7 @@ class TestDecisionTablesRouter(unittest.TestCase):
         self.assertEqual(response.json()["version"], latest_dt.version)
         self.assertEqual(response.json()["name"], latest_dt.name)
 
-    @patch("ssvc.api.routers.decision_tables.lookup_latest")
+    @patch("ssvc.api.v1.routers.decision_tables.lookup_latest")
     def test_get_latest_decision_table_for_key_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get(f"/decision_tables/test/key1/latest")

@@ -22,7 +22,12 @@
 from fastapi import APIRouter
 
 from ssvc.api.helpers import _404_on_none
-from ssvc.api.response_models import (ListOfStringsResponse, NamespaceDictResponse, NamespaceDictType, StringsListType)
+from ssvc.api.v1.response_models import (
+    ListOfStringsResponse,
+    NamespaceDictResponse,
+    NamespaceDictType,
+    StringsListType,
+)
 from ssvc.registry.base import get_registry, lookup_objtype
 
 router = APIRouter(

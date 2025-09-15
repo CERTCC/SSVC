@@ -23,7 +23,7 @@ from unittest.mock import MagicMock, patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import objects
+from ssvc.api.v1.routers import objects
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 
@@ -110,7 +110,7 @@ class TestObjectsRouter(unittest.TestCase):
             outcome=self.dp3.id,
         )
 
-    @patch("ssvc.api.routers.objects.lookup_by_id")
+    @patch("ssvc.api.v1.routers.objects.lookup_by_id")
     def test_get_decision_point_success(self, mock_lookup):
         dp = self.dp1
         ver_obj = MagicMock(obj=dp)
@@ -122,13 +122,13 @@ class TestObjectsRouter(unittest.TestCase):
         self.assertEqual(response.json()["version"], dp.version)
         self.assertEqual(response.json()["name"], dp.name)
 
-    @patch("ssvc.api.routers.objects.lookup_by_id")
+    @patch("ssvc.api.v1.routers.objects.lookup_by_id")
     def test_get_decision_point_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/objects/DecisionPoint/ns1/key1/1.0.0")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.objects.lookup_by_id")
+    @patch("ssvc.api.v1.routers.objects.lookup_by_id")
     def test_get_decision_table_success(self, mock_lookup):
         dt = self.dt
         ver_obj = MagicMock(obj=dt)
@@ -141,7 +141,7 @@ class TestObjectsRouter(unittest.TestCase):
         self.assertEqual(response.json()["name"], dt.name)
         self.assertEqual(response.json()["definition"], dt.definition)
 
-    @patch("ssvc.api.routers.objects.lookup_by_id")
+    @patch("ssvc.api.v1.routers.objects.lookup_by_id")
     def test_get_decision_table_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/objects/DecisionTable/ns2/key2/2.0.0")

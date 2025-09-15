@@ -27,7 +27,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
 import ssvc  # noqa: F401
-from ssvc.api.routers.v1_router import router_v1
+from ssvc.api.v1 import router as router_v1
 from ssvc.registry.base import (
     get_registry,
 )
