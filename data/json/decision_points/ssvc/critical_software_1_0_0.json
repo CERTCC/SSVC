@@ -3,18 +3,18 @@
   "key": "CS",
   "version": "1.0.0",
   "name": "Critical Software",
-  "description": "Denotes whether a system meets a critical software definition.",
+  "definition": "Denotes whether a system meets a critical software definition.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "No",
-      "description": "System does not meet a critical software definition."
+      "definition": "System does not meet a critical software definition."
     },
     {
       "key": "Y",
       "name": "Yes",
-      "description": "System meets a critical software definition."
+      "definition": "System meets a critical software definition."
     }
   ]
 }

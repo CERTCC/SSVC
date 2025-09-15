@@ -9,13 +9,12 @@ consulted: @tschmidtb51
 ## Context and Problem Statement
 
 We need to include decision points and other objects that are not directly
-defined by the SSVC project team. For example, CVSS vector elements are a 
+defined by the SSVC project team. For example, CVSS vector elements are a
 rich source of structured data that can be used to inform SSVC decisions and
-modeled as SSVC decision point objects. However, the 
-[FIRST CVSS SIG](https://www.first.org/cvss) owns the definition of CVSS vector 
+modeled as SSVC decision point objects. However, the
+[FIRST CVSS SIG](https://www.first.org/cvss) owns the definition of CVSS vector
 elements. So we need a way to describe these objects in SSVC format
 without making them part of the SSVC specification.
-
 
 ## Decision Drivers
 
@@ -49,30 +48,39 @@ based on other sources).
     main project. We use the `cvss` namespace to contain CVSS vector elements.
 
 **Unregistered namespaces** for objects that we do not create or maintain, but
-that others may want for their own use. Unregistered namespaces must start with 
-an `x_` prefix followed by a reverse domain name, such as `x_org.example`.
+that others may want for their own use. Unregistered namespaces must start with
+an `x_` prefix followed by a reverse domain name and conclude with a fragment,
+such as `x_example.test#test`.
 Unregistered namespaces are intended for experimental or private use.
 
 !!! example
 
     A government agency might create a set of decision points for internal use 
-    using the `x_example.agency` namespace. This allows them to use SSVC objects
-    of their own design alongside existig SSVC objects without needing to
+    using the `x_example.agency#internal` namespace. This allows them to use SSVC
+    objects of their own design alongside existig SSVC objects without needing to
     register their namespace with the SSVC project.
 
+!!! example
+
+    A government agency might create a set of decision points for interagency use 
+    using the `x_example.agency#interagency` namespace. This allows them to use,
+    organize and share SSVC objects based on their namespace value without the
+    need for maintaining an external list. 
+
 **Namespace extensions** for objects that are derived from other objects in an
-registered or unregistered namespace. Extensions are not intended to be used to 
+registered or unregistered namespace. Extensions are not intended to be used to
 introduce new objects, but rather to refine existing objects with additional data
 or semantics.
-Namespace extensions can be used for refining the meaning of decision point 
+Namespace extensions can be used for refining the meaning of decision point
 values for a specific constituency, or adding additional nuance to
 interpretation of a decision point in a specific context.
 
 !!! example
 
-    An ISAO (Information Sharing and Analyzing Organization) might want to refine the meaning of decision point values for their
-    constituency, and could use `ssvc//example.isao` as the namespace for their
-    collection of extensions.
+    An ISAO (Information Sharing and Analyzing Organization) might want to refine
+    the meaning of decision point values for their constituency, and could use
+    `ssvc//.example.isao#constituency-1` as the namespace for their collection
+    of extensions.
 
 ### Consequences
 
@@ -83,7 +91,6 @@ interpretation of a decision point in a specific context.
   their own use, and share them with others
 - Facilitates language translation and localization of SSVC objects to specific
   constituencies
-
 
 #### Negative Consequences
 
@@ -113,7 +120,6 @@ SSVC specification under our control and objects that were derived from other so
 - Good, because it was simple and easy to understand
 - Bad, because it made it difficult to distinguish between SSVC project objects and
   objects based on specifications we neither created nor maintained
-
 
 <!-- This is an optional element. Feel free to remove. -->
 ## More Information

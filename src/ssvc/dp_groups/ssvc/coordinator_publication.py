@@ -25,13 +25,15 @@ created_at: 9/21/23 11:40 AM
 
 from ssvc.decision_points.ssvc.exploitation import EXPLOITATION_1
 from ssvc.decision_points.ssvc.public_value_added import PUBLIC_VALUE_ADDED_1
-from ssvc.decision_points.ssvc.supplier_involvement import SUPPLIER_INVOLVEMENT_1
+from ssvc.decision_points.ssvc.supplier_involvement import (
+    SUPPLIER_INVOLVEMENT_1,
+)
 from ssvc.dp_groups.base import DecisionPointGroup
 
 
 COORDINATOR_PUBLICATION_1 = DecisionPointGroup(
     name="Coordinator Publication",
-    description="The decision points used by the coordinator during publication.",
+    definition="The decision points used by the coordinator during publication.",
     version="1.0.0",
     decision_points=(
         SUPPLIER_INVOLVEMENT_1,

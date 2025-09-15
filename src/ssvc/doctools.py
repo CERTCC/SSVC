@@ -27,35 +27,38 @@ Examples
 
 To generate the documentation for the decision points, use the following command:
 
-    python -m ssvc.doctools --overwrite --jsondir ./tmp/json_out`
+    python -m ssvc.doctools --overwrite --datadir ./tmp/json_out`
 
 To regenerate the existing docs, use the following command:
 
-    python -m ssvc.doctools --overwrite --jsondir data/json
+    python -m ssvc.doctools --overwrite --datadir data
 
 """
 import importlib
 import json
 import logging
 import os
-import re
 
-import ssvc.dp_groups.base
 from ssvc.decision_points.base import (
     DecisionPoint,
 )
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
-from ssvc.decision_tables.base import DecisionTable
+from ssvc.decision_tables.base import (
+    DecisionTable,
+    decision_table_to_longform_df,
+)
+from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.registry import get_registry
 from ssvc.registry.base import SsvcObjectRegistry, get_all
 from ssvc.selection import SelectionList
-from ssvc.utils.misc import order_schema
+from ssvc.utils.misc import filename_friendly, order_schema
 
 logger = logging.getLogger(__name__)
 
 
 def find_modules_to_import(
-    directory: str = "../decision_points", package: str = "ssvc.decision_points"
+    directory: str = "../decision_points",
+    package: str = "ssvc.decision_points",
 ) -> bool:
     """
     Find all modules that contain decision points and import them.
@@ -81,25 +84,6 @@ def find_modules_to_import(
                 except ImportError as e:
                     logger.error(f"Failed to import {full_module_name}: {e}")
     return imported_modules
-
-
-def _filename_friendly(name: str, replacement="_") -> str:
-    """
-    Given a string, return a version that is friendly for use in a filename.
-
-    Args:
-        name (str): The string to make friendly for use in a filename.
-
-    Returns:
-        str: A version of the string that is friendly for use in a filename.
-    """
-    # replace all non-alphanumeric characters with underscores and convert to lowercase
-    name = re.sub(r"[^a-zA-Z0-9]", replacement, name)
-    name = name.lower()
-    # replace any sequence of underscores with a single underscore
-    name = re.sub(rf"{replacement}+", replacement, name)
-
-    return name
 
 
 # create a runtime context that ensures that dir exists
@@ -140,7 +124,9 @@ def remove_if_exists(file):
         logger.debug(f"File {file} does not exist, nothing to remove")
 
 
-def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) -> None:
+def dump_decision_point(
+    jsondir: str, dp: SsvcDecisionPoint, overwrite: bool
+) -> None:
     """
     Generate the markdown table, json example, and markdown table file for a decision point.
 
@@ -157,12 +143,14 @@ def dump_decision_point(jsondir: str, dp: SsvcDecisionPoint, overwrite: bool) ->
             - json_file: The path to the json example file.
     """
     # make dp.name safe for use in a filename
-    basename = _filename_friendly(dp.name) + f"_{_filename_friendly(dp.version)}"
+    basename = filename_friendly(dp.name) + f"_{filename_friendly(dp.version)}"
     # - generate json example
     dump_json(basename, dp, jsondir, overwrite)
 
 
-def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -> str:
+def dump_json(
+    basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool
+) -> str:
     """
     Generate the json example for a decision point.
 
@@ -180,7 +168,7 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
     parts = [
         jsondir,
     ]
-    parts.append(_filename_friendly(dp.namespace))
+    parts.append(filename_friendly(dp.namespace))
     dirname = os.path.join(*parts)
 
     parts.append(filename)
@@ -202,8 +190,6 @@ def dump_json(basename: str, dp: DecisionPoint, jsondir: str, overwrite: bool) -
     return str(json_file)
 
 
-
-
 def dump_schema(filepath: str, schema: dict) -> None:
     schema = order_schema(schema)
     logger.info(f"Writing schema to {filepath}")
@@ -211,59 +197,41 @@ def dump_schema(filepath: str, schema: dict) -> None:
         json.dump(schema, f, indent=2)
         f.write("\n")
 
+
 def dump_schemas(jsondir):
-    import ssvc.selection
-    import ssvc.decision_tables.base
-
     # dump the selection schema
-    schemadir = os.path.abspath(os.path.join(jsondir, "..", "schema", "v2"))
-    schemapaths: list[dict(str, str)] = []
+    schema_base_dir = os.path.abspath(os.path.join(jsondir, "..", "schema"))
 
-    # selection schema
-    schemafile = f"Decision_Point_Value_Selection-{_filename_friendly(ssvc.selection.SCHEMA_VERSION, replacement="-")}.schema.json"
-    schemapath = os.path.join(schemadir, schemafile)
-    selection_schema = SelectionList.model_json_schema()
-    schemapaths.append({"filepath": schemapath, "schema": selection_schema})
+    for _class in (
+        DecisionPoint,
+        DecisionTable,
+        SsvcObjectRegistry,
+        DecisionPointGroup,
+        SelectionList,
+    ):
+        schema_file = _class.schema_filename()
 
-    # registry schema
-    registry_schema_file = f"Ssvc_Object_Registry-{_filename_friendly(ssvc.registry.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    registry_schema_path = os.path.join(schemadir, registry_schema_file)
-    registry_schema = SsvcObjectRegistry.model_json_schema()
-    schemapaths.append({"filepath": registry_schema_path, "schema": registry_schema})
+        ver_relpath = _class.schema_version_relpath()
+        folder = os.path.join(schema_base_dir, ver_relpath)
 
-    # decision point schema
-    dp_schema_file = f"Decision_Point-{_filename_friendly(ssvc.decision_points.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    dp_schema_path = os.path.join(schemadir, dp_schema_file)
-    dp_schema = DecisionPoint.model_json_schema()
-    schemapaths.append({"filepath": dp_schema_path, "schema": dp_schema})
+        schema_path = os.path.join(schema_base_dir, ver_relpath, schema_file)
+        schema = _class.model_json_schema()
 
-    # decision table schema
-    decision_table_schema_file = f"Decision_Table-{_filename_friendly(ssvc.decision_tables.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    decision_table_schema_path = os.path.join(schemadir, decision_table_schema_file)
-    decision_table_schema = DecisionTable.model_json_schema()
-    schemapaths.append({"filepath": decision_table_schema_path, "schema": decision_table_schema})
+        with EnsureDirExists(folder):
+            dump_schema(schema_path, schema)
 
-    # decision point group schema
-    dp_group_schema_file = f"Decision_Point_Group-{_filename_friendly(ssvc.dp_groups.base.SCHEMA_VERSION, replacement='-')}.schema.json"
-    dp_group_schema_path = os.path.join(schemadir, dp_group_schema_file)
-    dp_group_schema = ssvc.dp_groups.base.DecisionPointGroup.model_json_schema()
-    schemapaths.append({"filepath": dp_group_schema_path, "schema": dp_group_schema})
 
-    with EnsureDirExists(schemadir):
-        for d in schemapaths:
-            path = d["filepath"]
-            schema = d["schema"]
-            dump_schema(filepath=path, schema=schema)
-
-def dump_decision_table(jsondir: str, dt: DecisionTable, overwrite: bool) -> None:
+def dump_decision_table(
+    jsondir: str, dt: DecisionTable, overwrite: bool
+) -> None:
     # make dp.name safe for use in a filename
-    basename = _filename_friendly(dt.name) + f"_{_filename_friendly(dt.version)}"
+    basename = filename_friendly(dt.name) + f"_{filename_friendly(dt.version)}"
 
     filename = f"{basename}.json"
     parts = [
         jsondir,
     ]
-    parts.append(_filename_friendly(dt.namespace))
+    parts.append(filename_friendly(dt.namespace))
     dirname = os.path.join(*parts)
 
     parts.append(filename)
@@ -280,23 +248,53 @@ def dump_decision_table(jsondir: str, dt: DecisionTable, overwrite: bool) -> Non
                 f.write("\n")  # newline at end of file
         except FileExistsError:
             logger.warning(
-                    f"File {json_file} already exists, use --overwrite to replace"
+                f"File {json_file} already exists, use --overwrite to replace"
             )
-    return str(json_file)
+
+
+def dump_decision_table_csv(
+    csvdir: str, dt: DecisionTable, overwrite: bool
+) -> None:
+    basename = filename_friendly(dt.name) + f"_{filename_friendly(dt.version)}"
+    filename = f"{basename}.csv"
+    parts = [
+        csvdir,
+    ]
+    parts.append(filename_friendly(dt.namespace))
+    dirname = os.path.join(*parts)
+    parts.append(filename)
+    csv_file = os.path.join(*parts)
+    if overwrite:
+        remove_if_exists(csv_file)
+    with EnsureDirExists(dirname):
+        try:
+            logger.info("Writing {csv_file}")
+            with open(csv_file, "x") as f:
+                df = decision_table_to_longform_df(dt=dt)
+                # set the index title
+                df.index.name = "row"
+                f.write(df.to_csv(index=True))
+        except FileExistsError:
+            logger.warning(
+                f"File {csv_file} already exists, use --overwrite to replace"
+            )
 
 
 def main():
-    # we are going to generate three files for each decision point:
-    # - a markdown table that can be used in the decision point documentation
-    # - a json example that can be used in the decision point documentation
-    # - a markdown file that builds an mkdocs table to switch between the markdown description and the json
-    #   example using markdown-include plugin of mkdocs
+    """Generate the json examples for decision points and decision tables.
 
-    # parse command line args
+    Emits the following files:
+    - json examples for each decision point in datadir/json/decision_points/<namespace>/
+    - json examples for each decision table in datadir/json/decision_tables/<namespace>/
+    - csv examples for each decision table in datadir/csv/<namespace>/
+    - the ssvc object registry in datadir/json/ssvc_object_registry.json
+    - the json schemas for decision points, decision tables, selection lists, and the registry in datadir/schema/v2/
+    """
+
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Generate decision point documentation"
+        description="Generate json, json schema, and csv examples for SSVC Decision Points and Decision Tables"
     )
     parser.add_argument(
         "--overwrite",
@@ -306,19 +304,24 @@ def main():
     )
 
     parser.add_argument(
-        "--jsondir", help="json output directory", default="./tmp/json_out"
+        "--datadir", help="json output directory", default="./tmp"
     )
     args = parser.parse_args()
 
     overwrite = args.overwrite
-    jsondir = args.jsondir
+    jsondir = os.path.join(os.path.abspath(args.datadir), "json")
+    csvdir = os.path.join(os.path.abspath(args.datadir), "csv")
 
     dp_dir = os.path.join(os.path.abspath(jsondir), "decision_points")
     dt_dir = os.path.join(os.path.abspath(jsondir), "decision_tables")
 
-    find_modules_to_import("./src/ssvc/decision_points", "ssvc.decision_points")
+    find_modules_to_import(
+        "./src/ssvc/decision_points", "ssvc.decision_points"
+    )
     find_modules_to_import("./src/ssvc/outcomes", "ssvc.outcomes")
-
+    find_modules_to_import(
+        "./src/ssvc/decision_tables", "ssvc.decision_tables"
+    )
 
     registry = get_registry()
 
@@ -329,6 +332,7 @@ def main():
     # for each decision table:
     for dt in get_all("DecisionTable", registry=registry):
         dump_decision_table(dt_dir, dt, overwrite)
+        dump_decision_table_csv(csvdir, dt, overwrite)
 
     # dump the registry
     registry_json = os.path.join(jsondir, "ssvc_object_registry.json")
@@ -338,7 +342,7 @@ def main():
         try:
             logger.info(f"Writing {registry_json}")
             with open(registry_json, "x") as f:
-                f.write(registry.model_dump_json(indent=2,exclude_none=True))
+                f.write(registry.model_dump_json(indent=2, exclude_none=True))
                 f.write("\n")  # newline at end of file
         except FileExistsError:
             logger.warning(
@@ -346,7 +350,6 @@ def main():
             )
 
     dump_schemas(jsondir)
-
 
 
 if __name__ == "__main__":

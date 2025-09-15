@@ -3,23 +3,23 @@
   "key": "EQ3",
   "version": "1.0.0",
   "name": "Equivalence Set 3",
-  "description": "VC/VI/VA with 3 levels specified in Table 26",
+  "definition": "VC/VI/VA with 3 levels specified in Table 26",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Low",
-      "description": "2: not (VC:H or VI:H or VA:H)"
+      "definition": "2: not (VC:H or VI:H or VA:H)"
     },
     {
       "key": "M",
       "name": "Medium",
-      "description": "1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)"
+      "definition": "1: not (VC:H and VI:H) and (VC:H or VI:H or VA:H)"
     },
     {
       "key": "H",
       "name": "High",
-      "description": "0: VC:H and VI:H"
+      "definition": "0: VC:H and VI:H"
     }
   ]
 }

@@ -26,14 +26,18 @@ from ssvc.doc_helpers import example_block, markdown_table
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.dp = DecisionPoint(
-            namespace="x_example.test",
+            namespace="test",
             name="test name",
-            description="test description",
+            definition="test description",
             key="TK",
             version="1.0.0",
             values=(
-                DecisionPointValue(name="A", key="A", description="A Definition"),
-                DecisionPointValue(name="B", key="B", description="B Definition"),
+                DecisionPointValue(
+                    name="A", key="A", definition="A Definition"
+                ),
+                DecisionPointValue(
+                    name="B", key="B", definition="B Definition"
+                ),
             ),
         )
 
@@ -80,7 +84,7 @@ class MyTestCase(unittest.TestCase):
 
         for value in self.dp.values:
             self.assertIn(value.name, result)
-            self.assertIn(value.description, result)
+            self.assertIn(value.definition, result)
 
 
 if __name__ == "__main__":

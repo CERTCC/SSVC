@@ -3,18 +3,18 @@
   "key": "PUBLISH",
   "version": "1.0.0",
   "name": "Publish, Do Not Publish",
-  "description": "The publish outcome group.",
+  "definition": "The publish outcome group.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "Do Not Publish",
-      "description": "Do Not Publish"
+      "definition": "Do Not Publish"
     },
     {
       "key": "P",
       "name": "Publish",
-      "description": "Publish"
+      "definition": "Publish"
     }
   ]
 }

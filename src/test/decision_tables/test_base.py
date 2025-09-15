@@ -42,41 +42,59 @@ class TestDecisionTableBase(unittest.TestCase):
         self.tmpdir = tempfile.TemporaryDirectory()
 
         # Create dummy decision point values
-        self.dp1v1 = DecisionPointValue(name="a", key="a", description="A value")
-        self.dp1v2 = DecisionPointValue(name="b", key="b", description="B value")
+        self.dp1v1 = DecisionPointValue(
+            name="a", key="a", definition="A value"
+        )
+        self.dp1v2 = DecisionPointValue(
+            name="b", key="b", definition="B value"
+        )
 
-        self.dp2v1 = DecisionPointValue(name="x", key="x", description="X value")
-        self.dp2v2 = DecisionPointValue(name="y", key="y", description="Y value")
-        self.dp2v3 = DecisionPointValue(name="z", key="z", description="Z value")
-        self.dp2v4 = DecisionPointValue(name="w", key="w", description="W value")
+        self.dp2v1 = DecisionPointValue(
+            name="x", key="x", definition="X value"
+        )
+        self.dp2v2 = DecisionPointValue(
+            name="y", key="y", definition="Y value"
+        )
+        self.dp2v3 = DecisionPointValue(
+            name="z", key="z", definition="Z value"
+        )
+        self.dp2v4 = DecisionPointValue(
+            name="w", key="w", definition="W value"
+        )
 
         # Create dummy decision points and group
         self.dp1 = DecisionPoint(
             name="dp1",
-            description="description for dp1",
+            definition="description for dp1",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="dp1",
             values=(self.dp1v1, self.dp1v2),
         )
         self.dp2 = DecisionPoint(
             name="dp2",
-            description="description for dp2",
+            definition="description for dp2",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="dp2",
             values=(self.dp2v1, self.dp2v2, self.dp2v3, self.dp2v4),
         )
         # Create dummy outcome group
-        self.ogv1 = DecisionPointValue(name="o1", key="o1", description="Outcome 1")
-        self.ogv2 = DecisionPointValue(name="o2", key="o2", description="Outcome 2")
-        self.ogv3 = DecisionPointValue(name="o3", key="o3", description="Outcome 3")
+        self.ogv1 = DecisionPointValue(
+            name="o1", key="o1", definition="Outcome 1"
+        )
+        self.ogv2 = DecisionPointValue(
+            name="o2", key="o2", definition="Outcome 2"
+        )
+        self.ogv3 = DecisionPointValue(
+            name="o3", key="o3", definition="Outcome 3"
+        )
 
         self.og = OutcomeGroup(
             name="outcome",
-            description="description for outcome",
+            definition="description for outcome",
             version="1.0.0",
-            namespace="x_test",
+            namespace="test",
             key="outcome",
             values=(self.ogv1, self.ogv2, self.ogv3),
         )
@@ -86,9 +104,9 @@ class TestDecisionTableBase(unittest.TestCase):
 
         self.dt = DecisionTable(
             key="TEST",
-            namespace="x_test",
+            namespace="test",
             name="Test Table",
-            description="Describes the test table",
+            definition="Describes the test table",
             decision_points=self.dpdict,
             outcome=self.og.id,
         )
@@ -170,7 +188,9 @@ class TestDecisionTableBase(unittest.TestCase):
         for row in d["mapping"]:
             row_keys = set(row.keys())
             self.assertEqual(
-                row_keys, expect_keys, "Row keys do not match expected decision points"
+                row_keys,
+                expect_keys,
+                "Row keys do not match expected decision points",
             )
 
     def test_populate_mapping_if_none(self):
@@ -222,7 +242,8 @@ class TestDecisionTableBase(unittest.TestCase):
         # Check if the new mapping has outcomes assigned
         for row in new_mapping:
             self.assertIsNotNone(
-                row[outcome_key], "Outcome should not be None after distribution"
+                row[outcome_key],
+                "Outcome should not be None after distribution",
             )
 
         # Check if the length of new mapping matches original mapping
@@ -329,6 +350,102 @@ class TestDecisionTableBase(unittest.TestCase):
             self.assertGreaterEqual(count, 0)
             # # each count should be less than or equal to the length of the combination
             self.assertLessEqual(count, len(combos))
+
+    def test_single_dp_dt(self):
+        # Create a DecisionTable with a single DecisionPoint
+        dp_in = DecisionPoint(
+            name="dp_in",
+            definition="A single decision point",
+            version="1.0.0",
+            namespace="test",
+            key="dp",
+            values=(self.dp1v1, self.dp1v2),
+            registered=False,
+        )
+        dp_out = DecisionPoint(
+            namespace="test",
+            key="outcome",
+            name="Outcome",
+            definition="Outcome for single DP test",
+            version="1.0.0",
+            values=(self.ogv1, self.ogv2, self.ogv3),
+            registered=False,
+        )
+
+        single_dt = DecisionTable(
+            key="SINGLE_TEST",
+            namespace="test",
+            name="Single DP Test Table",
+            definition="Describes the single DP test table",
+            decision_points={dp.id: dp for dp in [dp_in, dp_out]},
+            outcome=dp_out.id,
+            registered=False,
+        )
+
+        # Check if mapping is populated correctly
+        self.assertIsNotNone(single_dt.mapping)
+        self.assertEqual(len(single_dt.mapping), len(dp_in.values))
+
+        # Check if the mapping contains the correct outcomes
+        for row in single_dt.mapping:
+            self.assertIn(single_dt.outcome, row)
+            self.assertIn(
+                row[single_dt.outcome], [v.key for v in self.og.values]
+            )
+
+    def test_should_reject_duplicate_conflicting_mappings(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just append to it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+
+        new_row = dict(dt.mapping[0])  # copy the first row
+        self.assertEqual(
+            new_row[dt.outcome],
+            self.ogv1.key,
+            "First row should have outcome o1",
+        )
+        new_row[dt.outcome] = self.ogv2.key  # change the outcome to o2
+        # insert it at position 1
+        dt.mapping.insert(1, new_row)
+
+        with self.assertRaises(ValueError) as context:
+            dt.remove_duplicate_mapping_rows()
+
+        self.assertIn("Conflicting mappings found", str(context.exception))
+
+    def test_should_warn_duplicate_nonconflicting_mappings(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just append to it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+
+        new_row = dict(dt.mapping[0])  # copy the first row
+        self.assertEqual(
+            new_row[dt.outcome],
+            self.ogv1.key,
+            "First row should have outcome o1",
+        )
+        # do not change the outcome, just duplicate the row
+        # insert it at position 1
+        dt.mapping.insert(1, new_row)
+
+        with self.assertLogs(level="WARNING") as log:
+            dt.remove_duplicate_mapping_rows()
+
+        self.assertIn("Duplicate mapping found", log.output[0])
+
+    def test_should_fail_on_incomplete_mapping(self):
+        dt = self.dt
+
+        # dt already has a mapping, so we can just remove something from it
+        self.assertGreater(len(dt.mapping), 0, "Mapping should not be empty")
+        dt.mapping = dt.mapping[:-1]  # remove the last row
+
+        with self.assertRaises(ValueError) as context:
+            dt.check_mapping_coverage()
+
+        self.assertIn("Mapping is incomplete", str(context.exception))
 
 
 if __name__ == "__main__":

@@ -27,11 +27,11 @@ from ssvc.decision_points.base import DecisionPointValue
 NOT_DEFINED_ND = DecisionPointValue(
     name="Not Defined",
     key="ND",
-    description="This metric value is not defined. See CVSS documentation for details.",
+    definition="This metric value is not defined. See CVSS documentation for details.",
 )
 
 NOT_DEFINED_X = DecisionPointValue(
     name="Not Defined",
     key="X",
-    description="This metric value is not defined. See CVSS documentation for details.",
+    definition="This metric value is not defined. See CVSS documentation for details.",
 )

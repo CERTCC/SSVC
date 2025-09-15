@@ -12,6 +12,7 @@ on:
       - .github/workflows/linkchecker.yml
       # run on any PR that changes the pip requirements
       - requirements.txt
+      - src/pyproject.toml
   # let us trigger it manually
   workflow_dispatch:
 
@@ -20,28 +21,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install linkchecker
-
-      - name: Install our python stuff
-        run: |
-          python -m pip install -e src
+          python -m pip install --upgrade pip uv
+          uv sync --dev --project=src
 
       - name: Build Site
         run: |
-          mkdocs build --verbose --clean --config-file mkdocs.yml       
+          uv run --project=src mkdocs build --verbose --clean --config-file mkdocs.yml
 
       - name: Check links
         run: |
-          linkchecker site/index.html
+          uv run --project=src linkchecker site/index.html
           

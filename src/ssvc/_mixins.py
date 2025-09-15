@@ -3,7 +3,7 @@
 This module provides mixin classes for adding features to SSVC objects.
 """
 
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -22,16 +22,30 @@ This module provides mixin classes for adding features to SSVC objects.
 #  subject to its own license.
 #  DM24-0278
 
+import os
 from datetime import datetime, timezone
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
+from urllib.parse import urljoin
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+import semver
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    field_validator,
+    model_validator,
+)
 from semver import Version
 
 from ssvc.namespaces import NameSpace
 from ssvc.registry.events import notify_registration
-from ssvc.utils.defaults import DEFAULT_VERSION, SCHEMA_VERSION
+from ssvc.utils.defaults import (
+    DEFAULT_VERSION,
+    SCHEMA_BASE_URL,
+    SCHEMA_VERSION,
+)
 from ssvc.utils.field_specs import NamespaceString, VersionString
+from ssvc.utils.misc import filename_friendly, order_schema
 
 
 class _Versioned(BaseModel):
@@ -64,7 +78,10 @@ class _SchemaVersioned(BaseModel):
     Mixin class for version
     """
 
-    schemaVersion: str = Field(..., description="Schema version of the SSVC object")
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
+    schemaVersion: str = Field(
+        ..., description="Schema version of the SSVC object"
+    )
 
     @model_validator(mode="before")
     def set_schema_version(cls, data):
@@ -72,8 +89,67 @@ class _SchemaVersioned(BaseModel):
         Set the schema version to the default if not provided.
         """
         if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
+            data["schemaVersion"] = cls._schema_version
         return data
+
+    @classmethod
+    def model_json_schema(cls, **kwargs):
+        """
+        Overrides schema generation to ensure it's the way we want it
+        """
+        schema = super().model_json_schema(**kwargs)
+
+        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+        schema["$id"] = cls.schema_url()
+        schema["description"] = (
+            f"This schema defines the structure to represent an SSVC {cls.__name__} object."
+        )
+
+        return order_schema(schema)
+
+    @classmethod
+    def schema_version_relpath(cls):
+        """
+        Return the schema version relative path for the object.
+        """
+        ver = semver.Version.parse(cls._schema_version)
+        verpath = f"v{ver.major}/"
+
+        return verpath
+
+    @classmethod
+    def schema_filename(cls):
+        """
+        Return the schema filename for the object.
+        """
+        ver = semver.Version.parse(cls._schema_version)
+
+        # construct the filename
+        filename_base = f"{cls.__name__}-{str(ver)}"
+        filename_base = filename_friendly(filename_base, to_lower=False)
+        ext = ".schema.json"
+        filename = f"{filename_base}{ext}"
+        return filename
+
+    @classmethod
+    def schema_relpath(cls):
+        """
+        Return the schema relative path for the object.
+        """
+        verpath = cls.schema_version_relpath()
+        filename = cls.schema_filename()
+
+        relpath = os.path.join(verpath, filename)
+        return relpath
+
+    @classmethod
+    def schema_url(cls) -> str:
+        """
+        Return the schema URL for the object.
+        """
+        base_url = SCHEMA_BASE_URL
+        id_url = urljoin(base_url, cls.schema_relpath())
+        return id_url
 
 
 class _Namespaced(BaseModel):
@@ -118,7 +194,16 @@ class _Keyed(BaseModel):
         "(`T*` is explicitly grandfathered in as a valid key, but should not be used for new objects.)",
         pattern=r"^(([a-zA-Z0-9])|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])|(T\*))$",
         min_length=1,
-        examples=["E", "A", "SI", "L", "M", "H", "Mixed_case_OK", "alph4num3ric"],
+        examples=[
+            "E",
+            "A",
+            "SI",
+            "L",
+            "M",
+            "H",
+            "Mixed_case_OK",
+            "alph4num3ric",
+        ],
     )
 
 
@@ -184,7 +269,7 @@ class _Base(BaseModel):
     """
 
     name: str
-    description: str
+    definition: str
 
 
 class _KeyedBaseModel(_Base, _Keyed, BaseModel):

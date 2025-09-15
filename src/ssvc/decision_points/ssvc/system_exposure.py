@@ -29,14 +29,14 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 EXP_UNAVOIDABLE = DecisionPointValue(
     name="Unavoidable",
     key="U",
-    description="Internet or another widely accessible network where access cannot plausibly be restricted or "
+    definition="Internet or another widely accessible network where access cannot plausibly be restricted or "
     "controlled (e.g., DNS servers, web servers, VOIP servers, email servers)",
 )
 
 EXP_CONTROLLED = DecisionPointValue(
     name="Controlled",
     key="C",
-    description="Networked service with some access restrictions or mitigations already in place (whether locally or on the network). "
+    definition="Networked service with some access restrictions or mitigations already in place (whether locally or on the network). "
     "A successful mitigation must reliably interrupt the adversary’s attack, which requires the attack is detectable "
     "both reliably and quickly enough to respond. Controlled covers the situation in which a vulnerability can be "
     "exploited through chaining it with other vulnerabilities. The assumption is that the number of steps in the "
@@ -47,13 +47,13 @@ EXP_CONTROLLED = DecisionPointValue(
 EXP_SMALL = DecisionPointValue(
     name="Small",
     key="S",
-    description="Local service or program; highly controlled network",
+    definition="Local service or program; highly controlled network",
 )
 
 
 SYSTEM_EXPOSURE_1 = SsvcDecisionPoint(
     name="System Exposure",
-    description="The Accessible Attack Surface of the Affected System or Service",
+    definition="The Accessible Attack Surface of the Affected System or Service",
     key="EXP",
     version="1.0.0",
     values=(
@@ -67,14 +67,14 @@ SYSTEM_EXPOSURE_1 = SsvcDecisionPoint(
 EXP_OPEN = DecisionPointValue(
     name="Open",
     key="O",
-    description="Internet or another widely accessible network where access cannot plausibly be restricted or "
+    definition="Internet or another widely accessible network where access cannot plausibly be restricted or "
     "controlled (e.g., DNS servers, web servers, VOIP servers, email servers)",
 )
 
 
 SYSTEM_EXPOSURE_1_0_1 = SsvcDecisionPoint(
     name="System Exposure",
-    description="The Accessible Attack Surface of the Affected System or Service",
+    definition="The Accessible Attack Surface of the Affected System or Service",
     key="EXP",
     version="1.0.1",
     values=(

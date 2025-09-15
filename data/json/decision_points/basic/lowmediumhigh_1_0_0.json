@@ -3,23 +3,23 @@
   "key": "LMH",
   "version": "1.0.0",
   "name": "LowMediumHigh",
-  "description": "A Low/Medium/High decision point / outcome group.",
+  "definition": "A Low/Medium/High decision point / outcome group.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Low",
-      "description": "Low"
+      "definition": "Low"
     },
     {
       "key": "M",
       "name": "Medium",
-      "description": "Medium"
+      "definition": "Medium"
     },
     {
       "key": "H",
       "name": "High",
-      "description": "High"
+      "definition": "High"
     }
   ]
 }

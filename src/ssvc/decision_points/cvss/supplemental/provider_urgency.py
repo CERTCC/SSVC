@@ -29,26 +29,26 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 RED = DecisionPointValue(
     name="Red",
     key="R",
-    description="Provider has assessed the impact of this vulnerability as having the highest urgency.",
+    definition="Provider has assessed the impact of this vulnerability as having the highest urgency.",
 )
 AMBER = DecisionPointValue(
     name="Amber",
     key="A",
-    description="Provider has assessed the impact of this vulnerability as having a moderate urgency.",
+    definition="Provider has assessed the impact of this vulnerability as having a moderate urgency.",
 )
 GREEN = DecisionPointValue(
     name="Green",
     key="G",
-    description="Provider has assessed the impact of this vulnerability as having a reduced urgency.",
+    definition="Provider has assessed the impact of this vulnerability as having a reduced urgency.",
 )
 CLEAR = DecisionPointValue(
     name="Clear",
     key="C",
-    description="Provider has assessed the impact of this vulnerability as having no urgency (Informational).",
+    definition="Provider has assessed the impact of this vulnerability as having no urgency (Informational).",
 )
 PROVIDER_URGENCY_1 = CvssDecisionPoint(
     name="Provider Urgency",
-    description="Many vendors currently provide supplemental severity ratings to consumers via product security "
+    definition="Many vendors currently provide supplemental severity ratings to consumers via product security "
     "advisories. Other vendors publish Qualitative Severity Ratings from the CVSS Specification Document "
     "in their advisories. To facilitate a standardized method to incorporate additional provider-supplied "
     'assessment, an optional "pass-through" Supplemental Metric called Provider Urgency is available.',

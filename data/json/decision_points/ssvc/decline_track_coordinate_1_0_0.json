@@ -3,23 +3,23 @@
   "key": "COORDINATE",
   "version": "1.0.0",
   "name": "Decline, Track, Coordinate",
-  "description": "The coordinate outcome group.",
+  "definition": "The coordinate outcome group.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "D",
       "name": "Decline",
-      "description": "Decline"
+      "definition": "Decline"
     },
     {
       "key": "T",
       "name": "Track",
-      "description": "Track"
+      "definition": "Track"
     },
     {
       "key": "C",
       "name": "Coordinate",
-      "description": "Coordinate"
+      "definition": "Coordinate"
     }
   ]
 }

@@ -40,7 +40,7 @@ def get_registry() -> "SsvcObjectRegistry":
     if _REGISTRY is None:
         _REGISTRY = SsvcObjectRegistry(
             name="SSVC Object Registry",
-            description="A registry for SSVC objects organized by type, namespace, key, and version.",
+            definition="A registry for SSVC objects organized by type, namespace, key, and version.",
         )
 
     return _REGISTRY
@@ -57,7 +57,9 @@ def _handle_registration(obj):
 
         if isinstance(obj, (DecisionPoint, DecisionPointValue, DecisionTable)):
             registry.register(obj)
-            logger.debug("Registered object %s of type %s", obj.id, type(obj).__name__)
+            logger.debug(
+                "Registered object %s of type %s", obj.id, type(obj).__name__
+            )
         else:
             logger.warning(
                 f"Object {obj.id} is not a recognized SSVC type: {type(obj)}"

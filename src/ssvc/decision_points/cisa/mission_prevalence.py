@@ -31,26 +31,26 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 MINIMAL = DecisionPointValue(
     name="Minimal",
     key="M",
-    description="Neither Support nor Essential apply. "
+    definition="Neither Support nor Essential apply. "
     "The vulnerable component may be used within the entities, but it is not used as a mission-essential component, nor does it provide impactful support to mission-essential functions.",
 )
 
 SUPPORT = DecisionPointValue(
     name="Support",
     key="S",
-    description="The vulnerable component only supports MEFs for two or more entities.",
+    definition="The vulnerable component only supports MEFs for two or more entities.",
 )
 
 ESSENTIAL = DecisionPointValue(
     name="Essential",
     key="E",
-    description="The vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity; component failure may (but does not necessarily) lead to overall mission failure.",
+    definition="The vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity; component failure may (but does not necessarily) lead to overall mission failure.",
 )
 
 
 MISSION_PREVALENCE = CisaDecisionPoint(
     name="Mission Prevalence",
-    description="Prevalence of the mission essential functions",
+    definition="Prevalence of the mission essential functions",
     key="MP",
     version="1.0.0",
     values=(

@@ -19,7 +19,7 @@ The choice not to segregate the decisions by sector is reinforced by the fact th
 It is less likely that one organization has multiple responsibilities within the vulnerability management process.
 
 Even if there is overlap within an organization, the two responsibilities are often located in distinct business units with distinct decision-making processes.
-We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision trees—one for each of the “patch supplier” and “patch deployer” responsibilities in the vulnerability management process.
+We can treat the responsibilities as non-overlapping, and, therefore, we can build two decision tables—one for each of the “patch supplier” and “patch deployer” responsibilities in the vulnerability management process.
 Each of these trees will have different decision points that they take to arrive at a decision about a given unit of work.
 <!-- Consider changing the word patch. There are other responses to a vulnerability (mitigation, isolation, etc.) that are backgrounded by using “patch” here. -->
 
@@ -34,5 +34,5 @@ In [Enumerating Decisions](./enumerating_decisions.md), we describe the decision
     The following decision system may help such laypeople, but we do not intend it to be used by that audience.
 
     While C-level executives and public policy professionals often make, shape, or incentivize decisions about managing information systems, they are not the target audience, either.
-    To the extent that decision trees for vulnerability management help higher level policy decisions, we believe the best way to help policy makers is by making technical decisions more transparent and explainable.
+    To the extent that decision tables for vulnerability management help higher level policy decisions, we believe the best way to help policy makers is by making technical decisions more transparent and explainable.
     Policy makers may see indirect benefits, but they are not our primary audience and we are not designing an approach for them directly.

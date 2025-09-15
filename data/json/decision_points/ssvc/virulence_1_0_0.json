@@ -3,18 +3,18 @@
   "key": "V",
   "version": "1.0.0",
   "name": "Virulence",
-  "description": "The speed at which the vulnerability can be exploited.",
+  "definition": "The speed at which the vulnerability can be exploited.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "S",
       "name": "Slow",
-      "description": "Steps 1-4 of the kill chain cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation."
+      "definition": "Steps 1-4 of the kill chain cannot be reliably automated for this vulnerability for some reason. These steps are reconnaissance, weaponization, delivery, and exploitation."
     },
     {
       "key": "R",
       "name": "Rapid",
-      "description": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows remote code execution or command injection, the default response should be rapid."
+      "definition": "Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows remote code execution or command injection, the default response should be rapid."
     }
   ]
 }

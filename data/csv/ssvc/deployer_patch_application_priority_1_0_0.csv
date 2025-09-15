@@ -1,0 +1,73 @@
+row,Exploitation v1.1.0,System Exposure v1.0.1,Automatable v2.0.0,Human Impact v2.0.2,"Defer, Scheduled, Out-of-Cycle, Immediate v1.0.0"
+0,none,small,no,low,defer
+1,none,small,no,medium,defer
+2,none,small,no,high,scheduled
+3,none,small,no,very high,scheduled
+4,none,small,yes,low,defer
+5,none,small,yes,medium,scheduled
+6,none,small,yes,high,scheduled
+7,none,small,yes,very high,scheduled
+8,none,controlled,no,low,defer
+9,none,controlled,no,medium,scheduled
+10,none,controlled,no,high,scheduled
+11,none,controlled,no,very high,scheduled
+12,none,controlled,yes,low,scheduled
+13,none,controlled,yes,medium,scheduled
+14,none,controlled,yes,high,scheduled
+15,none,controlled,yes,very high,scheduled
+16,none,open,no,low,defer
+17,none,open,no,medium,scheduled
+18,none,open,no,high,scheduled
+19,none,open,no,very high,scheduled
+20,none,open,yes,low,scheduled
+21,none,open,yes,medium,scheduled
+22,none,open,yes,high,scheduled
+23,none,open,yes,very high,out-of-cycle
+24,public poc,small,no,low,defer
+25,public poc,small,no,medium,scheduled
+26,public poc,small,no,high,scheduled
+27,public poc,small,no,very high,scheduled
+28,public poc,small,yes,low,scheduled
+29,public poc,small,yes,medium,scheduled
+30,public poc,small,yes,high,scheduled
+31,public poc,small,yes,very high,scheduled
+32,public poc,controlled,no,low,defer
+33,public poc,controlled,no,medium,scheduled
+34,public poc,controlled,no,high,scheduled
+35,public poc,controlled,no,very high,scheduled
+36,public poc,controlled,yes,low,scheduled
+37,public poc,controlled,yes,medium,scheduled
+38,public poc,controlled,yes,high,scheduled
+39,public poc,controlled,yes,very high,out-of-cycle
+40,public poc,open,no,low,scheduled
+41,public poc,open,no,medium,scheduled
+42,public poc,open,no,high,scheduled
+43,public poc,open,no,very high,out-of-cycle
+44,public poc,open,yes,low,scheduled
+45,public poc,open,yes,medium,scheduled
+46,public poc,open,yes,high,out-of-cycle
+47,public poc,open,yes,very high,out-of-cycle
+48,active,small,no,low,scheduled
+49,active,small,no,medium,scheduled
+50,active,small,no,high,out-of-cycle
+51,active,small,no,very high,out-of-cycle
+52,active,small,yes,low,scheduled
+53,active,small,yes,medium,out-of-cycle
+54,active,small,yes,high,out-of-cycle
+55,active,small,yes,very high,out-of-cycle
+56,active,controlled,no,low,scheduled
+57,active,controlled,no,medium,scheduled
+58,active,controlled,no,high,out-of-cycle
+59,active,controlled,no,very high,out-of-cycle
+60,active,controlled,yes,low,out-of-cycle
+61,active,controlled,yes,medium,out-of-cycle
+62,active,controlled,yes,high,out-of-cycle
+63,active,controlled,yes,very high,out-of-cycle
+64,active,open,no,low,scheduled
+65,active,open,no,medium,out-of-cycle
+66,active,open,no,high,out-of-cycle
+67,active,open,no,very high,immediate
+68,active,open,yes,low,out-of-cycle
+69,active,open,yes,medium,out-of-cycle
+70,active,open,yes,high,immediate
+71,active,open,yes,very high,immediate

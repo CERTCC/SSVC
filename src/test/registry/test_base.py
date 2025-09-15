@@ -33,17 +33,19 @@ from ssvc.registry import get_registry
 class RegistryTestCase(unittest.TestCase):
     def setUp(self):
         self.registry = base.SsvcObjectRegistry(
-            name="test_registry", description="A test registry"
+            name="test_registry", definition="A test registry"
         )
         main_reg = get_registry()
-        main_reg.reset(force=True)  # reset the main registry to ensure a clean state
+        main_reg.reset(
+            force=True
+        )  # reset the main registry to ensure a clean state
 
     def tearDown(self):
         pass
 
     def test_empty_init(self):
         self.assertEqual(self.registry.name, "test_registry")
-        self.assertEqual(self.registry.description, "A test registry")
+        self.assertEqual(self.registry.definition, "A test registry")
         self.assertFalse(self.registry.types)
 
     def test_lookup_type(self):
@@ -69,12 +71,12 @@ class RegistryTestCase(unittest.TestCase):
         # test with a known type
         obj = DecisionPoint(
             name="TestDP",
-            description="A test decision point",
-            namespace="x_test",
+            definition="A test decision point",
+            namespace="test",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
             ],
             registered=False,
         )
@@ -85,13 +87,13 @@ class RegistryTestCase(unittest.TestCase):
 
         obj2 = DpSubclass(
             name="TestDP2",
-            description="Another test decision point",
-            namespace="x_test",
+            definition="Another test decision point",
+            namespace="test",
             key="TEST2",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
-                DecisionPointValue(key="C", name="CCC", description="Option C"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
+                DecisionPointValue(key="C", name="CCC", definition="Option C"),
             ],
             registered=False,
         )
@@ -102,13 +104,13 @@ class RegistryTestCase(unittest.TestCase):
 
         dp = DecisionPoint(
             name="TestDP",
-            description="A test decision point",
-            namespace="x_test",
+            definition="A test decision point",
+            namespace="test",
             version="2.0.0",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
             ],
             registered=False,
         )
@@ -122,53 +124,53 @@ class RegistryTestCase(unittest.TestCase):
         # test with a known type
 
         dp1 = DecisionPoint(
-            namespace="x_test",
+            namespace="test",
             key="TEST",
             version="2.0.0",
             name="TestDP",
-            description="A test decision point",
+            definition="A test decision point",
             values=(
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
-                DecisionPointValue(key="C", name="CCC", description="Option C"),
-                DecisionPointValue(key="D", name="DDD", description="Option D"),
-                DecisionPointValue(key="E", name="EEE", description="Option E"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
+                DecisionPointValue(key="C", name="CCC", definition="Option C"),
+                DecisionPointValue(key="D", name="DDD", definition="Option D"),
+                DecisionPointValue(key="E", name="EEE", definition="Option E"),
             ),
             registered=False,
         )
         dp2 = DecisionPoint(
-            namespace="x_test",
+            namespace="test",
             key="TEST2",
             version="2.0.0",
             name="TestDP",
-            description="A test decision point",
+            definition="A test decision point",
             values=(
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
-                DecisionPointValue(key="C", name="CCC", description="Option C"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
+                DecisionPointValue(key="C", name="CCC", definition="Option C"),
             ),
             registered=False,
         )
 
         dp3 = DecisionPoint(
-            namespace="x_test",
+            namespace="test",
             key="TEST3",
             version="2.0.0",
             name="TestDP2",
-            description="A test decision point",
+            definition="A test decision point",
             values=(
-                DecisionPointValue(key="A", name="A", description="Outcome A"),
-                DecisionPointValue(key="B", name="B", description="Outcome B"),
+                DecisionPointValue(key="A", name="A", definition="Outcome A"),
+                DecisionPointValue(key="B", name="B", definition="Outcome B"),
             ),
             registered=False,
         )
 
         dt = DecisionTable(
-            namespace="x_test",
+            namespace="test",
             key="TEST_DT",
             version="2.0.0",
             name="TestDT",
-            description="A test decision table",
+            definition="A test decision table",
             decision_points={dp.id: dp for dp in [dp1, dp2, dp3]},
             outcome=dp3.id,
         )
@@ -182,7 +184,8 @@ class RegistryTestCase(unittest.TestCase):
         self.assertIsNotNone(ver.obj.mapping)
 
         self.assertEqual(
-            math.prod(len(dp.values) for dp in [dp1, dp2]), len(ver.obj.mapping)
+            math.prod(len(dp.values) for dp in [dp1, dp2]),
+            len(ver.obj.mapping),
         )
 
     @patch("ssvc.registry.base._NonValuedVersion")
@@ -191,10 +194,10 @@ class RegistryTestCase(unittest.TestCase):
         mockobj1 = Mock()
         mockobj1.schemaVersion = "2.0.0"
         mockobj1.key = "TEST"
-        mockobj1.namespace = "x_test"
+        mockobj1.namespace = "test"
         mockobj1.version = "1.0.0"
         mockobj1.name = "Test Object"
-        mockobj1.description = "A test object"
+        mockobj1.definition = "A test object"
         mockobj1.id = "test-id"
         mockobj1.model_dump_json.return_value = "{}"
         mockobj1.values = []
@@ -205,9 +208,9 @@ class RegistryTestCase(unittest.TestCase):
         mockobj2.schemaVersion = "2.0.0"
         mockobj2.key = "TEST2"
         mockobj2.version = "2.0.0"
-        mockobj2.namespace = "x_test"
+        mockobj2.namespace = "test"
         mockobj2.name = "Test Object"
-        mockobj2.description = "A test object"
+        mockobj2.definition = "A test object"
         mockobj2.id = "test-id"
         mockobj2.model_dump_json.return_value = "{}"
         mockobj2.values = []
@@ -235,12 +238,12 @@ class RegistryTestCase(unittest.TestCase):
 
         dp = DecisionPoint(
             name="TestDP",
-            description="A test decision point",
-            namespace="x_test",
+            definition="A test decision point",
+            namespace="test",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
             ],
             registered=False,
         )
@@ -265,24 +268,26 @@ class RegistryTestCase(unittest.TestCase):
 
         dp1 = DecisionPoint(
             name="TestDP",
-            description="A test decision point",
-            namespace="x_test",
+            definition="A test decision point",
+            namespace="test",
             key="TEST",
             values=[
-                DecisionPointValue(key="A", name="AAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(key="A", name="AAA", definition="Option A"),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
             ],
             registered=False,
         )
 
         dp2 = DecisionPoint(
             name="TestDP2",
-            description="A test decision point",
-            namespace="x_test",
+            definition="A test decision point",
+            namespace="test",
             key="TEST",
             values=[
-                DecisionPointValue(key="AA", name="AAAA", description="Option A"),
-                DecisionPointValue(key="B", name="BBB", description="Option B"),
+                DecisionPointValue(
+                    key="AA", name="AAAA", definition="Option A"
+                ),
+                DecisionPointValue(key="B", name="BBB", definition="Option B"),
             ],
             registered=False,
         )
@@ -303,19 +308,25 @@ class RegistryTestCase(unittest.TestCase):
         for v in range(1, 100):
             version = str(
                 semver.Version(
-                    major=v, minor=random.randint(0, 20), patch=random.randint(0, 50)
+                    major=v,
+                    minor=random.randint(0, 20),
+                    patch=random.randint(0, 50),
                 )
             )
 
             dp = DecisionPoint(
                 name="TestDP",
-                description="A test decision point",
-                namespace="x_test",
+                definition="A test decision point",
+                namespace="test",
                 key="TEST",
                 version=version,
                 values=[
-                    DecisionPointValue(key="A", name=f"AAA{v}", description="Option A"),
-                    DecisionPointValue(key="B", name="BBB", description="Option B"),
+                    DecisionPointValue(
+                        key="A", name=f"AAA{v}", definition="Option A"
+                    ),
+                    DecisionPointValue(
+                        key="B", name="BBB", definition="Option B"
+                    ),
                 ],
                 registered=False,
             )
@@ -334,7 +345,7 @@ class RegistryTestCase(unittest.TestCase):
 
         latest = base.lookup_latest(
             objtype="DecisionPoint",
-            namespace="x_test",
+            namespace="test",
             key="TEST",
             registry=self.registry,
         )

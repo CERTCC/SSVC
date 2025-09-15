@@ -1,0 +1,17 @@
+row,Safety Impact v2.0.0,Mission Impact v2.0.0,Human Impact v2.0.2
+0,negligible,degraded,low
+1,negligible,mef support crippled,low
+2,negligible,mef failure,medium
+3,negligible,mission failure,very high
+4,marginal,degraded,low
+5,marginal,mef support crippled,low
+6,marginal,mef failure,medium
+7,marginal,mission failure,very high
+8,critical,degraded,medium
+9,critical,mef support crippled,high
+10,critical,mef failure,high
+11,critical,mission failure,very high
+12,catastrophic,degraded,very high
+13,catastrophic,mef support crippled,very high
+14,catastrophic,mef failure,very high
+15,catastrophic,mission failure,very high

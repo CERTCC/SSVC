@@ -22,10 +22,10 @@ Work in progress on an experimental registry object for SSVC.
 #  DM24-0278
 
 import logging
-from typing import Any, Literal, Optional, Union
+from typing import Any, ClassVar, Literal, Optional, Union
 
 import semver
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field
 
 from ssvc._mixins import (
     _Base,
@@ -136,6 +136,7 @@ class _NsType(BaseModel):
 
 
 class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
         ...,
         description="The schema version of this selection list.",
@@ -145,15 +146,6 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         default_factory=dict,
         description="A dictionary mapping type names to NsType objects.",
     )
-
-    @model_validator(mode="before")
-    def set_schema_version(cls, data):
-        """
-        Set the schema version to the default if not provided.
-        """
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
 
     def register(self, obj: _GenericSsvcObject) -> None:
         """
@@ -226,7 +218,9 @@ class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
         return lookup_by_id(objtype=objtype, objid=objid, registry=self)
 
 
-def register(obj: _RegisterableClass, registry: SsvcObjectRegistry = None) -> None:
+def register(
+    obj: _RegisterableClass, registry: SsvcObjectRegistry = None
+) -> None:
     """
     Register an object in the SSVC object registry.
 
@@ -286,7 +280,9 @@ def _insert(
     # check to see if the namespace is already registered
     nsobj = typesobj.namespaces.get(ns)
     if nsobj is None:
-        logger.debug(f"Registering new namespace '{ns}' for object type '{objtype}'.")
+        logger.debug(
+            f"Registering new namespace '{ns}' for object type '{objtype}'."
+        )
         nsobj = _Namespace(namespace=ns)
         registry.types[objtype].namespaces[ns] = nsobj
 
@@ -350,9 +346,9 @@ def _compare(new: _RegisterableClass, existing: _RegisterableClass) -> None:
     else:
         should_be_version = True
 
-    if existing.description != new.description:
+    if existing.definition != new.definition:
         diffs.append(
-            f"Description mismatch: {existing.description} != {new.description}"
+            f"Description mismatch: {existing.definition} != {new.definition}"
         )
 
     if hasattr(existing, "values") and hasattr(new, "values"):
@@ -414,7 +410,9 @@ def lookup_by_id(
     return lookup_version(**args, registry=registry)
 
 
-def get_all(objtype: str, registry: SsvcObjectRegistry) -> list[_GenericSsvcObject]:
+def get_all(
+    objtype: str, registry: SsvcObjectRegistry
+) -> list[_GenericSsvcObject]:
     """
     Get all objects of a specific type from the registry.
 
@@ -440,7 +438,9 @@ def get_all(objtype: str, registry: SsvcObjectRegistry) -> list[_GenericSsvcObje
     return all_objects
 
 
-def lookup_objtype(objtype: str, registry: SsvcObjectRegistry) -> _NsType | None:
+def lookup_objtype(
+    objtype: str, registry: SsvcObjectRegistry
+) -> _NsType | None:
     """
     Lookup an object type in the registry by its name.
     Returns None if the type is not found.
@@ -497,7 +497,11 @@ def lookup_key(
 
 
 def lookup_version(
-    objtype: str, namespace: str, key: str, version: str, registry: SsvcObjectRegistry
+    objtype: str,
+    namespace: str,
+    key: str,
+    version: str,
+    registry: SsvcObjectRegistry,
 ) -> _ValuedVersion | _NonValuedVersion | None:
     """
     Lookup a version in the registry by object type, namespace, key, and version string.
@@ -624,7 +628,9 @@ def lookup(
 
     # start at the deepest level and work up
     if value_key is not None:
-        return lookup_value(objtype, namespace, key, version, value_key, registry)
+        return lookup_value(
+            objtype, namespace, key, version, value_key, registry
+        )
 
     if version is not None:
         return lookup_version(objtype, namespace, key, version, registry)

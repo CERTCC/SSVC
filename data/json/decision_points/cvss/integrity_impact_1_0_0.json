@@ -3,23 +3,23 @@
   "key": "I",
   "version": "1.0.0",
   "name": "Integrity Impact",
-  "description": "This metric measures the impact on integrity a successful exploit of the vulnerability will have on the target system.",
+  "definition": "This metric measures the impact on integrity a successful exploit of the vulnerability will have on the target system.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "None",
-      "description": "No impact on integrity."
+      "definition": "No impact on integrity."
     },
     {
       "key": "P",
       "name": "Partial",
-      "description": "Considerable breach in integrity. Modification of critical system files or information is possible, but the attacker does not have control over what can be modified, or the scope of what the attacker can affect is constrained. For example, key system or program files may be overwritten or modified, but at random or in a limited context or scope."
+      "definition": "Considerable breach in integrity. Modification of critical system files or information is possible, but the attacker does not have control over what can be modified, or the scope of what the attacker can affect is constrained. For example, key system or program files may be overwritten or modified, but at random or in a limited context or scope."
     },
     {
       "key": "C",
       "name": "Complete",
-      "description": "A total compromise of system integrity. There is a complete loss of system protection resulting in the entire system being compromised. The attacker has sovereign control to modify any system files."
+      "definition": "A total compromise of system integrity. There is a complete loss of system protection resulting in the entire system being compromised. The attacker has sovereign control to modify any system files."
     }
   ]
 }

@@ -31,13 +31,19 @@ class MyTestCase(unittest.TestCase):
             dp = ssvc.decision_points.ssvc.base.DecisionPoint(
                 name=f"Decision Point {i}",
                 key=f"DP_{i}",
-                namespace="x_example.test",
-                description=f"Description of Decision Point {i}",
+                namespace="test",
+                definition=f"Description of Decision Point {i}",
                 version="1.0.0",
                 values=(
-                    DecisionPointValue(name="foo", key="FOO", description="foo"),
-                    DecisionPointValue(name="bar", key="BAR", description="bar"),
-                    DecisionPointValue(name="baz", key="BAZ", description="baz"),
+                    DecisionPointValue(
+                        name="foo", key="FOO", definition="foo"
+                    ),
+                    DecisionPointValue(
+                        name="bar", key="BAR", definition="bar"
+                    ),
+                    DecisionPointValue(
+                        name="baz", key="BAZ", definition="baz"
+                    ),
                 ),
             )
             self.dps.append(dp)
@@ -50,7 +56,7 @@ class MyTestCase(unittest.TestCase):
         # add them to a decision point group
         g = dpg.DecisionPointGroup(
             name="Test Group",
-            description="Test Group",
+            definition="Test Group",
             decision_points=self.dps,
         )
 
@@ -64,7 +70,7 @@ class MyTestCase(unittest.TestCase):
         # add them to a decision point group
         g = dpg.DecisionPointGroup(
             name="Test Group",
-            description="Test Group",
+            definition="Test Group",
             decision_points=self.dps,
         )
 
@@ -76,7 +82,7 @@ class MyTestCase(unittest.TestCase):
         # add them to a decision point group
         g = dpg.DecisionPointGroup(
             name="Test Group",
-            description="Test Group",
+            definition="Test Group",
             decision_points=self.dps,
         )
 
@@ -92,7 +98,7 @@ class MyTestCase(unittest.TestCase):
         # add them to a decision point group
         g = dpg.DecisionPointGroup(
             name="Test Group",
-            description="Test Group",
+            definition="Test Group",
             decision_points=self.dps,
         )
 

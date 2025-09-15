@@ -1,0 +1,193 @@
+row,Report Public v1.0.0,Supplier Contacted v1.0.0,Report Credibility v1.0.0,Supplier Cardinality v1.0.0,Supplier Engagement v1.0.0,Utility v1.0.1,Public Safety Impact v2.0.1,"Decline, Track, Coordinate v1.0.1"
+0,yes,no,not credible,one,active,laborious,minimal,decline
+1,no,no,not credible,one,active,laborious,minimal,decline
+2,yes,yes,not credible,one,active,laborious,minimal,decline
+3,yes,no,credible,one,active,laborious,minimal,decline
+4,yes,no,not credible,multiple,active,laborious,minimal,decline
+5,yes,no,not credible,one,unresponsive,laborious,minimal,decline
+6,yes,no,not credible,one,active,efficient,minimal,decline
+7,yes,no,not credible,one,active,laborious,significant,decline
+8,no,yes,not credible,one,active,laborious,minimal,decline
+9,no,no,credible,one,active,laborious,minimal,decline
+10,yes,yes,credible,one,active,laborious,minimal,decline
+11,no,no,not credible,multiple,active,laborious,minimal,decline
+12,yes,yes,not credible,multiple,active,laborious,minimal,decline
+13,yes,no,credible,multiple,active,laborious,minimal,decline
+14,no,no,not credible,one,unresponsive,laborious,minimal,decline
+15,yes,yes,not credible,one,unresponsive,laborious,minimal,decline
+16,yes,no,credible,one,unresponsive,laborious,minimal,decline
+17,yes,no,not credible,multiple,unresponsive,laborious,minimal,decline
+18,no,no,not credible,one,active,efficient,minimal,decline
+19,yes,yes,not credible,one,active,efficient,minimal,decline
+20,yes,no,credible,one,active,efficient,minimal,decline
+21,yes,no,not credible,multiple,active,efficient,minimal,decline
+22,yes,no,not credible,one,unresponsive,efficient,minimal,decline
+23,yes,no,not credible,one,active,super effective,minimal,decline
+24,no,no,not credible,one,active,laborious,significant,decline
+25,yes,yes,not credible,one,active,laborious,significant,decline
+26,yes,no,credible,one,active,laborious,significant,decline
+27,yes,no,not credible,multiple,active,laborious,significant,decline
+28,yes,no,not credible,one,unresponsive,laborious,significant,decline
+29,yes,no,not credible,one,active,efficient,significant,decline
+30,no,yes,credible,one,active,laborious,minimal,decline
+31,no,yes,not credible,multiple,active,laborious,minimal,decline
+32,no,no,credible,multiple,active,laborious,minimal,decline
+33,yes,yes,credible,multiple,active,laborious,minimal,decline
+34,no,yes,not credible,one,unresponsive,laborious,minimal,decline
+35,no,no,credible,one,unresponsive,laborious,minimal,decline
+36,yes,yes,credible,one,unresponsive,laborious,minimal,decline
+37,no,no,not credible,multiple,unresponsive,laborious,minimal,decline
+38,yes,yes,not credible,multiple,unresponsive,laborious,minimal,decline
+39,yes,no,credible,multiple,unresponsive,laborious,minimal,decline
+40,no,yes,not credible,one,active,efficient,minimal,decline
+41,no,no,credible,one,active,efficient,minimal,decline
+42,yes,yes,credible,one,active,efficient,minimal,decline
+43,no,no,not credible,multiple,active,efficient,minimal,decline
+44,yes,yes,not credible,multiple,active,efficient,minimal,decline
+45,yes,no,credible,multiple,active,efficient,minimal,decline
+46,no,no,not credible,one,unresponsive,efficient,minimal,decline
+47,yes,yes,not credible,one,unresponsive,efficient,minimal,decline
+48,yes,no,credible,one,unresponsive,efficient,minimal,decline
+49,yes,no,not credible,multiple,unresponsive,efficient,minimal,decline
+50,no,no,not credible,one,active,super effective,minimal,decline
+51,yes,yes,not credible,one,active,super effective,minimal,decline
+52,yes,no,credible,one,active,super effective,minimal,decline
+53,yes,no,not credible,multiple,active,super effective,minimal,decline
+54,yes,no,not credible,one,unresponsive,super effective,minimal,decline
+55,no,yes,not credible,one,active,laborious,significant,decline
+56,no,no,credible,one,active,laborious,significant,decline
+57,yes,yes,credible,one,active,laborious,significant,decline
+58,no,no,not credible,multiple,active,laborious,significant,decline
+59,yes,yes,not credible,multiple,active,laborious,significant,decline
+60,yes,no,credible,multiple,active,laborious,significant,decline
+61,no,no,not credible,one,unresponsive,laborious,significant,decline
+62,yes,yes,not credible,one,unresponsive,laborious,significant,decline
+63,yes,no,credible,one,unresponsive,laborious,significant,decline
+64,yes,no,not credible,multiple,unresponsive,laborious,significant,decline
+65,no,no,not credible,one,active,efficient,significant,decline
+66,yes,yes,not credible,one,active,efficient,significant,decline
+67,yes,no,credible,one,active,efficient,significant,decline
+68,yes,no,not credible,multiple,active,efficient,significant,decline
+69,yes,no,not credible,one,unresponsive,efficient,significant,decline
+70,yes,no,not credible,one,active,super effective,significant,decline
+71,no,yes,credible,multiple,active,laborious,minimal,decline
+72,no,yes,credible,one,unresponsive,laborious,minimal,track
+73,no,yes,not credible,multiple,unresponsive,laborious,minimal,decline
+74,no,no,credible,multiple,unresponsive,laborious,minimal,decline
+75,yes,yes,credible,multiple,unresponsive,laborious,minimal,decline
+76,no,yes,credible,one,active,efficient,minimal,decline
+77,no,yes,not credible,multiple,active,efficient,minimal,decline
+78,no,no,credible,multiple,active,efficient,minimal,decline
+79,yes,yes,credible,multiple,active,efficient,minimal,decline
+80,no,yes,not credible,one,unresponsive,efficient,minimal,decline
+81,no,no,credible,one,unresponsive,efficient,minimal,decline
+82,yes,yes,credible,one,unresponsive,efficient,minimal,decline
+83,no,no,not credible,multiple,unresponsive,efficient,minimal,decline
+84,yes,yes,not credible,multiple,unresponsive,efficient,minimal,decline
+85,yes,no,credible,multiple,unresponsive,efficient,minimal,decline
+86,no,yes,not credible,one,active,super effective,minimal,decline
+87,no,no,credible,one,active,super effective,minimal,decline
+88,yes,yes,credible,one,active,super effective,minimal,decline
+89,no,no,not credible,multiple,active,super effective,minimal,decline
+90,yes,yes,not credible,multiple,active,super effective,minimal,decline
+91,yes,no,credible,multiple,active,super effective,minimal,decline
+92,no,no,not credible,one,unresponsive,super effective,minimal,decline
+93,yes,yes,not credible,one,unresponsive,super effective,minimal,decline
+94,yes,no,credible,one,unresponsive,super effective,minimal,decline
+95,yes,no,not credible,multiple,unresponsive,super effective,minimal,decline
+96,no,yes,credible,one,active,laborious,significant,decline
+97,no,yes,not credible,multiple,active,laborious,significant,track
+98,no,no,credible,multiple,active,laborious,significant,decline
+99,yes,yes,credible,multiple,active,laborious,significant,decline
+100,no,yes,not credible,one,unresponsive,laborious,significant,decline
+101,no,no,credible,one,unresponsive,laborious,significant,decline
+102,yes,yes,credible,one,unresponsive,laborious,significant,decline
+103,no,no,not credible,multiple,unresponsive,laborious,significant,decline
+104,yes,yes,not credible,multiple,unresponsive,laborious,significant,decline
+105,yes,no,credible,multiple,unresponsive,laborious,significant,decline
+106,no,yes,not credible,one,active,efficient,significant,track
+107,no,no,credible,one,active,efficient,significant,decline
+108,yes,yes,credible,one,active,efficient,significant,decline
+109,no,no,not credible,multiple,active,efficient,significant,decline
+110,yes,yes,not credible,multiple,active,efficient,significant,decline
+111,yes,no,credible,multiple,active,efficient,significant,decline
+112,no,no,not credible,one,unresponsive,efficient,significant,decline
+113,yes,yes,not credible,one,unresponsive,efficient,significant,decline
+114,yes,no,credible,one,unresponsive,efficient,significant,decline
+115,yes,no,not credible,multiple,unresponsive,efficient,significant,decline
+116,no,no,not credible,one,active,super effective,significant,decline
+117,yes,yes,not credible,one,active,super effective,significant,decline
+118,yes,no,credible,one,active,super effective,significant,decline
+119,yes,no,not credible,multiple,active,super effective,significant,coordinate
+120,yes,no,not credible,one,unresponsive,super effective,significant,decline
+121,no,yes,credible,multiple,unresponsive,laborious,minimal,coordinate
+122,no,yes,credible,multiple,active,efficient,minimal,decline
+123,no,yes,credible,one,unresponsive,efficient,minimal,coordinate
+124,no,yes,not credible,multiple,unresponsive,efficient,minimal,decline
+125,no,no,credible,multiple,unresponsive,efficient,minimal,decline
+126,yes,yes,credible,multiple,unresponsive,efficient,minimal,decline
+127,no,yes,credible,one,active,super effective,minimal,decline
+128,no,yes,not credible,multiple,active,super effective,minimal,track
+129,no,no,credible,multiple,active,super effective,minimal,decline
+130,yes,yes,credible,multiple,active,super effective,minimal,decline
+131,no,yes,not credible,one,unresponsive,super effective,minimal,decline
+132,no,no,credible,one,unresponsive,super effective,minimal,decline
+133,yes,yes,credible,one,unresponsive,super effective,minimal,decline
+134,no,no,not credible,multiple,unresponsive,super effective,minimal,decline
+135,yes,yes,not credible,multiple,unresponsive,super effective,minimal,decline
+136,yes,no,credible,multiple,unresponsive,super effective,minimal,decline
+137,no,yes,credible,multiple,active,laborious,significant,track
+138,no,yes,credible,one,unresponsive,laborious,significant,coordinate
+139,no,yes,not credible,multiple,unresponsive,laborious,significant,track
+140,no,no,credible,multiple,unresponsive,laborious,significant,decline
+141,yes,yes,credible,multiple,unresponsive,laborious,significant,decline
+142,no,yes,credible,one,active,efficient,significant,track
+143,no,yes,not credible,multiple,active,efficient,significant,track
+144,no,no,credible,multiple,active,efficient,significant,decline
+145,yes,yes,credible,multiple,active,efficient,significant,decline
+146,no,yes,not credible,one,unresponsive,efficient,significant,track
+147,no,no,credible,one,unresponsive,efficient,significant,decline
+148,yes,yes,credible,one,unresponsive,efficient,significant,decline
+149,no,no,not credible,multiple,unresponsive,efficient,significant,decline
+150,yes,yes,not credible,multiple,unresponsive,efficient,significant,decline
+151,yes,no,credible,multiple,unresponsive,efficient,significant,decline
+152,no,yes,not credible,one,active,super effective,significant,track
+153,no,no,credible,one,active,super effective,significant,decline
+154,yes,yes,credible,one,active,super effective,significant,decline
+155,no,no,not credible,multiple,active,super effective,significant,coordinate
+156,yes,yes,not credible,multiple,active,super effective,significant,coordinate
+157,yes,no,credible,multiple,active,super effective,significant,coordinate
+158,no,no,not credible,one,unresponsive,super effective,significant,decline
+159,yes,yes,not credible,one,unresponsive,super effective,significant,decline
+160,yes,no,credible,one,unresponsive,super effective,significant,decline
+161,yes,no,not credible,multiple,unresponsive,super effective,significant,coordinate
+162,no,yes,credible,multiple,unresponsive,efficient,minimal,coordinate
+163,no,yes,credible,multiple,active,super effective,minimal,coordinate
+164,no,yes,credible,one,unresponsive,super effective,minimal,coordinate
+165,no,yes,not credible,multiple,unresponsive,super effective,minimal,track
+166,no,no,credible,multiple,unresponsive,super effective,minimal,decline
+167,yes,yes,credible,multiple,unresponsive,super effective,minimal,decline
+168,no,yes,credible,multiple,unresponsive,laborious,significant,coordinate
+169,no,yes,credible,multiple,active,efficient,significant,track
+170,no,yes,credible,one,unresponsive,efficient,significant,coordinate
+171,no,yes,not credible,multiple,unresponsive,efficient,significant,track
+172,no,no,credible,multiple,unresponsive,efficient,significant,decline
+173,yes,yes,credible,multiple,unresponsive,efficient,significant,decline
+174,no,yes,credible,one,active,super effective,significant,track
+175,no,yes,not credible,multiple,active,super effective,significant,coordinate
+176,no,no,credible,multiple,active,super effective,significant,coordinate
+177,yes,yes,credible,multiple,active,super effective,significant,coordinate
+178,no,yes,not credible,one,unresponsive,super effective,significant,track
+179,no,no,credible,one,unresponsive,super effective,significant,decline
+180,yes,yes,credible,one,unresponsive,super effective,significant,decline
+181,no,no,not credible,multiple,unresponsive,super effective,significant,coordinate
+182,yes,yes,not credible,multiple,unresponsive,super effective,significant,coordinate
+183,yes,no,credible,multiple,unresponsive,super effective,significant,coordinate
+184,no,yes,credible,multiple,unresponsive,super effective,minimal,coordinate
+185,no,yes,credible,multiple,unresponsive,efficient,significant,coordinate
+186,no,yes,credible,multiple,active,super effective,significant,coordinate
+187,no,yes,credible,one,unresponsive,super effective,significant,coordinate
+188,no,yes,not credible,multiple,unresponsive,super effective,significant,coordinate
+189,no,no,credible,multiple,unresponsive,super effective,significant,coordinate
+190,yes,yes,credible,multiple,unresponsive,super effective,significant,coordinate
+191,no,yes,credible,multiple,unresponsive,super effective,significant,coordinate

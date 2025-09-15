@@ -29,18 +29,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="A public report of the vulnerability exists.",
+    definition="A public report of the vulnerability exists.",
 )
 
 NO = DecisionPointValue(
     name="No",
     key="N",
-    description="No public report of the vulnerability exists.",
+    definition="No public report of the vulnerability exists.",
 )
 
 REPORT_PUBLIC_1 = SsvcDecisionPoint(
     name="Report Public",
-    description="Is a viable report of the details of the vulnerability already publicly available?",
+    definition="Is a viable report of the details of the vulnerability already publicly available?",
     key="RP",
     version="1.0.0",
     values=(

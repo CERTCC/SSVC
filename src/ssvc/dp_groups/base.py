@@ -21,9 +21,15 @@
 
 """
 Provides a DecisionPointGroup object for use in SSVC.
+
+!!! warning "`ssvc.dp_groups` is deprecated"
+
+    This module is *deprecated*. New development should focus on [`ssvc.decision_tables`](decision_tables.md).
+
 """
+import warnings
 from collections.abc import MutableMapping
-from typing import Literal
+from typing import ClassVar, Literal
 
 from pydantic import BaseModel, model_validator
 
@@ -39,22 +45,24 @@ class DecisionPointGroup(
     _Base, _SchemaVersioned, _Versioned, BaseModel, MutableMapping
 ):
     """
+    **DEPRECATED:** `DecisionPointGroup` has been superseded by `DecisionTable`.
+    New development should use `DecisionTable` instead.
+    We are keeping this class around for backward compatibility, but it may be removed in future releases.
+
     Models a group of decision points as a dictionary, keyed by their ID.
     """
 
     decision_points: dict[str, DecisionPoint]
-
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION]
 
-    @model_validator(mode="before")
-    @classmethod
-    def set_schema_version(cls, data):
-        """
-        Set the schema version to the current version if not already set.
-        """
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
+    def __init__(self, *args, **kwargs):
+        warnings.warn(
+            f"{self.__class__.__name__} is deprecated; use `DecisionTable` instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        super().__init__(*args, **kwargs)
 
     @model_validator(mode="before")
     @classmethod
@@ -102,6 +110,25 @@ class DecisionPointGroup(
 
         # set the decision point in the dictionary
         self.decision_points[decision_point.id] = decision_point
+
+    @classmethod
+    def model_json_schema(cls, **kwargs):
+        """
+        Overrides schema generation to ensure it's the way we want it
+        """
+        schema = super().model_json_schema(**kwargs)
+
+        deprecation_warning = f"**DEPRECATED:** `{cls.__name__}` has been superseded by `DecisionTable`.\nNew development should use `DecisionTable` instead.\nWe are keeping this class around for backward compatibility, but it may be removed in future releases.\n\n"
+
+        # append a deprecation warning to the description
+        if "description" in schema:
+            schema["description"] = (
+                deprecation_warning + schema["description"].strip()
+            )
+        else:
+            schema["description"] = deprecation_warning.strip()
+
+        return schema
 
 
 def get_all_decision_points_from(

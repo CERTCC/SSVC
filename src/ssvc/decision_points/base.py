@@ -23,7 +23,7 @@ Defines the formatting for SSVC Decision Points.
 #  DM24-0278
 
 import logging
-from typing import Literal
+from typing import ClassVar, Literal
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
@@ -78,7 +78,7 @@ class DecisionPoint(
     - key (str): A key (a short, unique string within the namespace) that can be used to identify the decision point in a shorthand way
     - values (tuple): A tuple of DecisionPointValue objects
     """
-
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION]
     values: tuple[DecisionPointValue, ...]
     model_config = ConfigDict(revalidate_instances="always")
@@ -133,6 +133,21 @@ class DecisionPoint(
             data["schemaVersion"] = SCHEMA_VERSION
         return data
 
+    @model_validator(mode="after")
+    def _validate_values(self):
+        # confirm that value keys are unique
+        seen = dict()
+        for value in self.values:
+            if value.key in seen:
+                raise ValueError(
+                    f"Duplicate key found in {self.id}: {value.key} ({value.name} and {seen[value.key]})"
+                )
+            else:
+                seen[value.key] = value.name
+
+        # if we got here, all good
+        return self
+
     @property
     def value_summaries(self) -> list[str]:
         """
@@ -141,28 +156,11 @@ class DecisionPoint(
         return list(self.value_dict.keys())
 
 
+
 def main():
-    opt_none = DecisionPointValue(
-        name="None", key="N", description="No exploit available"
+    print(
+        "Please use doctools.py for schema generation and unit tests for verification"
     )
-    opt_poc = DecisionPointValue(
-        name="PoC", key="P", description="Proof of concept exploit available"
-    )
-    opt_active = DecisionPointValue(
-        name="Active", key="A", description="Active exploitation observed"
-    )
-    opts = [opt_none, opt_poc, opt_active]
-
-    dp = DecisionPoint(
-        _comment="This is an optional comment that will be included in the object.",
-        values=opts,
-        name="Exploitation",
-        description="Is there an exploit available?",
-        key="E",
-        version="1.0.0",
-    )
-
-    print(dp.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":

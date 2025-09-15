@@ -22,6 +22,7 @@ Provides miscellaneous utility functions for SSVC.
 #  subject to its own license.
 #  DM24-0278
 
+import re
 import secrets
 
 from ssvc.utils.defaults import SCHEMA_ORDER
@@ -94,9 +95,24 @@ def obfuscate_dict(data: dict) -> tuple[dict, dict]:
     return (obfuscated_dict, translator)
 
 
-def main():
-    pass
+def filename_friendly(name: str, replacement="_", to_lower=True) -> str:
+    """
+    Given a string, return a version that is friendly for use in a filename.
 
+    Args:
+        name (str): The string to make friendly for use in a filename.
 
-if __name__ == "__main__":
-    main()
+    Returns:
+        str: A version of the string that is friendly for use in a filename.
+    """
+    # replace all non-alphanumeric characters with underscores
+    name = re.sub(r"[^a-zA-Z0-9]", replacement, name)
+
+    # and (optionally) convert to lowercase
+    if to_lower:
+        name = name.lower()
+
+    # replace any sequence of underscores with a single underscore
+    name = re.sub(rf"{re.escape(replacement)}+", replacement, name)
+
+    return name

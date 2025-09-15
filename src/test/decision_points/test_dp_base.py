@@ -42,16 +42,16 @@ class MyTestCase(unittest.TestCase):
         for i in range(3):
             self.values.append(
                 base.DecisionPointValue(
-                    name=f"foo{i}", key=f"bar{i}", description=f"baz{i}"
+                    name=f"foo{i}", key=f"bar{i}", definition=f"baz{i}"
                 )
             )
 
         self.dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="foo",
             key="bar",
-            description="baz",
+            definition="baz",
             version="1.0.0",
-            namespace="x_example.test",
+            namespace="test",
             values=tuple(self.values),
         )
 
@@ -60,7 +60,13 @@ class MyTestCase(unittest.TestCase):
         self.registry.reset()
 
     def test_decision_point_basics(self):
-        from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+        from ssvc._mixins import (
+            _Base,
+            _Keyed,
+            _Namespaced,
+            _Valued,
+            _Versioned,
+        )
 
         # inherits from mixins
         mixins = [_Valued, _Base, _Keyed, _Versioned, _Namespaced]
@@ -77,16 +83,20 @@ class MyTestCase(unittest.TestCase):
         dp = ssvc.decision_points.ssvc.base.SsvcDecisionPoint(
             name="testdp",
             key="asdfasdf",
-            description="asdfasdf",
+            definition="asdfasdf",
             version="1.33.1",
-            namespace="x_test",
+            namespace="test",
             values=tuple(self.values),
         )
 
         (objtype, ns, key, version) = _get_keys(dp)
         self.assertEqual(
             dp,
-            self.registry.types[objtype].namespaces[ns].keys[key].versions[version].obj,
+            self.registry.types[objtype]
+            .namespaces[ns]
+            .keys[key]
+            .versions[version]
+            .obj,
         )
 
     def test_ssvc_value(self):
@@ -94,7 +104,7 @@ class MyTestCase(unittest.TestCase):
             # should have name, key, description
             self.assertEqual(obj.name, f"foo{i}")
             self.assertEqual(obj.key, f"bar{i}")
-            self.assertEqual(obj.description, f"baz{i}")
+            self.assertEqual(obj.definition, f"baz{i}")
 
             # should not have namespace, version
             self.assertFalse(hasattr(obj, "namespace"))
@@ -105,9 +115,9 @@ class MyTestCase(unittest.TestCase):
         # should have name, key, description, values, version, namespace
         self.assertEqual(obj.name, "foo")
         self.assertEqual(obj.key, "bar")
-        self.assertEqual(obj.description, "baz")
+        self.assertEqual(obj.definition, "baz")
         self.assertEqual(obj.version, "1.0.0")
-        self.assertEqual(obj.namespace, "x_example.test")
+        self.assertEqual(obj.namespace, "test")
         self.assertEqual(len(self.values), len(obj.values))
 
     def test_ssvc_value_json_roundtrip(self):

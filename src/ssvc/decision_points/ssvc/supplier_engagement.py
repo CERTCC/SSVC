@@ -30,18 +30,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 UNRESPONSIVE = DecisionPointValue(
     name="Unresponsive",
     key="U",
-    description="The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort.",
+    definition="The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort.",
 )
 
 ACTIVE = DecisionPointValue(
     name="Active",
     key="A",
-    description="The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort.",
+    definition="The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort.",
 )
 
 SUPPLIER_ENGAGEMENT_1 = SsvcDecisionPoint(
     name="Supplier Engagement",
-    description="Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
+    definition="Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
     key="SE",
     version="1.0.0",
     values=(

@@ -73,8 +73,8 @@ def dp_diff(dp1: DecisionPoint, dp2: DecisionPoint) -> list[str]:
             maybe_minor = True
 
     # did the description change?
-    desc1 = dp1.description.strip()
-    desc2 = dp2.description.strip()
+    desc1 = dp1.definition.strip()
+    desc2 = dp2.definition.strip()
 
     if desc1 != desc2:
         diffs.append(f"(patch) {dp2.name} v{dp2.version} description changed")
@@ -121,33 +121,45 @@ def dp_diff(dp1: DecisionPoint, dp2: DecisionPoint) -> list[str]:
         major = True
 
     for name in dp2_names.difference(dp1_names):
-        diffs.append(f"(major or minor) {dp2.name} v{dp2.version} adds value {name}")
+        diffs.append(
+            f"(major or minor) {dp2.name} v{dp2.version} adds value {name}"
+        )
         maybe_major = True
         maybe_minor = True
 
     # did the value keys change?
     for name in intersection:
-        v1 = {value["name"]: value["key"] for value in dp1.model_dump()["values"]}
-        v1 = v1[name]
-
-        v2 = {value["name"]: value["key"] for value in dp2.model_dump()["values"]}
-        v2 = v2[name]
-
-        if v1 != v2:
-            diffs.append(f"(minor) {dp2.name} v{dp2.version} value {name} key changed")
-            minor = True
-        else:
-            diffs.append(f"{dp2.name} v{dp2.version} value {name} key did not change")
-
-    # did the value descriptions change?
-    for name in intersection:
         v1 = {
-            value["name"]: value["description"] for value in dp1.model_dump()["values"]
+            value["name"]: value["key"] for value in dp1.model_dump()["values"]
         }
         v1 = v1[name]
 
         v2 = {
-            value["name"]: value["description"] for value in dp2.model_dump()["values"]
+            value["name"]: value["key"] for value in dp2.model_dump()["values"]
+        }
+        v2 = v2[name]
+
+        if v1 != v2:
+            diffs.append(
+                f"(minor) {dp2.name} v{dp2.version} value {name} key changed"
+            )
+            minor = True
+        else:
+            diffs.append(
+                f"{dp2.name} v{dp2.version} value {name} key did not change"
+            )
+
+    # did the value descriptions change?
+    for name in intersection:
+        v1 = {
+            value["name"]: value["definition"]
+            for value in dp1.model_dump()["values"]
+        }
+        v1 = v1[name]
+
+        v2 = {
+            value["name"]: value["definition"]
+            for value in dp2.model_dump()["values"]
         }
         v2 = v2[name]
 

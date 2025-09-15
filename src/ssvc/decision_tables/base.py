@@ -28,7 +28,12 @@ from typing import ClassVar, Literal
 import pandas as pd
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from ssvc._mixins import _Commented, _GenericSsvcObject, _Registered, _SchemaVersioned
+from ssvc._mixins import (
+    _Commented,
+    _GenericSsvcObject,
+    _Registered,
+    _SchemaVersioned,
+)
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.registry import get_registry
 from ssvc.utils.field_specs import DecisionPointDict
@@ -85,7 +90,7 @@ class DecisionTable(
     """
 
     key_prefix: ClassVar[str] = "DT"
-
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION]
 
     decision_points: DecisionPointDict
@@ -116,19 +121,6 @@ class DecisionTable(
         key = f"{cls.key_prefix}_{value}"
         return key
 
-    # validator to set schemaVersion
-    @model_validator(mode="before")
-    def set_schema_version(cls, data):
-        """
-        Set the schema version to 2.0.0 if it is not already set.
-        This ensures that the model is always compatible with the latest schema version.
-        """
-        # we don't set this as a default because we want to ensure that the schema
-        # version is required in the JSON schema
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
-
     @model_validator(mode="after")
     def populate_mapping_if_empty(self):
         """
@@ -145,7 +137,11 @@ class DecisionTable(
 
         outcome_key = self.outcome
 
-        dps = [dp for dpid, dp in self.decision_points.items() if dpid != outcome_key]
+        dps = [
+            dp
+            for dpid, dp in self.decision_points.items()
+            if dpid != outcome_key
+        ]
         mapping = dplist_to_toposort(dps)
 
         # mapping is a list of dicts
@@ -196,6 +192,75 @@ class DecisionTable(
         return self
 
     @model_validator(mode="after")
+    def remove_duplicate_mapping_rows(self):
+        seen = dict()
+        new_mapping = []
+        for row in self.mapping:
+            value_tuple = tuple(v for k, v in row.items() if k != self.outcome)
+            if value_tuple in seen:
+                # we have a duplicate, but is it same or different?
+                if seen[value_tuple][self.outcome] == row[self.outcome]:
+                    # if it's a match, just log it and move on
+                    logger.warning(
+                        f"Duplicate mapping found (removed automatically): {row}"
+                    )
+                else:
+                    # they don't match
+                    raise ValueError(
+                        f"Conflicting mappings found: {seen[value_tuple]} != {row}"
+                    )
+            else:
+                # not a duplicate, add it to the new mapping
+                seen[value_tuple] = row
+                new_mapping.append(row)
+        # set the new mapping (with duplicates removed)
+        self.mapping = new_mapping
+        return self
+
+    @model_validator(mode="after")
+    def check_mapping_coverage(self):
+        counts = {}
+        all_combos = dpdict_to_combination_list(
+            self.decision_points, exclude=[self.outcome]
+        )
+        # all_combos is a dict of all possible combinations of decision point values
+        # keyed by decision point ID, with value keys as values.
+        # initialize counts for all input combinations to 0
+        for combo in all_combos:
+            value_tuple = tuple(combo.values())
+            counts[value_tuple] = counts.get(value_tuple, 0)
+
+        # counts now has all possible input combinations set to count 0
+
+        for row in self.mapping:
+            value_tuple = tuple(v for k, v in row.items() if k != self.outcome)
+            counts[value_tuple] += 1
+
+        # check if all combinations are covered
+        for k, v in counts.items():
+            if v == 1:
+                # ok, proceed
+                continue
+            elif v == 0:
+                # missing combination
+                raise ValueError(
+                    f"Mapping is incomplete: No mapping found for decision point combination: {k}."
+                )
+            elif v > 1:
+                # duplicate. remove duplicate mapping rows should have caught this already
+                raise ValueError(
+                    f"Duplicate mapping found for decision point combination: {k}."
+                )
+            else:
+                raise ValueError(
+                    f"Unexpected count in mapping coverage check.{k}: {v}"
+                )
+
+        # if you made it to here, all the counts were 1, so we're good
+
+        return self
+
+    @model_validator(mode="after")
     def validate_mapping(self):
         """
         Validate the mapping after it has been populated.
@@ -223,9 +288,18 @@ class DecisionTable(
             logger.warning("Topological order check found problems:")
             for problem in problems:
                 logger.warning(f"Problem: {problem}")
-            raise ValueError("Topological order check failed. See logs for details.")
+            raise ValueError(
+                "Topological order check failed. See logs for details."
+            )
         else:
             logger.debug("Topological order check passed with no problems.")
+
+        # if there's only one decision point mapping to the outcome, we can stop here
+        input_cols = [
+            dp for dp in self.decision_points.values() if dp.id != self.outcome
+        ]
+        if len(input_cols) <= 1:
+            return self
 
         # reject if any irrelevant columns are present in the mapping
         fi = feature_importance(self)
@@ -435,11 +509,15 @@ def decision_table_to_longform_df(dt: DecisionTable) -> pd.DataFrame:
             df[col] = newcol
 
     # lowercase all cell values
-    df = df.apply(lambda col: col.map(lambda x: x.lower() if isinstance(x, str) else x))
+    df = df.apply(
+        lambda col: col.map(lambda x: x.lower() if isinstance(x, str) else x)
+    )
 
     # Rename columns using DP_REGISTRY
 
-    rename_map = {col: _rename_column(col) for col in df.columns if _col_check(col)}
+    rename_map = {
+        col: _rename_column(col) for col in df.columns if _col_check(col)
+    }
 
     df = df.rename(
         columns=rename_map,
@@ -623,70 +701,3 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
     return check_topological_order(
         df, target=target, target_value_order=target_value_order
     )
-
-
-def main() -> None:
-    from ssvc.dp_groups.ssvc.coordinator_publication import LATEST as dpg
-    from ssvc.outcomes.basic.mscw import LATEST as outcomes
-    import os
-    import json
-
-    rootlogger = logging.getLogger()
-    rootlogger.setLevel(logging.DEBUG)
-    hdlr = logging.StreamHandler()
-    rootlogger.addHandler(hdlr)
-
-    dpg.add(outcomes)
-
-    table = DecisionTable(
-        name="Test Table",
-        description="A test decision table",
-        namespace="x_test",
-        decision_points=dpg.decision_points,
-        outcome=outcomes.id,
-    )
-
-    csv_str = decision_table_to_csv(table, index=False)
-    print("## Shortform CSV representation of the decision table:")
-    print()
-    print("```csv")
-    print(csv_str)
-    print("```")
-
-    converted_df = decision_table_to_longform_df(table)
-    print("## Longform DataFrame representation of the decision table:")
-    print()
-    print("```csv")
-    print(converted_df.to_csv(index=True, index_label="row"))
-    print("```")
-
-    print(feature_importance(table))
-    print(interpret_feature_importance(table))
-    print(check_topological_order(table))
-
-    print("## JSON representation of the decision table:")
-    print()
-    print("```json")
-    print(table.model_dump_json(indent=2))
-    print("```")
-
-    print("## Obfuscated JSON representation of the decision table:")
-    obfuscated = table.obfuscate()
-    print(obfuscated.model_dump_json(indent=2))
-
-    # write json schema to file
-    file_loc = os.path.dirname(__file__)
-
-    schemafile = "../../../data/schema/v2/Decision_Table-2-0-0.schema.json"
-    schemafile = os.path.abspath(os.path.join(file_loc, schemafile))
-    print("Writing JSON schema to file:", schemafile)
-
-    if not os.path.exists(os.path.dirname(schemafile)):
-        os.makedirs(os.path.dirname(schemafile))
-
-    with open(schemafile, "w") as f:
-        json.dump(DecisionTable.model_json_schema(), f, indent=2)
-
-
-if __name__ == "__main__":
-    main()

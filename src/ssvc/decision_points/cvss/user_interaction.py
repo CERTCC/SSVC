@@ -29,20 +29,20 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _REQUIRED = DecisionPointValue(
     name="Required",
     key="R",
-    description="Successful exploitation of this vulnerability requires a user to take some action before the "
+    definition="Successful exploitation of this vulnerability requires a user to take some action before the "
     "vulnerability can be exploited.",
 )
 
 _UI_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="The vulnerable system can be exploited without interaction from any user.",
+    definition="The vulnerable system can be exploited without interaction from any user.",
 )
 
 
 USER_INTERACTION_1 = CvssDecisionPoint(
     name="User Interaction",
-    description="This metric captures the requirement for a user, other than the attacker, to participate in the "
+    definition="This metric captures the requirement for a user, other than the attacker, to participate in the "
     "successful compromise of the vulnerable component.",
     key="UI",
     version="1.0.0",
@@ -58,14 +58,14 @@ Defines None and Required values for CVSS User Interaction.
 _UI_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
-    description="The vulnerable system can be exploited without interaction from any human user, other than the "
+    definition="The vulnerable system can be exploited without interaction from any human user, other than the "
     "attacker.",
 )
 
 _PASSIVE = DecisionPointValue(
     name="Passive",
     key="P",
-    description="Successful exploitation of this vulnerability requires limited interaction by the targeted user with "
+    definition="Successful exploitation of this vulnerability requires limited interaction by the targeted user with "
     "the vulnerable system and the attacker’s payload. These interactions would be considered involuntary "
     "and do not require that the user actively subvert protections built into the vulnerable system.",
 )
@@ -73,7 +73,7 @@ _PASSIVE = DecisionPointValue(
 _ACTIVE = DecisionPointValue(
     name="Active",
     key="A",
-    description="Successful exploitation of this vulnerability requires a targeted user to perform specific, "
+    definition="Successful exploitation of this vulnerability requires a targeted user to perform specific, "
     "conscious interactions with the vulnerable system and the attacker’s payload, or the user’s "
     "interactions would actively subvert protection mechanisms which would lead to exploitation of the "
     "vulnerability.",
@@ -82,7 +82,7 @@ _ACTIVE = DecisionPointValue(
 USER_INTERACTION_2 = CvssDecisionPoint(
     name="User Interaction",
     key="UI",
-    description="This metric captures the requirement for a human user, other than the attacker, to participate "
+    definition="This metric captures the requirement for a human user, other than the attacker, to participate "
     "in the successful compromise of the vulnerable system. This metric determines whether the "
     "vulnerability can be exploited solely at the will of the attacker, or whether a separate user "
     "(or user-initiated process) must participate in some manner. The resulting score is greatest "

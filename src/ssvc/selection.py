@@ -22,7 +22,7 @@ Provides an SSVC selection object and functions to facilitate transition from an
 #  DM24-0278
 
 from datetime import datetime
-from typing import Literal, Optional
+from typing import ClassVar, Literal, Optional
 
 from pydantic import (
     AnyUrl,
@@ -37,6 +37,7 @@ from ssvc._mixins import (
     _Base,
     _GenericSsvcObject,
     _Keyed,
+    _SchemaVersioned,
     _Timestamped,
     _Valued,
 )
@@ -64,7 +65,7 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
         if "name" not in data:
             data["name"] = ""
         if "description" not in data:
-            data["description"] = ""
+            data["definition"] = ""
 
         return data
 
@@ -76,8 +77,8 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
         """
         if not data.name:
             data.name = None
-        if not data.description:
-            data.description = None
+        if not data.definition:
+            data.definition = None
         return data
 
 
@@ -126,7 +127,8 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
             "key": decision_point.key,
             "version": decision_point.version,
             "values": [
-                MinimalDecisionPointValue(key=val.key) for val in decision_point.values
+                MinimalDecisionPointValue(key=val.key)
+                for val in decision_point.values
             ],
         }
         for attr in ("name", "description"):
@@ -140,24 +142,26 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
         if "name" not in data:
             data["name"] = ""
         if "description" not in data:
-            data["description"] = ""
+            data["definition"] = ""
         return data
 
     @model_validator(mode="after")
     def validate_values(cls, data):
         if not data.name:
             data.name = None
-        if not data.description:
-            data.description = None
+        if not data.definition:
+            data.definition = None
         return data
 
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
-        not_required = ["name", "description"]
+        not_required = ["name", "definition"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
-                field for field in schema["required"] if field not in not_required
+                field
+                for field in schema["required"]
+                if field not in not_required
             ]
         return schema
 
@@ -180,12 +184,14 @@ class Reference(BaseModel):
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
             schema["required"] = [
-                field for field in schema["required"] if field not in not_required
+                field
+                for field in schema["required"]
+                if field not in not_required
             ]
         return schema
 
 
-class SelectionList(_Timestamped, BaseModel):
+class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
     """
     A list decision point selections that represent an evaluation at a specific time of evaluation.
     Individual selections are derived from decision points, and each selection
@@ -196,14 +202,15 @@ class SelectionList(_Timestamped, BaseModel):
     Optional fields include
 
     - `target_ids`: If present, a non-empty list of identifiers for the item or items being evaluated.
-    - `resources`: If present, a non-empty list of references to resources that provide additional context about the decision points
+    - `decision_point_resources`: If present, a non-empty list of resources that provide information related to the decision points
         found in this selection. Resources point to documentation, JSON files, or other relevant information that
         describe what the decision points are and how they should be interpreted.
-    - `references`: If present, a non-empty list of references to resources that provide additional context about the specific values selected.
+    - `references`: If present, a non-empty list of resources that provide additional context about the specific values selected.
         References point to reports, advisories, or other relevant information that describe why the selected values were chosen.
     """
 
     model_config = ConfigDict(extra="forbid")
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
         ...,
         description="The schema version of this selection list.",
@@ -219,6 +226,7 @@ class SelectionList(_Timestamped, BaseModel):
             ["VU#999999", "GHSA-0123-4567-89ab"],
         ],
         min_length=1,
+        json_schema_extra={"uniqueItems": True},
     )
     selections: list[Selection] = Field(
         ...,
@@ -232,10 +240,10 @@ class SelectionList(_Timestamped, BaseModel):
         description="Timestamp of the selections, in RFC 3339 format.",
         examples=["2025-01-01T12:00:00Z", "2025-01-02T15:30:45-04:00"],
     )
-    resources: list[Reference] = Field(
+    decision_point_resources: list[Reference] = Field(
         default_factory=list,
         min_length=1,
-        description="A list of references to resources that provide additional context about the decision points found in this selection.",
+        description="A list of resources that provide additional context about the decision points found in this selection.",
         examples=[
             [
                 {
@@ -256,7 +264,7 @@ class SelectionList(_Timestamped, BaseModel):
     references: list[Reference] = Field(
         default_factory=list,
         min_length=1,
-        description="A list of references to resources that provide additional context about the specific values selected.",
+        description="A list of references that provide additional context about the specific values selected.",
         examples=[
             [
                 {
@@ -276,7 +284,9 @@ class SelectionList(_Timestamped, BaseModel):
     # target_ids should be a non-empty list if not None
     @field_validator("target_ids", mode="before")
     @classmethod
-    def validate_target_ids(cls, value: Optional[list[str]]) -> Optional[list[str]]:
+    def validate_target_ids(
+        cls, value: Optional[list[str]]
+    ) -> Optional[list[str]]:
         """
         Validate the target_ids field.
         If target_ids is provided, it must be a non-empty list of strings.
@@ -290,6 +300,8 @@ class SelectionList(_Timestamped, BaseModel):
         for item in value:
             if not isinstance(item, str):
                 raise ValueError("Each target_id must be a string.")
+        if len(value) != len(set(value)):
+            raise ValueError("target_ids must not contain duplicates.")
         return value
 
     def add_selection(self, selection: Selection) -> None:
@@ -306,23 +318,11 @@ class SelectionList(_Timestamped, BaseModel):
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)
 
-        schema["title"] = "Decision Point Value Selection List"
-        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-        schema["$id"] = (
-            "https://certcc.github.io/SSVC/data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
-        )
-        schema["description"] = (
-            "This schema defines the structure for representing selected values from SSVC Decision Points. "
-            "Each selection list can have multiple selection objects, each representing a decision point, and each "
-            "selection object can have multiple selected values when full certainty (i.e., a singular value selection) "
-            "is not available."
-        )
-
         non_required_fields = [
             "name",
-            "description",
+            "definition",
             "target_ids",
-            "resources",
+            "decision_point_resources",
             "references",
         ]
 
@@ -341,59 +341,18 @@ class SelectionList(_Timestamped, BaseModel):
                 if isinstance(prop, dict) and "required" in prop:
                     # remove non-required fields from the required list
                     prop["required"] = [
-                        r for r in prop["required"] if r not in non_required_fields
+                        r
+                        for r in prop["required"]
+                        if r not in non_required_fields
                     ]
 
         return order_schema(schema)
 
 
 def main() -> None:
-    """
-    Prints example selections and their schema in JSON format.
-
-    Returns:
-        None
-    """
-    from ssvc.decision_points.ssvc.automatable import LATEST as dp1
-    from ssvc.decision_points.ssvc.safety_impact import LATEST as dp2
-    import json
-
-    a1 = Selection.from_decision_point(dp1)
-    a2 = Selection.from_decision_point(dp2)
-    selections = SelectionList(
-        schemaVersion=SCHEMA_VERSION,
-        selections=[a1, a2],
-        timestamp=datetime.now(),
-        target_ids=["CVE-1900-0001", "GHSA-0123-4567-89ab"],
-        references=[
-            Reference(
-                uri="https://example.com/report",
-                description="A report on which the selections were based",
-            )
-        ],
+    print(
+        "Please use doctools.py for schema generation and unit tests for verification"
     )
-
-    print(selections.model_dump_json(indent=2, exclude_none=True, exclude_unset=True))
-
-    print("# Schema for SelectionList")
-    schema = SelectionList.model_json_schema()
-
-    print(json.dumps(schema, indent=2))
-
-    # find local path to this file
-    import os
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # construct the path to the schema file
-    schema_path = (
-        "../../data/schema/v2/Decision_Point_Value_Selection-2-0-0.schema.json"
-    )
-    schema_path = os.path.abspath(os.path.join(current_dir, schema_path))
-
-    with open(schema_path, "w") as f:
-        print(f"Writing schema to {schema_path}")
-        json.dump(schema, f, indent=2)
-        f.write("\n")  # Ensure the file ends with a newline
 
 
 if __name__ == "__main__":

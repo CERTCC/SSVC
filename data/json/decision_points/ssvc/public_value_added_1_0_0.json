@@ -3,23 +3,23 @@
   "key": "PVA",
   "version": "1.0.0",
   "name": "Public Value Added",
-  "description": "How much value would a publication from the coordinator benefit the broader community?",
+  "definition": "How much value would a publication from the coordinator benefit the broader community?",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "L",
       "name": "Limited",
-      "description": "Minimal value added to the existing public information because existing information is already high quality and in multiple outlets."
+      "definition": "Minimal value added to the existing public information because existing information is already high quality and in multiple outlets."
     },
     {
       "key": "A",
       "name": "Ampliative",
-      "description": "Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc."
+      "definition": "Amplifies and/or augments the existing public information about the vulnerability, for example, adds additional detail, addresses or corrects errors in other public information, draws further attention to the vulnerability, etc."
     },
     {
       "key": "P",
       "name": "Precedence",
-      "description": "The publication would be the first publicly available, or be coincident with the first publicly available."
+      "definition": "The publication would be the first publicly available, or be coincident with the first publicly available."
     }
   ]
 }

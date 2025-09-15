@@ -3,28 +3,28 @@
   "key": "DSOI",
   "version": "1.0.0",
   "name": "Defer, Scheduled, Out-of-Cycle, Immediate",
-  "description": "The original SSVC outcome group.",
+  "definition": "The original SSVC outcome group.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "D",
       "name": "Defer",
-      "description": "Defer"
+      "definition": "Defer"
     },
     {
       "key": "S",
       "name": "Scheduled",
-      "description": "Scheduled"
+      "definition": "Scheduled"
     },
     {
       "key": "O",
       "name": "Out-of-Cycle",
-      "description": "Out-of-Cycle"
+      "definition": "Out-of-Cycle"
     },
     {
       "key": "I",
       "name": "Immediate",
-      "description": "Immediate"
+      "definition": "Immediate"
     }
   ]
 }

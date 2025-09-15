@@ -78,10 +78,10 @@ to decide how much of that flexibility to use.
 
 Similarly, SSVC provides a set of "bricks" in the form of [decision points](../reference/decision_points/index.md)
 and [outcomes](../reference/code/outcomes.md).
-We have provided a set of [example decision models](../howto/index.md) and [policies](../howto/index.md) to get you started.
+We have provided a set of [example decision models](../howto/index.md) and [decision tables](../howto/index.md) to get you started.
 You might choose to simply use what we've provided as a starting point.
 Or you might already recognize that our example gets the structure of the decision model right,
-but you need to adapt the outcomes or policy to better fit your situation.
+but you need to adapt the outcomes or decision table to better fit your situation.
 
 You might also recognize that you need to combine different example decision models to build the model you need.
 For example, you might recognize that you need to combine the [supplier decision model](../howto/supplier_tree.md)
