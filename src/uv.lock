@@ -1522,7 +1522,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ssvc"
+name = "certcc-ssvc"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["all", "standard"] },
