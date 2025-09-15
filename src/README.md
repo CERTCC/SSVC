@@ -27,7 +27,7 @@ After installation, import the package and explore the examples:
     print(to_play.LATEST.model_dump_json(indent=2))
 
     #Show decision tree in ascii text art
-    from ssvc.decision_tables.base import ascii_tree
+    from ssvc.decision_tables.helpers import ascii_tree
     print(ascii_tree(to_play.LATEST))
 
 Explanation
@@ -92,7 +92,7 @@ For usage in vulnerability management scenarios consider the following popular S
     print(CISACoordinate.model_dump_json(indent=2))
 
     #Print CISA Decision Table as an ascii tree
-    from ssvc.decision_tables.base import ascii_tree
+    from ssvc.decision_tables.helpers import ascii_tree
     print(ascii_tree(CISACoordinate))
 
 
