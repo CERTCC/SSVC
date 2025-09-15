@@ -2,96 +2,67 @@
 status: "accepted"
 date: 2025-09-15
 ---
-# SSVC Project versions follow Calendar Versioning (CalVer)
+# SSVC Project Versions Follow Calendar Versioning (CalVer)
 
-## Context and Problem Statement
+## Context
 
-While individual SSVC objects (e.g., decision points, decision tables, etc.)
-follow Semantic Versioning (SemVer), we need a way to version the overall SSVC 
-project and documentation that reflects the pace of change and the nature of 
-changes being made. 
+Individual SSVC objects (decision points, tables, etc.) use Semantic Versioning (SemVer).  
+For the overall SSVC project and documentation, we need a scheme that better reflects frequent, incremental updates and communicates recency to users.
 
-<!-- This is an optional element. Feel free to remove. -->
 ## Decision Drivers
 
-- SSVC objects use SemVer, but these objects are more granular than the overall project.
-- The SSVC project and documentation are updated frequently, often with minor changes.
-- Users need a clear understanding of the recency and relevance of the SSVC documentation.
+- Object-level changes use SemVer, but the project evolves more fluidly.  
+- Documentation often changes without altering underlying objects.  
+- Users need clear signals about how current the materials are.
 
-## Considered Options
+## Options
 
-- Use Calendar Versioning (CalVer) for the SSVC project and documentation.
-- Continue using Semantic Versioning (SemVer) for the SSVC project and documentation.
+- **CalVer** for project and documentation  
+- **SemVer** for project and documentation (status quo)
 
-## Decision Outcome
+## Decision
 
-Chosen option: Use Calendar Versioning (CalVer) for the SSVC project and documentation.
+**Chosen:** CalVer (`YYYY.MM.patch`)  
 
-We will use the format YYYY.MM.patch.
+- **Major (`YYYY`) and minor (`MM`)** = release year and month  
+  - First significant update in a month → `YYYY.M.0` (e.g., June 2025 → `2025.6.0`)  
+- **Patch** = subsequent updates in the same month or smaller corrections  
 
-Major (YYYY) and minor (MM) versions reflect the year and month of the release.
+**Significant updates** include:  
+- Adding or restructuring sections in ways that affect usability  
+- Adding/revising decision points, tables, or other SSVC objects  
+- Adding features that change how SSVC is applied  
 
-The first significant update in a given year/month is tagged as YYYY.M.0.
+We expect ~1–4 `YYYY.MM` releases per year, with patches as needed.  
+Months use single digits (`2025.6`) to keep versions concise.
 
-Example: If the first major revision in 2025 occurs in June, the version will be 2025.6.0.
+## Rationale
 
-Patch (patch) versions increment for:
+CalVer suits SSVC’s character as a living framework:  
+- Clearly signals recency (date in the version number)  
+- Fits both documentation-focused and object-focused updates  
+- Avoids SemVer debates over what counts as “major” or “minor”  
 
-Additional significant updates within the same month (rare, but possible).
+Individual SSVC objects will continue to use SemVer for backward compatibility.  
 
-Smaller corrections or clarifications released after the original YYYY.MM.0.
+## Consequences
 
-Significant updates are those that:
+- **Good:** Versions clearly indicate recency and distinguish project vs. object evolution  
+- **Neutral:** CalVer conveys less about compatibility, but SemVer at the object level mitigates this  
+- **Bad:** Breaks continuity with past project-level SemVer (e.g., SSVC 1.x, 2.x)  
 
-Add new sections or restructure documentation in ways that affect usability.
+## Confirmation
 
-Introduce or substantially revise decision points, decision tables, or other SSVC objects.
+The CalVer scheme will be applied via Git tags and GitHub releases.  
 
-Add features or capabilities that change how SSVC is applied.
+## Alternatives Rejected
 
-We expect one to four YYYY.MM releases per year, with patch releases as needed.
-Months will be represented as single digits (e.g., 2025.6 for June) to keep version strings concise.
+**Continue SemVer for project/docs**  
+- **Good:** Maintains continuity  
+- **Bad:** Cannot easily express documentation updates independent of object versions  
 
-Rationale:
-CalVer aligns with SSVC’s nature as a living framework that evolves through both frequent minor edits and occasional substantial changes. While individual SSVC objects follow SemVer, the project as a whole benefits from a date-based scheme that reflects an ongoing, fluid update cycle.
+## References
 
-Compared to SemVer, CalVer:
-
-Better communicates the recency of releases (the version number encodes date).
-
-Matches the balance of code-focused and documentation-focused updates.
-
-Reduces the overhead of deciding what constitutes a “major” vs. “minor” release in a traditional SemVer sense.
-
-<!-- This is an optional element. Feel free to remove. -->
-### Consequences
-
-- Good, because SSVC versions will clearly indicate the recency of the documentation and overall project state.
-- Good, because it makes it easier to be clear about the distinction between the
-  evolution of the SSVC framework and the specific versions of individual SSVC objects it contains.
-- Neutral, because CalVer does not convey as much information about backward compatibility as SemVer.
-  However, we mitigate this through the use of SemVer for individual SSVC objects.
-- Bad, because we lose continuity with the previous SemVer scheme for the overall project (SSVC 1.0, 1.1, 2.0, 2.1)
-
-<!-- This is an optional element. Feel free to remove. -->
-### Confirmation
-
-The main SSVC versioning scheme will be implemented via Git tags and in the `releases`
-section of the SSVC GitHub repository.
-
-<!-- This is an optional element. Feel free to remove. -->
-## Pros and Cons of the Options
-
-### Continue using Semantic Versioning (SemVer) for the SSVC project and documentation.
-
-- Good, because it maintains continuity with the previous versioning scheme.
-- Bad, because there is no clear way to show a significant documentation update
-  that does not alter the version of any individual SSVC object.
-
-
-<!-- This is an optional element. Feel free to remove. -->
-## More Information
-
-- [SSVC Decision Point Versioning Rules](0003-ssvc-decision-points-are-versioned.md)
-- [Calendar Versioning (CalVer)](https://calver.org/)
-- [Semantic Versioning (SemVer)](https://semver.org/)
+- [SSVC Decision Point Versioning Rules](0003-ssvc-decision-points-are-versioned.md)  
+- [CalVer](https://calver.org/)  
+- [SemVer](https://semver.org/)  
