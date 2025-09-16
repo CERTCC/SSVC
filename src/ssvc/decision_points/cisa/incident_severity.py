@@ -32,48 +32,48 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 LEVEL_5 = DecisionPointValue(
     name="Emergency",
     key="5",
-    description="Poses an imminent threat to the provision of wide-scale critical infrastructure services, national "
+    definition="Poses an imminent threat to the provision of wide-scale critical infrastructure services, national "
     "government stability, or to the lives of U.S. persons.",
 )
 
 LEVEL_4 = DecisionPointValue(
     name="Severe",
     key="4",
-    description="Likely to result in a significant impact to public health or safety, national security, economic "
+    definition="Likely to result in a significant impact to public health or safety, national security, economic "
     "security, foreign relations, or civil liberties.",
 )
 
 LEVEL_3 = DecisionPointValue(
     name="High",
     key="3",
-    description="Likely to result in a demonstrable impact to public health or safety, national security, economic "
+    definition="Likely to result in a demonstrable impact to public health or safety, national security, economic "
     "security, foreign relations, civil liberties, or public confidence.",
 )
 
 LEVEL_2 = DecisionPointValue(
     name="Medium",
     key="2",
-    description="May impact public health or safety, national security, economic security, foreign relations, civil "
+    definition="May impact public health or safety, national security, economic security, foreign relations, civil "
     "liberties, or public confidence.",
 )
 
 LEVEL_1 = DecisionPointValue(
     name="Low",
     key="1",
-    description="Unlikely to impact public health or safety, national security, economic security, foreign relations, "
+    definition="Unlikely to impact public health or safety, national security, economic security, foreign relations, "
     "civil liberties, or public confidence.",
 )
 
 LEVEL_0 = DecisionPointValue(
     name="Baseline",
     key="0",
-    description="Unsubstantiated or inconsequential event.",
+    definition="Unsubstantiated or inconsequential event.",
 )
 
 # Define the Cyber Incident Severity decision point
 INCIDENT_SEVERITY = NcissDecisionPoint(
     name="Incident Severity",
-    description="The United States Federal Cybersecurity Centers, in coordination "
+    definition="The United States Federal Cybersecurity Centers, in coordination "
     "with departments and agencies with a cybersecurity or cyber operations mission, "
     "adopted a common schema for describing the severity of cyber incidents affecting "
     "the homeland, U.S. capabilities, or U.S. interests.",
@@ -92,42 +92,42 @@ INCIDENT_SEVERITY = NcissDecisionPoint(
 LEVEL_5_1 = DecisionPointValue(
     name="Emergency",
     key="5",
-    description="An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure "
+    definition="An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure "
     "services, national government stability, or the lives of U.S. persons.",
 )
 
 LEVEL_4_1 = DecisionPointValue(
     name="Severe",
     key="4",
-    description="A Severe priority incident is likely to result in a significant impact to public health or safety, national security, "
+    definition="A Severe priority incident is likely to result in a significant impact to public health or safety, national security, "
     "economic security, foreign relations, or civil liberties.",
 )
 
 LEVEL_3_1 = DecisionPointValue(
     name="High",
     key="3",
-    description="A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, "
+    definition="A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, "
     "economic security, foreign relations, civil liberties, or public confidence.",
 )
 
 LEVEL_2_1 = DecisionPointValue(
     name="Medium",
     key="2",
-    description="A Medium priority incident may affect public health or safety, national security, economic security, foreign "
+    definition="A Medium priority incident may affect public health or safety, national security, economic security, foreign "
     "relations, civil liberties, or public confidence.",
 )
 
 LEVEL_1_1 = DecisionPointValue(
     name="Low",
     key="1",
-    description="A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign "
+    definition="A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign "
     "relations, civil liberties, or public confidence.",
 )
 
 LEVEL_0_MINOR = DecisionPointValue(
     name="Baseline - Minor",
     key="0M",
-    description="A Baseline–Minor priority incident is an incident that is highly unlikely to affect public health or safety, "
+    definition="A Baseline–Minor priority incident is an incident that is highly unlikely to affect public health or safety, "
     "national security, economic security, foreign relations, civil liberties, or public confidence. The potential for "
     "impact, however, exists and warrants additional scrutiny.",
 )
@@ -135,14 +135,14 @@ LEVEL_0_MINOR = DecisionPointValue(
 LEVEL_0_NEGLIGIBLE = DecisionPointValue(
     name="Baseline - Negligible",
     key="0N",
-    description="A Baseline–Negligible priority incident is an incident that is highly unlikely to affect public health or safety, "
+    definition="A Baseline–Negligible priority incident is an incident that is highly unlikely to affect public health or safety, "
     "national security, economic security, foreign relations, civil liberties, or public confidence. The potential for "
     "impact, however, exists and warrants additional scrutiny.",
 )
 
 INCIDENT_SEVERITY_2 = NcissDecisionPoint(
     name="Incident Severity",
-    description="After an incident is scored, it is assigned a priority level. "
+    definition="After an incident is scored, it is assigned a priority level. "
     "The six levels listed below are aligned with CISA, "
     "the Department of Homeland Security (DHS), "
     "and the CISS to help provide a common lexicon when discussing incidents. "

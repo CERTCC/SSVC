@@ -29,30 +29,30 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 REGULAR = DecisionPointValue(
     name="Regular",
     key="R",
-    description="Time to recovery is predictable with existing resources.",
+    definition="Time to recovery is predictable with existing resources.",
 )
 
 SUPPLEMENTED = DecisionPointValue(
     name="Supplemented",
     key="S",
-    description="Time to recover is predictable with additional resources.",
+    definition="Time to recover is predictable with additional resources.",
 )
 
 EXTENDED = DecisionPointValue(
     name="Extended",
     key="E",
-    description="Time to recovery is unpredictable; additional resources and outside assistance may be required.",
+    definition="Time to recovery is unpredictable; additional resources and outside assistance may be required.",
 )
 
 NOT_RECOVERABLE = DecisionPointValue(
     name="Not Recoverable",
     key="N",
-    description="Recovery from the incident is not possible.",
+    definition="Recovery from the incident is not possible.",
 )
 
 RECOVERABILITY = NcissDecisionPoint(
     name="Recoverability",
-    description="Represents the scope of resources needed to recover from the incident.",
+    definition="Represents the scope of resources needed to recover from the incident.",
     key="RECOVERABILITY",
     version="1.0.0",
     values=(REGULAR, SUPPLEMENTED, EXTENDED, NOT_RECOVERABLE),

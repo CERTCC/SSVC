@@ -28,7 +28,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 PREPARE = DecisionPointValue(
     key="P",
     name="Prepare",
-    description="Prepare actions are actions taken to establish objectives, intent, and strategy; "
+    definition="Prepare actions are actions taken to establish objectives, intent, and strategy; "
     "identify potential targets and attack vectors; "
     "identify resource requirements; "
     "and develop capabilities.",
@@ -37,7 +37,7 @@ PREPARE = DecisionPointValue(
 ENGAGE = DecisionPointValue(
     key="E",
     name="Engage",
-    description="Engage activities are actions taken against a specific target or target set prior to gaining, "
+    definition="Engage activities are actions taken against a specific target or target set prior to gaining, "
     "but with the intent to gain access to the victim's physical or virtual computer or information systems, "
     "networks, and data stores.",
 )
@@ -45,7 +45,7 @@ ENGAGE = DecisionPointValue(
 PRESENCE = DecisionPointValue(
     key="R",
     name="Presence",
-    description="Presence is the set of actions taken by the threat actor once access to the target physical or "
+    definition="Presence is the set of actions taken by the threat actor once access to the target physical or "
     "virtual computer or information system has been achieved. "
     "These actions establish and maintain conditions for the threat actor to perform intended actions "
     "or operate at will against the host physical or virtual computer or information system, network, "
@@ -55,7 +55,7 @@ PRESENCE = DecisionPointValue(
 EFFECT = DecisionPointValue(
     key="F",
     name="Effect",
-    description="Effects are outcomes of a threat actor’s actions "
+    definition="Effects are outcomes of a threat actor’s actions "
     "on a victim’s physical or virtual computer or information systems, networks, and data stores.",
 )
 
@@ -63,7 +63,7 @@ EFFECT = DecisionPointValue(
 OBSERVED_ACTIVITY = NcissDecisionPoint(
     key="OA",
     name="Observed Activity",
-    description="Observed activity describes what is known about threat actor activity on the network.",
+    definition="Observed activity describes what is known about threat actor activity on the network.",
     values=(PREPARE, ENGAGE, PRESENCE, EFFECT),
 )
 
