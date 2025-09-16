@@ -21,60 +21,52 @@ Models an example to play or not to play decision table for SSVC.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.example.weather import LATEST as WEATHER
 from ssvc.decision_points.example.humidity import LATEST as HUMIDITY
+from ssvc.decision_points.example.weather import LATEST as WEATHER
+from ssvc.decision_tables.example.base import ExampleDecisionTable
 from ssvc.outcomes.basic.yn import LATEST as YESNO
 
-
-from ssvc.decision_tables.base import DecisionTable
-from ssvc.namespaces import NameSpace
-
-dp_dict = {
-    dp.id: dp for dp in [WEATHER, HUMIDITY, YESNO]
-}
+dp_dict = {dp.id: dp for dp in [WEATHER, HUMIDITY, YESNO]}
 
 
-TOPLAY_1 = DecisionTable(
-    namespace="x_example.test#play",
+TOPLAY_1 = ExampleDecisionTable(
     key="TP",
     version="1.0.0",
     name="To Play",
     definition="To play or not to play that is the question",
-    decision_points={
-        dp.id: dp for dp in [WEATHER, HUMIDITY, YESNO]
-    },
+    decision_points={dp.id: dp for dp in [WEATHER, HUMIDITY, YESNO]},
     outcome=YESNO.id,
     mapping=[
-    {
-      "x_example.test#forecast:W:1.0.0": "R",
-      "x_example.test#forecast:H:1.0.0": "H",
-      "basic:YN:1.0.0": "N"
-    },
-    {
-      "x_example.test#forecast:W:1.0.0": "O",
-      "x_example.test#forecast:H:1.0.0": "H",
-      "basic:YN:1.0.0": "N"
-    },
-    {
-      "x_example.test#forecast:W:1.0.0": "R",
-      "x_example.test#forecast:H:1.0.0": "L",
-      "basic:YN:1.0.0": "N"
-    },
-    {
-      "x_example.test#forecast:W:1.0.0": "S",
-      "x_example.test#forecast:H:1.0.0": "H",
-      "basic:YN:1.0.0": "N"
-    },
-    {
-      "x_example.test#forecast:W:1.0.0": "O",
-      "x_example.test#forecast:H:1.0.0": "L",
-      "basic:YN:1.0.0": "Y"
-    },
-    {
-      "x_example.test#forecast:W:1.0.0": "S",
-      "x_example.test#forecast:H:1.0.0": "L",
-      "basic:YN:1.0.0": "Y"
-    }
+        {
+            "example:W:1.0.0": "R",
+            "example:H:1.0.0": "H",
+            "basic:YN:1.0.0": "N",
+        },
+        {
+            "example:W:1.0.0": "O",
+            "example:H:1.0.0": "H",
+            "basic:YN:1.0.0": "N",
+        },
+        {
+            "example:W:1.0.0": "R",
+            "example:H:1.0.0": "L",
+            "basic:YN:1.0.0": "N",
+        },
+        {
+            "example:W:1.0.0": "S",
+            "example:H:1.0.0": "H",
+            "basic:YN:1.0.0": "N",
+        },
+        {
+            "example:W:1.0.0": "O",
+            "example:H:1.0.0": "L",
+            "basic:YN:1.0.0": "Y",
+        },
+        {
+            "example:W:1.0.0": "S",
+            "example:H:1.0.0": "L",
+            "basic:YN:1.0.0": "Y",
+        },
     ],
 )
 
