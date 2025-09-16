@@ -34,3 +34,4 @@ class NcissDecisionPoint(CisaDecisionPoint, BaseModel):
     """
     Models a single NCISS decision point as a list of values.
     """
+    namespace: str = NameSpace.CISA + "#nciss"
