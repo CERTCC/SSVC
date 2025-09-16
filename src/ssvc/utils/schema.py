@@ -22,8 +22,7 @@ Utility functions for SSVC json schema handling.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.utils.defaults import SCHEMA_ORDER
-
+from typing import Any
 
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -43,6 +42,9 @@ from ssvc.utils.defaults import SCHEMA_ORDER
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+from ssvc.utils.defaults import SCHEMA_ORDER
+
+
 def reorder_title_first(obj):
     if isinstance(obj, dict):
         if "title" in obj:
