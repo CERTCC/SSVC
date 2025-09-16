@@ -19,4 +19,3 @@ As mentioned in [Current State of Practice](../../topics/state_of_practice.md), 
 Our definition of **vulnerability** is based on the determination that some security policy is violated.
 We consider a security policy violation to be a technical impact—or at least, a security policy violation must have some technical instantiation.
 Therefore, if there is a vulnerability then there must be some technical impact.
-

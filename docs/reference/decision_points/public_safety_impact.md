@@ -9,7 +9,6 @@ print(example_block(LATEST))
 
 {% include-markdown "../../_includes/safety_cvss_ssvc.md" %}
 
-
 Suppliers necessarily have a rather coarse-grained perspective on the broadly defined [Safety Impact](safety_impact.md) Decision Point.
 Therefore we simplify the above into a binary categorization:
 
@@ -35,7 +34,6 @@ from ssvc.decision_tables.helpers import dt2df_md
 
 print(dt2df_md(DT))
 ```
-
 
 ## Prior Versions
 

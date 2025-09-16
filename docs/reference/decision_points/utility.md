@@ -48,7 +48,6 @@ from ssvc.decision_tables.helpers import dt2df_md
 print(dt2df_md(DT))
 ```
 
-
 ## Alternative Utility Outputs
 
 Alternative heuristics can plausibly be used as proxies for adversary utility.
