@@ -22,30 +22,22 @@ Provides example decision point for humidity values
 #  DM24-0278
 
 from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.example.base import ExampleDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 LOW = DecisionPointValue(
-    name="Low",
-    key="L",
-    definition="Humidity is low, below 40%."
+    name="Low", key="L", definition="Humidity is low, below 40%."
 )
 
 HIGH = DecisionPointValue(
-    name="High",
-    key="H",
-    definition="Humidity is high, above 40%"
+    name="High", key="H", definition="Humidity is high, above 40%"
 )
-HUMIDITY_1 = SsvcDecisionPoint(
+HUMIDITY_1 = ExampleDecisionPoint(
     name="Humidity Value above 40% ",
-    namespace="x_example.test#forecast",
     definition="Humidity is the amount of water vapor in the air. Above 40% is High in this context.",
     key="H",
     version="1.0.0",
-    values=(
-        HIGH,
-        LOW
-    ),
+    values=(HIGH, LOW),
 )
 
 VERSIONS = (HUMIDITY_1,)
