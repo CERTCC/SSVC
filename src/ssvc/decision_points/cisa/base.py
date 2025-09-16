@@ -28,3 +28,10 @@ from ssvc.namespaces import NameSpace
 
 class CisaDecisionPoint(DecisionPoint, BaseModel):
     namespace: str = NameSpace.CISA
+
+
+class NcissDecisionPoint(CisaDecisionPoint, BaseModel):
+    """
+    Models a single NCISS decision point as a list of values.
+    """
+    namespace: str = NameSpace.CISA + "#nciss"

@@ -1,0 +1,151 @@
+#!/usr/bin/env python
+"""
+Provides the NCISS Information Impact Decision Point.
+"""
+#  Copyright (c) 2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
+
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
+
+IMPACT_NONE = DecisionPointValue(
+    key="N",
+    name="None",
+    definition="No information was exfiltrated, modified, deleted, or otherwise compromised.",
+)
+
+INTEGRITY = DecisionPointValue(
+    key="I",
+    name="Integrity",
+    definition="The necessary integrity of information was modified without authorization.",
+)
+
+PRIVACY = DecisionPointValue(
+    key="P",
+    name="Privacy",
+    definition="The confidentiality of personally identifiable information (PII) "
+    "or personal health information (PHI) was compromised.",
+)
+
+PROPRIETARY = DecisionPointValue(
+    key="R",
+    name="Proprietary",
+    definition="The confidentiality of unclassified proprietary information, such as "
+    "protected critical infrastructure information (PCII), intellectual property, or "
+    "trade secrets was compromised.",
+)
+
+CLASSIFIED = DecisionPointValue(
+    key="C",
+    name="Classified",
+    definition="The confidentiality of classified information was compromised.",
+)
+
+# based on https://www.cisa.gov/sites/default/files/publications/Federal_Incident_Notification_Guidelines_2015.pdf
+INFORMATION_IMPACT_1 = NcissDecisionPoint(
+    key="II",
+    name="Information Impact",
+    version="1.0.0",
+    definition="Describes the type of information lost, compromised, or corrupted.",
+    values=(IMPACT_NONE, INTEGRITY, PRIVACY, PROPRIETARY, CLASSIFIED),
+)
+
+
+NO_IMPACT = DecisionPointValue(
+    key="N",
+    name="No Impact",
+    definition="No known data impact.",
+)
+
+SUSPECTED_BUT_NOT_IDENTIFIED = DecisionPointValue(
+    key="S",
+    name="Suspected But Not Identified",
+    definition="A data loss or impact to availability is suspected, but no direct confirmation exists.",
+)
+
+PROPRIETARY_INFORMATION_BREACH = DecisionPointValue(
+    key="R",
+    name="Proprietary Information Breach",
+    definition="The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised.",
+)
+
+PRIVACY_DATA_BREACH = DecisionPointValue(
+    key="P",
+    name="Privacy Data Breach",
+    definition="The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised.",
+)
+
+
+CRITICAL_SYSTEMS_DATA_BREACH = DecisionPointValue(
+    key="C",
+    name="Critical Systems Data Breach",
+    definition="Data pertaining to a critical system has been exfiltrated.",
+)
+
+DESTRUCTION_OF_NON_CRITICAL_SYSTEMS = DecisionPointValue(
+    key="D",
+    name="Destruction of Non-Critical Systems",
+    definition="Destructive techniques, such as master boot record (MBR) overwrite; have been used against a non-critical system.",
+)
+
+
+CORE_CREDENTIAL_COMPROMISE = DecisionPointValue(
+    key="O",
+    name="Core Credential Compromise",
+    definition="Core system credentials (such as domain or enterprise administrative credentials) or credentials for critical systems have been exfiltrated.",
+)
+
+DESTRUCTION_OF_CRITICAL_SYSTEM = DecisionPointValue(
+    key="E",
+    name="Destruction of Critical System",
+    definition="Destructive techniques, such as MBR overwrite; have been used against a critical system.",
+)
+
+# based on https://www.cisa.gov/sites/default/files/publications/Federal_Incident_Notification_Guidelines.pdf
+INFORMATION_IMPACT_2 = NcissDecisionPoint(
+    key="II",
+    name="Information Impact",
+    version="2.0.0",
+    definition="Describes the type of information lost, compromised, or corrupted.",
+    values=(
+        NO_IMPACT,
+        SUSPECTED_BUT_NOT_IDENTIFIED,
+        PRIVACY_DATA_BREACH,
+        PROPRIETARY_INFORMATION_BREACH,
+        DESTRUCTION_OF_NON_CRITICAL_SYSTEMS,
+        CRITICAL_SYSTEMS_DATA_BREACH,
+        CORE_CREDENTIAL_COMPROMISE,
+        DESTRUCTION_OF_CRITICAL_SYSTEM,
+    ),
+)
+
+VERSIONS = (
+    INFORMATION_IMPACT_1,
+    INFORMATION_IMPACT_2,
+)
+LATEST = VERSIONS[-1]
+
+
+def main():
+    print_versions_and_diffs(VERSIONS)
+
+
+if __name__ == "__main__":
+    main()

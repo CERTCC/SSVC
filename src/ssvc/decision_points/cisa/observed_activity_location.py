@@ -1,0 +1,113 @@
+#!/usr/bin/env python
+"""
+Provides a decision point for the location of observed activity.
+Based on [National Cybersecurity Incident Scoring System (NCISS)](https://www.cisa.gov/sites/default/files/2023-01/cisa_national_cyber_incident_scoring_system_s508c.pdf)
+"""
+#  Copyright (c) 2025 Carnegie Mellon University.
+#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
+#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
+#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
+#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
+#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
+#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
+#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
+#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
+#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
+#  permission@sei.cmu.edu for full terms.
+#  [DISTRIBUTION STATEMENT A] This material has been approved for
+#  public release and unlimited distribution. Please see Copyright notice
+#  for non-US Government use and distribution.
+#  This Software includes and/or makes use of Third-Party Software each
+#  subject to its own license.
+#  DM24-0278
+
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.cisa.base import NcissDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
+
+LEVEL_0 = DecisionPointValue(
+    name="Unsuccessful",
+    key="0",
+    definition="Existing network defenses repelled all observed activity.",
+)
+
+
+LEVEL_1 = DecisionPointValue(
+    name="Business Demilitarized Zone",
+    key="1",
+    definition="Activity was observed in the business network’s demilitarized zone (DMZ). These systems are generally untrusted and are designed to be exposed to the Internet.",
+)
+
+
+LEVEL_2 = DecisionPointValue(
+    name="Business Network",
+    key="2",
+    definition="Activity was observed in the business or corporate network of the victim. These systems would be corporate user workstations, application servers, and other non-core management systems.",
+)
+
+
+LEVEL_3 = DecisionPointValue(
+    name="Business Network Management",
+    key="3",
+    definition="Activity was observed in business network management systems such as administrative user workstations, active directory servers, or other trust stores.",
+)
+
+LEVEL_4 = DecisionPointValue(
+    name="Critical System DMZ",
+    key="4",
+    definition="Activity was observed in the DMZ that exists between the business network and a critical system network. These systems may be internally facing services such as SharePoint sites, financial systems, or relay “jump” boxes into more critical systems.",
+)
+
+LEVEL_5 = DecisionPointValue(
+    name="Critical System Management",
+    key="5",
+    definition="Activity was observed in high-level critical systems management such as human-machine interfaces (HMIs) in industrial control systems.",
+)
+
+LEVEL_6 = DecisionPointValue(
+    name="Critical Systems",
+    key="6",
+    definition="Activity was observed in the critical systems that operate critical processes, such as programmable logic controllers in industrial control system environments.",
+)
+
+LEVEL_7 = DecisionPointValue(
+    name="Safety Systems",
+    key="7",
+    definition="Activity was observed in critical safety systems that ensure the safe operation of an environment. One example of a critical safety system is a fire suppression system.",
+)
+
+UNKNOWN = DecisionPointValue(
+    name="Unknown",
+    key="U",
+    definition="Activity was observed, but the network segment could not be identified.",
+)
+
+OBSERVED_ACTIVITY_LOCATION = NcissDecisionPoint(
+    name="Observed Activity Location",
+    definition="The location of observed activity describes where the observed activity was detected in the network. ",
+    key="OAL",
+    version="1.0.0",
+    values=(
+        LEVEL_0,
+        LEVEL_1,
+        LEVEL_2,
+        LEVEL_3,
+        LEVEL_4,
+        LEVEL_5,
+        LEVEL_6,
+        LEVEL_7,
+        UNKNOWN,
+    ),
+)
+
+VERSIONS = (OBSERVED_ACTIVITY_LOCATION,)
+LATEST = VERSIONS[-1]
+
+
+def main():
+    print_versions_and_diffs(VERSIONS)
+
+
+if __name__ == "__main__":
+    main()

@@ -119,6 +119,14 @@ nav:
             - Report Confidence: 'reference/decision_points/cvss/report_confidence.md'
             - Scope: 'reference/decision_points/cvss/scope.md'
             - Target Distribution: 'reference/decision_points/cvss/target_distribution.md'
+      - NCISS Decision Points:
+        - 'reference/decision_points/nciss/index.md'
+        - Functional Impact: 'reference/decision_points/nciss/functional_impact.md'
+        - Incident Severity: 'reference/decision_points/nciss/incident_severity.md'
+        - Information Impact: 'reference/decision_points/nciss/information_impact.md'
+        - Observed Activity: 'reference/decision_points/nciss/observed_activity.md'
+        - Observed Activity Location: 'reference/decision_points/nciss/observed_activity_location.md'
+        - Recoverability: 'reference/decision_points/nciss/recoverability.md'
     - Code:
         - Intro: 'reference/code/index.md'
         - Decision Points: 'reference/code/decision_points.md'

@@ -1,0 +1,40 @@
+{
+  "namespace": "cisa#nciss",
+  "key": "IS",
+  "version": "1.0.0",
+  "name": "Incident Severity",
+  "definition": "The United States Federal Cybersecurity Centers, in coordination with departments and agencies with a cybersecurity or cyber operations mission, adopted a common schema for describing the severity of cyber incidents affecting the homeland, U.S. capabilities, or U.S. interests.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "0",
+      "name": "Baseline",
+      "definition": "Unsubstantiated or inconsequential event."
+    },
+    {
+      "key": "1",
+      "name": "Low",
+      "definition": "Unlikely to impact public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+    },
+    {
+      "key": "2",
+      "name": "Medium",
+      "definition": "May impact public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+    },
+    {
+      "key": "3",
+      "name": "High",
+      "definition": "Likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+    },
+    {
+      "key": "4",
+      "name": "Severe",
+      "definition": "Likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties."
+    },
+    {
+      "key": "5",
+      "name": "Emergency",
+      "definition": "Poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or to the lives of U.S. persons."
+    }
+  ]
+}

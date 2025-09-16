@@ -771,6 +771,726 @@
             }
           }
         },
+        "cisa#nciss": {
+          "namespace": "cisa#nciss",
+          "keys": {
+            "FI": {
+              "key": "FI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "FI",
+                    "version": "1.0.0",
+                    "name": "Functional Impact",
+                    "definition": "A measure of the impact to business functionality or ability to provide services.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "No Impact",
+                        "definition": "Organization has experienced no loss in ability to provide all services to all users."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Low",
+                        "definition": "Organization has experienced a loss of efficiency, but can still provide all critical services to all users with minimal effect on performance."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Medium",
+                        "definition": "Organization has lost the ability to provide a critical service to a subset of system users."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High",
+                        "definition": "Organization has lost the ability to provide all critical services to all system users."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "No Impact",
+                      "definition": "Organization has experienced no loss in ability to provide all services to all users."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Low",
+                      "definition": "Organization has experienced a loss of efficiency, but can still provide all critical services to all users with minimal effect on performance."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Medium",
+                      "definition": "Organization has lost the ability to provide a critical service to a subset of system users."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High",
+                      "definition": "Organization has lost the ability to provide all critical services to all system users."
+                    }
+                  }
+                },
+                "2.0.0": {
+                  "version": "2.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "FI",
+                    "version": "2.0.0",
+                    "name": "Functional Impact",
+                    "definition": "A measure of the impact to business functionality or ability to provide services.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "No Impact",
+                        "definition": "Event has no impact."
+                      },
+                      {
+                        "key": "S",
+                        "name": "No Impact to Services",
+                        "definition": "Event has no impact to any business or Industrial Control Systems (ICS) services or delivery to entity customers."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Minimal Impact to Non-Critical Services",
+                        "definition": "Some small level of impact to non-critical systems and services."
+                      },
+                      {
+                        "key": "C",
+                        "name": "Minimal Impact to Critical Services",
+                        "definition": "Minimal impact but to a critical system or service, such as email or active directory."
+                      },
+                      {
+                        "key": "I",
+                        "name": "Significant Impact to Non-Critical Services",
+                        "definition": "A non-critical service or system has a significant impact."
+                      },
+                      {
+                        "key": "D",
+                        "name": "Denial of Non-Critical Services",
+                        "definition": "A non-critical system is denied or destroyed."
+                      },
+                      {
+                        "key": "T",
+                        "name": "Significant Impact to Critical Services",
+                        "definition": "A critical system has a significant impact, such as local administrative account compromise."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Denial of Critical Services/Loss of Control",
+                        "definition": "A critical system has been rendered unavailable."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "No Impact",
+                      "definition": "Event has no impact."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "No Impact to Services",
+                      "definition": "Event has no impact to any business or Industrial Control Systems (ICS) services or delivery to entity customers."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Minimal Impact to Non-Critical Services",
+                      "definition": "Some small level of impact to non-critical systems and services."
+                    },
+                    "C": {
+                      "key": "C",
+                      "name": "Minimal Impact to Critical Services",
+                      "definition": "Minimal impact but to a critical system or service, such as email or active directory."
+                    },
+                    "I": {
+                      "key": "I",
+                      "name": "Significant Impact to Non-Critical Services",
+                      "definition": "A non-critical service or system has a significant impact."
+                    },
+                    "D": {
+                      "key": "D",
+                      "name": "Denial of Non-Critical Services",
+                      "definition": "A non-critical system is denied or destroyed."
+                    },
+                    "T": {
+                      "key": "T",
+                      "name": "Significant Impact to Critical Services",
+                      "definition": "A critical system has a significant impact, such as local administrative account compromise."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Denial of Critical Services/Loss of Control",
+                      "definition": "A critical system has been rendered unavailable."
+                    }
+                  }
+                }
+              }
+            },
+            "IS": {
+              "key": "IS",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "IS",
+                    "version": "1.0.0",
+                    "name": "Incident Severity",
+                    "definition": "The United States Federal Cybersecurity Centers, in coordination with departments and agencies with a cybersecurity or cyber operations mission, adopted a common schema for describing the severity of cyber incidents affecting the homeland, U.S. capabilities, or U.S. interests.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "0",
+                        "name": "Baseline",
+                        "definition": "Unsubstantiated or inconsequential event."
+                      },
+                      {
+                        "key": "1",
+                        "name": "Low",
+                        "definition": "Unlikely to impact public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                      },
+                      {
+                        "key": "2",
+                        "name": "Medium",
+                        "definition": "May impact public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                      },
+                      {
+                        "key": "3",
+                        "name": "High",
+                        "definition": "Likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                      },
+                      {
+                        "key": "4",
+                        "name": "Severe",
+                        "definition": "Likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties."
+                      },
+                      {
+                        "key": "5",
+                        "name": "Emergency",
+                        "definition": "Poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or to the lives of U.S. persons."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "0": {
+                      "key": "0",
+                      "name": "Baseline",
+                      "definition": "Unsubstantiated or inconsequential event."
+                    },
+                    "1": {
+                      "key": "1",
+                      "name": "Low",
+                      "definition": "Unlikely to impact public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                    },
+                    "2": {
+                      "key": "2",
+                      "name": "Medium",
+                      "definition": "May impact public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                    },
+                    "3": {
+                      "key": "3",
+                      "name": "High",
+                      "definition": "Likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                    },
+                    "4": {
+                      "key": "4",
+                      "name": "Severe",
+                      "definition": "Likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties."
+                    },
+                    "5": {
+                      "key": "5",
+                      "name": "Emergency",
+                      "definition": "Poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or to the lives of U.S. persons."
+                    }
+                  }
+                },
+                "2.0.0": {
+                  "version": "2.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "IS",
+                    "version": "2.0.0",
+                    "name": "Incident Severity",
+                    "definition": "After an incident is scored, it is assigned a priority level. The six levels listed below are aligned with CISA, the Department of Homeland Security (DHS), and the CISS to help provide a common lexicon when discussing incidents. This priority assignment drives CISA urgency, pre-approved incident response offerings, reporting requirements, and recommendations for leadership escalation.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "0M",
+                        "name": "Baseline - Minor",
+                        "definition": "A Baseline–Minor priority incident is an incident that is highly unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence. The potential for impact, however, exists and warrants additional scrutiny."
+                      },
+                      {
+                        "key": "0N",
+                        "name": "Baseline - Negligible",
+                        "definition": "A Baseline–Negligible priority incident is an incident that is highly unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence. The potential for impact, however, exists and warrants additional scrutiny."
+                      },
+                      {
+                        "key": "1",
+                        "name": "Low",
+                        "definition": "A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                      },
+                      {
+                        "key": "2",
+                        "name": "Medium",
+                        "definition": "A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                      },
+                      {
+                        "key": "3",
+                        "name": "High",
+                        "definition": "A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                      },
+                      {
+                        "key": "4",
+                        "name": "Severe",
+                        "definition": "A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties."
+                      },
+                      {
+                        "key": "5",
+                        "name": "Emergency",
+                        "definition": "An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or the lives of U.S. persons."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "0M": {
+                      "key": "0M",
+                      "name": "Baseline - Minor",
+                      "definition": "A Baseline–Minor priority incident is an incident that is highly unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence. The potential for impact, however, exists and warrants additional scrutiny."
+                    },
+                    "0N": {
+                      "key": "0N",
+                      "name": "Baseline - Negligible",
+                      "definition": "A Baseline–Negligible priority incident is an incident that is highly unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence. The potential for impact, however, exists and warrants additional scrutiny."
+                    },
+                    "1": {
+                      "key": "1",
+                      "name": "Low",
+                      "definition": "A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                    },
+                    "2": {
+                      "key": "2",
+                      "name": "Medium",
+                      "definition": "A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                    },
+                    "3": {
+                      "key": "3",
+                      "name": "High",
+                      "definition": "A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+                    },
+                    "4": {
+                      "key": "4",
+                      "name": "Severe",
+                      "definition": "A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties."
+                    },
+                    "5": {
+                      "key": "5",
+                      "name": "Emergency",
+                      "definition": "An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or the lives of U.S. persons."
+                    }
+                  }
+                }
+              }
+            },
+            "II": {
+              "key": "II",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "II",
+                    "version": "1.0.0",
+                    "name": "Information Impact",
+                    "definition": "Describes the type of information lost, compromised, or corrupted.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "None",
+                        "definition": "No information was exfiltrated, modified, deleted, or otherwise compromised."
+                      },
+                      {
+                        "key": "I",
+                        "name": "Integrity",
+                        "definition": "The necessary integrity of information was modified without authorization."
+                      },
+                      {
+                        "key": "P",
+                        "name": "Privacy",
+                        "definition": "The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised."
+                      },
+                      {
+                        "key": "R",
+                        "name": "Proprietary",
+                        "definition": "The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised."
+                      },
+                      {
+                        "key": "C",
+                        "name": "Classified",
+                        "definition": "The confidentiality of classified information was compromised."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "None",
+                      "definition": "No information was exfiltrated, modified, deleted, or otherwise compromised."
+                    },
+                    "I": {
+                      "key": "I",
+                      "name": "Integrity",
+                      "definition": "The necessary integrity of information was modified without authorization."
+                    },
+                    "P": {
+                      "key": "P",
+                      "name": "Privacy",
+                      "definition": "The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised."
+                    },
+                    "R": {
+                      "key": "R",
+                      "name": "Proprietary",
+                      "definition": "The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised."
+                    },
+                    "C": {
+                      "key": "C",
+                      "name": "Classified",
+                      "definition": "The confidentiality of classified information was compromised."
+                    }
+                  }
+                },
+                "2.0.0": {
+                  "version": "2.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "II",
+                    "version": "2.0.0",
+                    "name": "Information Impact",
+                    "definition": "Describes the type of information lost, compromised, or corrupted.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "No Impact",
+                        "definition": "No known data impact."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Suspected But Not Identified",
+                        "definition": "A data loss or impact to availability is suspected, but no direct confirmation exists."
+                      },
+                      {
+                        "key": "P",
+                        "name": "Privacy Data Breach",
+                        "definition": "The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised."
+                      },
+                      {
+                        "key": "R",
+                        "name": "Proprietary Information Breach",
+                        "definition": "The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised."
+                      },
+                      {
+                        "key": "D",
+                        "name": "Destruction of Non-Critical Systems",
+                        "definition": "Destructive techniques, such as master boot record (MBR) overwrite; have been used against a non-critical system."
+                      },
+                      {
+                        "key": "C",
+                        "name": "Critical Systems Data Breach",
+                        "definition": "Data pertaining to a critical system has been exfiltrated."
+                      },
+                      {
+                        "key": "O",
+                        "name": "Core Credential Compromise",
+                        "definition": "Core system credentials (such as domain or enterprise administrative credentials) or credentials for critical systems have been exfiltrated."
+                      },
+                      {
+                        "key": "E",
+                        "name": "Destruction of Critical System",
+                        "definition": "Destructive techniques, such as MBR overwrite; have been used against a critical system."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "No Impact",
+                      "definition": "No known data impact."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Suspected But Not Identified",
+                      "definition": "A data loss or impact to availability is suspected, but no direct confirmation exists."
+                    },
+                    "P": {
+                      "key": "P",
+                      "name": "Privacy Data Breach",
+                      "definition": "The confidentiality of personally identifiable information (PII) or personal health information (PHI) was compromised."
+                    },
+                    "R": {
+                      "key": "R",
+                      "name": "Proprietary Information Breach",
+                      "definition": "The confidentiality of unclassified proprietary information, such as protected critical infrastructure information (PCII), intellectual property, or trade secrets was compromised."
+                    },
+                    "D": {
+                      "key": "D",
+                      "name": "Destruction of Non-Critical Systems",
+                      "definition": "Destructive techniques, such as master boot record (MBR) overwrite; have been used against a non-critical system."
+                    },
+                    "C": {
+                      "key": "C",
+                      "name": "Critical Systems Data Breach",
+                      "definition": "Data pertaining to a critical system has been exfiltrated."
+                    },
+                    "O": {
+                      "key": "O",
+                      "name": "Core Credential Compromise",
+                      "definition": "Core system credentials (such as domain or enterprise administrative credentials) or credentials for critical systems have been exfiltrated."
+                    },
+                    "E": {
+                      "key": "E",
+                      "name": "Destruction of Critical System",
+                      "definition": "Destructive techniques, such as MBR overwrite; have been used against a critical system."
+                    }
+                  }
+                }
+              }
+            },
+            "OA": {
+              "key": "OA",
+              "versions": {
+                "0.0.1": {
+                  "version": "0.0.1",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "OA",
+                    "version": "0.0.1",
+                    "name": "Observed Activity",
+                    "definition": "Observed activity describes what is known about threat actor activity on the network.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "P",
+                        "name": "Prepare",
+                        "definition": "Prepare actions are actions taken to establish objectives, intent, and strategy; identify potential targets and attack vectors; identify resource requirements; and develop capabilities."
+                      },
+                      {
+                        "key": "E",
+                        "name": "Engage",
+                        "definition": "Engage activities are actions taken against a specific target or target set prior to gaining, but with the intent to gain access to the victim's physical or virtual computer or information systems, networks, and data stores."
+                      },
+                      {
+                        "key": "R",
+                        "name": "Presence",
+                        "definition": "Presence is the set of actions taken by the threat actor once access to the target physical or virtual computer or information system has been achieved. These actions establish and maintain conditions for the threat actor to perform intended actions or operate at will against the host physical or virtual computer or information system, network, or data stores."
+                      },
+                      {
+                        "key": "F",
+                        "name": "Effect",
+                        "definition": "Effects are outcomes of a threat actor’s actions on a victim’s physical or virtual computer or information systems, networks, and data stores."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "P": {
+                      "key": "P",
+                      "name": "Prepare",
+                      "definition": "Prepare actions are actions taken to establish objectives, intent, and strategy; identify potential targets and attack vectors; identify resource requirements; and develop capabilities."
+                    },
+                    "E": {
+                      "key": "E",
+                      "name": "Engage",
+                      "definition": "Engage activities are actions taken against a specific target or target set prior to gaining, but with the intent to gain access to the victim's physical or virtual computer or information systems, networks, and data stores."
+                    },
+                    "R": {
+                      "key": "R",
+                      "name": "Presence",
+                      "definition": "Presence is the set of actions taken by the threat actor once access to the target physical or virtual computer or information system has been achieved. These actions establish and maintain conditions for the threat actor to perform intended actions or operate at will against the host physical or virtual computer or information system, network, or data stores."
+                    },
+                    "F": {
+                      "key": "F",
+                      "name": "Effect",
+                      "definition": "Effects are outcomes of a threat actor’s actions on a victim’s physical or virtual computer or information systems, networks, and data stores."
+                    }
+                  }
+                }
+              }
+            },
+            "OAL": {
+              "key": "OAL",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "OAL",
+                    "version": "1.0.0",
+                    "name": "Observed Activity Location",
+                    "definition": "The location of observed activity describes where the observed activity was detected in the network. ",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "0",
+                        "name": "Unsuccessful",
+                        "definition": "Existing network defenses repelled all observed activity."
+                      },
+                      {
+                        "key": "1",
+                        "name": "Business Demilitarized Zone",
+                        "definition": "Activity was observed in the business network’s demilitarized zone (DMZ). These systems are generally untrusted and are designed to be exposed to the Internet."
+                      },
+                      {
+                        "key": "2",
+                        "name": "Business Network",
+                        "definition": "Activity was observed in the business or corporate network of the victim. These systems would be corporate user workstations, application servers, and other non-core management systems."
+                      },
+                      {
+                        "key": "3",
+                        "name": "Business Network Management",
+                        "definition": "Activity was observed in business network management systems such as administrative user workstations, active directory servers, or other trust stores."
+                      },
+                      {
+                        "key": "4",
+                        "name": "Critical System DMZ",
+                        "definition": "Activity was observed in the DMZ that exists between the business network and a critical system network. These systems may be internally facing services such as SharePoint sites, financial systems, or relay “jump” boxes into more critical systems."
+                      },
+                      {
+                        "key": "5",
+                        "name": "Critical System Management",
+                        "definition": "Activity was observed in high-level critical systems management such as human-machine interfaces (HMIs) in industrial control systems."
+                      },
+                      {
+                        "key": "6",
+                        "name": "Critical Systems",
+                        "definition": "Activity was observed in the critical systems that operate critical processes, such as programmable logic controllers in industrial control system environments."
+                      },
+                      {
+                        "key": "7",
+                        "name": "Safety Systems",
+                        "definition": "Activity was observed in critical safety systems that ensure the safe operation of an environment. One example of a critical safety system is a fire suppression system."
+                      },
+                      {
+                        "key": "U",
+                        "name": "Unknown",
+                        "definition": "Activity was observed, but the network segment could not be identified."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "0": {
+                      "key": "0",
+                      "name": "Unsuccessful",
+                      "definition": "Existing network defenses repelled all observed activity."
+                    },
+                    "1": {
+                      "key": "1",
+                      "name": "Business Demilitarized Zone",
+                      "definition": "Activity was observed in the business network’s demilitarized zone (DMZ). These systems are generally untrusted and are designed to be exposed to the Internet."
+                    },
+                    "2": {
+                      "key": "2",
+                      "name": "Business Network",
+                      "definition": "Activity was observed in the business or corporate network of the victim. These systems would be corporate user workstations, application servers, and other non-core management systems."
+                    },
+                    "3": {
+                      "key": "3",
+                      "name": "Business Network Management",
+                      "definition": "Activity was observed in business network management systems such as administrative user workstations, active directory servers, or other trust stores."
+                    },
+                    "4": {
+                      "key": "4",
+                      "name": "Critical System DMZ",
+                      "definition": "Activity was observed in the DMZ that exists between the business network and a critical system network. These systems may be internally facing services such as SharePoint sites, financial systems, or relay “jump” boxes into more critical systems."
+                    },
+                    "5": {
+                      "key": "5",
+                      "name": "Critical System Management",
+                      "definition": "Activity was observed in high-level critical systems management such as human-machine interfaces (HMIs) in industrial control systems."
+                    },
+                    "6": {
+                      "key": "6",
+                      "name": "Critical Systems",
+                      "definition": "Activity was observed in the critical systems that operate critical processes, such as programmable logic controllers in industrial control system environments."
+                    },
+                    "7": {
+                      "key": "7",
+                      "name": "Safety Systems",
+                      "definition": "Activity was observed in critical safety systems that ensure the safe operation of an environment. One example of a critical safety system is a fire suppression system."
+                    },
+                    "U": {
+                      "key": "U",
+                      "name": "Unknown",
+                      "definition": "Activity was observed, but the network segment could not be identified."
+                    }
+                  }
+                }
+              }
+            },
+            "RECOVERABILITY": {
+              "key": "RECOVERABILITY",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa#nciss",
+                    "key": "RECOVERABILITY",
+                    "version": "1.0.0",
+                    "name": "Recoverability",
+                    "definition": "Represents the scope of resources needed to recover from the incident.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "R",
+                        "name": "Regular",
+                        "definition": "Time to recovery is predictable with existing resources."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Supplemented",
+                        "definition": "Time to recover is predictable with additional resources."
+                      },
+                      {
+                        "key": "E",
+                        "name": "Extended",
+                        "definition": "Time to recovery is unpredictable; additional resources and outside assistance may be required."
+                      },
+                      {
+                        "key": "N",
+                        "name": "Not Recoverable",
+                        "definition": "Recovery from the incident is not possible."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "R": {
+                      "key": "R",
+                      "name": "Regular",
+                      "definition": "Time to recovery is predictable with existing resources."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Supplemented",
+                      "definition": "Time to recover is predictable with additional resources."
+                    },
+                    "E": {
+                      "key": "E",
+                      "name": "Extended",
+                      "definition": "Time to recovery is unpredictable; additional resources and outside assistance may be required."
+                    },
+                    "N": {
+                      "key": "N",
+                      "name": "Not Recoverable",
+                      "definition": "Recovery from the incident is not possible."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "cisa": {
           "namespace": "cisa",
           "keys": {
