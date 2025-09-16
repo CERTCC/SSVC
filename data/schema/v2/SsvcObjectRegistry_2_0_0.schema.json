@@ -54,10 +54,12 @@
         },
         "name": {
           "title": "Name",
+          "minLength": 1,
           "type": "string"
         },
         "definition": {
           "title": "Definition",
+          "minLength": 1,
           "type": "string"
         },
         "schemaVersion": {
@@ -106,10 +108,12 @@
         },
         "name": {
           "title": "Name",
+          "minLength": 1,
           "type": "string"
         },
         "definition": {
           "title": "Definition",
+          "minLength": 1,
           "type": "string"
         }
       },
@@ -169,10 +173,12 @@
         },
         "name": {
           "title": "Name",
+          "minLength": 1,
           "type": "string"
         },
         "definition": {
           "title": "Definition",
+          "minLength": 1,
           "type": "string"
         },
         "schemaVersion": {
@@ -348,10 +354,12 @@
   "properties": {
     "name": {
       "title": "Name",
+      "minLength": 1,
       "type": "string"
     },
     "definition": {
       "title": "Definition",
+      "minLength": 1,
       "type": "string"
     },
     "schemaVersion": {
