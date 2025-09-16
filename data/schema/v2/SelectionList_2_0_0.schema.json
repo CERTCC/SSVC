@@ -12,29 +12,13 @@
       "properties": {
         "name": {
           "title": "Name",
-          "anyOf": [
-            {
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
+          "minLength": 1,
+          "type": "string"
         },
         "definition": {
           "title": "Definition",
-          "anyOf": [
-            {
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
+          "minLength": 1,
+          "type": "string"
         },
         "key": {
           "title": "Key",
@@ -130,29 +114,13 @@
         },
         "name": {
           "title": "Name",
-          "anyOf": [
-            {
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
+          "minLength": 1,
+          "type": "string"
         },
         "definition": {
           "title": "Definition",
-          "anyOf": [
-            {
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
+          "minLength": 1,
+          "type": "string"
         },
         "values": {
           "title": "Values",

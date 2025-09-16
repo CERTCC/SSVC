@@ -116,8 +116,8 @@ class Selection(_Valued, _GenericOptionalSsvcObject, BaseModel):
 
         return cls(**data)
 
-    def model_json_schema(cls, **kwargs):
-        schema = super().model_json_schema(**kwargs)
+    def model_json_schema(cls, *args, **kwargs):
+        schema = super().model_json_schema(*args, **kwargs)
         not_required = ["name", "definition"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
@@ -309,8 +309,43 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
                         if r not in non_required_fields
                     ]
 
+        schema = strip_nullable_anyof(schema)
+
         return order_schema(schema)
 
+def strip_nullable_anyof(schema: dict) -> dict:
+    """Recursively rewrite schema to drop `anyOf` [string, null] constructs."""
+    if isinstance(schema, dict):
+        # If schema has "anyOf"
+        if "anyOf" in schema:
+            anyof: list[dict[str, Any]] = schema["anyOf"]
+            string_schema = None
+            has_null = False
+
+            for option in anyof:
+                if option.get("type") == "string":
+                    string_schema = option
+                elif option.get("type") == "null":
+                    has_null = True
+
+            # Replace with string schema if this was the pattern
+            if string_schema and has_null and len(anyof) == 2:
+                # Preserve the title if it was in the parent
+                title = schema.get("title")
+                schema = dict(string_schema)  # copy
+                if title:
+                    schema["title"] = title
+                # Drop any default:null
+                schema.pop("default", None)
+
+        # Recurse into nested dicts/lists
+        for key, value in list(schema.items()):
+            schema[key] = strip_nullable_anyof(value)
+
+    elif isinstance(schema, list):
+        return [strip_nullable_anyof(item) for item in schema]
+
+    return schema
 
 def main() -> None:
     print(
