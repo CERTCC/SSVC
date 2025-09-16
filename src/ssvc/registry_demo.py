@@ -26,7 +26,7 @@ import logging
 
 from ssvc.registry import get_registry
 from ssvc.registry.base import SsvcObjectRegistry
-from ssvc.utils.misc import order_schema
+from ssvc.utils.schema import order_schema
 
 logger = logging.getLogger(__name__)
 

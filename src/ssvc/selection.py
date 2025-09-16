@@ -34,21 +34,21 @@ from pydantic import (
 )
 
 from ssvc._mixins import (
-    _Base,
-    _GenericSsvcObject,
+    _GenericOptionalSsvcObject,
     _Keyed,
+    _OptionalBase,
     _SchemaVersioned,
     _Timestamped,
     _Valued,
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
-from ssvc.utils.misc import order_schema
+from ssvc.utils.schema import order_schema, strip_nullable_anyof
 
 SCHEMA_VERSION = "2.0.0"
 
 
-class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
+class MinimalDecisionPointValue(_Keyed, _OptionalBase, BaseModel):
     """
     A minimal representation of a decision point value.
     Intended to parallel the DecisionPointValue object, but with fewer required fields.
@@ -60,29 +60,8 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    @model_validator(mode="before")
-    def set_optional_fields(cls, data):
-        if "name" not in data:
-            data["name"] = ""
-        if "description" not in data:
-            data["definition"] = ""
 
-        return data
-
-    @model_validator(mode="after")
-    def validate_values(cls, data):
-        """
-        If name or description are empty strings, set them to None so that
-        they are not included in the JSON output when serialized using model_dump_json.
-        """
-        if not data.name:
-            data.name = None
-        if not data.definition:
-            data.definition = None
-        return data
-
-
-class Selection(_Valued, _GenericSsvcObject, BaseModel):
+class Selection(_Valued, _GenericOptionalSsvcObject, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     While the Selection object parallels the DecisionPoint object, it is intentionally minimal, with
@@ -137,24 +116,8 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
 
         return cls(**data)
 
-    @model_validator(mode="before")
-    def set_optional_fields(cls, data):
-        if "name" not in data:
-            data["name"] = ""
-        if "description" not in data:
-            data["definition"] = ""
-        return data
-
-    @model_validator(mode="after")
-    def validate_values(cls, data):
-        if not data.name:
-            data.name = None
-        if not data.definition:
-            data.definition = None
-        return data
-
-    def model_json_schema(cls, **kwargs):
-        schema = super().model_json_schema(**kwargs)
+    def model_json_schema(cls, *args, **kwargs):
+        schema = super().model_json_schema(*args, **kwargs)
         not_required = ["name", "definition"]
         if "required" in schema and isinstance(schema["required"], list):
             # remove description from required list if it exists
@@ -345,6 +308,8 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
                         for r in prop["required"]
                         if r not in non_required_fields
                     ]
+
+        schema = strip_nullable_anyof(schema)
 
         return order_schema(schema)
 

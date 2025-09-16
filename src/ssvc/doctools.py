@@ -51,7 +51,8 @@ from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.registry import get_registry
 from ssvc.registry.base import SsvcObjectRegistry, get_all
 from ssvc.selection import SelectionList
-from ssvc.utils.misc import filename_friendly, order_schema
+from ssvc.utils.misc import filename_friendly
+from ssvc.utils.schema import order_schema
 
 logger = logging.getLogger(__name__)
 

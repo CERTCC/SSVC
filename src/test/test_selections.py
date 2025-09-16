@@ -132,12 +132,16 @@ class MyTestCase(unittest.TestCase):
         self.assertIsNone(value.name)
         self.assertIsNone(value.definition)
 
-        # Test with empty strings
+        # Test with None
         value_empty = MinimalDecisionPointValue(
-            key="test_key", name="", definition=""
+            key="test_key", name=None, definition=None
         )
         self.assertIsNone(value_empty.name)
         self.assertIsNone(value_empty.definition)
+
+        # test with empty strings
+        with self.assertRaises(ValueError):
+            MinimalDecisionPointValue(key="test_key", name="", definition="")
 
     def test_selection_validators(self):
         """Test the model validators for Selection."""
@@ -152,13 +156,24 @@ class MyTestCase(unittest.TestCase):
         self.assertIsNone(selection_minimal.definition)
 
         # Test with empty strings
+        with self.assertRaises(ValueError):
+            selection_empty = selection.Selection(
+                namespace="test",
+                key="test_key",
+                version="1.0.0",
+                values=[{"key": "value1"}],
+                name="",
+                definition="",
+            )
+
+        # Test with None
         selection_empty = selection.Selection(
             namespace="test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
-            name="",
-            definition="",
+            name=None,
+            definition=None,
         )
         self.assertIsNone(selection_empty.name)
         self.assertIsNone(selection_empty.definition)

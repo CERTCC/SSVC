@@ -45,7 +45,8 @@ from ssvc.utils.defaults import (
     SCHEMA_VERSION,
 )
 from ssvc.utils.field_specs import NamespaceString, VersionString
-from ssvc.utils.misc import filename_friendly, order_schema
+from ssvc.utils.misc import filename_friendly
+from ssvc.utils.schema import order_schema
 
 
 class _Versioned(BaseModel):
@@ -268,8 +269,17 @@ class _Base(BaseModel):
     Base class for SSVC objects.
     """
 
-    name: str
-    definition: str
+    name: str = Field(min_length=1)
+    definition: str = Field(min_length=1)
+
+
+class _OptionalBase(BaseModel):
+    """
+    Base class for SSVC objects with optional name and definition.
+    """
+
+    name: Optional[str] = Field(None, min_length=1)
+    definition: Optional[str] = Field(None, min_length=1)
 
 
 class _KeyedBaseModel(_Base, _Keyed, BaseModel):
@@ -279,6 +289,17 @@ class _KeyedBaseModel(_Base, _Keyed, BaseModel):
 class _GenericSsvcObject(_Base, _Versioned, _Keyed, _Namespaced, BaseModel):
     """
     Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned.
+    """
+
+    pass
+
+
+class _GenericOptionalSsvcObject(
+    _OptionalBase, _Versioned, _Keyed, _Namespaced, BaseModel
+):
+    """
+    Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned,
+    with optional name and definition.
     """
 
     pass
