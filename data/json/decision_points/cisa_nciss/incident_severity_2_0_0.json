@@ -1,0 +1,45 @@
+{
+  "namespace": "cisa#nciss",
+  "key": "IS",
+  "version": "2.0.0",
+  "name": "Incident Severity",
+  "definition": "After an incident is scored, it is assigned a priority level. The six levels listed below are aligned with CISA, the Department of Homeland Security (DHS), and the CISS to help provide a common lexicon when discussing incidents. This priority assignment drives CISA urgency, pre-approved incident response offerings, reporting requirements, and recommendations for leadership escalation.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "0M",
+      "name": "Baseline - Minor",
+      "definition": "A Baseline–Minor priority incident is an incident that is highly unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence. The potential for impact, however, exists and warrants additional scrutiny."
+    },
+    {
+      "key": "0N",
+      "name": "Baseline - Negligible",
+      "definition": "A Baseline–Negligible priority incident is an incident that is highly unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence. The potential for impact, however, exists and warrants additional scrutiny."
+    },
+    {
+      "key": "1",
+      "name": "Low",
+      "definition": "A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+    },
+    {
+      "key": "2",
+      "name": "Medium",
+      "definition": "A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+    },
+    {
+      "key": "3",
+      "name": "High",
+      "definition": "A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence."
+    },
+    {
+      "key": "4",
+      "name": "Severe",
+      "definition": "A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties."
+    },
+    {
+      "key": "5",
+      "name": "Emergency",
+      "definition": "An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or the lives of U.S. persons."
+    }
+  ]
+}

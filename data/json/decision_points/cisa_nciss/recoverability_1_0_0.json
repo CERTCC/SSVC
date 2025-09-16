@@ -1,0 +1,30 @@
+{
+  "namespace": "cisa#nciss",
+  "key": "RECOVERABILITY",
+  "version": "1.0.0",
+  "name": "Recoverability",
+  "definition": "Represents the scope of resources needed to recover from the incident.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "R",
+      "name": "Regular",
+      "definition": "Time to recovery is predictable with existing resources."
+    },
+    {
+      "key": "S",
+      "name": "Supplemented",
+      "definition": "Time to recover is predictable with additional resources."
+    },
+    {
+      "key": "E",
+      "name": "Extended",
+      "definition": "Time to recovery is unpredictable; additional resources and outside assistance may be required."
+    },
+    {
+      "key": "N",
+      "name": "Not Recoverable",
+      "definition": "Recovery from the incident is not possible."
+    }
+  ]
+}
