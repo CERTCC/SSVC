@@ -22,30 +22,21 @@ Provides example decision point for weather forecast
 #  DM24-0278
 
 from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.example.base import ExampleDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
-from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
 SUNNY = DecisionPointValue(
-    name="Sunny",
-    key="S",
-    definition="Weather is sunny."
+    name="Sunny", key="S", definition="Weather is sunny."
 )
 
 OVERCAST = DecisionPointValue(
-    name="Overcast",
-    key="O",
-    definition="Weather is overcast."
+    name="Overcast", key="O", definition="Weather is overcast."
 )
 
-RAIN = DecisionPointValue(
-    name="Rain",
-    key="R",
-    definition="Weather is rainy."
-)
+RAIN = DecisionPointValue(name="Rain", key="R", definition="Weather is rainy.")
 
-WEATHER_FORECAST_1 = SsvcDecisionPoint(
+WEATHER_FORECAST_1 = ExampleDecisionPoint(
     name="Weather Forecast",
-    namespace="x_example.test#forecast",
     definition="Weather is the forecast that describes general weather patterns ",
     key="W",
     version="1.0.0",
