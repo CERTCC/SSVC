@@ -25,39 +25,6 @@ Provides miscellaneous utility functions for SSVC.
 import re
 import secrets
 
-from ssvc.utils.defaults import SCHEMA_ORDER
-
-
-def reorder_title_first(obj):
-    if isinstance(obj, dict):
-        if "title" in obj:
-            reordered = {"title": obj["title"]}
-            for k, v in obj.items():
-                if k != "title":
-                    reordered[k] = reorder_title_first(v)
-            return reordered
-        else:
-            return {k: reorder_title_first(v) for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [reorder_title_first(item) for item in obj]
-    else:
-        return obj
-
-
-def order_schema(schema: dict) -> dict:
-    # create a new dict with the preferred order of fields first
-    ordered_schema = {k: schema[k] for k in (SCHEMA_ORDER) if k in schema}
-
-    # add the rest of the fields in their original order
-    other_keys = [k for k in schema if k not in ordered_schema]
-    for k in other_keys:
-        ordered_schema[k] = schema[k]
-
-    # recursively move "title" to the front of any nested objects
-    ordered_schema = reorder_title_first(ordered_schema)
-
-    return ordered_schema
-
 
 def obfuscate_dict(data: dict) -> tuple[dict, dict]:
     """Given a dictionary, obfuscate its keys by replacing them with random strings.
@@ -118,36 +85,3 @@ def filename_friendly(name: str, replacement="_", to_lower=True) -> str:
     return name
 
 
-def strip_nullable_anyof(schema: dict) -> dict:
-    """Recursively rewrite schema to drop `anyOf` [string, null] constructs."""
-    if isinstance(schema, dict):
-        # If schema has "anyOf"
-        if "anyOf" in schema:
-            anyof: list[dict[str, Any]] = schema["anyOf"]
-            string_schema = None
-            has_null = False
-
-            for option in anyof:
-                if option.get("type") == "string":
-                    string_schema = option
-                elif option.get("type") == "null":
-                    has_null = True
-
-            # Replace with string schema if this was the pattern
-            if string_schema and has_null and len(anyof) == 2:
-                # Preserve the title if it was in the parent
-                title = schema.get("title")
-                schema = dict(string_schema)  # copy
-                if title:
-                    schema["title"] = title
-                # Drop any default:null
-                schema.pop("default", None)
-
-        # Recurse into nested dicts/lists
-        for key, value in list(schema.items()):
-            schema[key] = strip_nullable_anyof(value)
-
-    elif isinstance(schema, list):
-        return [strip_nullable_anyof(item) for item in schema]
-
-    return schema

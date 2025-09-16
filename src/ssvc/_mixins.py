@@ -46,7 +46,8 @@ from ssvc.utils.defaults import (
     SCHEMA_VERSION,
 )
 from ssvc.utils.field_specs import NamespaceString, VersionString
-from ssvc.utils.misc import filename_friendly, order_schema
+from ssvc.utils.misc import filename_friendly
+from ssvc.utils.schema import order_schema
 
 
 class _Versioned(BaseModel):

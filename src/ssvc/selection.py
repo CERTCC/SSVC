@@ -43,7 +43,7 @@ from ssvc._mixins import (
 )
 from ssvc.decision_points.base import DecisionPoint
 from ssvc.utils.field_specs import TargetIdList, VersionString
-from ssvc.utils.misc import order_schema, strip_nullable_anyof
+from ssvc.utils.schema import order_schema, strip_nullable_anyof
 
 SCHEMA_VERSION = "2.0.0"
 
