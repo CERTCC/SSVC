@@ -1,0 +1,25 @@
+{
+  "namespace": "basic",
+  "key": "BP",
+  "version": "1.0.0",
+  "name": "Boundary Proximity",
+  "definition": "Indicates whether another value is near a boundary condition, indicating that special consideration may be needed.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "NN",
+      "name": "Not Near Boundary",
+      "definition": "The value is not near a boundary condition"
+    },
+    {
+      "key": "JA",
+      "name": "Just Above Boundary",
+      "definition": "The value is just above a boundary condition"
+    },
+    {
+      "key": "JB",
+      "name": "Just Below Boundary",
+      "definition": "The value is just below a boundary condition"
+    }
+  ]
+}

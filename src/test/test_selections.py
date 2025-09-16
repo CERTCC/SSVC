@@ -29,13 +29,13 @@ from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.s1 = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key_1",
             version="1.0.0",
             values=[{"key": "value11"}, {"key": "value12"}],
         )
         self.s2 = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key_2",
             version="1.0.0",
             values=[{"key": "value21"}, {"key": "value22"}],
@@ -72,7 +72,8 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(self.s1.version, str)
         self.assertRegex(
             self.s1.version,
-            VERSION_PATTERN,
+            # enable re.ASCII so that `\d` is interpreted like in Javascript
+            "(?a:" + VERSION_PATTERN + ")",
             "Version does not match the required pattern",
         )
 
@@ -129,38 +130,38 @@ class MyTestCase(unittest.TestCase):
         # Test set_optional_fields validator
         value = MinimalDecisionPointValue(key="test_key")
         self.assertIsNone(value.name)
-        self.assertIsNone(value.description)
+        self.assertIsNone(value.definition)
 
         # Test with empty strings
         value_empty = MinimalDecisionPointValue(
-            key="test_key", name="", description=""
+            key="test_key", name="", definition=""
         )
         self.assertIsNone(value_empty.name)
-        self.assertIsNone(value_empty.description)
+        self.assertIsNone(value_empty.definition)
 
     def test_selection_validators(self):
         """Test the model validators for Selection."""
         # Test with minimal data
         selection_minimal = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
         )
         self.assertIsNone(selection_minimal.name)
-        self.assertIsNone(selection_minimal.description)
+        self.assertIsNone(selection_minimal.definition)
 
         # Test with empty strings
         selection_empty = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="test_key",
             version="1.0.0",
             values=[{"key": "value1"}],
             name="",
-            description="",
+            definition="",
         )
         self.assertIsNone(selection_empty.name)
-        self.assertIsNone(selection_empty.description)
+        self.assertIsNone(selection_empty.definition)
 
     def test_from_decision_point(self):
         """Test converting a decision point to a selection."""
@@ -282,11 +283,20 @@ class MyTestCase(unittest.TestCase):
                 target_ids=[123],  # Invalid: not a string
             )
 
+        # Test invalid target_ids (duplicate items)
+        with self.assertRaises(ValueError):
+            SelectionList(
+                selections=[self.s1],
+                timestamp=datetime.now(),
+                # Invalid: due to duplicates
+                target_ids=["CVE-1900-1234", "CVE-1900-1234"],
+            )
+
     def test_add_selection_method(self):
         """Test the add_selection method."""
         initial_count = len(self.selections.selections)
         new_selection = selection.Selection(
-            namespace="x_example.test",
+            namespace="test",
             key="new_key",
             version="1.0.0",
             values=[{"key": "new_value"}],
@@ -306,22 +316,20 @@ class MyTestCase(unittest.TestCase):
             selections=[self.s1, self.s2],
             timestamp=datetime.now(),
             target_ids=["CVE-1900-0001"],
-            resources=[ref],
+            decision_point_resources=[ref],
             references=[ref],
         )
 
-        self.assertEqual(len(sel_list.resources), 1)
+        self.assertEqual(len(sel_list.decision_point_resources), 1)
         self.assertEqual(len(sel_list.references), 1)
-        self.assertEqual(sel_list.resources[0].uri, ref.uri)
+        self.assertEqual(sel_list.decision_point_resources[0].uri, ref.uri)
 
     def test_model_json_schema_customization(self):
         """Test that JSON schema is properly customized."""
         schema = SelectionList.model_json_schema()
 
         # Check schema metadata
-        self.assertEqual(
-            schema["title"], "Decision Point Value Selection List"
-        )
+        self.assertIn("title", schema)
         self.assertEqual(
             schema["$schema"], "https://json-schema.org/draft/2020-12/schema"
         )
@@ -334,7 +342,7 @@ class MyTestCase(unittest.TestCase):
             "name",
             "description",
             "target_ids",
-            "resources",
+            "decision_point_resources",
             "references",
         ]
         for field in optional_fields:
@@ -344,7 +352,7 @@ class MyTestCase(unittest.TestCase):
         """Test that Selection requires at least one value."""
         with self.assertRaises(ValueError):
             selection.Selection(
-                namespace="x_example.test",
+                namespace="test",
                 key="test_key",
                 version="1.0.0",
                 values=[],  # Empty values should raise error

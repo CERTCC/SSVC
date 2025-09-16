@@ -19,7 +19,7 @@
 
 import unittest
 
-from ssvc.namespaces import NameSpace
+from ssvc.namespaces import NameSpace, RESERVED_NS
 from ssvc.utils.patterns import NS_PATTERN
 
 
@@ -31,13 +31,11 @@ class MyTestCase(unittest.TestCase):
         pass
 
     def test_ns_pattern(self):
+
         should_match = [
-            "foo",
-            "foo.bar",
-            "foo.bar.baz",
-            "foo/jp-JP/bar.baz/quux",
-            "foo//bar/baz/quux",
-            "foo.bar//baz.quux",
+            "foo.bar#baz",
+            "foo.bar.baz#quux",
+            "foo.bar#baz/jp-JP/.bar.baz#foo/quux",
         ]
         should_match.extend([f"x_{ns}" for ns in should_match])
 
@@ -58,9 +56,20 @@ class MyTestCase(unittest.TestCase):
 
         should_not_match.extend([f"_{ns}" for ns in should_not_match])
 
+        # tests to ensure that the pattern is anchored on both ends
+        should_not_match.extend(["=" + should_match[0], should_match[0] + "="])
+
+        failures = []
         for ns in should_not_match:
             with self.subTest(ns=ns):
-                self.assertFalse(NS_PATTERN.match(ns))
+                # re.search() to catch if NS_PATTERN is not anchored at start
+                match = NS_PATTERN.search(ns)
+                if match:
+                    failures.append(
+                        f"Unexpected match for '{ns}': {match.group(0)}"
+                    )
+        if failures:
+            self.fail("\n".join(failures))
 
     def test_namspace_enum(self):
         for ns in NameSpace:
@@ -79,7 +88,19 @@ class MyTestCase(unittest.TestCase):
             with self.assertRaises(ValueError):
                 NameSpace.validate(ns)
 
-        for ns in ["x_foo", "x_bar", "x_baz", "x_quux"]:
+        for ns in RESERVED_NS:
+            with self.assertRaises(ValueError):
+                NameSpace.validate(ns)
+
+        for ns in [
+            "x_example.test#test",
+            "x_example.test#foo",
+            "x_example.test#bar",
+            "x_example.test#baz",
+            "x_example.test#quux",
+            "ssvc",
+            "ssvc#test",
+        ]:
             self.assertEqual(ns, NameSpace.validate(ns))
 
 

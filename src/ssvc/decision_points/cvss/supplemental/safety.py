@@ -30,18 +30,18 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 PRESENT = DecisionPointValue(
     name="Present",
     key="P",
-    description="Consequences of the vulnerability meet definition of IEC 61508 consequence categories of "
+    definition="Consequences of the vulnerability meet definition of IEC 61508 consequence categories of "
     '"marginal," "critical," or "catastrophic."',
 )
 NEGLIGIBLE = DecisionPointValue(
     name="Negligible",
     key="N",
-    description="Consequences of the vulnerability meet definition of IEC 61508 consequence category "
+    definition="Consequences of the vulnerability meet definition of IEC 61508 consequence category "
     '"negligible."',
 )
 SAFETY_1 = CvssDecisionPoint(
     name="Safety",
-    description="The Safety decision point is a measure of the potential for harm to humans or the environment.",
+    definition="The Safety decision point is a measure of the potential for harm to humans or the environment.",
     key="SF",
     version="1.0.0",
     values=(

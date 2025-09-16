@@ -3,28 +3,28 @@
   "key": "R",
   "version": "1.0.0",
   "name": "Recovery",
-  "description": "The Recovery metric describes the resilience of a system to recover services, in terms of performance and availability, after an attack has been performed.",
+  "definition": "The Recovery metric describes the resilience of a system to recover services, in terms of performance and availability, after an attack has been performed.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     },
     {
       "key": "A",
       "name": "Automatic",
-      "description": "The system recovers services automatically after an attack has been performed."
+      "definition": "The system recovers services automatically after an attack has been performed."
     },
     {
       "key": "U",
       "name": "User",
-      "description": "The system requires manual intervention by the user to recover services, after an attack has been performed."
+      "definition": "The system requires manual intervention by the user to recover services, after an attack has been performed."
     },
     {
       "key": "I",
       "name": "Irrecoverable",
-      "description": "The system services are irrecoverable by the user, after an attack has been performed."
+      "definition": "The system services are irrecoverable by the user, after an attack has been performed."
     }
   ]
 }

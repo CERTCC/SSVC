@@ -41,7 +41,7 @@ from ssvc.dp_groups.base import DecisionPointGroup
 
 COORDINATOR_TRIAGE_1 = DecisionPointGroup(
     name="Coordinator Triage",
-    description="The decision points used by the coordinator during triage.",
+    definition="The decision points used by the coordinator during triage.",
     version="1.0.0",
     decision_points=(
         REPORT_PUBLIC_1,

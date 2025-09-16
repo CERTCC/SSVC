@@ -28,7 +28,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="The attacker is authorized with (i.e. requires) privileges that provide significant (e.g. "
+    definition="The attacker is authorized with (i.e. requires) privileges that provide significant (e.g. "
     "administrative) control over the vulnerable component that could affect component-wide settings and "
     "files.",
 )
@@ -36,7 +36,7 @@ _HIGH = DecisionPointValue(
 _LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="The attacker is authorized with (i.e. requires) privileges that provide basic user capabilities that "
+    definition="The attacker is authorized with (i.e. requires) privileges that provide basic user capabilities that "
     "could normally affect only settings and files owned by a user. Alternatively, an attacker with Low "
     "privileges may have the ability to cause an impact only to non-sensitive resources.",
 )
@@ -44,7 +44,7 @@ _LOW = DecisionPointValue(
 _PR_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="The attacker is unauthorized prior to attack, and therefore does not require any access to settings "
+    definition="The attacker is unauthorized prior to attack, and therefore does not require any access to settings "
     "or files to carry out an attack.",
 )
 
@@ -53,7 +53,7 @@ _PR_NONE = DecisionPointValue(
 # therefore High < Low < None
 PRIVILEGES_REQUIRED_1 = CvssDecisionPoint(
     name="Privileges Required",
-    description="This metric describes the level of privileges an attacker must possess before successfully "
+    definition="This metric describes the level of privileges an attacker must possess before successfully "
     "exploiting the vulnerability.",
     key="PR",
     version="1.0.0",
@@ -71,14 +71,14 @@ Defines None, Low, and High values for CVSS Privileges Required.
 _PR_NONE_2 = DecisionPointValue(
     name="None",
     key="N",
-    description="The attacker is unauthorized prior to attack, and therefore does not require any access to settings "
+    definition="The attacker is unauthorized prior to attack, and therefore does not require any access to settings "
     "or files to carry out an attack.",
 )
 
 _LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
-    description="The attacker is authorized with (i.e., requires) privileges that provide basic capabilities that "
+    definition="The attacker is authorized with (i.e., requires) privileges that provide basic capabilities that "
     "are typically limited to settings and resources owned by a single low-privileged user. Alternatively, "
     "an attacker with Low privileges has the ability to access only non-sensitive resources.",
 )
@@ -86,14 +86,14 @@ _LOW_2 = DecisionPointValue(
 _HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
-    description="The attacker is authorized with (i.e., requires) privileges that provide significant (e.g., "
+    definition="The attacker is authorized with (i.e., requires) privileges that provide significant (e.g., "
     "administrative) control over the vulnerable system allowing full access to the vulnerable system’s "
     "settings and files.",
 )
 
 PRIVILEGES_REQUIRED_1_0_1 = CvssDecisionPoint(
     name="Privileges Required",
-    description="This metric describes the level of privileges an attacker must possess prior to successfully "
+    definition="This metric describes the level of privileges an attacker must possess prior to successfully "
     "exploiting the vulnerability. The method by which the attacker obtains privileged credentials "
     "prior to the attack (e.g., free trial accounts), is outside the scope of this metric. Generally, "
     "self-service provisioned accounts do not constitute a privilege requirement if the attacker can "

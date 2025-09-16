@@ -1,0 +1,35 @@
+{
+  "namespace": "basic",
+  "key": "QUINTILES",
+  "version": "1.0.0",
+  "name": "Quintiles",
+  "definition": "A quintile is one of five equal groups that a population can be divided into according to the distribution of values of a particular variable.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "Q1",
+      "name": "First Quintile",
+      "definition": "Quantile < 0.20. The lowest 20% of the range of possible values."
+    },
+    {
+      "key": "Q2",
+      "name": "Second Quintile",
+      "definition": "0.20 <= Quantile < 0.40. The second lowest 20% of the range of possible values."
+    },
+    {
+      "key": "Q3",
+      "name": "Third Quintile",
+      "definition": "0.40 <= Quantile < 0.60. The middle 20% of the range of possible values."
+    },
+    {
+      "key": "Q4",
+      "name": "Fourth Quintile",
+      "definition": "0.60 <= Quantile < 0.80. The second highest 20% of the range of possible values."
+    },
+    {
+      "key": "Q5",
+      "name": "Fifth Quintile",
+      "definition": "0.80 <= Quantile <= 1.0. The highest 20% of the range of possible values."
+    }
+  ]
+}

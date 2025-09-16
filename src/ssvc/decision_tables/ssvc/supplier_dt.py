@@ -44,7 +44,7 @@ SUPPLIER_1 = DecisionTable(
     key="SP",
     version="1.0.0",
     name="Supplier Patch Development Priority",
-    description="Decision table for evaluating supplier patch development priority in SSVC",
+    definition="Decision table for evaluating supplier patch development priority in SSVC",
     decision_points={
         dp.id: dp
         for dp in [

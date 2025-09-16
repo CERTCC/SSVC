@@ -32,18 +32,18 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 ONE = DecisionPointValue(
     name="Low",
     key="L",
-    description="1: not (AC:L and AT:N)",
+    definition="1: not (AC:L and AT:N)",
 )
 ZERO = DecisionPointValue(
     name="High",
     key="H",
-    description="0: AC:L and AT:N",
+    definition="0: AC:L and AT:N",
 )
 
 EQ2 = CvssDecisionPoint(
     name="Equivalence Set 2",
     key="EQ2",
-    description="AC/AT with 2 levels specified in Table 25",
+    definition="AC/AT with 2 levels specified in Table 25",
     version="1.0.0",
     values=(
         ONE,

@@ -90,7 +90,7 @@ class DecisionTable(
     """
 
     key_prefix: ClassVar[str] = "DT"
-
+    _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION]
 
     decision_points: DecisionPointDict
@@ -120,19 +120,6 @@ class DecisionTable(
         # prepend the key prefix if it is not already present
         key = f"{cls.key_prefix}_{value}"
         return key
-
-    # validator to set schemaVersion
-    @model_validator(mode="before")
-    def set_schema_version(cls, data):
-        """
-        Set the schema version to 2.0.0 if it is not already set.
-        This ensures that the model is always compatible with the latest schema version.
-        """
-        # we don't set this as a default because we want to ensure that the schema
-        # version is required in the JSON schema
-        if "schemaVersion" not in data:
-            data["schemaVersion"] = SCHEMA_VERSION
-        return data
 
     @model_validator(mode="after")
     def populate_mapping_if_empty(self):
@@ -715,69 +702,7 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
         df, target=target, target_value_order=target_value_order
     )
 
-
-def main() -> None:
-    from ssvc.dp_groups.ssvc.coordinator_publication import LATEST as dpg
-    from ssvc.outcomes.basic.mscw import LATEST as outcomes
-    import os
-    import json
-
-    rootlogger = logging.getLogger()
-    rootlogger.setLevel(logging.DEBUG)
-    hdlr = logging.StreamHandler()
-    rootlogger.addHandler(hdlr)
-
-    dpg.add(outcomes)
-
-    table = DecisionTable(
-        name="Test Table",
-        description="A test decision table",
-        namespace="x_test",
-        decision_points=dpg.decision_points,
-        outcome=outcomes.id,
-    )
-
-    csv_str = decision_table_to_csv(table, index=False)
-    print("## Shortform CSV representation of the decision table:")
-    print()
-    print("```csv")
-    print(csv_str)
-    print("```")
-
-    converted_df = decision_table_to_longform_df(table)
-    print("## Longform DataFrame representation of the decision table:")
-    print()
-    print("```csv")
-    print(converted_df.to_csv(index=True, index_label="row"))
-    print("```")
-
-    print(feature_importance(table))
-    print(interpret_feature_importance(table))
-    print(check_topological_order(table))
-
-    print("## JSON representation of the decision table:")
-    print()
-    print("```json")
-    print(table.model_dump_json(indent=2))
-    print("```")
-
-    print("## Obfuscated JSON representation of the decision table:")
-    obfuscated = table.obfuscate()
-    print(obfuscated.model_dump_json(indent=2))
-
-    # write json schema to file
-    file_loc = os.path.dirname(__file__)
-
-    schemafile = "../../../data/schema/v2/Decision_Table-2-0-0.schema.json"
-    schemafile = os.path.abspath(os.path.join(file_loc, schemafile))
-    print("Writing JSON schema to file:", schemafile)
-
-    if not os.path.exists(os.path.dirname(schemafile)):
-        os.makedirs(os.path.dirname(schemafile))
-
-    with open(schemafile, "w") as f:
-        json.dump(DecisionTable.model_json_schema(), f, indent=2)
-
-
-if __name__ == "__main__":
-    main()
+def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
+    """ Function moved to helpers.py see there for details """
+    from . import helpers
+    return helpers.ascii_tree(dt, df)

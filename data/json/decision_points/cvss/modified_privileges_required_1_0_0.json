@@ -3,28 +3,28 @@
   "key": "MPR",
   "version": "1.0.0",
   "name": "Modified Privileges Required",
-  "description": "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.",
+  "definition": "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "H",
       "name": "High",
-      "description": "The attacker is authorized with (i.e. requires) privileges that provide significant (e.g. administrative) control over the vulnerable component that could affect component-wide settings and files."
+      "definition": "The attacker is authorized with (i.e. requires) privileges that provide significant (e.g. administrative) control over the vulnerable component that could affect component-wide settings and files."
     },
     {
       "key": "L",
       "name": "Low",
-      "description": "The attacker is authorized with (i.e. requires) privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges may have the ability to cause an impact only to non-sensitive resources."
+      "definition": "The attacker is authorized with (i.e. requires) privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges may have the ability to cause an impact only to non-sensitive resources."
     },
     {
       "key": "N",
       "name": "None",
-      "description": "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files to carry out an attack."
+      "definition": "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files to carry out an attack."
     },
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

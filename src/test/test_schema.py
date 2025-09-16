@@ -27,15 +27,6 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 import ssvc.decision_points  # noqa F401
-
-# importing these causes the decision points to register themselves
-from ssvc.decision_points.ssvc.critical_software import (
-    CRITICAL_SOFTWARE_1,
-)  # noqa
-from ssvc.decision_points.ssvc.high_value_asset import (
-    HIGH_VALUE_ASSET_1,
-)  # noqa
-
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 from ssvc.registry import get_registry
@@ -90,7 +81,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_decision_point_validation(self):
         schema_path = os.path.join(
-            self.schema_dir, "Decision_Point-2-0-0.schema.json"
+            self.schema_dir, "DecisionPoint_2_0_0.schema.json"
         )
         schema_path = os.path.abspath(schema_path)
 
@@ -118,7 +109,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_decision_point_group_validation(self):
         schema_path = os.path.join(
-            self.schema_dir, "Decision_Point_Group-2-0-0.schema.json"
+            self.schema_dir, "DecisionPointGroup_2_0_0.schema.json"
         )
         schema_path = os.path.abspath(schema_path)
 

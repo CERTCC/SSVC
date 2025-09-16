@@ -40,7 +40,7 @@ def get_registry() -> "SsvcObjectRegistry":
     if _REGISTRY is None:
         _REGISTRY = SsvcObjectRegistry(
             name="SSVC Object Registry",
-            description="A registry for SSVC objects organized by type, namespace, key, and version.",
+            definition="A registry for SSVC objects organized by type, namespace, key, and version.",
         )
 
     return _REGISTRY

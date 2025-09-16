@@ -28,7 +28,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _AT_NONE = DecisionPointValue(
     name="None",
     key="N",
-    description="The successful attack does not depend on the deployment and execution conditions of the vulnerable "
+    definition="The successful attack does not depend on the deployment and execution conditions of the vulnerable "
     "system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or "
     "most instances of the vulnerability.",
 )
@@ -37,7 +37,7 @@ _AT_NONE = DecisionPointValue(
 _PRESENT = DecisionPointValue(
     name="Present",
     key="P",
-    description="The successful attack depends on the presence of specific deployment and execution conditions of "
+    definition="The successful attack depends on the presence of specific deployment and execution conditions of "
     "the vulnerable system that enable the attack.",
 )
 
@@ -45,7 +45,7 @@ ATTACK_REQUIREMENTS_1 = CvssDecisionPoint(
     name="Attack Requirements",
     key="AT",
     version="1.0.0",
-    description="This metric captures the prerequisite deployment and execution conditions or variables of the "
+    definition="This metric captures the prerequisite deployment and execution conditions or variables of the "
     "vulnerable system that enable the attack.",
     values=(
         _PRESENT,

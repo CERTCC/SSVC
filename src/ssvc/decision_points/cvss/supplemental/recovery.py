@@ -29,22 +29,22 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 AUTOMATIC = DecisionPointValue(
     name="Automatic",
     key="A",
-    description="The system recovers services automatically after an attack has been performed.",
+    definition="The system recovers services automatically after an attack has been performed.",
 )
 USER = DecisionPointValue(
     name="User",
     key="U",
-    description="The system requires manual intervention by the user to recover services, after an attack has "
+    definition="The system requires manual intervention by the user to recover services, after an attack has "
     "been performed.",
 )
 IRRECOVERABLE = DecisionPointValue(
     name="Irrecoverable",
     key="I",
-    description="The system services are irrecoverable by the user, after an attack has been performed.",
+    definition="The system services are irrecoverable by the user, after an attack has been performed.",
 )
 RECOVERY_1 = CvssDecisionPoint(
     name="Recovery",
-    description="The Recovery metric describes the resilience of a system to recover services, in terms of performance "
+    definition="The Recovery metric describes the resilience of a system to recover services, in terms of performance "
     "and availability, after an attack has been performed.",
     key="R",
     version="1.0.0",

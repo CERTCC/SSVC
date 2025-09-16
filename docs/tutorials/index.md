@@ -12,10 +12,10 @@ For technical reference, including a list of decision points, see [Reference](..
 !!! info "SSVC in a Nutshell"
 
     SSVC is built around the concept of a **Decision Model** that takes a set of input **Decision Points** and
-    applies a **Policy** to produce a set of output **Outcomes**.
+    applies a **Decision Table** to produce a set of output **Outcomes**.
     The **Decision Points** are the factors that influence the decision, and the **Outcomes** are the possible results of the decision.
     Both **Decision Points** and **Outcomes** are defined as ordered sets of enumerated values.
-    The **Policy** is a mapping from each combination of decision point values to the set of outcome values.
+    The **Decision Table** is a mapping from each combination of decision point values to the set of outcome values.
     One of SSVC's goals is to provide a methodology to develop risk-informed guidance at a human scale, while enabling
     data-driven decision-making.
 
@@ -24,6 +24,11 @@ For technical reference, including a list of decision points, see [Reference](..
     We've created a simple [SSVC Calculator](../ssvc-calc/index.md) to help you understand how SSVC decision models work.
     The decisions modeled in the calculator are based on the [Supplier](../howto/supplier_tree.md),
     [Deployer](../howto/deployer_tree.md), and [Coordinator](../howto/coordination_intro.md) decision models.
+
+!!! tip "SSVC Policy Explorer"
+
+    Ready to explore analyzing SSVC policies and writing your own policy? [SSVC Policy Explorer](../ssvc-explorer/index.md) to help you understand how SSVC decision models can be developed, organized in an interactive way.
+    The decisions modeled in the policy explorer also use the SSVC Registry. 
 
 SSVC can be used in conjunction with other tools and methodologies to help prioritize vulnerability response.
 

@@ -360,7 +360,7 @@ def main():
 
     dpg = DecisionPointGroup(
         name="Dummy Decision Point Group",
-        description="Dummy decision point group",
+        definition="Dummy decision point group",
         version="1.0.0",
         decision_points=(
             EXPLOITATION_1,

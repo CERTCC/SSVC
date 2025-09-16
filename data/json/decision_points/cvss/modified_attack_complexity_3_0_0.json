@@ -3,23 +3,23 @@
   "key": "MAC",
   "version": "3.0.0",
   "name": "Modified Attack Complexity",
-  "description": "This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.",
+  "definition": "This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "H",
       "name": "High",
-      "description": "A successful attack depends on conditions beyond the attacker's control."
+      "definition": "A successful attack depends on conditions beyond the attacker's control."
     },
     {
       "key": "L",
       "name": "Low",
-      "description": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
+      "definition": "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success against the vulnerable component."
     },
     {
       "key": "X",
       "name": "Not Defined",
-      "description": "This metric value is not defined. See CVSS documentation for details."
+      "definition": "This metric value is not defined. See CVSS documentation for details."
     }
   ]
 }

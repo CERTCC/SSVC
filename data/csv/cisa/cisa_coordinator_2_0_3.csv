@@ -1,0 +1,37 @@
+row,Exploitation v1.1.0,Automatable v2.0.0,Technical Impact v1.0.0,Mission and Well-Being Impact v1.0.0,CISA Levels v1.1.0 (cisa)
+0,none,no,partial,low,track
+1,none,no,partial,medium,track
+2,none,no,partial,high,track
+3,none,no,total,low,track
+4,none,no,total,medium,track
+5,none,no,total,high,track*
+6,none,yes,partial,low,track
+7,none,yes,partial,medium,track
+8,none,yes,partial,high,attend
+9,none,yes,total,low,track
+10,none,yes,total,medium,track
+11,none,yes,total,high,attend
+12,public poc,no,partial,low,track
+13,public poc,no,partial,medium,track
+14,public poc,no,partial,high,track*
+15,public poc,no,total,low,track
+16,public poc,no,total,medium,track*
+17,public poc,no,total,high,attend
+18,public poc,yes,partial,low,track
+19,public poc,yes,partial,medium,track
+20,public poc,yes,partial,high,attend
+21,public poc,yes,total,low,track
+22,public poc,yes,total,medium,track*
+23,public poc,yes,total,high,attend
+24,active,no,partial,low,track
+25,active,no,partial,medium,track
+26,active,no,partial,high,attend
+27,active,no,total,low,track
+28,active,no,total,medium,attend
+29,active,no,total,high,act
+30,active,yes,partial,low,attend
+31,active,yes,partial,medium,attend
+32,active,yes,partial,high,act
+33,active,yes,total,low,attend
+34,active,yes,total,medium,act
+35,active,yes,total,high,act

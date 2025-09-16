@@ -1,0 +1,28 @@
+row,Supplier Involvement v1.0.0,Exploitation v1.1.0,Public Value Added v1.0.0,"Publish, Do Not Publish v1.0.0"
+0,fix ready,none,limited,do not publish
+1,cooperative,none,limited,do not publish
+2,fix ready,public poc,limited,do not publish
+3,fix ready,none,ampliative,do not publish
+4,uncooperative/unresponsive,none,limited,do not publish
+5,cooperative,public poc,limited,do not publish
+6,fix ready,active,limited,do not publish
+7,cooperative,none,ampliative,do not publish
+8,fix ready,public poc,ampliative,do not publish
+9,fix ready,none,precedence,publish
+10,uncooperative/unresponsive,public poc,limited,do not publish
+11,cooperative,active,limited,do not publish
+12,uncooperative/unresponsive,none,ampliative,do not publish
+13,cooperative,public poc,ampliative,do not publish
+14,fix ready,active,ampliative,publish
+15,cooperative,none,precedence,publish
+16,fix ready,public poc,precedence,publish
+17,uncooperative/unresponsive,active,limited,publish
+18,uncooperative/unresponsive,public poc,ampliative,publish
+19,cooperative,active,ampliative,publish
+20,uncooperative/unresponsive,none,precedence,publish
+21,cooperative,public poc,precedence,publish
+22,fix ready,active,precedence,publish
+23,uncooperative/unresponsive,active,ampliative,publish
+24,uncooperative/unresponsive,public poc,precedence,publish
+25,cooperative,active,precedence,publish
+26,uncooperative/unresponsive,active,precedence,publish

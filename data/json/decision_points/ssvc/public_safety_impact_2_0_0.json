@@ -3,18 +3,18 @@
   "key": "PSI",
   "version": "2.0.0",
   "name": "Public Safety Impact",
-  "description": "A coarse-grained representation of impact to public safety.",
+  "definition": "A coarse-grained representation of impact to public safety.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "M",
       "name": "Minimal",
-      "description": "Safety Impact:(None OR Minor)"
+      "definition": "Safety Impact:(None OR Minor)"
     },
     {
       "key": "S",
       "name": "Significant",
-      "description": "Safety Impact:(Major OR Hazardous OR Catastrophic)"
+      "definition": "Safety Impact:(Major OR Hazardous OR Catastrophic)"
     }
   ]
 }

@@ -3,7 +3,7 @@
   "key": "DT_CO",
   "version": "2.0.3",
   "name": "CISA Coordinator",
-  "description": "CISA Coordinator decision table for SSVC",
+  "definition": "CISA Coordinator decision table for SSVC",
   "schemaVersion": "2.0.0",
   "decision_points": {
     "ssvc:E:1.1.0": {
@@ -11,23 +11,23 @@
       "key": "E",
       "version": "1.1.0",
       "name": "Exploitation",
-      "description": "The present state of exploitation of the vulnerability.",
+      "definition": "The present state of exploitation of the vulnerability.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "N",
           "name": "None",
-          "description": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+          "definition": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
         },
         {
           "key": "P",
           "name": "Public PoC",
-          "description": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
+          "definition": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
         },
         {
           "key": "A",
           "name": "Active",
-          "description": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+          "definition": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
         }
       ]
     },
@@ -36,18 +36,18 @@
       "key": "A",
       "version": "2.0.0",
       "name": "Automatable",
-      "description": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
+      "definition": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "N",
           "name": "No",
-          "description": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
+          "definition": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
         },
         {
           "key": "Y",
           "name": "Yes",
-          "description": "Attackers can reliably automate steps 1-4 of the kill chain."
+          "definition": "Attackers can reliably automate steps 1-4 of the kill chain."
         }
       ]
     },
@@ -56,18 +56,18 @@
       "key": "TI",
       "version": "1.0.0",
       "name": "Technical Impact",
-      "description": "The technical impact of the vulnerability.",
+      "definition": "The technical impact of the vulnerability.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "P",
           "name": "Partial",
-          "description": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
+          "definition": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
         },
         {
           "key": "T",
           "name": "Total",
-          "description": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+          "definition": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
         }
       ]
     },
@@ -76,23 +76,23 @@
       "key": "MWI",
       "version": "1.0.0",
       "name": "Mission and Well-Being Impact",
-      "description": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
+      "definition": "Mission and Well-Being Impact is a combination of Mission Prevalence and Public Well-Being Impact.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "L",
           "name": "Low",
-          "description": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
+          "definition": "Mission Prevalence:Minimal AND Public Well-Being Impact:Minimal"
         },
         {
           "key": "M",
           "name": "Medium",
-          "description": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
+          "definition": "Mission Prevalence:Support AND Public Well-Being Impact:(Minimal OR Material)"
         },
         {
           "key": "H",
           "name": "High",
-          "description": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
+          "definition": "Mission Prevalence:Essential OR Public Well-Being Impact:(Irreversible)"
         }
       ]
     },
@@ -101,28 +101,28 @@
       "key": "CISA",
       "version": "1.1.0",
       "name": "CISA Levels",
-      "description": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
+      "definition": "The CISA outcome group. CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "T",
           "name": "Track",
-          "description": "The vulnerability does not require action at this time. The organization would continue to track the vulnerability and reassess it if new information becomes available. CISA recommends remediating Track vulnerabilities within standard update timelines."
+          "definition": "The vulnerability does not require action at this time. The organization would continue to track the vulnerability and reassess it if new information becomes available. CISA recommends remediating Track vulnerabilities within standard update timelines."
         },
         {
           "key": "T*",
           "name": "Track*",
-          "description": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
+          "definition": "The vulnerability contains specific characteristics that may require closer monitoring for changes. CISA recommends remediating Track* vulnerabilities within standard update timelines."
         },
         {
           "key": "AT",
           "name": "Attend",
-          "description": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
+          "definition": "The vulnerability requires attention from the organization's internal, supervisory-level individuals. Necessary actions may include requesting assistance or information about the vulnerability and may involve publishing a notification, either internally and/or externally, about the vulnerability. CISA recommends remediating Attend vulnerabilities sooner than standard update timelines."
         },
         {
           "key": "AC",
           "name": "Act",
-          "description": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
+          "definition": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
         }
       ]
     }

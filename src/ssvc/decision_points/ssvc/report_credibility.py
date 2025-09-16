@@ -30,18 +30,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 NOT_CREDIBLE = DecisionPointValue(
     name="Not Credible",
     key="NC",
-    description="The report is not credible.",
+    definition="The report is not credible.",
 )
 
 CREDIBLE = DecisionPointValue(
     name="Credible",
     key="C",
-    description="The report is credible.",
+    definition="The report is credible.",
 )
 
 REPORT_CREDIBILITY_1 = SsvcDecisionPoint(
     name="Report Credibility",
-    description="Is the report credible?",
+    definition="Is the report credible?",
     key="RC",
     version="1.0.0",
     values=(

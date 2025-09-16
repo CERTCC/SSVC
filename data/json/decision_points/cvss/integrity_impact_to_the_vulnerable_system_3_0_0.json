@@ -3,23 +3,23 @@
   "key": "VI",
   "version": "3.0.0",
   "name": "Integrity Impact to the Vulnerable System",
-  "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+  "definition": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "None",
-      "description": "There is no loss of integrity within the Vulnerable System."
+      "definition": "There is no loss of integrity within the Vulnerable System."
     },
     {
       "key": "L",
       "name": "Low",
-      "description": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Vulnerable System."
+      "definition": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Vulnerable System."
     },
     {
       "key": "H",
       "name": "High",
-      "description": "There is a total loss of integrity, or a complete loss of protection."
+      "definition": "There is a total loss of integrity, or a complete loss of protection."
     }
   ]
 }

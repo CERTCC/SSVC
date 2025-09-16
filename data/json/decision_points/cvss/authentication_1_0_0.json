@@ -3,18 +3,18 @@
   "key": "Au",
   "version": "1.0.0",
   "name": "Authentication",
-  "description": "This metric measures whether or not an attacker needs to be authenticated to the target system in order to exploit the vulnerability.",
+  "definition": "This metric measures whether or not an attacker needs to be authenticated to the target system in order to exploit the vulnerability.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "Not Required",
-      "description": "Authentication is not required to access or exploit the vulnerability."
+      "definition": "Authentication is not required to access or exploit the vulnerability."
     },
     {
       "key": "R",
       "name": "Required",
-      "description": "Authentication is required to access and exploit the vulnerability."
+      "definition": "Authentication is required to access and exploit the vulnerability."
     }
   ]
 }

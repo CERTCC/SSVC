@@ -3,28 +3,28 @@
   "key": "MI",
   "version": "2.0.0",
   "name": "Mission Impact",
-  "description": "Impact on Mission Essential Functions of the Organization",
+  "definition": "Impact on Mission Essential Functions of the Organization",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "D",
       "name": "Degraded",
-      "description": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions"
+      "definition": "Little to no impact up to degradation of non-essential functions; chronic degradation would eventually harm essential functions"
     },
     {
       "key": "MSC",
       "name": "MEF Support Crippled",
-      "description": "Activities that directly support essential functions are crippled; essential functions continue for a time"
+      "definition": "Activities that directly support essential functions are crippled; essential functions continue for a time"
     },
     {
       "key": "MEF",
       "name": "MEF Failure",
-      "description": "Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time"
+      "definition": "Any one mission essential function fails for period of time longer than acceptable; overall mission of the organization degraded but can still be accomplished for a time"
     },
     {
       "key": "MF",
       "name": "Mission Failure",
-      "description": "Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails"
+      "definition": "Multiple or all mission essential functions fail; ability to recover those functions degraded; organization’s ability to deliver its overall mission fails"
     }
   ]
 }

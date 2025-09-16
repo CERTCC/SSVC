@@ -3,23 +3,23 @@
   "key": "Au",
   "version": "2.0.0",
   "name": "Authentication",
-  "description": "This metric measures the number of times an attacker must authenticate to a target in order to exploit a vulnerability. This metric does not gauge the strength or complexity of the authentication process, only that an attacker is required to provide credentials before an exploit may occur.  The possible values for this metric are listed in Table 3. The fewer authentication instances that are required, the higher the vulnerability score.",
+  "definition": "This metric measures the number of times an attacker must authenticate to a target in order to exploit a vulnerability. This metric does not gauge the strength or complexity of the authentication process, only that an attacker is required to provide credentials before an exploit may occur.  The possible values for this metric are listed in Table 3. The fewer authentication instances that are required, the higher the vulnerability score.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "M",
       "name": "Multiple",
-      "description": "Exploiting the vulnerability requires that the attacker authenticate two or more times, even if the same credentials are used each time."
+      "definition": "Exploiting the vulnerability requires that the attacker authenticate two or more times, even if the same credentials are used each time."
     },
     {
       "key": "S",
       "name": "Single",
-      "description": "The vulnerability requires an attacker to be logged into the system (such as at a command line or via a desktop session or web interface)."
+      "definition": "The vulnerability requires an attacker to be logged into the system (such as at a command line or via a desktop session or web interface)."
     },
     {
       "key": "N",
       "name": "None",
-      "description": "Authentication is not required to exploit the vulnerability."
+      "definition": "Authentication is not required to exploit the vulnerability."
     }
   ]
 }

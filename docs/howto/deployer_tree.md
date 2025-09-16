@@ -132,11 +132,11 @@ In the *Human Impact* table above, *MEF* stands for Mission Essential Function.
 
 ## Deployer Decision Model
 
-Below we provide an example deployer prioritization policy that maps the decision points just listed to the outcomes described above.
+Below we provide an example deployer prioritization decision table that maps the decision points just listed to the outcomes described above.
 
-!!! tip "Notes on the Deployer Decision Model Example Policy"
+!!! tip "Notes on the Deployer Decision Model Example Decision Table"
 
-    In the example policy shown below:
+    In the example decision table shown below:
 
     - An [_active_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) will never result in a *defer* priority.
     - A [_none_](../reference/decision_points/exploitation.md) state of [*Exploitation*](../reference/decision_points/exploitation.md) (no evidence of exploitation) will result in either *defer* or *scheduled* priority—unless the state of [*Human Impact*](../reference/decision_points/human_impact.md) is [_very high_](../reference/decision_points/human_impact.md), resulting in an *out-of-cycle* priority.

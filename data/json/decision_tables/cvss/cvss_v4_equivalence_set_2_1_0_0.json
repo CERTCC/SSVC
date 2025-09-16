@@ -3,7 +3,7 @@
   "key": "DT_CVSS4_EQ2",
   "version": "1.0.0",
   "name": "CVSS v4 Equivalence Set 2",
-  "description": "This decision table models equivalence set 2 from CVSS v4. Factors include Attack Complexity (AC) and Attack Requirements (AT).",
+  "definition": "This decision table models equivalence set 2 from CVSS v4. Factors include Attack Complexity (AC) and Attack Requirements (AT).",
   "schemaVersion": "2.0.0",
   "decision_points": {
     "cvss:AC:3.0.1": {
@@ -11,18 +11,18 @@
       "key": "AC",
       "version": "3.0.1",
       "name": "Attack Complexity",
-      "description": "This metric captures measurable actions that must be taken by the attacker to actively evade or circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
+      "definition": "This metric captures measurable actions that must be taken by the attacker to actively evade or circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "H",
           "name": "High",
-          "description": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
+          "definition": "The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques. The attacker must have additional methods available to bypass security measures in place."
         },
         {
           "key": "L",
           "name": "Low",
-          "description": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
+          "definition": "The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system. "
         }
       ]
     },
@@ -31,18 +31,18 @@
       "key": "AT",
       "version": "1.0.0",
       "name": "Attack Requirements",
-      "description": "This metric captures the prerequisite deployment and execution conditions or variables of the vulnerable system that enable the attack.",
+      "definition": "This metric captures the prerequisite deployment and execution conditions or variables of the vulnerable system that enable the attack.",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "P",
           "name": "Present",
-          "description": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
+          "definition": "The successful attack depends on the presence of specific deployment and execution conditions of the vulnerable system that enable the attack."
         },
         {
           "key": "N",
           "name": "None",
-          "description": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
+          "definition": "The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
         }
       ]
     },
@@ -51,18 +51,18 @@
       "key": "EQ2",
       "version": "1.0.0",
       "name": "Equivalence Set 2",
-      "description": "AC/AT with 2 levels specified in Table 25",
+      "definition": "AC/AT with 2 levels specified in Table 25",
       "schemaVersion": "2.0.0",
       "values": [
         {
           "key": "L",
           "name": "Low",
-          "description": "1: not (AC:L and AT:N)"
+          "definition": "1: not (AC:L and AT:N)"
         },
         {
           "key": "H",
           "name": "High",
-          "description": "0: AC:L and AT:N"
+          "definition": "0: AC:L and AT:N"
         }
       ]
     }

@@ -30,18 +30,18 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 TOTAL = DecisionPointValue(
     name="Total",
     key="T",
-    description="The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability.",
+    definition="The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability.",
 )
 
 PARTIAL = DecisionPointValue(
     name="Partial",
     key="P",
-    description="The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control.",
+    definition="The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control.",
 )
 
 TECHNICAL_IMPACT_1 = SsvcDecisionPoint(
     name="Technical Impact",
-    description="The technical impact of the vulnerability.",
+    definition="The technical impact of the vulnerability.",
     key="TI",
     version="1.0.0",
     values=(

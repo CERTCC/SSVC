@@ -28,18 +28,18 @@ from ssvc.decision_points.base import (
 from ssvc.decision_points.helpers import print_versions_and_diffs
 from ssvc.namespaces import NameSpace
 
-_WONT = DecisionPointValue(name="Won't", key="W", description="Won't")
+_WONT = DecisionPointValue(name="Won't", key="W", definition="Won't")
 
-_COULD = DecisionPointValue(name="Could", key="C", description="Could")
+_COULD = DecisionPointValue(name="Could", key="C", definition="Could")
 
-_SHOULD = DecisionPointValue(name="Should", key="S", description="Should")
+_SHOULD = DecisionPointValue(name="Should", key="S", definition="Should")
 
-_MUST = DecisionPointValue(name="Must", key="M", description="Must")
+_MUST = DecisionPointValue(name="Must", key="M", definition="Must")
 
 MSCW = DecisionPoint(
     name="MoSCoW",
     key="MSCW",
-    description="The MoSCoW (Must, Should, Could, Won't) outcome group.",
+    definition="The MoSCoW (Must, Should, Could, Won't) outcome group.",
     version="1.0.0",
     namespace=NameSpace.BASIC,
     values=(

@@ -29,19 +29,19 @@ from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 RAPID = DecisionPointValue(
     name="Rapid",
     key="R",
-    description="Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows remote "
+    definition="Steps 1-4 of the of the kill chain can be reliably automated. If the vulnerability allows remote "
     "code execution or command injection, the default response should be rapid.",
 )
 SLOW = DecisionPointValue(
     name="Slow",
     key="S",
-    description="Steps 1-4 of the kill chain cannot be reliably automated for this vulnerability for some reason. "
+    definition="Steps 1-4 of the kill chain cannot be reliably automated for this vulnerability for some reason. "
     "These steps are reconnaissance, weaponization, delivery, and exploitation.",
 )
 
 VIRULENCE_1 = SsvcDecisionPoint(
     name="Virulence",
-    description="The speed at which the vulnerability can be exploited.",
+    definition="The speed at which the vulnerability can be exploited.",
     key="V",
     version="1.0.0",
     values=(
@@ -54,19 +54,19 @@ VIRULENCE_1 = SsvcDecisionPoint(
 AUT_NO = DecisionPointValue(
     name="No",
     key="N",
-    description="Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. "
+    definition="Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. "
     "These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation.",
 )
 AUT_YES = DecisionPointValue(
     name="Yes",
     key="Y",
-    description="Attackers can reliably automate steps 1-4 of the kill chain.",
+    definition="Attackers can reliably automate steps 1-4 of the kill chain.",
 )
 
 
 AUTOMATABLE_2 = SsvcDecisionPoint(
     name="Automatable",
-    description="Can an attacker reliably automate creating exploitation events for this vulnerability?",
+    definition="Can an attacker reliably automate creating exploitation events for this vulnerability?",
     key="A",
     version="2.0.0",
     values=(AUT_NO, AUT_YES),

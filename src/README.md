@@ -1,20 +1,108 @@
-# Code
+CERTCC SSVC
+===========
 
-This directory holds helper scripts that can make managing or using SSVC easier.
+This is the official Python package for the CERT/CC Stakeholder-Specific Vulnerability Categorization (SSVC) project.
 
-## csv-to-latex
+Installation
+------------
+You can install the latest release from PyPI:
 
-This python script takes a CSV of the format in the `../data` directory and gets you (most of the way) to a pretty decision tree visualization. It creates a LaTeX file that can create a PDF (and from there, a PNG or whatever you want).
+    pip install certcc-ssvc
 
-`python SSVC_csv-to-latex.py --help` works and should explain all your options.
-When the script finishes, it will also print a message with instructions for creating the PDF or PNG from the tex. A potential future improvement is to call `latexmk` directly from the python script.
+Demo to explore SSVC decision making
+-----
+After installation, import the package and explore the examples:
 
-Example usage:
+    import ssvc
+
+    # Example decision point usage. A Weather Forecast and Humidity Value decision point
+    from ssvc.decision_points.example import weather
+    print(weather.LATEST.model_dump_json(indent=2))
+    from ssvc.decision_points.example import humidity
+    print(humidity.LATEST.model_dump_json(indent=2))
+
+
+    # Example decision table usage
+    from ssvc.decision_tables.example import to_play
+    print(to_play.LATEST.model_dump_json(indent=2))
+
+    #Show decision tree in ascii text art
+    from ssvc.decision_tables.helpers import ascii_tree
+    print(ascii_tree(to_play.LATEST))
+
+Explanation
+------
+
+This demo is a simple decision tree that provides an Outcome based on two conditions: the weather forecast and the humidity level.
+
+Imagine the decision tree as a series of questions. To find the outcome (the YesNo column), you start at the first question (Decision Point), which is the root node of the tree: What is the Weather Forecast?
+
+* Step 1: Look at the Weather Forecast column (e.g., rain, overcast, sunny).
+* Step 2: Look at the Humidity Value above 40% column (e.g., high, low).
+* Step 3: Based on the combination of these two conditions, the YesNo column will give you the Decision as "Yes" to play and "No" to not to play.
+
+The YesNo column is the Outcome Decision Point, and the other two Decision Points are inputs that will be collected. This decision tree looks like below in ascii form
 
 ```
- python SSVC_csv-to-latex.py --input=../data/ssvc_2_deployer_simplified.csv --output=tmp.tex --delim="," --columns="0,2,1" --label="3" --header-row --priorities="defer, scheduled, out-of-cycle, immediate"
+Weather Fore.. | Humidity Val.. | YesNo v1.0.0.. | 
+---------------------------------------------------
+├── rain    
+│               ├── high    
+│               │               └── [no]
+│               └── low    
+│                               └── [no]
+├── overcast    
+│               ├── high    
+│               │               └── [no]
+│               └── low    
+│                               └── [yes]
+└── sunny    
+                ├── high    
+                │               └── [no]
+                └── low    
+                                └── [yes]
 ```
 
-Dependencies: LaTeX.
-To install latex, see <https://www.latex-project.org/get/>
-`latexmk` is a helper script that is not included in all distributions by default; if you need it, see <https://ctan.org/pkg/latexmk/?lang=en>
+Usage
+---------
+
+For usage in vulnerability management scenarios consider the following popular SSVC decisions
+
+    import ssvc
+
+    # Example decision point usage. Exploitation as a Decision Point
+    from ssvc.decision_points.ssvc.exploitation import LATEST as Exploitation
+    print(Exploitation.model_dump_json(indent=2))
+    # Try a CVSS metic Attack Vector using SSVC 
+    from ssvc.decision_points.cvss.attack_vector import LATEST as AttackVector
+    print(AttackVector.model_dump_json(indent=2))
+    from ssvc.decision_points.cisa.in_kev import LATEST as InKEV
+    print(InKEV.model_dump_json(indent=2))
+
+    # Example decision table for a Supplier deciding Patch Development Priority
+    from ssvc.decision_tables.ssvc.supplier_dt import LATEST as SupplierDT
+    print(SupplierDT.model_dump_json(indent=2))
+
+    # Example decision table for a Deployer decision Patch Application Priority
+    from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DeployerDT
+    print(DeployerDT.model_dump_json(indent=2))
+
+    # Example CISA Decision Table as Coordinator for Vulnerability Management writ large
+    from ssvc.decision_tables.cisa.cisa_coordinate_dt import LATEST as CISACoordinate
+    print(CISACoordinate.model_dump_json(indent=2))
+
+    #Print CISA Decision Table as an ascii tree
+    from ssvc.decision_tables.helpers import ascii_tree
+    print(ascii_tree(CISACoordinate))
+
+
+Resources
+---------
+Source code and full documentation:
+https://github.com/CERTCC/SSVC
+
+SSVC Policy Explorer:
+https://certcc.github.io/SSVC/ssvc-explorer/
+
+SSVC Calculator:
+https://certcc.github.io/SSVC/ssvc-calc/

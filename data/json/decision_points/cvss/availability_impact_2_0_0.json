@@ -3,23 +3,23 @@
   "key": "A",
   "version": "2.0.0",
   "name": "Availability Impact",
-  "description": "This metric measures the impact to availability of a successfully exploited vulnerability.",
+  "definition": "This metric measures the impact to availability of a successfully exploited vulnerability.",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "N",
       "name": "None",
-      "description": "There is no impact to the availability of the system."
+      "definition": "There is no impact to the availability of the system."
     },
     {
       "key": "L",
       "name": "Low",
-      "description": "There is reduced performance or interruptions in resource availability."
+      "definition": "There is reduced performance or interruptions in resource availability."
     },
     {
       "key": "H",
       "name": "High",
-      "description": "There is total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
+      "definition": "There is total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed)."
     }
   ]
 }

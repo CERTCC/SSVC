@@ -28,34 +28,34 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 _HIGH_3 = DecisionPointValue(
     name="High",
     key="H",
-    description="A successful attack depends on conditions beyond the attacker's control.",
+    definition="A successful attack depends on conditions beyond the attacker's control.",
 )
 
 _LOW_3 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Specialized access conditions or extenuating circumstances do not exist. An attacker can expect "
+    definition="Specialized access conditions or extenuating circumstances do not exist. An attacker can expect "
     "repeatable success against the vulnerable component.",
 )
 
 
 _HIGH_2 = DecisionPointValue(
-    name="High", key="H", description="Specialized access conditions exist."
+    name="High", key="H", definition="Specialized access conditions exist."
 )
 _MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
-    description="The access conditions are somewhat specialized.",
+    definition="The access conditions are somewhat specialized.",
 )
 _LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Specialized access conditions or extenuating circumstances do not exist.",
+    definition="Specialized access conditions or extenuating circumstances do not exist.",
 )
 _HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="Specialized access conditions exist; for example: the system is exploitable during specific windows "
+    definition="Specialized access conditions exist; for example: the system is exploitable during specific windows "
     "of time (a race condition), the system is exploitable under specific circumstances (nondefault "
     "configurations), or the system is exploitable with victim interaction (vulnerability exploitable "
     "only if user opens e-mail)",
@@ -63,12 +63,12 @@ _HIGH = DecisionPointValue(
 _LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="Specialized access conditions or extenuating circumstances do not exist; the system is always "
+    definition="Specialized access conditions or extenuating circumstances do not exist; the system is always "
     "exploitable.",
 )
 ACCESS_COMPLEXITY_1 = CvssDecisionPoint(
     name="Access Complexity",
-    description="This metric measures the complexity of the attack required to exploit the vulnerability once an "
+    definition="This metric measures the complexity of the attack required to exploit the vulnerability once an "
     "attacker has gained access to the target system.",
     key="AC",
     version="1.0.0",
@@ -80,7 +80,7 @@ ACCESS_COMPLEXITY_1 = CvssDecisionPoint(
 
 ACCESS_COMPLEXITY_2 = CvssDecisionPoint(
     name="Access Complexity",
-    description="This metric measures the complexity of the attack required to exploit the vulnerability once an "
+    definition="This metric measures the complexity of the attack required to exploit the vulnerability once an "
     "attacker has gained access to the target system.",
     key="AC",
     version="2.0.0",
@@ -93,7 +93,7 @@ ACCESS_COMPLEXITY_2 = CvssDecisionPoint(
 
 ATTACK_COMPLEXITY_3 = CvssDecisionPoint(
     name="Attack Complexity",
-    description="This metric describes the conditions beyond the attacker's control that must exist in order to "
+    definition="This metric describes the conditions beyond the attacker's control that must exist in order to "
     "exploit the vulnerability.",
     key="AC",
     version="3.0.0",
@@ -109,7 +109,7 @@ Defines LOW and HIGH values for CVSS Attack Complexity.
 LOW_4 = DecisionPointValue(
     name="Low",
     key="L",
-    description="The attacker must take no measurable action to exploit the vulnerability. The attack requires no "
+    definition="The attacker must take no measurable action to exploit the vulnerability. The attack requires no "
     "target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable "
     "success against the vulnerable system. ",
 )
@@ -117,7 +117,7 @@ LOW_4 = DecisionPointValue(
 HIGH_4 = DecisionPointValue(
     name="High",
     key="H",
-    description="The successful attack depends on the evasion or circumvention of security-enhancing "
+    definition="The successful attack depends on the evasion or circumvention of security-enhancing "
     "techniques in place that would otherwise hinder the attack. These include: Evasion of exploit "
     "mitigation techniques. The attacker must have additional methods available to bypass security "
     "measures in place.",
@@ -125,7 +125,7 @@ HIGH_4 = DecisionPointValue(
 
 ATTACK_COMPLEXITY_3_0_1 = CvssDecisionPoint(
     name="Attack Complexity",
-    description="This metric captures measurable actions that must be taken by the attacker to actively evade or "
+    definition="This metric captures measurable actions that must be taken by the attacker to actively evade or "
     "circumvent existing built-in security-enhancing conditions in order to obtain a working exploit. ",
     key="AC",
     version="3.0.1",

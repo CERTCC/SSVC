@@ -44,7 +44,7 @@ CISA_COORDINATE_1 = DecisionTable(
     key="CO",
     version="2.0.3",
     name="CISA Coordinator",
-    description="CISA Coordinator decision table for SSVC",
+    definition="CISA Coordinator decision table for SSVC",
     outcome=Priority.id,
     decision_points={
         dp.id: dp

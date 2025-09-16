@@ -3,18 +3,18 @@
   "key": "RC",
   "version": "1.0.0",
   "name": "Report Credibility",
-  "description": "Is the report credible?",
+  "definition": "Is the report credible?",
   "schemaVersion": "2.0.0",
   "values": [
     {
       "key": "NC",
       "name": "Not Credible",
-      "description": "The report is not credible."
+      "definition": "The report is not credible."
     },
     {
       "key": "C",
       "name": "Credible",
-      "description": "The report is credible."
+      "definition": "The report is credible."
     }
   ]
 }
