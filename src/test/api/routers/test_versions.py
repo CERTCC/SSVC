@@ -23,7 +23,7 @@ from unittest.mock import MagicMock, patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import versions
+from ssvc.api.v1.routers import versions
 
 
 class TestVersionsRouter(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestVersionsRouter(unittest.TestCase):
         self.app.include_router(versions.router)
         self.client = TestClient(self.app)
 
-    @patch("ssvc.api.routers.versions.lookup_key")
+    @patch("ssvc.api.v1.routers.versions.lookup_key")
     def test_get_version_dict_for_key_success(self, mock_lookup):
         key_mock = MagicMock()
         key_mock.versions = {"1.0.0": None, "2.0.0": None}
@@ -56,13 +56,13 @@ class TestVersionsRouter(unittest.TestCase):
             },
         )
 
-    @patch("ssvc.api.routers.versions.lookup_key")
+    @patch("ssvc.api.v1.routers.versions.lookup_key")
     def test_get_version_dict_for_key_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/versions/TypeA/ns1/key1")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.versions.lookup_key")
+    @patch("ssvc.api.v1.routers.versions.lookup_key")
     def test_get_version_dict_for_key_empty_versions(self, mock_lookup):
         key_mock = MagicMock()
         key_mock.versions = {}
@@ -82,7 +82,7 @@ class TestVersionsRouter(unittest.TestCase):
             },
         )
 
-    @patch("ssvc.api.routers.versions.lookup_key")
+    @patch("ssvc.api.v1.routers.versions.lookup_key")
     def test_get_version_list_for_key_success(self, mock_lookup):
         key_mock = MagicMock()
         key_mock.versions = {"1.0.0": None, "2.0.0": None}
@@ -91,13 +91,13 @@ class TestVersionsRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(sorted(response.json()), ["1.0.0", "2.0.0"])
 
-    @patch("ssvc.api.routers.versions.lookup_key")
+    @patch("ssvc.api.v1.routers.versions.lookup_key")
     def test_get_version_list_for_key_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/versions/TypeA/ns1/key1/list")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.versions.lookup_key")
+    @patch("ssvc.api.v1.routers.versions.lookup_key")
     def test_get_version_list_for_key_empty_versions(self, mock_lookup):
         key_mock = MagicMock()
         key_mock.versions = {}

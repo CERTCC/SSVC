@@ -23,7 +23,7 @@ from unittest.mock import MagicMock, patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import keys
+from ssvc.api.v1.routers import keys
 
 
 class TestKeysRouter(unittest.TestCase):
@@ -57,7 +57,7 @@ class TestKeysRouter(unittest.TestCase):
             },
         )
 
-    @patch("ssvc.api.routers.keys._404_on_none")
+    @patch("ssvc.api.v1.routers.keys._404_on_none")
     def test_get_key_dict_for_type(self, mock_404):
         ns_mock1 = MagicMock(keys={"k1": None})
         type_mock = MagicMock(namespaces={"ns1": ns_mock1})
@@ -70,8 +70,8 @@ class TestKeysRouter(unittest.TestCase):
         )
         mock_404.assert_called_once()
 
-    @patch("ssvc.api.routers.keys.lookup_namespace")
-    @patch("ssvc.api.routers.keys._404_on_none")
+    @patch("ssvc.api.v1.routers.keys.lookup_namespace")
+    @patch("ssvc.api.v1.routers.keys._404_on_none")
     def test_get_key_dict_for_type_and_namespace(self, mock_404, mock_lookup):
         ns_mock = MagicMock(keys={"k1": None, "k2": None})
         mock_lookup.return_value = ns_mock
@@ -91,8 +91,8 @@ class TestKeysRouter(unittest.TestCase):
         )
         mock_404.assert_called_once()
 
-    @patch("ssvc.api.routers.keys.lookup_namespace")
-    @patch("ssvc.api.routers.keys._404_on_none")
+    @patch("ssvc.api.v1.routers.keys.lookup_namespace")
+    @patch("ssvc.api.v1.routers.keys._404_on_none")
     def test_get_key_list_for_type_and_namespace(self, mock_404, mock_lookup):
         ns_mock = MagicMock(keys={"k1": None, "k2": None})
         mock_lookup.return_value = ns_mock

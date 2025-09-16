@@ -24,6 +24,7 @@ the decision records that have been made.
 - [0010 - Outcome Sets are separate from Decision Point Groups](0010-outcome-sets-are-separate-from-decision-point-groups.md)
 - [0011 - Correspondence between Automatable v2.0.0, Value Density v1.0.0, and CVSS v4](0011-automatable-and-value-density-and-CVSSv4.md)
 - [0012 - SSVC Namespaces](0012-ssvc-namespaces.md)
+- [0013 - SSVC Project Versions](0013-ssvc-project-versions.md)
 
 ## Rejected Records
 

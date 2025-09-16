@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 """
-Demonstrates the SSVC registry and schema.
+Provides example decision point for weather forecast
 """
-
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2024-2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -22,47 +21,38 @@ Demonstrates the SSVC registry and schema.
 #  subject to its own license.
 #  DM24-0278
 
-import logging
+from ssvc.decision_points.base import DecisionPointValue
+from ssvc.decision_points.example.base import ExampleDecisionPoint
+from ssvc.decision_points.helpers import print_versions_and_diffs
 
-from ssvc.registry import get_registry
-from ssvc.registry.base import SsvcObjectRegistry
-from ssvc.utils.schema import order_schema
+SUNNY = DecisionPointValue(
+    name="Sunny", key="S", definition="Weather is sunny."
+)
 
-logger = logging.getLogger(__name__)
+OVERCAST = DecisionPointValue(
+    name="Overcast", key="O", definition="Weather is overcast."
+)
+
+RAIN = DecisionPointValue(name="Rain", key="R", definition="Weather is rainy.")
+
+WEATHER_FORECAST_1 = ExampleDecisionPoint(
+    name="Weather Forecast",
+    definition="Weather is the forecast that describes general weather patterns ",
+    key="W",
+    version="1.0.0",
+    values=(
+        RAIN,
+        OVERCAST,
+        SUNNY,
+    ),
+)
+
+VERSIONS = (WEATHER_FORECAST_1,)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    # importing the ssvc module forces the registry to be initialized
-    import ssvc  # noqa: F401
-
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.DEBUG)
-    logger.addHandler(handler)
-
-    registry = get_registry()
-
-    print(registry.model_dump_json(indent=2))
-
-    print()
-    print()
-    import json
-
-    schema = SsvcObjectRegistry.model_json_schema()
-    schema = order_schema(schema)
-    print(json.dumps(schema, indent=2))
-
-    print()
-    print("# Lookup demo")
-    search_for = {
-        "objtype": "DecisionPoint",
-        "namespace": "ssvc",
-        "key": "EXP",
-    }
-
-    dp = registry.lookup(**search_for)
-    print(dp.model_dump_json(indent=2))
+    print_versions_and_diffs(VERSIONS)
 
 
 if __name__ == "__main__":

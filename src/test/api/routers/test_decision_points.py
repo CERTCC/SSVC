@@ -23,7 +23,7 @@ from unittest.mock import MagicMock, patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import decision_points
+from ssvc.api.v1.routers import decision_points
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 
 
@@ -52,7 +52,7 @@ class TestDecisionPointsRouter(unittest.TestCase):
             ),
         )
 
-    @patch("ssvc.api.routers.decision_points.lookup_objtype")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_objtype")
     def test_get_all_decision_points_success(self, mock_lookup):
         dp = self.dp
         result_mock = MagicMock()
@@ -66,13 +66,13 @@ class TestDecisionPointsRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(dp.id, response.json())
 
-    @patch("ssvc.api.routers.decision_points.lookup_objtype")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_objtype")
     def test_get_all_decision_points_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/decision_points/")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.decision_points.lookup_namespace")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_namespace")
     def test_get_all_decision_points_for_namespace_success(self, mock_lookup):
         dp = self.dp
         result_mock = MagicMock()
@@ -84,7 +84,7 @@ class TestDecisionPointsRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(dp.id, response.json())
 
-    @patch("ssvc.api.routers.decision_points.lookup_namespace")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_namespace")
     def test_get_all_decision_points_for_namespace_not_found(
         self, mock_lookup
     ):
@@ -92,7 +92,7 @@ class TestDecisionPointsRouter(unittest.TestCase):
         response = self.client.get("/decision_points/ns1")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.decision_points.lookup_key")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_key")
     def test_get_all_versions_of_decision_points_for_key_success(
         self, mock_lookup
     ):
@@ -104,7 +104,7 @@ class TestDecisionPointsRouter(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(dp.id, response.json())
 
-    @patch("ssvc.api.routers.decision_points.lookup_key")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_key")
     def test_get_all_versions_of_decision_points_for_key_not_found(
         self, mock_lookup
     ):
@@ -112,7 +112,7 @@ class TestDecisionPointsRouter(unittest.TestCase):
         response = self.client.get("/decision_points/ns1/key1")
         self.assertEqual(response.status_code, 404)
 
-    @patch("ssvc.api.routers.decision_points.lookup_latest")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_latest")
     def test_get_latest_decision_point_for_key_success(self, mock_lookup):
         dp = self.dp
         mock_lookup.return_value = dp
@@ -123,7 +123,7 @@ class TestDecisionPointsRouter(unittest.TestCase):
         self.assertEqual(response.json()["version"], dp.version)
         self.assertEqual(response.json()["name"], dp.name)
 
-    @patch("ssvc.api.routers.decision_points.lookup_latest")
+    @patch("ssvc.api.v1.routers.decision_points.lookup_latest")
     def test_get_latest_decision_point_for_key_not_found(self, mock_lookup):
         mock_lookup.return_value = None
         response = self.client.get("/decision_points/ns1/key1/latest")

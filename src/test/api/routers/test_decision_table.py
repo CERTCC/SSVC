@@ -22,7 +22,7 @@ import unittest
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
-from ssvc.api.routers import decision_table
+from ssvc.api.v1.routers import decision_table
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.registry.base import SsvcObjectRegistry

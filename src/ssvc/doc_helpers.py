@@ -25,7 +25,7 @@ created_at: 2/14/25 2:54 PM
 
 from ssvc.decision_points.ssvc.base import SsvcDecisionPoint
 
-MD_TABLE_ROW_TEMPLATE = "| {value.name} ({value.key}) | {value.definition} |"
+MD_TABLE_ROW_TEMPLATE = "| {value.name} | {value.key} | {value.definition} |"
 
 
 def markdown_table(dp: SsvcDecisionPoint, indent: int = 0) -> str:
@@ -43,8 +43,8 @@ def markdown_table(dp: SsvcDecisionPoint, indent: int = 0) -> str:
     _indent = " " * indent
     rows.append(f"{_indent}{dp.definition}")
     rows.append("")
-    rows.append(f"{_indent}| Value | Definition |")
-    rows.append(f"{_indent}|:-----|:-----------|")
+    rows.append(f"{_indent}| Value | Key | Definition |")
+    rows.append(f"{_indent}|:-----|:---|:-----------|")
 
     # add a row for each value
     for value in dp.values:

@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 """
-Demonstrates the SSVC registry and schema.
+API version 1 router for SSVC
 """
-
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -21,48 +20,36 @@ Demonstrates the SSVC registry and schema.
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+from fastapi import APIRouter
 
-import logging
+from ssvc.api.v1.routers import (
+    decision_point,
+    decision_table,
+    decision_tables,
+    objects,
+)
+from ssvc.api.v1.routers import (
+    decision_points,
+    keys,
+    namespaces,
+    types,
+    versions,
+)
 
-from ssvc.registry import get_registry
-from ssvc.registry.base import SsvcObjectRegistry
-from ssvc.utils.schema import order_schema
-
-logger = logging.getLogger(__name__)
+router_v1 = APIRouter(prefix="/v1", tags=["v1"])
+router_v1.include_router(decision_point.router)
+router_v1.include_router(decision_points.router)
+router_v1.include_router(decision_table.router)
+router_v1.include_router(decision_tables.router)
+router_v1.include_router(types.router)
+router_v1.include_router(namespaces.router)
+router_v1.include_router(keys.router)
+router_v1.include_router(versions.router)
+router_v1.include_router(objects.router)
 
 
 def main():
-    # importing the ssvc module forces the registry to be initialized
-    import ssvc  # noqa: F401
-
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.DEBUG)
-    logger.addHandler(handler)
-
-    registry = get_registry()
-
-    print(registry.model_dump_json(indent=2))
-
-    print()
-    print()
-    import json
-
-    schema = SsvcObjectRegistry.model_json_schema()
-    schema = order_schema(schema)
-    print(json.dumps(schema, indent=2))
-
-    print()
-    print("# Lookup demo")
-    search_for = {
-        "objtype": "DecisionPoint",
-        "namespace": "ssvc",
-        "key": "EXP",
-    }
-
-    dp = registry.lookup(**search_for)
-    print(dp.model_dump_json(indent=2))
+    pass
 
 
 if __name__ == "__main__":

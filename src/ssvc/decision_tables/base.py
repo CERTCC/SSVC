@@ -701,3 +701,8 @@ def check_topological_order(dt: DecisionTable) -> list[dict]:
     return check_topological_order(
         df, target=target, target_value_order=target_value_order
     )
+
+def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
+    """ Function moved to helpers.py see there for details """
+    from . import helpers
+    return helpers.ascii_tree(dt, df)

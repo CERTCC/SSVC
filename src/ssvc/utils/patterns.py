@@ -80,6 +80,6 @@ BASE_NS_PATTERN = base_ns
 EXT_SEGMENT_PATTERN = fragment_seg
 
 # --- Combine all parts into the full namespace pattern ---
-NS_PATTERN_STR = rf"^{LENGTH_CHECK_PATTERN}" rf"{namespace}$"
+NS_PATTERN_STR = rf"^{namespace}$"
 
 NS_PATTERN = re.compile(NS_PATTERN_STR)
