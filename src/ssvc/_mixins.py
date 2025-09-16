@@ -270,8 +270,8 @@ class _Base(BaseModel):
     Base class for SSVC objects.
     """
 
-    name: str
-    definition: str
+    name: Annotated[str, Field(min_length=1)]  # non-empty string
+    definition: Annotated[str, Field(min_length=1)]
 
 
 class _OptionalBase(BaseModel):
