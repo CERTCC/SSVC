@@ -34,9 +34,9 @@ from pydantic import (
 )
 
 from ssvc._mixins import (
-    _Base,
-    _GenericSsvcObject,
+    _GenericOptionalSsvcObject,
     _Keyed,
+    _OptionalBase,
     _SchemaVersioned,
     _Timestamped,
     _Valued,
@@ -48,7 +48,7 @@ from ssvc.utils.misc import order_schema
 SCHEMA_VERSION = "2.0.0"
 
 
-class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
+class MinimalDecisionPointValue(_Keyed, _OptionalBase, BaseModel):
     """
     A minimal representation of a decision point value.
     Intended to parallel the DecisionPointValue object, but with fewer required fields.
@@ -60,29 +60,8 @@ class MinimalDecisionPointValue(_Keyed, _Base, BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    @model_validator(mode="before")
-    def set_optional_fields(cls, data):
-        if "name" not in data:
-            data["name"] = ""
-        if "description" not in data:
-            data["definition"] = ""
 
-        return data
-
-    @model_validator(mode="after")
-    def validate_values(cls, data):
-        """
-        If name or description are empty strings, set them to None so that
-        they are not included in the JSON output when serialized using model_dump_json.
-        """
-        if not data.name:
-            data.name = None
-        if not data.definition:
-            data.definition = None
-        return data
-
-
-class Selection(_Valued, _GenericSsvcObject, BaseModel):
+class Selection(_Valued, _GenericOptionalSsvcObject, BaseModel):
     """
     A minimal selection object that contains the decision point ID and the selected values.
     While the Selection object parallels the DecisionPoint object, it is intentionally minimal, with
@@ -136,22 +115,6 @@ class Selection(_Valued, _GenericSsvcObject, BaseModel):
                 data[attr] = getattr(decision_point, attr)
 
         return cls(**data)
-
-    @model_validator(mode="before")
-    def set_optional_fields(cls, data):
-        if "name" not in data:
-            data["name"] = ""
-        if "description" not in data:
-            data["definition"] = ""
-        return data
-
-    @model_validator(mode="after")
-    def validate_values(cls, data):
-        if not data.name:
-            data.name = None
-        if not data.definition:
-            data.definition = None
-        return data
 
     def model_json_schema(cls, **kwargs):
         schema = super().model_json_schema(**kwargs)

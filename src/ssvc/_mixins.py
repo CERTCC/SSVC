@@ -24,7 +24,7 @@ This module provides mixin classes for adding features to SSVC objects.
 
 import os
 from datetime import datetime, timezone
-from typing import Any, ClassVar, Optional
+from typing import Annotated, Any, ClassVar, Optional
 from urllib.parse import urljoin
 
 import semver
@@ -32,6 +32,7 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
+    StringConstraints,
     field_validator,
     model_validator,
 )
@@ -272,6 +273,19 @@ class _Base(BaseModel):
     definition: str
 
 
+class _OptionalBase(BaseModel):
+    """
+    Base class for SSVC objects with optional name and definition.
+    """
+
+    name: Annotated[str, StringConstraints(min_length=1)] | None = Field(
+        default=None
+    )
+    definition: Annotated[str, StringConstraints(min_length=1)] | None = Field(
+        default=None
+    )
+
+
 class _KeyedBaseModel(_Base, _Keyed, BaseModel):
     pass
 
@@ -279,6 +293,17 @@ class _KeyedBaseModel(_Base, _Keyed, BaseModel):
 class _GenericSsvcObject(_Base, _Versioned, _Keyed, _Namespaced, BaseModel):
     """
     Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned.
+    """
+
+    pass
+
+
+class _GenericOptionalSsvcObject(
+    _OptionalBase, _Versioned, _Keyed, _Namespaced, BaseModel
+):
+    """
+    Generic mixin class for SSVC objects that need to be namespaced, keyed, and versioned,
+    with optional name and definition.
     """
 
     pass
