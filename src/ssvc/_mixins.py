@@ -285,6 +285,24 @@ class _OptionalBase(BaseModel):
         default=None
     )
 
+    @classmethod
+    def model_json_schema(cls, *args, **kwargs):
+        schema = super().model_json_schema(*args, **kwargs)
+
+        # Rewrite schema for `name` to drop nullability
+        if "properties" in schema and "name" in schema["properties"]:
+            prop = schema["properties"]["name"]
+            # Remove null typing if present
+            if "anyOf" in prop:
+                # collapse to just the string case
+                for candidate in prop["anyOf"]:
+                    if candidate.get("type") == "string":
+                        schema["properties"]["name"] = candidate
+                        schema["properties"]["name"]["title"] = "Name"
+                        break
+
+        return schema
+
 
 class _KeyedBaseModel(_Base, _Keyed, BaseModel):
     pass
