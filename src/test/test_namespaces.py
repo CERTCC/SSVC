@@ -59,10 +59,17 @@ class MyTestCase(unittest.TestCase):
         # tests to ensure that the pattern is anchored on both ends
         should_not_match.extend(["=" + should_match[0], should_match[0] + "="])
 
+        failures = []
         for ns in should_not_match:
             with self.subTest(ns=ns):
                 # re.search() to catch if NS_PATTERN is not anchored at start
-                self.assertFalse(NS_PATTERN.search(ns))
+                match = NS_PATTERN.search(ns)
+                if match:
+                    failures.append(
+                        f"Unexpected match for '{ns}': {match.group(0)}"
+                    )
+        if failures:
+            self.fail("\n".join(failures))
 
     def test_namspace_enum(self):
         for ns in NameSpace:
