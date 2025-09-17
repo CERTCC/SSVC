@@ -27,6 +27,7 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 import ssvc.decision_points  # noqa F401
+
 # importing these causes the decision points to register themselves
 from ssvc.dp_groups.ssvc.collections import SSVCv1, SSVCv2, SSVCv2_1  # noqa
 from ssvc.registry import get_registry
