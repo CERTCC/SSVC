@@ -29,7 +29,7 @@ All three stakeholders, even if within the same organization, will have differen
 
 ## How vulnerabilities are categorized in SSVC
 
-SSVC categorizes vulnerabilities by priority based on risk that varies among stakeholders. These categories reflect the timeliness of action to be taken. Suppliers and Deployers have different end-categories than Coordinators because they are making different decisions at different points in their responses. [Decision Trees](../topics/decision_trees/) are used when asking the series of questions to categorize a vulnerability's priority. There will be more information on decision points (tree nodes) in the next section.
+SSVC categorizes vulnerabilities by priority based on risk that varies among stakeholders. These categories reflect the timeliness of action to be taken. Suppliers and Deployers have different end-categories than Coordinators because they are making different decisions at different points in their responses. [Decision Trees](../topics/decision_trees.md) are used when asking the series of questions to categorize a vulnerability's priority. There will be more information on decision points (tree nodes) in the next section.
 
 ### Prioritization categories for Suppliers and Deployers
 
@@ -44,7 +44,7 @@ Many Suppliers and Deployers will want to resolve *Defer* vulnerabilities in due
 
 ### Prioritization categories for Coordinators
 
-Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work). Because we make separate decisions for triage and publication, we provide separate example decision tables, each of which has different prioritizations at the end. These decision tables represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
+Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision.md). Because we make separate decisions for triage and publication, we provide separate example decision tables, each of which has different prioritizations at the end. These decision tables represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
 
 A triage decision table might have:
 
@@ -208,7 +208,7 @@ print(example_block(LATEST, include_json=False))
 style="width: 100%;"
 height = "700" />
 
-The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Disclosure (CVD) practice](../howto/coordination_triage_decision/#coordinator-triage-decision-outcomes), but we encourage Coordinators to define their own criteria for Triage.
+The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Disclosure (CVD) practice](../howto/coordination_triage_decision.md), but we encourage Coordinators to define their own criteria for Triage.
 
 The first two questions help the CERT/CC determine if our help is required.
 
@@ -231,7 +231,7 @@ The last two questions, *Utility* and *Public Safety Impact*, are the same as as
 style="width: 100%;"
 height = "600" />
 
-At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own rationales for publication based on their missions.
+At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision.md), but we encourage Coordinators to define their own rationales for publication based on their missions.
 
 The publication decision reuses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) and [*Public Value Added*](../reference/decision_points/public_value_added.md)).
 
@@ -259,10 +259,10 @@ Naturally, a stakeholder will have multiple vulnerabilities at any given time, a
 
 ### Communicating results
 
-Coordinators will be especially concerned with communicating information about vulnerabilities, but Suppliers will be just as concerned about communicating to Deployers. Because information changes over time, SSVC decisions should always be timestamped and marked with the version of SSVC that was used. We provide a self-contained, machine-readable [JSON schema](../howto/bootstrap/use/).
+Coordinators will be especially concerned with communicating information about vulnerabilities, but Suppliers will be just as concerned about communicating to Deployers. Because information changes over time, SSVC decisions should always be timestamped and marked with the version of SSVC that was used. We provide a self-contained, machine-readable [JSON schema](../howto/bootstrap/use.md).
 
 ### Further reading
 
-[Reference material](../reference/)
+[Reference material](../reference/index.md)
 
-[Guidance for customizing a Decision Tree](../howto/tree_customization)
+[Guidance for customizing a Decision Tree](../howto/tree_customization.md)

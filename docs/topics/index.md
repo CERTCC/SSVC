@@ -7,7 +7,7 @@
     - Basic familiarity with SSVC
     - An interest in learning more about the details of SSVC
 
-    If you are unfamiliar with SSVC, we suggest you start with the [Learning SSVC](../tutorials/index.md) section.
+    If you are unfamiliar with SSVC, we suggest you start with the [SSVC Overview](../tutorials/ssvc_overview.md) section.
     [SSVC How-To](../howto/index.md) provides practical guidance for implementing SSVC in your organization.
     For technical reference, see [Reference](../reference/index.md).
 
