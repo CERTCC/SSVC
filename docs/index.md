@@ -10,14 +10,14 @@ We have organized the SSVC documentation into four main sections:
 
 <div class="grid cards" markdown>
 
-- :fontawesome-regular-eye:{ .lg .middle } [**SSVC Overview**](ssvc_overview.md)
+- :fontawesome-regular-eye:{ .lg .middle } [**SSVC Overview**](tutorials/ssvc_overview.md)
 
     ---
 
     A beginner's guide to SSVC.
     This section is for people who have never heard of SSVC.
 
-    [:octicons-arrow-right-24: An Overview of SSVC](ssvc_overview.md)
+    [:octicons-arrow-right-24: An Overview of SSVC](tutorials/ssvc_overview.md)
 
 - :material-clipboard-check:{ .lg .middle } [**SSVC How To**](howto/index.md)
 

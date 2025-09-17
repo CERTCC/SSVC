@@ -28,5 +28,5 @@ from ssvc.namespaces import NameSpace
 
 
 class ExampleDecisionTable(DecisionTable):
-    namespace:str = NameSpace.EXAMPLE
-    registered:bool = False
+    namespace: str = NameSpace.EXAMPLE
+    registered: bool = False

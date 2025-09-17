@@ -235,38 +235,39 @@ def dt2df_md(
     df.index.rename("Row", inplace=True)
     return df.to_markdown(index=True)
 
-def dt2df_html(
-        dt: DecisionTable,
-        longform: bool = True) -> str:
+
+def dt2df_html(dt: DecisionTable, longform: bool = True) -> str:
     """
     Converts a Decision Tree and represent it in friendly HTML Code
     Args:
         decision_table (DecisionTable): The decision table to convert.
-        longform (bool): Whether to return the longform or shortform DataFram, defaults to true    
+        longform (bool): Whether to return the longform or shortform DataFram, defaults to true
     Returns:
-        str: A string representation of the DataFrame in HTML format.  
+        str: A string representation of the DataFrame in HTML format.
     """
 
     if longform:
         df = decision_table_to_longform_df(dt)
     else:
         df = decision_table_to_shortform_df(dt)
-    
+
     df = decision_table_to_longform_df(dt)
     ncols = len(df.columns)
     nrows = len(df)
 
     # Precompute rowspan info for every cell
     # rowspan[i][j] = number of rows this cell should span; 0 means skip (because merged above)
-    rowspan = [[1]*ncols for _ in range(nrows)]
+    rowspan = [[1] * ncols for _ in range(nrows)]
 
     for col in range(ncols):
         r = 0
         while r < nrows:
             start = r
-            val = df.iat[r, col] #data_rows[r][col]
+            val = df.iat[r, col]  # data_rows[r][col]
             # Count how many subsequent rows have same value
-            while r + 1 < nrows and df.iat[r + 1, col] == val:#data_rows[r + 1][col] == val:
+            while (
+                r + 1 < nrows and df.iat[r + 1, col] == val
+            ):  # data_rows[r + 1][col] == val:
                 r += 1
             span = r - start + 1
             if span > 1:
@@ -277,26 +278,32 @@ def dt2df_html(
             r += 1
 
     # Build HTML
-    html = ["""<style>
+    html = [
+        """<style>
     table,th,td,tr { border-spacing: 0px; border: 1px solid cyan; padding: 0px; font-family: verdana,courier }
     .decision_table th { font-weight: bold; }
     td.decision_point { vertical-align: middle}
     td.outcome { font-style: italic; font-weight: bold}
-</style>"""]
-    html.append("<table class=\"decision_table\">")
-    html.append("  <tr>" + "".join(f"<th>{h}</th>" for h in df.columns) + "</tr>")
+</style>"""
+    ]
+    html.append('<table class="decision_table">')
+    html.append(
+        "  <tr>" + "".join(f"<th>{h}</th>" for h in df.columns) + "</tr>"
+    )
 
-    for i, row in df.iterrows(): #for i, row in enumerate(df):
+    for i, row in df.iterrows():  # for i, row in enumerate(df):
         cells = []
         j = 0
-        for _, val in row.items(): #enumerate(row):
+        for _, val in row.items():  # enumerate(row):
             tdtype = "decision_point"
             if j == len(row) - 1:
                 tdtype = "outcome"
             if rowspan[i][j] > 0:
                 span = rowspan[i][j]
                 if span > 1:
-                    cells.append(f'<td rowspan="{span}" class="{tdtype}">{val}</td>')
+                    cells.append(
+                        f'<td rowspan="{span}" class="{tdtype}">{val}</td>'
+                    )
                 else:
                     cells.append(f'<td class="{tdtype}">{val}</td>')
             j = j + 1
@@ -305,7 +312,10 @@ def dt2df_html(
     html.append("</table>")
     return "".join(html)
 
-def build_tree(df: pd.DataFrame, columns: pd.Index | list[str]) -> dict[str, dict[str, str] | list[str]] | list[str]:
+
+def build_tree(
+    df: pd.DataFrame, columns: pd.Index | list[str]
+) -> dict[str, dict[str, str] | list[str]] | list[str]:
     """
     Helper function recursively build a nested dict:
     {feature_value: subtree_or_list_of_outcomes}
@@ -330,7 +340,10 @@ def build_tree(df: pd.DataFrame, columns: pd.Index | list[str]) -> dict[str, dic
 
     return tree
 
-def draw_tree(node: dict | list, prefix: str="", lines: list | None = None) -> list:
+
+def draw_tree(
+    node: dict | list, prefix: str = "", lines: list | None = None
+) -> list:
     """
     Pretty-print nested dict/list as a tree.
     """
@@ -345,7 +358,9 @@ def draw_tree(node: dict | list, prefix: str="", lines: list | None = None) -> l
             lines.append(prefix + branch + k + " " * 4)
 
             # Calculate the prefix for the next level of the tree.
-            next_prefix = prefix + (" " * 16 if i == len(items) - 1 else "│" + " " * 15)
+            next_prefix = prefix + (
+                " " * 16 if i == len(items) - 1 else "│" + " " * 15
+            )
             # Recursively draw the subtree.
             draw_tree(v, next_prefix, lines)
     else:  # list of outcomes
@@ -356,6 +371,7 @@ def draw_tree(node: dict | list, prefix: str="", lines: list | None = None) -> l
 
     return lines
 
+
 def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
     """
     Reads a Pandas data frame, builds a decision tree, and returns its ASCII representation.
@@ -364,12 +380,12 @@ def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
     if df == None:
         df = decision_table_to_longform_df(dt)
 
-    if 'row' in df.columns:
-        df.drop(columns='row', inplace=True)
+    if "row" in df.columns:
+        df.drop(columns="row", inplace=True)
 
     # Separate feature columns from the outcome column.
     feature_cols = list(df.columns[:-1])
-    outcome_col  = df.columns[-1]
+    outcome_col = df.columns[-1]
 
     # Build the tree structure.
     tree = build_tree(df, feature_cols + [outcome_col])
