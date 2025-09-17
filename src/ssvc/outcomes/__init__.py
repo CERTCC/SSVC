@@ -16,3 +16,21 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+"""
+This module provides SSVC outcome group objects.
+
+SSVC outcome groups are Decision Point objects.
+The only distinction is that Outcome Groups are usually intended to be used
+as the *outputs* of a decision, whereas most other Decision Points are intended to serve as *inputs* to a decision.
+However, there are use cases where an outcome of one decision may feed into another
+decision, so the distinction is somewhat arbitrary. Hence, we chose to use the same
+data structure for both.
+"""
+
+from .basic import ALL as BASIC_ALL
+from .cisa import ALL as CISA_ALL
+from .ssvc import ALL as SSVC_ALL
+from .x_com_yahooinc import ALL as X_COM_YAHOOINC_ALL
+
+# put SSVC and CISA first since these are the most commonly used
+ALL = SSVC_ALL + CISA_ALL + BASIC_ALL + X_COM_YAHOOINC_ALL

@@ -1,0 +1,20 @@
+{
+  "namespace": "ssvc",
+  "key": "SC",
+  "version": "1.0.0",
+  "name": "Supplier Cardinality",
+  "definition": "How many suppliers are responsible for the vulnerable component and its remediation or mitigation plan?",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "O",
+      "name": "One",
+      "definition": "There is only one supplier of the vulnerable component."
+    },
+    {
+      "key": "M",
+      "name": "Multiple",
+      "definition": "There are multiple suppliers of the vulnerable component."
+    }
+  ]
+}

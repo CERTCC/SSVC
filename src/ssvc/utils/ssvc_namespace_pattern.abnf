@@ -1,0 +1,84 @@
+; SPDX-FileCopyrightText: 2025 Carnegie Mellon University <permission@sei.cmu.edu>
+; SPDX-FileCopyrightText: 2025 German Federal Office for Information Security (BSI) <https://www.bsi.bund.de>
+; SPDX-License-Identifier: LicenseRef-MIT-SEI-style.txt
+;   (see LICENCE for full terms)
+
+namespace = base-ns [ extensions ]
+; Overall namespace must be 3-1000 characters
+; (Enforced via regex length lookahead)
+
+base-ns = x-base / reg-base
+x-base  = "x_" x-name
+reg-base = ns-core [ "#" fragment-seg ]
+
+; ns-core starts with a lowercase letter and may have '.' or '-' separators.
+; Consecutive '.' or '-' are not allowed.
+; It needs at least 3 characters.
+ns-core = LOWER ALNUMLOW 1*( [ SPECIALCHAR ] 1*ALNUMLOW )
+
+x-name = reverse-dns "#" fragment-seg
+
+; reverse-dns provides an specification for a reverse DNS name
+; can't be longer than 253 characters
+reverse-dns = label 1*("." label)
+
+; Each label must be between 1 and 63 characters long
+label = ALNUMLOW [ *61ALNUMLOWDASH ALNUMLOW ]
+
+fragment-seg = 1*ALNUMLOW *( SPECIALCHAR 1*ALNUMLOW )
+
+extensions = lang-ext [ 1*( "/" ext-seg ) ]
+
+; Language extension: either / (empty language extension)
+; or /<bcp47> (BCP-47 language code)
+
+lang-ext = "/" / ( "/" bcp47 )
+
+; Extension segment between slashes.
+; - is either a language or
+; - a model or
+; - a third-party/unofficial translation
+ext-seg = bcp47 / "." x-name / translation
+
+; BCP-47 tag (based on ABNF of [RFC 5646 section 2.1](https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1)
+; and language regex used in CSAF)
+bcp47 = ( 2*3ALPHA
+            [ "-" 3ALPHA *2( "-" 3ALPHA ) ]
+        / 4*8ALPHA )
+        [ "-" 4ALPHA ]
+        [ "-" ( 2ALPHA / 3DIGIT ) ]
+        *( "-" ( 5*8ALNUM / (DIGIT 3ALNUM) ) )
+        *( "-"  singleton 1*( "-" 2*8ALNUM ) )
+        [ "-" "x" 1*( "-" 2*8ALNUM ) ]
+      / "x" 1*( "-" 2*8ALNUM )
+      / "i-default"
+      / "i-mingo"
+
+; Single alphanumerics
+; "x" reserved for private use
+singleton     = DIGIT               ; 0 - 9
+                         / %x41-57             ; A - W
+                         / %x59-5A             ; Y - Z
+                         / %x61-77             ; a - w
+                         / %x79-7A             ; y - z
+
+; Translations is either a
+; - third-party/unofficial translation (depicted by using the reverse-dns before the target language) or
+; - a (context) model (depicted by using the x-name) directly used in a different language
+translation = "." ( reverse-dns /  x-name ) "$" bcp47
+
+; Character sets
+LOWER = %x61-7A   ; a-z
+ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
+DIGIT = %x30-39   ; 0-9
+ALNUM = ALPHA / DIGIT
+ALNUMLOW = LOWER / DIGIT
+SPECIALCHAR = DOT / DASH
+DOT = %x2E; .
+DASH = %x2D ; -
+ALNUMLOWDASH = ALNUMLOW / DASH
+
+; Constraints:
+; - No consecutive "." or "-" in ns-core or ext-seg; exception in label
+; - Each ext-seg can contain at most one "#".
+; - Overall namespace is 3-1000 chars.

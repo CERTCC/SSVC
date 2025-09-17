@@ -21,26 +21,26 @@ Provides an object representing the CVSS Equivalence Set 1 as a decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-TWO = SsvcDecisionPointValue(
+TWO = DecisionPointValue(
     name="Low",
     key="L",
-    description="2: AV:P or not(AV:N or PR:N or UI:N)",
+    definition="2: AV:P or not(AV:N or PR:N or UI:N)",
 )
 
-ONE = SsvcDecisionPointValue(
+ONE = DecisionPointValue(
     name="Medium",
     key="M",
-    description="1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P",
+    definition="1: (AV:N or PR:N or UI:N) and not (AV:N and PR:N and UI:N) and not AV:P",
 )
 
-ZERO = SsvcDecisionPointValue(
+ZERO = DecisionPointValue(
     name="High",
     key="H",
-    description="0: AV:N and PR:N and UI:N",
+    definition="0: AV:N and PR:N and UI:N",
 )
 
 # EQ1 → AV/PR/UI with 3 levels specified in Table 24
@@ -51,7 +51,7 @@ ZERO = SsvcDecisionPointValue(
 EQ1 = CvssDecisionPoint(
     name="Equivalence Set 1",
     key="EQ1",
-    description="AV/PR/UI with 3 levels specified in Table 24",
+    definition="AV/PR/UI with 3 levels specified in Table 24",
     version="1.0.0",
     values=(
         TWO,

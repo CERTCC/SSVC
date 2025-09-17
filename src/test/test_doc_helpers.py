@@ -19,21 +19,25 @@
 
 import unittest
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.doc_helpers import example_block, markdown_table
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.dp = SsvcDecisionPoint(
-            namespace="x_test",
+        self.dp = DecisionPoint(
+            namespace="test",
             name="test name",
-            description="test description",
+            definition="test description",
             key="TK",
             version="1.0.0",
             values=(
-                SsvcDecisionPointValue(name="A", key="A", description="A Definition"),
-                SsvcDecisionPointValue(name="B", key="B", description="B Definition"),
+                DecisionPointValue(
+                    name="A", key="A", definition="A Definition"
+                ),
+                DecisionPointValue(
+                    name="B", key="B", definition="B Definition"
+                ),
             ),
         )
 
@@ -46,10 +50,10 @@ class MyTestCase(unittest.TestCase):
         expected = (
             "test description\n"
             "\n"
-            "| Value | Definition |\n"
-            "|:-----|:-----------|\n"
-            "| A | A Definition |\n"
-            "| B | B Definition |"
+            "| Value | Key | Definition |\n"
+            "|:-----|:---|:-----------|\n"
+            "| A | A | A Definition |\n"
+            "| B | B | B Definition |"
         )
 
         self.assertEqual(result, expected)
@@ -59,10 +63,10 @@ class MyTestCase(unittest.TestCase):
         expected_indented = (
             "    test description\n"
             "\n"
-            "    | Value | Definition |\n"
-            "    |:-----|:-----------|\n"
-            "    | A | A Definition |\n"
-            "    | B | B Definition |"
+            "    | Value | Key | Definition |\n"
+            "    |:-----|:---|:-----------|\n"
+            "    | A | A | A Definition |\n"
+            "    | B | B | B Definition |"
         )
 
         self.assertEqual(indented, expected_indented)
@@ -72,15 +76,15 @@ class MyTestCase(unittest.TestCase):
         result = example_block(self.dp)
 
         self.assertIn("!!! note", result)
-        self.assertIn("\n    | Value | Definition |", result)
-        self.assertIn("\n    | A | A Definition |", result)
-        self.assertIn("\n    | B | B Definition |", result)
+        self.assertIn("\n    | Value | Key | Definition |", result)
+        self.assertIn("\n    | A | A | A Definition |", result)
+        self.assertIn("\n    | B | B | B Definition |", result)
         self.assertIn("\n    ??? example", result)
         self.assertIn("\n        ```json", result)
 
         for value in self.dp.values:
             self.assertIn(value.name, result)
-            self.assertIn(value.description, result)
+            self.assertIn(value.definition, result)
 
 
 if __name__ == "__main__":

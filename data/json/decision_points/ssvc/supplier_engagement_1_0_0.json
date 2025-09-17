@@ -1,0 +1,20 @@
+{
+  "namespace": "ssvc",
+  "key": "SE",
+  "version": "1.0.0",
+  "name": "Supplier Engagement",
+  "definition": "Is the supplier responding to the reporter’s contact effort and actively participating in the coordination effort?",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "A",
+      "name": "Active",
+      "definition": "The supplier is responding to the reporter’s contact effort and actively participating in the coordination effort."
+    },
+    {
+      "key": "U",
+      "name": "Unresponsive",
+      "definition": "The supplier is not responding to the reporter’s contact effort and not actively participating in the coordination effort."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "namespace": "basic",
+  "key": "IKE",
+  "version": "1.0.0",
+  "name": "Do, Schedule, Delegate, Delete",
+  "definition": "The Eisenhower outcome group.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "D",
+      "name": "Delete",
+      "definition": "Delete"
+    },
+    {
+      "key": "G",
+      "name": "Delegate",
+      "definition": "Delegate"
+    },
+    {
+      "key": "S",
+      "name": "Schedule",
+      "definition": "Schedule"
+    },
+    {
+      "key": "O",
+      "name": "Do",
+      "definition": "Do"
+    }
+  ]
+}

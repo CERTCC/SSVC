@@ -24,9 +24,8 @@ from itertools import product
 import networkx as nx
 import pandas as pd
 
-from ssvc.decision_points import SsvcDecisionPoint, SsvcDecisionPointValue
-from ssvc.dp_groups.base import SsvcDecisionPointGroup
-from ssvc.outcomes.base import OutcomeGroup, OutcomeValue
+from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
+from ssvc.dp_groups.base import DecisionPointGroup
 from ssvc.policy_generator import PolicyGenerator
 
 
@@ -36,34 +35,43 @@ class MyTestCase(unittest.TestCase):
         self.dp_values = ["Yes", "No"]
         self.dp_names = ["Who", "What", "When", "Where"]
 
-        self.og = OutcomeGroup(
+        self.og = DecisionPoint(
             name="test",
-            description="test",
-            outcomes=[
-                OutcomeValue(key=c, name=c, description=c)
-                for c in self.og_names
-            ],
+            definition="test",
+            key="TEST",
+            namespace="test",
+            values=tuple(
+                [
+                    DecisionPointValue(key=c, name=c, definition=c)
+                    for c in self.og_names
+                ]
+            ),
         )
-        self.dpg = SsvcDecisionPointGroup(
+        self.dpg = DecisionPointGroup(
             name="test",
-            description="test",
-            decision_points=[
-                SsvcDecisionPoint(
-                    name=c,
-                    description=c,
-                    key=c,
-                    values=[
-                        SsvcDecisionPointValue(name=v, key=v, description=v)
-                        for v in self.dp_values
-                    ],
-                )
-                for c in self.dp_names
-            ],
+            definition="test",
+            decision_points=tuple(
+                [
+                    DecisionPoint(
+                        name=c,
+                        definition=c,
+                        key=c,
+                        namespace="test",
+                        values=tuple(
+                            [
+                                DecisionPointValue(name=v, key=v, definition=v)
+                                for v in self.dp_values
+                            ]
+                        ),
+                    )
+                    for c in self.dp_names
+                ]
+            ),
         )
 
     def test_pg_init(self):
         self.assertEqual(4, len(self.dpg.decision_points))
-        self.assertEqual(4, len(self.og.outcomes))
+        self.assertEqual(4, len(self.og.values))
 
         pg = PolicyGenerator(dp_group=self.dpg, outcomes=self.og)
         for w in pg.outcome_weights:
@@ -238,10 +246,10 @@ class MyTestCase(unittest.TestCase):
 
             stdout = f.getvalue()
 
-            for dpg in pg.dpg.decision_points:
+            for dpg in pg.dpg.decision_points.values():
                 self.assertIn(dpg.name, stdout)
-            for og in pg.outcomes.outcomes:
-                self.assertIn(og.name.lower(), stdout)
+            for og in pg.outcomes.values:
+                self.assertIn(og.name, stdout)
 
     def test_create_policy(self):
         pg = PolicyGenerator(
@@ -263,15 +271,23 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(pg.policy, pd.DataFrame)
         self.assertEqual(16, len(pg.policy))
 
+        idx_cols = [col for col in pg.policy.columns if col.startswith("idx_")]
+        other_cols = [
+            col for col in pg.policy.columns if not col.startswith("idx_")
+        ]
+
         for c in self.dp_names:
-            self.assertIn(c, pg.policy.columns)
-            self.assertIn(f"idx_{c}", pg.policy.columns)
+
+            self.assertTrue(any([c in col for col in other_cols]))
+            self.assertTrue(any([c in col for col in idx_cols]))
 
         self.assertIn("outcome", pg.policy.columns)
         self.assertIn("idx_outcome", pg.policy.columns)
 
         for outcome in self.og_names:
-            self.assertIn(outcome, pg.policy.outcome.values)
+            self.assertTrue(
+                any([outcome in val for val in pg.policy.outcome.values])
+            )
 
     def test_validate_paths(self):
         pg = PolicyGenerator(

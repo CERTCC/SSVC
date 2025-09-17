@@ -22,27 +22,27 @@ Models CVSS Scope as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-_CHANGED = SsvcDecisionPointValue(
+_CHANGED = DecisionPointValue(
     name="Changed",
     key="C",
-    description="An exploited vulnerability can affect resources beyond the authorization privileges intended by the "
+    definition="An exploited vulnerability can affect resources beyond the authorization privileges intended by the "
     "vulnerable component. In this case the vulnerable component and the impacted component are different.",
 )
 
-_UNCHANGED = SsvcDecisionPointValue(
+_UNCHANGED = DecisionPointValue(
     name="Unchanged",
     key="U",
-    description="An exploited vulnerability can only affect resources managed by the same authority. In this case the "
+    definition="An exploited vulnerability can only affect resources managed by the same authority. In this case the "
     "vulnerable component and the impacted component are the same.",
 )
 
 SCOPE_1 = CvssDecisionPoint(
     name="Scope",
-    description="the ability for a vulnerability in one software component to impact resources beyond its means, "
+    definition="the ability for a vulnerability in one software component to impact resources beyond its means, "
     "or privileges",
     key="S",
     version="1.0.0",

@@ -7,7 +7,7 @@
     - An interest in using SSVC in a vulnerability management process
     - Basic familiarity with SSVC
 
-    If you are unfamiliar with SSVC, we suggest you start with the [Learning SSVC](../tutorials/index.md) section.
+    If you are unfamiliar with SSVC, we suggest you start with the [SSVC Overview](../tutorials/ssvc_overview.md) section.
     [Understanding SSVC](../topics/index.md) provides necessary background detail.
     For technical reference, see [Reference](../reference/index.md).
 

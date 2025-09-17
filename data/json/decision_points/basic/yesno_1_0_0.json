@@ -1,0 +1,20 @@
+{
+  "namespace": "basic",
+  "key": "YN",
+  "version": "1.0.0",
+  "name": "YesNo",
+  "definition": "A Yes/No decision point / outcome group.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "definition": "No"
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "definition": "Yes"
+    }
+  ]
+}

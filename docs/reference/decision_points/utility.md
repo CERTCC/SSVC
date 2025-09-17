@@ -1,7 +1,7 @@
 # Utility
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.utility import LATEST
+from ssvc.decision_points.ssvc.utility import LATEST
 from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
@@ -29,6 +29,25 @@ This framing makes it easier to analytically derive these categories from a desc
 Roughly, *Utility* is a combination of two things: (1) the value of each exploitation event and (2) the ease and speed with which the adversary can cause exploitation events.
 We define *Utility* as laborious, efficient, or super effective, as described in the table above.
 
+The mapping is shown in the diagram and table below.
+
+```python exec="true" idprefix=""
+from ssvc.decision_tables.ssvc.utility import LATEST as DT
+from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
+
+rows = DT.mapping
+title = mermaid_title_from_dt(DT)
+print(mapping2mermaid(rows, title=title))
+```
+
+```python exec="true" idprefix=""
+
+from ssvc.decision_tables.ssvc.utility import LATEST as DT
+from ssvc.decision_tables.helpers import dt2df_md
+
+print(dt2df_md(DT))
+```
+
 ## Alternative Utility Outputs
 
 Alternative heuristics can plausibly be used as proxies for adversary utility.
@@ -46,7 +65,7 @@ However, future work should look for and prevent large mismatches between the ou
 ## Previous Versions
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.utility import VERSIONS
+from ssvc.decision_points.ssvc.utility import VERSIONS
 from ssvc.doc_helpers import example_block
 
 versions = VERSIONS[:-1]

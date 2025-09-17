@@ -1,0 +1,37 @@
+row,Exploitation v1.1.0,Utility v1.0.1,Technical Impact v1.0.0,Public Safety Impact v2.0.1,"Defer, Scheduled, Out-of-Cycle, Immediate v1.0.0"
+0,none,laborious,partial,minimal,defer
+1,none,laborious,partial,significant,scheduled
+2,none,laborious,total,minimal,scheduled
+3,none,laborious,total,significant,out-of-cycle
+4,none,efficient,partial,minimal,scheduled
+5,none,efficient,partial,significant,out-of-cycle
+6,none,efficient,total,minimal,scheduled
+7,none,efficient,total,significant,out-of-cycle
+8,none,super effective,partial,minimal,scheduled
+9,none,super effective,partial,significant,out-of-cycle
+10,none,super effective,total,minimal,out-of-cycle
+11,none,super effective,total,significant,out-of-cycle
+12,public poc,laborious,partial,minimal,scheduled
+13,public poc,laborious,partial,significant,out-of-cycle
+14,public poc,laborious,total,minimal,scheduled
+15,public poc,laborious,total,significant,immediate
+16,public poc,efficient,partial,minimal,scheduled
+17,public poc,efficient,partial,significant,immediate
+18,public poc,efficient,total,minimal,out-of-cycle
+19,public poc,efficient,total,significant,immediate
+20,public poc,super effective,partial,minimal,out-of-cycle
+21,public poc,super effective,partial,significant,immediate
+22,public poc,super effective,total,minimal,out-of-cycle
+23,public poc,super effective,total,significant,immediate
+24,active,laborious,partial,minimal,out-of-cycle
+25,active,laborious,partial,significant,immediate
+26,active,laborious,total,minimal,out-of-cycle
+27,active,laborious,total,significant,immediate
+28,active,efficient,partial,minimal,out-of-cycle
+29,active,efficient,partial,significant,immediate
+30,active,efficient,total,minimal,out-of-cycle
+31,active,efficient,total,significant,immediate
+32,active,super effective,partial,minimal,immediate
+33,active,super effective,partial,significant,immediate
+34,active,super effective,total,minimal,immediate
+35,active,super effective,total,significant,immediate

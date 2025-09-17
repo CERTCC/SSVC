@@ -22,40 +22,41 @@ Models the CVSS Availability Requirement metric as an SSVC decision point.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.base import SsvcDecisionPointValue
+from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cvss._not_defined import (
     NOT_DEFINED_ND,
     NOT_DEFINED_X,
 )
 from ssvc.decision_points.cvss.base import CvssDecisionPoint
+from ssvc.decision_points.cvss.helpers import no_x
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
 
-_HIGH = SsvcDecisionPointValue(
+_HIGH = DecisionPointValue(
     name="High",
     key="H",
-    description="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
+    definition="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_MEDIUM = SsvcDecisionPointValue(
+_MEDIUM = DecisionPointValue(
     name="Medium",
     key="M",
-    description="Loss of availability is likely to have a serious adverse effect on the organization or individuals "
+    definition="Loss of availability is likely to have a serious adverse effect on the organization or individuals "
     "associated with the organization (e.g., employees, customers).",
 )
 
-_LOW = SsvcDecisionPointValue(
+_LOW = DecisionPointValue(
     name="Low",
     key="L",
-    description="Loss of availability is likely to have only a limited adverse effect on the organization or "
+    definition="Loss of availability is likely to have only a limited adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 
 AVAILABILITY_REQUIREMENT_1 = CvssDecisionPoint(
     name="Availability Requirement",
-    description="This metric measures the impact to the availability of a successfully exploited vulnerability.",
+    definition="This metric measures the impact to the availability of a successfully exploited vulnerability.",
     key="AR",
     version="1.0.0",
     values=(
@@ -71,7 +72,7 @@ Defines Low, Medium, High, and Not Defined values for CVSS Availability Requirem
 
 AVAILABILITY_REQUIREMENT_1_1 = CvssDecisionPoint(
     name="Availability Requirement",
-    description="This metric measures the impact to the availability of a successfully exploited vulnerability.",
+    definition="This metric measures the impact to the availability of a successfully exploited vulnerability.",
     key="AR",
     version="1.1.0",
     values=(
@@ -83,30 +84,30 @@ AVAILABILITY_REQUIREMENT_1_1 = CvssDecisionPoint(
 )
 
 
-_HIGH_2 = SsvcDecisionPointValue(
+_HIGH_2 = DecisionPointValue(
     name="High",
     key="H",
-    description="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
+    definition="Loss of availability is likely to have a catastrophic adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_MEDIUM_2 = SsvcDecisionPointValue(
+_MEDIUM_2 = DecisionPointValue(
     name="Medium",
     key="M",
-    description="Loss of availability is likely to have a serious adverse effect on the organization or "
+    definition="Loss of availability is likely to have a serious adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
-_LOW_2 = SsvcDecisionPointValue(
+_LOW_2 = DecisionPointValue(
     name="Low",
     key="L",
-    description="Loss of availability is likely to have only a limited adverse effect on the organization or "
+    definition="Loss of availability is likely to have only a limited adverse effect on the organization or "
     "individuals associated with the organization (e.g., employees, customers).",
 )
 
 AVAILABILITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
     name="Availability Requirement",
-    description="This metric enables the consumer to customize the assessment depending on the importance of the "
+    definition="This metric enables the consumer to customize the assessment depending on the importance of the "
     "affected IT asset to the analyst’s organization, measured in terms of Availability.",
     key="AR",
     version="1.1.1",
@@ -117,6 +118,9 @@ AVAILABILITY_REQUIREMENT_1_1_1 = CvssDecisionPoint(
         NOT_DEFINED_X,
     ),
 )
+
+AR_NoX = no_x(AVAILABILITY_REQUIREMENT_1_1_1)
+"""A version of the Availability Requirement decision point without the Not Defined (X) option."""
 
 VERSIONS = (
     AVAILABILITY_REQUIREMENT_1,

@@ -1,0 +1,20 @@
+{
+  "namespace": "ssvc",
+  "key": "PUBLISH",
+  "version": "1.0.0",
+  "name": "Publish, Do Not Publish",
+  "definition": "The publish outcome group.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "N",
+      "name": "Do Not Publish",
+      "definition": "Do Not Publish"
+    },
+    {
+      "key": "P",
+      "name": "Publish",
+      "definition": "Publish"
+    }
+  ]
+}

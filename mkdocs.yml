@@ -5,7 +5,11 @@ site_author: 'CERT Coordination Center'
 nav:
   - Home: 'https://certcc.github.io/'
   - SSVC: 'index.md'
-  - SSVC Overview: 'ssvc_overview.md'
+  - SSVC Overview:
+    - 'tutorials/ssvc_overview.md'
+    - Starting out with SSVC: 'tutorials/starting_points.md'
+    - Other Resources: 'tutorials/other_resources.md'
+
   - SSVC How-To:
     - Overview: 'howto/index.md'
     - Getting Started with SSVC:
@@ -21,8 +25,31 @@ nav:
           - About Coordination: 'howto/coordination_intro.md'
           - Coordination Triage: 'howto/coordination_triage_decision.md'
           - Publication Decision: 'howto/publication_decision.md'
+        - CVSS v4 Analyst Models:
+            - About CVSS v4: 'howto/cvss_v4/index.md'
+            - Equivalence Set 1: 'howto/cvss_v4/eq1.md'
+            - Equivalence Set 2: 'howto/cvss_v4/eq2.md'
+            - Equivalence Set 3: 'howto/cvss_v4/eq3.md'
+            - Equivalence Set 4: 'howto/cvss_v4/eq4.md'
+            - Equivalence Set 5: 'howto/cvss_v4/eq5.md'
+            - Equivalence Set 6: 'howto/cvss_v4/eq6.md'
+            - Qualitative Severity: 'howto/cvss_v4/qualitative.md'
+    - Gathering Info about Decision Points:
+        - Intro: 'howto/gathering_info/index.md'
+        - Automatable: 'howto/gathering_info/automatable.md'
+        - Exploitation: 'howto/gathering_info/exploitation.md'
+        - Mission Impact: 'howto/gathering_info/mission_impact.md'
+        - System Exposure: 'howto/gathering_info/system_exposure.md'
+        - Technical Impact: 'howto/gathering_info/technical_impact.md'
+        - Value Density: 'howto/gathering_info/value_density.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
+    - Using EPSS with SSVC:
+        - 'howto/using_epss/index.md'
+        - EPSS Probability as input to Exploitation: 'howto/using_epss/epss_probability.md'
+        - EPSS Percentiles as an Amplifier: 'howto/using_epss/epss_percentiles.md'
+    - SSVC Tools:
+        - Docker Containers: 'howto/tools/containers.md'
   - Understanding SSVC:
     - Intro: 'topics/index.md'
     - State of Practice: 'topics/state_of_practice.md'
@@ -104,16 +131,19 @@ nav:
             - Report Confidence: 'reference/decision_points/cvss/report_confidence.md'
             - Scope: 'reference/decision_points/cvss/scope.md'
             - Target Distribution: 'reference/decision_points/cvss/target_distribution.md'
+      - Outcomes: 'reference/decision_points/outcomes.md'
     - Code:
         - Intro: 'reference/code/index.md'
+        - Decision Points: 'reference/code/decision_points.md'
+        - Decision Tables: 'reference/code/decision_tables.md'
+        - Decision Point Groups: 'reference/code/decision_point_groups.md'
+        - Namespaces: 'reference/code/namespaces.md'
+        - Selections: 'reference/code/selection.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
         - Policy Generator: 'reference/code/policy_generator.md'
-        - Outcomes: 'reference/code/outcomes.md'
-        - Namespaces: 'reference/code/namespaces.md'
         - Doctools: 'reference/code/doctools.md'
-    - Learning SSVC:
-        - Tutorials: 'tutorials/index.md'
   - Calculator: 'ssvc-calc/index.md'
+  - Policy Explorer: 'ssvc-explorer/index.md'  
   - About:
     - Intro: 'about/index.md'
     - Community Engagement: 'about/contributing.md'

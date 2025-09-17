@@ -1,0 +1,25 @@
+{
+  "namespace": "ssvc",
+  "key": "COORDINATE",
+  "version": "1.0.0",
+  "name": "Decline, Track, Coordinate",
+  "definition": "The coordinate outcome group.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "D",
+      "name": "Decline",
+      "definition": "Decline"
+    },
+    {
+      "key": "T",
+      "name": "Track",
+      "definition": "Track"
+    },
+    {
+      "key": "C",
+      "name": "Coordinate",
+      "definition": "Coordinate"
+    }
+  ]
+}

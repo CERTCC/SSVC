@@ -1,0 +1,25 @@
+{
+  "namespace": "ssvc",
+  "key": "U",
+  "version": "1.0.1",
+  "name": "Utility",
+  "definition": "The Usefulness of the Exploit to the Adversary",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "L",
+      "name": "Laborious",
+      "definition": "Automatable:No AND Value Density:Diffuse"
+    },
+    {
+      "key": "E",
+      "name": "Efficient",
+      "definition": "(Automatable:Yes AND Value Density:Diffuse) OR (Automatable:No AND Value Density:Concentrated)"
+    },
+    {
+      "key": "S",
+      "name": "Super Effective",
+      "definition": "Automatable:Yes AND Value Density:Concentrated"
+    }
+  ]
+}

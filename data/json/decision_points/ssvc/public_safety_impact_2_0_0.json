@@ -1,0 +1,20 @@
+{
+  "namespace": "ssvc",
+  "key": "PSI",
+  "version": "2.0.0",
+  "name": "Public Safety Impact",
+  "definition": "A coarse-grained representation of impact to public safety.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "M",
+      "name": "Minimal",
+      "definition": "Safety Impact:(None OR Minor)"
+    },
+    {
+      "key": "S",
+      "name": "Significant",
+      "definition": "Safety Impact:(Major OR Hazardous OR Catastrophic)"
+    }
+  ]
+}

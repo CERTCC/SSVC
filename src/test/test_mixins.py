@@ -22,18 +22,25 @@ from random import randint
 
 from pydantic import BaseModel, ValidationError
 
-from ssvc._mixins import _Base, _Keyed, _Namespaced, _Valued, _Versioned
+from ssvc._mixins import (
+    _Base,
+    _Keyed,
+    _Namespaced,
+    _Valued,
+    _Versioned,
+)
 from ssvc.namespaces import NameSpace
+from ssvc.utils.defaults import DEFAULT_VERSION
 
 
 class TestMixins(unittest.TestCase):
     def setUp(self) -> None:
-        self.obj = _Base(name="foo", description="baz")
+        self.obj = _Base(name="foo", definition="baz")
 
     def test_ssvc_base_create(self):
-        obj = _Base(name="foo", description="baz")
+        obj = _Base(name="foo", definition="baz")
         self.assertEqual(obj.name, "foo")
-        self.assertEqual(obj.description, "baz")
+        self.assertEqual(obj.definition, "baz")
 
         # empty
         self.assertRaises(ValidationError, _Base)
@@ -48,16 +55,16 @@ class TestMixins(unittest.TestCase):
         # is it a string?
         self.assertIsInstance(json, str)
         # does it look right?
-        self.assertEqual(json, '{"name":"foo","description":"baz"}')
+        self.assertEqual(json, '{"name":"foo","definition":"baz"}')
 
         # modify the raw json string
         json = json.replace("foo", "quux")
-        self.assertEqual(json, '{"name":"quux","description":"baz"}')
+        self.assertEqual(json, '{"name":"quux","definition":"baz"}')
 
         # does it load?
         obj2 = _Base.model_validate_json(json)
         self.assertEqual(obj2.name, "quux")
-        self.assertEqual(obj2.description, "baz")
+        self.assertEqual(obj2.definition, "baz")
 
     def test_asdict_roundtrip(self):
 
@@ -66,7 +73,7 @@ class TestMixins(unittest.TestCase):
 
         self.assertIsInstance(d, dict)
         self.assertEqual(d["name"], "foo")
-        self.assertEqual(d["description"], "baz")
+        self.assertEqual(d["definition"], "baz")
 
         # modify the dict
         d["name"] = "quux"
@@ -74,7 +81,7 @@ class TestMixins(unittest.TestCase):
         # does it load?
         obj2 = _Base(**d)
         self.assertEqual(obj2.name, "quux")
-        self.assertEqual(obj2.description, "baz")
+        self.assertEqual(obj2.definition, "baz")
 
     def test_namespaced_create_errors(self):
         # error if no namespace given
@@ -91,20 +98,6 @@ class TestMixins(unittest.TestCase):
         with self.assertRaises(ValidationError):
             _Namespaced(namespace="x_")
 
-        # error if namespace starts with x_ but is too long
-        for i in range(150):
-            shortest = "x_aaa"
-            ns = shortest + "a" * i
-            with self.subTest(ns=ns):
-                # length limit set in the NS_PATTERN regex
-                if len(ns) <= 100:
-                    # expect success on shorter than limit
-                    _Namespaced(namespace=ns)
-                else:
-                    # expect failure on longer than limit
-                    with self.assertRaises(ValidationError):
-                        _Namespaced(namespace=ns)
-
     def test_namespaced_create(self):
         # use the official namespace values
         for ns in NameSpace:
@@ -112,15 +105,16 @@ class TestMixins(unittest.TestCase):
             self.assertEqual(obj.namespace, ns)
 
         # custom namespaces are allowed as long as they start with x_
+        # and then follow `x-name = reverse-dns  "#" fragment-seg`
         for _ in range(100):
             # we're just fuzzing some random strings here
-            ns = f"x_{randint(1000,1000000)}"
+            ns = f"x_example.test{randint(1000,1000000)}#test"
             obj = _Namespaced(namespace=ns)
             self.assertEqual(obj.namespace, ns)
 
     def test_versioned_create(self):
         obj = _Versioned()
-        self.assertEqual(obj.version, "0.0.0")
+        self.assertEqual(obj.version, DEFAULT_VERSION)
 
         obj = _Versioned(version="1.2.3")
         self.assertEqual(obj.version, "1.2.3")
@@ -131,8 +125,37 @@ class TestMixins(unittest.TestCase):
 
         self.assertRaises(ValidationError, _Keyed)
 
+        good_keys = ["A", "1", "F1", "T*", "Mixed_case_OK", "alph4num3ric"]
+        bad_keys = [
+            "",  # no empty string
+            "foo_",  # no trailing underscore
+            "_",  # no solitary underscore
+            "_foo",  # no leading underscore
+            "A*",  # no trailing asterisk
+        ]
+        # add other bad keys that contain special characters
+        # these should not be allowed in keys
+        for char in " ~`!@#$%^&*()-+={}[]|\\:;\"'<>,.?/":
+            bad_keys.append(char)
+            bad_keys.append("foo" + char)
+            bad_keys.append(char + "bar")
+            bad_keys.append("foo" + char + "bar")
+
+        for key in good_keys:
+            with self.subTest(key=key):
+                obj = _Keyed(key=key)
+                self.assertEqual(obj.key, key)
+
+        for key in bad_keys:
+            with self.subTest(key=key):
+                with self.assertRaises(
+                    ValidationError, msg=f"Key '{key}' should be invalid"
+                ):
+                    _Keyed(key=key)
+
     def test_valued_create(self):
         values = ("foo", "bar", "baz", "quux")
+
         obj = _Valued(values=values)
 
         # length
@@ -153,7 +176,7 @@ class TestMixins(unittest.TestCase):
             {"class": _Keyed, "args": {"key": "fizz"}, "has_default": False},
             {
                 "class": _Namespaced,
-                "args": {"namespace": "x_test"},
+                "args": {"namespace": "x_example.test#test"},
                 "has_default": False,
             },
             {
@@ -162,7 +185,9 @@ class TestMixins(unittest.TestCase):
                 "has_default": True,
             },
         ]
-        keys_with_defaults = [x["args"].keys() for x in mixins if x["has_default"]]
+        keys_with_defaults = [
+            x["args"].keys() for x in mixins if x["has_default"]
+        ]
         # flatten the list
         keys_with_defaults = [
             item for sublist in keys_with_defaults for item in sublist
@@ -187,7 +212,7 @@ class TestMixins(unittest.TestCase):
 
                     if k in keys_with_defaults:
                         # expect success
-                        obj = Foo(name="foo", description="baz", **args_copy)
+                        obj = Foo(name="foo", definition="baz", **args_copy)
                         # make sure the key is defaulted
                         self.assertIsNotNone(getattr(obj, k))
                     else:
@@ -200,9 +225,9 @@ class TestMixins(unittest.TestCase):
                         )
 
                 # instantiate the object
-                obj = Foo(name="foo", description="baz", **args)
+                obj = Foo(name="foo", definition="baz", **args)
                 self.assertEqual(obj.name, "foo")
-                self.assertEqual(obj.description, "baz")
+                self.assertEqual(obj.definition, "baz")
                 # make sure the args are set
                 for k, v in args.items():
                     self.assertEqual(getattr(obj, k), v)
@@ -213,7 +238,7 @@ class TestMixins(unittest.TestCase):
                 self.assertIsInstance(json, str)
                 # does it look right?
                 self.assertIn('"name":"foo"', json)
-                self.assertIn('"description":"baz"', json)
+                self.assertIn('"definition":"baz"', json)
                 for k, v in args.items():
                     self.assertIn(f'"{k}":"{v}"', json)
                 # change the name and description
@@ -222,7 +247,7 @@ class TestMixins(unittest.TestCase):
                 # does it load?
                 obj2 = Foo.model_validate_json(json)
                 self.assertEqual(obj2.name, "quux")
-                self.assertEqual(obj2.description, "fizz")
+                self.assertEqual(obj2.definition, "fizz")
                 # make sure the args are set
                 for k, v in args.items():
                     self.assertEqual(getattr(obj2, k), v)

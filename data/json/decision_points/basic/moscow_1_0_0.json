@@ -1,0 +1,30 @@
+{
+  "namespace": "basic",
+  "key": "MSCW",
+  "version": "1.0.0",
+  "name": "MoSCoW",
+  "definition": "The MoSCoW (Must, Should, Could, Won't) outcome group.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "W",
+      "name": "Won't",
+      "definition": "Won't"
+    },
+    {
+      "key": "C",
+      "name": "Could",
+      "definition": "Could"
+    },
+    {
+      "key": "S",
+      "name": "Should",
+      "definition": "Should"
+    },
+    {
+      "key": "M",
+      "name": "Must",
+      "definition": "Must"
+    }
+  ]
+}

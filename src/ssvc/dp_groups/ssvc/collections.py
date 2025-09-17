@@ -23,7 +23,7 @@ Provides collections of decision points for each version of the SSVC.
 
 
 from ssvc.dp_groups.base import (
-    SsvcDecisionPointGroup,
+    DecisionPointGroup,
     get_all_decision_points_from,
 )
 from ssvc.dp_groups.ssvc.coordinator_publication import (
@@ -38,35 +38,43 @@ from ssvc.dp_groups.ssvc.deployer import (
 from ssvc.dp_groups.ssvc.supplier import PATCH_DEVELOPER_1, SUPPLIER_2
 
 
-SSVCv1 = SsvcDecisionPointGroup(
+SSVCv1 = DecisionPointGroup(
     name="SSVCv1",
-    description="The first version of the SSVC.",
+    definition="The first version of the SSVC.",
     version="1.0.0",
     decision_points=get_all_decision_points_from(
         PATCH_APPLIER_1, PATCH_DEVELOPER_1
     ),
 )
-SSVCv2 = SsvcDecisionPointGroup(
+"""SSVC version 1 decision point group."""
+
+SSVCv2 = DecisionPointGroup(
     name="SSVCv2",
-    description="The second version of the SSVC.",
+    definition="The second version of the SSVC.",
     version="2.0.0",
     decision_points=get_all_decision_points_from(
         COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_2, SUPPLIER_2
     ),
 )
-SSVCv2_1 = SsvcDecisionPointGroup(
+"""SSVC version 2 decision point group."""
+
+SSVCv2_1 = DecisionPointGroup(
     name="SSVCv2.1",
-    description="The second version of the SSVC.",
+    definition="The second version of the SSVC.",
     version="2.1.0",
     decision_points=get_all_decision_points_from(
         COORDINATOR_PUBLICATION_1, COORDINATOR_TRIAGE_1, DEPLOYER_3, SUPPLIER_2
     ),
 )
+"""SSVC version 2.1 decision point group."""
+
+VERSIONS = (SSVCv1, SSVCv2, SSVCv2_1)
+LATEST = VERSIONS[-1]
 
 
 def main():
-    for dpg in [SSVCv1, SSVCv2, SSVCv2_1]:
-        print(dpg.model_dump_json(indent=2))
+    for version in VERSIONS:
+        print(version.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
