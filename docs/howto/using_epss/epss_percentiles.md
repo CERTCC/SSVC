@@ -160,7 +160,6 @@ the prioritization of vulnerabilities based on their EPSS percentiles.
     This way, even if multiple vulnerabilities fall into the same SSVC category,
     you can still prioritize them based on their predicted likelihood of exploitation.
 
-
 ## Conclusion
 
 In this how-to, we've demonstrated how to use EPSS percentiles as an amplifier

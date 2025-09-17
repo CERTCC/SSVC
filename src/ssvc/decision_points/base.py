@@ -78,6 +78,7 @@ class DecisionPoint(
     - key (str): A key (a short, unique string within the namespace) that can be used to identify the decision point in a shorthand way
     - values (tuple): A tuple of DecisionPointValue objects
     """
+
     _schema_version: ClassVar[str] = SCHEMA_VERSION
     schemaVersion: Literal[SCHEMA_VERSION]
     values: tuple[DecisionPointValue, ...]
@@ -154,7 +155,6 @@ class DecisionPoint(
         Return a list of value summaries.
         """
         return list(self.value_dict.keys())
-
 
 
 def main():

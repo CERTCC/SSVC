@@ -50,4 +50,3 @@ docker-compose --project-directory=docker up api
 ```
 
 Then browse to `http://localhost:8001/docs` to access the API documentation.
-

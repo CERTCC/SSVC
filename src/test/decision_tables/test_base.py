@@ -24,6 +24,7 @@ from unittest.mock import Mock, patch
 
 import pandas as pd
 
+from ssvc.decision_points.base import DecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_tables.base import (
     DecisionTable,
@@ -32,8 +33,8 @@ from ssvc.decision_tables.base import (
     decision_table_to_longform_df,
     dpdict_to_combination_list,
 )
-from ssvc.dp_groups.base import DecisionPoint
-from ssvc.outcomes.base import OutcomeGroup
+
+OutcomeGroup = DecisionPoint
 
 
 class TestDecisionTableBase(unittest.TestCase):

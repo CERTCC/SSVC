@@ -29,7 +29,7 @@ All three stakeholders, even if within the same organization, will have differen
 
 ## How vulnerabilities are categorized in SSVC
 
-SSVC categorizes vulnerabilities by priority based on risk that varies among stakeholders. These categories reflect the timeliness of action to be taken. Suppliers and Deployers have different end-categories than Coordinators because they are making different decisions at different points in their responses. [Decision Trees](../topics/decision_trees/) are used when asking the series of questions to categorize a vulnerability's priority. There will be more information on decision points (tree nodes) in the next section.
+SSVC categorizes vulnerabilities by priority based on risk that varies among stakeholders. These categories reflect the timeliness of action to be taken. Suppliers and Deployers have different end-categories than Coordinators because they are making different decisions at different points in their responses. [Decision Trees](../topics/decision_trees.md) are used when asking the series of questions to categorize a vulnerability's priority. There will be more information on decision points (tree nodes) in the next section.
 
 ### Prioritization categories for Suppliers and Deployers
 
@@ -44,7 +44,7 @@ Many Suppliers and Deployers will want to resolve *Defer* vulnerabilities in due
 
 ### Prioritization categories for Coordinators
 
-Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work). Because we make separate decisions for triage and publication, we provide separate example decision tables, each of which has different prioritizations at the end. These decision tables represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
+Our advice for Coordinators is based on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision.md). Because we make separate decisions for triage and publication, we provide separate example decision tables, each of which has different prioritizations at the end. These decision tables represent how we apply SSVC to our needs, and other coordinators might make *different* decisions based on different inputs and output scales. The following categories are listed in increasing order of involvement.
 
 A triage decision table might have:
 
@@ -64,7 +64,7 @@ While we encourage stakeholders to customize SSVC to their needs, in the interes
 
 ### Supplier decision points
 
-<embed src="../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
+<embed src = "../../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"
 height = "700" />
 
@@ -137,7 +137,7 @@ print(example_block(LATEST, include_json=False))
 
 ### Deployer decision points
 
-<embed src="../pdf/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
+<embed src = "../../pdf/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
  type="application/pdf"
  style="width: 100%;"
  height = "1000"/>
@@ -204,45 +204,45 @@ print(example_block(LATEST, include_json=False))
 
 ### Coordinator decision points for Triage
 
-<embed src="../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
+<embed src = "../../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
 style="width: 100%;"
 height = "700" />
 
-The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Disclosure (CVD) practice](../howto/coordination_triage_decision/#coordinator-triage-decision-outcomes), but we encourage Coordinators to define their own criteria for Triage.
+The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Disclosure (CVD) practice](../howto/coordination_triage_decision.md), but we encourage Coordinators to define their own criteria for Triage.
 
 The first two questions help the CERT/CC determine if our help is required.
 
-- [Report Public](reference/decision_points/report_public.md): If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](reference/decision_points/system_exposure.md) [Utility](reference/decision_points/utility.md), and [*significant*](reference/decision_points/public_safety_impact.md) [Public Safety Impact](reference/decision_points/public_safety_impact.md).
-- [Supplier Contacted](reference/decision_points/supplier_contacted.md): If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](reference/decision_points/system_exposure.md) [Utility](reference/decision_points/utility.md), and [*significant*](reference/decision_points/public_safety_impact.md) [Public Safety Impact](reference/decision_points/public_safety_impact.md).
+- [Report Public](../reference/decision_points/report_public.md): If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
+- [Supplier Contacted](../reference/decision_points/supplier_contacted.md): If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
   In this case, CERT/CC may encourage the reporter to contact the supplier and submit a new case request if the supplier is unresponsive.
-- [Report Credibility](reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
+- [Report Credibility](../reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
 Please see the [CERT® Guide to Coordinated Vulnerability Disclosure](https://certcc.github.io/CERT-Guide-to-CVD/howto/coordination/_report_credibility) for more information about assessing credibility.
-- [Supplier Cardinality](reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases.
-- [Supplier Engagement](reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
-- [Utility](reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
-- [Public Safety Impact](reference/decision_points/public_safety_impact.md): If the vulnerability has significant
+- [Supplier Cardinality](../reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases.
+- [Supplier Engagement](../reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
+- [Utility](../reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
+- [Public Safety Impact](../reference/decision_points/public_safety_impact.md): If the vulnerability has significant
    public safety impact, then CERT/CC is more likely to coordinate the case.
 
 The last two questions, *Utility* and *Public Safety Impact*, are the same as asked in the Supplier decision model.
 
 ### Coordinator decision points for Publication
 
-<embed src="../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
+<embed src = "../../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
 style="width: 100%;"
 height = "600" />
 
-At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own rationales for publication based on their missions.
+At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision.md), but we encourage Coordinators to define their own rationales for publication based on their missions.
 
-The publication decision reuses the [*Exploitation*](reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](reference/decision_points/supplier_involvement.md) and [*Public Value Added*](reference/decision_points/public_value_added.md)).
+The publication decision reuses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) and [*Public Value Added*](../reference/decision_points/public_value_added.md)).
 
 !!! tip inline end
 
     *Exploitation* was first described in this document under the *Supplier* model, and the definition is the same regardless of the stakeholder.
 
-- [Supplier Involvement](reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
-- [Exploitation](reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
+- [Supplier Involvement](../reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
+- [Exploitation](../reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
 
-- [Public Value Added](reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish.
+- [Public Value Added](../reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish.
 
 !!! note "What is the difference between *Supplier Engagement* and *Supplier Involvement*?"
 
@@ -259,10 +259,10 @@ Naturally, a stakeholder will have multiple vulnerabilities at any given time, a
 
 ### Communicating results
 
-Coordinators will be especially concerned with communicating information about vulnerabilities, but Suppliers will be just as concerned about communicating to Deployers. Because information changes over time, SSVC decisions should always be timestamped and marked with the version of SSVC that was used. We provide a self-contained, machine-readable [JSON schema](../howto/bootstrap/use/).
+Coordinators will be especially concerned with communicating information about vulnerabilities, but Suppliers will be just as concerned about communicating to Deployers. Because information changes over time, SSVC decisions should always be timestamped and marked with the version of SSVC that was used. We provide a self-contained, machine-readable [JSON schema](../howto/bootstrap/use.md).
 
 ### Further reading
 
-[Reference material](../reference/)
+[Reference material](../reference/index.md)
 
-[Guidance for customizing a Decision Tree](../howto/tree_customization)
+[Guidance for customizing a Decision Tree](../howto/tree_customization.md)

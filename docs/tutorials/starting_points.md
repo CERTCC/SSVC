@@ -1,4 +1,4 @@
-# Learning SSVC
+# Starting Out with SSVC
 
 SSVC stands for Stakeholder-Specific Vulnerability Categorization.
 It is a methodology for prioritizing vulnerabilities based on the needs of the stakeholders involved in the vulnerability management process.
@@ -42,37 +42,11 @@ SSVC can be used in conjunction with other tools and methodologies to help prior
     CVSS vector can be applied to SSVC decision models.
     For example, the [Technical Impact](../reference/decision_points/technical_impact.md) decision point in 
     the [Supplier](../howto/supplier_tree.md) decision model can be informed by the CVSS vector.
+    See the [CVSS v4 Assessment With SSVC](../howto/cvss_v4/index.md) section for more information.
 
 !!! example "EPSS and SSVC"
 
     The Exploit Prediction Scoring System (EPSS) provides information regarding the likelihood of a vulnerability being exploited in the wild.
     This information can be used to inform the [Exploitation](../reference/decision_points/exploitation.md) decision point in the
     [Supplier](../howto/supplier_tree.md), [Deployer](../howto/deployer_tree.md), and [Coordinator Publication](../howto/publication_decision.md) decision models.
-
-## Videos
-
-Provided below are videos that provide an overview of SSVC and the implementation of decision models.
-
-| Source | Video                                                                                                                            |
-| ------ |----------------------------------------------------------------------------------------------------------------------------------|
-| SEI Podcast Series | [A Stakeholder-Specific Approach to Vulnerability Management](https://youtu.be/wbUTizBaXA0)                                      |
-| CISA | [SSVC On-Demand Training](https://youtu.be/NqiwyUPLy6I)                                                                          |
-| Nucleus Security | [SSVC and Decision Trees](https://youtu.be/BKVvmAaCnSs)                                                                          |
-| Nucleus Security | Panel Discussion: [Using Decision Trees for Vulnerability Prioritization with SSVC](https://youtu.be/25RHdcSwHCg) |
-| Nucleus Security | [What is SSVC?](https://youtu.be/LV6PclEQ3QA)                                                                                    |
-| ICS Cybersecurity Academy | [Create your own SSVC decision tree for ICS patching](https://youtu.be/MLkA2N3aXK4)                                              |
-| ICS Cybersecurity Academy | [SSVC: A great replacement for CVSS in ICS?](https://youtu.be/1T36ieOqzNw)                                                       |
-| Waterfall Security Solutions | Industrial Security Podcast Eps. 102: [Stakeholder-Specific Vulnerability Categorization (SSVC)](https://youtu.be/n5tVYjGxFj0)   |
-
-## Other Content
-
-We've collected a list of articles and blog posts that provide additional information about SSVC.
-
-| Source        | Link                                                                                                                                                                                                                                    |
-|- -------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| SEI           | [Prioritizing Vulnerability Response with a Stakeholder-Specific Vulnerability Categorization](https://insights.sei.cmu.edu/blog/prioritizing-vulnerability-response-with-a-stakeholder-specific-vulnerability-categorization/)         |
-| CISA          | [Stakeholder-Specific Vulnerability Categorization (SSVC)](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc)                                                                                                 |
-| Qualys        | [Effective Vulnerability Management with Stakeholder Specific Vulnerability Categorization (SSVC) and Qualys TruRisk](https://blog.qualys.com/product-tech/2022/11/30/effective-vulnerability-management-with-ssvc-and-qualys-trurisk)  |
-| Vulcan Cyber  | [The SSVC risk prioritization method: what it is, when to use it, and alternatives](https://vulcan.io/blog/the-ssvc-risk-prioritization-method-what-it-is-when-to-use-it-and-alternatives/)                 |
-
-Have a link to something we missed? Let us know in an [issue](https://github.com/CERTCC/SSVC/issues/new).
+    See the [EPSS and SSVC](../howto/using_epss/index.md) section for more information.

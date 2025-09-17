@@ -25,3 +25,5 @@ from .lmh import LATEST as LMH
 from .mscw import LATEST as MSCW
 from .value_complexity import LATEST as VALUE_COMPLEXITY
 from .yn import LATEST as YES_NO
+
+ALL = (EISENHOWER, LMH, MSCW, VALUE_COMPLEXITY, YES_NO)

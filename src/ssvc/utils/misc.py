@@ -83,5 +83,3 @@ def filename_friendly(name: str, replacement="_", to_lower=True) -> str:
     name = re.sub(rf"{re.escape(replacement)}+", replacement, name)
 
     return name
-
-

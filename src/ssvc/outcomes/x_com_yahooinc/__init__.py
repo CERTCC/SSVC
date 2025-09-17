@@ -21,3 +21,5 @@ Provides SSVC outcome groups for the `x_com_yahooinc` namespace.
 """
 
 from .paranoids import LATEST as THE_PARANOIDS
+
+ALL = (THE_PARANOIDS,)
