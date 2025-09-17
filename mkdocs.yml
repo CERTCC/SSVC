@@ -119,12 +119,12 @@ nav:
             - Report Confidence: 'reference/decision_points/cvss/report_confidence.md'
             - Scope: 'reference/decision_points/cvss/scope.md'
             - Target Distribution: 'reference/decision_points/cvss/target_distribution.md'
+      - Outcomes: 'reference/decision_points/outcomes.md'
     - Code:
         - Intro: 'reference/code/index.md'
         - Decision Points: 'reference/code/decision_points.md'
         - Decision Tables: 'reference/code/decision_tables.md'
         - Decision Point Groups: 'reference/code/decision_point_groups.md'
-        - Outcomes: 'reference/code/outcomes.md'
         - Namespaces: 'reference/code/namespaces.md'
         - Selections: 'reference/code/selection.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'

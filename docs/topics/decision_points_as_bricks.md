@@ -2,7 +2,7 @@
 
 As we have continued to refine our concept of SSVC, we have an increasing understanding of the importance of
 [*Decision Points*](../reference/decision_points/index.md) as the foundational blocks from which the rest of the
-SSVC concept is built. A second, but less foundational, concept are the [*Outcomes*](../reference/code/outcomes.md) that
+SSVC concept is built. A second, but less foundational, concept are the [*Outcomes*](../reference/decision_points/outcomes.md) that
 provide a vocabulary to describe the results of a decision.
 
 ## Decision Points and Outcomes as Bricks
@@ -77,7 +77,7 @@ to decide how much of that flexibility to use.
 ## SSVC Decision Models as Kits
 
 Similarly, SSVC provides a set of "bricks" in the form of [decision points](../reference/decision_points/index.md)
-and [outcomes](../reference/code/outcomes.md).
+and [outcomes](../reference/decision_points/outcomes.md).
 We have provided a set of [example decision models](../howto/index.md) and [decision tables](../howto/index.md) to get you started.
 You might choose to simply use what we've provided as a starting point.
 Or you might already recognize that our example gets the structure of the decision model right,
