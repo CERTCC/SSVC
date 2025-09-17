@@ -164,5 +164,5 @@ Each row of the table corresponds to a path through the decision model diagram a
 from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DT
 from ssvc.decision_tables.helpers import dt2df_html
 
-print(dt2df_html(DT))
+print(dt2df_html(DT, True, True))
 ```

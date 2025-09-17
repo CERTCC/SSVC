@@ -270,7 +270,7 @@ def dt2df_html(
             val = df.iat[r, col]
             span = 0
             # Count how many subsequent rows have same value
-            if not group_by: 
+            if group_by: 
                 while r + 1 < nrows and df.iat[r + 1, col] == val:
                     r += 1
                     span = r - start + 1
@@ -280,11 +280,11 @@ def dt2df_html(
                 for k in range(start + 1, start + span):
                     rowspan[k][col] = 0
             r += 1
-            
+
     for i,r in enumerate(rowspan):
-        # Fix td rowspan for outcomes to be less confusing
         if not group_by:
-            continue
+            #only if group_by is set this is relevant
+            break
         ncol = len(r)
         lrspan = r[ncol - 1]
         if lrspan > 1:
@@ -307,7 +307,7 @@ def dt2df_html(
                     rowspan[i][ncol-1] = iscan
                     #print("Change", iscan, i+iscan)
                     break
-    # Build HTML
+    # HTML Template for markdown
     html = ["""<style>
     table,th,td,tr { border-spacing: 0px; border: 1px solid cyan; padding: 0px; font-family: verdana,courier }
     .decision_table th { font-weight: bold; }
