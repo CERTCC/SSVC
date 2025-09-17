@@ -625,8 +625,6 @@ function lock_unlock(lock) {
 	select.parentElement.children[0].innerText = "Custom Decision Model";
 	if(nextel.tagName.toUpperCase() == "DIV") {
 	    const inp = nextel.querySelector("input[name='namespace'");
-	    if(inp)
-		inp.value = "";
 	} else {
 	    const div = document.createElement("div");
 	    const clbtn = form.parentElement.querySelector("[data-clear]");
@@ -1370,7 +1368,8 @@ function loadSSVC(fileurl) {
 }
 async function get_decision_points() {
     /* Use the URL registry = await response.json(); */
-    const response = await fetch("/SSVC/data/json/ssvc_object_registry.json");
+    const registry_url = "https://raw.githubusercontent.com/CERTCC/SSVC/refs/heads/main/data/json/ssvc_object_registry.json";
+    const response = await fetch(registry_url);
     const registry = await response.json();
     if (registry.types && registry.types.DecisionPoint &&
 	registry.types.DecisionPoint.namespaces) {
