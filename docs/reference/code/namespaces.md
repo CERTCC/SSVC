@@ -58,7 +58,7 @@ end
 ```
 
 !!! warning "Reserved Namespace Strings"
-    
+
     The SSVC project has _reserved_ the following namespace strings:
 
     - `example` and `x_example`are _reserved_ for use in documentation or as 
@@ -74,7 +74,6 @@ end
     object using either of these strings will result in an error in the Python
     implementation of SSVC.
 
-
 !!! info inline end "Current Registered Namespaces"
 
     The SSVC project currently has a set of registered namespaces that are
@@ -88,8 +87,6 @@ end
     for ns in NameSpace:
         print(f"- {ns.value}")
     ```
-
-
 
 #### Registered Namespace
 
@@ -145,7 +142,7 @@ Registered namespaces are intended to be used as follows:
     context within the same namespace.
     
 !!! example "Fragment Usage in Registered Namespaces"
-    
+
     We use the `nist` namespace for decision points based on NIST standards, and
     fragments to differentiate between decision points based on different NIST publications,
     e.g., `nist#800-30` for decision points based on NIST Special Publication 800-30.
@@ -196,7 +193,6 @@ we expect that this will rarely lead to conflicts in practice.
     `x_example.test#test`, and there are no guarantees of global uniqueness for the
     decision points in the `x_example.test#test` namespace.
 
-
 !!! info "Documentation and Test Namespaces"
 
     Any namespace starting with `x_example` can be used in documentation or as examples,
@@ -219,7 +215,6 @@ from a base namespace.
 Extensions are optional and may be used to refine or clarify existing decision points.
 Extensions allow SSVC users to create decision points that are specific to their
 constituencies or to provide translations of existing decision points.
-
 
 !!! info "Namespace Extension Semantic Requirements"
 
@@ -245,7 +240,6 @@ constituencies or to provide translations of existing decision points.
     If you want to create a new decision point, please use an unregistered namespace
     as described above instead of an extension.
     Extensions are not intended to be used to create new decision points.
-
 
 #### Namespace Extension Structure
 
@@ -346,7 +340,6 @@ base_ns -->|/| first
 
     The structure of the namespace string is intended to show inheritance for
     variations on SSVC objects. 
-
 
 !!! tip "Extension Order Matters"
 

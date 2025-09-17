@@ -50,4 +50,3 @@ SSVC can be used in conjunction with other tools and methodologies to help prior
     This information can be used to inform the [Exploitation](../reference/decision_points/exploitation.md) decision point in the
     [Supplier](../howto/supplier_tree.md), [Deployer](../howto/deployer_tree.md), and [Coordinator Publication](../howto/publication_decision.md) decision models.
     See the [EPSS and SSVC](../howto/using_epss/index.md) section for more information.
-

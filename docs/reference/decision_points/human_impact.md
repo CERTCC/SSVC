@@ -51,7 +51,6 @@ from ssvc.decision_tables.helpers import dt2df_md
 print(dt2df_md(DT))
 ```
 
-
 [^1]: In pilot implementations of SSVC, we received feedback that organizations tend to think of mission and safety impacts as
 if they were combined into a single factor: in other words, the priority increases regardless which of the two  impact factors was increased.
 We therefore combine [Safety Impact](safety_impact.md) and

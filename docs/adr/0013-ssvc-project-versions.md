@@ -29,6 +29,7 @@ For the overall SSVC project and documentation, we need a scheme that better ref
 - **Patch** = subsequent updates in the same month or smaller corrections  
 
 **Significant updates** include:  
+
 - Adding or restructuring sections in ways that affect usability  
 - Adding/revising decision points, tables, or other SSVC objects  
 - Adding features that change how SSVC is applied  
@@ -39,6 +40,7 @@ Months use single digits (`2025.6`) to keep versions concise.
 ## Rationale
 
 CalVer suits SSVC’s character as a living framework:  
+
 - Clearly signals recency (date in the version number)  
 - Fits both documentation-focused and object-focused updates  
 - Avoids SemVer debates over what counts as “major” or “minor”  
@@ -61,6 +63,7 @@ The CalVer scheme will be applied via Git tags and GitHub releases.
 ## Alternatives Rejected
 
 **Continue SemVer for project/docs**  
+
 - **Good:** Maintains continuity  
 - **Bad:** Cannot easily express documentation updates independent of object versions  
 

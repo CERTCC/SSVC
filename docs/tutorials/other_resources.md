@@ -3,9 +3,8 @@
 Below are links to other resources that provide additional information about SSVC.
 
 !!! tip "SSVC Sightings"
-    
-    We keep a running list of articles and other SSVC sightings in a [GitHub Discussion](https://github.com/CERTCC/SSVC/discussions/291)
 
+    We keep a running list of articles and other SSVC sightings in a [GitHub Discussion](https://github.com/CERTCC/SSVC/discussions/291)
 
 ## Videos
 
@@ -32,7 +31,6 @@ We've collected a list of articles and blog posts that provide additional inform
 | CISA          | [Stakeholder-Specific Vulnerability Categorization (SSVC)](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc)                                                                                                 |
 | Qualys        | [Effective Vulnerability Management with Stakeholder Specific Vulnerability Categorization (SSVC) and Qualys TruRisk](https://blog.qualys.com/product-tech/2022/11/30/effective-vulnerability-management-with-ssvc-and-qualys-trurisk)  |
 | Vulcan Cyber  | [The SSVC risk prioritization method: what it is, when to use it, and alternatives](https://vulcan.io/blog/the-ssvc-risk-prioritization-method-what-it-is-when-to-use-it-and-alternatives/)                 |
-
 
 !!! question "Missing Something?"
 

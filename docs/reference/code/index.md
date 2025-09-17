@@ -4,7 +4,7 @@ This section provides documentation for the SSVC Python modules.
 
 These include:
 
-- [Decision Points](decision_points.md) 
+- [Decision Points](decision_points.md)
 - [Decision Tables](decision_tables.md)
 - [Decision Point Groups](decision_point_groups.md) (Deprecated)
 - [Namespaces](namespaces.md)

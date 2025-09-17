@@ -5,12 +5,14 @@ This is the official Python package for the CERT/CC Stakeholder-Specific Vulnera
 
 Installation
 ------------
+
 You can install the latest release from PyPI:
 
     pip install certcc-ssvc
 
 Demo to explore SSVC decision making
 -----
+
 After installation, import the package and explore the examples:
 
     import ssvc
@@ -37,9 +39,9 @@ This demo is a simple decision tree that provides an Outcome based on two condit
 
 Imagine the decision tree as a series of questions. To find the outcome (the YesNo column), you start at the first question (Decision Point), which is the root node of the tree: What is the Weather Forecast?
 
-* Step 1: Look at the Weather Forecast column (e.g., rain, overcast, sunny).
-* Step 2: Look at the Humidity Value above 40% column (e.g., high, low).
-* Step 3: Based on the combination of these two conditions, the YesNo column will give you the Decision as "Yes" to play and "No" to not to play.
+- Step 1: Look at the Weather Forecast column (e.g., rain, overcast, sunny).
+- Step 2: Look at the Humidity Value above 40% column (e.g., high, low).
+- Step 3: Based on the combination of these two conditions, the YesNo column will give you the Decision as "Yes" to play and "No" to not to play.
 
 The YesNo column is the Outcome Decision Point, and the other two Decision Points are inputs that will be collected. This decision tree looks like below in ascii form
 
@@ -95,14 +97,14 @@ For usage in vulnerability management scenarios consider the following popular S
     from ssvc.decision_tables.helpers import ascii_tree
     print(ascii_tree(CISACoordinate))
 
-
 Resources
 ---------
+
 Source code and full documentation:
-https://github.com/CERTCC/SSVC
+<https://github.com/CERTCC/SSVC>
 
 SSVC Policy Explorer:
-https://certcc.github.io/SSVC/ssvc-explorer/
+<https://certcc.github.io/SSVC/ssvc-explorer/>
 
 SSVC Calculator:
-https://certcc.github.io/SSVC/ssvc-calc/
+<https://certcc.github.io/SSVC/ssvc-calc/>
