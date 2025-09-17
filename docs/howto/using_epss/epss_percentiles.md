@@ -114,9 +114,9 @@ information to amplify it. The resulting decision table looks like this:
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.example.epss_quartile import EXAMPLE as DT
-from ssvc.decision_tables.helpers import dt2df_md
+from ssvc.decision_tables.helpers import dt2df_html
 
-print(dt2df_md(DT))
+print(dt2df_html(DT))
 ```
 
 A diagram of the decision model is shown below.
@@ -159,6 +159,7 @@ the prioritization of vulnerabilities based on their EPSS percentiles.
     as a secondary sorting key.
     This way, even if multiple vulnerabilities fall into the same SSVC category,
     you can still prioritize them based on their predicted likelihood of exploitation.
+
 
 ## Conclusion
 

@@ -235,87 +235,106 @@ def dt2df_md(
     df.index.rename("Row", inplace=True)
     return df.to_markdown(index=True)
 
-
-def dt2df_html(dt: DecisionTable, longform: bool = True) -> str:
+def dt2df_html(
+        dt: DecisionTable,
+        longform: bool = True,
+        group_by: bool = False ) -> str:
     """
     Converts a Decision Tree and represent it in friendly HTML Code
     Args:
         decision_table (DecisionTable): The decision table to convert.
         longform (bool): Whether to return the longform or shortform DataFram, defaults to true
+        group_by (bool): Whether to group same value columsn together
     Returns:
-        str: A string representation of the DataFrame in HTML format.
+        str: A string representation of the DataFrame in HTML format.  
     """
 
     if longform:
         df = decision_table_to_longform_df(dt)
     else:
         df = decision_table_to_shortform_df(dt)
+    
+    #df.sort_values(by=df.columns.tolist(), kind='mergesort', inplace=True)
 
-    df = decision_table_to_longform_df(dt)
     ncols = len(df.columns)
     nrows = len(df)
 
     # Precompute rowspan info for every cell
     # rowspan[i][j] = number of rows this cell should span; 0 means skip (because merged above)
-    rowspan = [[1] * ncols for _ in range(nrows)]
+    rowspan = [[1]*ncols for _ in range(nrows)]
 
     for col in range(ncols):
         r = 0
         while r < nrows:
             start = r
-            val = df.iat[r, col]  # data_rows[r][col]
+            val = df.iat[r, col]
+            span = 0
             # Count how many subsequent rows have same value
-            while (
-                r + 1 < nrows and df.iat[r + 1, col] == val
-            ):  # data_rows[r + 1][col] == val:
-                r += 1
-            span = r - start + 1
+            if not group_by: 
+                while r + 1 < nrows and df.iat[r + 1, col] == val:
+                    r += 1
+                    span = r - start + 1
             if span > 1:
                 # Assign span to first, mark rest as 0 (skip)
                 rowspan[start][col] = span
                 for k in range(start + 1, start + span):
                     rowspan[k][col] = 0
             r += 1
-
+            
+    for i,r in enumerate(rowspan):
+        # Fix td rowspan for outcomes to be less confusing
+        if not group_by:
+            continue
+        ncol = len(r)
+        lrspan = r[ncol - 1]
+        if lrspan > 1:
+            tbreak = False
+            wcol = ncol - 3
+            if 0 in r:
+                wcol = len(r) - r[::-1].index(0)
+            if wcol > ncol - 3:
+                wcol = ncol - 3
+            for iscan in range(0,lrspan):
+                smatch = True
+                if rowspan[i+iscan][wcol] == 0 and smatch:
+                    smatch = True
+                elif rowspan[i][wcol] >= lrspan and smatch:
+                    smatch = True
+                else:
+                    smatch = False
+                    #rowspan[i+1][ncol-1] = rowspan[i][ncol-1] - iscan
+                    rowspan[i+iscan][ncol-1] = rowspan[i][ncol-1] - iscan
+                    rowspan[i][ncol-1] = iscan
+                    #print("Change", iscan, i+iscan)
+                    break
     # Build HTML
-    html = [
-        """<style>
+    html = ["""<style>
     table,th,td,tr { border-spacing: 0px; border: 1px solid cyan; padding: 0px; font-family: verdana,courier }
     .decision_table th { font-weight: bold; }
-    td.decision_point { vertical-align: middle}
-    td.outcome { font-style: italic; font-weight: bold}
-</style>"""
-    ]
-    html.append('<table class="decision_table">')
-    html.append(
-        "  <tr>" + "".join(f"<th>{h}</th>" for h in df.columns) + "</tr>"
-    )
-
-    for i, row in df.iterrows():  # for i, row in enumerate(df):
+    td.decision_point { vertical-align: middle; text-align:center}
+    td.outcome { font-style: italic; font-weight: bold; vertical-align: middle; text-align:center}
+</style>"""]
+    html.append("<table class=\"decision_table\">")
+    html.append("  <tr>" + "".join(f"<th>{h}</th>" for h in df.columns) + "</tr>")
+    for i, row in df.iterrows(): #for i, row in enumerate(df):
         cells = []
         j = 0
-        for _, val in row.items():  # enumerate(row):
+        for _, val in row.items(): #enumerate(row):
             tdtype = "decision_point"
             if j == len(row) - 1:
                 tdtype = "outcome"
             if rowspan[i][j] > 0:
                 span = rowspan[i][j]
                 if span > 1:
-                    cells.append(
-                        f'<td rowspan="{span}" class="{tdtype}">{val}</td>'
-                    )
+                    cells.append(f'<td rowspan="{span}" class="{tdtype}">{val}</td>')
                 else:
                     cells.append(f'<td class="{tdtype}">{val}</td>')
             j = j + 1
         html.append("  <tr>" + "".join(cells) + "</tr>")
-
     html.append("</table>")
     return "".join(html)
 
-
-def build_tree(
-    df: pd.DataFrame, columns: pd.Index | list[str]
-) -> dict[str, dict[str, str] | list[str]] | list[str]:
+def build_tree(df: pd.DataFrame, columns: pd.Index | list[str]) -> dict[str, dict[str, str] | list[str]] | list[str]:
     """
     Helper function recursively build a nested dict:
     {feature_value: subtree_or_list_of_outcomes}
@@ -340,10 +359,7 @@ def build_tree(
 
     return tree
 
-
-def draw_tree(
-    node: dict | list, prefix: str = "", lines: list | None = None
-) -> list:
+def draw_tree(node: dict | list, prefix: str="", lines: list | None = None) -> list:
     """
     Pretty-print nested dict/list as a tree.
     """
@@ -358,9 +374,7 @@ def draw_tree(
             lines.append(prefix + branch + k + " " * 4)
 
             # Calculate the prefix for the next level of the tree.
-            next_prefix = prefix + (
-                " " * 16 if i == len(items) - 1 else "│" + " " * 15
-            )
+            next_prefix = prefix + (" " * 16 if i == len(items) - 1 else "│" + " " * 15)
             # Recursively draw the subtree.
             draw_tree(v, next_prefix, lines)
     else:  # list of outcomes
@@ -371,7 +385,6 @@ def draw_tree(
 
     return lines
 
-
 def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
     """
     Reads a Pandas data frame, builds a decision tree, and returns its ASCII representation.
@@ -380,12 +393,12 @@ def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
     if df == None:
         df = decision_table_to_longform_df(dt)
 
-    if "row" in df.columns:
-        df.drop(columns="row", inplace=True)
+    if 'row' in df.columns:
+        df.drop(columns='row', inplace=True)
 
     # Separate feature columns from the outcome column.
     feature_cols = list(df.columns[:-1])
-    outcome_col = df.columns[-1]
+    outcome_col  = df.columns[-1]
 
     # Build the tree structure.
     tree = build_tree(df, feature_cols + [outcome_col])

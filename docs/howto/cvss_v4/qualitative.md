@@ -102,7 +102,7 @@ Each row of the table corresponds to a path through the decision model diagram a
 ```python exec="true" idprefix=""
 
 from ssvc.decision_tables.cvss.qualitative_severity import LATEST as DT
-from ssvc.decision_tables.helpers import dt2df_md
+from ssvc.decision_tables.helpers import dt2df_html
 
 # filter rows for invalid (these don't affect the outcome because they're
 # unreachable from valid CVSS vectors)
@@ -113,5 +113,5 @@ def invalid(row):
 
 DT.mapping = [row for row in DT.mapping if not invalid(row)]
 
-print(dt2df_md(DT))
+print(dt2df_html(DT))
 ```

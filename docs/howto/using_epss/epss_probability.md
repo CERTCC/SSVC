@@ -133,9 +133,9 @@ After constructing the decision table according to these rules, you end up with 
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.example.epss_percentile import EXAMPLE as DT
-from ssvc.decision_tables.helpers import dt2df_md
+from ssvc.decision_tables.helpers import dt2df_html
 
-print(dt2df_md(DT))
+print(dt2df_html(DT))
 ```
 
 A diagram of the decision model is shown below.
