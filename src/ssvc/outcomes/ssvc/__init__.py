@@ -23,3 +23,5 @@ Provides outcome group objects in the ssvc namespace
 from .coordinate import LATEST as COORDINATE
 from .dsoi import LATEST as DSOI
 from .publish import LATEST as PUBLISH
+
+ALL = (COORDINATE, DSOI, PUBLISH)
