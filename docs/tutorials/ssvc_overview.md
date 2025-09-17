@@ -64,7 +64,7 @@ While we encourage stakeholders to customize SSVC to their needs, in the interes
 
 ### Supplier decision points
 
-<embed src="../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
+<embed src = "../../pdf/ssvc_2_supplier.pdf" alt="Suggested supplier tree" type="application/pdf"
 style="width: 100%;"
 height = "700" />
 
@@ -137,7 +137,7 @@ print(example_block(LATEST, include_json=False))
 
 ### Deployer decision points
 
-<embed src="../pdf/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
+<embed src = "../../pdf/ssvc_2_deployer_SeEUMss.pdf" alt="Suggested deployer tree"
  type="application/pdf"
  style="width: 100%;"
  height = "1000"/>
@@ -204,7 +204,7 @@ print(example_block(LATEST, include_json=False))
 
 ### Coordinator decision points for Triage
 
-<embed src="../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
+<embed src = "../../pdf/ssvc_2_coord-triage.pdf" alt="Coordination Triage Tree" type="application/pdf"
 style="width: 100%;"
 height = "700" />
 
@@ -227,7 +227,7 @@ The last two questions, *Utility* and *Public Safety Impact*, are the same as as
 
 ### Coordinator decision points for Publication
 
-<embed src="../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
+<embed src = "../../pdf/ssvc_2_coord-publish.pdf" alt="Suggested tree for a coordinator's publication decision" type="application/pdf"
 style="width: 100%;"
 height = "600" />
 
