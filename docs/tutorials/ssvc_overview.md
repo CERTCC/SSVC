@@ -212,15 +212,15 @@ The below decision points are  modeled on [CERT/CC Coordinated Vulnerability Dis
 
 The first two questions help the CERT/CC determine if our help is required.
 
-- [Report Public](reference/decision_points/report_public.md): If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](reference/decision_points/system_exposure.md) [Utility](reference/decision_points/utility.md), and [*significant*](reference/decision_points/public_safety_impact.md) [Public Safety Impact](reference/decision_points/public_safety_impact.md).
-- [Supplier Contacted](reference/decision_points/supplier_contacted.md): If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](reference/decision_points/system_exposure.md) [Utility](reference/decision_points/utility.md), and [*significant*](reference/decision_points/public_safety_impact.md) [Public Safety Impact](reference/decision_points/public_safety_impact.md).
+- [Report Public](../reference/decision_points/report_public.md): If a report is already public, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
+- [Supplier Contacted](../reference/decision_points/supplier_contacted.md): If no suppliers have been contacted, then CERT/CC will decline the case unless there are multiple suppliers, [*super effective*](../reference/decision_points/system_exposure.md) [Utility](../reference/decision_points/utility.md), and [*significant*](../reference/decision_points/public_safety_impact.md) [Public Safety Impact](../reference/decision_points/public_safety_impact.md).
   In this case, CERT/CC may encourage the reporter to contact the supplier and submit a new case request if the supplier is unresponsive.
-- [Report Credibility](reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
+- [Report Credibility](../reference/decision_points/report_credibility.md): If the report is not credible, then CERT/CC will decline the case.
 Please see the [CERT® Guide to Coordinated Vulnerability Disclosure](https://certcc.github.io/CERT-Guide-to-CVD/howto/coordination/_report_credibility) for more information about assessing credibility.
-- [Supplier Cardinality](reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases.
-- [Supplier Engagement](reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
-- [Utility](reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
-- [Public Safety Impact](reference/decision_points/public_safety_impact.md): If the vulnerability has significant
+- [Supplier Cardinality](../reference/decision_points/supplier_cardinality.md): Cases involving multiple suppliers can get complicated very quickly, so we are more likely to get involved in those cases.
+- [Supplier Engagement](../reference/decision_points/supplier_engagement.md): If the suppliers are already engaged in a case, there is usually less for a coordinator to do, making it less likely that we will coordinate a case.
+- [Utility](../reference/decision_points/utility.md): If the vulnerability has high utility, then CERT/CC is more likely to coordinate the case.
+- [Public Safety Impact](../reference/decision_points/public_safety_impact.md): If the vulnerability has significant
    public safety impact, then CERT/CC is more likely to coordinate the case.
 
 The last two questions, *Utility* and *Public Safety Impact*, are the same as asked in the Supplier decision model.
@@ -233,16 +233,16 @@ height = "600" />
 
 At the CERT/CC, a decision to publish is determined after criteria for Publication are met. SSVC adds value by codifying publication criteria so that the decision is explainable. Publishing a vulnerability should add public value, and a Coordinator must decide why they should publish instead of or in addition to the Supplier. Again, the below decision points are modeled on the [CERT/CC Coordinated Vulnerability Disclosure (CVD) project](../howto/coordination_triage_decision/#coordinator-triage-units-of-work), but we encourage Coordinators to define their own rationales for publication based on their missions.
 
-The publication decision reuses the [*Exploitation*](reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](reference/decision_points/supplier_involvement.md) and [*Public Value Added*](reference/decision_points/public_value_added.md)).
+The publication decision reuses the [*Exploitation*](../reference/decision_points/exploitation.md) decision point and adds two new ones ([*Supplier Involvement*](../reference/decision_points/supplier_involvement.md) and [*Public Value Added*](../reference/decision_points/public_value_added.md)).
 
 !!! tip inline end
 
     *Exploitation* was first described in this document under the *Supplier* model, and the definition is the same regardless of the stakeholder.
 
-- [Supplier Involvement](reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
-- [Exploitation](reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
+- [Supplier Involvement](../reference/decision_points/supplier_involvement.md) - If the supplier is involved and likely to publish already, there is less need for the CERT/CC to publish.
+- [Exploitation](../reference/decision_points/exploitation.md) - If the vulnerability is being actively exploited, the CERT/CC is more likely to publish.
 
-- [Public Value Added](reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish.
+- [Public Value Added](../reference/decision_points/public_value_added.md) - If there is already significant public discussion of the vulnerability, there might not be much for the CERT/CC to add, making us less likely to publish.
 
 !!! note "What is the difference between *Supplier Engagement* and *Supplier Involvement*?"
 
