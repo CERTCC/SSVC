@@ -7,13 +7,15 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
-*System Exposure* is primarily used by Deployers, so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
+*System Exposure* is primarily used by [Deployers](../../deployer_tree), so the question is about whether some specific system is in fact exposed, not a hypothetical or aggregate question about systems of that type.
 Therefore, it generally has a concrete answer, even though it may vary from vulnerable component to vulnerable component, based on their respective configurations.
 
 *System Exposure* can be readily informed by network scanning techniques.
 For example, if the vulnerable component is visible on [Shodan](https://www.shodan.io) or by some other external scanning service, then it is *open*.
 Network policy or diagrams are also useful information sources, especially for services intentionally open to the Internet such as public web servers.
 An analyst should also choose *open* for a phone or PC that connects to the web or email without the usual protections (IP and URL blocking, updated firewalls, etc.).
+
+## *Small* versus *Controlled* System Exposure
 
 Distinguishing between *small* and *controlled* is more nuanced.
 If *open* has been ruled out, some suggested heuristics for differentiating the other two are as follows.
