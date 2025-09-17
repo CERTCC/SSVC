@@ -19,6 +19,4 @@ After exploiting the vulnerability,
 
 This list is an evolving set of heuristics.
 
-!!! question "Have an idea for something we missed?"
-
-    If you find a vulnerability that should have *total* *Technical Impact* but that does not answer yes to any of these questions, please describe the example and what question we might add to this list in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
+{% include-markdown "../../_includes/question_callout.md" heading-offset=1 %}

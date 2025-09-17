@@ -8,8 +8,8 @@ print(example_block(LATEST))
 ```
 
 The heuristics presented in the *Value Density* definitions involve whether the system is usually maintained by a dedicated professional, although we have noted some exceptions (such as encrypted mobile messaging applications).
-!!! question "Have an idea for something we missed?"
-    If there are additional counterexamples to this heuristic, please describe them and the reasoning why the system should have the alternative decision value in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
+
+{% include-markdown "../../_includes/question_callout.md" heading-offset=1 %}
 
 An analyst might use market research reports or Internet telemetry data to assess an unfamiliar product.
 Organizations such as Gartner produce research on the market position and product comparisons for a large variety of systems.

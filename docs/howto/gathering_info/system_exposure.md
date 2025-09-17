@@ -30,5 +30,4 @@ The unreachable vulnerable component scenario may be a point of concern for stak
 In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [*defer*](../../howto/supplier_tree.md) vs [*scheduled*](../../howto/supplier_tree.md), for example).
 
 
-!!! question "Have an idea for something we missed?"
-    If you have suggestions for further heuristics, or potential counterexamples to these,  please describe the example and reasoning in an issue on the [SSVC GitHub](https://github.com/CERTCC/SSVC/issues).
+{% include-markdown "../../_includes/question_callout.md" heading-offset=1 %}
