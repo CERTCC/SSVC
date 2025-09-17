@@ -34,14 +34,6 @@ nav:
             - Equivalence Set 5: 'howto/cvss_v4/eq5.md'
             - Equivalence Set 6: 'howto/cvss_v4/eq6.md'
             - Qualitative Severity: 'howto/cvss_v4/qualitative.md'
-    - Gathering Info about Decision Points:
-        - Intro: 'howto/gathering_info/index.md'
-        - Automatable: 'howto/gathering_info/automatable.md'
-        - Exploitation: 'howto/gathering_info/exploitation.md'
-        - Mission Impact: 'howto/gathering_info/mission_impact.md'
-        - System Exposure: 'howto/gathering_info/system_exposure.md'
-        - Technical Impact: 'howto/gathering_info/technical_impact.md'
-        - Value Density: 'howto/gathering_info/value_density.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
     - Using EPSS with SSVC:
@@ -258,6 +250,9 @@ extra_javascript:
   # to sort tables
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
+  - ssvc-explorer/simple.js
+  - https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js
 extra_css:
   - stylesheets/extra.css
 watch:
