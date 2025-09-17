@@ -338,7 +338,6 @@ const graphModule = (function() {
     }
     
     function dt_graph(dt) {
-	console.log(selector);
 	raw = create_raw(dt);
 	treeData = grapharray_open(raw);
 	draw_graph();
@@ -1965,7 +1964,6 @@ function restore_session() {
 	}
     }
     document$.subscribe(function() {
-	console.log("Page loaded and ready for JavaScript execution!");
 	ssvc_launch();
     });
 function dpValueClone(el) {

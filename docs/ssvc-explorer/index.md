@@ -123,14 +123,3 @@ SSVC Custom Trees
 </p>
 </div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
- console.log(1);
- if(SSVC) 
-  SSVC.ssvc_launch();					     
-});
-    window.addEventListener("load", function() {
-        if (document.visibilityState === "visible") 
-	 console.log("This page oonly");
-	})
-</script>
