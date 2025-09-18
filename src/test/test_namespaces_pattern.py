@@ -27,7 +27,7 @@ from ssvc.utils.patterns import (
     BASE_PATTERN,
     EXT_SEGMENT_PATTERN,
     LENGTH_CHECK_PATTERN,
-    NS_PATTERN,
+    NS_PATTERN_STR,
 )
 
 logger = logging.getLogger(__name__)
@@ -98,7 +98,7 @@ class TestNamespacePattern(unittest.TestCase):
 
     def test_ns_pattern(self):
         self._test_successes_failures(
-            NS_PATTERN.pattern, self.expect_fail, self.expect_success
+            NS_PATTERN_STR, self.expect_fail, self.expect_success
         )
 
     def test_base_pattern(self):
