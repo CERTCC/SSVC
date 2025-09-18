@@ -7,6 +7,10 @@ from ssvc.doc_helpers import example_block
 print(example_block(LATEST))
 ```
 
+!!! tip "Gathering Information about Mission Impact"
+
+      See this [HowTo](../../howto/gathering_info/mission_impact.md) for advice on gathering information about the Mission Impact decision point.
+
 !!! tip "See also"
 
     Mission Impact combines with [Safety Impact](./safety_impact.md) to inform 
@@ -29,15 +33,6 @@ Private sector businesses may better align with [operational and financial impac
 
 While the processes, terminology, and audience for these different frameworks differ, they all can provide a sense of the criticality of an asset or assets within the scope of the stakeholder conducting the cyber vulnerability prioritization with SSVC.
 In that sense they all function quite similarly within SSVC. Organizations should use whatever is most appropriate for their stakeholder context, with Mission Essential Function analysis serving as a fully worked example in the SSVC documents.
-
-## Gathering Information About Mission Impact
-
-The factors that influence the mission impact level are diverse.
-The material here does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work.
-At a minimum, understanding mission impact should include gathering information about the critical paths that involve vulnerable components, viability of contingency measures, and resiliency of the systems that support the mission.
-There are various sources of guidance on how to gather this information; see for example the FEMA guidance in Continuity Directive 2 [@FCD2_2017] or OCTAVE FORTE [@tucker2018octave].
-This is part of risk management more broadly.
-It should require the vulnerability management team to interact with more senior management to understand mission priorities and other aspects of risk mitigation.
 
 ## Prior Versions
 
