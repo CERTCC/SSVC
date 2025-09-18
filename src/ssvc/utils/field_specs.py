@@ -27,7 +27,7 @@ from typing import Annotated
 from pydantic import Field
 
 from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH
-from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
+from ssvc.utils.patterns import NS_PATTERN_STR, VERSION_PATTERN
 
 VersionString = Annotated[
     str,
@@ -50,7 +50,7 @@ NamespaceString = Annotated[
             "x_example.test#test//.example.test#private-extension",
             "ssvc/de-DE/.example.organization#reference-arch-1",
         ],
-        pattern=NS_PATTERN.pattern,
+        pattern=NS_PATTERN_STR,
         min_length=MIN_NS_LENGTH,
         max_length=MAX_NS_LENGTH,
     ),

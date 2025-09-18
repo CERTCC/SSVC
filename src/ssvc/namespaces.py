@@ -23,10 +23,11 @@ for SSVC and provides a method to validate namespace values.
 #  subject to its own license.
 #  DM24-0278
 
+import re
 from enum import StrEnum
 
 from ssvc.utils.defaults import MAX_NS_LENGTH, MIN_NS_LENGTH, X_PFX
-from ssvc.utils.patterns import NS_PATTERN
+from ssvc.utils.patterns import NS_PATTERN_STR
 
 EXT_SEP = "/"
 FRAG_SEP = "#"
@@ -86,7 +87,7 @@ class NameSpace(StrEnum):
             ValueError: if the value is not a valid namespace
 
         """
-        valid = NS_PATTERN.match(value)
+        valid = re.match(NS_PATTERN_STR, value)
 
         if valid:
             # pattern matches, so we can proceed with further checks

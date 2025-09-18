@@ -22,8 +22,6 @@ Provides python regular expressions and utility functions for SSVC-related patte
 #  subject to its own license.
 #  DM24-0278
 
-import re
-
 # from https://semver.org/
 VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
 """A regular expression pattern for semantic versioning (semver)."""
@@ -81,5 +79,3 @@ EXT_SEGMENT_PATTERN = fragment_seg
 
 # --- Combine all parts into the full namespace pattern ---
 NS_PATTERN_STR = rf"^{namespace}$"
-
-NS_PATTERN = re.compile(NS_PATTERN_STR)

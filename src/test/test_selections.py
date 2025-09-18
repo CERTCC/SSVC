@@ -23,7 +23,7 @@ from unittest import expectedFailure
 
 from ssvc import selection
 from ssvc.selection import MinimalDecisionPointValue, SelectionList
-from ssvc.utils.patterns import NS_PATTERN, VERSION_PATTERN
+from ssvc.utils.patterns import NS_PATTERN_STR, VERSION_PATTERN
 
 
 class MyTestCase(unittest.TestCase):
@@ -61,7 +61,7 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(self.s1.namespace, str)
         self.assertRegex(
             self.s1.namespace,
-            NS_PATTERN,
+            NS_PATTERN_STR,
             "Namespace does not match the required pattern",
         )
 
