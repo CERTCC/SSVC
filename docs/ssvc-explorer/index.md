@@ -4,7 +4,7 @@ hide:
 - title
 ---
 
-# SSVC Policy Explorer
+# SSVC Explorer
 <style>
 .ssvc-explorer input
 {

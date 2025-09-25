@@ -135,7 +135,7 @@ nav:
         - Policy Generator: 'reference/code/policy_generator.md'
         - Doctools: 'reference/code/doctools.md'
   - Calculator: 'ssvc-calc/index.md'
-  - Policy Explorer: 'ssvc-explorer/index.md'  
+  - SSVC Explorer: 'ssvc-explorer/index.md'
   - About:
     - Intro: 'about/index.md'
     - Community Engagement: 'about/contributing.md'
