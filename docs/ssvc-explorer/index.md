@@ -5,6 +5,7 @@ hide:
 ---
 
 # SSVC Explorer
+
 <style>
 .ssvc-explorer input
 {
@@ -36,10 +37,10 @@ hide:
 (Translation only)
 </label>
 <label style="display:none">
-<select name="lang" disabled> 
+<select name="lang" disabled>
 <option value="ar-SA">Arabic (Saudi Arabia)(ar-SA)</option><option value="bn-BD">Bangla (Bangladesh)(bn-BD)</option><option value="bn-IN">Bangla (India)(bn-IN)</option><option value="cs-CZ">Czech (Czech Republic)(cs-CZ)</option><option value="da-DK">Danish (Denmark)(da-DK)</option><option value="de-AT">Austrian German(de-AT)</option><option value="de-CH">"Swiss" German(de-CH)</option><option value="de-DE">Standard German (Germany)(de-DE)</option><option value="el-GR">Modern Greek(el-GR)</option><option value="en-AU">Australian English(en-AU)</option><option value="en-CA">Canadian English(en-CA)</option><option value="en-GB">British English(en-GB)</option><option value="en-IE">Irish English(en-IE)</option><option value="en-IN">Indian English(en-IN)</option><option value="en-NZ">New Zealand English(en-NZ)</option><option value="en-US">US English(en-US)</option><option value="en-ZA">English (South Africa)(en-ZA)</option><option value="es-AR">Argentine Spanish(es-AR)</option><option value="es-CL">Chilean Spanish(es-CL)</option><option value="es-CO">Colombian Spanish(es-CO)</option><option value="es-ES">Castilian Spanish (es-ES)</option><option value="es-MX">Mexican Spanish(es-MX)</option><option value="es-US">American Spanish(es-US)</option><option value="fi-FI">Finnish (Finland)(fi-FI)</option><option value="fr-BE">Belgian French(fr-BE)</option><option value="fr-CA">Canadian French(fr-CA)</option><option value="fr-CH">"Swiss" French(fr-CH)</option><option value="fr-FR">Standard French(fr-FR)</option><option value="he-IL">Hebrew (Israel)(he-IL)</option><option value="hi-IN">Hindi (India)(hi-IN)</option><option value="hu-HU">Hungarian (Hungary)(hu-HU)</option><option value="id-ID">Indonesian (Indonesia)(id-ID)</option><option value="it-CH">"Swiss" Italian(it-CH)</option><option value="it-IT">Standard Italian (Italy)(it-IT)</option><option value="ja-JP">Japanese (Japan)(ja-JP)</option><option value="ko-KR">Korean (Republic of Korea)(ko-KR)</option><option value="nl-BE">Belgian Dutch(nl-BE)</option><option value="nl-NL">Standard Dutch (The Netherlands)(nl-NL)</option><option value="no-NO">Norwegian (Norway)(no-NO)</option><option value="pl-PL">Polish (Poland)(pl-PL)</option><option value="pt-BR">Brazilian Portuguese(pt-BR)</option><option value="pt-PT">European Portuguese (Portugal)(pt-PT)</option><option value="ro-RO">Romanian (Romania)(ro-RO)</option><option value="ru-RU">Russian (Russian Federation)(ru-RU)</option><option value="sk-SK">Slovak (Slovakia)(sk-SK)</option><option value="sv-SE">Swedish (Sweden)(sv-SE)</option><option value="ta-IN">Indian Tamil(ta-IN)</option><option value="ta-LK">Sri Lankan Tamil(ta-LK)</option><option value="th-TH">Thai (Thailand)(th-TH)</option><option value="tr-TR">Turkish (Turkey)(tr-TR)</option><option value="zh-CN">Mainland China simplified characters(zh-CN)</option><option value="zh-HK">Hong Kong traditional characters(zh-HK)</option><option value="zh-TW">Taiwan traditional characters(zh-TW)</option>
 </select>
-Language 
+Language
 
 </label>
 </div>
@@ -80,7 +81,7 @@ Language
 <div data-yesno="1" style="display:none">
 <h4 style="text-align: center">Would you like to proceed?</h4>
 <button style="margin-top: 10px;padding: 8px 12px;border: none;background-color: #007bff;color: #fff;border-radius: 4px;cursor: pointer; float:right">Yes</button>
-<button style="margin: 10px 10px 0px 0px;;padding: 8px 12px;border: none;background-color: #ff2121;color: #fff;border-radius: 4px;cursor: pointer; float:right">No</button>	  
+<button style="margin: 10px 10px 0px 0px;;padding: 8px 12px;border: none;background-color: #ff2121;color: #fff;border-radius: 4px;cursor: pointer; float:right">No</button>
 </div>
 <form autocomplete="off">
 <span style="font-size: 20px;font-weight: bold; vertical-align:top">Sample Decision Models:</span>
