@@ -11,13 +11,6 @@ const graphModule = (function() {
             selector = newSelector;
     }
     
-    function pathclick() {};
-    function showdiv() {};
-    function hidediv() {};
-    function dorightclick() {};
-    function doclick() {};
-    function togglehelp() {};
-
     function create_raw(dt) {
 	const kmap = {};
 	Object.entries(dt.decision_points).forEach(([k, v]) => {
@@ -420,8 +413,22 @@ const graphModule = (function() {
 	    });
 	}
     }
+    /* Helper function for advanced UI affects */
+    function pathclick() {};
+    function showdiv() {};
+    function hidediv() {};
+    function dorightclick() {};
+    function doclick() {};
+    function togglehelp() {};
+
 
     return {
+	pathclick:pathclick,
+	showdiv:showdiv,
+	hidediv:hidediv,
+	dorightclick:dorightclick,
+	doclick:doclick,
+	togglehelp:togglehelp,
 	graph_dynamic: graph_dynamic,
 	dt_graph: dt_graph,
 	setSelector: setSelector,
