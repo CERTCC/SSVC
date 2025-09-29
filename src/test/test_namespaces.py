@@ -16,11 +16,11 @@
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
-
+import re
 import unittest
 
 from ssvc.namespaces import NameSpace, RESERVED_NS
-from ssvc.utils.patterns import NS_PATTERN
+from ssvc.utils.patterns import NS_PATTERN_STR
 
 
 class MyTestCase(unittest.TestCase):
@@ -41,7 +41,7 @@ class MyTestCase(unittest.TestCase):
 
         for ns in should_match:
             with self.subTest(ns=ns):
-                self.assertTrue(NS_PATTERN.match(ns), ns)
+                self.assertTrue(re.match(NS_PATTERN_STR, ns), ns)
 
         should_not_match = [
             "",
@@ -62,8 +62,8 @@ class MyTestCase(unittest.TestCase):
         failures = []
         for ns in should_not_match:
             with self.subTest(ns=ns):
-                # re.search() to catch if NS_PATTERN is not anchored at start
-                match = NS_PATTERN.search(ns)
+                # re.search() to catch if NS_PATTERN_STR is not anchored at start
+                match = re.search(NS_PATTERN_STR, ns)
                 if match:
                     failures.append(
                         f"Unexpected match for '{ns}': {match.group(0)}"

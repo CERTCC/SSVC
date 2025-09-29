@@ -22,8 +22,6 @@ Provides python regular expressions and utility functions for SSVC-related patte
 #  subject to its own license.
 #  DM24-0278
 
-import re
-
 # from https://semver.org/
 VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
 """A regular expression pattern for semantic versioning (semver)."""
@@ -42,7 +40,7 @@ LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 # fmt: off
 # --- the following section is generated with
 #  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf | \
-#    sed 's/{,/{0,/g'
+#    sed --expression='s/{,/{0,/g' --expression='s/\\\\#/\#/g'
 alnum = '[a-zA-Z0-9]'
 lower = '[a-z]'
 alnumlow = f'({lower}|[0-9])'
@@ -53,10 +51,10 @@ reverse_dns = f'{label}(\\.{label})+'
 dot = '\\.'
 specialchar = f'({dot}|{dash})'
 fragment_seg = f'({alnumlow})+({specialchar}({alnumlow})+)*'
-x_name = f'{reverse_dns}\\#{fragment_seg}'
+x_name = f'{reverse_dns}#{fragment_seg}'
 x_base = f'x_{x_name}'
 ns_core = f'{lower}{alnumlow}(({specialchar})?({alnumlow})+)+'
-reg_base = f'{ns_core}(\\#{fragment_seg})?'
+reg_base = f'{ns_core}(#{fragment_seg})?'
 base_ns = f'({x_base}|{reg_base})'
 singleton = '[0-9A-WY-Za-wy-z]'
 bcp47 = (
@@ -81,5 +79,3 @@ EXT_SEGMENT_PATTERN = fragment_seg
 
 # --- Combine all parts into the full namespace pattern ---
 NS_PATTERN_STR = rf"^{namespace}$"
-
-NS_PATTERN = re.compile(NS_PATTERN_STR)
