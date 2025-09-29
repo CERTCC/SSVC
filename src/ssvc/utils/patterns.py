@@ -40,7 +40,7 @@ LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 # fmt: off
 # --- the following section is generated with
 #  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf | \
-#    sed 's/{,/{0,/g'
+#    sed --expression='s/{,/{0,/g' --expression='s/\\\\#/\#/g'
 alnum = '[a-zA-Z0-9]'
 lower = '[a-z]'
 alnumlow = f'({lower}|[0-9])'
@@ -51,10 +51,10 @@ reverse_dns = f'{label}(\\.{label})+'
 dot = '\\.'
 specialchar = f'({dot}|{dash})'
 fragment_seg = f'({alnumlow})+({specialchar}({alnumlow})+)*'
-x_name = f'{reverse_dns}\\#{fragment_seg}'
+x_name = f'{reverse_dns}#{fragment_seg}'
 x_base = f'x_{x_name}'
 ns_core = f'{lower}{alnumlow}(({specialchar})?({alnumlow})+)+'
-reg_base = f'{ns_core}(\\#{fragment_seg})?'
+reg_base = f'{ns_core}(#{fragment_seg})?'
 base_ns = f'({x_base}|{reg_base})'
 singleton = '[0-9A-WY-Za-wy-z]'
 bcp47 = (
