@@ -62,13 +62,13 @@ ssvc_doctools="ssvc.doctools:main"
 
 [tool.setuptools.packages.find]
 where = ["."]  # list of folders that contain the packages (["."] by default)
-include = ["ssvc*"]  # package names should match these glob patterns (["*"] by default)
+include = ["src*"]  # package names should match these glob patterns (["*"] by default)
 exclude = ["test*"]  # exclude packages matching these glob patterns (empty by default)
 #namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 
 [tool.setuptools_scm]
-version_file = "ssvc/_version.py"
-root = ".."
+version_file = "./src/ssvc/_version.py"
+root = "."
 local_scheme = "no-local-version"
 version_scheme = "no-guess-dev"
 
