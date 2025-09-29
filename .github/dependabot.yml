@@ -6,7 +6,9 @@
 version: 2
 updates:
   - package-ecosystem: "uv" # See documentation for possible values
-    directory: "/src" # Location of package manifests
+    directories:
+      - "/"
+      - "/src" # Location of package manifests
     schedule:
       interval: "weekly"
     groups:
