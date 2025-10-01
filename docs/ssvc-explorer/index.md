@@ -18,7 +18,7 @@ hide:
 <div id="ssvcPopup" style="position: absolute; display:none;top: 15%; left: 50%;transform: translate(-50%, -50%); background-color: #fff; border: 4px solid #ccc; padding: 10px; border-radius: 6px; width: auto; max-height: 80%;overflow-y: auto; z-index:10">
 <div data-customdp="1">
 <h4 style="text-align: center">Customize Decision Point</h4>
-<form onSubmit="return false();" style="text-align:left" autocomplete="off">
+<form onSubmit="return false;" style="text-align:left" autocomplete="off">
 <div style="padding-bottom:10px">
 <select name="customdp" style="background: transparent; border-radius: 6px; padding: 0px 4px 0px 4px;font-weight: bolder;">
 <option value="">Choose/Create Decision Point</option>
