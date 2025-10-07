@@ -140,10 +140,9 @@ nav:
         - Namespaces: 'reference/code/namespaces.md'
         - Selections: 'reference/code/selection.md'
         - CSV Analyzer: 'reference/code/analyze_csv.md'
-        - Policy Generator: 'reference/code/policy_generator.md'
         - Doctools: 'reference/code/doctools.md'
   - Calculator: 'ssvc-calc/index.md'
-  - Policy Explorer: 'ssvc-explorer/index.md'  
+  - Explorer: 'ssvc-explorer/index.md'
   - About:
     - Intro: 'about/index.md'
     - Community Engagement: 'about/contributing.md'
@@ -258,6 +257,10 @@ extra_javascript:
   # to sort tables
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
+  # scripts for graphModule and Explorer
+  - ssvc-explorer/simple.js
+  - https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js
 extra_css:
   - stylesheets/extra.css
 watch:

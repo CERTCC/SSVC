@@ -1,22 +1,126 @@
 ---
 hide:
-  - navigation
-  - title
+- navigation
+- title
 ---
 
-# SSVC Policy Explorer
+# SSVC Explorer
 
 <style>
-.sembed {
-  min-width: 1200px;
-  min-height: 1100px;
-  z-index: 1;
-  position: relative;
+.ssvc-explorer input
+{
+ border: 1px solid grey;
+ font-family: verdana;
+ font-size: 12px;
 }
 </style>
+<div class="ssvc-explorer">
+<div id="ssvcPopup" style="position: absolute; display:none;top: 15%; left: 50%;transform: translate(-50%, -50%); background-color: #fff; border: 4px solid #ccc; padding: 10px; border-radius: 6px; width: auto; max-height: 80%;overflow-y: auto; z-index:10">
+<div data-customdp="1">
+<h4 style="text-align: center">Customize Decision Point</h4>
+<form onSubmit="return false;" style="text-align:left" autocomplete="off">
+<div style="padding-bottom:10px">
+<select name="customdp" style="background: transparent; border-radius: 6px; padding: 0px 4px 0px 4px;font-weight: bolder;">
+<option value="">Choose/Create Decision Point</option>
+</select>
+</div>
+<div style="display: table-row">
+<label style="display:table-cell">Name</label>
+<input required type="text" style="min-width: 300px;display:table-cell;" name="obj-name" placeholder="Name (Exploitation)">
+</div>
+<div  style="display:table-row">
+<label style="display:table-cell">Namespace</label>
+<input required type="text" style="min-width: 300px;display:table-cell" name="obj-namespace" placeholder="Namespace (x_com.example#psirt)">
+<br>
+<label style="display:none">
+<input type="checkbox" name="translate-only" unchecked>
+(Translation only)
+</label>
+<label style="display:none">
+<select name="lang" disabled>
+<option value="ar-SA">Arabic (Saudi Arabia)(ar-SA)</option><option value="bn-BD">Bangla (Bangladesh)(bn-BD)</option><option value="bn-IN">Bangla (India)(bn-IN)</option><option value="cs-CZ">Czech (Czech Republic)(cs-CZ)</option><option value="da-DK">Danish (Denmark)(da-DK)</option><option value="de-AT">Austrian German(de-AT)</option><option value="de-CH">"Swiss" German(de-CH)</option><option value="de-DE">Standard German (Germany)(de-DE)</option><option value="el-GR">Modern Greek(el-GR)</option><option value="en-AU">Australian English(en-AU)</option><option value="en-CA">Canadian English(en-CA)</option><option value="en-GB">British English(en-GB)</option><option value="en-IE">Irish English(en-IE)</option><option value="en-IN">Indian English(en-IN)</option><option value="en-NZ">New Zealand English(en-NZ)</option><option value="en-US">US English(en-US)</option><option value="en-ZA">English (South Africa)(en-ZA)</option><option value="es-AR">Argentine Spanish(es-AR)</option><option value="es-CL">Chilean Spanish(es-CL)</option><option value="es-CO">Colombian Spanish(es-CO)</option><option value="es-ES">Castilian Spanish (es-ES)</option><option value="es-MX">Mexican Spanish(es-MX)</option><option value="es-US">American Spanish(es-US)</option><option value="fi-FI">Finnish (Finland)(fi-FI)</option><option value="fr-BE">Belgian French(fr-BE)</option><option value="fr-CA">Canadian French(fr-CA)</option><option value="fr-CH">"Swiss" French(fr-CH)</option><option value="fr-FR">Standard French(fr-FR)</option><option value="he-IL">Hebrew (Israel)(he-IL)</option><option value="hi-IN">Hindi (India)(hi-IN)</option><option value="hu-HU">Hungarian (Hungary)(hu-HU)</option><option value="id-ID">Indonesian (Indonesia)(id-ID)</option><option value="it-CH">"Swiss" Italian(it-CH)</option><option value="it-IT">Standard Italian (Italy)(it-IT)</option><option value="ja-JP">Japanese (Japan)(ja-JP)</option><option value="ko-KR">Korean (Republic of Korea)(ko-KR)</option><option value="nl-BE">Belgian Dutch(nl-BE)</option><option value="nl-NL">Standard Dutch (The Netherlands)(nl-NL)</option><option value="no-NO">Norwegian (Norway)(no-NO)</option><option value="pl-PL">Polish (Poland)(pl-PL)</option><option value="pt-BR">Brazilian Portuguese(pt-BR)</option><option value="pt-PT">European Portuguese (Portugal)(pt-PT)</option><option value="ro-RO">Romanian (Romania)(ro-RO)</option><option value="ru-RU">Russian (Russian Federation)(ru-RU)</option><option value="sk-SK">Slovak (Slovakia)(sk-SK)</option><option value="sv-SE">Swedish (Sweden)(sv-SE)</option><option value="ta-IN">Indian Tamil(ta-IN)</option><option value="ta-LK">Sri Lankan Tamil(ta-LK)</option><option value="th-TH">Thai (Thailand)(th-TH)</option><option value="tr-TR">Turkish (Turkey)(tr-TR)</option><option value="zh-CN">Mainland China simplified characters(zh-CN)</option><option value="zh-HK">Hong Kong traditional characters(zh-HK)</option><option value="zh-TW">Taiwan traditional characters(zh-TW)</option>
+</select>
+Language
 
-<iframe src="findex.html" class="sembed" style="border: 0px"></iframe>
+</label>
+</div>
+<div  style="display: table-row">
+<label for="dpVersion" style="display:table-cell">Version</label>
+<input required type="text" style="min-width: 300px;display:table-cell" name="obj-version" placeholder="Version (1.0.0)">
+</div>
+<div style="display: table-row">
+<label style="display:table-cell">Definition</label>
+<textarea required style="display:table-cell; min-height: 30px; min-width: 300px;" name="obj-definition" placeholder="Definition" onchange="SSVC.textAreaAutoSize(this)"></textarea>
+</div>
+<div style="display: table-row">
+<label style="display: table-cell">Decision Point Values</label>
+<button type="button" style="display:table-cell" onclick="SSVC.dpValueClone(this)">(+) Add</button>
+</div>
+<div style="display: table-row" data-clone="1">
+<label style="border-left: 1px solid cyan; display: table-cell"> &nbsp; Value</label>
+<input required type="text" name="obj-values-0-name" style="min-width: 300px;display: table-cell">
+</div>
+<div style="display: table-row" data-clone="1">
+<label style="border-left: 1px solid cyan; display: table-cell;"> &nbsp; Definition</label>
+<textarea required name="obj-values-0-definition" style="display: table-cell; min-height: 30px; min-width: 300px;" onchange="SSVC.textAreaAutoSize(this)"></textarea>
+</div>
+<div style="display: table-row" data-clone="1">
+<label style="border-left: 1px solid cyan; display: table-cell"> &nbsp; Value</label>
+<input required type="text" name="obj-values-1-name" style="min-width: 300px;display: table-cell">
+</div>
+<div style="display: table-row" data-clone="1">
+<label style="border-left: 1px solid cyan; display: table-cell;"> &nbsp; Definition</label>
+<textarea required name="obj-values-1-definition" style="display: table-cell;min-height: 30px; min-width: 300px;" onchange="SSVC.textAreaAutoSize(this)"></textarea>
+</div>
+</form>
+<button onclick="SSVC.updateTree()" data-update="1" style="margin-top: 10px;padding: 8px 12px;border: none;background-color: #007bff;color: #fff;border-radius: 4px;cursor: pointer; float:right">Update</button>
+<button onclick="SSVC.popupEnd()" style="margin: 10px 10px 0px 0px;;padding: 8px 12px;border: none;background-color: #ff2121;color: #fff;border-radius: 4px;cursor: pointer; float:right">Cancel</button>
+</div>
+</div>
 
-<script>
-  console.log("Loaded");
-</script>
+<div data-yesno="1" style="display:none">
+<h4 style="text-align: center">Would you like to proceed?</h4>
+<button style="margin-top: 10px;padding: 8px 12px;border: none;background-color: #007bff;color: #fff;border-radius: 4px;cursor: pointer; float:right">Yes</button>
+<button style="margin: 10px 10px 0px 0px;;padding: 8px 12px;border: none;background-color: #ff2121;color: #fff;border-radius: 4px;cursor: pointer; float:right">No</button>
+</div>
+<form autocomplete="off">
+<span style="font-size: 20px;font-weight: bold; vertical-align:top">Sample Decision Models:</span>
+<input type="file" name="fileupload" style="display:none" onchange="SSVC.readFile(this)">
+<select onchange="SSVC.loadSSVC(this.options[this.selectedIndex].value)" id="sampletrees"
+style="font-size: 18px;background: white;border-radius: 13px;padding: 0px 4px 0px 4px;font-weight: bolder;" autocomplete="off">
+</select>
+<span> </span>
+<div style="vertical-align:top; display:inline-block">
+<button type="button" data-customize="1"
+style="display: inline-block; background-color: #007bff; padding: 2px; color: white; border-radius: 4px;"
+onclick="SSVC.customize(this)">Customize</button>
+&nbsp;
+<button style="background-color: #dc3545; color: white;" type="button"
+data-clear=""> CLEAR </button>
+&nbsp;
+<button type="button" data-toggleall="1"
+style="display: inline-block; background-color: #007bff; padding: 2px; color: white; border-radius: 4px;"
+onclick="SSVC.toggleAll()">Toggle All</button>
+</div>
+<div style="padding: 8px 0px 0px 0px;position: relative; display:none" data-session="1">
+SSVC Custom Trees
+<select name="customdp" style="font-size: 18px;background: white;border-radius: 8px;padding: 0px 4px 0px 4px;" onchange="SSVC.fun_execute(this)">
+<option>Manage </option>
+<option value="restore_session">Restore Session</option>
+<option value="delete_session">Delete Old Sessions</option>
+<option value="delete_dtree">Delete Current Tree</option>
+<option value="rename_dtree">Rename Current Tree</option>
+<option value="download_ssvc_json">Download (JSON)</option>
+<option value="download_ssvc_csv">Download (CSV)</option>
+</select>
+<a style="display:none" data-download-json="1">Download (JSON)</a>
+<a style="display:none" data-download-csv="1">Download (CSV)</a>
+</div>
+
+</form>
+<p>
+<form id="ssvcForm" autocomplete="off">
+</form>
+</p>
+</div>
+</div>
