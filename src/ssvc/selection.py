@@ -350,9 +350,16 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
             if key in model_dump_kwargs:
                 json_kwargs[key] = model_dump_kwargs.pop(key)
         # Get dict with Pydantic's processing (exclude_none, etc.)
-        data = super().model_dump(*args, mode="json", **model_dump_kwargs)
+        data = super().model_dump(*args, **model_dump_kwargs)
         data = self._post_process(data)
-        # No need to manually format timestamp; mode="json" handles it.
+        # Format timestamp as UTC RFC3339 string
+        if "timestamp" in data and isinstance(data["timestamp"], datetime):
+            ts = data["timestamp"]
+            if ts.tzinfo is None or ts.tzinfo.utcoffset(ts) is None:
+                utc_dt = ts.replace(tzinfo=timezone.utc)
+            else:
+                utc_dt = ts.astimezone(timezone.utc)
+            data["timestamp"] = utc_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
         return json.dumps(data, **json_kwargs)
 
 def main() -> None:
