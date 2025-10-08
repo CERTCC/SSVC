@@ -102,7 +102,7 @@ const graphModule = (function() {
 
 	var default_translate =  "translate(" + margin.left + "," + margin.top + ")"
 	var svg_width = width + margin.right + margin.left
-	var svg_height = height + margin.top + margin.bottom
+	var svg_height = (height + margin.top + margin.bottom) * 1.06
 	if(window.innerWidth <= 1000) {
 	    default_translate =  "translate(10,0) scale(0.75)"
 	    if(window.innerWidth <= 750)
