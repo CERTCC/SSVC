@@ -35,6 +35,7 @@ from ssvc.examples import (
 )
 from ssvc.selection import (
     MinimalDecisionPointValue,
+    Reference,
     Selection,
     SelectionList,
 )
@@ -221,3 +222,18 @@ def validate_selection_list(selection_list: SelectionList) -> SelectionList:
     Validate a Selection List object against the pydantic model.
     """
     return selection_list
+
+
+# references
+@router.get(
+    "/references",
+    response_model=Reference,
+    response_model_exclude_none=True,
+    summary="Get sample References",
+    description="Retrieve a list of sample Reference URIs.",
+)
+def get_example_references() -> Reference:
+    """
+    Retrieve a list of sample Reference URIs.
+    """
+    return EXAMPLE_SELECTION_LIST.references[0]
