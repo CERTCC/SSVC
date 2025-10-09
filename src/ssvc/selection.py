@@ -316,22 +316,10 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
         """
         Ensures all Selection.values are lists and removes empty array elements.
         """
-        def fix_selection(selection):
-            # Convert tuple to list and filter out empty items
-            values = selection.get("values", [])
-            # Ensure it's a list, filter out empty/falsy items
-            selection["values"] = [v for v in list(values) if v]
-            return selection
-
-        # If this is a dict with selections, process each selection
-        if isinstance(data, dict) and "selections" in data:
-            data["selections"] = [
-                fix_selection(sel) for sel in data["selections"] if sel
-            ]
-        # Remove empty array fields from the top level
-        keys_to_delete = [k for k, v in data.items() if isinstance(v, list) and not v]
-        for k in keys_to_delete:
-            del data[k]
+        for x in list(data.keys()):
+            if not data[x]:
+                print(x)
+                del data[x]
         return data
 
     def model_dump(self, *args, **kwargs):
@@ -339,28 +327,12 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
         return self._post_process(data)
 
     def model_dump_json(self, *args, **kwargs):
-        # Dump to python dict first, post-process, then dump to JSON
         import json
-        from datetime import timezone
-        model_dump_kwargs = kwargs.copy()
-        json_kwargs = {}
-        # List of json.dumps kwargs you want to support
-        json_kwarg_names = ['indent', 'sort_keys', 'separators', 'ensure_ascii']
-        for key in json_kwarg_names:
-            if key in model_dump_kwargs:
-                json_kwargs[key] = model_dump_kwargs.pop(key)
-        # Get dict with Pydantic's processing (exclude_none, etc.)
-        data = super().model_dump(*args, **model_dump_kwargs)
-        data = self._post_process(data)
-        # Format timestamp as UTC RFC3339 string
-        if "timestamp" in data and isinstance(data["timestamp"], datetime):
-            ts = data["timestamp"]
-            if ts.tzinfo is None or ts.tzinfo.utcoffset(ts) is None:
-                utc_dt = ts.replace(tzinfo=timezone.utc)
-            else:
-                utc_dt = ts.astimezone(timezone.utc)
-            data["timestamp"] = utc_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-        return json.dumps(data, **json_kwargs)
+        jsontext = super().model_dump_json(*args, **kwargs)
+        data = self._post_process(json.loads(jsontext))
+        return json.dumps(data, **{k: v for k, v in kwargs.items() if k in json.dumps.__code__.co_varnames})
+
+
 
 def main() -> None:
     print(
