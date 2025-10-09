@@ -29,6 +29,7 @@ from ssvc.decision_tables.base import DecisionTable
 from ssvc.examples import (
     EXAMPLE_DECISION_POINT_1,
     EXAMPLE_DECISION_TABLE,
+    EXAMPLE_MINIMAL_DECISION_POINT_VALUE,
     EXAMPLE_SELECTION_1,
     EXAMPLE_SELECTION_LIST,
 )
@@ -38,50 +39,10 @@ from ssvc.selection import (
     SelectionList,
 )
 
-#  Copyright (c) 2025 Carnegie Mellon University.
-#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
-#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
-#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
-#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
-#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
-#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
-#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
-#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
-#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
-#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
-#  permission@sei.cmu.edu for full terms.
-#  [DISTRIBUTION STATEMENT A] This material has been approved for
-#  public release and unlimited distribution. Please see Copyright notice
-#  for non-US Government use and distribution.
-#  This Software includes and/or makes use of Third-Party Software each
-#  subject to its own license.
-#  DM24-0278
-
-#  Copyright (c) 2025 Carnegie Mellon University.
-#  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
-#  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
-#  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
-#  EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT
-#  NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR
-#  MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE
-#  OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE
-#  ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM
-#  PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
-#  Licensed under a MIT (SEI)-style license, please see LICENSE or contact
-#  permission@sei.cmu.edu for full terms.
-#  [DISTRIBUTION STATEMENT A] This material has been approved for
-#  public release and unlimited distribution. Please see Copyright notice
-#  for non-US Government use and distribution.
-#  This Software includes and/or makes use of Third-Party Software each
-#  subject to its own license.
-#  DM24-0278
-
 router = APIRouter(prefix="/examples", tags=["Examples"])
 
 # GET to retrieve a sample object
 # POST to validate an object against the pydantic model
-
-# TODO move these examples to a separate examples module and import them here
 
 
 # Decision Point Values
@@ -185,7 +146,7 @@ def get_minimal_decision_point_value() -> MinimalDecisionPointValue:
     """
     Retrieve a minimal Decision Point Value object.
     """
-    return MinimalDecisionPointValue(key="KEY1")
+    return EXAMPLE_MINIMAL_DECISION_POINT_VALUE
 
 
 @router.post(

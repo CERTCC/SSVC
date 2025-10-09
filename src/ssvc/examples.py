@@ -26,7 +26,12 @@ import datetime
 
 from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
-from ssvc.selection import Reference, Selection, SelectionList
+from ssvc.selection import (
+    MinimalDecisionPointValue,
+    Reference,
+    Selection,
+    SelectionList,
+)
 
 EXAMPLE_DECISION_POINT_1 = DecisionPoint(
     namespace="example",
@@ -130,4 +135,8 @@ EXAMPLE_SELECTION_LIST = SelectionList(
     references=[
         Reference(uri="https://example.com", summary="Example reference"),
     ],
+)
+
+EXAMPLE_MINIMAL_DECISION_POINT_VALUE = MinimalDecisionPointValue(
+    key="KEY_REQUIRED",
 )
