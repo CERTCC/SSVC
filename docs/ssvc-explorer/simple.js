@@ -102,9 +102,10 @@ const graphModule = (function() {
 
 	var default_translate =  "translate(" + margin.left + "," + margin.top + ")"
 	var svg_width = width + margin.right + margin.left
-	// Dynamic height adjustment based on tree size
-	var height_adjustment = 1.06 + (raw.length > 60 ? (raw.length - 60) * 0.001 : 0)
-	var svg_height = (height + margin.top + margin.bottom) * height_adjustment
+	// Dynamic height adjustment: smaller adjustment for large trees to avoid excess whitespace
+	var base_height = height + margin.top + margin.bottom
+	var height_adjustment = showFullTree ? 1.03 : 1.06
+	var svg_height = base_height * height_adjustment
 	if(window.innerWidth <= 1000) {
 	    default_translate =  "translate(10,0) scale(0.75)"
 	    if(window.innerWidth <= 750)
