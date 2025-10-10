@@ -20,7 +20,6 @@
 import json
 import unittest
 from datetime import datetime
-from unittest import expectedFailure
 
 from ssvc import selection
 from ssvc.selection import MinimalDecisionPointValue, SelectionList
@@ -246,7 +245,6 @@ class MyTestCase(unittest.TestCase):
         self.assertNotIn("metadata", data)
 
 
-    @expectedFailure
     def test_reference_model_without_summary(self):
         """Test the Reference model."""
         uris = [
@@ -274,6 +272,16 @@ class MyTestCase(unittest.TestCase):
             )
 
             self.assertIn(uri, str(ref.uri))
+
+            # while ref might have an empty string summary,
+            self.assertTrue(hasattr(ref, "summary"))
+            self.assertEqual("", ref.summary)
+            # the json export should not include it
+            json_data = ref.model_dump_json(exclude_none=True)
+            data = json.loads(json_data)
+            self.assertIn("uri", data)
+            self.assertNotIn("summary", data)
+
 
     def test_selection_list_validators(self):
         """Test SelectionList validators."""
