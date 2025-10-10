@@ -94,10 +94,7 @@ deployer may want to use that information to favor the latter.
 In the case where no information is available or the organization has not yet matured its initial situational analysis,
 we can suggest something like defaults for some decision points.
 
-!!! tip "Default Exploitation Values"
-
-    [*Exploitation*](../../reference/decision_points/exploitation.md) needs no special default; if adequate searches are made for exploit code and none is
-    found, the answer is [*none*](../../reference/decision_points/exploitation.md).
+{% include-markdown "../../_includes/default_exploitation_values.md" %}
 
 !!! tip "Default System Exposure Values"
 
