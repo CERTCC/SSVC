@@ -42,6 +42,7 @@ class MyTestCase(unittest.TestCase):
             "namespaces",
             "keys",
             "versions",
+            "examples",
         ]
         routes = [r.path for r in app.routes]
         for expected in expected_routers:
