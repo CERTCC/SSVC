@@ -318,7 +318,6 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
         """
         for x in list(data.keys()):
             if not data[x]:
-                print(x)
                 del data[x]
         return data
 
