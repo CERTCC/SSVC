@@ -37,7 +37,7 @@ from ssvc.api.v1.routers import (
     versions,
 )
 
-router_v1 = APIRouter(prefix="/v1", tags=["v1"])
+router_v1 = APIRouter()
 router_v1.include_router(examples.router)
 router_v1.include_router(decision_point.router)
 router_v1.include_router(decision_points.router)
