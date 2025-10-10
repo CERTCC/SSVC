@@ -237,3 +237,16 @@ def get_example_references() -> Reference:
     Retrieve a list of sample Reference URIs.
     """
     return EXAMPLE_SELECTION_LIST.references[0]
+
+@router.post(
+    "/references",
+    response_model=Reference,
+    response_model_exclude_none=True,
+    summary="Validate a Reference",
+    description="Validate a Reference object against the pydantic model.",
+)
+def validate_reference(reference: Reference) -> Reference:
+    """
+    Validate a Reference object against the pydantic model.
+    """
+    return reference
