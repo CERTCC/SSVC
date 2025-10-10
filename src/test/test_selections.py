@@ -20,6 +20,7 @@
 import unittest
 from datetime import datetime
 from unittest import expectedFailure
+import json
 
 from ssvc import selection
 from ssvc.selection import MinimalDecisionPointValue, SelectionList
@@ -219,6 +220,32 @@ class MyTestCase(unittest.TestCase):
             self.assertIn(uri, str(ref.uri))
             self.assertEqual(ref.summary, "Test description")
 
+    def test_model_dump_removes_empty_values(self):
+        """model_dump() should remove None or empty values."""
+        result_clean = self.selections.model_dump(exclude_none=True)
+        result_bloat = self.selections.model_dump()
+        self.assertNotEqual(result_clean, result_bloat)
+        self.assertIn("selections", result_clean)
+        self.assertNotIn("metadata", result_clean)
+
+    def test_model_dump_json_respects_indent(self):
+        """model_dump_json() should apply JSON indentation and pruning."""
+        json_text = self.selections.model_dump_json(indent=4)
+        data = json.loads(json_text)
+        self.assertIn("selections", data)
+        self.assertNotIn("metadata", data)
+        self.assertIn("\n    \"selections\":", json_text)
+
+    def test_model_dump_json_excludes_none(self):
+        """exclude_none=True should work with post-processing."""
+        json_text_clean = self.selections.model_dump_json(exclude_none=True)
+        json_text_bloat = self.selections.model_dump_json()
+        self.assertNotEqual(json_text_clean, json_text_bloat)
+        data = json.loads(json_text_clean)
+        self.assertIn("selections", data)
+        self.assertNotIn("metadata", data)
+
+
     @expectedFailure
     def test_reference_model_without_summary(self):
         """Test the Reference model."""
@@ -380,6 +407,17 @@ class MyTestCase(unittest.TestCase):
                 selections=[],  # Empty selections should raise error
                 timestamp=datetime.now(),
             )
+
+    def test_model_dump_removes_required_field(self):
+        """ Test if a selections is dumped and breaks when items removed """
+        s = SelectionList(
+            selections=[self.s1],
+            timestamp=datetime.now(),
+            )
+        dumped = s.model_dump()
+        with self.assertRaises(Exception):
+            del dumped['values']
+
 
 
 if __name__ == "__main__":
