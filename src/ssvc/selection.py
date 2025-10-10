@@ -312,6 +312,26 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
         schema = strip_nullable_anyof(schema)
 
         return order_schema(schema)
+    def _post_process(self, data):
+        """
+        Ensures all Selection.values are lists and removes empty array elements.
+        """
+        for x in list(data.keys()):
+            if not data[x]:
+                print(x)
+                del data[x]
+        return data
+
+    def model_dump(self, *args, **kwargs):
+        data = super().model_dump(*args, **kwargs)
+        return self._post_process(data)
+
+    def model_dump_json(self, *args, **kwargs):
+        import json
+        jsontext = super().model_dump_json(*args, **kwargs)
+        data = self._post_process(json.loads(jsontext))
+        return json.dumps(data, **{k: v for k, v in kwargs.items() if k in json.dumps.__code__.co_varnames})
+
 
 
 def main() -> None:
