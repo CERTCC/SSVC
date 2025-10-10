@@ -52,6 +52,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
 
+        self.assertIsInstance(data, dict)
+
         try:
             model.model_validate(data)
         except Exception as e:
@@ -90,15 +92,11 @@ class MyTestCase(unittest.TestCase):
     def test_get_selections(self):
         self._test_get_example("/examples/selections", Selection)
 
-    # FIXME: currently fails due to an issue with the example data containing empty lists
-    @unittest.expectedFailure
     def test_get_selection_lists(self):
         self._test_get_example("/examples/selection-lists", SelectionList)
 
     def test_get_references(self):
         self._test_get_example("/examples/references", Reference)
-
-    # TODO write POST tests
 
     def test_post_decision_points(self):
         for dp in self.dt.decision_points.values():
@@ -144,8 +142,6 @@ class MyTestCase(unittest.TestCase):
 
         # TODO test bad data
 
-    # FIXME: currently fails due to an issue with the example data containing empty lists. (see #1002)
-    @unittest.expectedFailure
     def test_post_selection_lists(self):
         sels = []
         for dp in self.dt.decision_points.values():
