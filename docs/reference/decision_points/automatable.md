@@ -11,6 +11,8 @@ print(example_block(LATEST))
 
       See this [HowTo](../../howto/gathering_info/automatable.md) for advice on gathering information about the Automatable decision point.
 
+{% include-markdown "../../_includes/default_automatable_values.md" %}
+
 !!! tip "See also"
 
     Automatable combines with [Value Density](./value_density.md) to inform 

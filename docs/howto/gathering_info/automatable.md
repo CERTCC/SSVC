@@ -20,3 +20,5 @@ Liveness of Internet-connected services means quite a few overlapping things [@b
 For most vulnerabilities, an open port does not automatically mean that reconnaissance, weaponization, and delivery are automatable.
 Furthermore, discovery of a vulnerable service is not automatable in a situation where only two hosts are misconfigured to expose the service out of 2 million hosts that are properly configured.
 As discussed in in [Reasoning Steps Forward](../../topics/scope.md), the analyst should consider *credible* effects based on *known* use cases of the software system to be pragmatic about scope and providing values to decision points.
+
+{% include-markdown "../../_includes/default_automatable_values.md" %}
