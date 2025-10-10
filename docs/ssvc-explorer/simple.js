@@ -89,9 +89,9 @@ const graphModule = (function() {
 	    height = 800 - margin.top - margin.bottom
 	if(showFullTree) {
 	    var add_offset = 0
-	    if(raw.length > 60 )
-		add_offset = (raw.length - 60)*5
-	    height = 1300 - margin.top - margin.bottom + add_offset
+	    if(raw.length > 60)
+		add_offset = (raw.length - 60)*10
+	    height = Math.max(1300, raw.length * 20) - margin.top - margin.bottom + add_offset
 	}
 	duration = 750
 	tree = d3.layout.tree()
@@ -309,6 +309,10 @@ const graphModule = (function() {
 
 	var yOffset = 90;
 	var xOffset = -xMin + yOffset;
+	var newHeight = xMax - xMin + 2 * yOffset;
+	if (newHeight > parseInt($('svg.mgraph').attr("height"))) {
+	    $('svg.mgraph').attr("height", newHeight);
+	}
 	svg.attr("transform", "translate(" + 100 + "," + xOffset + ")");
     }
     function check_children(d,a,b) {
