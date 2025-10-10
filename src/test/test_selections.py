@@ -474,7 +474,7 @@ class MyTestCase(unittest.TestCase):
         )
         dumped = s.model_dump()
         with self.assertRaises(Exception):
-            del dumped["values"]
+            del dumped['values']
 
 
 if __name__ == "__main__":
