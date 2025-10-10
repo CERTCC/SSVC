@@ -99,11 +99,7 @@ we can suggest something like defaults for some decision points.
     [*Exploitation*](../../reference/decision_points/exploitation.md) needs no special default; if adequate searches are made for exploit code and none is
     found, the answer is [*none*](../../reference/decision_points/exploitation.md).
 
-!!! tip "Default System Exposure Values"
-
-    If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that
-    means they do not know where the devices are or how they are controlled, so they should assume
-    [*System Exposure*](../../reference/decision_points/system_exposure.md) is [*open*](../../reference/decision_points/system_exposure.md).
+{% include-markdown "../../_includes/default_system_exposure_values.md" %}
 
 !!! tip "Default Automatable Values"
 
