@@ -163,9 +163,6 @@ class MyTestCase(unittest.TestCase):
 
             ]
         )
-        print("---")
-        print(sel_list.model_dump_json())
-        print("---")
         self._test_post_example(
             "/examples/selection-lists", SelectionList, sel_list
         )
