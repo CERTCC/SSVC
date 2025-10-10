@@ -238,6 +238,7 @@ def get_example_references() -> Reference:
     """
     return EXAMPLE_SELECTION_LIST.references[0]
 
+
 @router.post(
     "/references",
     response_model=Reference,

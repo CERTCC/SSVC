@@ -59,18 +59,17 @@ class MyTestCase(unittest.TestCase):
         except Exception as e:
             self.fail(f"Validation failed: {e}")
 
-
     def _test_post_example(self, endpoint: str, model: type, obj: object):
         response = self.client.post(endpoint, json=obj.model_dump(mode="json"))
-        self.assertEqual(200, response.status_code, f"POST to {endpoint} failed: {response}")
+        self.assertEqual(
+            200, response.status_code, f"POST to {endpoint} failed: {response}"
+        )
         data = response.json()
 
         try:
             model.model_validate(data)
         except Exception as e:
             self.fail(f"Validation failed: {e}")
-
-
 
     def test_get_decision_point_values(self):
         self._test_get_example(
@@ -152,16 +151,15 @@ class MyTestCase(unittest.TestCase):
             sels.append(sel)
 
         sel_list = SelectionList(
-            target_ids=["TK-421","TK-710"],
+            target_ids=["TK-421", "TK-710"],
             selections=sels,
             timestamp=datetime.datetime.now(),
-            references = [
+            references=[
                 Reference(
                     uri="https://starwars.fandom.com/wiki/TK-421",
-                    summary="Alongside TK-710, TK-421's first security assignment was to guard the Millennium Falcon in Docking Bay 327 after the Death Star captured it."
+                    summary="Alongside TK-710, TK-421's first security assignment was to guard the Millennium Falcon in Docking Bay 327 after the Death Star captured it.",
                 )
-
-            ]
+            ],
         )
         print("---")
         print(sel_list.model_dump_json())
@@ -172,7 +170,9 @@ class MyTestCase(unittest.TestCase):
         # TODO test bad data
 
     def test_post_references(self):
-        ref = Reference(uri="http://some/reference",summary="An example reference")
+        ref = Reference(
+            uri="http://some/reference", summary="An example reference"
+        )
         self._test_post_example("/examples/references", Reference, ref)
         # TODO test bad data
 

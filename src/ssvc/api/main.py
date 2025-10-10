@@ -47,11 +47,9 @@ app = FastAPI(
 app.include_router(router_v1, prefix="/ssvc/api/v1", tags=["SSVC API v1"])
 
 
-
 # root should redirect to docs
 # at least until we have something better to show
-@app.get("/", include_in_schema=False,
-         description="Redirect to API docs")
+@app.get("/", include_in_schema=False, description="Redirect to API docs")
 async def redirect_root_to_docs():
     return RedirectResponse(url="/docs")
 

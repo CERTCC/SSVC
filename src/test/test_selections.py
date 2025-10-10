@@ -233,7 +233,7 @@ class MyTestCase(unittest.TestCase):
         data = json.loads(json_text)
         self.assertIn("selections", data)
         self.assertNotIn("metadata", data)
-        self.assertIn("\n    \"selections\":", json_text)
+        self.assertIn('\n    "selections":', json_text)
 
     def test_model_dump_json_excludes_none(self):
         """exclude_none=True should work with post-processing."""
@@ -243,7 +243,6 @@ class MyTestCase(unittest.TestCase):
         data = json.loads(json_text_clean)
         self.assertIn("selections", data)
         self.assertNotIn("metadata", data)
-
 
     def test_reference_model_without_summary(self):
         """Test the Reference model."""
@@ -281,7 +280,6 @@ class MyTestCase(unittest.TestCase):
             data = json.loads(json_data)
             self.assertIn("uri", data)
             self.assertNotIn("summary", data)
-
 
     def test_selection_list_validators(self):
         """Test SelectionList validators."""
@@ -380,14 +378,18 @@ class MyTestCase(unittest.TestCase):
             selections=[self.s1, self.s2],
             timestamp=datetime.now(),
         )
-        for attribute in ["decision_point_resources", "references", "target_ids"]:
+        for attribute in [
+            "decision_point_resources",
+            "references",
+            "target_ids",
+        ]:
             self.assertTrue(
                 hasattr(sel_list_no_dpr, attribute),
                 f"Attribute {attribute} is missing",
             )
             _value = getattr(sel_list_no_dpr, attribute)
             self.assertIsInstance(_value, list)
-            self.assertEqual(0,len(_value))
+            self.assertEqual(0, len(_value))
 
             # but they should not appear in the model dump to JSON
             dumped = sel_list_no_dpr.model_dump()
@@ -405,7 +407,8 @@ class MyTestCase(unittest.TestCase):
         check_attrs = [
             "decision_point_resources",
             "references",
-            "target_ids",]
+            "target_ids",
+        ]
 
         for attr in check_attrs:
             self.assertNotIn(attr, data)
@@ -419,8 +422,7 @@ class MyTestCase(unittest.TestCase):
             )
             _value = getattr(new_obj, attr)
             self.assertIsInstance(_value, list)
-            self.assertEqual(0,len(_value))
-
+            self.assertEqual(0, len(_value))
 
     def test_model_json_schema_customization(self):
         """Test that JSON schema is properly customized."""
@@ -465,15 +467,14 @@ class MyTestCase(unittest.TestCase):
             )
 
     def test_model_dump_removes_required_field(self):
-        """ Test if a selections is dumped and breaks when items removed """
+        """Test if a selections is dumped and breaks when items removed"""
         s = SelectionList(
             selections=[self.s1],
             timestamp=datetime.now(),
-            )
+        )
         dumped = s.model_dump()
         with self.assertRaises(Exception):
-            del dumped['values']
-
+            del dumped["values"]
 
 
 if __name__ == "__main__":

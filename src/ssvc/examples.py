@@ -28,7 +28,8 @@ from ssvc.decision_points.base import DecisionPoint, DecisionPointValue
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.selection import (
     MinimalDecisionPointValue,
-    Reference, Selection,
+    Reference,
+    Selection,
     SelectionList,
 )
 

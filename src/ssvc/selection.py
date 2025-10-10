@@ -24,7 +24,15 @@ Provides an SSVC selection object and functions to facilitate transition from an
 from datetime import datetime
 from typing import ClassVar, Literal, Optional
 
-from pydantic import (AnyUrl, BaseModel, ConfigDict, Field, field_validator, model_serializer, model_validator)
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConfigDict,
+    Field,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 from ssvc._mixins import (
     _GenericOptionalSsvcObject,
@@ -332,7 +340,6 @@ class SelectionList(_SchemaVersioned, _Timestamped, BaseModel):
         schema = strip_nullable_anyof(schema)
 
         return order_schema(schema)
-
 
 
 def main() -> None:
