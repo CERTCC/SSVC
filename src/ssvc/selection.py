@@ -159,7 +159,9 @@ class Reference(BaseModel):
             The modified data dictionary with summary set to an empty string if it was missing.
 
         """
-        if "summary" not in data or not data["summary"]:
+        if "summary" not in data:
+            data["summary"] = ""
+        elif not data["summary"]:
             data["summary"] = ""
         return data
 
