@@ -14,8 +14,6 @@ print(example_block(LATEST))
     - Safety Impact combines with [Mission Impact](./mission_impact.md) to 
       inform [Human Impact](./human_impact.md).
 
-{% include-markdown "../../_includes/default_safety_values.md" %}
-
 We take an expansive view of safety, in which a safety violation is a violation of what the United States [Centers for Disease Control (CDC)](https://www.cdc.gov/hrqol/wellbeing.htm) calls **well-being**. Physical well-being violations are common safety violations, but we also consider economic, social, emotional, and psychological well-being to be important. Weighing fine differences among these categories is probably not possible, so we will not try. Each decision option lists examples of the effects that qualify for that value/answer in the various types of violations of well-being. These examples should not be considered comprehensive or exhaustive, but rather as suggestive.
 <!--The CDC webpage is better called a lit review. It has 74 citations on well-being across various fields. The following citations could reasonably be cited directly, rather than just referencing the CDC page:
 Frey BS, Stutzer A. Happiness and economics. Princeton, N.J.: Princeton University Press; 2002.
