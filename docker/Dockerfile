@@ -3,10 +3,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /
 RUN pip install --upgrade pip uv
 WORKDIR /app
 
-ENV VIRTUAL_ENV=/app/.venv
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
-
-RUN python -m venv "${VIRTUAL_ENV}"
 FROM base AS dependencies
 
 # Copy the files we need
@@ -18,6 +14,7 @@ ENV PYTHONPATH=/app/src
 RUN uv sync --frozen
 
 FROM dependencies AS test
+
 ENV PYTHONPATH=/app/src
 # Install pytest and dev dependencies
 RUN uv sync --frozen --dev
