@@ -47,6 +47,8 @@ Aggregation suggests that the stakeholder’s response to this decision point ca
 
 ## Gathering Information About Safety Impact
 
+{% include-markdown "../../_includes/default_safety_values.md" %}
+
 The factors that influence the safety impact level are diverse.
 This paper does not exhaustively discuss how a stakeholder should answer a question; that is a topic for future work.
 At a minimum, understanding safety impact should include gathering information about survivability of the vulnerable component, determining available operator actions to compensate for the vulnerable component, understanding relevant insurance, and determining the viability of existing backup measures.
