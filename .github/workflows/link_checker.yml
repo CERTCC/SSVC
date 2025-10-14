@@ -11,8 +11,7 @@ on:
       # run on any PR that changes this workflow
       - .github/workflows/linkchecker.yml
       # run on any PR that changes the pip requirements
-      - requirements.txt
-      - src/pyproject.toml
+      - pyproject.toml
   # let us trigger it manually
   workflow_dispatch:
 
@@ -31,13 +30,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip uv
-          uv sync --dev --project=src
+          uv sync --dev
 
       - name: Build Site
         run: |
-          uv run --project=src mkdocs build --verbose --clean --config-file mkdocs.yml
+          uv run mkdocs build --verbose --clean --config-file mkdocs.yml
 
       - name: Check links
         run: |
-          uv run --project=src linkchecker site/index.html
+          uv run linkchecker site/index.html
           

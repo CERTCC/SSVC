@@ -1,9 +1,8 @@
 # Project-specific vars
 MKDOCS_PORT=8765
 DOCKER_DIR=docker
-PROJECT_DIR = ./src
 DOCKER_COMPOSE=docker-compose --project-directory $(DOCKER_DIR)
-UV_RUN=uv run --project $(PROJECT_DIR)
+UV_RUN=uv run
 
 # Targets
 .PHONY: all test docs api docker_test clean help mdlint_fix up down regenerate_json
@@ -13,7 +12,7 @@ all: help
 
 dev:
 	@echo "Set up dev environment..."
-	uv sync --dev --project $(PROJECT_DIR)
+	uv sync --dev
 
 mdlint_fix:
 	@echo "Running markdownlint..."
@@ -21,7 +20,7 @@ mdlint_fix:
 
 test:
 	@echo "Running tests locally..."
-	uv run --project $(PROJECT_DIR) pytest -v
+	$(UV_RUN) pytest -v
 
 docker_test:
 	@echo "Building the latest test image..."
@@ -60,7 +59,7 @@ regenerate_json:
 clean:
 	@echo "Cleaning up Docker resources..."
 	$(DOCKER_COMPOSE) down --rmi local || true
-	rm -rf $(PROJECT_DIR)/.venv $(PROJECT_DIR)/uv.lock
+
 help:
 	@echo "Usage: make [target]"
 	@echo ""

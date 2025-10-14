@@ -8,7 +8,6 @@ updates:
   - package-ecosystem: "uv" # See documentation for possible values
     directories:
       - "/"
-      - "/src" # Location of package manifests
     schedule:
       interval: "weekly"
     groups:
