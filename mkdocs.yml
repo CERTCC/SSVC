@@ -9,7 +9,6 @@ nav:
     - 'tutorials/ssvc_overview.md'
     - Starting out with SSVC: 'tutorials/starting_points.md'
     - Other Resources: 'tutorials/other_resources.md'
-
   - SSVC How-To:
     - Overview: 'howto/index.md'
     - Getting Started with SSVC:
@@ -177,6 +176,7 @@ theme:
 plugins:
   - include-markdown:
       comments: false
+      rewrite_relative_links: true
   - search
   - table-reader:
       data_path: 'data/csvs'
