@@ -76,6 +76,7 @@ SSVC is a modular decision-making framework for vulnerability management that in
 - Classes: `PascalCase`
 - Functions/variables: `snake_case`
 - Constants: `UPPER_SNAKE_CASE`
+- JSON/CSV files: `kebab-case.json`
 
 ## Testing Requirements
 
@@ -135,9 +136,10 @@ SSVC is a modular decision-making framework for vulnerability management that in
 
 1. **Import Paths**: Use absolute imports like `from ssvc.module import Class`, not relative imports
 2. **PYTHONPATH**: When running scripts directly, set `export PYTHONPATH=$PYTHONPATH:$(pwd)/src`
-3. **Docker Context**: Some make targets use Docker, others run locally - check the Makefile
-4. **Package Management**: Use `make` commands or `uv` directly, not pip
-5. **Obsolete Code**: Never modify files in `/obsolete/`, `/doc/`, or `/pdfs/` directories
+3. **JSON Regeneration**: After modifying decision points/tables, regenerate JSON with `make regenerate_json`
+4. **Docker Context**: Some make targets use Docker, others run locally - check the Makefile
+5. **Package Management**: Use `make` commands or `uv` directly, not pip
+6. **Obsolete Code**: Never modify files in `/obsolete/`, `/doc/`, or `/pdfs/` directories
 
 ## API Development
 
