@@ -9,12 +9,13 @@ SSVC is a modular decision-making framework for vulnerability management that in
 - MkDocs-based documentation website
 - Interactive calculators and policy explorers
 - JSON/CSV data files for decision tables
-- Docker-based development and deployment
+- Docker and Make-based development and deployment
 
 ## Technology Stack
 
 - **Primary Language**: Python 3.x
 - **Package Management**: uv (package and project manager)
+- **Build Tool**: Make
 - **Documentation**: MkDocs with Material theme
 - **Testing**: pytest
 - **Data Models**: Pydantic for JSON schema validation
@@ -35,46 +36,23 @@ SSVC is a modular decision-making framework for vulnerability management that in
 
 ### Getting Started
 
-1. **Set up development environment**: `make dev` or `uv sync --dev --project src`
-2. **Run local documentation server**: `make docs_local` or `make docs` (Docker)
+1. **Set up development environment**: `make dev`
+2. **Run local documentation server**: `make docs_local` (local) or `make docs` (Docker)
 3. **Run tests**: `make test` (local) or `make docker_test` (Docker)
-4. **Run API locally**: `make api_dev`
+4. **Run API**: `make api_dev` (local) or `make api` (Docker)
 
 ### Building and Testing
 
-- Always run tests before committing: `make test` or `uv run --project src pytest -v`
+- Always run tests before committing: `make test`
 - Run markdown linting with auto-fix: `make mdlint_fix`
-- Preview documentation changes: `make docs_local`
-- Build documentation in Docker: `make docs`
-
-### Common Commands
-
-```bash
-# Show available make targets
-make help
-
-# Set up dev environment
-make dev
-
-# Run tests locally
-make test
-
-# Run tests in Docker
-make docker_test
-
-# Serve documentation locally
-make docs_local
-
-# Regenerate JSON data files
-make regenerate_json
-```
+- Regenerate JSON data files: `make regenerate_json`
 
 ## Coding Conventions
 
 ### Python Code
 
 - Follow PEP 8 style guidelines
-- Use type hints for function signatures
+- Use type hints for function signatures and return types
 - Use Pydantic models for data validation
 - Document classes and functions with docstrings
 - Prefer explicit imports over wildcard imports
@@ -82,10 +60,15 @@ make regenerate_json
 
 ### File Organization
 
-- Decision points are in `/src/ssvc/decision_points/`
-- Decision tables are in `/src/ssvc/decision_tables/`
-- Tests mirror the source structure in `/src/test/`
-- Documentation pages are in `/docs/`
+- `/src/ssvc/` - Core Python modules including:
+  - `decision_points/` - Decision point definitions
+  - `decision_tables/` - Decision table implementations
+  - `api/` - FastAPI application
+  - `outcomes/` - Outcome definitions
+  - `dp_groups/` - Decision point groups
+  - `registry/` - Registry functionality
+- `/src/test/` - Unit tests mirroring source structure
+- `/docs/` - Documentation pages
 
 ### Naming Conventions
 
@@ -93,7 +76,6 @@ make regenerate_json
 - Classes: `PascalCase`
 - Functions/variables: `snake_case`
 - Constants: `UPPER_SNAKE_CASE`
-- JSON/CSV files: `kebab-case.json`
 
 ## Testing Requirements
 
@@ -102,7 +84,7 @@ make regenerate_json
 - Unit tests use pytest framework
 - Tests are located in `/src/test/`
 - Test files follow pattern: `test_*.py`
-- Run tests with: `make test` or `uv run --project src pytest -v`
+- Run tests with: `make test`
 
 ### Test Coverage
 
@@ -131,21 +113,9 @@ make regenerate_json
 ### Documentation Features
 
 - Automatic API documentation via mkdocstrings
-- Code execution in Markdown via markdown-exec
+- Python module imports for dynamic content generation
 - BibTeX citations via mkdocs-bibtex
-- Include markdown files with mkdocs-include-markdown-plugin
-
-### Building Documentation
-
-```bash
-# Local preview (with hot reload)
-make docs_local
-
-# Docker build (production-like)
-make docs
-
-# Access at: http://localhost:8000/SSVC/
-```
+- Include markdown files by specifying them in mkdocs.yml
 
 ## Data Files
 
@@ -154,12 +124,10 @@ make docs
 - Located in `/data/json/`
 - Generated from Python Pydantic models
 - Use JSON schema validation
-- Regenerate with: `make regenerate_json`
 
 ### CSV Files
 
 - Located in `/data/csv/`
-- Generated from Python modules
 - Define decision table outcomes
 - Primary way to customize SSVC for specific environments
 
@@ -167,17 +135,29 @@ make docs
 
 1. **Import Paths**: Use absolute imports like `from ssvc.module import Class`, not relative imports
 2. **PYTHONPATH**: When running scripts directly, set `export PYTHONPATH=$PYTHONPATH:$(pwd)/src`
-3. **JSON Regeneration**: After modifying decision points/tables, regenerate JSON with `make regenerate_json`
-4. **Docker Context**: Some make targets use Docker, others run locally - check the Makefile
-5. **Package Management**: Use `uv` commands with `--project src` flag, not pip directly
-6. **Obsolete Code**: Never modify files in `/obsolete/` directory
+3. **Docker Context**: Some make targets use Docker, others run locally - check the Makefile
+4. **Package Management**: Use `make` commands or `uv` directly, not pip
+5. **Obsolete Code**: Never modify files in `/obsolete/`, `/doc/`, or `/pdfs/` directories
 
 ## API Development
 
 - FastAPI application is in `/src/ssvc/api/`
-- Run locally with auto-reload: `make api_dev`
-- Run in Docker: `make api`
-- API documentation available at `/docs` endpoint when running
+- Run locally with auto-reload: `make api_dev` (serves on http://127.0.0.1:8000/docs)
+- Run in Docker: `make api` (serves on http://127.0.0.1:8001/SSVC/)
+
+## Make Commands
+
+Use `make help` to see all available commands. Common targets include:
+
+- `make dev` - Set up development environment
+- `make test` - Run tests locally
+- `make docker_test` - Run tests in Docker
+- `make docs_local` - Serve documentation locally (http://localhost:8000/SSVC/)
+- `make docs` - Build and run documentation in Docker
+- `make api_dev` - Run API locally with auto-reload
+- `make api` - Build and run API in Docker
+- `make mdlint_fix` - Run markdown linting with auto-fix
+- `make regenerate_json` - Regenerate JSON files from Python modules
 
 ## Git Workflow
 
@@ -197,7 +177,7 @@ make docs
 
 ## Special Notes
 
-- This project uses Carnegie Mellon University licensing (see LICENSE file)
+- This project uses a MIT (SEI)-style license with Carnegie Mellon University copyright (see LICENSE file)
 - Decision points and tables follow SSVC specification
 - Backward compatibility is important for existing data files
 - Documentation changes should be reflected in both `/docs/` and `/src/README.md` when applicable
