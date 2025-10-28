@@ -131,6 +131,7 @@ const graphModule = (function() {
 	    .attr("class","mgraph")
 	    .attr("width", svg_width)
 	    .attr("height", svg_height)
+	    .attr("viewBox", "0 0 " + svg_width + " " + svg_height)
 	    .append("g")
 	    .attr("transform", default_translate)
 	    .attr("id","pgroup");
