@@ -26,26 +26,33 @@ SSVC is a modular decision-making framework for vulnerability management that in
 ## Project Structure
 
 - `/src/ssvc/` - Core Python modules for SSVC functionality
+  - `decision_points/` - Decision point definitions
+  - `decision_tables/` - Decision table implementations
+  - `api/` - FastAPI application
+  - `outcomes/` - Outcome definitions
+  - `dp_groups/` - Decision point groups
+  - `registry/` - Registry functionality
 - `/docs/` - Markdown documentation source files
 - `/data/` - JSON and CSV data files for decision tables
-- `/test/` - Unit tests (located in `/src/test/`)
+- `/src/test/` - Unit tests
 - `/docker/` - Docker configurations
 - `/obsolete/` - Deprecated code (do not modify)
 
+## Make Commands
+
+Use `make help` to see all available commands. Common targets include:
+
+- `make dev` - Set up development environment
+- `make test` - Run tests locally
+- `make docker_test` - Run tests in Docker
+- `make docs_local` - Serve documentation locally (http://localhost:8000/SSVC/)
+- `make docs` - Build and run documentation in Docker
+- `make api_dev` - Run API locally with auto-reload
+- `make api` - Build and run API in Docker
+- `make mdlint_fix` - Run markdown linting with auto-fix
+- `make regenerate_json` - Regenerate JSON files from Python modules
+
 ## Development Workflow
-
-### Getting Started
-
-1. **Set up development environment**: `make dev`
-2. **Run local documentation server**: `make docs_local` (local) or `make docs` (Docker)
-3. **Run tests**: `make test` (local) or `make docker_test` (Docker)
-4. **Run API**: `make api_dev` (local) or `make api` (Docker)
-
-### Building and Testing
-
-- Always run tests before committing: `make test`
-- Run markdown linting with auto-fix: `make mdlint_fix`
-- Regenerate JSON data files: `make regenerate_json`
 
 ## Coding Conventions
 
@@ -57,18 +64,6 @@ SSVC is a modular decision-making framework for vulnerability management that in
 - Document classes and functions with docstrings
 - Prefer explicit imports over wildcard imports
 - Module structure uses absolute imports from `ssvc` package
-
-### File Organization
-
-- `/src/ssvc/` - Core Python modules including:
-  - `decision_points/` - Decision point definitions
-  - `decision_tables/` - Decision table implementations
-  - `api/` - FastAPI application
-  - `outcomes/` - Outcome definitions
-  - `dp_groups/` - Decision point groups
-  - `registry/` - Registry functionality
-- `/src/test/` - Unit tests mirroring source structure
-- `/docs/` - Documentation pages
 
 ### Naming Conventions
 
@@ -146,20 +141,6 @@ SSVC is a modular decision-making framework for vulnerability management that in
 - FastAPI application is in `/src/ssvc/api/`
 - Run locally with auto-reload: `make api_dev` (serves on http://127.0.0.1:8000/docs)
 - Run in Docker: `make api` (serves on http://127.0.0.1:8001/SSVC/)
-
-## Make Commands
-
-Use `make help` to see all available commands. Common targets include:
-
-- `make dev` - Set up development environment
-- `make test` - Run tests locally
-- `make docker_test` - Run tests in Docker
-- `make docs_local` - Serve documentation locally (http://localhost:8000/SSVC/)
-- `make docs` - Build and run documentation in Docker
-- `make api_dev` - Run API locally with auto-reload
-- `make api` - Build and run API in Docker
-- `make mdlint_fix` - Run markdown linting with auto-fix
-- `make regenerate_json` - Regenerate JSON files from Python modules
 
 ## Git Workflow
 
