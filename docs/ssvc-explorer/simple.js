@@ -203,7 +203,7 @@ const graphModule = (function() {
 	    .attr("dy", ".35em")
 	    .attr("class",function(d) {
 		var fclass = d.name.split(":").shift().toLowerCase();
-		fclass = fclass.replace(/^[a-zA-Z_]/,'C');
+		fclass = fclass.replace(/^[^a-zA-Z_-]/,'C');
 		fclass = fclass.replace(/[^a-zA-Z0-9_-]/g,'_');
 		if(!('children' in d))
 		    return "gvisible prechk-" + fclass + " finale";
