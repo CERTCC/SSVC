@@ -147,7 +147,7 @@ const graphModule = (function() {
     function truncateEllipsis(d) {
 	let dstr = d.name.split(":")[0];
 	if(dstr.length > 25)
-	    dstr = dstr.substr(0, 22) + "...";
+	    dstr = dstr.substring(0, 22) + "...";
 	return dstr;
     }
     function update(source) {
