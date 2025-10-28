@@ -384,7 +384,7 @@ const graphModule = (function() {
 		.attr("id","t"+id)
 		.attr("csid",csid)
 		.attr("parentname",pname)
-	        .attr("data-fullname", text)
+		.attr("data-fullname", text)
 		.text(truncateEllipsis({name:text}))
 		.attr("startOffset",doffset+"%")
 		.on("click",pathclick)
