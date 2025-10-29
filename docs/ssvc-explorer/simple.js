@@ -216,12 +216,14 @@ const graphModule = (function() {
 		if(!('children' in d))
 		    return "gvisible prechk-" + fclass + " finale";
 		return "gvisible prechk-"+fclass;})
-	    .attr("data-fullname", function(d) { return d.name.split(":").shift(); })
+	    .attr("data-fullname", function(d) {
+		return d.name.split(":").shift();
+	    })
 	    .text(truncateEllipsis)
 	    .style("font-size",font)
 	    .style("fill", function(d) {
-		var t = d.name.split(":").shift();
-		var x;
+		const t = d.name.split(":").shift();
+		let x;
 		if(t in lcolors)
 		    x = lcolors[t];
 		return x;
@@ -394,6 +396,7 @@ const graphModule = (function() {
 		.attr("parentname",pname)
 		.attr("data-fullname", text)
 		.text(truncateEllipsis({name:text}))
+		.attr("fill", "#777")
 		.attr("startOffset",doffset+"%")
 		.on("click",pathclick)
 		.on("mouseover",showdiv)
