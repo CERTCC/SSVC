@@ -110,7 +110,9 @@ Use `make help` to see all available commands. Common targets include:
 - Automatic API documentation via mkdocstrings
 - Python module imports for dynamic content generation
 - BibTeX citations via mkdocs-bibtex
-- Include markdown files by specifying them in mkdocs.yml
+- Add markdown files to site navigation by specifying them in `mkdocs.yml`
+- Include markdown files in other markdown files with `mkdocs-include-markdown-plugin`
+- Dynamically generate content from python code blocks using the `markdown-exec` plugin
 
 ## Data Files
 
