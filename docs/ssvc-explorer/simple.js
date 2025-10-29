@@ -148,7 +148,7 @@ const graphModule = (function() {
 	let dstr = d.name.split(":")[0];
 	if (dstr.length > 20) {
             let truncated = dstr.substring(0, 18);
-            if(/\s+$/.test(truncated)) {
+            if(/\s+$/.test(truncated) || /^\s/.test(dstr[18])) {
 		/* If it ends with spaces remove all spaces and the last
 		   non-space character to show the word has been truncated */
 		truncated = truncated.replace(/\s+$/, "");
