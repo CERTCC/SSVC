@@ -152,7 +152,7 @@ const graphModule = (function() {
 		/* If it ends with spaces remove all spaces and the last
 		   non-space character to show the word has been truncated */
 		truncated = truncated.replace(/\s+$/, "");
-		//truncated = truncated.slice(0, -1);
+		truncated = truncated.slice(0, -1);
             }
             dstr = truncated + "...";
 	}
