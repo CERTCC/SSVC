@@ -1,3 +1,5 @@
+ignores:
+  - .github/**
 default: true
 # disable noisy rules
 # 0004 Unordered List style
