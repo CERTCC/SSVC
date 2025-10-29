@@ -71,7 +71,6 @@ Use `make help` to see all available commands. Common targets include:
 - Classes: `PascalCase`
 - Functions/variables: `snake_case`
 - Constants: `UPPER_SNAKE_CASE`
-- JSON/CSV files: `kebab-case.json`
 
 ## Testing Requirements
 
