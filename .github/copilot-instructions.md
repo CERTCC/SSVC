@@ -126,7 +126,8 @@ Use `make help` to see all available commands. Common targets include:
 
 - Located in `/data/csv/`
 - Define decision table outcomes
-- Primary way to customize SSVC for specific environments
+- Generated from python modules (The python data objects are authoritative)
+- Allows users to explore customizing SSVC for specific environments
 
 ## Common Pitfalls
 
