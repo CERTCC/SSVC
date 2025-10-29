@@ -79,7 +79,7 @@ Use `make help` to see all available commands. Common targets include:
 - Unit tests use pytest framework
 - Tests are located in `/src/test/`
 - Test files follow pattern: `test_*.py`
-- Run tests with: `make test`
+- Run tests with: `make test` or `uv run pytest -v`
 
 ### Test Coverage
 
