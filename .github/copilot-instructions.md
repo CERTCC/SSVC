@@ -136,7 +136,7 @@ Use `make help` to see all available commands. Common targets include:
 3. **JSON Regeneration**: After modifying decision points/tables, regenerate JSON with `make regenerate_json`
 4. **Docker Context**: Some make targets use Docker, others run locally - check the Makefile
 5. **Package Management**: Use `make` commands or `uv` directly, not pip
-6. **Obsolete Code**: Never modify files in `/obsolete/`, `/doc/`, or `/pdfs/` directories
+6. **Obsolete Code and Documentation**: Never modify files in `/obsolete/`, `/doc/`, or `/pdfs/` directories
 
 ## API Development
 
