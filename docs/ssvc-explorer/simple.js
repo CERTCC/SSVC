@@ -144,7 +144,20 @@ const graphModule = (function() {
 
 	d3.select(self.frameElement).style("height", "700px");
     }
-
+    function truncateEllipsis(d) {
+	let dstr = d.name.split(":")[0];
+	if (dstr.length > 20) {
+            let truncated = dstr.substring(0, 18);
+            if(/\s+$/.test(truncated) || /^\s/.test(dstr[18])) {
+		/* If it ends with spaces remove all spaces and the last
+		   non-space character to show the word has been truncated */
+							truncated = truncated.replace(/\s+$/, "");
+							truncated = truncated.slice(0, -1);
+            }
+            dstr = truncated + "...";
+	}
+	return dstr;
+    }
     function update(source) {
 	var i = 0
 	var nodes = tree.nodes(root).reverse()
@@ -198,14 +211,19 @@ const graphModule = (function() {
 	    .attr("dy", ".35em")
 	    .attr("class",function(d) {
 		var fclass = d.name.split(":").shift().toLowerCase();
+		fclass = fclass.replace(/^[^a-zA-Z_-]/,'C');
+		fclass = fclass.replace(/[^a-zA-Z0-9_-]/g,'_');
 		if(!('children' in d))
-		    return "gvisible prechk-"+fclass+" finale";
+		    return "gvisible prechk-" + fclass + " finale";
 		return "gvisible prechk-"+fclass;})
-	    .text(function(d) { return d.name.split(":")[0]; })
+	    .attr("data-fullname", function(d) {
+		return d.name.split(":").shift();
+	    })
+	    .text(truncateEllipsis)
 	    .style("font-size",font)
 	    .style("fill", function(d) {
-		var t = d.name.split(":").shift();
-		var x;
+		const t = d.name.split(":").shift();
+		let x;
 		if(t in lcolors)
 		    x = lcolors[t];
 		return x;
@@ -368,13 +386,18 @@ const graphModule = (function() {
 	    var yoffset = -10
 	    if(showFullTree)
 		yoffset = -6
-	    d3.select("g#x"+id).append("text").attr("dx",-6).attr("dy",yoffset).attr("class","gtext")
+	    d3.select("g#x"+id)
+		.append("text").attr("dx",-6)
+		.attr("dy",yoffset).attr("class","gtext")
 		.append("textPath").attr("href","#f"+id).attr("class",xclass)
 		.attr("text-anchor","middle")
 		.attr("id","t"+id)
 		.attr("csid",csid)
 		.attr("parentname",pname)
-		.text(text).attr("startOffset",doffset+"%")
+		.attr("data-fullname", text)
+		.text(truncateEllipsis({name:text}))
+		.attr("fill", "#777")
+		.attr("startOffset",doffset+"%")
 		.on("click",pathclick)
 		.on("mouseover",showdiv)
 		.on("mouseout",hidediv);
