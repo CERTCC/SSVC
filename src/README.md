@@ -97,6 +97,28 @@ For usage in vulnerability management scenarios consider the following popular S
     from ssvc.decision_tables.helpers import ascii_tree
     print(ascii_tree(CISACoordinate))
 
+    #Creating an SSVC Selection for publish/export to external providers like CSAF or CVE
+    from datetime import datetime, timezone
+    from ssvc.decision_tables.cisa.cisa_coordinate_dt import LATEST as decision_table
+    from ssvc import selection
+    namespace = "ssvc"
+    decision_points = ["Exploitation"]
+    values = [["Public PoC"]]
+    timestamp = datetime.now()
+    selections = []
+
+    for dp in decision_table.decision_points.values():
+        if dp.namespace == namespace and dp.name in decision_points:
+           dp_index = decision_points.index(dp.name)
+           selected = selection.Selection.from_decision_point(dp)
+           selected.values = tuple(selection.MinimalDecisionPointValue(key=val.key,
+	   name=val.name) for val in dp.values if val.name in values[dp_index])
+           selections.append(selected)
+
+    out = selection.SelectionList(selections=selections,timestamp=timestamp)
+    print(out.model_dump_json(exclude_none=True, indent=4))
+
+
 Resources
 ---------
 

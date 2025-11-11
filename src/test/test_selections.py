@@ -17,9 +17,9 @@
 #  subject to its own license.
 #  DM24-0278
 
+import json
 import unittest
 from datetime import datetime
-from unittest import expectedFailure
 
 from ssvc import selection
 from ssvc.selection import MinimalDecisionPointValue, SelectionList
@@ -219,7 +219,31 @@ class MyTestCase(unittest.TestCase):
             self.assertIn(uri, str(ref.uri))
             self.assertEqual(ref.summary, "Test description")
 
-    @expectedFailure
+    def test_model_dump_removes_empty_values(self):
+        """model_dump() should remove None or empty values."""
+        result_clean = self.selections.model_dump(exclude_none=True)
+        result_bloat = self.selections.model_dump()
+        self.assertNotEqual(result_clean, result_bloat)
+        self.assertIn("selections", result_clean)
+        self.assertNotIn("metadata", result_clean)
+
+    def test_model_dump_json_respects_indent(self):
+        """model_dump_json() should apply JSON indentation and pruning."""
+        json_text = self.selections.model_dump_json(indent=4)
+        data = json.loads(json_text)
+        self.assertIn("selections", data)
+        self.assertNotIn("metadata", data)
+        self.assertIn("\n    \"selections\":", json_text)
+
+    def test_model_dump_json_excludes_none(self):
+        """exclude_none=True should work with post-processing."""
+        json_text_clean = self.selections.model_dump_json(exclude_none=True)
+        json_text_bloat = self.selections.model_dump_json()
+        self.assertNotEqual(json_text_clean, json_text_bloat)
+        data = json.loads(json_text_clean)
+        self.assertIn("selections", data)
+        self.assertNotIn("metadata", data)
+
     def test_reference_model_without_summary(self):
         """Test the Reference model."""
         uris = [
@@ -247,6 +271,15 @@ class MyTestCase(unittest.TestCase):
             )
 
             self.assertIn(uri, str(ref.uri))
+
+            # while ref might have an empty string summary,
+            self.assertTrue(hasattr(ref, "summary"))
+            self.assertEqual("", ref.summary)
+            # the json export should not include it
+            json_data = ref.model_dump_json(exclude_none=True)
+            data = json.loads(json_data)
+            self.assertIn("uri", data)
+            self.assertNotIn("summary", data)
 
     def test_selection_list_validators(self):
         """Test SelectionList validators."""
@@ -339,6 +372,58 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(sel_list.references), 1)
         self.assertEqual(sel_list.decision_point_resources[0].uri, ref.uri)
 
+    def test_missing_lists_are_empty_after_init(self):
+        # if decision_point_resources is not included, it should still validate.
+        sel_list_no_dpr = SelectionList(
+            selections=[self.s1, self.s2],
+            timestamp=datetime.now(),
+        )
+        for attribute in [
+            "decision_point_resources",
+            "references",
+            "target_ids",
+        ]:
+            self.assertTrue(
+                hasattr(sel_list_no_dpr, attribute),
+                f"Attribute {attribute} is missing",
+            )
+            _value = getattr(sel_list_no_dpr, attribute)
+            self.assertIsInstance(_value, list)
+            self.assertEqual(0, len(_value))
+
+            # but they should not appear in the model dump to JSON
+            dumped = sel_list_no_dpr.model_dump()
+            self.assertNotIn(attribute, dumped)
+
+    def test_validation_when_empty_lists_provided(self):
+        sel_list_no_dpr = SelectionList(
+            selections=[self.s1, self.s2],
+            timestamp=datetime.now(),
+        )
+        json_data = sel_list_no_dpr.model_dump_json(exclude_none=True)
+
+        data = json.loads(json_data)
+
+        check_attrs = [
+            "decision_point_resources",
+            "references",
+            "target_ids",
+        ]
+
+        for attr in check_attrs:
+            self.assertNotIn(attr, data)
+
+        new_obj = SelectionList.model_validate(data)
+
+        for attr in check_attrs:
+            self.assertTrue(
+                hasattr(new_obj, attr),
+                f"Attribute {attr} is missing after re-validation",
+            )
+            _value = getattr(new_obj, attr)
+            self.assertIsInstance(_value, list)
+            self.assertEqual(0, len(_value))
+
     def test_model_json_schema_customization(self):
         """Test that JSON schema is properly customized."""
         schema = SelectionList.model_json_schema()
@@ -380,6 +465,16 @@ class MyTestCase(unittest.TestCase):
                 selections=[],  # Empty selections should raise error
                 timestamp=datetime.now(),
             )
+
+    def test_model_dump_removes_required_field(self):
+        """Test if a selections is dumped and breaks when items removed"""
+        s = SelectionList(
+            selections=[self.s1],
+            timestamp=datetime.now(),
+        )
+        dumped = s.model_dump()
+        with self.assertRaises(Exception):
+            del dumped['values']
 
 
 if __name__ == "__main__":

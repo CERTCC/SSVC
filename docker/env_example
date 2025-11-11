@@ -1,0 +1,3 @@
+# copy or link this file to .env in this directory
+# this helps avoid docker image/container naming collisions
+COMPOSE_PROJECT_NAME=ssvc

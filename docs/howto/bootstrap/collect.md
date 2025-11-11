@@ -94,35 +94,15 @@ deployer may want to use that information to favor the latter.
 In the case where no information is available or the organization has not yet matured its initial situational analysis,
 we can suggest something like defaults for some decision points.
 
-!!! tip "Default Exploitation Values"
+{% include-markdown "../../_includes/default_exploitation_values.md" %}
 
-    [*Exploitation*](../../reference/decision_points/exploitation.md) needs no special default; if adequate searches are made for exploit code and none is
-    found, the answer is [*none*](../../reference/decision_points/exploitation.md).
+{% include-markdown "../../_includes/default_system_exposure_values.md" %}
 
-!!! tip "Default System Exposure Values"
+{% include-markdown "../../_includes/default_automatable_values.md" %}
 
-    If the deployer does not know their exposure,<!--lowercase exposure on purpose, this is the general concept--> that
-    means they do not know where the devices are or how they are controlled, so they should assume
-    [*System Exposure*](../../reference/decision_points/system_exposure.md) is [*open*](../../reference/decision_points/system_exposure.md).
+{% include-markdown "../../_includes/default_safety_values.md" %}
 
-!!! tip "Default Automatable Values"
-
-    If nothing is known about [*Automatable*](../../reference/decision_points/automatable.md), the safer answer to assume is [*yes*](../../reference/decision_points/automatable.md).
-    [*Value Density*](../../reference/decision_points/value_density.md) should always be answerable; if the product is uncommon, it is probably
-    [*diffuse*](../../reference/decision_points/value_density.md).
-
-!!! tip "Default Safety Values"
-
-    If the decision maker knows nothing about the environment in which the device is used, we suggest assuming a
-    [*marginal*](../../reference/decision_points/safety_impact.md) [*Safety Impact*](../../reference/decision_points/safety_impact.md).
-    This position is conservative, but software is thoroughly embedded in daily life now, so we suggest that the decision
-    maker provide evidence that no one’s well-being will suffer.
-
-!!! tip "Default Mission Impact Values"
-
-    Similarly, with [*Mission Impact*](../../reference/decision_points/mission_impact.md), the deployer should assume that the software is in use at the
-    organization for a reason, and that it supports essential functions unless they have evidence otherwise.
-    With a total lack of information, assume [*support crippled*](../../reference/decision_points/mission_impact.md) as a default.
+{% include-markdown "../../_includes/default_mission_impact_values.md" %}
 
 !!! example "Using Defaults"
 

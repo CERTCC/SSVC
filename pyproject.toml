@@ -67,8 +67,8 @@ exclude = ["test*"]  # exclude packages matching these glob patterns (empty by d
 #namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 
 [tool.setuptools_scm]
-version_file = "ssvc/_version.py"
-root = ".."
+version_file = "./src/ssvc/_version.py"
+root = "."
 local_scheme = "no-local-version"
 version_scheme = "no-guess-dev"
 
@@ -77,7 +77,7 @@ version_scheme = "no-guess-dev"
 
 [tool.black]
 line-length = 79
-target-version = ['py38', 'py39', 'py310', 'py311']
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312', 'py313']
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -88,6 +88,7 @@ testpaths = [
 
 [dependency-groups]
 dev = [
+    "black>=25.9.0",
     "linkchecker>=10.6.0",
     "pytest>=8.4.1",
 ]
