@@ -48,6 +48,7 @@ dependencies = [
     "pydantic>=2.11.7",
     "semver>=3.0.4",
     "fastapi[all,standard]>=0.116.1",
+    "pyyaml>=6.0.2",
 ]
 dynamic = ["version",]
 
