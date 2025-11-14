@@ -29,7 +29,7 @@ Engineering Institute, Carnegie Mellon University, Sep. 2023. [Online].
 Available: [https://github.com/CERTCC/SSVC/blob/main/pdfs/ssvc_2_1_draft.pdf](https://github.com/CERTCC/SSVC/blob/main/pdfs/ssvc_2_1_draft.pdf)
 
 The SSVC team thanks the [contributors](https://github.com/CERTCC/SSVC/graphs/contributors)
-to the [SSVC project](https://github.com/CERTCC/SSVC) on Github as well as the
+to the [SSVC project](https://github.com/CERTCC/SSVC) on GitHub as well as the
 following individuals for helpful comments on earlier versions (listed in
 alphabetical order):
 Muhammad Akbar,
