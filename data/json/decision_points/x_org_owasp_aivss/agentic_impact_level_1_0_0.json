@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "AIL",
+  "version": "1.0.0",
+  "name": "Agentic Impact Level",
+  "definition": "Determines the agentic impact level of a vulnerability based on its characteristics and potential effects.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "C",
+      "name": "CoPilot",
+      "definition": "The agent is primarily a copilot or assistant. Its actions are heavily constrained, requiring human oversight. The agent explicitly does not have rights to execute code."
+    },
+    {
+      "key": "S",
+      "name": "Specialist",
+      "definition": "The agent is a specialist with significant autonomy within a defined domain.It can use powerful tools and may learn from interactions."
+    },
+    {
+      "key": "P",
+      "name": "Prime Mover",
+      "definition": "The agent is a prime mover with broad autonomy. It can orchestrate other systems, modify its own logic, and interact with critical infrastructure."
+    }
+  ]
+}

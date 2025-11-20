@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "MU",
+  "version": "1.0.0",
+  "name": "Memory Use",
+  "definition": "Determines the memory use level of an AI system based on its persistence and recall capabilities.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "S",
+      "name": "Stateless",
+      "definition": "No persistence beyond the current interaction."
+    },
+    {
+      "key": "L",
+      "name": "Local Recall",
+      "definition": "Remembers within a session or user context."
+    },
+    {
+      "key": "M",
+      "name": "Shared Memory",
+      "definition": "Persistent state across sessions, tasks, or teams."
+    }
+  ]
+}

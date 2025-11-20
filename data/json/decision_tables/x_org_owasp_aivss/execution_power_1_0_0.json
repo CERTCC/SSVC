@@ -1,0 +1,705 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "DT_EP",
+  "version": "1.0.0",
+  "name": "Execution Power",
+  "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "x_org.owasp#aivss:AA:1.0.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "AA",
+      "version": "1.0.0",
+      "name": "Autonomy of Action",
+      "definition": "Determines the autonomy of action level of a vulnerability based on its characteristics and potential effects.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "G",
+          "name": "Gated",
+          "definition": "The agent cannot act without human approval."
+        },
+        {
+          "key": "S",
+          "name": "Scoped",
+          "definition": "The agent can act independently but only in tightly bounded spaces."
+        },
+        {
+          "key": "F",
+          "name": "Free-Running",
+          "definition": "The agent can execute actions in live systems without a human in the loop."
+        }
+      ]
+    },
+    "x_org.owasp#aivss:TU:1.0.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "TU",
+      "version": "1.0.0",
+      "name": "Tool Use",
+      "definition": "Determines the tool use level of an AI agent based on its capabilities to interact with systems.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "V",
+          "name": "Viewer",
+          "definition": "The agent can only read and analyze information without making any changes."
+        },
+        {
+          "key": "O",
+          "name": "Operator",
+          "definition": "The agent can make changes within a controlled environment, such as test systems or local files."
+        },
+        {
+          "key": "A",
+          "name": "Administrator",
+          "definition": "The agent has full control and can make changes to privileged systems, including production environments."
+        }
+      ]
+    },
+    "x_org.owasp#aivss:SM:1.1.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "SM",
+      "version": "1.1.0",
+      "name": "Self-Modification",
+      "definition": "Determines the self-modification capabilities of an AI agent based on its ability to alter its own code, configuration, or behavior.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "F",
+          "name": "Fixed",
+          "definition": "The agent cannot modify its own code, configuration, or behavior."
+        },
+        {
+          "key": "T",
+          "name": "Tunable",
+          "definition": "The agent can modify its configuration or prompts but not its core code or behavior."
+        },
+        {
+          "key": "M",
+          "name": "Mutable",
+          "definition": "The agent can modify its own code, configuration, or behavior."
+        }
+      ]
+    },
+    "x_org.owasp#aivss:GDP:1.0.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "GDP",
+      "version": "1.0.0",
+      "name": "Goal-Driven Planning",
+      "definition": "Determines the goal-driven planning capabilities of an AI agent based on its ability to plan and execute actions over multiple steps.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "R",
+          "name": "Reactive",
+          "definition": "The agent can only respond to immediate inputs without planning."
+        },
+        {
+          "key": "A",
+          "name": "Assisted",
+          "definition": "The agent can plan multiple steps ahead but requires human execution or approval."
+        },
+        {
+          "key": "U",
+          "name": "Autonomous",
+          "definition": "The agent can plan and execute multiple steps independently."
+        }
+      ]
+    },
+    "x_org.owasp#aivss:EP:1.0.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "EP",
+      "version": "1.0.0",
+      "name": "Execution Power",
+      "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "C",
+          "name": "Constrained",
+          "definition": "The AI agent has limited execution power, restricting its ability to perform actions autonomously or interact with external systems."
+        },
+        {
+          "key": "CA",
+          "name": "Capable",
+          "definition": "The AI agent has moderate execution power, allowing it to perform certain actions autonomously and interact with external systems under supervision."
+        },
+        {
+          "key": "H",
+          "name": "High Leverage",
+          "definition": "The AI agent has extensive execution power, enabling it to perform actions autonomously and interact with external systems with minimal supervision."
+        }
+      ]
+    }
+  },
+  "outcome": "x_org.owasp#aivss:EP:1.0.0",
+  "mapping": [
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "G",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "C"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "S",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "V",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "CA"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "O",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "F",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "T",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "R",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "A",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    },
+    {
+      "x_org.owasp#aivss:AA:1.0.0": "F",
+      "x_org.owasp#aivss:TU:1.0.0": "A",
+      "x_org.owasp#aivss:SM:1.1.0": "M",
+      "x_org.owasp#aivss:GDP:1.0.0": "U",
+      "x_org.owasp#aivss:EP:1.0.0": "H"
+    }
+  ]
+}

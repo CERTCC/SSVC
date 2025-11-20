@@ -1,0 +1,82 @@
+row,Autonomy of Action v1.0.0 (x_org.owasp#aivss),Tool Use v1.0.0 (x_org.owasp#aivss),Self-Modification v1.1.0 (x_org.owasp#aivss),Goal-Driven Planning v1.0.0 (x_org.owasp#aivss),Execution Power v1.0.0 (x_org.owasp#aivss)
+0,gated,viewer,fixed,reactive,constrained
+1,gated,viewer,fixed,assisted,constrained
+2,gated,viewer,fixed,autonomous,capable
+3,gated,viewer,tunable,reactive,constrained
+4,gated,viewer,tunable,assisted,constrained
+5,gated,viewer,tunable,autonomous,capable
+6,gated,viewer,mutable,reactive,capable
+7,gated,viewer,mutable,assisted,capable
+8,gated,viewer,mutable,autonomous,high leverage
+9,gated,operator,fixed,reactive,constrained
+10,gated,operator,fixed,assisted,constrained
+11,gated,operator,fixed,autonomous,capable
+12,gated,operator,tunable,reactive,constrained
+13,gated,operator,tunable,assisted,capable
+14,gated,operator,tunable,autonomous,capable
+15,gated,operator,mutable,reactive,capable
+16,gated,operator,mutable,assisted,capable
+17,gated,operator,mutable,autonomous,high leverage
+18,gated,administrator,fixed,reactive,capable
+19,gated,administrator,fixed,assisted,capable
+20,gated,administrator,fixed,autonomous,high leverage
+21,gated,administrator,tunable,reactive,capable
+22,gated,administrator,tunable,assisted,capable
+23,gated,administrator,tunable,autonomous,high leverage
+24,gated,administrator,mutable,reactive,high leverage
+25,gated,administrator,mutable,assisted,high leverage
+26,gated,administrator,mutable,autonomous,high leverage
+27,scoped,viewer,fixed,reactive,constrained
+28,scoped,viewer,fixed,assisted,constrained
+29,scoped,viewer,fixed,autonomous,capable
+30,scoped,viewer,tunable,reactive,constrained
+31,scoped,viewer,tunable,assisted,capable
+32,scoped,viewer,tunable,autonomous,capable
+33,scoped,viewer,mutable,reactive,capable
+34,scoped,viewer,mutable,assisted,capable
+35,scoped,viewer,mutable,autonomous,high leverage
+36,scoped,operator,fixed,reactive,constrained
+37,scoped,operator,fixed,assisted,capable
+38,scoped,operator,fixed,autonomous,capable
+39,scoped,operator,tunable,reactive,capable
+40,scoped,operator,tunable,assisted,capable
+41,scoped,operator,tunable,autonomous,capable
+42,scoped,operator,mutable,reactive,capable
+43,scoped,operator,mutable,assisted,capable
+44,scoped,operator,mutable,autonomous,high leverage
+45,scoped,administrator,fixed,reactive,capable
+46,scoped,administrator,fixed,assisted,capable
+47,scoped,administrator,fixed,autonomous,high leverage
+48,scoped,administrator,tunable,reactive,capable
+49,scoped,administrator,tunable,assisted,capable
+50,scoped,administrator,tunable,autonomous,high leverage
+51,scoped,administrator,mutable,reactive,high leverage
+52,scoped,administrator,mutable,assisted,high leverage
+53,scoped,administrator,mutable,autonomous,high leverage
+54,free-running,viewer,fixed,reactive,capable
+55,free-running,viewer,fixed,assisted,capable
+56,free-running,viewer,fixed,autonomous,high leverage
+57,free-running,viewer,tunable,reactive,capable
+58,free-running,viewer,tunable,assisted,capable
+59,free-running,viewer,tunable,autonomous,high leverage
+60,free-running,viewer,mutable,reactive,high leverage
+61,free-running,viewer,mutable,assisted,high leverage
+62,free-running,viewer,mutable,autonomous,high leverage
+63,free-running,operator,fixed,reactive,capable
+64,free-running,operator,fixed,assisted,capable
+65,free-running,operator,fixed,autonomous,high leverage
+66,free-running,operator,tunable,reactive,capable
+67,free-running,operator,tunable,assisted,capable
+68,free-running,operator,tunable,autonomous,high leverage
+69,free-running,operator,mutable,reactive,high leverage
+70,free-running,operator,mutable,assisted,high leverage
+71,free-running,operator,mutable,autonomous,high leverage
+72,free-running,administrator,fixed,reactive,high leverage
+73,free-running,administrator,fixed,assisted,high leverage
+74,free-running,administrator,fixed,autonomous,high leverage
+75,free-running,administrator,tunable,reactive,high leverage
+76,free-running,administrator,tunable,assisted,high leverage
+77,free-running,administrator,tunable,autonomous,high leverage
+78,free-running,administrator,mutable,reactive,high leverage
+79,free-running,administrator,mutable,assisted,high leverage
+80,free-running,administrator,mutable,autonomous,high leverage

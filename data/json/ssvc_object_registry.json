@@ -6,6 +6,846 @@
     "DecisionPoint": {
       "type": "DecisionPoint",
       "namespaces": {
+        "x_org.owasp#aivss": {
+          "namespace": "x_org.owasp#aivss",
+          "keys": {
+            "AIL": {
+              "key": "AIL",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "AIL",
+                    "version": "1.0.0",
+                    "name": "Agentic Impact Level",
+                    "definition": "Determines the agentic impact level of a vulnerability based on its characteristics and potential effects.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "C",
+                        "name": "CoPilot",
+                        "definition": "The agent is primarily a copilot or assistant. Its actions are heavily constrained, requiring human oversight. The agent explicitly does not have rights to execute code."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Specialist",
+                        "definition": "The agent is a specialist with significant autonomy within a defined domain.It can use powerful tools and may learn from interactions."
+                      },
+                      {
+                        "key": "P",
+                        "name": "Prime Mover",
+                        "definition": "The agent is a prime mover with broad autonomy. It can orchestrate other systems, modify its own logic, and interact with critical infrastructure."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "C": {
+                      "key": "C",
+                      "name": "CoPilot",
+                      "definition": "The agent is primarily a copilot or assistant. Its actions are heavily constrained, requiring human oversight. The agent explicitly does not have rights to execute code."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Specialist",
+                      "definition": "The agent is a specialist with significant autonomy within a defined domain.It can use powerful tools and may learn from interactions."
+                    },
+                    "P": {
+                      "key": "P",
+                      "name": "Prime Mover",
+                      "definition": "The agent is a prime mover with broad autonomy. It can orchestrate other systems, modify its own logic, and interact with critical infrastructure."
+                    }
+                  }
+                }
+              }
+            },
+            "AA": {
+              "key": "AA",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "AA",
+                    "version": "1.0.0",
+                    "name": "Autonomy of Action",
+                    "definition": "Determines the autonomy of action level of a vulnerability based on its characteristics and potential effects.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "G",
+                        "name": "Gated",
+                        "definition": "The agent cannot act without human approval."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Scoped",
+                        "definition": "The agent can act independently but only in tightly bounded spaces."
+                      },
+                      {
+                        "key": "F",
+                        "name": "Free-Running",
+                        "definition": "The agent can execute actions in live systems without a human in the loop."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "G": {
+                      "key": "G",
+                      "name": "Gated",
+                      "definition": "The agent cannot act without human approval."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Scoped",
+                      "definition": "The agent can act independently but only in tightly bounded spaces."
+                    },
+                    "F": {
+                      "key": "F",
+                      "name": "Free-Running",
+                      "definition": "The agent can execute actions in live systems without a human in the loop."
+                    }
+                  }
+                }
+              }
+            },
+            "CA": {
+              "key": "CA",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "CA",
+                    "version": "1.0.0",
+                    "name": "Contextual Awareness",
+                    "definition": "Determines the degree to which an AI system senses and incorporates context from its environment and external signals.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "I",
+                        "name": "Isolated",
+                        "definition": "No external contextual signals."
+                      },
+                      {
+                        "key": "T",
+                        "name": "Trusted-Signal",
+                        "definition": "Uses only vetted, narrow, structured signals."
+                      },
+                      {
+                        "key": "A",
+                        "name": "Ambient",
+                        "definition": "Reacts to broad, open-ended environmental signals."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "I": {
+                      "key": "I",
+                      "name": "Isolated",
+                      "definition": "No external contextual signals."
+                    },
+                    "T": {
+                      "key": "T",
+                      "name": "Trusted-Signal",
+                      "definition": "Uses only vetted, narrow, structured signals."
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Ambient",
+                      "definition": "Reacts to broad, open-ended environmental signals."
+                    }
+                  }
+                }
+              }
+            },
+            "DP": {
+              "key": "DP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "DP",
+                    "version": "1.0.0",
+                    "name": "Deceptiveness Potential",
+                    "definition": "Assesses the potential for AI-generated vulnerability reports to be deceptive, ranging from plain structured output to highly persuasive content.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "P",
+                        "name": "Plain",
+                        "definition": "Structured, non-persona output."
+                      },
+                      {
+                        "key": "F",
+                        "name": "Fluent",
+                        "definition": "Natural language output, but not convincingly human."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Persuasive",
+                        "definition": "Persona mimicry, deepfakes, or social-engineering capability."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "P": {
+                      "key": "P",
+                      "name": "Plain",
+                      "definition": "Structured, non-persona output."
+                    },
+                    "F": {
+                      "key": "F",
+                      "name": "Fluent",
+                      "definition": "Natural language output, but not convincingly human."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Persuasive",
+                      "definition": "Persona mimicry, deepfakes, or social-engineering capability."
+                    }
+                  }
+                }
+              }
+            },
+            "DI": {
+              "key": "DI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "DI",
+                    "version": "1.0.0",
+                    "name": "Dynamic Identity",
+                    "definition": "Describes how an AI system's identity and authorization context may change at runtime, including whether it can assume roles beyond a fixed identity.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "F",
+                        "name": "Fixed",
+                        "definition": "Single, constant identity."
+                      },
+                      {
+                        "key": "S",
+                        "name": "Scoped Roles",
+                        "definition": "Limited role changes tied to specific tools or contexts."
+                      },
+                      {
+                        "key": "A",
+                        "name": "Assumed Identity",
+                        "definition": "Cross-tenant, impersonation-like, or elevated role adoption."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "F": {
+                      "key": "F",
+                      "name": "Fixed",
+                      "definition": "Single, constant identity."
+                    },
+                    "S": {
+                      "key": "S",
+                      "name": "Scoped Roles",
+                      "definition": "Limited role changes tied to specific tools or contexts."
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Assumed Identity",
+                      "definition": "Cross-tenant, impersonation-like, or elevated role adoption."
+                    }
+                  }
+                }
+              }
+            },
+            "EA": {
+              "key": "EA",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "EA",
+                    "version": "1.0.0",
+                    "name": "Environment & Adaptation",
+                    "definition": "Determines the environment and adaptation level of an AI system based on its context awareness and adaptability.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "I",
+                        "name": "Isolated",
+                        "definition": "Operates in a narrow, stable context with no meaningful external awareness. No cross-session memory, multi-agent behavior, or identity changes. Environmental shifts don’t affect behavior unless a human explicitly updates inputs."
+                      },
+                      {
+                        "key": "C",
+                        "name": "Connected",
+                        "definition": "Uses curated signals, scoped identity roles, or predefined multi-agent patterns to adapt. Environmental changes can influence behavior, but only within controlled, auditable bounds."
+                      },
+                      {
+                        "key": "P",
+                        "name": "Pervasive",
+                        "definition": "Continuously adapts to broad, dynamic environmental inputs and multi-agent activity. Identity, memory, and context can shift fluidly, creating emergent behavior. Environmental variation can substantially redirect or amplify its actions."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "I": {
+                      "key": "I",
+                      "name": "Isolated",
+                      "definition": "Operates in a narrow, stable context with no meaningful external awareness. No cross-session memory, multi-agent behavior, or identity changes. Environmental shifts don’t affect behavior unless a human explicitly updates inputs."
+                    },
+                    "C": {
+                      "key": "C",
+                      "name": "Connected",
+                      "definition": "Uses curated signals, scoped identity roles, or predefined multi-agent patterns to adapt. Environmental changes can influence behavior, but only within controlled, auditable bounds."
+                    },
+                    "P": {
+                      "key": "P",
+                      "name": "Pervasive",
+                      "definition": "Continuously adapts to broad, dynamic environmental inputs and multi-agent activity. Identity, memory, and context can shift fluidly, creating emergent behavior. Environmental variation can substantially redirect or amplify its actions."
+                    }
+                  }
+                }
+              }
+            },
+            "EP": {
+              "key": "EP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "EP",
+                    "version": "1.0.0",
+                    "name": "Execution Power",
+                    "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "C",
+                        "name": "Constrained",
+                        "definition": "The AI agent has limited execution power, restricting its ability to perform actions autonomously or interact with external systems."
+                      },
+                      {
+                        "key": "CA",
+                        "name": "Capable",
+                        "definition": "The AI agent has moderate execution power, allowing it to perform certain actions autonomously and interact with external systems under supervision."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High Leverage",
+                        "definition": "The AI agent has extensive execution power, enabling it to perform actions autonomously and interact with external systems with minimal supervision."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "C": {
+                      "key": "C",
+                      "name": "Constrained",
+                      "definition": "The AI agent has limited execution power, restricting its ability to perform actions autonomously or interact with external systems."
+                    },
+                    "CA": {
+                      "key": "CA",
+                      "name": "Capable",
+                      "definition": "The AI agent has moderate execution power, allowing it to perform certain actions autonomously and interact with external systems under supervision."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High Leverage",
+                      "definition": "The AI agent has extensive execution power, enabling it to perform actions autonomously and interact with external systems with minimal supervision."
+                    }
+                  }
+                }
+              }
+            },
+            "GDP": {
+              "key": "GDP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "GDP",
+                    "version": "1.0.0",
+                    "name": "Goal-Driven Planning",
+                    "definition": "Determines the goal-driven planning capabilities of an AI agent based on its ability to plan and execute actions over multiple steps.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "R",
+                        "name": "Reactive",
+                        "definition": "The agent can only respond to immediate inputs without planning."
+                      },
+                      {
+                        "key": "A",
+                        "name": "Assisted",
+                        "definition": "The agent can plan multiple steps ahead but requires human execution or approval."
+                      },
+                      {
+                        "key": "U",
+                        "name": "Autonomous",
+                        "definition": "The agent can plan and execute multiple steps independently."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "R": {
+                      "key": "R",
+                      "name": "Reactive",
+                      "definition": "The agent can only respond to immediate inputs without planning."
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Assisted",
+                      "definition": "The agent can plan multiple steps ahead but requires human execution or approval."
+                    },
+                    "U": {
+                      "key": "U",
+                      "name": "Autonomous",
+                      "definition": "The agent can plan and execute multiple steps independently."
+                    }
+                  }
+                }
+              }
+            },
+            "MU": {
+              "key": "MU",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "MU",
+                    "version": "1.0.0",
+                    "name": "Memory Use",
+                    "definition": "Determines the memory use level of an AI system based on its persistence and recall capabilities.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "S",
+                        "name": "Stateless",
+                        "definition": "No persistence beyond the current interaction."
+                      },
+                      {
+                        "key": "L",
+                        "name": "Local Recall",
+                        "definition": "Remembers within a session or user context."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Shared Memory",
+                        "definition": "Persistent state across sessions, tasks, or teams."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "S": {
+                      "key": "S",
+                      "name": "Stateless",
+                      "definition": "No persistence beyond the current interaction."
+                    },
+                    "L": {
+                      "key": "L",
+                      "name": "Local Recall",
+                      "definition": "Remembers within a session or user context."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Shared Memory",
+                      "definition": "Persistent state across sessions, tasks, or teams."
+                    }
+                  }
+                }
+              }
+            },
+            "MAI": {
+              "key": "MAI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "MAI",
+                    "version": "1.0.0",
+                    "name": "Multi-Agent Interactions",
+                    "definition": "Characterizes how, and how flexibly, an AI system coordinates with other agents or services.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "S",
+                        "name": "Solo",
+                        "definition": "Operates alone; no coordination."
+                      },
+                      {
+                        "key": "R",
+                        "name": "Scripted",
+                        "definition": "Interacts through predefined handoffs or protocols."
+                      },
+                      {
+                        "key": "O",
+                        "name": "Orchestrated",
+                        "definition": "Dynamic teaming, swarms, emergent behavior, or markets."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "S": {
+                      "key": "S",
+                      "name": "Solo",
+                      "definition": "Operates alone; no coordination."
+                    },
+                    "R": {
+                      "key": "R",
+                      "name": "Scripted",
+                      "definition": "Interacts through predefined handoffs or protocols."
+                    },
+                    "O": {
+                      "key": "O",
+                      "name": "Orchestrated",
+                      "definition": "Dynamic teaming, swarms, emergent behavior, or markets."
+                    }
+                  }
+                }
+              }
+            },
+            "ND": {
+              "key": "ND",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "ND",
+                    "version": "1.0.0",
+                    "name": "Non-Determinism",
+                    "definition": "Describes variability of system outputs across repeated executions.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "D",
+                        "name": "Deterministic",
+                        "definition": "Stable outputs; no randomness."
+                      },
+                      {
+                        "key": "B",
+                        "name": "Bounded",
+                        "definition": "Controlled variance within predictable limits."
+                      },
+                      {
+                        "key": "H",
+                        "name": "High-Variance",
+                        "definition": "Broad or unstable behavioral range."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "D": {
+                      "key": "D",
+                      "name": "Deterministic",
+                      "definition": "Stable outputs; no randomness."
+                    },
+                    "B": {
+                      "key": "B",
+                      "name": "Bounded",
+                      "definition": "Controlled variance within predictable limits."
+                    },
+                    "H": {
+                      "key": "H",
+                      "name": "High-Variance",
+                      "definition": "Broad or unstable behavioral range."
+                    }
+                  }
+                }
+              }
+            },
+            "OR": {
+              "key": "OR",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "OR",
+                    "version": "1.0.0",
+                    "name": "Opacity & Reflexivity",
+                    "definition": "Captures how observable and explainable the internal reasoning and adaptation cycle is.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "T",
+                        "name": "Transparent",
+                        "definition": "Full logs and traceable reasoning."
+                      },
+                      {
+                        "key": "F",
+                        "name": "Fragmented",
+                        "definition": "Partial visibility; some steps hidden."
+                      },
+                      {
+                        "key": "O",
+                        "name": "Opaque",
+                        "definition": "Black-box behavior; internal process not observable."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "T": {
+                      "key": "T",
+                      "name": "Transparent",
+                      "definition": "Full logs and traceable reasoning."
+                    },
+                    "F": {
+                      "key": "F",
+                      "name": "Fragmented",
+                      "definition": "Partial visibility; some steps hidden."
+                    },
+                    "O": {
+                      "key": "O",
+                      "name": "Opaque",
+                      "definition": "Black-box behavior; internal process not observable."
+                    }
+                  }
+                }
+              }
+            },
+            "PI": {
+              "key": "PI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "PI",
+                    "version": "1.0.0",
+                    "name": "Predictability and Influence",
+                    "definition": "TODO writeme",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "V",
+                        "name": "Verifiable",
+                        "definition": "Behavior is traceable, reproducible, and backed by strong logging or proofs. Outputs align with clear rules, and any action can be independently checked. Unexpected deviations are rare and easy to diagnose."
+                      },
+                      {
+                        "key": "U",
+                        "name": "Uncertain",
+                        "definition": "Behavior is generally well-structured but can deviate within known bounds. Some reasoning steps or interactions lack full visibility, making verification partial. Issues may be diagnosable but require effort or contextual reconstruction."
+                      },
+                      {
+                        "key": "O",
+                        "name": "Opaque",
+                        "definition": "Behavior is highly variable, difficult to trace, and resistant to verification. Key reasoning paths, external influences, or interactions are hidden or unpredictable. Actions may appear coherent but cannot be reliably reproduced or audited."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "V": {
+                      "key": "V",
+                      "name": "Verifiable",
+                      "definition": "Behavior is traceable, reproducible, and backed by strong logging or proofs. Outputs align with clear rules, and any action can be independently checked. Unexpected deviations are rare and easy to diagnose."
+                    },
+                    "U": {
+                      "key": "U",
+                      "name": "Uncertain",
+                      "definition": "Behavior is generally well-structured but can deviate within known bounds. Some reasoning steps or interactions lack full visibility, making verification partial. Issues may be diagnosable but require effort or contextual reconstruction."
+                    },
+                    "O": {
+                      "key": "O",
+                      "name": "Opaque",
+                      "definition": "Behavior is highly variable, difficult to trace, and resistant to verification. Key reasoning paths, external influences, or interactions are hidden or unpredictable. Actions may appear coherent but cannot be reliably reproduced or audited."
+                    }
+                  }
+                }
+              }
+            },
+            "SM": {
+              "key": "SM",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "SM",
+                    "version": "1.0.0",
+                    "name": "Self-Modification",
+                    "definition": "Determines the self-modification capabilities of an AI agent based on its ability to alter its own code, configuration, or behavior.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "F",
+                        "name": "Fixed",
+                        "definition": "The agent cannot modify its own code, configuration, or behavior."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Mutable",
+                        "definition": "The agent can modify its own code, configuration, or behavior."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "F": {
+                      "key": "F",
+                      "name": "Fixed",
+                      "definition": "The agent cannot modify its own code, configuration, or behavior."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Mutable",
+                      "definition": "The agent can modify its own code, configuration, or behavior."
+                    }
+                  }
+                },
+                "1.1.0": {
+                  "version": "1.1.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "SM",
+                    "version": "1.1.0",
+                    "name": "Self-Modification",
+                    "definition": "Determines the self-modification capabilities of an AI agent based on its ability to alter its own code, configuration, or behavior.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "F",
+                        "name": "Fixed",
+                        "definition": "The agent cannot modify its own code, configuration, or behavior."
+                      },
+                      {
+                        "key": "T",
+                        "name": "Tunable",
+                        "definition": "The agent can modify its configuration or prompts but not its core code or behavior."
+                      },
+                      {
+                        "key": "M",
+                        "name": "Mutable",
+                        "definition": "The agent can modify its own code, configuration, or behavior."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "F": {
+                      "key": "F",
+                      "name": "Fixed",
+                      "definition": "The agent cannot modify its own code, configuration, or behavior."
+                    },
+                    "T": {
+                      "key": "T",
+                      "name": "Tunable",
+                      "definition": "The agent can modify its configuration or prompts but not its core code or behavior."
+                    },
+                    "M": {
+                      "key": "M",
+                      "name": "Mutable",
+                      "definition": "The agent can modify its own code, configuration, or behavior."
+                    }
+                  }
+                }
+              }
+            },
+            "TU": {
+              "key": "TU",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "TU",
+                    "version": "1.0.0",
+                    "name": "Tool Use",
+                    "definition": "Determines the tool use level of an AI agent based on its capabilities to interact with systems.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "V",
+                        "name": "Viewer",
+                        "definition": "The agent can only read and analyze information without making any changes."
+                      },
+                      {
+                        "key": "O",
+                        "name": "Operator",
+                        "definition": "The agent can make changes within a controlled environment, such as test systems or local files."
+                      },
+                      {
+                        "key": "A",
+                        "name": "Administrator",
+                        "definition": "The agent has full control and can make changes to privileged systems, including production environments."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "V": {
+                      "key": "V",
+                      "name": "Viewer",
+                      "definition": "The agent can only read and analyze information without making any changes."
+                    },
+                    "O": {
+                      "key": "O",
+                      "name": "Operator",
+                      "definition": "The agent can make changes within a controlled environment, such as test systems or local files."
+                    },
+                    "A": {
+                      "key": "A",
+                      "name": "Administrator",
+                      "definition": "The agent has full control and can make changes to privileged systems, including production environments."
+                    }
+                  }
+                }
+              }
+            },
+            "VC": {
+              "key": "VC",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "VC",
+                    "version": "1.0.0",
+                    "name": "Verification Capability",
+                    "definition": "Indicates whether the system’s critical properties can be formally or practically verified.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "P",
+                        "name": "Provable",
+                        "definition": "Critical safety or correctness invariants can be verified."
+                      },
+                      {
+                        "key": "K",
+                        "name": "Key Invariants Verifiable",
+                        "definition": "Some critical properties can be verified, but not all."
+                      },
+                      {
+                        "key": "U",
+                        "name": "Unverifiable",
+                        "definition": "Cannot prove correctness or invariants in practice."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "P": {
+                      "key": "P",
+                      "name": "Provable",
+                      "definition": "Critical safety or correctness invariants can be verified."
+                    },
+                    "K": {
+                      "key": "K",
+                      "name": "Key Invariants Verifiable",
+                      "definition": "Some critical properties can be verified, but not all."
+                    },
+                    "U": {
+                      "key": "U",
+                      "name": "Unverifiable",
+                      "definition": "Cannot prove correctness or invariants in practice."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "basic": {
           "namespace": "basic",
           "keys": {
@@ -23069,6 +23909,1720 @@
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:VD:1.0.0": "C",
                         "ssvc:U:1.0.1": "S"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x_org.owasp#aivss": {
+          "namespace": "x_org.owasp#aivss",
+          "keys": {
+            "DT_AIL": {
+              "key": "DT_AIL",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "DT_AIL",
+                    "version": "1.0.0",
+                    "name": "Agentic Impact Level",
+                    "definition": "TODO writeme",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "x_org.owasp#aivss:EP:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "EP",
+                        "version": "1.0.0",
+                        "name": "Execution Power",
+                        "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "C",
+                            "name": "Constrained",
+                            "definition": "The AI agent has limited execution power, restricting its ability to perform actions autonomously or interact with external systems."
+                          },
+                          {
+                            "key": "CA",
+                            "name": "Capable",
+                            "definition": "The AI agent has moderate execution power, allowing it to perform certain actions autonomously and interact with external systems under supervision."
+                          },
+                          {
+                            "key": "H",
+                            "name": "High Leverage",
+                            "definition": "The AI agent has extensive execution power, enabling it to perform actions autonomously and interact with external systems with minimal supervision."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:EA:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "EA",
+                        "version": "1.0.0",
+                        "name": "Environment & Adaptation",
+                        "definition": "Determines the environment and adaptation level of an AI system based on its context awareness and adaptability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "I",
+                            "name": "Isolated",
+                            "definition": "Operates in a narrow, stable context with no meaningful external awareness. No cross-session memory, multi-agent behavior, or identity changes. Environmental shifts don’t affect behavior unless a human explicitly updates inputs."
+                          },
+                          {
+                            "key": "C",
+                            "name": "Connected",
+                            "definition": "Uses curated signals, scoped identity roles, or predefined multi-agent patterns to adapt. Environmental changes can influence behavior, but only within controlled, auditable bounds."
+                          },
+                          {
+                            "key": "P",
+                            "name": "Pervasive",
+                            "definition": "Continuously adapts to broad, dynamic environmental inputs and multi-agent activity. Identity, memory, and context can shift fluidly, creating emergent behavior. Environmental variation can substantially redirect or amplify its actions."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:PI:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "PI",
+                        "version": "1.0.0",
+                        "name": "Predictability and Influence",
+                        "definition": "TODO writeme",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "V",
+                            "name": "Verifiable",
+                            "definition": "Behavior is traceable, reproducible, and backed by strong logging or proofs. Outputs align with clear rules, and any action can be independently checked. Unexpected deviations are rare and easy to diagnose."
+                          },
+                          {
+                            "key": "U",
+                            "name": "Uncertain",
+                            "definition": "Behavior is generally well-structured but can deviate within known bounds. Some reasoning steps or interactions lack full visibility, making verification partial. Issues may be diagnosable but require effort or contextual reconstruction."
+                          },
+                          {
+                            "key": "O",
+                            "name": "Opaque",
+                            "definition": "Behavior is highly variable, difficult to trace, and resistant to verification. Key reasoning paths, external influences, or interactions are hidden or unpredictable. Actions may appear coherent but cannot be reliably reproduced or audited."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:AIL:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "AIL",
+                        "version": "1.0.0",
+                        "name": "Agentic Impact Level",
+                        "definition": "Determines the agentic impact level of a vulnerability based on its characteristics and potential effects.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "C",
+                            "name": "CoPilot",
+                            "definition": "The agent is primarily a copilot or assistant. Its actions are heavily constrained, requiring human oversight. The agent explicitly does not have rights to execute code."
+                          },
+                          {
+                            "key": "S",
+                            "name": "Specialist",
+                            "definition": "The agent is a specialist with significant autonomy within a defined domain.It can use powerful tools and may learn from interactions."
+                          },
+                          {
+                            "key": "P",
+                            "name": "Prime Mover",
+                            "definition": "The agent is a prime mover with broad autonomy. It can orchestrate other systems, modify its own logic, and interact with critical infrastructure."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "x_org.owasp#aivss:AIL:1.0.0",
+                    "mapping": [
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "C",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "CA",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "I",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "S"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "C",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      },
+                      {
+                        "x_org.owasp#aivss:EP:1.0.0": "H",
+                        "x_org.owasp#aivss:EA:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O",
+                        "x_org.owasp#aivss:AIL:1.0.0": "P"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "DT_PI": {
+              "key": "DT_PI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "DT_PI",
+                    "version": "1.0.0",
+                    "name": "Predictability and Influence",
+                    "definition": "TODO writeme",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "x_org.owasp#aivss:ND:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "ND",
+                        "version": "1.0.0",
+                        "name": "Non-Determinism",
+                        "definition": "Describes variability of system outputs across repeated executions.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "D",
+                            "name": "Deterministic",
+                            "definition": "Stable outputs; no randomness."
+                          },
+                          {
+                            "key": "B",
+                            "name": "Bounded",
+                            "definition": "Controlled variance within predictable limits."
+                          },
+                          {
+                            "key": "H",
+                            "name": "High-Variance",
+                            "definition": "Broad or unstable behavioral range."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:OR:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "OR",
+                        "version": "1.0.0",
+                        "name": "Opacity & Reflexivity",
+                        "definition": "Captures how observable and explainable the internal reasoning and adaptation cycle is.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "T",
+                            "name": "Transparent",
+                            "definition": "Full logs and traceable reasoning."
+                          },
+                          {
+                            "key": "F",
+                            "name": "Fragmented",
+                            "definition": "Partial visibility; some steps hidden."
+                          },
+                          {
+                            "key": "O",
+                            "name": "Opaque",
+                            "definition": "Black-box behavior; internal process not observable."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:VC:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "VC",
+                        "version": "1.0.0",
+                        "name": "Verification Capability",
+                        "definition": "Indicates whether the system’s critical properties can be formally or practically verified.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "P",
+                            "name": "Provable",
+                            "definition": "Critical safety or correctness invariants can be verified."
+                          },
+                          {
+                            "key": "K",
+                            "name": "Key Invariants Verifiable",
+                            "definition": "Some critical properties can be verified, but not all."
+                          },
+                          {
+                            "key": "U",
+                            "name": "Unverifiable",
+                            "definition": "Cannot prove correctness or invariants in practice."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:DP:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "DP",
+                        "version": "1.0.0",
+                        "name": "Deceptiveness Potential",
+                        "definition": "Assesses the potential for AI-generated vulnerability reports to be deceptive, ranging from plain structured output to highly persuasive content.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "P",
+                            "name": "Plain",
+                            "definition": "Structured, non-persona output."
+                          },
+                          {
+                            "key": "F",
+                            "name": "Fluent",
+                            "definition": "Natural language output, but not convincingly human."
+                          },
+                          {
+                            "key": "S",
+                            "name": "Persuasive",
+                            "definition": "Persona mimicry, deepfakes, or social-engineering capability."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:PI:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "PI",
+                        "version": "1.0.0",
+                        "name": "Predictability and Influence",
+                        "definition": "TODO writeme",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "V",
+                            "name": "Verifiable",
+                            "definition": "Behavior is traceable, reproducible, and backed by strong logging or proofs. Outputs align with clear rules, and any action can be independently checked. Unexpected deviations are rare and easy to diagnose."
+                          },
+                          {
+                            "key": "U",
+                            "name": "Uncertain",
+                            "definition": "Behavior is generally well-structured but can deviate within known bounds. Some reasoning steps or interactions lack full visibility, making verification partial. Issues may be diagnosable but require effort or contextual reconstruction."
+                          },
+                          {
+                            "key": "O",
+                            "name": "Opaque",
+                            "definition": "Behavior is highly variable, difficult to trace, and resistant to verification. Key reasoning paths, external influences, or interactions are hidden or unpredictable. Actions may appear coherent but cannot be reliably reproduced or audited."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "x_org.owasp#aivss:PI:1.0.0",
+                    "mapping": [
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "V"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "D",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "V"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "B",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "T",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "U"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "F",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "P",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "K",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "P",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "F",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      },
+                      {
+                        "x_org.owasp#aivss:ND:1.0.0": "H",
+                        "x_org.owasp#aivss:OR:1.0.0": "O",
+                        "x_org.owasp#aivss:VC:1.0.0": "U",
+                        "x_org.owasp#aivss:DP:1.0.0": "S",
+                        "x_org.owasp#aivss:PI:1.0.0": "O"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "DT_EP": {
+              "key": "DT_EP",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "x_org.owasp#aivss",
+                    "key": "DT_EP",
+                    "version": "1.0.0",
+                    "name": "Execution Power",
+                    "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "x_org.owasp#aivss:AA:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "AA",
+                        "version": "1.0.0",
+                        "name": "Autonomy of Action",
+                        "definition": "Determines the autonomy of action level of a vulnerability based on its characteristics and potential effects.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "G",
+                            "name": "Gated",
+                            "definition": "The agent cannot act without human approval."
+                          },
+                          {
+                            "key": "S",
+                            "name": "Scoped",
+                            "definition": "The agent can act independently but only in tightly bounded spaces."
+                          },
+                          {
+                            "key": "F",
+                            "name": "Free-Running",
+                            "definition": "The agent can execute actions in live systems without a human in the loop."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:TU:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "TU",
+                        "version": "1.0.0",
+                        "name": "Tool Use",
+                        "definition": "Determines the tool use level of an AI agent based on its capabilities to interact with systems.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "V",
+                            "name": "Viewer",
+                            "definition": "The agent can only read and analyze information without making any changes."
+                          },
+                          {
+                            "key": "O",
+                            "name": "Operator",
+                            "definition": "The agent can make changes within a controlled environment, such as test systems or local files."
+                          },
+                          {
+                            "key": "A",
+                            "name": "Administrator",
+                            "definition": "The agent has full control and can make changes to privileged systems, including production environments."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:SM:1.1.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "SM",
+                        "version": "1.1.0",
+                        "name": "Self-Modification",
+                        "definition": "Determines the self-modification capabilities of an AI agent based on its ability to alter its own code, configuration, or behavior.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "F",
+                            "name": "Fixed",
+                            "definition": "The agent cannot modify its own code, configuration, or behavior."
+                          },
+                          {
+                            "key": "T",
+                            "name": "Tunable",
+                            "definition": "The agent can modify its configuration or prompts but not its core code or behavior."
+                          },
+                          {
+                            "key": "M",
+                            "name": "Mutable",
+                            "definition": "The agent can modify its own code, configuration, or behavior."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:GDP:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "GDP",
+                        "version": "1.0.0",
+                        "name": "Goal-Driven Planning",
+                        "definition": "Determines the goal-driven planning capabilities of an AI agent based on its ability to plan and execute actions over multiple steps.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "R",
+                            "name": "Reactive",
+                            "definition": "The agent can only respond to immediate inputs without planning."
+                          },
+                          {
+                            "key": "A",
+                            "name": "Assisted",
+                            "definition": "The agent can plan multiple steps ahead but requires human execution or approval."
+                          },
+                          {
+                            "key": "U",
+                            "name": "Autonomous",
+                            "definition": "The agent can plan and execute multiple steps independently."
+                          }
+                        ]
+                      },
+                      "x_org.owasp#aivss:EP:1.0.0": {
+                        "namespace": "x_org.owasp#aivss",
+                        "key": "EP",
+                        "version": "1.0.0",
+                        "name": "Execution Power",
+                        "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "C",
+                            "name": "Constrained",
+                            "definition": "The AI agent has limited execution power, restricting its ability to perform actions autonomously or interact with external systems."
+                          },
+                          {
+                            "key": "CA",
+                            "name": "Capable",
+                            "definition": "The AI agent has moderate execution power, allowing it to perform certain actions autonomously and interact with external systems under supervision."
+                          },
+                          {
+                            "key": "H",
+                            "name": "High Leverage",
+                            "definition": "The AI agent has extensive execution power, enabling it to perform actions autonomously and interact with external systems with minimal supervision."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "x_org.owasp#aivss:EP:1.0.0",
+                    "mapping": [
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "G",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "C"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "S",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "V",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "CA"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "O",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "F",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "T",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "R",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "A",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
+                      },
+                      {
+                        "x_org.owasp#aivss:AA:1.0.0": "F",
+                        "x_org.owasp#aivss:TU:1.0.0": "A",
+                        "x_org.owasp#aivss:SM:1.1.0": "M",
+                        "x_org.owasp#aivss:GDP:1.0.0": "U",
+                        "x_org.owasp#aivss:EP:1.0.0": "H"
                       }
                     ]
                   }
