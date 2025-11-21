@@ -1,4 +1,4 @@
-# AIVSS Guide
+# AIVSS Predictability and Influence
 
 Some text
 

@@ -37,17 +37,17 @@ SPECIALIST = DecisionPointValue(
     key="S",
     name="Specialist",
     definition="The agent is a specialist with significant autonomy within a defined domain."
-        "It can use powerful tools and may learn from interactions.",
+    "It can use powerful tools and may learn from interactions.",
 )
 
 PRIME_MOVER = DecisionPointValue(
     key="P",
     name="Prime Mover",
     definition="The agent is a prime mover with broad autonomy. "
-    "It can orchestrate other systems, modify its own logic, and interact with critical infrastructure."
+    "It can orchestrate other systems, modify its own logic, and interact with critical infrastructure.",
 )
 
-AIL_01 = AivssDecisionPoint(
+AGENTIC_IMPACT_LEVEL_01 = AivssDecisionPoint(
     key="AIL",
     name="Agentic Impact Level",
     definition="Determines the agentic impact level of a vulnerability based on its characteristics and potential effects.",
@@ -56,7 +56,7 @@ AIL_01 = AivssDecisionPoint(
 )
 
 
-VERSIONS = (AIL_01, )
+VERSIONS = (AGENTIC_IMPACT_LEVEL_01,)
 LATEST = VERSIONS[-1]
 
 if __name__ == "__main__":

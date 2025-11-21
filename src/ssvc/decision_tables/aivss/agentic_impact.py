@@ -22,7 +22,7 @@
 """
 Provides TODO writeme
 """
-from ssvc.decision_points.aivss.agentic_impact import AIL_01
+from ssvc.decision_points.aivss.agentic_impact import AGENTIC_IMPACT_LEVEL_01
 from ssvc.decision_points.aivss.base import AIVSS_NS
 from ssvc.decision_points.aivss.env_adaptation import ENV_ADAPT_01
 from ssvc.decision_points.aivss.execution_power import EXECUTION_POWER
@@ -43,10 +43,10 @@ V1_0_0 = DecisionTable(
             EXECUTION_POWER,
             ENV_ADAPT_01,
             PREDICTABILITY_INFLUENCE_01,
-            AIL_01,
+            AGENTIC_IMPACT_LEVEL_01,
         ]
     },
-    outcome=AIL_01.id,
+    outcome=AGENTIC_IMPACT_LEVEL_01.id,
     mapping=[
         {
             "x_org.owasp#aivss:EP:1.0.0": "C",

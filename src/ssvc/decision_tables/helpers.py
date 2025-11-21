@@ -24,6 +24,7 @@ Provides helper functions for decision tables in SSVC.
 
 
 import logging
+
 import pandas as pd
 
 from ssvc.decision_tables.base import (
@@ -116,7 +117,14 @@ def _mapping2mermaid(mapping: list[dict[str:str]], title: str = None) -> str:
             lines.append("end")
             lines.append("subgraph outputs[Outcome]")
 
-        subgraph_name = f's{col_idx+1}["{col}"]'
+        if ":" in col:
+            (col_ns, _, col_keyver) = col.partition(":")
+            (ns_pfx, _, ns_frag) = col_ns.partition("#")
+            colhdr = f"{ns_pfx}<br/>#{ns_frag}<br/>{col_keyver}"
+        else:
+            colhdr = col
+
+        subgraph_name = f's{col_idx+1}["{colhdr}"]'
         lines.append(f"subgraph {subgraph_name}")
         seen_paths = set()
         for row in mapping:
