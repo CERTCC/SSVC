@@ -1,0 +1,280 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "DT_AIVSS",
+  "version": "1.0.0",
+  "name": "AIVSS Decision Table",
+  "definition": "Decision table for the AIVSS framework.",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "ssvc:E:1.1.0": {
+      "namespace": "ssvc",
+      "key": "E",
+      "version": "1.1.0",
+      "name": "Exploitation",
+      "definition": "The present state of exploitation of the vulnerability.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "N",
+          "name": "None",
+          "definition": "There is no evidence of active exploitation and no public proof of concept (PoC) of how to exploit the vulnerability."
+        },
+        {
+          "key": "P",
+          "name": "Public PoC",
+          "definition": "One of the following is true: (1) Typical public PoC exists in sources such as Metasploit or websites like ExploitDB; or (2) the vulnerability has a well-known method of exploitation."
+        },
+        {
+          "key": "A",
+          "name": "Active",
+          "definition": "Shared, observable, reliable evidence that the exploit is being used in the wild by real attackers; there is credible public reporting."
+        }
+      ]
+    },
+    "x_org.owasp#aivss:AIL:1.0.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "AIL",
+      "version": "1.0.0",
+      "name": "Agentic Impact Level",
+      "definition": "Determines the agentic impact level of a vulnerability based on its characteristics and potential effects.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "C",
+          "name": "CoPilot",
+          "definition": "The agent is primarily a copilot or assistant. Its actions are heavily constrained, requiring human oversight. The agent explicitly does not have rights to execute code."
+        },
+        {
+          "key": "S",
+          "name": "Specialist",
+          "definition": "The agent is a specialist with significant autonomy within a defined domain.It can use powerful tools and may learn from interactions."
+        },
+        {
+          "key": "P",
+          "name": "Prime Mover",
+          "definition": "The agent is a prime mover with broad autonomy. It can orchestrate other systems, modify its own logic, and interact with critical infrastructure."
+        }
+      ]
+    },
+    "x_org.owasp#aivss:SI:1.0.0": {
+      "namespace": "x_org.owasp#aivss",
+      "key": "SI",
+      "version": "1.0.0",
+      "name": "Systemic Impact",
+      "definition": "Measures the mission-criticality and blast radius of the systems, data, and processes the agent can affect.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "C",
+          "name": "Contained",
+          "definition": "The impact of a compromise is limited to the agent itself, a single user's data, or a non-critical system. The business or mission impact is negligible."
+        },
+        {
+          "key": "S",
+          "name": "Significant",
+          "definition": "A compromise would impact a major business function, a critical internal system, or cause cascading failures within a business unit. It could result in moderate financial loss, reputational damage, or operational disruption."
+        },
+        {
+          "key": "R",
+          "name": "Critical",
+          "definition": "A compromise would pose a threat to the entire organization's viability, public safety, or critical infrastructure. It could lead to severe financial loss, widespread data breach, regulatory failure, or physical harm."
+        }
+      ]
+    },
+    "ssvc:DSOI:1.0.0": {
+      "namespace": "ssvc",
+      "key": "DSOI",
+      "version": "1.0.0",
+      "name": "Defer, Scheduled, Out-of-Cycle, Immediate",
+      "definition": "The original SSVC outcome group.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "D",
+          "name": "Defer",
+          "definition": "Defer"
+        },
+        {
+          "key": "S",
+          "name": "Scheduled",
+          "definition": "Scheduled"
+        },
+        {
+          "key": "O",
+          "name": "Out-of-Cycle",
+          "definition": "Out-of-Cycle"
+        },
+        {
+          "key": "I",
+          "name": "Immediate",
+          "definition": "Immediate"
+        }
+      ]
+    }
+  },
+  "outcome": "ssvc:DSOI:1.0.0",
+  "mapping": [
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "D"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "N",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "S"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "P",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "C",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "O"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "S",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "C",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "S",
+      "ssvc:DSOI:1.0.0": "I"
+    },
+    {
+      "ssvc:E:1.1.0": "A",
+      "x_org.owasp#aivss:AIL:1.0.0": "P",
+      "x_org.owasp#aivss:SI:1.0.0": "R",
+      "ssvc:DSOI:1.0.0": "I"
+    }
+  ]
+}
