@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "GDP",
+  "version": "1.0.0",
+  "name": "Goal-Driven Planning",
+  "definition": "Determines the goal-driven planning capabilities of an AI agent based on its ability to plan and execute actions over multiple steps.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "R",
+      "name": "Reactive",
+      "definition": "The agent can only respond to immediate inputs without planning."
+    },
+    {
+      "key": "A",
+      "name": "Assisted",
+      "definition": "The agent can plan multiple steps ahead but requires human execution or approval."
+    },
+    {
+      "key": "U",
+      "name": "Autonomous",
+      "definition": "The agent can plan and execute multiple steps independently."
+    }
+  ]
+}

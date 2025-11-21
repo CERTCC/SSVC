@@ -1,0 +1,28 @@
+row,Execution Power v1.0.0 (x_org.owasp#aivss),Environment & Adaptation v1.0.0 (x_org.owasp#aivss),Predictability and Influence v1.0.0 (x_org.owasp#aivss),Agentic Impact Level v1.0.0 (x_org.owasp#aivss)
+0,constrained,isolated,verifiable,copilot
+1,constrained,isolated,uncertain,copilot
+2,constrained,isolated,opaque,specialist
+3,constrained,connected,verifiable,copilot
+4,constrained,connected,uncertain,specialist
+5,constrained,connected,opaque,specialist
+6,constrained,pervasive,verifiable,specialist
+7,constrained,pervasive,uncertain,specialist
+8,constrained,pervasive,opaque,prime mover
+9,capable,isolated,verifiable,copilot
+10,capable,isolated,uncertain,specialist
+11,capable,isolated,opaque,specialist
+12,capable,connected,verifiable,specialist
+13,capable,connected,uncertain,specialist
+14,capable,connected,opaque,specialist
+15,capable,pervasive,verifiable,specialist
+16,capable,pervasive,uncertain,specialist
+17,capable,pervasive,opaque,prime mover
+18,high leverage,isolated,verifiable,specialist
+19,high leverage,isolated,uncertain,specialist
+20,high leverage,isolated,opaque,prime mover
+21,high leverage,connected,verifiable,specialist
+22,high leverage,connected,uncertain,specialist
+23,high leverage,connected,opaque,prime mover
+24,high leverage,pervasive,verifiable,prime mover
+25,high leverage,pervasive,uncertain,prime mover
+26,high leverage,pervasive,opaque,prime mover

@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "AA",
+  "version": "1.0.0",
+  "name": "Autonomy of Action",
+  "definition": "Determines the autonomy of action level of a vulnerability based on its characteristics and potential effects.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "G",
+      "name": "Gated",
+      "definition": "The agent cannot act without human approval."
+    },
+    {
+      "key": "S",
+      "name": "Scoped",
+      "definition": "The agent can act independently but only in tightly bounded spaces."
+    },
+    {
+      "key": "F",
+      "name": "Free-Running",
+      "definition": "The agent can execute actions in live systems without a human in the loop."
+    }
+  ]
+}

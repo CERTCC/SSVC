@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "SM",
+  "version": "1.1.0",
+  "name": "Self-Modification",
+  "definition": "Determines the self-modification capabilities of an AI agent based on its ability to alter its own code, configuration, or behavior.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "F",
+      "name": "Fixed",
+      "definition": "The agent cannot modify its own code, configuration, or behavior."
+    },
+    {
+      "key": "T",
+      "name": "Tunable",
+      "definition": "The agent can modify its configuration or prompts but not its core code or behavior."
+    },
+    {
+      "key": "M",
+      "name": "Mutable",
+      "definition": "The agent can modify its own code, configuration, or behavior."
+    }
+  ]
+}
