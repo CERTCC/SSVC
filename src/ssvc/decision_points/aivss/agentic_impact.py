@@ -27,7 +27,7 @@ from ssvc.decision_points.helpers import print_versions_and_diffs
 
 COPILOT = DecisionPointValue(
     key="C",
-    name="CoPilot",
+    name="Copilot",
     definition="The agent is primarily a copilot or assistant. "
     "Its actions are heavily constrained, requiring human oversight. "
     "The agent explicitly does not have rights to execute code.",
