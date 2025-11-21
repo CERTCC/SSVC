@@ -2,7 +2,7 @@
 
 Some text
 
-##  Outcome
+## Outcome
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.env_adaptation import LATEST as DT
@@ -11,7 +11,6 @@ from ssvc.doc_helpers import example_block
 dp = DT.decision_points[DT.outcome]
 print(example_block(dp))
 ```
-
 
 ## Decision Points
 
@@ -26,7 +25,6 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 ## Decision Table
 
 ### Decision Model Visualization
-
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.env_adaptation import LATEST as DT
@@ -49,4 +47,3 @@ from ssvc.decision_tables.helpers import dt2df_md
 
 print(dt2df_md(DT))
 ```
-

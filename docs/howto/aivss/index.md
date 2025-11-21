@@ -2,7 +2,7 @@
 
 AIVSS is... {== TODO WRITE ME ==}
 
-##  Outcome
+## Outcome
 
 The outcome set for AIVSS is the basic SSVC priority levels: Defer, Scheduled, Out-of-Cycle, and Immediate.
 
@@ -40,7 +40,6 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 
 ### Decision Model Visualization
 
-
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.aivss import LATEST as DT
 from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
@@ -62,4 +61,3 @@ from ssvc.decision_tables.helpers import dt2df_md
 
 print(dt2df_md(DT))
 ```
-

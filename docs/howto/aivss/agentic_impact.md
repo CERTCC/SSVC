@@ -10,7 +10,6 @@ The Agentic Impact Level (AIL) is...
     the AI system has in its operational environment, which can impact the
     potential risk associated with vulnerabilities in the system.
 
-
 !!! tip "Assessing Agentic Impact Level"
 
     The Agentic Impact Level (AIL) is not intended to be assessed for every
@@ -20,10 +19,9 @@ The Agentic Impact Level (AIL) is...
     assess the AIL periodically, such as during major system updates or
     architecture changes.
 
+## Outcome
 
-##  Outcome
-
-The outcome set for AIVSS Agentic Impact Level describes the degree of 
+The outcome set for AIVSS Agentic Impact Level describes the degree of
 autonomy and influence the AI system has in its operational environment.
 
 ```python exec="true" idprefix=""
@@ -33,7 +31,6 @@ from ssvc.doc_helpers import example_block
 dp = DT.decision_points[DT.outcome]
 print(example_block(dp))
 ```
-
 
 ## Decision Points
 
@@ -63,7 +60,6 @@ for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
 
 ### Decision Model Visualization
 
-
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.agentic_impact import LATEST as DT
 from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
@@ -85,4 +81,3 @@ from ssvc.decision_tables.helpers import dt2df_md
 
 print(dt2df_md(DT))
 ```
-
