@@ -18,7 +18,7 @@ print(example_block(dp))
 
 The Decision Points for AIVSS include:
 
-- [Exploitation](../reference/decision_points/exploitation.md)
+- [Exploitation](../../reference/decision_points/exploitation.md)
 - Agentic Impact Level
 - Systemic Impact
 
