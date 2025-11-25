@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "TU",
+  "version": "1.0.0",
+  "name": "Tool Use",
+  "definition": "Determines the tool use level of an AI agent based on its capabilities to interact with systems.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "V",
+      "name": "Viewer",
+      "definition": "The agent can only read and analyze information without making any changes."
+    },
+    {
+      "key": "O",
+      "name": "Operator",
+      "definition": "The agent can make changes within a controlled environment, such as test systems or local files."
+    },
+    {
+      "key": "A",
+      "name": "Administrator",
+      "definition": "The agent has full control and can make changes to privileged systems, including production environments."
+    }
+  ]
+}

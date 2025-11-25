@@ -132,3 +132,4 @@ ssvc2-applier-wip.xlsx
 _version.py
 node_modules
 tmp
+/src/scratch/

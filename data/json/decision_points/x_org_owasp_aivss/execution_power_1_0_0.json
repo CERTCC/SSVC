@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "EP",
+  "version": "1.0.0",
+  "name": "Execution Power",
+  "definition": "Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "C",
+      "name": "Constrained",
+      "definition": "The AI agent has limited execution power, restricting its ability to perform actions autonomously or interact with external systems."
+    },
+    {
+      "key": "CA",
+      "name": "Capable",
+      "definition": "The AI agent has moderate execution power, allowing it to perform certain actions autonomously and interact with external systems under supervision."
+    },
+    {
+      "key": "H",
+      "name": "High Leverage",
+      "definition": "The AI agent has extensive execution power, enabling it to perform actions autonomously and interact with external systems with minimal supervision."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "namespace": "x_org.owasp#aivss",
+  "key": "OR",
+  "version": "1.0.0",
+  "name": "Opacity & Reflexivity",
+  "definition": "Captures how observable and explainable the internal reasoning and adaptation cycle is.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "T",
+      "name": "Transparent",
+      "definition": "Full logs and traceable reasoning."
+    },
+    {
+      "key": "F",
+      "name": "Fragmented",
+      "definition": "Partial visibility; some steps hidden."
+    },
+    {
+      "key": "O",
+      "name": "Opaque",
+      "definition": "Black-box behavior; internal process not observable."
+    }
+  ]
+}
