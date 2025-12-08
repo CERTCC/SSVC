@@ -22,62 +22,40 @@
 
 import bisect
 import math
+import sys
 from collections import Counter
 from functools import partial
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Tuple
 
 import colorcet as cc
 import matplotlib.colors as mcolors
-import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
+from matplotlib import pyplot as plt
 
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.utils.toposort import graph_from_dplist
 
+# define partial functions for different norms
+l1_magnitudes: Callable[[np.ndarray], np.ndarray] = partial(
+    np.linalg.norm, ord=1, axis=1
+)
+l2_magnitudes: Callable[[np.ndarray], np.ndarray] = partial(
+    np.linalg.norm, ord=2, axis=1
+)
+linf_magnitudes: Callable[[np.ndarray], np.ndarray] = partial(
+    np.linalg.norm, ord=np.inf, axis=1
+)
 
-def draw_hasse(
+# convenience aliases
+manhattan_distances = l1_magnitudes
+euclidean_distances = l2_magnitudes
+max_distances = linf_magnitudes
+
+
+def _layout_deterministic(
     G: nx.DiGraph,
-    ax: Optional[plt.Axes] = None,
-    use_graphviz: bool = True,
-    node_size: int = 500,
-    node_color_attr: str = "color",
-    figsize: Tuple[int, int] = (18, 16),
-) -> plt.Axes:
-    """
-    Draw a Hasse-like diagram for a DAG. Returns the axes containing the plot.
-    Per-node colors are read from node attribute `node_color_attr` when
-    `node_color` is None.
-    """
-    if ax is None:
-        fig, ax = plt.subplots(figsize=figsize)
-
-    pos: Optional[Dict[Any, Tuple[float, float]]] = None
-
-    if use_graphviz:
-        pos = layout_graphviz(G)
-
-    if pos is None:
-        pos = layout_deterministic(G)
-
-    nx_node_color = [G.nodes[n].get(node_color_attr, "skyblue") for n in G.nodes()]
-
-    nx.draw(
-        G,
-        pos=pos,
-        with_labels=True,
-        node_size=node_size,
-        node_color=nx_node_color,
-        edge_color="gray",
-        font_size=10,
-        ax=ax,
-    )
-    ax.margins(0.2)
-    return ax
-
-
-def layout_deterministic(G: nx.DiGraph) -> dict[Any, tuple[
-    float, float]] | None:
+) -> dict[Any, tuple[float, float]] | None:
     # Deterministic level layout (longest distance from minimal nodes)
     min_nodes = [n for n in G.nodes if G.in_degree(n) == 0] or list(G.nodes)
     levels: Dict[Any, int] = {n: 0 for n in min_nodes}
@@ -108,48 +86,35 @@ def layout_deterministic(G: nx.DiGraph) -> dict[Any, tuple[
     return pos
 
 
-def layout_graphviz(G: nx.DiGraph) -> dict[Any, tuple[float, float]] | None:
+def _layout_graphviz(G: nx.DiGraph) -> dict[Any, tuple[float, float]] | None:
     pos = None
 
     try:
         from networkx.drawing.nx_agraph import graphviz_layout  # type: ignore
 
-        pos = graphviz_layout(G, prog="dot", args="-Grankdir=BT")
+        pos = graphviz_layout(
+            G,
+            prog="dot",
+            args="-Grankdir=BT -Gcenter=true -Gnodesep=0.5 -Granksep=1.0",
+        )
     except Exception:
         try:
             from networkx.drawing.nx_pydot import graphviz_layout  # type: ignore
 
-            pos = graphviz_layout(G, prog="dot", args="-Grankdir=BT")
+            pos = graphviz_layout(
+                G,
+                prog="dot",
+                args="-Grankdir=BT -Gcenter=true -Gnodesep=0.5 -Granksep=1.0",
+            )
         except Exception:
             pass
 
     return pos
 
 
-def write_graph(filename: str, G: nx.DiGraph, figsize: Tuple[int, int] = (24, 20),svg:bool=False,png:bool=True) -> None:
-    """Render `G` and write PNG and SVG files named `filename`.png / .svg."""
-    if not (png or svg):
-        raise ValueError("At least one of png or svg must be True")
-
-    ax = draw_hasse(G, figsize=figsize)
-
-    if png:
-        ax.figure.savefig(f"{filename}.png", dpi=300, bbox_inches="tight")
-    if svg:
-        ax.figure.savefig(f"{filename}.svg", bbox_inches="tight")
-
-    plt.close(ax.figure)
-
-# define partial functions for different norms
-l1_magnitudes: Callable[[np.ndarray], np.ndarray] = partial(np.linalg.norm, ord=1, axis=1)
-l2_magnitudes: Callable[[np.ndarray], np.ndarray] = partial(np.linalg.norm, ord=2, axis=1)
-linf_magnitudes: Callable[[np.ndarray], np.ndarray] = partial(np.linalg.norm, ord=np.inf, axis=1)
-
-manhattan_distances = l1_magnitudes
-euclidean_distances = l2_magnitudes
-max_distances = linf_magnitudes
-
-def normalize_columns(arr: np.ndarray[tuple[Any, ...], np.dtype[Any]]) -> np.ndarray[tuple[Any, ...], np.dtype[Any]]:
+def _normalize_columns(
+    arr: np.ndarray[tuple[Any, ...], np.dtype[Any]],
+) -> np.ndarray[tuple[Any, ...], np.dtype[Any]]:
     """Normalize each column of `arr` to the range [0, 1].
 
     Args:
@@ -163,7 +128,9 @@ def normalize_columns(arr: np.ndarray[tuple[Any, ...], np.dtype[Any]]) -> np.nda
 
     if np.any(maxs <= 0):
         # throw an error if maxs are not positive
-        raise ValueError("All columns must have a positive maximum value for normalization.")
+        raise ValueError(
+            "All columns must have a positive maximum value for normalization."
+        )
 
     # we're just going to scale from 0 to max
     # so we can use min as 0 for all columns
@@ -173,23 +140,23 @@ def normalize_columns(arr: np.ndarray[tuple[Any, ...], np.dtype[Any]]) -> np.nda
 
     nonzero = ranges != 0.0
     if np.any(nonzero):
-        arr_norm[:, nonzero] = (arr[:, nonzero] - mins[nonzero]) / ranges[nonzero]
+        arr_norm[:, nonzero] = (arr[:, nonzero] - mins[nonzero]) / ranges[
+            nonzero
+        ]
     return arr_norm
 
 
-def magnitude_quantile_labels_from_graph(
+def _magnitude_quantile_labels_from_graph(
     G: nx.DiGraph,
     K: int,
-    norm_func: Optional[Callable[[np.ndarray], np.ndarray]] = euclidean_distances,
+    norm_func: Callable[[np.ndarray], np.ndarray] = euclidean_distances,
 ) -> Dict[Any, int]:
     """
-    More sophisticated magnitude-quantile labeling that normalizes per-dimension
-    then computes magnitudes and forms clump-safe quantile bins.
-
-    This function now accepts a dependency (norm_func) that computes magnitudes
-    from the normalized array. For backward compatibility, a legacy `norm`
-    spec (string/number) is still accepted and mapped once to an appropriate
-    norm_func before use.
+    Assign labels to graph nodes based on quantiles of their vector magnitudes.
+    Args:
+        G: Input graph with nodes as integer tuples representing vectors.
+        K: Number of quantile-based labels to assign (must be >= 2).
+        norm_func: Function to compute vector magnitudes (default: Euclidean aka L2 norm).
     """
     if K < 2:
         raise ValueError("K must be >= 2")
@@ -199,6 +166,7 @@ def magnitude_quantile_labels_from_graph(
         raise ValueError("Graph has no nodes")
 
     node_vectors: List[Tuple[int, ...]] = []
+
     for n in node_iterable:
         vec = n
         node_vectors.append(tuple(int(x) for x in vec))
@@ -211,14 +179,16 @@ def magnitude_quantile_labels_from_graph(
     # normalize per-dimension to [0,1]
     arr = np.array(node_vectors, dtype=float)
 
-    arr_norm = normalize_columns(arr)
+    arr_norm = _normalize_columns(arr)
 
     # Compute magnitudes by calling dependency
     mags = norm_func(arr_norm)
 
+    # here is where we start the quantile labeling
     unique_mags = np.unique(mags)
     um_list = unique_mags.tolist()
 
+    # Compute raw quantile cut values
     probs = [i / K for i in range(K + 1)]
     try:
         raw_cuts = np.quantile(mags, probs, method="linear")
@@ -227,10 +197,16 @@ def magnitude_quantile_labels_from_graph(
 
     def first_strictly_greater(val: float) -> float:
         idx = bisect.bisect_right(um_list, val)
-        return float(um_list[idx]) if idx < len(um_list) else float(um_list[-1])
+        return (
+            float(um_list[idx]) if idx < len(um_list) else float(um_list[-1])
+        )
 
+    # create adjusted cut values
     adjusted: List[float] = [0.0] * (K + 1)
+    # the min and max cuts are fixed
+    # lowest cut is min magnitude
     adjusted[0] = float(um_list[0])
+    # highest cut is max magnitude
     adjusted[-1] = float(um_list[-1])
 
     # Adjust cut values to avoid clumps
@@ -247,7 +223,11 @@ def magnitude_quantile_labels_from_graph(
         cur = adjusted[j]
         if cur <= prev or math.isclose(cur, prev):
             idx = bisect.bisect_right(um_list, prev)
-            adjusted[j] = float(um_list[idx]) if idx < len(um_list) else float(um_list[-1])
+            adjusted[j] = (
+                float(um_list[idx])
+                if idx < len(um_list)
+                else float(um_list[-1])
+            )
 
     # Assign labels based on adjusted cut values
     adj_list = adjusted
@@ -263,17 +243,33 @@ def magnitude_quantile_labels_from_graph(
     return {node: label for node, label in zip(node_iterable, labels_list)}
 
 
+def _spectrum(n, cmap="rainbow") -> List[Tuple[float, float, float, float]]:
+    """
+    Generate a spectrum of `n` colors from the specified colormap.
+    Args:
+        n: Number of colors to generate.
+        cmap: Colormap name (default: "rainbow").
 
-def spectrum(n, cmap="rainbow"):
+    Returns:
+        List of RGBA tuples representing the colors.
+    """
     base = cc.cm[cmap]
-    return [base(i / (n - 1)) for i in range(n)]
+    _float_colors = [base(i / (n - 1)) for i in range(n)]
+
+    return _float_colors
+
 
 class DecisionTableGraph:
-    def __init__(self,decision_table: DecisionTable, norm_func: Callable[[np.ndarray],np.ndarray] = euclidean_distances) -> None:
+    def __init__(
+        self,
+        decision_table: DecisionTable,
+        norm_func: Callable[[np.ndarray], np.ndarray] = euclidean_distances,
+    ) -> None:
         self.dt = decision_table
         self.norm_func = norm_func
         self.cmap = "bmy"
         self.pos = None
+        self._labels: Dict[Any, int] | None = None
 
         self.G = graph_from_dplist(
             decision_points=[
@@ -285,7 +281,7 @@ class DecisionTableGraph:
         # number of outcome labels
         self.K = len(self.dt.decision_points[self.dt.outcome].values)
 
-    def layout(self,redraw: bool = False) -> dict[Any, tuple[float, float]]:
+    def layout(self, redraw: bool = False) -> dict[Any, tuple[float, float]]:
         """
         Compute or return cached layout for the graph.
         Args:
@@ -296,67 +292,181 @@ class DecisionTableGraph:
         """
         if self.pos is not None and not redraw:
             return self.pos
+
         # try graphviz layout first, fall back to deterministic layout
-        pos = layout_graphviz(self.G)
+        pos = _layout_graphviz(self.G)
 
         if pos is not None:
             self.pos = pos
             return pos
 
-        self.pos = layout_deterministic(self.G)
+        self.pos = _layout_deterministic(self.G)
         return self.pos
 
-    def draw(self):
-        return draw_hasse(self.G)
+    def mapping_to_int_labels(self) -> Dict[Tuple[int, ...], int]:
+        return dt_mapping_to_int_labels(self.dt)
 
-    def labels(self):
-        return magnitude_quantile_labels_from_graph(self.G, K=self.K, norm_func=self.norm_func)
+    def labels(self) -> Dict[Any, int]:
+        if self._labels is not None:
+            return self._labels
+
+        self._labels = _magnitude_quantile_labels_from_graph(
+            self.G, K=self.K, norm_func=self.norm_func
+        )
+        return self._labels
 
     def colorize(self):
         # generate RGBA tuples from spectrum, then convert to hex strings for Graphviz/pygraphviz
-        raw_colors = spectrum(self.K, cmap=self.cmap)
-        color_list = [mcolors.to_hex(tuple(float(c) for c in col), keep_alpha=False) for col in raw_colors]
+        raw_colors = _spectrum(self.K, cmap=self.cmap)
+        color_list = [
+            mcolors.to_hex(tuple(float(c) for c in col), keep_alpha=False)
+            for col in raw_colors
+        ]
 
         for node, i in self.labels().items():
             self.G.nodes[node]["color"] = color_list[i]
 
     def draw(self, figsize: Tuple[int, int] = (24, 20)) -> plt.Axes:
-        return draw_hasse(self.G, figsize=figsize)
+        fig, ax = plt.subplots(figsize=figsize)
 
-    def write_graph(self, filename: str, figsize: Tuple[int, int] = (24, 20)) -> None:
-        write_graph(filename, self.G, figsize=figsize)
+        if self.pos is None:
+            self.layout()
+
+        pos = self.pos
+
+        nx_node_color = [
+            self.G.nodes[n].get("color", "skyblue") for n in self.G.nodes()
+        ]
+        nx.draw(
+            self.G,
+            pos=pos,
+            with_labels=True,
+            node_size=500,
+            node_color=nx_node_color,
+            edge_color="gray",
+            font_size=10,
+            ax=ax,
+        )
+        ax.margins(0.01)
+        return ax
+
+    def _compute_figsize(self) -> Tuple[int, int]:
+        """
+        Compute an appropriate figure size based on the graph's topology.
+
+        Returns:
+            Tuple of (width, height) for the figure size.
+        """
+        height = 0
+        width = 0
+        scale_factor = 2
+        for l in nx.topological_generations(self.G):
+            height += 1
+            width = max(width, len(list(l)))
+        figsize = (
+            max(24, width * scale_factor),
+            max(20, height * scale_factor),
+        )
+        print(figsize)
+        return figsize
+
+    def write_graph(
+        self, filename: str, png: bool = True, svg: bool = False
+    ) -> None:
+        if not (png or svg):
+            raise ValueError("At least one of png or svg must be True")
+
+        # scale the graph to fit in the figure
+        # how many layers in the graph?
+
+        ax = self.draw(figsize=self._compute_figsize())
+
+        if png:
+            ax.figure.savefig(f"{filename}.png", dpi=300, bbox_inches="tight")
+        if svg:
+            ax.figure.savefig(f"{filename}.svg", bbox_inches="tight")
+
+        plt.close(ax.figure)
+
+
+def dt_mapping_to_int_labels(
+    dt: DecisionTable,
+) -> Dict[Tuple[int, ...], int]:
+    """
+    Create a mapping from decision table outcome vectors to integer labels.
+    Args:
+        dt: Decision table to create mapping for.
+    Returns:
+        Dictionary mapping outcome vectors (as tuples) to integer labels.
+    """
+    # construct a translator
+    dp_values_to_int = {}
+    for dp in dt.decision_points.values():
+        if dp.id not in dp_values_to_int:
+            dp_values_to_int[dp.id] = {}
+
+        for i, value in enumerate(dp.values):
+            dp_values_to_int[dp.id][value.key] = i
+
+    int_mapping = {}
+    for row in dt.mapping:
+        # a row is a dict of decision point id to Value eg
+        #     {'x_org.owasp#aivss:AA:1.0.0': 'F',
+        #   'x_org.owasp#aivss:TU:1.0.0': 'A',
+        #   'x_org.owasp#aivss:SM:1.1.0': 'M',
+        #   'x_org.owasp#aivss:GDP:1.0.0': 'A',
+        #   'x_org.owasp#aivss:EP:1.0.0': 'H'},
+        for k, v in row.items():
+            vector = []
+            if k == dt.outcome:
+                outcome_value = dp_values_to_int[k][v]
+            else:
+                vector.append(dp_values_to_int[k][v])
+        int_mapping[tuple(vector)] = outcome_value
+
+    return int_mapping
+
 
 def main() -> None:
     """Main entry: build graphs from decision tables, color nodes, draw and write outputs."""
 
     from ssvc.decision_tables.aivss.execution_power import LATEST as DT_AIVSS
     from ssvc.decision_tables.ssvc.deployer_dt import LATEST as DT_DEPLOYER
-    from ssvc.decision_tables.ssvc.coord_triage import LATEST as DT_COORD_TRIAGE
+    from ssvc.decision_tables.ssvc.coord_triage import (
+        LATEST as DT_COORD_TRIAGE,
+    )
     from ssvc.decision_tables.ssvc.supplier_dt import LATEST as DT_SUPPLIER
+    from ssvc.decision_tables.cvss.equivalence_set_six import LATEST as DT_SIX
 
-    for j,normfunc in enumerate([manhattan_distances, euclidean_distances, max_distances]):
-        for dt in [("aivss", DT_AIVSS), ("deployer", DT_DEPLOYER),("coord_triage", DT_COORD_TRIAGE), ("supplier", DT_SUPPLIER)]:
+    print(dt_mapping_to_int_labels(DT_AIVSS))
 
+    sys.exit()
 
-            dtg = DecisionTableGraph(dt[1], normfunc)
-            dtg.norm_func = normfunc
-            dtg.colorize()
+    for dt in [
+        ("aivss", DT_AIVSS),
+        ("deployer", DT_DEPLOYER),
+        ("coord_triage", DT_COORD_TRIAGE),
+        ("supplier", DT_SUPPLIER),
+        ("cvss_equivalence_set_six", DT_SIX),
+    ]:
+        dtg_orig = DecisionTableGraph(dt[1])
+        dtg_orig.layout()
+
+        for j, normfunc in enumerate(
+            [manhattan_distances, euclidean_distances, max_distances]
+        ):
+            dtg = DecisionTableGraph(dt[1], norm_func=normfunc)
             dtg.layout()
-
+            dtg.colorize()
+            dtg.write_graph(
+                filename=f"hasse_vector_magnitude_quantiles_3_{dt[0]}_norm_{j+1}"
+            )
             G = dtg.G
-            # scale the graph to fit in the figure
-            # how many layers in the graph?
-            height = 0
-            width = 0
-            for l in nx.topological_generations(G):
-                height += 1
-                width = max(width, len(list(l)))
-            figsize = (max(24, width * 3), max(20, height * 3))
+            print(
+                f"{dt[0].upper()} color counts (norm {j+1}):",
+                Counter([G.nodes[n]["color"] for n in G.nodes()]),
+            )
 
-            dtg.write_graph(filename=f"hasse_vector_magnitude_quantiles_3_{dt[0]}_norm_{j+1}", figsize=figsize)
-            write_graph(f"hasse_vector_magnitude_quantiles_3_{dt[0]}_norm_{j+1}", G)
-            print(figsize)
-            print(f"{dt[0].upper()} color counts (norm {j+1}):", Counter([G.nodes[n]["color"] for n in G.nodes()]))
 
 if __name__ == "__main__":
     main()

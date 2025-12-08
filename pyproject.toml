@@ -49,6 +49,7 @@ dependencies = [
     "semver>=3.0.4",
     "fastapi[all,standard]>=0.116.1",
     "pygraphviz>=1.14",
+    "colorcet>=3.1.0",
 ]
 dynamic = ["version",]
 

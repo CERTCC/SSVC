@@ -88,10 +88,21 @@ def dplist_to_lookup(decision_points: list[DecisionPoint]) -> dict[int, str]:
 def lookup_value(
     t: tuple[int, ...], lookup: list[dict[int, str]]
 ) -> tuple[str, ...]:
-    #     given
-    # t = (0, 0, 0)
-    # lookup = [{0: 'V', 1: 'R', 2: 'S', 3: 'HS'}, {0: 'H', 1: 'S', 2: 'B', 3: 'N'}, {0: 'F', 1: 'R', 2: 'B', 3: 'N'}]
-    # return (V,H,F
+    """
+    Converts a tuple of indices to a tuple of values using the provided lookup.
+    Args:
+        t: The tuple of indices.
+        lookup: A list of dictionaries mapping indices to values for each position.
+
+    Returns:
+        A tuple of values corresponding to the indices in t.
+
+    Examples:
+        #     given
+        t = (0, 0, 0)
+        lookup = [{0: 'V', 1: 'R', 2: 'S', 3: 'HS'}, {0: 'H', 1: 'S', 2: 'B', 3: 'N'}, {0: 'F', 1: 'R', 2: 'B', 3: 'N'}]
+        # return (V,H,F)
+    """
     l = [lookup[i][t[i]] for i in range(len(t))]
     return tuple(l)
 
@@ -99,9 +110,22 @@ def lookup_value(
 def tuple_to_dict(
     t: tuple[str, ...], lookup: dict[int, str]
 ) -> dict[str, str]:
-    #     given
-    # t = ('V', 'H', 'F')
-    # return {'ER': 'V', 'GM': 'H', 'RC': 'F'}
+    """
+    Converts a tuple of values to a dictionary using the provided lookup.
+
+    Args:
+        t: The tuple of values.
+        lookup: A dictionary mapping indices to keys.
+
+    Returns:
+        A dictionary mapping keys to values from the tuple.
+
+    Examples:
+        #     given
+        t = ('V', 'H', 'F')
+        lookup = {0: 'ER', 1: 'GM', 2: 'RC'}
+        # return {'ER': 'V', 'GM': 'H', 'RC': 'F'}
+    """
     return {lookup[i]: t[i] for i in range(len(t))}
 
 
