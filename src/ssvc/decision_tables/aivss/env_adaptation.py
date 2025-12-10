@@ -36,10 +36,9 @@ from ssvc.decision_points.aivss.multi_agent_interactions import (
 from ssvc.decision_tables.base import DecisionTable
 
 V1_0_0 = DecisionTable(
-    # FIXME: Update key, name, and definition
-    key="EP",
-    name="Execution Power",
-    definition="Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+    key="EA",
+    name="Environmental Adaptation",
+    definition=ENV_ADAPT_01.definition,
     version="1.0.0",
     namespace=AIVSS_NS,
     decision_points={

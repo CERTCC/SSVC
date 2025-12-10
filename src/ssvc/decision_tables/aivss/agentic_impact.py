@@ -35,7 +35,7 @@ V1_0_0 = DecisionTable(
     key="AIL",
     namespace=AIVSS_NS,
     name="Agentic Impact Level",
-    definition=("TODO writeme"),
+    definition=AGENTIC_IMPACT_LEVEL_01.definition,
     version="1.0.0",
     decision_points={
         dp.id: dp

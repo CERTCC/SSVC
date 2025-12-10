@@ -619,7 +619,7 @@
                     "key": "PI",
                     "version": "1.0.0",
                     "name": "Predictability and Influence",
-                    "definition": "TODO writeme",
+                    "definition": "Predictability and Influence reflects the degree to which an AI system's behavior can be anticipated and the potential for the system to deceive or mislead users.This factor assesses how well stakeholders can foresee the system's actions and the implications of those actions in various contexts.",
                     "schemaVersion": "2.0.0",
                     "values": [
                       {
@@ -24268,7 +24268,7 @@
                     "key": "DT_AIL",
                     "version": "1.0.0",
                     "name": "Agentic Impact Level",
-                    "definition": "TODO writeme",
+                    "definition": "Determines the agentic impact level of a vulnerability based on its characteristics and potential effects.",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
                       "aivss:EP:1.0.0": {
@@ -24326,7 +24326,7 @@
                         "key": "PI",
                         "version": "1.0.0",
                         "name": "Predictability and Influence",
-                        "definition": "TODO writeme",
+                        "definition": "Predictability and Influence reflects the degree to which an AI system's behavior can be anticipated and the potential for the system to deceive or mislead users.This factor assesses how well stakeholders can foresee the system's actions and the implications of those actions in various contexts.",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
@@ -24551,7 +24551,7 @@
                     "key": "DT_PI",
                     "version": "1.0.0",
                     "name": "Predictability and Influence",
-                    "definition": "TODO writeme",
+                    "definition": "Predictability and Influence reflects the degree to which an AI system's behavior can be anticipated and the potential for the system to deceive or mislead users.This factor assesses how well stakeholders can foresee the system's actions and the implications of those actions in various contexts.",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
                       "aivss:ND:1.0.0": {
@@ -24659,7 +24659,7 @@
                         "key": "PI",
                         "version": "1.0.0",
                         "name": "Predictability and Influence",
-                        "definition": "TODO writeme",
+                        "definition": "Predictability and Influence reflects the degree to which an AI system's behavior can be anticipated and the potential for the system to deceive or mislead users.This factor assesses how well stakeholders can foresee the system's actions and the implications of those actions in various contexts.",
                         "schemaVersion": "2.0.0",
                         "values": [
                           {
@@ -25961,6 +25961,719 @@
                         "aivss:SM:1.1.0": "M",
                         "aivss:GDP:1.0.0": "U",
                         "aivss:EP:1.0.0": "H"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "DT_EA": {
+              "key": "DT_EA",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "aivss",
+                    "key": "DT_EA",
+                    "version": "1.0.0",
+                    "name": "Environmental Adaptation",
+                    "definition": "Determines the environment and adaptation level of an AI system based on its context awareness and adaptability.",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "aivss:MU:1.0.0": {
+                        "namespace": "aivss",
+                        "key": "MU",
+                        "version": "1.0.0",
+                        "name": "Memory Use",
+                        "definition": "Determines the memory use level of an AI system based on its persistence and recall capabilities.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "S",
+                            "name": "Stateless",
+                            "definition": "No persistence beyond the current interaction."
+                          },
+                          {
+                            "key": "L",
+                            "name": "Local Recall",
+                            "definition": "Remembers within a session or user context."
+                          },
+                          {
+                            "key": "M",
+                            "name": "Shared Memory",
+                            "definition": "Persistent state across sessions, tasks, or teams."
+                          }
+                        ]
+                      },
+                      "aivss:CA:1.0.0": {
+                        "namespace": "aivss",
+                        "key": "CA",
+                        "version": "1.0.0",
+                        "name": "Contextual Awareness",
+                        "definition": "Determines the degree to which an AI system senses and incorporates context from its environment and external signals.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "I",
+                            "name": "Isolated",
+                            "definition": "No external contextual signals."
+                          },
+                          {
+                            "key": "T",
+                            "name": "Trusted-Signal",
+                            "definition": "Uses only vetted, narrow, structured signals."
+                          },
+                          {
+                            "key": "A",
+                            "name": "Ambient",
+                            "definition": "Reacts to broad, open-ended environmental signals."
+                          }
+                        ]
+                      },
+                      "aivss:DI:1.0.0": {
+                        "namespace": "aivss",
+                        "key": "DI",
+                        "version": "1.0.0",
+                        "name": "Dynamic Identity",
+                        "definition": "Describes how an AI system's identity and authorization context may change at runtime, including whether it can assume roles beyond a fixed identity.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "F",
+                            "name": "Fixed",
+                            "definition": "Single, constant identity."
+                          },
+                          {
+                            "key": "S",
+                            "name": "Scoped Roles",
+                            "definition": "Limited role changes tied to specific tools or contexts."
+                          },
+                          {
+                            "key": "A",
+                            "name": "Assumed Identity",
+                            "definition": "Cross-tenant, impersonation-like, or elevated role adoption."
+                          }
+                        ]
+                      },
+                      "aivss:MAI:1.0.0": {
+                        "namespace": "aivss",
+                        "key": "MAI",
+                        "version": "1.0.0",
+                        "name": "Multi-Agent Interactions",
+                        "definition": "Characterizes how, and how flexibly, an AI system coordinates with other agents or services.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "S",
+                            "name": "Solo",
+                            "definition": "Operates alone; no coordination."
+                          },
+                          {
+                            "key": "R",
+                            "name": "Scripted",
+                            "definition": "Interacts through predefined handoffs or protocols."
+                          },
+                          {
+                            "key": "O",
+                            "name": "Orchestrated",
+                            "definition": "Dynamic teaming, swarms, emergent behavior, or markets."
+                          }
+                        ]
+                      },
+                      "aivss:EA:1.0.0": {
+                        "namespace": "aivss",
+                        "key": "EA",
+                        "version": "1.0.0",
+                        "name": "Environment & Adaptation",
+                        "definition": "Determines the environment and adaptation level of an AI system based on its context awareness and adaptability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "I",
+                            "name": "Isolated",
+                            "definition": "Operates in a narrow, stable context with no meaningful external awareness. No cross-session memory, multi-agent behavior, or identity changes. Environmental shifts don’t affect behavior unless a human explicitly updates inputs."
+                          },
+                          {
+                            "key": "C",
+                            "name": "Connected",
+                            "definition": "Uses curated signals, scoped identity roles, or predefined multi-agent patterns to adapt. Environmental changes can influence behavior, but only within controlled, auditable bounds."
+                          },
+                          {
+                            "key": "P",
+                            "name": "Pervasive",
+                            "definition": "Continuously adapts to broad, dynamic environmental inputs and multi-agent activity. Identity, memory, and context can shift fluidly, creating emergent behavior. Environmental variation can substantially redirect or amplify its actions."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "aivss:EA:1.0.0",
+                    "mapping": [
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "I"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "I"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "I"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "I"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "S",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "I"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "L",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "I",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "C"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "T",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "F",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "S",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "S",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "R",
+                        "aivss:EA:1.0.0": "P"
+                      },
+                      {
+                        "aivss:MU:1.0.0": "M",
+                        "aivss:CA:1.0.0": "A",
+                        "aivss:DI:1.0.0": "A",
+                        "aivss:MAI:1.0.0": "O",
+                        "aivss:EA:1.0.0": "P"
                       }
                     ]
                   }

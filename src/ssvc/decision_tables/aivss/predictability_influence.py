@@ -43,7 +43,7 @@ V1_0_0 = DecisionTable(
     version="1.0.0",
     namespace=AIVSS_NS,
     name="Predictability and Influence",
-    definition="TODO writeme",
+    definition=PREDICTABILITY_INFLUENCE_01.definition,
     decision_points={
         dp.id: dp
         for dp in [

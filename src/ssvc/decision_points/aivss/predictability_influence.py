@@ -71,7 +71,9 @@ OPAQUE = DecisionPointValue(
 PREDICTABILITY_INFLUENCE_01 = AivssDecisionPoint(
     key="PI",
     name="Predictability and Influence",
-    definition="TODO writeme",
+    definition="Predictability and Influence reflects the degree to which an AI system's behavior can be anticipated "
+    "and the potential for the system to deceive or mislead users."
+    "This factor assesses how well stakeholders can foresee the system's actions and the implications of those actions in various contexts.",
     version="1.0.0",
     values=(VERIFIABLE, UNCERTAIN, OPAQUE),
 )

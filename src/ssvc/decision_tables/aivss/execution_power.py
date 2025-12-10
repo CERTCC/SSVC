@@ -38,7 +38,7 @@ from ssvc.decision_tables.base import DecisionTable
 V1_0_0 = DecisionTable(
     key="EP",
     name="Execution Power",
-    definition="Determines the level of execution power granted to an AI agent, influencing its ability to perform actions autonomously and interact with external systems.",
+    definition=EXECUTION_POWER.definition,
     version="1.0.0",
     namespace=AIVSS_NS,
     decision_points={

@@ -18,9 +18,9 @@ print(example_block(dp))
 
 The Decision Points for AIVSS include:
 
-- [Exploitation](../.. /reference/decision_points/exploitation.md)
-- Agentic Impact Level
-- Systemic Impact
+- [Exploitation](../../reference/decision_points/exploitation.md)
+- [Agentic Impact Level](../../reference/decision_points/aivss/agentic_impact_level.md)
+- [Systemic Impact](../../reference/decision_points/aivss/systemic_impact.md)
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.aivss import LATEST as DT
