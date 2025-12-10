@@ -1,5 +1,5 @@
 {
-  "namespace": "x_org.owasp#aivss",
+  "namespace": "aivss",
   "key": "VC",
   "version": "1.0.0",
   "name": "Verification Capability",

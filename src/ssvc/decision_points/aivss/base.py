@@ -23,8 +23,9 @@ Provides a base class for AIVSS-specific decision points.
 from pydantic import BaseModel
 
 from ssvc.decision_points.base import DecisionPoint
+from ssvc.namespaces import NameSpace
 
-AIVSS_NS = "x_org.owasp#aivss"
+AIVSS_NS = NameSpace.AIVSS
 
 
 class AivssDecisionPoint(DecisionPoint, BaseModel):

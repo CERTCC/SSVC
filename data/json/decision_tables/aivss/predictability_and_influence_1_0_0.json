@@ -1,0 +1,705 @@
+{
+  "namespace": "aivss",
+  "key": "DT_PI",
+  "version": "1.0.0",
+  "name": "Predictability and Influence",
+  "definition": "TODO writeme",
+  "schemaVersion": "2.0.0",
+  "decision_points": {
+    "aivss:ND:1.0.0": {
+      "namespace": "aivss",
+      "key": "ND",
+      "version": "1.0.0",
+      "name": "Non-Determinism",
+      "definition": "Describes variability of system outputs across repeated executions.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "D",
+          "name": "Deterministic",
+          "definition": "Stable outputs; no randomness."
+        },
+        {
+          "key": "B",
+          "name": "Bounded",
+          "definition": "Controlled variance within predictable limits."
+        },
+        {
+          "key": "H",
+          "name": "High-Variance",
+          "definition": "Broad or unstable behavioral range."
+        }
+      ]
+    },
+    "aivss:OR:1.0.0": {
+      "namespace": "aivss",
+      "key": "OR",
+      "version": "1.0.0",
+      "name": "Opacity & Reflexivity",
+      "definition": "Captures how observable and explainable the internal reasoning and adaptation cycle is.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "T",
+          "name": "Transparent",
+          "definition": "Full logs and traceable reasoning."
+        },
+        {
+          "key": "F",
+          "name": "Fragmented",
+          "definition": "Partial visibility; some steps hidden."
+        },
+        {
+          "key": "O",
+          "name": "Opaque",
+          "definition": "Black-box behavior; internal process not observable."
+        }
+      ]
+    },
+    "aivss:VC:1.0.0": {
+      "namespace": "aivss",
+      "key": "VC",
+      "version": "1.0.0",
+      "name": "Verification Capability",
+      "definition": "Indicates whether the system’s critical properties can be formally or practically verified.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "P",
+          "name": "Provable",
+          "definition": "Critical safety or correctness invariants can be verified."
+        },
+        {
+          "key": "K",
+          "name": "Key Invariants Verifiable",
+          "definition": "Some critical properties can be verified, but not all."
+        },
+        {
+          "key": "U",
+          "name": "Unverifiable",
+          "definition": "Cannot prove correctness or invariants in practice."
+        }
+      ]
+    },
+    "aivss:DP:1.0.0": {
+      "namespace": "aivss",
+      "key": "DP",
+      "version": "1.0.0",
+      "name": "Deceptiveness Potential",
+      "definition": "Assesses the potential for AI-generated vulnerability reports to be deceptive, ranging from plain structured output to highly persuasive content.",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "P",
+          "name": "Plain",
+          "definition": "Structured, non-persona output."
+        },
+        {
+          "key": "F",
+          "name": "Fluent",
+          "definition": "Natural language output, but not convincingly human."
+        },
+        {
+          "key": "S",
+          "name": "Persuasive",
+          "definition": "Persona mimicry, deepfakes, or social-engineering capability."
+        }
+      ]
+    },
+    "aivss:PI:1.0.0": {
+      "namespace": "aivss",
+      "key": "PI",
+      "version": "1.0.0",
+      "name": "Predictability and Influence",
+      "definition": "TODO writeme",
+      "schemaVersion": "2.0.0",
+      "values": [
+        {
+          "key": "V",
+          "name": "Verifiable",
+          "definition": "Behavior is traceable, reproducible, and backed by strong logging or proofs. Outputs align with clear rules, and any action can be independently checked. Unexpected deviations are rare and easy to diagnose."
+        },
+        {
+          "key": "U",
+          "name": "Uncertain",
+          "definition": "Behavior is generally well-structured but can deviate within known bounds. Some reasoning steps or interactions lack full visibility, making verification partial. Issues may be diagnosable but require effort or contextual reconstruction."
+        },
+        {
+          "key": "O",
+          "name": "Opaque",
+          "definition": "Behavior is highly variable, difficult to trace, and resistant to verification. Key reasoning paths, external influences, or interactions are hidden or unpredictable. Actions may appear coherent but cannot be reliably reproduced or audited."
+        }
+      ]
+    }
+  },
+  "outcome": "aivss:PI:1.0.0",
+  "mapping": [
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "V"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "V"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "V"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "V"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "D",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "V"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "B",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "T",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "U"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "F",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "P",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "K",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "P",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "F",
+      "aivss:PI:1.0.0": "O"
+    },
+    {
+      "aivss:ND:1.0.0": "H",
+      "aivss:OR:1.0.0": "O",
+      "aivss:VC:1.0.0": "U",
+      "aivss:DP:1.0.0": "S",
+      "aivss:PI:1.0.0": "O"
+    }
+  ]
+}

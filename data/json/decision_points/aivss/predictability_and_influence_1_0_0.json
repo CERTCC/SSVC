@@ -1,5 +1,5 @@
 {
-  "namespace": "x_org.owasp#aivss",
+  "namespace": "aivss",
   "key": "PI",
   "version": "1.0.0",
   "name": "Predictability and Influence",

@@ -1,13 +1,13 @@
 {
-  "namespace": "x_org.owasp#aivss",
+  "namespace": "aivss",
   "key": "DT_AIL",
   "version": "1.0.0",
   "name": "Agentic Impact Level",
   "definition": "TODO writeme",
   "schemaVersion": "2.0.0",
   "decision_points": {
-    "x_org.owasp#aivss:EP:1.0.0": {
-      "namespace": "x_org.owasp#aivss",
+    "aivss:EP:1.0.0": {
+      "namespace": "aivss",
       "key": "EP",
       "version": "1.0.0",
       "name": "Execution Power",
@@ -31,8 +31,8 @@
         }
       ]
     },
-    "x_org.owasp#aivss:EA:1.0.0": {
-      "namespace": "x_org.owasp#aivss",
+    "aivss:EA:1.0.0": {
+      "namespace": "aivss",
       "key": "EA",
       "version": "1.0.0",
       "name": "Environment & Adaptation",
@@ -56,8 +56,8 @@
         }
       ]
     },
-    "x_org.owasp#aivss:PI:1.0.0": {
-      "namespace": "x_org.owasp#aivss",
+    "aivss:PI:1.0.0": {
+      "namespace": "aivss",
       "key": "PI",
       "version": "1.0.0",
       "name": "Predictability and Influence",
@@ -81,8 +81,8 @@
         }
       ]
     },
-    "x_org.owasp#aivss:AIL:1.0.0": {
-      "namespace": "x_org.owasp#aivss",
+    "aivss:AIL:1.0.0": {
+      "namespace": "aivss",
       "key": "AIL",
       "version": "1.0.0",
       "name": "Agentic Impact Level",
@@ -107,169 +107,169 @@
       ]
     }
   },
-  "outcome": "x_org.owasp#aivss:AIL:1.0.0",
+  "outcome": "aivss:AIL:1.0.0",
   "mapping": [
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "C"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "C"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "C"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "C"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "C"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "C"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "C",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "C",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "P"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "C"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "C"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "CA",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "CA",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "P"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "I",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "I",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "P"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "S"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "S"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "C",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "C",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "P"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "V",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "V",
+      "aivss:AIL:1.0.0": "P"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "U",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "U",
+      "aivss:AIL:1.0.0": "P"
     },
     {
-      "x_org.owasp#aivss:EP:1.0.0": "H",
-      "x_org.owasp#aivss:EA:1.0.0": "P",
-      "x_org.owasp#aivss:PI:1.0.0": "O",
-      "x_org.owasp#aivss:AIL:1.0.0": "P"
+      "aivss:EP:1.0.0": "H",
+      "aivss:EA:1.0.0": "P",
+      "aivss:PI:1.0.0": "O",
+      "aivss:AIL:1.0.0": "P"
     }
   ]
 }

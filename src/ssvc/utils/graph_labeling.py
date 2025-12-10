@@ -411,11 +411,11 @@ def dt_mapping_to_int_labels(
     int_mapping = {}
     for row in dt.mapping:
         # a row is a dict of decision point id to Value eg
-        #     {'x_org.owasp#aivss:AA:1.0.0': 'F',
-        #   'x_org.owasp#aivss:TU:1.0.0': 'A',
-        #   'x_org.owasp#aivss:SM:1.1.0': 'M',
-        #   'x_org.owasp#aivss:GDP:1.0.0': 'A',
-        #   'x_org.owasp#aivss:EP:1.0.0': 'H'},
+        #     {'aivss:AA:1.0.0': 'F',
+        #   'aivss:TU:1.0.0': 'A',
+        #   'aivss:SM:1.1.0': 'M',
+        #   'aivss:GDP:1.0.0': 'A',
+        #   'aivss:EP:1.0.0': 'H'},
         for k, v in row.items():
             vector = []
             if k == dt.outcome:

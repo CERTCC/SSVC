@@ -1,0 +1,82 @@
+row,Non-Determinism v1.0.0 (aivss),Opacity & Reflexivity v1.0.0 (aivss),Verification Capability v1.0.0 (aivss),Deceptiveness Potential v1.0.0 (aivss),Predictability and Influence v1.0.0 (aivss)
+0,deterministic,transparent,provable,plain,verifiable
+1,deterministic,transparent,provable,fluent,verifiable
+2,deterministic,transparent,provable,persuasive,uncertain
+3,deterministic,transparent,key invariants verifiable,plain,verifiable
+4,deterministic,transparent,key invariants verifiable,fluent,uncertain
+5,deterministic,transparent,key invariants verifiable,persuasive,uncertain
+6,deterministic,transparent,unverifiable,plain,uncertain
+7,deterministic,transparent,unverifiable,fluent,uncertain
+8,deterministic,transparent,unverifiable,persuasive,opaque
+9,deterministic,fragmented,provable,plain,verifiable
+10,deterministic,fragmented,provable,fluent,uncertain
+11,deterministic,fragmented,provable,persuasive,uncertain
+12,deterministic,fragmented,key invariants verifiable,plain,uncertain
+13,deterministic,fragmented,key invariants verifiable,fluent,uncertain
+14,deterministic,fragmented,key invariants verifiable,persuasive,uncertain
+15,deterministic,fragmented,unverifiable,plain,uncertain
+16,deterministic,fragmented,unverifiable,fluent,uncertain
+17,deterministic,fragmented,unverifiable,persuasive,opaque
+18,deterministic,opaque,provable,plain,uncertain
+19,deterministic,opaque,provable,fluent,uncertain
+20,deterministic,opaque,provable,persuasive,opaque
+21,deterministic,opaque,key invariants verifiable,plain,uncertain
+22,deterministic,opaque,key invariants verifiable,fluent,uncertain
+23,deterministic,opaque,key invariants verifiable,persuasive,opaque
+24,deterministic,opaque,unverifiable,plain,opaque
+25,deterministic,opaque,unverifiable,fluent,opaque
+26,deterministic,opaque,unverifiable,persuasive,opaque
+27,bounded,transparent,provable,plain,verifiable
+28,bounded,transparent,provable,fluent,uncertain
+29,bounded,transparent,provable,persuasive,uncertain
+30,bounded,transparent,key invariants verifiable,plain,uncertain
+31,bounded,transparent,key invariants verifiable,fluent,uncertain
+32,bounded,transparent,key invariants verifiable,persuasive,uncertain
+33,bounded,transparent,unverifiable,plain,uncertain
+34,bounded,transparent,unverifiable,fluent,uncertain
+35,bounded,transparent,unverifiable,persuasive,opaque
+36,bounded,fragmented,provable,plain,uncertain
+37,bounded,fragmented,provable,fluent,uncertain
+38,bounded,fragmented,provable,persuasive,uncertain
+39,bounded,fragmented,key invariants verifiable,plain,uncertain
+40,bounded,fragmented,key invariants verifiable,fluent,uncertain
+41,bounded,fragmented,key invariants verifiable,persuasive,uncertain
+42,bounded,fragmented,unverifiable,plain,uncertain
+43,bounded,fragmented,unverifiable,fluent,uncertain
+44,bounded,fragmented,unverifiable,persuasive,opaque
+45,bounded,opaque,provable,plain,uncertain
+46,bounded,opaque,provable,fluent,uncertain
+47,bounded,opaque,provable,persuasive,opaque
+48,bounded,opaque,key invariants verifiable,plain,uncertain
+49,bounded,opaque,key invariants verifiable,fluent,uncertain
+50,bounded,opaque,key invariants verifiable,persuasive,opaque
+51,bounded,opaque,unverifiable,plain,opaque
+52,bounded,opaque,unverifiable,fluent,opaque
+53,bounded,opaque,unverifiable,persuasive,opaque
+54,high-variance,transparent,provable,plain,uncertain
+55,high-variance,transparent,provable,fluent,uncertain
+56,high-variance,transparent,provable,persuasive,opaque
+57,high-variance,transparent,key invariants verifiable,plain,uncertain
+58,high-variance,transparent,key invariants verifiable,fluent,uncertain
+59,high-variance,transparent,key invariants verifiable,persuasive,opaque
+60,high-variance,transparent,unverifiable,plain,opaque
+61,high-variance,transparent,unverifiable,fluent,opaque
+62,high-variance,transparent,unverifiable,persuasive,opaque
+63,high-variance,fragmented,provable,plain,uncertain
+64,high-variance,fragmented,provable,fluent,uncertain
+65,high-variance,fragmented,provable,persuasive,opaque
+66,high-variance,fragmented,key invariants verifiable,plain,uncertain
+67,high-variance,fragmented,key invariants verifiable,fluent,uncertain
+68,high-variance,fragmented,key invariants verifiable,persuasive,opaque
+69,high-variance,fragmented,unverifiable,plain,opaque
+70,high-variance,fragmented,unverifiable,fluent,opaque
+71,high-variance,fragmented,unverifiable,persuasive,opaque
+72,high-variance,opaque,provable,plain,opaque
+73,high-variance,opaque,provable,fluent,opaque
+74,high-variance,opaque,provable,persuasive,opaque
+75,high-variance,opaque,key invariants verifiable,plain,opaque
+76,high-variance,opaque,key invariants verifiable,fluent,opaque
+77,high-variance,opaque,key invariants verifiable,persuasive,opaque
+78,high-variance,opaque,unverifiable,plain,opaque
+79,high-variance,opaque,unverifiable,fluent,opaque
+80,high-variance,opaque,unverifiable,persuasive,opaque

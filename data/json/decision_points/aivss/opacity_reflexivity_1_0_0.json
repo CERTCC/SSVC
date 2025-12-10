@@ -1,5 +1,5 @@
 {
-  "namespace": "x_org.owasp#aivss",
+  "namespace": "aivss",
   "key": "OR",
   "version": "1.0.0",
   "name": "Opacity & Reflexivity",
