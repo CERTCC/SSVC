@@ -4,6 +4,9 @@ Some text
 
 ## Outcome
 
+The outcome of the _Environment and Adaptation_ decision table is defined by
+the [Environment and Adaptation Level](../../reference/decision_points/aivss/environment_and_adaptation.md) decision point.
+
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.env_adaptation import LATEST as DT
 from ssvc.doc_helpers import example_block
@@ -13,6 +16,13 @@ print(example_block(dp))
 ```
 
 ## Decision Points
+
+The _Environment and Adaptation_ decision table has the following decision points:
+
+- [Memory Usage Level](../../reference/decision_points/aivss/memory_level.md)
+- [Contextual Awareness](../../reference/decision_points/aivss/contextual_awareness_level.md)
+- [Dynamic Identity](../../reference/decision_points/aivss/dynamic_identity_level.md)
+- [Multi-Agent Interactions](../../reference/decision_points/aivss/multi_agent_interactions_level.md)
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.env_adaptation import LATEST as DT

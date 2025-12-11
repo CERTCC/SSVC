@@ -4,6 +4,9 @@ Some text
 
 ## Outcome
 
+The outcome of the _Predictability and Influence_ decision table is defined by
+the [Predictability and Influence Level](../../reference/decision_points/aivss/predictability_and_influence.md) decision point.
+
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.predictability_influence import LATEST as DT
 from ssvc.doc_helpers import example_block
@@ -13,6 +16,14 @@ print(example_block(dp))
 ```
 
 ## Decision Points
+
+The _Predictability and Influence_ decision table has the following decision points:
+
+- [Non-Determinism](../../reference/decision_points/aivss/non_determinism_level.md)
+- [Opacity and Reflexivity](../../reference/decision_points/aivss/opacity_reflexivity_level.md)
+- [Verification Capability](../../reference/decision_points/aivss/verification_capability_level.md)
+- [Deceptiveness Potential](../../reference/decision_points/aivss/deceptiveness_potential_level.md)
+
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.predictability_influence import LATEST as DT

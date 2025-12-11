@@ -4,6 +4,9 @@ Some text
 
 ## Outcome
 
+The outcome of the _Execution Power_ decision table is defined by
+the [Execution Power Level](../../reference/decision_points/aivss/execution_power.md) decision point.
+
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.execution_power import LATEST as DT
 from ssvc.doc_helpers import example_block
@@ -13,6 +16,13 @@ print(example_block(dp))
 ```
 
 ## Decision Points
+
+The _Execution Power_ decision table has the following decision points:
+
+- [Autonomy](../../reference/decision_points/aivss/autonomy_level.md)
+- [Tool Use](../../reference/decision_points/aivss/tool_use.md)
+- [Self-Modification](../../reference/decision_points/aivss/self_modification.md)
+- [Goal-Driven Planning](../../reference/decision_points/aivss/goal_driven_planning.md)
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.execution_power import LATEST as DT
