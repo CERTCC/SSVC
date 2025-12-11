@@ -86,7 +86,7 @@ V1_0_0 = DecisionTable(
             "aivss:TU:1.0.0": "V",
             "aivss:SM:1.1.0": "T",
             "aivss:GDP:1.0.0": "A",
-            "aivss:EP:1.0.0": "C",
+            "aivss:EP:1.0.0": "CA",
         },
         {
             "aivss:AA:1.0.0": "G",
@@ -128,7 +128,7 @@ V1_0_0 = DecisionTable(
             "aivss:TU:1.0.0": "O",
             "aivss:SM:1.1.0": "F",
             "aivss:GDP:1.0.0": "A",
-            "aivss:EP:1.0.0": "C",
+            "aivss:EP:1.0.0": "CA",
         },
         {
             "aivss:AA:1.0.0": "G",
@@ -142,7 +142,7 @@ V1_0_0 = DecisionTable(
             "aivss:TU:1.0.0": "O",
             "aivss:SM:1.1.0": "T",
             "aivss:GDP:1.0.0": "R",
-            "aivss:EP:1.0.0": "C",
+            "aivss:EP:1.0.0": "CA",
         },
         {
             "aivss:AA:1.0.0": "G",
@@ -254,7 +254,7 @@ V1_0_0 = DecisionTable(
             "aivss:TU:1.0.0": "V",
             "aivss:SM:1.1.0": "F",
             "aivss:GDP:1.0.0": "A",
-            "aivss:EP:1.0.0": "C",
+            "aivss:EP:1.0.0": "CA",
         },
         {
             "aivss:AA:1.0.0": "S",
@@ -268,7 +268,7 @@ V1_0_0 = DecisionTable(
             "aivss:TU:1.0.0": "V",
             "aivss:SM:1.1.0": "T",
             "aivss:GDP:1.0.0": "R",
-            "aivss:EP:1.0.0": "C",
+            "aivss:EP:1.0.0": "CA",
         },
         {
             "aivss:AA:1.0.0": "S",
@@ -310,7 +310,7 @@ V1_0_0 = DecisionTable(
             "aivss:TU:1.0.0": "O",
             "aivss:SM:1.1.0": "F",
             "aivss:GDP:1.0.0": "R",
-            "aivss:EP:1.0.0": "C",
+            "aivss:EP:1.0.0": "CA",
         },
         {
             "aivss:AA:1.0.0": "S",

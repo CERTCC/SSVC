@@ -3,15 +3,15 @@ row,Autonomy of Action v1.0.0 (aivss),Tool Use v1.0.0 (aivss),Self-Modification 
 1,gated,viewer,fixed,assisted,constrained
 2,gated,viewer,fixed,autonomous,capable
 3,gated,viewer,tunable,reactive,constrained
-4,gated,viewer,tunable,assisted,constrained
+4,gated,viewer,tunable,assisted,capable
 5,gated,viewer,tunable,autonomous,capable
 6,gated,viewer,mutable,reactive,capable
 7,gated,viewer,mutable,assisted,capable
 8,gated,viewer,mutable,autonomous,high leverage
 9,gated,operator,fixed,reactive,constrained
-10,gated,operator,fixed,assisted,constrained
+10,gated,operator,fixed,assisted,capable
 11,gated,operator,fixed,autonomous,capable
-12,gated,operator,tunable,reactive,constrained
+12,gated,operator,tunable,reactive,capable
 13,gated,operator,tunable,assisted,capable
 14,gated,operator,tunable,autonomous,capable
 15,gated,operator,mutable,reactive,capable
@@ -27,15 +27,15 @@ row,Autonomy of Action v1.0.0 (aivss),Tool Use v1.0.0 (aivss),Self-Modification 
 25,gated,administrator,mutable,assisted,high leverage
 26,gated,administrator,mutable,autonomous,high leverage
 27,scoped,viewer,fixed,reactive,constrained
-28,scoped,viewer,fixed,assisted,constrained
+28,scoped,viewer,fixed,assisted,capable
 29,scoped,viewer,fixed,autonomous,capable
-30,scoped,viewer,tunable,reactive,constrained
+30,scoped,viewer,tunable,reactive,capable
 31,scoped,viewer,tunable,assisted,capable
 32,scoped,viewer,tunable,autonomous,capable
 33,scoped,viewer,mutable,reactive,capable
 34,scoped,viewer,mutable,assisted,capable
 35,scoped,viewer,mutable,autonomous,high leverage
-36,scoped,operator,fixed,reactive,constrained
+36,scoped,operator,fixed,reactive,capable
 37,scoped,operator,fixed,assisted,capable
 38,scoped,operator,fixed,autonomous,capable
 39,scoped,operator,tunable,reactive,capable
