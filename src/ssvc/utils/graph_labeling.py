@@ -20,12 +20,11 @@
 #  subject to its own license.
 #  DM24-0278
 
-import bisect
 import logging
 import math
 from functools import partial
 from itertools import product
-from typing import Any, Callable, Dict, List, Tuple
+from typing import Any, Callable, Dict, List
 
 # import colorcet as cc
 import networkx as nx
@@ -53,55 +52,53 @@ euclidean_distances = l2_magnitudes
 max_distances = linf_magnitudes
 
 
-def _normalize_columns(
-    arr: np.ndarray[tuple[Any, ...], np.dtype[Any]],
-) -> np.ndarray[tuple[Any, ...], np.dtype[Any]]:
-    """Normalize each column of `arr` to the range [0, 1].
-
-    Args:
-        arr: 2D numpy array to normalize. All columns must have minimum 0 and positive maximum.
-    Returns:
-        Normalized 2D numpy array with same shape as `arr`. All columns are scaled to [0, 1].
-    Raises:
-        ValueError: If any column does not have minimum 0 or has non-positive maximum.
+def _normalize_columns(arr: np.ndarray) -> np.ndarray:
     """
-    # ensure that arr is all floats
-    arr = arr.astype(float)
+    Normalize each column of `arr` to the range [0, 1].
 
+    This computes per-column min and max and scales each column as:
+        (col - min) / (max - min)
+
+    Raises:
+        ValueError: if any column has zero range (max == min).
+    """
+    arr = np.asarray(arr, dtype=float)
+    if arr.ndim != 2:
+        raise ValueError("Input must be a 2D array")
+
+    mins = arr.min(axis=0)
     maxs = arr.max(axis=0)
+    ranges = maxs - mins
 
-    if np.any(maxs <= 0):
-        # throw an error if maxs are not positive
+    if np.any(ranges == 0.0):
+        # Explicitly fail for zero-range columns to avoid division-by-zero ambiguity.
+        zero_cols = np.where(ranges == 0.0)[0].tolist()
         raise ValueError(
-            "All columns must have a positive maximum value for normalization."
+            f"Columns with zero range cannot be normalized: {zero_cols}"
         )
 
-    # we're just going to scale from 0 to max
-    # so we can use min as 0 for all columns
-    mins = np.zeros_like(maxs)
-    ranges = maxs - mins
-    arr_norm = np.zeros_like(arr)
-
-    nonzero = ranges != 0.0
-    if np.any(nonzero):
-        arr_norm[:, nonzero] = (arr[:, nonzero] - mins[nonzero]) / ranges[
-            nonzero
-        ]
+    arr_norm = (arr - mins) / ranges
     return arr_norm
 
 
 def _magnitude_quantile_labels_from_graph(
     G: nx.DiGraph,
     K: int,
-    norm_func: Callable[[np.ndarray], np.ndarray] = euclidean_distances,
+    norm_func: Callable[[np.ndarray], np.ndarray] = None,
 ) -> Dict[Any, int]:
     """
     Assign labels to graph nodes based on quantiles of their vector magnitudes.
-    Args:
-        G: Input graph with nodes as integer tuples representing vectors.
-        K: Number of quantile-based labels to assign (must be >= 2).
-        norm_func: Function to compute vector magnitudes (default: Euclidean aka L2 norm).
+
+    Notes:
+     - norm_func defaults to L2 if not provided by the caller.
+     - Uses numpy searchsorted on the sorted unique magnitudes to make tie-handling explicit.
     """
+    if norm_func is None:
+        # but keep compatibility with callers that pass no norm_func
+        from functools import partial
+
+        norm_func = partial(np.linalg.norm, ord=2, axis=1)
+
     if K < 2:
         raise ValueError("K must be >= 2")
 
@@ -109,80 +106,72 @@ def _magnitude_quantile_labels_from_graph(
     if not node_iterable:
         raise ValueError("Graph has no nodes")
 
-    node_vectors: List[Tuple[int, ...]] = []
-
-    for n in node_iterable:
-        vec = n
-        node_vectors.append(tuple(int(x) for x in vec))
+    node_vectors: List[tuple] = [
+        tuple(int(x) for x in n) for n in node_iterable
+    ]
 
     dim = len(node_vectors[0])
     for v in node_vectors:
         if len(v) != dim:
             raise ValueError("All node vectors must have the same length")
 
-    # normalize per-dimension to [0,1]
     arr = np.array(node_vectors, dtype=float)
-
     arr_norm = _normalize_columns(arr)
 
-    # Compute magnitudes by calling dependency
     mags = norm_func(arr_norm)
-
-    # here is where we start the quantile labeling
     unique_mags = np.unique(mags)
-    um_list = unique_mags.tolist()
+    if unique_mags.size == 0:
+        raise ValueError("No magnitudes computed")
 
-    # Compute raw quantile cut values
-    probs = [i / K for i in range(K + 1)]
+    probs = np.linspace(0.0, 1.0, K + 1)
     try:
         raw_cuts = np.quantile(mags, probs, method="linear")
     except TypeError:
         raw_cuts = np.quantile(mags, probs, interpolation="linear")  # type: ignore
 
-    def first_strictly_greater(val: float) -> float:
-        idx = bisect.bisect_right(um_list, val)
+    # helper: next unique magnitude strictly greater than val (or last if none)
+    def next_strictly_greater(val: float) -> float:
+        idx = np.searchsorted(unique_mags, val, side="right")
         return (
-            float(um_list[idx]) if idx < len(um_list) else float(um_list[-1])
+            float(unique_mags[idx])
+            if idx < unique_mags.size
+            else float(unique_mags[-1])
         )
 
-    # create adjusted cut values
-    adjusted: List[float] = [0.0] * (K + 1)
-    # the min and max cuts are fixed
-    # lowest cut is min magnitude
-    adjusted[0] = float(um_list[0])
-    # highest cut is max magnitude
-    adjusted[-1] = float(um_list[-1])
+    # build adjusted cuts ensuring strictly increasing sequence from unique_mags
+    adjusted = [0.0] * (K + 1)
+    adjusted[0] = float(unique_mags[0])
+    adjusted[-1] = float(unique_mags[-1])
 
-    # Adjust cut values to avoid clumps
     for j in range(1, K):
         c = float(raw_cuts[j])
+        # if the cut equals an existing magnitude, move to the next strictly greater unique mag
         if np.any(np.isclose(unique_mags, c)):
-            adjusted[j] = first_strictly_greater(c)
+            adjusted[j] = next_strictly_greater(c)
         else:
             adjusted[j] = c
 
-    # Ensure strictly increasing cut values
+    # enforce strictly increasing using unique_mags when needed
     for j in range(1, K + 1):
         prev = adjusted[j - 1]
         cur = adjusted[j]
         if cur <= prev or math.isclose(cur, prev):
-            idx = bisect.bisect_right(um_list, prev)
+            # pick the next unique magnitude after prev
+            idx = np.searchsorted(unique_mags, prev, side="right")
             adjusted[j] = (
-                float(um_list[idx])
-                if idx < len(um_list)
-                else float(um_list[-1])
+                float(unique_mags[idx])
+                if idx < unique_mags.size
+                else float(unique_mags[-1])
             )
 
-    # Assign labels based on adjusted cut values
-    adj_list = adjusted
+    adj_array = np.array(adjusted, dtype=float)
+
+    # assign labels using searchsorted (right) then clamp to [0, K-1]
     labels_list: List[int] = []
     for m in mags:
-        pos = bisect.bisect_right(adj_list, float(m)) - 1
-        if pos < 0:
-            pos = 0
-        if pos >= K:
-            pos = K - 1
-        labels_list.append(int(pos))
+        pos = int(np.searchsorted(adj_array, float(m), side="right") - 1)
+        pos = max(0, min(pos, K - 1))
+        labels_list.append(pos)
 
     return {node: label for node, label in zip(node_iterable, labels_list)}
 
@@ -225,9 +214,13 @@ def graph_from_value_tuples(value_tuples: list[tuple[int, ...]]) -> nx.DiGraph:
 
 
 def dplist_to_value_lookup(
-    decision_points: list[DecisionPoint],
-) -> list[dict[int, str]]:
-    value_lookup = [
+    decision_points: List[DecisionPoint],
+) -> List[Dict[int, Any]]:
+    """
+    Convert a list of DecisionPoint objects into a list of index->value-key mappings.
+    Each entry corresponds to one DecisionPoint and maps the value index to the value key.
+    """
+    value_lookup: List[Dict[int, Any]] = [
         {i: v.key for i, v in enumerate(dp.values)} for dp in decision_points
     ]
     return value_lookup

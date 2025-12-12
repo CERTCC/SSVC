@@ -21,10 +21,6 @@ jobs:
     - uses: actions/checkout@v6
       with:
         fetch-tags: true
-    - name: Install Graphviz system deps
-      run: |
-          sudo apt-get update
-          sudo apt-get install -y graphviz graphviz-dev
     - name: Set up Python 3.12
       uses: actions/setup-python@v6
       with:
