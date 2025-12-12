@@ -9,6 +9,9 @@ MD004:
 # 013 Line length
 # Disabled because we have a lot of long lines. We should fix this eventually.
 MD013: false
+# 028 No no-blanks-blockquote
+# Disabled because we use mkdocs admonitions which use blockquotes, and two consecutive admonitions create blank lines in between.
+MD028: false
 # 033 Inline HTML
 # Disabled because we use inline HTML (<br/> in table cells for example)
 MD033: false
