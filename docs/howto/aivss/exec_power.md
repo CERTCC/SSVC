@@ -20,9 +20,9 @@ print(example_block(dp))
 The *Execution Power* decision table has the following decision points:
 
 - [Autonomy](../../reference/decision_points/aivss/autonomy_level.md)
-- [Tool Use](../../reference/decision_points/aivss/tool_use.md)
-- [Self-Modification](../../reference/decision_points/aivss/self_modification.md)
-- [Goal-Driven Planning](../../reference/decision_points/aivss/goal_driven_planning.md)
+- [Tool Use](../../reference/decision_points/aivss/tool_use_level.md)
+- [Self-Modification](../../reference/decision_points/aivss/self_modification_level.md)
+- [Goal-Driven Planning](../../reference/decision_points/aivss/goal_driven_planning_level.md)
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.aivss.execution_power import LATEST as DT
