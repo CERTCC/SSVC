@@ -6,4 +6,3 @@ from ssvc.doc_helpers import example_block
 
 print(example_block(LATEST))
 ```
-

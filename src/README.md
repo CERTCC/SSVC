@@ -112,12 +112,11 @@ For usage in vulnerability management scenarios consider the following popular S
            dp_index = decision_points.index(dp.name)
            selected = selection.Selection.from_decision_point(dp)
            selected.values = tuple(selection.MinimalDecisionPointValue(key=val.key,
-	   name=val.name) for val in dp.values if val.name in values[dp_index])
+    name=val.name) for val in dp.values if val.name in values[dp_index])
            selections.append(selected)
 
     out = selection.SelectionList(selections=selections,timestamp=timestamp)
     print(out.model_dump_json(exclude_none=True, indent=4))
-
 
 Resources
 ---------

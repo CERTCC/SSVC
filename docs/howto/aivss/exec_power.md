@@ -4,7 +4,7 @@ Some text
 
 ## Outcome
 
-The outcome of the _Execution Power_ decision table is defined by
+The outcome of the *Execution Power* decision table is defined by
 the [Execution Power Level](../../reference/decision_points/aivss/execution_power.md) decision point.
 
 ```python exec="true" idprefix=""
@@ -17,7 +17,7 @@ print(example_block(dp))
 
 ## Decision Points
 
-The _Execution Power_ decision table has the following decision points:
+The *Execution Power* decision table has the following decision points:
 
 - [Autonomy](../../reference/decision_points/aivss/autonomy_level.md)
 - [Tool Use](../../reference/decision_points/aivss/tool_use.md)

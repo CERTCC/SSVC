@@ -1,10 +1,9 @@
 # Execution Power
 
+This is the reference documentation for the *Execution Power* decision point in the AIVSS framework.
 
-This is the reference documentation for the _Execution Power_ decision point in the AIVSS framework.
+!!! tip "How to apply the *Execution Power* decision point"
 
-!!! tip "How to apply the _Execution Power_ decision point"
-    
     For a detailed explanation of how to use this decision point, see the [Execution Power How-To Guide](../../../howto/aivss/exec_power.md).
 
 ```python exec="true" idprefix=""

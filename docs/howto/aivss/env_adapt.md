@@ -4,7 +4,7 @@ Some text
 
 ## Outcome
 
-The outcome of the _Environment and Adaptation_ decision table is defined by
+The outcome of the *Environment and Adaptation* decision table is defined by
 the [Environment and Adaptation Level](../../reference/decision_points/aivss/environment_and_adaptation.md) decision point.
 
 ```python exec="true" idprefix=""
@@ -17,7 +17,7 @@ print(example_block(dp))
 
 ## Decision Points
 
-The _Environment and Adaptation_ decision table has the following decision points:
+The *Environment and Adaptation* decision table has the following decision points:
 
 - [Memory Usage Level](../../reference/decision_points/aivss/memory_level.md)
 - [Contextual Awareness](../../reference/decision_points/aivss/contextual_awareness_level.md)
