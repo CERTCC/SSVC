@@ -24,7 +24,7 @@ Categorization (Version 2.0)," Software Engineering Institute, Carnegie Mellon
 University, Apr. 2021. [Online]. Available: [https://github.com/CERTCC/SSVC/blob/main/pdfs/2021_019_001_653461.pdf](https://github.com/CERTCC/SSVC/blob/main/pdfs/2021_019_001_653461.pdf)  
 [5] J. M. Spring, E. Hatleback, A. D. Householder, V. Sarvepalli, L. Tyzenhaus,
 and C. Yarbrough, "Prioritizing Vulnerability Response: a Stakeholder-Specific
-Vulnerability Categorization (SSVC) version 2.1.0-edb6c97," Software
+Vulnerability Categorization (SSVC) git commit edb6c97," Software
 Engineering Institute, Carnegie Mellon University, Sep. 2023. [Online].
 Available: [https://github.com/CERTCC/SSVC/blob/main/pdfs/ssvc_2_1_draft.pdf](https://github.com/CERTCC/SSVC/blob/main/pdfs/ssvc_2_1_draft.pdf)  
 
