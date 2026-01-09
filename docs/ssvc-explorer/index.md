@@ -76,12 +76,11 @@ Language
 <button onclick="SSVC.updateTree()" data-update="1" style="margin-top: 10px;padding: 8px 12px;border: none;background-color: #007bff;color: #fff;border-radius: 4px;cursor: pointer; float:right">Update</button>
 <button onclick="SSVC.popupEnd()" style="margin: 10px 10px 0px 0px;;padding: 8px 12px;border: none;background-color: #ff2121;color: #fff;border-radius: 4px;cursor: pointer; float:right">Cancel</button>
 </div>
-</div>
-
 <div data-yesno="1" style="display:none">
 <h4 style="text-align: center">Would you like to proceed?</h4>
 <button style="margin-top: 10px;padding: 8px 12px;border: none;background-color: #007bff;color: #fff;border-radius: 4px;cursor: pointer; float:right">Yes</button>
 <button style="margin: 10px 10px 0px 0px;;padding: 8px 12px;border: none;background-color: #ff2121;color: #fff;border-radius: 4px;cursor: pointer; float:right">No</button>
+</div>
 </div>
 <form autocomplete="off">
 <span style="font-size: 20px;font-weight: bold; vertical-align:top">Sample Decision Models:</span>
