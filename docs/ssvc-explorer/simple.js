@@ -2627,6 +2627,7 @@ function fun_execute(w) {
     return {
 	ssvc_launch: ssvc_launch,
 	decision_trees: decision_trees,
+	decision_points, decision_points,
 	form: form,
 	loadSSVC: loadSSVC,
 	readFile: readFile,
