@@ -70,6 +70,7 @@ class NameSpace(StrEnum):
     EXAMPLE = "example"
     TEST = "test"
     NIST = "nist"
+    AIVSS = "aivss"
 
     @classmethod
     def validate(cls, value: str) -> str:

@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "ND",
+  "version": "1.0.0",
+  "name": "Non-Determinism",
+  "definition": "Describes variability of system outputs across repeated executions.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "D",
+      "name": "Deterministic",
+      "definition": "Stable outputs; no randomness."
+    },
+    {
+      "key": "B",
+      "name": "Bounded",
+      "definition": "Controlled variance within predictable limits."
+    },
+    {
+      "key": "H",
+      "name": "High-Variance",
+      "definition": "Broad or unstable behavioral range."
+    }
+  ]
+}

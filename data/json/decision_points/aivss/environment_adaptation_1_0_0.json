@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "EA",
+  "version": "1.0.0",
+  "name": "Environment & Adaptation",
+  "definition": "Determines the environment and adaptation level of an AI system based on its context awareness and adaptability.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "I",
+      "name": "Isolated",
+      "definition": "Operates in a narrow, stable context with no meaningful external awareness. No cross-session memory, multi-agent behavior, or identity changes. Environmental shifts don’t affect behavior unless a human explicitly updates inputs."
+    },
+    {
+      "key": "C",
+      "name": "Connected",
+      "definition": "Uses curated signals, scoped identity roles, or predefined multi-agent patterns to adapt. Environmental changes can influence behavior, but only within controlled, auditable bounds."
+    },
+    {
+      "key": "P",
+      "name": "Pervasive",
+      "definition": "Continuously adapts to broad, dynamic environmental inputs and multi-agent activity. Identity, memory, and context can shift fluidly, creating emergent behavior. Environmental variation can substantially redirect or amplify its actions."
+    }
+  ]
+}
