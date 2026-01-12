@@ -19,14 +19,14 @@
 #  subject to its own license.
 #  DM24-0278
 
-'''
+"""
 Provides TODO writeme
-'''
+"""
 
 
 def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

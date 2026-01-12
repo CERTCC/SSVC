@@ -19,9 +19,9 @@
 #  subject to its own license.
 #  DM24-0278
 
-'''
+"""
 Provides the AIVSS Self-Modification Decision Point for SSVC.
-'''
+"""
 
 from ssvc.decision_points.aivss.base import AivssDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
@@ -69,5 +69,5 @@ def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

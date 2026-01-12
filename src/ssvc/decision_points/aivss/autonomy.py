@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2025-2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -19,9 +19,9 @@
 #  subject to its own license.
 #  DM24-0278
 
-'''
+"""
 Provides the AIVSS Autonomy of Action Decision Point for SSVC.
-'''
+"""
 from ssvc.decision_points.aivss.base import AivssDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
@@ -53,7 +53,7 @@ AUTONOMY = AivssDecisionPoint(
     values=(GATED, SCOPED, FREE_RUNNING),
 )
 
-VERSIONS = (AUTONOMY, )
+VERSIONS = (AUTONOMY,)
 LATEST = VERSIONS[-1]
 
 
@@ -61,5 +61,5 @@ def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

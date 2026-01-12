@@ -19,9 +19,9 @@
 #  subject to its own license.
 #  DM24-0278
 
-'''
+"""
 Provides the AIVSS Tool Use Decision Point for SSVC.
-'''
+"""
 from ssvc.decision_points.aivss.base import AivssDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
@@ -50,12 +50,13 @@ TOOL_USE = AivssDecisionPoint(
     values=(VIEWER, OPERATOR, ADMINISTRATOR),
 )
 
-VERSIONS = (TOOL_USE, )
+VERSIONS = (TOOL_USE,)
 LATEST = VERSIONS[-1]
+
 
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -19,9 +19,9 @@
 #  subject to its own license.
 #  DM24-0278
 
-'''
+"""
 Provides TODO writeme
-'''
+"""
 from ssvc.decision_points.aivss.base import AivssDecisionPoint
 from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.helpers import print_versions_and_diffs
@@ -60,12 +60,13 @@ GOAL_DRIVEN_PLANNING = AivssDecisionPoint(
     values=(REACTIVE, ASSISTED, AUTONOMOUS),
 )
 
-VERSIONS = (GOAL_DRIVEN_PLANNING, )
+VERSIONS = (GOAL_DRIVEN_PLANNING,)
 LATEST = VERSIONS[-1]
+
 
 def main():
     print_versions_and_diffs(VERSIONS)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
