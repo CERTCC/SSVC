@@ -35,10 +35,10 @@ from ssvc._mixins import (
     _SchemaVersioned,
 )
 from ssvc.decision_points.base import DecisionPoint
+from ssvc.decision_tables.dt_graph import DtGraph
 from ssvc.registry import get_registry
 from ssvc.utils.field_specs import DecisionPointDict
 from ssvc.utils.misc import obfuscate_dict
-from ssvc.utils.toposort import dplist_to_toposort
 
 logger = logging.getLogger(__name__)
 
@@ -135,32 +135,10 @@ class DecisionTable(
             logger.debug("Mapping is already set, skipping population.")
             return self
 
-        outcome_key = self.outcome
-
-        dps = [
-            dp
-            for dpid, dp in self.decision_points.items()
-            if dpid != outcome_key
-        ]
-        mapping = dplist_to_toposort(dps)
-
-        # mapping is a list of dicts
-        # but mapping doesn't have the outcome key yet
-        # add the key with None as the value
-        for row in mapping:
-            # row is a dict with decision point values
-            # we need to add the outcome key
-            if outcome_key in row:
-                # if the outcome key is already in the row, we should not overwrite it
-                logger.warning(
-                    f"Outcome key '{outcome_key}' already exists in row, skipping."
-                )
-            row[outcome_key] = None
-
-        # distribute outcomes evenly across the mapping
-        og: DecisionPoint = self.decision_points[outcome_key]
-
-        mapping = distribute_outcomes_evenly(mapping, og)
+        dtg = DtGraph(
+            decision_points=self.decision_points, outcome_id=self.outcome
+        )
+        mapping = dtg.mapping()
 
         # set the mapping
         self.mapping = mapping

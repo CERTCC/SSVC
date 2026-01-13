@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "DI",
+  "version": "1.0.0",
+  "name": "Dynamic Identity",
+  "definition": "Describes how an AI system's identity and authorization context may change at runtime, including whether it can assume roles beyond a fixed identity.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "F",
+      "name": "Fixed",
+      "definition": "Single, constant identity."
+    },
+    {
+      "key": "S",
+      "name": "Scoped Roles",
+      "definition": "Limited role changes tied to specific tools or contexts."
+    },
+    {
+      "key": "A",
+      "name": "Assumed Identity",
+      "definition": "Cross-tenant, impersonation-like, or elevated role adoption."
+    }
+  ]
+}

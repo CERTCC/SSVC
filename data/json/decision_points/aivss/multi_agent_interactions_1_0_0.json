@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "MAI",
+  "version": "1.0.0",
+  "name": "Multi-Agent Interactions",
+  "definition": "Characterizes how, and how flexibly, an AI system coordinates with other agents or services.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "S",
+      "name": "Solo",
+      "definition": "Operates alone; no coordination."
+    },
+    {
+      "key": "R",
+      "name": "Scripted",
+      "definition": "Interacts through predefined handoffs or protocols."
+    },
+    {
+      "key": "O",
+      "name": "Orchestrated",
+      "definition": "Dynamic teaming, swarms, emergent behavior, or markets."
+    }
+  ]
+}

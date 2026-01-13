@@ -1,0 +1,82 @@
+row,Memory Use v1.0.0 (aivss),Contextual Awareness v1.0.0 (aivss),Dynamic Identity v1.0.0 (aivss),Multi-Agent Interactions v1.0.0 (aivss),Environment & Adaptation v1.0.0 (aivss)
+0,stateless,isolated,fixed,solo,isolated
+1,stateless,isolated,fixed,scripted,isolated
+2,stateless,isolated,fixed,orchestrated,connected
+3,stateless,isolated,scoped roles,solo,isolated
+4,stateless,isolated,scoped roles,scripted,connected
+5,stateless,isolated,scoped roles,orchestrated,connected
+6,stateless,isolated,assumed identity,solo,connected
+7,stateless,isolated,assumed identity,scripted,connected
+8,stateless,isolated,assumed identity,orchestrated,pervasive
+9,stateless,trusted-signal,fixed,solo,isolated
+10,stateless,trusted-signal,fixed,scripted,connected
+11,stateless,trusted-signal,fixed,orchestrated,connected
+12,stateless,trusted-signal,scoped roles,solo,connected
+13,stateless,trusted-signal,scoped roles,scripted,connected
+14,stateless,trusted-signal,scoped roles,orchestrated,connected
+15,stateless,trusted-signal,assumed identity,solo,connected
+16,stateless,trusted-signal,assumed identity,scripted,connected
+17,stateless,trusted-signal,assumed identity,orchestrated,pervasive
+18,stateless,ambient,fixed,solo,connected
+19,stateless,ambient,fixed,scripted,connected
+20,stateless,ambient,fixed,orchestrated,pervasive
+21,stateless,ambient,scoped roles,solo,connected
+22,stateless,ambient,scoped roles,scripted,connected
+23,stateless,ambient,scoped roles,orchestrated,pervasive
+24,stateless,ambient,assumed identity,solo,pervasive
+25,stateless,ambient,assumed identity,scripted,pervasive
+26,stateless,ambient,assumed identity,orchestrated,pervasive
+27,local recall,isolated,fixed,solo,isolated
+28,local recall,isolated,fixed,scripted,connected
+29,local recall,isolated,fixed,orchestrated,connected
+30,local recall,isolated,scoped roles,solo,connected
+31,local recall,isolated,scoped roles,scripted,connected
+32,local recall,isolated,scoped roles,orchestrated,connected
+33,local recall,isolated,assumed identity,solo,connected
+34,local recall,isolated,assumed identity,scripted,connected
+35,local recall,isolated,assumed identity,orchestrated,pervasive
+36,local recall,trusted-signal,fixed,solo,connected
+37,local recall,trusted-signal,fixed,scripted,connected
+38,local recall,trusted-signal,fixed,orchestrated,connected
+39,local recall,trusted-signal,scoped roles,solo,connected
+40,local recall,trusted-signal,scoped roles,scripted,connected
+41,local recall,trusted-signal,scoped roles,orchestrated,connected
+42,local recall,trusted-signal,assumed identity,solo,connected
+43,local recall,trusted-signal,assumed identity,scripted,connected
+44,local recall,trusted-signal,assumed identity,orchestrated,pervasive
+45,local recall,ambient,fixed,solo,connected
+46,local recall,ambient,fixed,scripted,connected
+47,local recall,ambient,fixed,orchestrated,pervasive
+48,local recall,ambient,scoped roles,solo,connected
+49,local recall,ambient,scoped roles,scripted,connected
+50,local recall,ambient,scoped roles,orchestrated,pervasive
+51,local recall,ambient,assumed identity,solo,pervasive
+52,local recall,ambient,assumed identity,scripted,pervasive
+53,local recall,ambient,assumed identity,orchestrated,pervasive
+54,shared memory,isolated,fixed,solo,connected
+55,shared memory,isolated,fixed,scripted,connected
+56,shared memory,isolated,fixed,orchestrated,pervasive
+57,shared memory,isolated,scoped roles,solo,connected
+58,shared memory,isolated,scoped roles,scripted,connected
+59,shared memory,isolated,scoped roles,orchestrated,pervasive
+60,shared memory,isolated,assumed identity,solo,pervasive
+61,shared memory,isolated,assumed identity,scripted,pervasive
+62,shared memory,isolated,assumed identity,orchestrated,pervasive
+63,shared memory,trusted-signal,fixed,solo,connected
+64,shared memory,trusted-signal,fixed,scripted,connected
+65,shared memory,trusted-signal,fixed,orchestrated,pervasive
+66,shared memory,trusted-signal,scoped roles,solo,connected
+67,shared memory,trusted-signal,scoped roles,scripted,connected
+68,shared memory,trusted-signal,scoped roles,orchestrated,pervasive
+69,shared memory,trusted-signal,assumed identity,solo,pervasive
+70,shared memory,trusted-signal,assumed identity,scripted,pervasive
+71,shared memory,trusted-signal,assumed identity,orchestrated,pervasive
+72,shared memory,ambient,fixed,solo,pervasive
+73,shared memory,ambient,fixed,scripted,pervasive
+74,shared memory,ambient,fixed,orchestrated,pervasive
+75,shared memory,ambient,scoped roles,solo,pervasive
+76,shared memory,ambient,scoped roles,scripted,pervasive
+77,shared memory,ambient,scoped roles,orchestrated,pervasive
+78,shared memory,ambient,assumed identity,solo,pervasive
+79,shared memory,ambient,assumed identity,scripted,pervasive
+80,shared memory,ambient,assumed identity,orchestrated,pervasive

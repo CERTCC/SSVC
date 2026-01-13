@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "CA",
+  "version": "1.0.0",
+  "name": "Contextual Awareness",
+  "definition": "Determines the degree to which an AI system senses and incorporates context from its environment and external signals.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "I",
+      "name": "Isolated",
+      "definition": "No external contextual signals."
+    },
+    {
+      "key": "T",
+      "name": "Trusted-Signal",
+      "definition": "Uses only vetted, narrow, structured signals."
+    },
+    {
+      "key": "A",
+      "name": "Ambient",
+      "definition": "Reacts to broad, open-ended environmental signals."
+    }
+  ]
+}

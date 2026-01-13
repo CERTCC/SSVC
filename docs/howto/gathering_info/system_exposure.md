@@ -31,5 +31,4 @@ Apply these heuristics in order and stop when one of them applies.
 The unreachable vulnerable component scenario may be a point of concern for stakeholders like [patch suppliers](../../howto/supplier_tree.md) who often find it more cost-effective to simply update the included library to an existing fixed version rather than try to explain to customers why the vulnerable code is unreachable in their own product.
 In those cases, we suggest the stakeholder reviews the decision outcomes of the tree to ensure the appropriate action is taken (paying attention to [*defer*](../../howto/supplier_tree.md) vs [*scheduled*](../../howto/supplier_tree.md), for example).
 
-
 {% include-markdown "../../_includes/question_callout.md" heading-offset=1 %}

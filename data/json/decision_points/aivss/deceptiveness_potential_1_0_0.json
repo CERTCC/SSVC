@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "DP",
+  "version": "1.0.0",
+  "name": "Deceptiveness Potential",
+  "definition": "Assesses the potential for AI-generated vulnerability reports to be deceptive, ranging from plain structured output to highly persuasive content.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "P",
+      "name": "Plain",
+      "definition": "Structured, non-persona output."
+    },
+    {
+      "key": "F",
+      "name": "Fluent",
+      "definition": "Natural language output, but not convincingly human."
+    },
+    {
+      "key": "S",
+      "name": "Persuasive",
+      "definition": "Persona mimicry, deepfakes, or social-engineering capability."
+    }
+  ]
+}
