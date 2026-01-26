@@ -88,16 +88,16 @@ function reset_form() {
     $('select').prop('selectedIndex',0);
     $('input[type="file"]').hide();
 }
-function select_add_option(s,opt) {
+function select_add_option(s, opt, txt) {
     var q = s.find('option').toArray().findIndex(function(x) {
 	if(x.value == opt) {
 	    x.selected = true;
 	    return true; }
     });
     if(q < 0) {
-	s.append($('<option/>').
-		 attr({value: opt,selected: true})
-		 .html(opt));
+	s.append($('<option/>')
+		 .attr({value: opt,selected: true})
+		 .text(txt || opt));
     };
 }
 function arrayReduce(arr,n) {
@@ -332,7 +332,7 @@ function make_ssvc_vector() {
     $('.exportActive .Exporter').attr('data-ochoice',JSON.stringify(ochoice))
     /* new Time string will be ISO 8601 "2021-09-28T21:46:38Z"
        q=new Date().toISOString().replace(/\..*$/,'Z') */
-    //computed = computed + String(parseInt(tstamp.getTime()/1000))+"/"
+    /* computed = computed + String(parseInt(tstamp.getTime()/1000))+"/" */
     var q = new Date().toISOString().replace(/\..*$/,'Z');
     computed = computed+q+"/"
     $('.ssvcvector').html(computed);
@@ -365,22 +365,12 @@ function export_tree() {
 	       return z
 	   },{}))
     /* Now the decision points should be moved to the end of the array */
-    yhead.push(yhead.shift())
-    toptions.push(toptions.shift())
+    yhead.push(yhead.shift());
+    toptions.push(toptions.shift());
     export_schema.decision_points = yhead.map((a,i) => {
-	var ax = {label: a, decision_type: "simple", options: toptions[i]}
-	return ax
+	var ax = {label: a, decision_type: "simple", options: toptions[i]};
+	return ax;
     })
-    //console.log(toptions)
-    //export_schema.decisions = tdecisions.map((x,i) => Object.assign(x,{color: acolors[i]}))
-    /*
-      export_schema.decisions = Object.keys(tdecisions).map((n,i) => {
-      return {label: n, description: n, color:acolors[i]}})
-    */
-    //return allrows;
-    /* "[{"Exploitation":"none"},{"Utility":"partial"},
-       {"TechnicalImpact":"laborious"},{"SafetyImpact":"none"},
-       {"Decision":"defer"}]" */
 }
 function simpleCopy(objin) {
     try {
@@ -508,18 +498,15 @@ function export_json() {
 function readFile(input) {
     var file = input.files[0];
     var reader = new FileReader();
-    //console.log(file)
     reader.readAsText(file);
     reader.onload = function() {
-	//console.log(reader)
-	//console.log(reader.result);
+	input.value = "";
 	try {
 	    if(input.id == "dtreecsvload") {
-		select_add_option($('#tree_samples'),file.name);
 		if(file.name.match(/\.json$/i))
 		    parse_json(reader.result)
 		else
-		    parse_file(reader.result)
+		    parse_file(reader.result, file.name);
 	    }
 	    else
 		tsv_load(reader.result)
@@ -546,15 +533,17 @@ function topalert(msg,level) {
 	$(this).delay(2000).fadeOut("slow"); })
 }
 function tree_process(w) {
-    var ptree = $(w).val()
+    var ptree = $(w).val();
+    if(!ptree)
+	return;
     if(ptree == "import") {
 	if(navigator.userAgent.indexOf("Chrome") < 0) {
-	    $('#dtreecsvload').show()
-	    $('#dtreecsvload').click()
-	    topalert("Choose the file to upload below")
+	    $('#dtreecsvload').show();
+	    $('#dtreecsvload').click();
+	    topalert("Choose the file to upload below");
 	} else 
-	    $('#dtreecsvload').click()
-	return
+	    $('#dtreecsvload').click();
+	return;
     }
     if(ptree.match(/^\d+$/)) {
         const index = parseInt(ptree);
@@ -575,7 +564,7 @@ function tree_process(w) {
 	/* remove .json from the name. This method uses the file name */
 	var ptree_name = ptree.replace(/\.[^\.]+$/,'')
 	$('.cover_heading_append').html('('+ptree_name+')');
-    })
+    });
 }
 function create_permalink(copyme){
     $('.permalink').removeClass('d-none');
@@ -629,7 +618,6 @@ function permalink() {
 	$('#graph-ungraph').val('Analyst').trigger('change');	
     }
     try {
-	//var plink = location.hash.substr(1);
 	var pchildren = [];
 	var fm = plparts[0].split("/");
 	if(fm.length < 3) {
@@ -743,7 +731,6 @@ function process(w) {
     $('#cve_table tbody tr td').remove()
     var steps = ['Exploit','Virulence','Technical']
     var stimes = [1600,3200,5100]
-    //console.log(new Date().getTime())    
     for(var i=0; i< steps.length; i++) {
 	clickprocess(steps[i],cve_data,stimes[i])
     }
@@ -754,15 +741,11 @@ function process(w) {
 }
 function clickprocess(tstep,cve_data,stime) {
     setTimeout(function() {
-	//console.log(tstep)
-	//console.log(stime)
-	//console.log(new Date().getTime())
 	if(tstep in cve_data) {
 	    if($(".prechk-"+cve_data[tstep].toLowerCase()).length == 1) {
 		$(".prechk-"+cve_data[tstep].toLowerCase()).simClick()
 	    } else {
 		console.log("Try again in a few seconds "+tstep)
-		//clickprocess(tstep,cve_data,stime-1000)
 	    }
 	} else {
 	    console.log("Some strange error "+tstep)
@@ -901,15 +884,12 @@ function check_select(ev) {
 	    }
 	    console.log(key,dt[key],valueSet[key], matched);
 	});
-	//console.log(dt,matched);
 	if(matched && (!valueSet[final_keyword].includes(dt[final_keyword]))) {
 	    valueSet[final_keyword].push(dt[final_keyword]);
 	}
     });
-    //console.log(valueSet);
     const outcomes = Array.from(groupContainer.querySelectorAll("input.dt_outcome"));
     groupContainer.querySelectorAll("input.dt_outcome").forEach(function(dinput) {
-	//console.log(dinput.value,valueSet[final_keyword]);
 	if(!valueSet[final_keyword].includes(dinput.value)) {
 	    outcome_set(dinput, false);
 	} else {
@@ -986,9 +966,6 @@ function process_ssvc(ssvc, winput) {
 	/* Uses official SSVC schema*/
 	if(ssvc.data.schemaVersion == "1-0-1") {
 	    ssvc.data.selections.forEach(function(selection, i) {
-		//const name = selection.name.toLowerCase();
-		//const value = '\\"label\\":\\"' + name + '\\"';
-		//const match = '[data-dp*="' + value + '" i]';
 		const match = 'input[name*="' + selection.name.toLowerCase() + '" i]';
 		const dpInputs = dpContainer.querySelectorAll(match);
 		dpInputs.forEach(function(dpInput) {
@@ -1117,8 +1094,8 @@ function parse_json(xraw,paused) {
     $('#ugbtr').html('');
     $('.trcomplex').remove();
     if(!('decision_points' in tm)) {
-	topalert("JSON schema has no decision_points","danger")
-	return
+	topalert("JSON schema has no decision_points","danger");
+	return;
     }
     if(!('decisions_table' in tm)) {
 	topalert("JSON schema has no decision table, we can't help you with that","danger");
@@ -1126,7 +1103,7 @@ function parse_json(xraw,paused) {
 	return;
     }
     /* Save JSON for export*/
-    export_schema = tm
+    export_schema = tm;
     /* This is temp key to find full child elements */
     var xkeys = {};
     /* Find array that are children as children will also have the decision 
@@ -1137,7 +1114,7 @@ function parse_json(xraw,paused) {
 	    
 	    xkeys[y.label] = y;
 	    if("key" in y)
-		xkeys[y.key] = y.label
+		xkeys[y.key] = y.label;
 	    /* Use either key or label to mark the xkeys to a child
 	       decision tree */	    
 	    if("children" in y) {
@@ -1156,59 +1133,51 @@ function parse_json(xraw,paused) {
 	},{});
     /* Check to make sure neither key nor label is in a ischild object */
     var x = tm.decision_points.filter(
-	x => (!(x.label in ischild))).map(r => r.label)
-    var y = tm.decisions_table
-    //console.log(y)
-    var yraw = [...Array(x.length)].map(u => [])
-    var id = 1
-    var thash = {}
-    var decisions = tm.decision_points.filter(x => x.decision_type == "final")
+	x => (!(x.label in ischild))).map(r => r.label);
+    var y = tm.decisions_table;
+    var yraw = [...Array(x.length)].map(u => []);
+    var id = 1;
+    var thash = {};
+    var decisions = tm.decision_points.filter(x => x.decision_type == "final");
     if('title' in tm)
-	$('.cover_heading_append').html('('+tm.title+')');
+	$('.cover_heading_append').text('('+tm.title+')');
     if(decisions.length != 1) {
-	topalert("JSON schema has no decisions marked as final, assuming the last element is the \"Final\" decision.","warning")
-	tm.decision_points[tm.decision_points.length - 1]['decision_type'] = "final"
-	decisions = [tm.decision_points[tm.decision_points.length - 1]]
+	topalert("JSON schema has no decisions marked as final, assuming the last element is the \"Final\" decision.","warning");
+	tm.decision_points[tm.decision_points.length - 1]['decision_type'] = "final";
+	decisions = [tm.decision_points[tm.decision_points.length - 1]];
     }    
-    final_keyword = decisions[0].label
-    //console.log(decisions)
-    //console.log(final_keyword)
+    final_keyword = decisions[0].label;
     for(var i=0; i<y.length; i++) {
-	//var tname = y[i].pop()+":"+y[i].join(":")
-	//console.log(y[i])
 	/* Decision table should have the "outcome" or "decision" fiel if not skip 
 	   this entry */
 	if(!(final_keyword in y[i]))
-	    continue
+	    continue;
 	var tname = y[i][final_keyword]+":"+x.map(t => y[i][t]).slice(0,-1).join(":")
 	for( var j=0; j< x.length-1; j++) {
-	    //var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
-	    var tparent = x[x.length-2-j]+":"+x.slice(0,x.length-2-j).map(q => y[i][q]).join(":")
-	    //var tparent = x[x.length-1-j]+":"+x.slice(0,x.length-1-j).map(q => y[i][q]).join(":")
+	    var tparent = x[x.length-2-j]+":"+x.slice(0,x.length-2-j).map(q => y[i][q]).join(":");
 	    if(!(tname in thash))
-		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]}
+		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]};
 	    else
-		continue
-	    thash[yt.name] = 1
-	    tname = tparent
-	    yraw[j].push(yt)	    
+		continue;
+	    thash[yt.name] = 1;
+	    tname = tparent;
+	    yraw[j].push(yt);	    
 	}
     }
     
     for(var j=yraw.length; j> -1; j--)  {
 	if(yraw.length > 0)
-	    zraw = zraw.concat(yraw[j])
+	    zraw = zraw.concat(yraw[j]);
     }
 
     /* Top or the first part of the tree data  */
-    zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
+    zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"};
     /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
-    raw = zraw
-    //console.log(raw)
+    raw = zraw;
     topalert("Decision tree JSON has been updated with "+raw.length+
 	     " nodes, with "+y.length+" possible outcomes, You can "+
-	     "use it now!","success")
-    dt_clear()
+	     "use it now!","success");
+    dt_clear();
     /* Create label fields if they exists*/
     var lastdiv = "";
     /* Unique keys for decision points*/
@@ -1270,11 +1239,10 @@ function parse_json(xraw,paused) {
 	evaluate_div.append(dpcol);
 	var hdiv = safedivname(x.label)
 	if($("."+hdiv).length != 1) {
-	    //console.log(hdiv,"new");	    
 	    $("."+hdiv).remove();
 	    $('body').append($('<div/>').addClass("d-none "+hdiv));
 	}
-	$("."+hdiv).html(options_html)
+	$("."+hdiv).html(options_html);
 	if(x.label in isparent) {
 	    /* Save the entier decision object in data parent value*/
 	    var mwbid = "mwb-"+hdiv;
@@ -1282,9 +1250,7 @@ function parse_json(xraw,paused) {
 	    var pmwbid = '#'+mwbid;
 	    $(pmwbid).attr("data-parent",JSON.stringify(x));
 	    $("."+hdiv+" h5").after("<p>(Complex Decision)</p>");
-	    //console.log(isparent[x.label]);
-	    $(pmwbid+" h5").html(x.label + " (Cummulative Score)");
-	    //('#wbtable tr')
+	    $(pmwbid+" h5").text(x.label + " (Cummulative Score)");
 	    $(pmwbid+" .wbtable tr").remove();
 	    isparent[x.label].forEach( (t,k) => {
 		var stdiv = safedivname(t.label);
@@ -1294,7 +1260,7 @@ function parse_json(xraw,paused) {
 		    tselect.append($("<option/>").attr({
 			"value":v.label}).text(v.label));
 		});
-		var tlabel = $("<span>").html(t.label+" ")
+		var tlabel = $("<span>").text(t.label+" ")
 		    .append($("<a/>").attr({
 			"class": "circletext",
 			"onmouseover": "shwhelp(this)",
@@ -1313,7 +1279,6 @@ function parse_json(xraw,paused) {
 	    });
 	}
 	lastdiv = hdiv
-	//console.log(options_data);
 	$("."+hdiv).attr("data-options",JSON.stringify(options_data));	
     });
     let cve_input = $("<input>").addClass("form-control vuid").attr({"placeholder":"CVE/Identifier"})
@@ -1340,15 +1305,15 @@ function parse_json(xraw,paused) {
 	    r.color = "#fefefe";
 	}
 	return h + $("<div>").append($("<strong/>").addClass("decisiontab").
-				     css({color:r.color}).html(r.label))
+				     css({color:r.color}).text(r.label))
 	    .append("&nbsp"+r.definition+"<hr>")
-	    .addClass("popupidiv popup-"+srlabel)[0].outerHTML;
-    },"<h5>"+final_keyword+"</h5>")
+	    .addClass("popupidiv popup-"+srlabel)[0].outerHTML; 
+    },"<h5>"+final_keyword+"</h5>");
     if($("."+classes[0]).length != 1) {
-	$("."+classes[0]).remove()
-	$('body').append($('<div/>').addClass("d-none "+classes[0]))
+	$("."+classes[0]).remove();
+	$('body').append($('<div/>').addClass("d-none "+classes[0]));
     }
-    $("."+classes[0]).addClass(classes.join(" ")).html(decision_div)
+    $("."+classes[0]).addClass(classes.join(" ")).html(decision_div);
     /* If a new tree is loaded and the user is in Simple mode
      just start simple mode decision */
     permalink();
@@ -1442,88 +1407,124 @@ function create_export_schema_dtable(yi,x) {
 	a[x[c]] = b
 	return a; },{}))
 }
-function parse_file(xraw) {
-    /* This is really parse csv instead of parse JSON */
-    //var xraw = 'TSV data'
-    var zraw=[]
-    export_schema.decision_points =  []
-    export_schema.decisions_table =  []
-    /* CSV or TSV looks like 
-       ID,Exploitation,Utility,TechnicalImpact,SafetyImpact,Outcome
-    */
-    var xarray = xraw.split('\n')
-    var xr = xarray.map(x => x.split(/[\t,]+/))
-    /* Remove first row has the headers and pass the rest to variable y */
-    var y = xr.splice(1)
-    /* Check if rowID first column of second row to match not number*/
-    var is_ssvc_v1 = y[0][0].match(/\D+/) ? false : true
-    /* Remove ID column in the first row to create x*/
-    if (is_ssvc_v1) 
-	var x = xr[0].splice(1)
-    else
-	var x = xr[0]
-    /* Now xr looks like below for ssvc csv v1 */
-    /* [["Row", "Exploitation", "Virulence", "Technical", "Mission_Well-being", "Decision"]] */
-    //var yraw = [[],[],[],[],[]]
-    /* Register the export schema decision points, assume all decisions are simple */
-    export_schema.decision_points = x.map(
-	dc => {
-	    var ix = {decision_type:"simple", options:[]}
-	    ix.label =  dc
-	    return ix
-	})
-    /* make the last column final decision/outcome/action */
-    export_schema.decision_points[export_schema.decision_points.length-1].decision_type="final"
-    /* Initialize Empty arrray */
-    var yraw = [...Array(x.length)].map(u => []);
-    var id=1;
-    /* This will create just the last branches of the tree */
-    var thash = {}
-    for(var i=0; i< y.length - 1; i++) {
-	if(y[i].length < 1) continue
-	/* Remove ID column if it is SSVC v1*/
-	if(is_ssvc_v1)
-	    y[i].shift()
-	/* Add lame CSV/TSV data to export schema */
-	//console.log(y[i]);
-	create_export_schema_dtable(y[i],x)
-	var tname = y[i].pop()+":"+y[i].join(":")
-	//console.log(tname)
-	if(tname == "undefined") continue;
-	for( var j=0; j< x.length-1; j++) {
-	    /*y[i] look like 0,none,laborious,partial,none,defer */
-	    var tparent = x[x.length-2-j]+":"+y[i].slice(0,x.length-2-j).join(":")
-	    //console.log(tparent)
-	    if(!(tname in thash))
-		var yt = {name:tname.replace(/\:+$/,''),id:id++,parent:tparent.replace(/\:+$/,''),props:"{}",children:[]}
-	    else
-		continue
-	    thash[yt.name] = 1
-	    tname = tparent
-	    yraw[j].push(yt)
-	}
+function uniquePrefix(str, used) {
+    if(!str)
+	str = Math.random().toString(32).substr(2);
+    let key = str[0];
+    let j = 2;
+    while (used[key]) {
+        key = str.substr(0, j);
+        j++;
     }
-    /* This step below is not necessary now as the above routine goes from 
-       0 -> y.length, instead  of 0 to y.length -1. 
-       Remove ID column and Add the last row into export schema */
-    //y[y.length-1].shift()
-    //create_export_schema(y[y.length-1],x)
-    for(var j=yraw.length; j> -1; j--)  {
-	if(yraw.length > 0)
-	    zraw = zraw.concat(yraw[j])
+    used[key] = str;
+    return key;
+}
+function parse_file(xraw, filename) {
+    if (!filename) filename = "file";
+
+    const namespace = "x_example.test#importedfile";
+    const version = "1.0.0";
+    const schemaVersion = "2.0.0";
+
+    const imported = {
+        displayname: "Imported: " + filename + " at " + (new Date()).toLocaleString(),
+        data: {
+            namespace: namespace,
+            decision_points: {},
+            mapping: [],
+            name: "Imported file " + filename,
+            key: "IMP_1",
+            definition: "Imported file " + filename,
+            version: version,
+            schemaVersion: schemaVersion
+        }
+    };
+
+    const xarray = xraw.split(/\r?\n/).filter(Boolean);
+    const xr = xarray.map(x => {
+        if (x.indexOf('","') > -1 && x[0] === '"' && x.at(-1) === '"') {
+            x = x.substr(1, x.length - 2);
+            return x.split('","');
+        }
+        return x.split(/[\t,]+/);
+    });
+
+    const headers = xr[0];
+    const rows = xr.slice(1);
+
+    let detect_version = "CSVv1";
+    if (rows.every(row => !isNaN(row[0]))) {
+	headers.shift();
+	rows.forEach(row => row.shift());
+	detect_version = "CSVv2";
     }
-    /* Next part of the tree data  */
-    zraw[0] = {name:x[0],id:id+254,children:[],parent:null,props:"{}"}
-    /* yraw[0].push({name:"Exploitation:",id:1024,children:[],parent:null,props:"{}"}) */
-    raw = zraw
-    var detect_version = "v2"
-    if(is_ssvc_v1)
-	detect_version = "v1"
-    topalert("Decision tree has been updated with "+raw.length+" nodes, with "+
-	     y.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success")
-    dt_clear();
-    export_schema.decision_points[export_schema.decision_points.length-1].
-	options.map((x,i) => lcolors[x.label] = ocolors[i] )
+
+    /* ---- header key map (short + unique) ---- */
+    const headermap = {};
+    const headerKeys = headers.map(h => uniquePrefix(h, headermap));
+
+    /* ---- create decision points once ---- */
+    headerKeys.forEach((hkey, i) => {
+        const dpkey = namespace + ":" + hkey + ":" + version;
+        imported.data.decision_points[dpkey] = {
+            key: dpkey,
+            version: version,
+            namespace: namespace,
+	    name: headers[i],
+            schemaVersion: schemaVersion,
+            definition: headers[i], /* full header name */
+            values: []              /* value objects */
+        };
+
+        if (i === headerKeys.length - 1) {
+            imported.data.outcome = dpkey;
+        }
+    });
+
+    /* ---- per-column value maps ---- */
+    const valuemap = Array.from({ length: headers.length }, () => ({}));
+
+    rows.forEach(row => {
+        const rowMapping = {};
+
+        row.forEach((value, i) => {
+            const dpkey = namespace + ":" + headerKeys[i] + ":" + version;
+            const seen = valuemap[i];
+	    /* Safety net if value is empty make up some new value */
+	    if(!value)
+		value = Math.random().toString(32).substr(2);	    
+            /* incremental prefix key for value */
+            let key = value[0];
+            let j = 2;
+            while (seen[key] && seen[key] !== value) {
+                key = value.substr(0, j);
+                j++;
+            }
+
+            /* add new value to decision_point if needed */
+            if (!(key in seen)) {
+                imported.data.decision_points[dpkey].values.push({
+                    key,               /* incremental prefix */
+                    name: value,       /* display name */
+                    definition: value /* textual description for SSVC schema */
+                });
+                seen[key] = value;
+            }
+
+            /* add mapping for this row */
+            rowMapping[dpkey] = key;
+        });
+
+        imported.data.mapping.push(rowMapping);
+    });
+    topalert("Decision tree has been updated with "+
+	     imported.data.mapping.length+" possible decisions using "+detect_version+" CSV/TSV file, You can use it now!","success");
+    parse_json(imported.data);
+    SSVC.decision_trees.push(imported);
+    let opt_display = "Imported: " + filename +
+	" (Index: " + String(SSVC.decision_trees.length) + ")";
+    select_add_option($('#tree_samples'), String(SSVC.decision_trees.length - 1), opt_display);
+    return imported;
 }
 
 function add_invalid_feedback(xel,msg) {
@@ -1576,9 +1577,7 @@ function draw_graph() {
     if(showFullTree) {
 	var add_offset = 0
 	if(raw.length > 60 )
-	    add_offset = (raw.length - 60)*5
-	//margin.left = margin.left + (raw.length - 60)*2
-	//width = 1200 - margin.right - margin.left + add_offset*0.5
+	    add_offset = (raw.length - 60)*5;
 	height = 1300 - margin.top - margin.bottom + add_offset
     }
     duration = 750
@@ -1588,7 +1587,6 @@ function draw_graph() {
     diagonal = d3.svg.diagonal()
 	.projection(function(d) { return [d.y, d.x]; });
 
-    //xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     var default_translate =  "translate(" + margin.left + "," + margin.top + ")"
     var svg_width = width + margin.right + margin.left
     var svg_height = height + margin.top + margin.bottom
@@ -1634,18 +1632,18 @@ function check_children(d,a,b) {
 }
 function update(source) {
     var i = 0
-    // Compute the new tree layout.
+    /* Compute the new tree layout. */
     var nodes = tree.nodes(root).reverse()
     var links = tree.links(nodes)
 
-    // Normalize for fixed-depth.
+    /* Normalize for fixed-depth. */
     nodes.forEach(function(d) { d.y = d.depth * 200;})
 
-    // Update the nodes…
+    /* Update the nodes… */
     var node = svg.selectAll("g.node")
 	.data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-    // Enter any new nodes at the parent's previous position.
+    /* Enter any new nodes at the parent's previous position. */
     var nodeEnter = node.enter().append("g")
 	.attr("class", "node bof")
 	.attr("transform", function(d) {
@@ -1709,7 +1707,7 @@ function update(source) {
 	.style("fill","steelblue");
 
 
-    // Transition nodes to their new position.
+    /* Transition nodes to their new position. */
     var nodeUpdate = node.transition()
 	.duration(duration)
 	.attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
@@ -1742,7 +1740,7 @@ function update(source) {
     nodeUpdate.select("text")
 	.style("fill-opacity", 1);
 
-    // Transition exiting nodes to the parent's new position.
+    /* Transition exiting nodes to the parent's new position. */
     var nodeExit = node.exit().transition()
 	.duration(duration)
 	.attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
@@ -1754,17 +1752,10 @@ function update(source) {
     nodeExit.select("text")
 	.style("fill-opacity", 1e-6);
 
-    // Update the links…
+    /* Update the links… */
 
     var link = svg.selectAll("path.link")
-	.data(links, function(d) { if(d.target) return d.target.id; })
-    /*        .enter()
-              .append("g")
-              .attr("class", "link")
-    */
-    // Enter any new links at the parent's previous position.
-    //var linkx = link.enter().append("g").attr("class","pathlink").attr("d","")
-    //linkx.append("path")
+	.data(links, function(d) { if(d.target) return d.target.id; });
     link.enter().insert("path","g")
 	.attr("class", "link")
 	.attr("id", function(d) { return 'l'+Math.random().toString(36).substr(3); })
@@ -1775,14 +1766,14 @@ function update(source) {
 	.attr("d", function(d) {
 	    var o = {x: source.x0, y: source.y0};
 	    return diagonal({source: o, target: o});
-	})
+	});
 
-    // Transition links to their new position.
+    /* Transition links to their new position. */
     link.transition()
 	.duration(duration)
 	.attr("d", diagonal);
 
-    // Transition exiting nodes to the parent's new position.
+    /* Transition exiting nodes to the parent's new position. */
     link.exit().transition()
 	.duration(duration)
 	.attr("d", function(d) {
@@ -1791,7 +1782,7 @@ function update(source) {
 	})
 	.remove();
 
-    // Stash the old positions for transition.
+    /* Stash the old positions for transition. */
     nodes.forEach(function(d) {
 	d.x0 = d.x;
 	d.y0 = d.y;
@@ -1833,26 +1824,26 @@ function update_links() {
     d3.selectAll("path.link").each(function(w) {
 	var t = $(this);
 	var id=t.attr("id");
-	var xd = t.attr("d")
-	var csid = t.attr("csid")
-	var depth = parseInt(t.attr("ldeep")) || 0
-	var text = t.attr("ldata")
-	var pname = t.attr("kdata")
-	var xclass = "btext prechk-"+text
-	var mclass = $(this).attr("class")
+	var xd = t.attr("d");
+	var csid = t.attr("csid");
+	var depth = parseInt(t.attr("ldeep")) || 0;
+	var text = t.attr("ldata");
+	var pname = t.attr("kdata");
+	var xclass = "btext prechk-" + text;
+	var mclass = $(this).attr("class");
 	if((mclass) && mclass.indexOf("chosen") > -1) {
-	    xclass += " chosen"
+	    xclass += " chosen";
 	}
 	if(showFullTree)
-	    xclass += " fullTree"
+	    xclass += " fullTree";
 	d3.select("g")
-	    .insert("g","path.link").attr("class","pathlink cdepth-"+String(depth)).attr("id","x"+id)
-	    .append("path").attr("d",xd).attr("id","f"+id).attr("class","xlink")
-	// depth 4 => 70 , depth 0 => 40%
-	var doffset = parseInt(70 - (4-depth)*5.5)
-	var yoffset = -10
+	    .insert("g","path.link")
+	    .attr("class","pathlink cdepth-"+String(depth)).attr("id","x"+id)
+	    .append("path").attr("d",xd).attr("id","f"+id).attr("class","xlink");
+	var doffset = parseInt(70 - (4-depth)*5.5);
+	var yoffset = -10;
 	if(showFullTree)
-	    yoffset = -6
+	    yoffset = -6;
 	d3.select("g#x"+id).append("text").attr("dx",-6).attr("dy",yoffset).attr("class","gtext")
 	    .append("textPath").attr("href","#f"+id).attr("class",xclass)
 	    .attr("id","t"+id)
@@ -1862,9 +1853,7 @@ function update_links() {
 	    .on("click",pathclick)
 	    .on("mouseover",showdiv)
 	    .on("mouseout",hidediv);
-	//.each(function() { console.log("Completed") })
-	//$(this).remove() "fill","#17a2b8") "text-anchor","middle"
-    })
+    });
 }
 function showdiv(d) {
     var iconPos = this.getBoundingClientRect();
@@ -1890,7 +1879,6 @@ function showdiv(d) {
     if($(this).hasClass('opthide')) {
 	/* find depth-n*/
 	var idepth = Array.from(this.classList).find(a => a.indexOf("depth") == 0).replace("depth-","");
-	//console.log(idepth);
 	var intdepth = parseInt(idepth);
 	if(intdepth > 0) {
 	    var pdepth = intdepth - 1;
@@ -1907,9 +1895,6 @@ function showdiv(d) {
 	}
 	
     }
-    //name=name.replace(/\W/g,'_')
-    //console.log(name)
-    //console.log(vul_data)
     var addons = ''
     var safename = safedivname(name)
     /* Default left position*/
@@ -1963,14 +1948,10 @@ function dorightclick(d) {
 }
 function closeSiblings(d) {
     d.clickkill = true
-    if (!d.parent) return; // root case
-    /* 
-
-     */
+    if (!d.parent) return; 
     var x = d.parent.children
     d.parent._children = d.parent.children
     d.parent.children = [d]
-    //console.log(d.parent)
 }
 function revert(d) {
     var save_score = current_score.splice(0,d.depth);
@@ -2176,7 +2157,6 @@ function add_text(links) {
 	.attr("dy", ".35em")
 	.attr("text-anchor", "middle")
 	.text(function(d) {
-	    //console.log(d.target.name);
 	    return d.target.name;
 	});
 }
@@ -2278,7 +2258,6 @@ function export_pdf() {
 
 }
 function createPDF(vulnerability,cveinfo) {
-    //    Requirements for new updates for the ssvc-calc tool.
     var role = "Evaluator";
     var vulid = vulnerability;
     var includetree = true;
@@ -2336,15 +2315,12 @@ function createPDF(vulnerability,cveinfo) {
 	}
 	doc.circle(x, yOffset, cradius, "FD");
         q = doc.getStringUnitWidth(steps[i])
-	//#343a40
 	doc.setTextColor(0x11,0x3a,0x40);
 	doc.setFontSize(12);
-	//doc.setFont(undefined,'bold')
 	doc.text(steps[i],x-q*2,yOffset-5);
 	if (i < steps.length-1) {
 	    /* Not Final decision */
 	    doc.line(x+3,yOffset,x+3+34,yOffset)
-	    //#17a2b8 !important
 	    doc.setTextColor(0x17,0xa2,0xb8);
 	    doc.setFont("courier","bolditalic");
             doc.text(decisions[i],x+q*2,yOffset+4)
@@ -2352,9 +2328,7 @@ function createPDF(vulnerability,cveinfo) {
 	ij++;
     }
 
-    //    rgb(40, 167, 69);
     doc.setFont("courier");
-    //doc.setFontType("bolditalic");
     doc.setFont("courier",'bolditalic')
     var lastx = xOffset+ysteps*(ij-1)+10
     if(final_outcome in lcolors)
@@ -2387,7 +2361,6 @@ function createPDF(vulnerability,cveinfo) {
 	doc.setLineWidth(0.5);
 	doc.setDrawColor(0,0,255);
 	doc.line(xOffset+40,yOffset+41,xOffset+40+33,yOffset+41)
-	//doc.text(xOffset+40,yOffset+20,link);
 	doc.setTextColor(0,0,0);
     } else {
 	doc.text(vulnerability, xOffset+40, yOffset+40);
@@ -2433,7 +2406,6 @@ function createPDF(vulnerability,cveinfo) {
     } else {
 	ynow = ynow + 5
     }
-    //doc.text(cveinfo,xOffset+40,yOffset+45);
     doc.setFont("helvetica",'bold');
     doc.setFontSize(14);
     doc.text("Details",xOffset,ynow);
@@ -2489,7 +2461,6 @@ function createPDF(vulnerability,cveinfo) {
 	    ynow = ynow + 10;
             continue;
 	}	
-	//console.log(t[i].substr(f[0].length));
 	f = t[i].substr(f[0].length).match(/.{1,65}(\s|$)/g);
 	for (var j = 0; j<f.length; j++) {
 	    doc.setFont("courier",'normal')
@@ -2522,7 +2493,6 @@ function sigmoid(flen) {
     var p =[]
     for(var i=-8;i<8;i=i+0.3) {
 	y = flen*(1/(1+Math.exp(-0.5*i)))
-	//console.log(y,lasty,y-lasty);
 	p.push([0.8,y-lasty])
 	lasty = y;
     }
@@ -2530,7 +2500,6 @@ function sigmoid(flen) {
 }
 function sigmoid_connect(flen,xstart,yc,sl,m,doc) {
     /* sigmoid static set*/
-    //doc.text("a",xstart,150)
     var ax = export_schema;    
     var lasty = flen*(1/(1+Math.exp(0.5*8)));
     var p = sigmoid(flen);
@@ -2548,7 +2517,6 @@ function sigmoid_connect(flen,xstart,yc,sl,m,doc) {
     f = p.map(x=> [x[0],-1*x[1]])
     doc.lines(f,xstart,yc)
 
-    //doc.circle(xstart,yc,3,"FD")
     /*  Non edges nodes will use this color*/
     d_fillColor = "#b0c4de";
     d_drawColor = "#4682b4";
@@ -2680,7 +2648,6 @@ function make_complex_table(cdp,doc,ynow,clabels) {
     doc.setFontSize(10);
     doc.table(50, ynow, result, headers, { autoSize: false,
 					   printHeaders:false });
-    //doc.text("FF",15,ynow+55)
     return ynow+55;
 }
 
@@ -2689,7 +2656,6 @@ function appendtree(doc,dfilename) {
     doc.addPage("a4");
     window.circles = [];
     var ax = export_schema;
-    //ax.decision_points[ax.decision_points.length-1].options.forEach(d => { if("color" in d) colors[d.label] = d.color})
     doc.setFontSize(16);
     doc.setFont("helvetica",'bold');
     doc.setTextColor(0);
@@ -2783,16 +2749,12 @@ function appendtree(doc,dfilename) {
 	doc.setDrawColor(drawColor);
 	doc.setFillColor(fillColor);
 	circles.push([tlc,yc,2,"FD",drawColor,fillColor])
-	//doc.circle(tlc,yc,3,"FD");
     }
-    //doc.circle(circles[0][0],circles[0][1],circles[0][2],circles[0][3])
     circles.forEach((x) => {
 	doc.setDrawColor(x[4]);
 	doc.setFillColor(x[5]);
 	doc.circle(x[0],x[1],x[2],x[3])
     });
-    //console.log(circles);
-    //console.log(typeof(doc.circle))
     doc.addPage("a4");
     var ynow = 10;
     var q = 0;
@@ -2806,7 +2768,6 @@ function appendtree(doc,dfilename) {
 	    doc.addPage("a4");
 	    ynow = 20
 	}
-	//return 0;
 	doc.setFont("helvetica",'bold');
 	doc.setTextColor(0,0,0);
 	ynow = ynow + 10;
@@ -2863,7 +2824,6 @@ function appendtree(doc,dfilename) {
 		ynow = ynow + 6
 		return
 	    }
-	    //console.log(t[i].substr(f[0].length));
 	    f = tinfo.substr(f[0].length).match(/.{1,65}(\s|$)/g);
 	    for (var j = 0; j<f.length; j++) {
 		doc.setFont("courier",'normal')
