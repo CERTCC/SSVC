@@ -1,0 +1,13 @@
+In KEV v1.0.0 (cisa),System Exposure v1.0.1,High Value Asset v1.0.0,CISA Levels v1.1.0 (cisa)
+no,small,no,track
+yes,small,no,track
+no,controlled,no,track
+no,small,yes,track*
+yes,controlled,no,track*
+no,open,no,track*
+yes,small,yes,attend
+no,controlled,yes,attend
+yes,open,no,attend
+yes,controlled,yes,act
+no,open,yes,act
+yes,open,yes,act
