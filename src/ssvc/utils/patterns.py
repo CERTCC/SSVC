@@ -2,6 +2,7 @@
 """
 Provides python regular expressions and utility functions for SSVC-related patterns.
 """
+import ssvc.utils.namespace_patterns as namespace_patterns
 
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -30,52 +31,14 @@ VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|
 BCP_47_PATTERN = r"(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,8})(-[A-Za-z]{4})?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-[A-WY-Za-wy-z0-9](-[A-Za-z0-9]{2,8})+)*(-[Xx](-[A-Za-z0-9]{1,8})+)?|[Xx](-[A-Za-z0-9]{1,8})+|[Ii]-[Dd][Ee][Ff][Aa][Uu][Ll][Tt]|[Ii]-[Mm][Ii][Nn][Gg][Oo])"
 """A regular expression pattern for BCP-47 language tags."""
 
-
 # --- Namespace Regex Components ---
-
-# --- Length constraint ---
+# ---- Length constraint ----
 LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 
+# ---- define base patterns to be compatible with previously existing tests
+BASE_PATTERN = namespace_patterns.ns_core
+BASE_NS_PATTERN = namespace_patterns.base_ns
+EXT_SEGMENT_PATTERN = namespace_patterns.fragment_seg
 
-# fmt: off
-# --- the following section is generated with
-#  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf | \
-#    sed --expression='s/{,/{0,/g' --expression='s/\\\\#/\#/g'
-alnum = '[a-zA-Z0-9]'
-lower = '[a-z]'
-alnumlow = f'({lower}|[0-9])'
-dash = '-'
-alnumlowdash = f'({alnumlow}|{dash})'
-label = f'{alnumlow}(({alnumlowdash}){{0,61}}{alnumlow})?'
-reverse_dns = f'{label}(\\.{label})+'
-dot = '\\.'
-specialchar = f'({dot}|{dash})'
-fragment_seg = f'({alnumlow})+({specialchar}({alnumlow})+)*'
-x_name = f'{reverse_dns}#{fragment_seg}'
-x_base = f'x_{x_name}'
-ns_core = f'{lower}{alnumlow}(({specialchar})?({alnumlow})+)+'
-reg_base = f'{ns_core}(#{fragment_seg})?'
-base_ns = f'({x_base}|{reg_base})'
-singleton = '[0-9A-WY-Za-wy-z]'
-bcp47 = (
-    '(([a-zA-Z]{2,3}(-[a-zA-Z]{3}(-[a-zA-Z]{3}){0,2})?|[a-z'
-    'A-Z]{4,8})(-[a-zA-Z]{4})?(-([a-zA-Z]{2}|[0-9]{3}))?(-'
-    f'(({alnum}){{5,8}}|[0-9]({alnum}){{3}}))*(-{singleton}(-'
-    f'({alnum}){{2,8}})+)*(-[xX](-({alnum}){{2,8}})+)?|[xX](-'
-    f'({alnum}){{2,8}})+|i-default|i-mingo)'
-)
-translation = f'\\.({reverse_dns}|{x_name})\\${bcp47}'
-ext_seg = f'({bcp47}|\\.{x_name}|{translation})'
-lang_ext = f'(/|/{bcp47})'
-extensions = f'{lang_ext}((/{ext_seg})+)?'
-namespace = f'{base_ns}({extensions})?'
-# --- end of generated output
-# fmt: on
-
-# --- define base patterns to be compatible with previously existing tests
-BASE_PATTERN = ns_core
-BASE_NS_PATTERN = base_ns
-EXT_SEGMENT_PATTERN = fragment_seg
-
-# --- Combine all parts into the full namespace pattern ---
-NS_PATTERN_STR = rf"^{namespace}$"
+# ---- Combine all parts into the full namespace pattern ----
+NS_PATTERN_STR = rf"^{namespace_patterns.namespace}$"
