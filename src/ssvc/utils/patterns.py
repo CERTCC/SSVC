@@ -2,6 +2,7 @@
 """
 Provides python regular expressions and utility functions for SSVC-related patterns.
 """
+
 #  Copyright (c) 2025 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -49,13 +50,17 @@ _err = StringIO()
 _input_pth = Path(__file__).parent / "ssvc_namespace_pattern.abnf"
 _params = Params(
     input_path=_input_pth,
-    output_path = None,
+    output_path=None,
     fmt=Format.PYTHON_NESTED,
 )
 
-if run_abnf_to_regexp(params=_params, stdout=_abnf_python_code, stderr=_err) > 0:
+if (
+    run_abnf_to_regexp(params=_params, stdout=_abnf_python_code, stderr=_err)
+    > 0
+):
     raise RuntimeError(
-        f"Reading of {_input_pth} failed with {_err.getvalue()}")
+        f"Reading of {_input_pth} failed with {_err.getvalue()}"
+    )
 
 exec(_abnf_python_code.getvalue())
 
