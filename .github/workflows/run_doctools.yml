@@ -1,0 +1,49 @@
+name: "Run doctools on PR"
+
+on:
+  pull_request:
+    paths:
+      - 'src/ssvc/**'
+      - .github/workflows/run_doctools.yml
+
+permissions:
+  contents: write
+
+jobs:
+  run-doctools:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip uv
+          uv sync --dev --frozen
+
+      - name: Run doctools
+        run: |
+          # Remove stale decision point files so doctools generates a clean set
+          rm -rf data/json/decision_points
+          export PYTHONPATH=$(pwd)/src
+          uv run python -m ssvc.doctools --overwrite --datadir ./data
+
+      - name: Commit changes to data/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: regenerate data files via doctools [skip ci]"
+            git push
+          fi
