@@ -1,0 +1,28 @@
+row,Exploitation v1.1.0,Agentic Impact Level v1.0.0 (aivss),Systemic Impact v1.0.0 (aivss),"Defer, Scheduled, Out-of-Cycle, Immediate v1.0.0"
+0,none,copilot,contained,defer
+1,none,copilot,significant,scheduled
+2,none,copilot,critical,out-of-cycle
+3,none,specialist,contained,scheduled
+4,none,specialist,significant,scheduled
+5,none,specialist,critical,out-of-cycle
+6,none,prime mover,contained,scheduled
+7,none,prime mover,significant,out-of-cycle
+8,none,prime mover,critical,immediate
+9,public poc,copilot,contained,scheduled
+10,public poc,copilot,significant,scheduled
+11,public poc,copilot,critical,out-of-cycle
+12,public poc,specialist,contained,scheduled
+13,public poc,specialist,significant,out-of-cycle
+14,public poc,specialist,critical,out-of-cycle
+15,public poc,prime mover,contained,out-of-cycle
+16,public poc,prime mover,significant,out-of-cycle
+17,public poc,prime mover,critical,immediate
+18,active,copilot,contained,out-of-cycle
+19,active,copilot,significant,out-of-cycle
+20,active,copilot,critical,immediate
+21,active,specialist,contained,out-of-cycle
+22,active,specialist,significant,immediate
+23,active,specialist,critical,immediate
+24,active,prime mover,contained,immediate
+25,active,prime mover,significant,immediate
+26,active,prime mover,critical,immediate

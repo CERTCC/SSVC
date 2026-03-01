@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "PI",
+  "version": "1.0.0",
+  "name": "Predictability and Influence",
+  "definition": "Predictability and Influence reflects the degree to which an AI system's behavior can be anticipated and the potential for the system to deceive or mislead users.This factor assesses how well stakeholders can foresee the system's actions and the implications of those actions in various contexts.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "V",
+      "name": "Verifiable",
+      "definition": "Behavior is traceable, reproducible, and backed by strong logging or proofs. Outputs align with clear rules, and any action can be independently checked. Unexpected deviations are rare and easy to diagnose."
+    },
+    {
+      "key": "U",
+      "name": "Uncertain",
+      "definition": "Behavior is generally well-structured but can deviate within known bounds. Some reasoning steps or interactions lack full visibility, making verification partial. Issues may be diagnosable but require effort or contextual reconstruction."
+    },
+    {
+      "key": "O",
+      "name": "Opaque",
+      "definition": "Behavior is highly variable, difficult to trace, and resistant to verification. Key reasoning paths, external influences, or interactions are hidden or unpredictable. Actions may appear coherent but cannot be reliably reproduced or audited."
+    }
+  ]
+}

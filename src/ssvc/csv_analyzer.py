@@ -69,7 +69,7 @@ import sklearn.inspection
 from sklearn.base import clone
 from sklearn.tree import DecisionTreeClassifier
 
-from ssvc.utils.toposort import graph_from_value_tuples
+from ssvc.utils.graph_labeling import graph_from_value_tuples
 
 logger = logging.getLogger(__name__)
 

@@ -24,7 +24,7 @@ from unittest.mock import patch
 
 import networkx as nx
 
-from ssvc.utils import toposort
+import ssvc.utils.graph_labeling
 
 
 def _diff(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
@@ -153,11 +153,140 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(_off_by_one(t4))
         self.assertFalse(_off_by_one(t5))
 
-    @patch("ssvc.utils.toposort.graph_from_value_tuples")
+    def test_normalize_columns(self):
+        import numpy as np
+        from itertools import product
+
+        column_1 = [0, 1]
+        column_2 = [0, 1, 2]
+        column_3 = [0, 1, 2, 3]
+        column_4 = [0, 1, 2, 3, 4]
+        columns = [column_1, column_2, column_3, column_4]
+
+        data = np.array(list(product(*columns)))
+
+        # confirm shape is as expected before normalization
+        from math import prod
+
+        n_rows = prod([len(c) for c in columns])
+        n_cols = len(columns)
+        self.assertEqual(data.shape, (n_rows, n_cols))
+
+        normalized = ssvc.utils.graph_labeling._normalize_columns(data)
+
+        # confirm normalized shape is the same
+        self.assertEqual(normalized.shape, data.shape)
+
+        # confirm normalized is an array of floats
+        self.assertEqual(normalized.dtype, float)
+
+        # confirm min of each column is 0.0
+        np.testing.assert_array_almost_equal(
+            normalized.min(axis=0), np.zeros(n_cols)
+        )
+
+        # confirm max of each column is 1.0
+        np.testing.assert_array_almost_equal(
+            normalized.max(axis=0), np.ones(n_cols)
+        )
+
+        expected = np.array(
+            list(
+                product(
+                    [0.0, 1.0],
+                    [0.0, 0.5, 1.0],
+                    [0.0, 0.33333333, 0.66666667, 1.0],
+                    [0.0, 0.25, 0.5, 0.75, 1.0],
+                )
+            )
+        )
+        self.assertEqual(data.shape, expected.shape)
+
+        # confirm values are almost equal
+        np.testing.assert_array_almost_equal(normalized, expected)
+
+    def test_magnitude_quantile_labels_from_graph(self):
+
+        value_ranges = [3, 2, 4]  # keep these small for testing
+        values = [tuple(range(r)) for r in value_ranges]
+
+        G = ssvc.utils.graph_labeling.graph_from_value_tuples(values)
+
+        K = 4  # number of quantiles
+
+        expected_node_count = math.prod(value_ranges)
+        self.assertEqual(len(G.nodes), expected_node_count)
+
+        min_node = tuple(0 for _ in values)
+        max_node = tuple(len(v) - 1 for v in values)
+
+        self.assertIn(min_node, G.nodes)
+        self.assertIn(max_node, G.nodes)
+
+        # in-degree of min_node should be 0
+        self.assertEqual(G.in_degree(min_node), 0)
+        # out-degree of min_node should be > 0
+        self.assertGreater(G.out_degree(min_node), 0)
+
+        # in-degree of max_node should be > 0
+        self.assertGreater(G.in_degree(max_node), 0)
+        # out-degree of max_node should be 0
+        self.assertEqual(G.out_degree(max_node), 0)
+
+        labels = (
+            ssvc.utils.graph_labeling._magnitude_quantile_labels_from_graph(
+                G=G,
+                K=K,
+                norm_func=ssvc.utils.graph_labeling.euclidean_distances,
+            )
+        )
+
+        self.assertIsInstance(labels, dict)
+        self.assertEqual(len(labels), len(G.nodes))
+
+        # check that all labels are in the expected range
+        for node, label in labels.items():
+            self.assertIn(node, G.nodes)
+            self.assertIsInstance(label, int)
+            self.assertGreaterEqual(label, 0)
+            self.assertLess(label, K)
+
+        # for each pair of nodes, check that if one is off by one from the other,
+        # the label of the one with the higher magnitude is greater than or equal to the other
+        for u, v in itertools.product(G.nodes(), G.nodes()):
+            if _off_by_one(_diff(u, v)):
+                mag_u = math.sqrt(sum(x**2 for x in u))
+                mag_v = math.sqrt(sum(x**2 for x in v))
+                if mag_u >= mag_v:
+                    self.assertGreaterEqual(
+                        labels[u],
+                        labels[v],
+                        f"Expected label of {u} ({labels[u]}) to be >= label of {v} ({labels[v]})",
+                    )
+                else:
+                    self.assertGreaterEqual(
+                        labels[v],
+                        labels[u],
+                        f"Expected label of {v} ({labels[v]}) to be >= label of {u} ({labels[u]})",
+                    )
+
+        # every path through G should have non-decreasing labels
+        for path in nx.all_simple_paths(G, source=min_node, target=max_node):
+            path_labels = [labels[node] for node in path]
+            for i in range(len(path_labels) - 1):
+                self.assertLessEqual(
+                    path_labels[i],
+                    path_labels[i + 1],
+                    f"Expected non-decreasing labels along path, but found {path_labels[i]} > {path_labels[i + 1]}",
+                )
+
+    @patch("ssvc.utils.graph_labeling.graph_from_value_tuples")
     def test_graph_from_dplist(self, mock_graph_from_value_tuples):
         mock_graph_from_value_tuples.return_value = nx.DiGraph()
 
-        result = toposort.graph_from_dplist(self.decision_points)
+        result = ssvc.utils.graph_labeling.graph_from_dplist(
+            self.decision_points
+        )
 
         self.assertIsInstance(result, nx.DiGraph)
 
@@ -179,7 +308,7 @@ class MyTestCase(unittest.TestCase):
 
         node_count = math.prod([len(v) for v in values])
 
-        G = toposort.graph_from_value_tuples(values)
+        G = ssvc.utils.graph_labeling.graph_from_value_tuples(values)
         self.assertIsInstance(G, nx.DiGraph)
         self.assertEqual(
             len(G.nodes), node_count
@@ -200,84 +329,15 @@ class MyTestCase(unittest.TestCase):
                 )
 
     def test_dplist_to_value_lookup(self):
-        value_lookup = toposort.dplist_to_value_lookup(self.decision_points)
+        value_lookup = ssvc.utils.graph_labeling.dplist_to_value_lookup(
+            self.decision_points
+        )
 
         expected = [
             {0: self.dp1.values[0].key, 1: self.dp1.values[1].key},
             {0: self.dp2.values[0].key, 1: self.dp2.values[1].key},
         ]
         self.assertEqual(value_lookup, expected)
-
-    def test_dplist_to_lookup(self):
-        dp_lookup = toposort.dplist_to_lookup(self.decision_points)
-
-        expected = {
-            0: self.dp1.id,
-            1: self.dp2.id,
-        }
-        self.assertEqual(dp_lookup, expected)
-
-    def lookup_value(self):
-        value_lookup = toposort.dplist_to_value_lookup(self.decision_points)
-        t = (0, 1)
-        result = toposort.lookup_value(t, value_lookup)
-        expected = (self.dp1.values[0].key, self.dp2.values[1].key)
-        self.assertEqual(result, expected)
-
-    def test_tuple_to_dict(self):
-        dp_lookup = toposort.dplist_to_lookup(self.decision_points)
-        value_lookup = toposort.dplist_to_value_lookup(self.decision_points)
-
-        nodes = list(
-            itertools.product(
-                range(len(self.dp1.values)), range(len(self.dp2.values))
-            )
-        )
-        for node in nodes:
-            node = tuple(node)
-            vals = toposort.lookup_value(node, value_lookup)
-            result = toposort.tuple_to_dict(vals, dp_lookup)
-
-            expected = {
-                self.dp1.id: self.dp1.values[node[0]].key,
-                self.dp2.id: self.dp2.values[node[1]].key,
-            }
-            self.assertEqual(result, expected)
-
-    def test_dplist_to_toposort(self):
-        dplist = self.decision_points
-        result = toposort.dplist_to_toposort(dplist)
-        # result is a list of dicts of str:str
-        self.assertIsInstance(result, list)
-        self.assertTrue(all(isinstance(item, dict) for item in result))
-        self.assertTrue(
-            all(
-                isinstance(k, str) and isinstance(v, str)
-                for item in result
-                for k, v in item.items()
-            )
-        )
-
-        # check the shape of the result
-        # length of each dict should match the number of decision points
-        self.assertTrue(all(len(item) == len(dplist) for item in result))
-        # length of result should be the product of the number of values in each decision point
-        expected_length = math.prod(len(dp.values) for dp in dplist)
-        self.assertEqual(len(result), expected_length)
-
-        # lowest item should be V1,VA
-        expected_lowest = {
-            self.dp1.id: self.dp1.values[0].key,
-            self.dp2.id: self.dp2.values[0].key,
-        }
-        self.assertEqual(result[0], expected_lowest)
-
-        # highest item should be V2,VB
-        expected_highest = {
-            self.dp1.id: self.dp1.values[-1].key,
-            self.dp2.id: self.dp2.values[-1].key,
-        }
-        self.assertEqual(result[-1], expected_highest)
 
 
 if __name__ == "__main__":

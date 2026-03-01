@@ -24,6 +24,12 @@ nav:
           - About Coordination: 'howto/coordination_intro.md'
           - Coordination Triage: 'howto/coordination_triage_decision.md'
           - Publication Decision: 'howto/publication_decision.md'
+        - AIVSS Model:
+          - Intro: 'howto/aivss/index.md'
+          - Agentic Impact Level Model: 'howto/aivss/agentic_impact.md'
+          - Execution Power Model: 'howto/aivss/exec_power.md'
+          - Environment and Adaptation Model: 'howto/aivss/env_adapt.md'
+          - Predictability and Influence Model: 'howto/aivss/predict_influence.md'
         - CVSS v4 Analyst Models:
             - About CVSS v4: 'howto/cvss_v4/index.md'
             - Equivalence Set 1: 'howto/cvss_v4/eq1.md'
@@ -130,6 +136,27 @@ nav:
             - Report Confidence: 'reference/decision_points/cvss/report_confidence.md'
             - Scope: 'reference/decision_points/cvss/scope.md'
             - Target Distribution: 'reference/decision_points/cvss/target_distribution.md'
+      - AIVSS-based decision points:
+          - Agentic Impact Level: 'reference/decision_points/aivss/agentic_impact_level.md'
+          - Systemic Impact: 'reference/decision_points/aivss/systemic_impact.md'
+          - Execution Power:
+            - 'reference/decision_points/aivss/execution_power.md'
+            - Autonomy: 'reference/decision_points/aivss/autonomy_level.md'
+            - Tool Use: 'reference/decision_points/aivss/tool_use_level.md'
+            - Self-Modification: 'reference/decision_points/aivss/self_modification_level.md'
+            - Goal-Driven Planning: 'reference/decision_points/aivss/goal_driven_planning_level.md'
+          - Environment and Adaptation:
+            - 'reference/decision_points/aivss/environment_and_adaptation.md'
+            - Memory: 'reference/decision_points/aivss/memory_level.md'
+            - Contextual Awareness: 'reference/decision_points/aivss/contextual_awareness_level.md'
+            - Dynamic Identity: 'reference/decision_points/aivss/dynamic_identity_level.md'
+            - Multi-Agent Interactions: 'reference/decision_points/aivss/multi_agent_interactions_level.md'
+          - Predictability and Influence:
+            - 'reference/decision_points/aivss/predictability_and_influence.md'
+            - Non-Determinism: 'reference/decision_points/aivss/non_determinism_level.md'
+            - Opacity & Reflexivity: 'reference/decision_points/aivss/opacity_reflexivity_level.md'
+            - Verification Capability: 'reference/decision_points/aivss/verification_capability_level.md'
+            - Deceptiveness Potential: 'reference/decision_points/aivss/deceptiveness_potential_level.md'
       - Outcomes: 'reference/decision_points/outcomes.md'
     - Code:
         - Intro: 'reference/code/index.md'

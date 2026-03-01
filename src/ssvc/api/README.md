@@ -53,4 +53,3 @@ This will start the FastAPI server in a Docker container.
 > If you make changes to the code, you'll need to rebuild the Docker image
 > using `docker-compose build api` before restarting the container. Or else
 > use `docker-compose up --build api` to build and start in one command.
-

@@ -1,0 +1,25 @@
+{
+  "namespace": "aivss",
+  "key": "VC",
+  "version": "1.0.0",
+  "name": "Verification Capability",
+  "definition": "Indicates whether the system’s critical properties can be formally or practically verified.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "P",
+      "name": "Provable",
+      "definition": "Critical safety or correctness invariants can be verified."
+    },
+    {
+      "key": "K",
+      "name": "Key Invariants Verifiable",
+      "definition": "Some critical properties can be verified, but not all."
+    },
+    {
+      "key": "U",
+      "name": "Unverifiable",
+      "definition": "Cannot prove correctness or invariants in practice."
+    }
+  ]
+}
