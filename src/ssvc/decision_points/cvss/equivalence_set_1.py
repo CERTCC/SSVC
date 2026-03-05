@@ -2,7 +2,7 @@
 """
 Provides an object representing the CVSS Equivalence Set 1 as a decision point.
 """
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,

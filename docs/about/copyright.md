@@ -1,4 +1,4 @@
-Copyright 2025 Carnegie Mellon University.
+Copyright 2026 Carnegie Mellon University.
 
 This material is based upon work funded and supported by the Department of Homeland Security under Contract No. FA8702-15-D-0002 with Carnegie Mellon University for the operation of the Software Engineering Institute, a federally funded research and development center sponsored by the United States Department of Defense.
 
