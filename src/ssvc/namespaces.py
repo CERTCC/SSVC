@@ -4,7 +4,7 @@ SSVC objects use namespaces to distinguish between objects that arise from diffe
 stakeholders or analytical category sources. This module defines the official namespaces
 for SSVC and provides a method to validate namespace values.
 """
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
