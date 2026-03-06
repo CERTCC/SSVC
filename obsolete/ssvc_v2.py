@@ -4,7 +4,7 @@ file: ssvc_v2
 author: adh
 created_at: 3/23/21 3:23 PM
 """
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
