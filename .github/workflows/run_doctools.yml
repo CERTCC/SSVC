@@ -11,6 +11,8 @@ permissions:
 
 jobs:
   run-doctools:
+    # Skip when the auto-commit from this workflow triggers a re-run
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +38,20 @@ jobs:
           export PYTHONPATH=$(pwd)/src
           uv run python -m ssvc.doctools --overwrite --datadir ./data
 
+      - name: Fail if fork PR has uncommitted data/ changes
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data/ changes detected."
+          else
+            echo "::error::This PR is from a fork and data/ files need to be regenerated."
+            echo "::error::Please run 'make regenerate_json' locally and push the resulting data/ changes to your PR branch."
+            exit 1
+          fi
+
       - name: Commit changes to data/
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -44,6 +59,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: regenerate data files via doctools [skip ci]"
+            git commit -m "chore: regenerate data files via doctools"
             git push
           fi
