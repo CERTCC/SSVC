@@ -21,6 +21,10 @@ Provides python regular expressions and utility functions for SSVC-related patte
 #  This Software includes and/or makes use of Third-Party Software each
 #  subject to its own license.
 #  DM24-0278
+from io import StringIO
+from pathlib import Path
+
+from abnf_to_regexp.main import run as run_abnf_to_regexp, Params, Format
 
 # from https://semver.org/
 VERSION_PATTERN = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
@@ -37,40 +41,32 @@ BCP_47_PATTERN = r"(([A-Za-z]{2,3}(-[A-Za-z]{3}(-[A-Za-z]{3}){0,2})?|[A-Za-z]{4,
 LENGTH_CHECK_PATTERN = r"(?=.{3,1000}$)"
 
 
-# fmt: off
-# --- the following section is generated with
-#  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf | \
-#    sed --expression='s/{,/{0,/g' --expression='s/\\\\#/\#/g'
-alnum = '[a-zA-Z0-9]'
-lower = '[a-z]'
-alnumlow = f'({lower}|[0-9])'
-dash = '-'
-alnumlowdash = f'({alnumlow}|{dash})'
-label = f'{alnumlow}(({alnumlowdash}){{0,61}}{alnumlow})?'
-reverse_dns = f'{label}(\\.{label})+'
-dot = '\\.'
-specialchar = f'({dot}|{dash})'
-fragment_seg = f'({alnumlow})+({specialchar}({alnumlow})+)*'
-x_name = f'{reverse_dns}#{fragment_seg}'
-x_base = f'x_{x_name}'
-ns_core = f'{lower}{alnumlow}(({specialchar})?({alnumlow})+)+'
-reg_base = f'{ns_core}(#{fragment_seg})?'
-base_ns = f'({x_base}|{reg_base})'
-singleton = '[0-9A-WY-Za-wy-z]'
-bcp47 = (
-    '(([a-zA-Z]{2,3}(-[a-zA-Z]{3}(-[a-zA-Z]{3}){0,2})?|[a-z'
-    'A-Z]{4,8})(-[a-zA-Z]{4})?(-([a-zA-Z]{2}|[0-9]{3}))?(-'
-    f'(({alnum}){{5,8}}|[0-9]({alnum}){{3}}))*(-{singleton}(-'
-    f'({alnum}){{2,8}})+)*(-[xX](-({alnum}){{2,8}})+)?|[xX](-'
-    f'({alnum}){{2,8}})+|i-default|i-mingo)'
+# use abnf-to-regexp as library to catch the output str of the equivalent of
+#  abnf-to-regexp --format python-nested -i ssvc_namespace_pattern.abnf
+# and execute it as python code
+
+_abnf_python_code = StringIO()
+_err = StringIO()
+_input_pth = Path(__file__).parent / "ssvc_namespace_pattern.abnf"
+_params = Params(
+    input_path=_input_pth,
+    output_path=None,
+    fmt=Format.PYTHON_NESTED,
 )
-translation = f'\\.({reverse_dns}|{x_name})\\${bcp47}'
-ext_seg = f'({bcp47}|\\.{x_name}|{translation})'
-lang_ext = f'(/|/{bcp47})'
-extensions = f'{lang_ext}((/{ext_seg})+)?'
-namespace = f'{base_ns}({extensions})?'
-# --- end of generated output
-# fmt: on
+
+if (
+    run_abnf_to_regexp(params=_params, stdout=_abnf_python_code, stderr=_err)
+    > 0
+):
+    raise RuntimeError(
+        f"Reading of {_input_pth} failed with {_err.getvalue()}"
+    )
+
+exec(_abnf_python_code.getvalue())
+
+#  we do not need them anymore
+del _abnf_python_code
+del _err
 
 # --- define base patterns to be compatible with previously existing tests
 BASE_PATTERN = ns_core
