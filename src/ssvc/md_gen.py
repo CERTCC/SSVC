@@ -4,7 +4,7 @@ file: md_gen
 author: adh
 created_at: 2/17/25 4:25 PM
 """
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -26,7 +26,7 @@ created_at: 2/17/25 4:25 PM
 import os
 
 
-#  Copyright (c) 2025 Carnegie Mellon University and Contributors.
+#  Copyright (c) 2026 Carnegie Mellon University and Contributors.
 #  - see Contributors.md for a full list of Contributors
 #  - see ContributionInstructions.md for information on how you can Contribute to this project
 #  Stakeholder Specific Vulnerability Categorization (SSVC) is
