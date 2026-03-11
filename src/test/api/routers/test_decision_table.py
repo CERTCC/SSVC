@@ -19,7 +19,7 @@
 import json
 import unittest
 
-from fastapi import HTTPException
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from ssvc.api.v1.routers import decision_table
@@ -30,7 +30,9 @@ from ssvc.registry.base import SsvcObjectRegistry
 
 class TestDecisionPointAPI(unittest.TestCase):
     def setUp(self):
-        self.client = TestClient(decision_table.router)
+        app = FastAPI()
+        app.include_router(decision_table.router)
+        self.client = TestClient(app)
 
         # create a new registry for testing
         self.r = SsvcObjectRegistry(
@@ -110,8 +112,8 @@ class TestDecisionPointAPI(unittest.TestCase):
         self.assertEqual(expected, response.json())
 
     def test_get_decision_point_by_id_bad_id(self):
-        with self.assertRaises(HTTPException):
-            self.client.get("/decision_table?id=bad_id_format")
+        response = self.client.get("/decision_table?id=bad_id_format")
+        self.assertEqual(400, response.status_code)
 
 
 if __name__ == "__main__":
