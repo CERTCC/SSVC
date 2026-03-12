@@ -1,0 +1,58 @@
+# **SSVC: The Human-Scale Bottleneck in Automated Vulnerability Response**
+
+As vulnerability response processes become increasingly saturated with automation—from AI-driven data collection to sophisticated analysis—the **Stakeholder-Specific Vulnerability Categorization (SSVC)** model is intentionally designed to serve as a crucial, human-scale bottleneck. This approach ensures that while the process is efficient and automated, the core decision-making remains transparent, accountable, and aligned with organizational risk appetite, providing a necessary bridge between technical data and business policy.
+
+# **Condensing Complexity into Human-Scale Decisions**
+
+The initial stages of vulnerability response—data collection and analysis—often involve vast amounts of information, advanced data sharing formats, and powerful analytical tools, increasingly including AI agents and Large Language Models (LLMs). SSVC's core function is to condense this extensive, complex dataset into a small, manageable set of **decision points**.
+
+These decision points possess several key characteristics that make them suitable for human oversight and policy definition:
+
+* **Densely Defined and Ordinal:** Each decision point uses values that are ordered (ordinal variables), moving from least likely to most likely to imply action (e.g., Low, Medium, High). This ordering provides a clear, qualitative progression without the mathematical properties of intervals.  
+* **Orthogonal and Independent:** The chosen decision points capture unique dimensions of the problem. By minimizing conceptual overlap, the model ensures that each dimension contributes independently to the final outcome, keeping the overall decision table compact and easier to reason about. The goal is to have completely independent decision points to reduce ambiguity.  
+* **Chunky Values:** To prevent the decision space from becoming unmanageable, decision points are limited to a small number of values, typically two to five. This restriction keeps the size of the final decision table small, as the total table size is the product of the value counts for each decision point.
+
+## **The Decision Table: Policy as Code**
+
+By defining a set of orthogonal, ordered decision points, SSVC creates a **partial order** over the entire input space—an enumeration of all possible combinations of decision point values. This partial order is then mapped onto a predefined set of **outcome sets** via a **decision table**.
+
+The decision table serves as the codified organizational policy. The outcomes are also ordered and typically represent service-level expectations (SLEs), priorities (e.g., Low, Medium, Critical), or prescribed actions (e.g., Defer, Scheduled, Out-of-Cycle, Immediate). This mapping of inputs to output values defines the policy.
+
+Key criteria for the decision table design include:
+
+| Criterion | Rationale                                                                                                                                                                                                                 |
+| :---- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Small Size** | Avoids complexity; keeps the number of questions required for analysis minimal (ideally 2-7 inputs, not dozens). Collecting and discriminating between dozens of values comes at an unnecessary cost.                     |
+| **Orthogonal Inputs** | Ensures inputs are independent, reducing ambiguity and overlap.                                                                                                                                                           |
+| **Chunky Values** | Limiting values per input (2-5) prevents exponential growth of the table size ($3 \times 3 \times 3 = 27$ rows; $4 \times 3 \times 3 \times 3 = 108$ rows).                                                         |
+| **Understandability** | Decision points must be understandable to non-technical risk owners, focusing on business impact rather than technical specifics (e.g., "Criticality of Affected System" instead of "Buffer Overflow vs. SQL Injection"). |
+
+## **The Role of the Human in a Machine-Driven World**
+
+The concept of SSVC as a human-scale bottleneck means that the complexity of the automated threat landscape is filtered through a framework **designed by humans, for humans, and understood by humans**.
+
+**1\. Accountability and Risk Alignment:**  
+The decision table provides an explicit, non-ambiguous link between technical vulnerability characteristics and organizational risk appetite. This structure facilitates crucial conversations between technical implementers (responsible for patching) and risk owners (CISO, IT management, senior management), transferring responsibility from technical staff making proxy judgments to risk owners defining explicit policy.
+
+* **Before SSVC:** Technical staff make proxy judgments based on complex scores (e.g., CVSS 7.6 vs. 5.9), which risk owners often don't fully comprehend.  
+* **With SSVC:** Decisions are explained using comprehensible terms: "We are responding immediately because this has **High Technical Impact** and affects a **Critical Central Server**. This aligns with our established policy." The risk owner can also explain this policy up to their management.
+
+**2\. Governance and Policy Refinement:**  
+The SSVC model is designed for straightforward modification, enabling policy owners to easily adapt their response posture when needed. Changes are typically managed through predictable steps. This process ensures that when a risk owner desires a change, the modification to the policy (the decision table) can be clearly executed and understood.
+
+| Modification Type | Impact on Table Size and Complexity |
+| :---- | :---- |
+| **Adjusting Outcome Labels** | Simple fix; maintain existing inputs and values. Requires technical check to ensure partial order causality is maintained (e.g., low-risk inputs cannot have high-priority outcomes). |
+| **Adding/Reducing Values** | Small, measurable change. Adding a value increases the table size additively (e.g., $3 \times 3 \times 3 = 27$ to $4 \times 3 \times 3 = 36$). |
+| **Adding a Decision Point** | Multiplicative increase in table size (e.g., $3 \times 3 \times 3 = 27$ to $3 \times 3 \times 3 \times 3 = 81$). Requires a more involved policy review. |
+
+## **SSVC is Not a Process Bottleneck**
+
+Crucially, SSVC being a "human-scale bottleneck" does **not** mean it forces a human to manually review every decision. The decision table, once defined, is entirely automatable.
+
+Automation can exist throughout the entire response workflow:
+
+* **Input Automation:** AI or LLMs can perform the "reading comprehension test" of analyzing raw vulnerability data and mechanically selecting the correct values for the SSVC decision points.  
+* **Output Automation:** The prioritized outcome from the SSVC table (e.g., "Immediate") can feed directly into automated patching, ticketing, or software fix development systems.
+
+SSVC acts as a fixed, non-ambiguous interface. The "human scale" element is in the **design and governance** of this interface, ensuring human accountability and understanding of the decision-making logic. The table's fixed structure means there is no ambiguity from a human's understanding standpoint—you know what the output will be based on the defined inputs and policy. It is the locus where technical reality meets organizational policy. The human is in the loop defining the decision space, not necessarily every single decision.
