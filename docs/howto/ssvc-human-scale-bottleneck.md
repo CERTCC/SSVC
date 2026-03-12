@@ -2,9 +2,34 @@
 
 As vulnerability response processes become increasingly saturated with automation—from AI-driven data collection to sophisticated analysis—the **Stakeholder-Specific Vulnerability Categorization (SSVC)** model is intentionally designed to serve as a crucial, human-scale bottleneck. This approach ensures that while the process is efficient and automated, the core decision-making remains transparent, accountable, and aligned with organizational risk appetite, providing a necessary bridge between technical data and business policy.
 
+```mermaid
+flowchart LR
+
+subgraph dm[Data Mapping]
+    collect[Collect Lots of Data]
+end
+subgraph ssvc[SSVC<br/>Human-Scale]
+    dps[SSVC Decision Points]
+    model[SSVC Decision Table]
+end
+subgraph use[Respond]
+    apply[Decisions]
+end
+gov[Governance<br/>Human-Scale]
+collect -->|maps<br/>onto| dps
+dps -->|input to| model
+model -->|defines| apply
+gov -->|refines| ssvc
+use -->|informs| gov
+```
+
+On the left, [Data Mapping](bootstrap/collect.md) funnels large-scale data collection into the small set of SSVC decision points.
+On the right, [Use & Respond](bootstrap/use.md) fans the model's outputs out into operational decisions at scale.
+SSVC sits in the middle as the human-scale interface where organizational policy is defined and refined.
+
 ## **Condensing Complexity into Human-Scale Decisions**
 
-The initial stages of vulnerability response—data collection and analysis—often involve vast amounts of information, advanced data sharing formats, and powerful analytical tools, increasingly including AI agents and Large Language Models (LLMs). SSVC's core function is to condense this extensive, complex dataset into a small, manageable set of **decision points**.
+The initial stages of vulnerability response—[data collection and mapping](bootstrap/collect.md)—often involve vast amounts of information, advanced data sharing formats, and powerful analytical tools, increasingly including AI agents and Large Language Models (LLMs). SSVC's core function is to condense this extensive, complex dataset into a small, manageable set of **decision points**.
 
 These decision points possess several key characteristics that make them suitable for human oversight and policy definition:
 
@@ -40,11 +65,31 @@ The decision table provides an explicit, unambiguous link between technical vuln
 **2\. Governance and Policy Refinement:**  
 The SSVC model is designed for straightforward modification, enabling policy owners to easily adapt their response posture when needed. Changes are typically managed through predictable steps. This process ensures that when a risk owner desires a change, the modification to the policy (the decision table) can be clearly executed and understood.
 
+The SSVC governance loop—described in detail in the [Prepare](bootstrap/prepare.md#establish-governance) step of the Getting Started guide—is what makes this refinement practical. Because the decision table is small and explicit, conversations about policy changes stay grounded:
+
+> *"Why did we respond that way?"*  
+> *"Because conditions A, B, and C were all met."*  
+> *"I think we should have responded differently in that case."*  
+> *"Should we add a new condition D to every decision, or just re-label the outcome for the row where (A, B, C) applies?"*
+
+This kind of structured conversation is exactly what SSVC is designed to enable. A lightweight governance process periodically reviews each element of the model:
+
+- Are the **outcomes** still relevant to the organization?
+- Are the **decision points** capturing the right dimensions of the problem?
+- Does the **decision table** still reflect how the organization wants to make decisions?
+    - Have there been cases where the table led to a decision that was later regretted?
+    - Are there new constraints or requirements not yet captured?
+- Is the **[data mapping](bootstrap/collect.md)** still appropriate—are the right data sources being used to assign values to decision points?
+
+Depending on the review, adjustments can be made to any layer of the model. The impact of those adjustments is predictable:
+
 | Modification Type | Impact on Table Size and Complexity |
 | :---- | :---- |
 | **Adjusting Outcome Labels** | Simple fix; maintain existing inputs and values. Requires technical check to ensure partial order causality is maintained (e.g., low-risk inputs cannot have high-priority outcomes). |
 | **Adding/Reducing Values** | Small, measurable change. Adding a value increases the table size additively (e.g., $3 \times 3 \times 3 = 27$ to $4 \times 3 \times 3 = 36$). |
 | **Adding a Decision Point** | Multiplicative increase in table size (e.g., $3 \times 3 \times 3 = 27$ to $3 \times 3 \times 3 \times 3 = 81$). Requires a more involved policy review. |
+
+Crucially, governance should involve the right stakeholders. Risk owners must be involved in reviewing and adjusting the decision table itself, while vulnerability management and IT security teams are best positioned to review the data mapping and decision point definitions. Operational feedback from [Use & Respond](bootstrap/use.md) provides the empirical basis for identifying where the model needs refinement.
 
 ## **SSVC is Not a Process Bottleneck**
 
@@ -52,7 +97,7 @@ Crucially, SSVC being a "human-scale bottleneck" does **not** mean it forces a h
 
 Automation can exist throughout the entire response workflow:
 
-- **Input Automation:** AI or LLMs can perform the "reading comprehension test" of analyzing raw vulnerability data and mechanically selecting the correct values for the SSVC decision points.  
-- **Output Automation:** The prioritized outcome from the SSVC table (e.g., "Immediate") can feed directly into automated patching, ticketing, or software fix development systems.
+- **Input Automation:** AI or LLMs can perform the "reading comprehension test" of analyzing raw vulnerability data and mechanically selecting the correct values for the SSVC decision points. See [Data Mapping](bootstrap/collect.md) for how to connect data sources to decision point values.  
+- **Output Automation:** The prioritized outcome from the SSVC table (e.g., "Immediate") can feed directly into automated patching, ticketing, or software fix development systems. See [Use & Respond](bootstrap/use.md) for how to operationalize SSVC outcomes at scale.
 
 SSVC acts as a fixed, unambiguous interface. The "human scale" element is in the **design and governance** of this interface, ensuring human accountability and understanding of the decision-making logic. The table's fixed structure means there is no ambiguity from a human's understanding standpoint—you know what the output will be based on the defined inputs and policy. It is the locus where technical reality meets organizational policy. The human is in the loop defining the decision space, not necessarily every single decision.
