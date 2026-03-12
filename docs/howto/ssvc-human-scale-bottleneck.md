@@ -2,7 +2,7 @@
 
 As vulnerability response processes become increasingly saturated with automation—from AI-driven data collection to sophisticated analysis—the **Stakeholder-Specific Vulnerability Categorization (SSVC)** model is intentionally designed to serve as a crucial, human-scale bottleneck. This approach ensures that while the process is efficient and automated, the core decision-making remains transparent, accountable, and aligned with organizational risk appetite, providing a necessary bridge between technical data and business policy.
 
-# **Condensing Complexity into Human-Scale Decisions**
+## **Condensing Complexity into Human-Scale Decisions**
 
 The initial stages of vulnerability response—data collection and analysis—often involve vast amounts of information, advanced data sharing formats, and powerful analytical tools, increasingly including AI agents and Large Language Models (LLMs). SSVC's core function is to condense this extensive, complex dataset into a small, manageable set of **decision points**.
 
@@ -14,7 +14,7 @@ These decision points possess several key characteristics that make them suitabl
 
 ## **The Decision Table: Policy as Code**
 
-By defining a set of orthogonal, ordered decision points, SSVC creates a **partial order** over the entire input space—an enumeration of all possible combinations of decision point values. This partial order is then mapped onto a predefined set of **outcome sets** via a **decision table**.
+By defining a set of orthogonal, ordered decision points, SSVC induces a **partial order** on the entire input space (the Cartesian product of all decision point values). The resulting ordered set of input combinations is then mapped, via a **decision table**, onto a predefined **outcome set** of ordered outcomes.
 
 The decision table serves as the codified organizational policy. The outcomes are also ordered and typically represent service-level expectations (SLEs), priorities (e.g., Low, Medium, Critical), or prescribed actions (e.g., Defer, Scheduled, Out-of-Cycle, Immediate). This mapping of inputs to output values defines the policy.
 
