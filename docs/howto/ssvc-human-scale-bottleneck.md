@@ -3,28 +3,41 @@
 As vulnerability response processes become increasingly saturated with automation—from AI-driven data collection to sophisticated analysis—the **Stakeholder-Specific Vulnerability Categorization (SSVC)** model is intentionally designed to serve as a crucial, human-scale bottleneck. This approach ensures that while the process is efficient and automated, the core decision-making remains transparent, accountable, and aligned with organizational risk appetite, providing a necessary bridge between technical data and business policy.
 
 ```mermaid
+---
+title: SSVC as the Human-Scale Bottleneck in Vulnerability Response
+---
 flowchart LR
 
-subgraph dm[Data Mapping]
+subgraph dc[Data Mapping]
     collect[Collect Lots of Data]
 end
-subgraph ssvc[SSVC<br/>Human-Scale]
+subgraph ssvc[SSVC operates at human-scale]
+    subgraph ssvcdt[Decision Model]
     dps[SSVC Decision Points]
     model[SSVC Decision Table]
+    end
+    gov[Governance]
 end
-subgraph use[Respond]
+subgraph use[Use & Respond]
     apply[Decisions]
+    do[Actions]
+    effects[Results]
 end
-gov[Governance<br/>Human-Scale]
-collect -->|maps<br/>onto| dps
 dps -->|input to| model
 model -->|defines| apply
-gov -->|refines| ssvc
-use -->|informs| gov
+apply -->|lead to| do
+do -->|produce| effects
+dc -->|informs| dps
+effects -->|informs| gov
+gov -->|refines| ssvcdt
+gov -->|refines| dc
 ```
 
-On the left, [Data Mapping](bootstrap/collect.md) funnels large-scale data collection into the small set of SSVC decision points.
-On the right, [Use & Respond](bootstrap/use.md) fans the model's outputs out into operational decisions at scale.
+On the input side, [Data Mapping](bootstrap/collect.md) funnels large-scale 
+data 
+collection into the small set of SSVC decision points.
+On the output side, [Use & Respond](bootstrap/use.md) fans the model's outputs 
+out into operational decisions at scale.
 SSVC sits in the middle as the human-scale interface where organizational policy is defined and refined.
 
 ## **Condensing Complexity into Human-Scale Decisions**
