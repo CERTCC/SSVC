@@ -135,7 +135,6 @@ name = "certcc-ssvc"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["all", "standard"] },
-    { name = "griffe" },
     { name = "jsonschema" },
     { name = "markdown-exec", extra = ["ansi"] },
     { name = "mkdocs" },
@@ -166,7 +165,6 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["all", "standard"], specifier = ">=0.116.1" },
-    { name = "griffe", specifier = "<1.0" },
     { name = "jsonschema", specifier = ">=4.25.1" },
     { name = "markdown-exec", extras = ["ansi"], specifier = ">=1.11.0" },
     { name = "mkdocs", specifier = ">=1.6.1" },
@@ -177,7 +175,7 @@ requires-dist = [
     { name = "mkdocs-print-site-plugin", specifier = ">=2.8" },
     { name = "mkdocs-table-reader-plugin", specifier = ">=3.1.0" },
     { name = "mkdocstrings", specifier = ">=0.30.0" },
-    { name = "mkdocstrings-python", specifier = "<2.0" },
+    { name = "mkdocstrings-python", specifier = "<=2.0.3" },
     { name = "networkx", specifier = ">=3.4.2" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "pydantic", specifier = ">=2.11.7" },
@@ -483,15 +481,11 @@ wheels = [
 ]
 
 [[package]]
-name = "griffe"
-version = "0.49.0"
+name = "griffelib"
+version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "colorama" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/93/61/7ecb30d0f246f1fc378536e53d2fe523ee8e0a327e45a6cfc79ae1412a3e/griffe-0.49.0.tar.gz", hash = "sha256:a7e1235c27d8139e0fd24a5258deef6061bc876a9fda8117a5cf7b53ee940a91", size = 377276, upload-time = "2024-08-14T17:27:19.413Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a7/7e/79c1337f56a4124eec149aaf23819430632faedc247e902fe4b9ccf03f65/griffe-0.49.0-py3-none-any.whl", hash = "sha256:c0d505f2a444ac342b22f4647d6444c8db64964b6a379c14f401fc467c0741a3", size = 143668, upload-time = "2024-08-14T17:27:10.533Z" },
+    { url = "https://files.pythonhosted.org/packages/4d/51/c936033e16d12b627ea334aaaaf42229c37620d0f15593456ab69ab48161/griffelib-2.0.0-py3-none-any.whl", hash = "sha256:01284878c966508b6d6f1dbff9b6fa607bc062d8261c5c7253cb285b06422a7f", size = 142004, upload-time = "2026-02-09T19:09:40.561Z" },
 ]
 
 [[package]]
@@ -937,16 +931,16 @@ wheels = [
 
 [[package]]
 name = "mkdocstrings-python"
-version = "1.16.7"
+version = "2.0.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "griffe" },
+    { name = "griffelib" },
     { name = "mkdocs-autorefs" },
     { name = "mkdocstrings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/52/e0/cc35acb47593c138efbfc9dc296ccc26b7ad4452e868fd309f05f6ba0ded/mkdocstrings_python-1.16.7.tar.gz", hash = "sha256:cdfc1a99fe5f6f0d90446a364ef7cac12014a4ef46114b2677a58cec84007117", size = 1475398, upload-time = "2025-03-20T11:44:44.52Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/33/c225eaf898634bdda489a6766fc35d1683c640bffe0e0acd10646b13536d/mkdocstrings_python-2.0.3.tar.gz", hash = "sha256:c518632751cc869439b31c9d3177678ad2bfa5c21b79b863956ad68fc92c13b8", size = 199083, upload-time = "2026-02-20T10:38:36.368Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ab/5e/dc978b9fd6331e2070369579ad8f52145e9ef22a69bfc2811110be95e6d4/mkdocstrings_python-1.16.7-py3-none-any.whl", hash = "sha256:a5589a5be247a28ba651287f83630c69524042f8055d93b5c203d804a3409333", size = 1998312, upload-time = "2025-03-20T11:44:42.361Z" },
+    { url = "https://files.pythonhosted.org/packages/32/28/79f0f8de97cce916d5ae88a7bee1ad724855e83e6019c0b4d5b3fabc80f3/mkdocstrings_python-2.0.3-py3-none-any.whl", hash = "sha256:0b83513478bdfd803ff05aa43e9b1fca9dd22bcd9471f09ca6257f009bc5ee12", size = 104779, upload-time = "2026-02-20T10:38:34.517Z" },
 ]
 
 [[package]]
