@@ -48,7 +48,6 @@ dependencies = [
     "pydantic>=2.11.7",
     "semver>=3.0.4",
     "fastapi[all,standard]>=0.116.1",
-    "abnf-to-regexp>=1.2.0",
 ]
 dynamic = ["version",]
 
@@ -92,4 +91,7 @@ dev = [
     "black>=25.9.0",
     "linkchecker>=10.6.0",
     "pytest>=8.4.1",
+]
+codegen = [
+    "abnf-to-regexp>=1.2.0",
 ]

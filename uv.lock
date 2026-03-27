@@ -171,7 +171,6 @@ wheels = [
 name = "certcc-ssvc"
 source = { editable = "." }
 dependencies = [
-    { name = "abnf-to-regexp" },
     { name = "fastapi", extra = ["all", "standard"] },
     { name = "jsonschema" },
     { name = "markdown-exec", extra = ["ansi"] },
@@ -194,6 +193,9 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
+codegen = [
+    { name = "abnf-to-regexp" },
+]
 dev = [
     { name = "black" },
     { name = "linkchecker" },
@@ -202,7 +204,6 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "abnf-to-regexp", specifier = ">=1.2.0" },
     { name = "fastapi", extras = ["all", "standard"], specifier = ">=0.116.1" },
     { name = "jsonschema", specifier = ">=4.25.1" },
     { name = "markdown-exec", extras = ["ansi"], specifier = ">=1.11.0" },
@@ -225,6 +226,9 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
+codegen = [
+    { name = "abnf-to-regexp", specifier = ">=1.2.0" },
+]
 dev = [
     { name = "black", specifier = ">=25.9.0" },
     { name = "linkchecker", specifier = ">=10.6.0" },
