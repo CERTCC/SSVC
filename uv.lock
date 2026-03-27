@@ -193,8 +193,10 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
-dev = [
+codegen = [
     { name = "abnf-to-regexp" },
+]
+dev = [
     { name = "black" },
     { name = "linkchecker" },
     { name = "pytest" },
@@ -224,8 +226,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [
+codegen = [
     { name = "abnf-to-regexp", specifier = ">=1.2.0" },
+]
+dev = [
     { name = "black", specifier = ">=25.9.0" },
     { name = "linkchecker", specifier = ">=10.6.0" },
     { name = "pytest", specifier = ">=8.4.1" },

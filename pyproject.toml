@@ -88,8 +88,10 @@ testpaths = [
 
 [dependency-groups]
 dev = [
-    "abnf-to-regexp>=1.2.0",
     "black>=25.9.0",
     "linkchecker>=10.6.0",
     "pytest>=8.4.1",
+]
+codegen = [
+    "abnf-to-regexp>=1.2.0",
 ]

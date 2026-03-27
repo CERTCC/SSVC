@@ -15,15 +15,14 @@ RUN uv sync --frozen --no-dev
 
 FROM dependencies AS test
 
-RUN apt-get update && apt-get install -y --no-install-recommends gcc libc-dev && rm -rf /var/lib/apt/lists/*
 ENV PYTHONPATH=/app/src
 # Install pytest and dev dependencies
 RUN uv sync --frozen --dev
 # Run the unit tests
-CMD ["uv", "run", "pytest"]
+CMD ["uv", "run", "--no-sync", "pytest"]
 
 FROM dependencies AS docs
-CMD ["uv", "run", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+CMD ["uv", "run", "--no-sync", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
 
 FROM dependencies AS registry_api
-CMD ["uv", "run", "uvicorn", "ssvc.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "--no-sync", "uvicorn", "ssvc.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
