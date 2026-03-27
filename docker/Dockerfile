@@ -11,10 +11,11 @@ COPY . /app
 ENV PYTHONPATH=/app/src
 
 # install requirements
-RUN uv sync --frozen
+RUN uv sync --frozen --no-dev
 
 FROM dependencies AS test
 
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc-dev && rm -rf /var/lib/apt/lists/*
 ENV PYTHONPATH=/app/src
 # Install pytest and dev dependencies
 RUN uv sync --frozen --dev
