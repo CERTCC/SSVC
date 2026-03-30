@@ -7,6 +7,10 @@ understood by humans**: the *design and governance* of the decision logic is the
 human-scale work, not the execution of individual decisions. Crucially, this
 does **not** mean that a human must manually review every vulnerability
 decision—the decision table, once defined, can be entirely automated.
+In AI and autonomous systems terminology, this makes SSVC a
+**"human-on-the-loop"** pattern: humans are not required to approve every
+decision, but they are responsible for designing, governing, and monitoring
+the framework that makes those decisions.
 
 ```mermaid
 ---
@@ -206,5 +210,8 @@ SSVC acts as a fixed, unambiguous interface. The "human scale" element is in the
 understanding of the decision-making logic. The table's fixed structure means
 there is no ambiguity—you know what the
 output will be based on the defined inputs and policy. It is the locus where
-technical reality meets organizational policy. The human is in the loop defining
-the decision space, not necessarily making every single decision.
+technical reality meets organizational policy. SSVC embodies the
+**"human-on-the-loop"** pattern: the human is responsible for the decision
+framework—not every individual decision. This keeps humans accountable for
+the policy while freeing them from the operational volume that automation
+handles best.
