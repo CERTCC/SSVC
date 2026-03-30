@@ -1,14 +1,14 @@
-# **SSVC: The Human-Scale Bottleneck in Automated Vulnerability Response**
+# SSVC: The Human-Scale Bottleneck in Automated Vulnerability Response
 
-The **Stakeholder-Specific Vulnerability Categorization (SSVC)** framework is
+The Stakeholder-Specific Vulnerability Categorization (SSVC) framework is
 designed to provide a human-scale decision bottleneck in the vulnerability
-response process. SSVC is a framework **designed by humans, for humans, and
-understood by humans**: the *design and governance* of the decision logic is the
+response process. SSVC is a framework *designed by humans*, and
+*understood by humans*: the design and governance of the decision logic is the
 human-scale work, not the execution of individual decisions. Crucially, this
-does **not** mean that a human must manually review every vulnerability
+does *not* mean that a human must manually review every vulnerability
 decision—the decision table, once defined, can be entirely automated.
 In AI and autonomous systems terminology, this makes SSVC a
-**"human-on-the-loop"** pattern: humans are not required to approve every
+*human-on-the-loop* pattern: humans are not required to approve every
 decision, but they are responsible for designing, governing, and monitoring
 the framework that makes those decisions.
 
@@ -59,7 +59,7 @@ Points and the Decision Table) represents the SSVC scope. Data Mapping and
 Use & Respond are adjacent processes that interface with SSVC on either side
 but are outside its core scope.
 
-## **Condensing Complexity into Human-Scale Decisions**
+## Condensing Complexity into Human-Scale Decisions
 
 The initial stages of vulnerability
 response—[data collection and mapping](../howto/bootstrap/collect.md)—often involve large
@@ -89,7 +89,7 @@ suitable for human oversight and policy definition:
   the total table size is the product of the value counts for each decision
   point.
 
-## **The Decision Table: Policy as Code**
+## The Decision Table: Policy as Code
 
 By defining a set of orthogonal, ordered decision points, SSVC induces a 
 *partial order* on the entire input space (the Cartesian product of all
@@ -211,7 +211,7 @@ understanding of the decision-making logic. The table's fixed structure means
 there is no ambiguity—you know what the
 output will be based on the defined inputs and policy. It is the locus where
 technical reality meets organizational policy. SSVC embodies the
-**"human-on-the-loop"** pattern: the human is responsible for the decision
+*human-on-the-loop* pattern: the human is responsible for the decision
 framework—not every individual decision. This keeps humans accountable for
 the policy while freeing them from the operational volume that automation
 handles best.
