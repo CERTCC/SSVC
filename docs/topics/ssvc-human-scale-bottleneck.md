@@ -1,8 +1,12 @@
 # **SSVC: The Human-Scale Bottleneck in Automated Vulnerability Response**
 
-The *Stakeholder-Specific Vulnerability Categorization (SSVC)** 
-framework is designed to provide a human-scale decision bottleneck in the 
-vulnerability response process. 
+The **Stakeholder-Specific Vulnerability Categorization (SSVC)** framework is
+designed to provide a human-scale decision bottleneck in the vulnerability
+response process. SSVC is a framework **designed by humans, for humans, and
+understood by humans**: the *design and governance* of the decision logic is the
+human-scale work, not the execution of individual decisions. Crucially, this
+does **not** mean that a human must manually review every vulnerability
+decision—the decision table, once defined, can be entirely automated.
 
 ```mermaid
 ---
@@ -33,11 +37,11 @@ flowchart LR
     gov -->|refines| ssvcdt
     gov -->|refines| dc
 ```
-Vulnerability response is increasingly driven by automation. 
-On the input side, [Data Mapping](bootstrap/collect.md) funnels large-scale
+Vulnerability response is increasingly driven by automation.
+On the input side, [Data Mapping](../howto/bootstrap/collect.md) funnels large-scale
 data
 collection into the small set of SSVC decision points.
-On the output side, [Use & Respond](bootstrap/use.md) fans the model's outputs
+On the output side, [Use & Respond](../howto/bootstrap/use.md) fans the model's outputs
 out into operational decisions at scale.
 SSVC sits in the middle as the human-scale interface where organizational policy
 is defined and refined into decision support tools that can be automated.
@@ -46,10 +50,15 @@ core decision-making remains transparent, accountable, and aligned with
 organizational risk appetite, providing a necessary bridge between technical
 data and business policy.
 
+In the diagram above, the `Decision Model` subgraph (containing SSVC Decision
+Points and the Decision Table) represents the SSVC scope. Data Mapping and
+Use & Respond are adjacent processes that interface with SSVC on either side
+but are outside its core scope.
+
 ## **Condensing Complexity into Human-Scale Decisions**
 
 The initial stages of vulnerability
-response—[data collection and mapping](bootstrap/collect.md)—often involve large
+response—[data collection and mapping](../howto/bootstrap/collect.md)—often involve large
 amounts of information, various data sharing formats (e.g., [CSAF](https://www.
 csaf.
 io/), [CVE JSON](https://cveproject.github.io/cve-schema/schema/docs/)), and 
@@ -133,7 +142,7 @@ desires a change, the modification to the decision table can be
 clearly executed and understood.
 
 The SSVC governance process—described in detail in
-the [Prepare](bootstrap/prepare.md#establish-governance) step of the Getting
+the [Prepare](../howto/bootstrap/prepare.md#establish-governance) step of the Getting
 Started guide—is what makes this refinement practical. Because the decision
 table is small and explicit, conversations about policy changes stay grounded:
 
@@ -153,10 +162,11 @@ A lightweight governance process periodically reviews each element of the model:
     - Have there been cases where the table led to a decision that was later
       regretted?
     - Are there new constraints or requirements not yet captured?
-- Is the [data mapping](bootstrap/prepare.md) still appropriate—are the
+- Is the [data mapping](../howto/bootstrap/prepare.md) still appropriate—are the
   right data sources being used to assign values to decision points?
 
-Depending on the review, adjustments can be made to any layer of the model. The
+Depending on the review, adjustments can be made to any element of the
+model—outcomes, decision points, the decision table, or data mapping. The
 impact of those adjustments is predictable:
 
 | Modification Type            | Impact on Table Size and Complexity                                                                                                                                                   |
@@ -168,10 +178,9 @@ impact of those adjustments is predictable:
 Crucially, governance should involve the right stakeholders. Risk owners must be
 involved in reviewing and adjusting the decision table itself, while
 vulnerability management and IT security teams are best positioned to review the
-data mapping and decision point definitions. Operational feedback
-from observing [Use & Respond](bootstrap/use.md) provides the empirical 
-basis for
-identifying where the model needs refinement.
+data mapping and decision point definitions. Observing the real-world results of
+SSVC-driven decisions—as they flow back through operations—provides the
+empirical basis for identifying where the model needs refinement.
 
 ## SSVC is Not a Process Bottleneck
 
@@ -184,11 +193,12 @@ Automation can exist throughout the entire response workflow:
 - **Input Automation:** AI (e.g., an LLM) can perform the "reading 
   comprehension test"
   of analyzing raw vulnerability data and mechanically selecting the correct
-  values for the SSVC decision points. See [Data Mapping](bootstrap/collect.md)
-  for how to connect data sources to decision point values.
+  values for the SSVC decision points. The [data mapping](../howto/bootstrap/collect.md)
+  established during [Prepare](../howto/bootstrap/prepare.md) defines how to
+  connect data sources to decision point values.
 - **Output Automation:** The prioritized outcome from the SSVC table (e.g., "
   Immediate") can feed directly into automated patching, ticketing, or software
-  fix development systems. See [Use & Respond](bootstrap/use.md) for how to
+  fix development systems. See [Use & Respond](../howto/bootstrap/use.md) for how to
   operationalize SSVC outcomes at scale.
 
 SSVC acts as a fixed, unambiguous interface. The "human scale" element is in the

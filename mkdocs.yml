@@ -43,7 +43,6 @@ nav:
         - Value Density: 'howto/gathering_info/value_density.md'
     - Customizing SSVC: 'howto/tree_customization.md'
     - Acuity Ramp: 'howto/acuity_ramp.md'
-    - SSVC as a Human-Scale Bottleneck: 'howto/ssvc-human-scale-bottleneck.md'
     - Using EPSS with SSVC:
         - 'howto/using_epss/index.md'
         - EPSS Probability as input to Exploitation: 'howto/using_epss/epss_probability.md'
@@ -66,6 +65,7 @@ nav:
       - Scope: 'topics/scope.md'
       - SSVC and Asset Management: 'topics/asset_management.md'
     - Putting the Pieces Together: 'topics/decision_points_as_bricks.md'
+    - SSVC as a Human-Scale Bottleneck: 'topics/ssvc-human-scale-bottleneck.md'
     - Worked Example: 'topics/worked_example.md'
     - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
