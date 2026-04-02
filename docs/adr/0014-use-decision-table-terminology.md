@@ -9,11 +9,14 @@ date: 2025-08-26
 SSVC uses a tabular model to map combinations of decision point values to
 recommended actions.  Historically, this model was referred to as a "decision
 tree" or "decision policy" with both terms being used interchangeably in
-documentation and tooling.  However, "decision tree" has a well-established,
-conflicting meaning in machine learning and statistics, and "decision policy"
-has overloaded meanings beyond our intended usage.  Using the "decision tree"
-for both concepts creates confusion, especially for audiences familiar with data
-science or machine learning.
+documentation and tooling. While our use of "decision tree" was consistent with
+usage in the context of Operations Research
+(Wikipedia:[Decision tree](https://en.wikipedia.org/wiki/Decision_tree)),
+it caused confusion with the related-yet-different concept from Machine Learning
+(Wikipedia: [Decision tree learning](https://en.wikipedia.org/wiki/Decision_tree_learning)).
+Furthermore, the term "decision policy" has overloaded meanings beyond our
+intended usage.  We want to avoid confusion on both fronts, therefore we need a
+new term.
 
 ## Decision Drivers
 
@@ -22,7 +25,7 @@ science or machine learning.
 - Use a less contentious term than "policy" as we are not dictating "capital-P
   Policy"
 - Accurately describe the underlying SSVC data structure, which is a table of
-  decision points and outcomes
+  decision point value combinations and outcomes
 - Improve clarity in documentation, tooling, and communication with
   practitioners
 - Align terminology with the actual data representations used (CSV and JSON
@@ -30,18 +33,23 @@ science or machine learning.
 
 ## Considered Options
 
-- Switch to "decision framework"
-- Switch to "decision table"
+- Switch to *decision framework*
+- Switch to *decision table*
+- Switch to *decision model*
 
 ## Decision Outcome
 
-Chosen option: 'Switch to "decision table"'
+Chosen option: "Switch to *decision table*"
 
 ### Rationale
 
-"Decision table"accurately describes the tabular structure used by
+"Decision table" accurately describes the tabular structure used by
 SSVC and avoids the well-established conflicting meaning of "decision tree" in
 machine learning and statistics.
+
+We may use *decision model* for the more generic class of things to which a
+*decision table* belongs, but *decision table* is specific enough to be clear
+exactly what our intended meaning is.
 
 ### Consequences
 
@@ -57,10 +65,12 @@ machine learning and statistics.
 ### Confirmation
 
 Documentation, code, and tooling use "decision table" as the primary term for
-the SSVC model. References to "decision tree" in the visual/hierarchical sense
+an SSVC decision model. References to "decision tree" in the visual/hierarchical sense
 (i.e., tree diagrams used to illustrate a decision table) may still appear where
 appropriate but should be clearly distinguished from the decision table itself.
 
 ## More Information
 
-This change was introduced with the [SSVC v2025.9 release](https://github.com/CERTCC/SSVC/releases/tag/v2025.9).
+- This change was introduced with the [SSVC v2025.9 release](https://github.com/CERTCC/SSVC/releases/tag/v2025.9).
+- Wikipedia's [Decision table](https://en.wikipedia.org/wiki/Decision_table) page aligns with the concept that 
+we are trying to capture.
