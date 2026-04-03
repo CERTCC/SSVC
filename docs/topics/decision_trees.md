@@ -1,16 +1,6 @@
 # Decision Trees
 
-!!! note inline end "About the term "decision tree""
-
-    In machine learning, a decision tree usually refers to a model learned from
-    data through statistical analysis. That’s not what SSVC uses the term for. In
-    the original SSVC documentation, decision tree referred to the
-    operations-research concept: a hand-crafted structure that encodes deliberate
-    choices, not a model inferred from datasets.
-
-    Starting in SSVC v2025.9, we shifted to the term decision table to avoid
-    confusion with the ML meaning. For more information, see
-    [ADR-0014](../../docs/adr/0014-decision-tree-vs-decision-table.md).
+{% include-markdown "../_includes/ADR0014.md" %}
 
 A decision tree is an acyclic structure where nodes represent aspects of the
 decision or relevant properties and branches represent possible options for each
