@@ -1,5 +1,7 @@
 # Formalization Options
 
+{% include-markdown "../_includes/ADR0014.md" %}
+
 This section briefly surveys the available formalization options against the six design goals described above.
 The table below summarizes the results.
 This survey is opportunistic; it is based on conversations with several experts and our professional experience.
