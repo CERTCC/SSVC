@@ -27,11 +27,11 @@ tree and each of the values need to be explained and justified, but this cost is
 paid infrequently.
 
 There has been limited but positive use of decision trees in vulnerability
-management.  For example, Vulnerability Response Decision Assistance (VRDA)
-studies how to make decisions about how to respond to vulnerability reports
-[@manion2009vrda].  This paper continues roughly in the vein of such work to
-construct multiple decision trees for prioritization within the vulnerability
-management process.
+management.  For example, [Vulnerability Response Decision Assistance
+(VRDA)](https://www.sei.cmu.edu/library/effectiveness-of-the-vulnerability-response-decision-assistance-vrda-framework)
+studies how to make decisions about how to respond to vulnerability reports .
+This paper continues roughly in the vein of such work to construct multiple
+decision trees for prioritization within the vulnerability management process.
 
 ## Representation choices
 
