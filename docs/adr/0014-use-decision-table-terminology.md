@@ -33,9 +33,9 @@ new term.
 
 ## Considered Options
 
-- Switch to *decision framework*
-- Switch to *decision table*
-- Switch to *decision model*
+- Switch to decision framework
+- Switch to decision table
+- Switch to decision model
 
 ## Decision Outcome
 
