@@ -78,8 +78,8 @@ following:
 ```
 
 This sample is a snippet of the CVSS version 3.0 base scoring algorithm
-represented as a decision tree.  The full tree can be found
-[here](cvss_full_tree.md).  This tree representation is functional, but not as
-flexible or aesthetic as might be hoped.  The visualizations provided by R are
-geared towards analysis of decision trees in a random forest ML model, rather
-than operations-research type trees.
+represented as a decision tree.  [The full CVSS version 3.0 decision tree]
+(cvss_full_tree.md) shows the complete structure.  This tree representation is
+functional, but not as flexible or aesthetic as might be hoped.  The
+visualizations provided by R are geared towards analysis of decision trees in a
+random forest ML model, rather than operations-research type trees.
