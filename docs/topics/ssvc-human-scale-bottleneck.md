@@ -1,16 +1,15 @@
 # SSVC: The Human-Scale Bottleneck in Automated Vulnerability Response
 
-The Stakeholder-Specific Vulnerability Categorization (SSVC) framework is
-designed to provide a human-scale decision bottleneck in the vulnerability
-response process. SSVC is a framework *designed by humans*, and
+SSVC serves as the human-scale interface between automated vulnerability data
+collection and operational response. The framework is *designed by humans* and
 *understood by humans*: the design and governance of the decision logic is the
 human-scale work, not the execution of individual decisions. Crucially, this
 does *not* mean that a human must manually review every vulnerability
 decision—the decision table, once defined, can be entirely automated.
 In AI and autonomous systems terminology, this makes SSVC a
-*human-on-the-loop* pattern: humans are not required to approve every
-decision, but they are responsible for designing, governing, and monitoring
-the framework that makes those decisions.
+*human-**on**-the-loop* (HOTL) pattern: humans are not required to approve
+every decision, but they are responsible for designing, governing, and
+monitoring the framework that makes those decisions.
 
 ```mermaid
 ---
@@ -41,6 +40,7 @@ flowchart LR
     gov -->|refines| ssvcdt
     gov -->|refines| dc
 ```
+
 Vulnerability response is increasingly driven by automation.
 On the input side, [Data Mapping](../howto/bootstrap/collect.md) funnels large-scale
 data
@@ -49,7 +49,7 @@ On the output side, [Use & Respond](../howto/bootstrap/use.md) fans the model's 
 out into operational decisions at scale.
 SSVC sits in the middle as the human-scale interface where organizational policy
 is defined and refined into decision support tools that can be automated.
-This approach ensures that while the process is efficient and automated, the 
+This approach ensures that while the process is efficient and automated, the
 core decision-making remains transparent, accountable, and aligned with
 organizational risk appetite, providing a necessary bridge between technical
 data and business policy.
@@ -63,11 +63,10 @@ but are outside its core scope.
 
 The initial stages of vulnerability
 response—[data collection and mapping](../howto/bootstrap/collect.md)—often involve large
-amounts of information, various data sharing formats (e.g., [CSAF](https://www.
-csaf.
-io/), [CVE JSON](https://cveproject.github.io/cve-schema/schema/docs/)), and 
-diverse analytical tools, increasingly including AI features like Large 
-Language Models (LLMs). SSVC's
+amounts of information, various data sharing formats (e.g., [CSAF](https://www.csaf.io/),
+[CVE JSON](https://cveproject.github.io/cve-schema/schema/docs/)), and
+diverse analytical tools, increasingly including AI features like large
+language models (LLMs). SSVC's
 core function is to condense this extensive, complex dataset into a small,
 manageable set of [decision points](/reference/decision_points/index.md).
 
@@ -77,7 +76,7 @@ suitable for human oversight and policy definition:
 - **Densely Defined and Ordinal:** Each decision point uses values that are
   ordered (ordinal variables), moving from least likely to most likely to imply
   action (e.g., Low, Medium, High). This ordering provides a clear, qualitative
-  progression without the mathematical properties of intervals.
+  progression without implying equal spacing between values.
 - **Orthogonal and Independent:** The chosen decision points capture unique
   dimensions of the problem. By minimizing conceptual overlap, the model ensures
   that each dimension contributes independently to the final outcome, keeping
@@ -91,10 +90,10 @@ suitable for human oversight and policy definition:
 
 ## The Decision Table: Policy as Code
 
-By defining a set of orthogonal, ordered decision points, SSVC induces a 
+By defining a set of orthogonal, ordered decision points, SSVC induces a
 *partial order* on the entire input space (the Cartesian product of all
 decision point values). The resulting ordered set of input combinations is then
-mapped, via a [decision table](/topics/decision_trees.md), onto a predefined 
+mapped, via a [decision table](/topics/decision_trees.md), onto a predefined
 [outcome set](/reference/decision_points/outcomes) of ordered
 outcomes.
 
@@ -115,16 +114,16 @@ Key criteria for the decision table design include:
 
 ## The Role of the Human in a Machine-Driven World
 
-The concept of SSVC as a human-scale bottleneck means that the complexity of the
-automated threat landscape is filtered through a framework designed by humans,
-for humans, and understood by humans.
+With the decision table in place, automation can handle the volume—but humans
+remain accountable for the quality and appropriateness of the policy that
+drives it.
 
 ### Accountability and Risk Alignment
 
 The decision table provides an explicit, unambiguous link between technical
 vulnerability characteristics and organizational risk appetite. This structure
 facilitates crucial conversations between technical staff—who are responsible
-for developing or deploying mitigations and fixes—and risk owners 
+for developing or deploying mitigations and fixes—and risk owners
 (CISO, IT management, senior management),
 transferring responsibility from technical staff making proxy judgments to risk
 owners defining explicit policy.
@@ -139,8 +138,8 @@ owners defining explicit policy.
 
 ### Governance and Policy Refinement
 
-SSVC is designed for straightforward modification, enabling 
-policy owners to easily adapt their response posture when needed. Changes 
+SSVC is designed for straightforward modification, enabling
+policy owners to easily adapt their response posture when needed. Changes
 can be managed through predictable steps. This process ensures that when a risk owner
 desires a change, the modification to the decision table can be
 clearly executed and understood.
@@ -163,9 +162,9 @@ A lightweight governance process periodically reviews each element of the model:
 - Are the *decision points* capturing the right dimensions of the problem?
 - Does the *decision table* still reflect how the organization wants to make
   decisions?
-    - Have there been cases where the table led to a decision that was later
+  - Have there been cases where the table led to a decision that was later
       regretted?
-    - Are there new constraints or requirements not yet captured?
+  - Are there new constraints or requirements not yet captured?
 - Is the [data mapping](../howto/bootstrap/prepare.md) still appropriate—are the
   right data sources being used to assign values to decision points?
 
@@ -194,14 +193,13 @@ entirely automatable.
 
 Automation can exist throughout the entire response workflow:
 
-- **Input Automation:** AI (e.g., an LLM) can perform the "reading 
+- **Input Automation:** AI (e.g., an LLM) can perform the "reading
   comprehension test"
   of analyzing raw vulnerability data and mechanically selecting the correct
   values for the SSVC decision points. The [data mapping](../howto/bootstrap/collect.md)
   established during [Prepare](../howto/bootstrap/prepare.md) defines how to
   connect data sources to decision point values.
-- **Output Automation:** The prioritized outcome from the SSVC table (e.g., "
-  Immediate") can feed directly into automated patching, ticketing, or software
+- **Output Automation:** The prioritized outcome from the SSVC table (e.g., "Immediate") can feed directly into automated patching, ticketing, or software
   fix development systems. See [Use & Respond](../howto/bootstrap/use.md) for how to
   operationalize SSVC outcomes at scale.
 
