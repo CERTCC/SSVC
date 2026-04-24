@@ -1,7 +1,7 @@
 ---
 status: accepted
-date: 2026-04-21
-deciders: adh, jspring
+date: 2024-07-09
+deciders: Allen D. Householder, Vijay Sarvepalli
 ---
 # SSVC JSON Schemas Use SchemaVer
 
