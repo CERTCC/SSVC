@@ -65,6 +65,7 @@ nav:
       - Scope: 'topics/scope.md'
       - SSVC and Asset Management: 'topics/asset_management.md'
     - Putting the Pieces Together: 'topics/decision_points_as_bricks.md'
+    - SSVC as a Human-Scale Bottleneck: 'topics/ssvc-human-scale-bottleneck.md'
     - Worked Example: 'topics/worked_example.md'
     - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
