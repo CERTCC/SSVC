@@ -41,7 +41,10 @@ purpose-built approach.
 Chosen option: **SchemaVer**, because it was designed specifically for JSON schema versioning and its
 three components map directly onto the compatibility questions that matter for schema consumers.
 
-SchemaVer uses the format `MODEL-REVISION-ADDITION`, starting at `1-0-0`:
+SchemaVer uses the format `MODEL-REVISION-ADDITION`, starting at `1-0-0`. For existing SSVC
+schemas, adoption of this ADR preserves the current logical version and normalizes legacy dotted forms
+such as `2.0.0` to the equivalent SchemaVer form `2-0-0`; similarly, values already written as
+`1-0-1` are treated as already using SchemaVer, while newly introduced schemas begin at `1-0-0`:
 
 | Component  | When to increment | Compatibility implication |
 |------------|-------------------|--------------------------|
