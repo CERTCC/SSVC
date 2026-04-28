@@ -90,7 +90,8 @@ Applied to SSVC schemas:
 
 ### Confirmation
 
-- JSON schema files must include a `$schema` or metadata field carrying the SchemaVer string.
+- JSON schema files must continue to use `$schema` for the JSON Schema metaschema URI, and must
+  carry the SchemaVer identifier in `$id` and/or a dedicated version field such as `schemaVersion`.
 - PR review process verifies that the correct SchemaVer component is incremented according to
   these rules before merging schema changes.
 
