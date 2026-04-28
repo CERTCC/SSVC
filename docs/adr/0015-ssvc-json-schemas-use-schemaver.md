@@ -72,7 +72,7 @@ Applied to SSVC schemas:
 - A new optional field is added
 - A constraint is relaxed (e.g., removing a `maxLength`)
 - Documentation (`description`, `$comment`) is updated without changing validation behavior
-- An `enum` loses previously disallowed values in a way that only expands what is valid
+- An `enum` gains new allowed values in a way that only expands what is valid
 
 ### Consequences
 
