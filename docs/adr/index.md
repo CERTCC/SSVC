@@ -26,6 +26,7 @@ the decision records that have been made.
 - [0012 - SSVC Namespaces](0012-ssvc-namespaces.md)
 - [0013 - SSVC Project Versions](0013-ssvc-project-versions.md)
 - [0014 - Use "Decision Table" Instead of "Decision Tree"](0014-use-decision-table-terminology.md)
+- [0015 - SSVC JSON Schemas Use SchemaVer](0015-ssvc-json-schemas-use-schemaver.md)
 
 ## Rejected Records
 
