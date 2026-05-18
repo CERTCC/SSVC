@@ -63,33 +63,32 @@ query {
 
 Store the resulting list (numbers + titles) for deduplication in Phase 3.
 
-### Phase 2 — Parse CONCERNS.md
+### Phase 2 — Parse CONCERNS.md into topics
 
-Read `docs/reference/codebase/CONCERNS.md`. The file uses **prose/narrative
-format** (not tables). Extract individual concern items from the following
-sections:
+Read `docs/reference/codebase/CONCERNS.md`. **Do not assume a fixed format.**
+The file is generated and its structure may differ across runs (tables, prose,
+numbered lists, bullet points, or a mix). Instead, apply semantic extraction:
 
-| Section heading | Severity | Category |
-|---|---|---|
-| High-priority concerns | high | Top risk |
-| Medium-priority concerns | medium | Technical debt |
-| Lower-priority constraints | low | Other |
-| Change-risk hotspots | medium | Fragile / high-churn area |
-
-**Do not create issues for the "Safe operating advice" section** — it is
-guidance text, not a concern to track.
-
-For each numbered item under the first three sections (e.g. `### 1. Title`),
-extract:
-- **Title**: the heading text after the number (e.g. `Global registry with
-  import-time side effects`)
-- **Body narrative**: the paragraph(s) following the heading
-- **Evidence**: any backtick file paths or module names mentioned in the text
-- **Severity**: derived from the parent section (see table above)
-- **Category**: derived from the parent section (see table above)
-
-For the **Change-risk hotspots** section, each bullet point is its own concern
-item. The bullet text is the title; the file paths within it are the evidence.
+1. **Read the whole file** and identify every distinct concern, risk, debt
+   item, or fragile area it describes — regardless of how it is formatted.
+2. For each topic, extract whatever the file provides:
+   - **Title**: the clearest short label for the concern (heading text,
+     bold phrase, bullet key, or a synthesized summary if no label is present)
+   - **Narrative**: any explanatory text, implications, or context
+   - **Evidence**: file paths, module names, or line references (backtick
+     strings, paths ending in `.py` / `.yml` / `.md`, etc.)
+   - **Severity signal**: any explicit severity language ("high", "critical",
+     "medium", "low") or implicit priority cues (section placement, wording)
+   - **Category signal**: any language indicating the type of concern (risk,
+     debt, security, performance, fragility, etc.)
+3. **Infer severity** when no explicit label is given:
+   - Items in sections labelled "high", "top", "critical" → `high`
+   - Items in sections labelled "medium" → `medium`
+   - Items in sections labelled "low", "minor", "constraint" → `low`
+   - Default to `medium` when no signal is present
+4. **Skip sections that are clearly not concerns** — e.g. sections titled
+   "Safe operating advice", "Recommendations", "How to use this document",
+   or similar guidance/meta sections that contain no trackable risk items.
 
 ### Phase 3 — Create or Update Issues
 
@@ -221,14 +220,16 @@ this structure — SSVC does not yet have a `concern.md` issue template):
 from the concern description if no explicit suggestion is given>
 ```
 
-Map CONCERNS.md sections to Category checkboxes:
+Map concern language to Category checkboxes using best judgment:
 
-| CONCERNS.md section | Category checkbox |
+| Signal in title or narrative | Category checkbox |
 |---|---|
-| High-priority concerns | Top risk |
-| Medium-priority concerns | Technical debt |
-| Lower-priority constraints | Other |
-| Change-risk hotspots | Fragile / high-churn area |
+| risk, critical, blocking, severe | Top risk |
+| debt, cleanup, refactor, TODO, legacy, deprecated | Technical debt |
+| auth, injection, secret, exposure, CVE, privilege | Security |
+| slow, latency, memory, scale, throughput | Performance / scaling |
+| churn, fragile, hot-spot, tightly coupled, brittle | Fragile / high-churn area |
+| anything else | Other |
 
 ---
 
@@ -238,18 +239,21 @@ Map CONCERNS.md sections to Category checkboxes:
 - Do **not** delete entries from `CONCERNS.md` — it is a generated file.
 - Do **not** assign a `size:` label.
 - Do **not** add a parent issue or link issues to each other.
-- Do **not** create issues for the "Safe operating advice" section.
+- Do **not** create issues for sections that are clearly guidance/meta (e.g.
+  "Safe operating advice"), not trackable concern items.
 - Always check for existing open Concern issues before creating a new one.
 - Use `ask_user` for all user-facing questions; never ask in plain text.
 - Use the GraphQL API (not `gh issue list --json issueType`) for listing
   Concern issues — the CLI JSON field is not available for this repo.
+- Do **not** hard-code section names from a previous CONCERNS.md run —
+  always derive topics from the current file content.
 
 ## Checklist
 
 - [ ] User chose scan freshness (fresh focused scan or use existing)
 - [ ] All open Concern issues loaded via GraphQL for situation awareness
-- [ ] CONCERNS.md parsed into per-item concerns (numbered items + hotspot bullets)
-- [ ] "Safe operating advice" section skipped
+- [ ] CONCERNS.md read and semantically parsed into topics regardless of format
+- [ ] Guidance/meta sections skipped (e.g. "Safe operating advice")
 - [ ] Each item deduplicated against open issues (by title similarity)
 - [ ] Matched items: body updated + refresh comment added
 - [ ] New items: Concern issue created with `group:unscheduled` + `concern` labels
