@@ -137,6 +137,28 @@ Use `make help` to see all available commands. Common targets include:
 4. **Docker Context**: Some make targets use Docker, others run locally - check the Makefile
 5. **Package Management**: Use `make` commands or `uv` directly, not pip
 6. **Obsolete Code and Documentation**: Never modify files in `/obsolete/`, `/doc/`, or `/pdfs/` directories
+7. **Porting from other repos**: Always verify that directory paths actually exist in this repo before using them. Don't assume paths from the source repo (e.g., `vultron_pub`) map 1:1 to this one.
+8. **Finishing what was started**: If you encounter a broken/incidental issue while working on a primary task, complete the primary task first. Fix incidentals in a follow-up step or commit, not mid-task.
+
+## Agent-Facing Tooling
+
+This project maintains agent-facing infrastructure alongside the codebase:
+
+- **`.agents/skills/`** — Project-local skills (ingest-idea, load-specs, process-concerns, study-project-docs). Always check here for project-specific workflows before inventing one.
+- **`uv run ssvc-spec-dump`** — Dumps all YAML specs to stdout as flat JSON. Use this (not raw file reads) to load specs in bulk. This is what the `load-specs` skill invokes.
+- **`docs/reference/codebase/`** — Agent-facing codebase reference files: `ARCHITECTURE.md`, `CONVENTIONS.md`, `STRUCTURE.md`, `STACK.md`, `TESTING.md`, `CONCERNS.md`, `INTEGRATIONS.md`. These are always-current and should be preferred over ad-hoc codebase exploration.
+- **`specs/`** — Normative YAML spec files for this project (e.g., `domain-model.yaml`, `versioning.yaml`). These are the authoritative source of engineering requirements.
+- **`plan/`** — Project planning files: `PRIORITIES.md`, `BUILD_LEARNINGS.md`, `history/`.
+
+## Behavioral Guidelines
+
+### Bulk / Irreversible Actions
+
+Before performing any bulk, destructive, or irreversible action (e.g., updating many GitHub issues, deleting files, mass-renaming), present a plan or summary of what will change and get explicit confirmation. This especially applies to GitHub API calls that affect many issues at once. "Collect and review" requests should surface a list for review — not act on it immediately.
+
+### CONCERNS.md Parsing
+
+`docs/reference/codebase/CONCERNS.md` is generated output and its section structure may change between runs. Parse it semantically (extract concern topics and infer severity from language cues) rather than matching specific hardcoded section headings.
 
 ## API Development
 
