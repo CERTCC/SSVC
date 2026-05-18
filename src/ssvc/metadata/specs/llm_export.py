@@ -18,7 +18,6 @@ Usage::
     print(to_llm_json(registry, spec_ids=["SR-01-001"], include_deps=True))
 """
 
-
 #  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.

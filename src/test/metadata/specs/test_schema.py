@@ -1,6 +1,5 @@
 """Tests for ssvc.metadata.specs.schema."""
 
-
 #  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -25,9 +24,22 @@ import yaml
 from pydantic import ValidationError
 
 from ssvc.metadata.specs.registry import load_registry
-from ssvc.metadata.specs.schema import (BehaviorStep, BehavioralSpec, LintWarningCode, Postcondition, Precondition,
-                                        RFC2119Priority, RelationType, Relationship, Scope, SpecFile, SpecGroup,
-                                        SpecKind, SpecTag, StatementSpec)
+from ssvc.metadata.specs.schema import (
+    BehaviorStep,
+    BehavioralSpec,
+    LintWarningCode,
+    Postcondition,
+    Precondition,
+    RFC2119Priority,
+    RelationType,
+    Relationship,
+    Scope,
+    SpecFile,
+    SpecGroup,
+    SpecKind,
+    SpecTag,
+    StatementSpec,
+)
 
 
 # ---------------------------------------------------------------------------

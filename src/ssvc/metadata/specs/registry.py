@@ -5,7 +5,6 @@ TODO: Consider extracting this module into a standalone shared library
 on it rather than maintaining parallel copies.
 """
 
-
 #  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.

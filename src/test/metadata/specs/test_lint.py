@@ -1,6 +1,5 @@
 """Tests for ssvc.metadata.specs.lint."""
 
-
 #  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
@@ -121,9 +120,9 @@ def test_lint_group_prefix_mismatch(tmp_path, capsys):
 def test_lint_spec_id_prefix_mismatch(tmp_path, capsys):
     data = _minimal_spec()
     data["groups"][0]["specs"][0]["id"] = "TST-02-001"  # wrong group
-    data["groups"][0]["specs"][0]["statement"] = (
-        "TST-02-001 MUST be in wrong group"
-    )
+    data["groups"][0]["specs"][0][
+        "statement"
+    ] = "TST-02-001 MUST be in wrong group"
     _write_yaml(tmp_path, data)
     result = lint(tmp_path)
     assert result == 1
