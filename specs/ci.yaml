@@ -1,0 +1,91 @@
+id: CI
+title: CI/CD Integration
+description: >
+  Requirements for continuous integration, automated testing gates, and
+  deployment automation. The project uses GitHub Actions for CI, GitHub
+  Pages for documentation hosting, and Dependabot for dependency updates.
+version: "0.1.0"
+kind: general
+scope: [production]
+
+groups:
+  - id: CI-01
+    title: Continuous Integration
+    description: Requirements for automated checks on every pull request.
+    specs:
+      - id: CI-01-001
+        priority: MUST
+        statement: >
+          CI-01-001 CI MUST run all pytest tests on every pull request.
+        rationale: >
+          Running the full test suite on every PR prevents regressions from
+          being merged and provides a fast feedback loop for contributors.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd, testing]
+
+      - id: CI-01-002
+        priority: MUST
+        statement: >
+          CI-01-002 CI MUST execute make dev (or equivalent) to generate
+          namespace_patterns.py before running tests.
+        rationale: >
+          namespace_patterns.py is a generated file required at test and
+          API startup; omitting the generation step causes CI failures that
+          do not reflect real code defects.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd, tooling]
+
+      - id: CI-01-003
+        priority: SHOULD
+        statement: >
+          CI-01-003 CI SHOULD run ssvc-spec-lint on every pull request that
+          modifies files under specs/.
+        rationale: >
+          Running the linter in CI enforces spec authoring rules automatically
+          and catches errors before they are merged.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd, tooling]
+
+      - id: CI-01-004
+        priority: SHOULD
+        statement: >
+          CI-01-004 CI SHOULD lint all Markdown files using markdownlint on
+          every pull request.
+        rationale: >
+          Automated Markdown linting keeps documentation consistent and
+          catches formatting errors that degrade rendered output.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd, documentation]
+
+  - id: CI-02
+    title: Deployment
+    description: Requirements for automated release and documentation deployment.
+    specs:
+      - id: CI-02-001
+        priority: MUST
+        statement: >
+          CI-02-001 The MkDocs documentation site MUST be deployed to
+          GitHub Pages on every merge to the default branch.
+        rationale: >
+          Automatic deployment keeps the published documentation in sync
+          with the source without requiring manual intervention.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd, documentation]
+
+      - id: CI-02-002
+        priority: SHOULD
+        statement: >
+          CI-02-002 Python package releases SHOULD be published to PyPI
+          automatically via a GitHub Actions workflow triggered by a version
+          tag.
+        rationale: >
+          Automating package publication reduces the risk of manual release
+          errors and ensures a consistent release process.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd]

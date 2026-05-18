@@ -30,18 +30,27 @@ groups:
       - id: SR-01-002
         priority: MUST
         statement: >
-          SR-01-002 Each spec group MUST contain at least one spec, and each
-          spec file MUST contain at least one group.
+          SR-01-002 Each spec file MUST contain at least one group.
         rationale: >
-          Empty groups or files contribute no requirements and add noise to
-          the registry; they are rejected at load time.
+          A file with no groups contributes no requirements and adds noise
+          to the registry; it is rejected at load time.
         testable: true
         tags: [tooling]
 
       - id: SR-01-003
         priority: MUST
         statement: >
-          SR-01-003 All spec IDs MUST be unique across all spec files loaded
+          SR-01-003 Each spec group MUST contain at least one spec.
+        rationale: >
+          An empty group contributes no requirements and adds noise to the
+          registry; it is rejected at load time.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-01-004
+        priority: MUST
+        statement: >
+          SR-01-004 All spec IDs MUST be unique across all spec files loaded
           into a single registry instance.
         rationale: >
           Duplicate IDs make cross-references ambiguous and break tooling
@@ -49,21 +58,21 @@ groups:
         testable: true
         tags: [tooling]
 
-      - id: SR-01-004
-        priority: MUST
-        statement: >
-          SR-01-004 Each group ID MUST share the same alphabetic prefix as
-          its containing file ID (e.g. group SR-01 must live in file SR).
-        rationale: >
-          Consistent prefixes make it easy to trace any requirement back to
-          its topic file without looking up the registry.
-        testable: true
-        tags: [tooling]
-
       - id: SR-01-005
         priority: MUST
         statement: >
-          SR-01-005 Each spec ID MUST share the same prefix as its containing
+          SR-01-005 Each group ID MUST share the same alphabetic prefix as
+          its containing file ID (e.g. group SR-01 must live in file SR).
+        rationale: >
+          Consistent prefixes allow tracing any requirement back to its
+          topic file without consulting the registry.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-01-006
+        priority: MUST
+        statement: >
+          SR-01-006 Each spec ID MUST share the same prefix as its containing
           group ID (e.g. spec SR-01-001 must live in group SR-01).
         rationale: >
           Consistent prefixes enforce a three-level hierarchy (file, group,

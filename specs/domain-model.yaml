@@ -1,0 +1,213 @@
+id: DM
+title: Domain Model
+description: >
+  Requirements for the SSVC domain object model: decision points, decision
+  tables, outcomes, and the shared mixin abstractions that compose them.
+  Python modules are the authoritative source; JSON and CSV artifacts are
+  generated from them.
+version: "0.1.0"
+kind: domain
+scope: [production]
+
+groups:
+  - id: DM-01
+    title: Object Identity
+    description: >
+      Rules that govern how SSVC domain objects are uniquely named and
+      versioned.
+    specs:
+      - id: DM-01-001
+        priority: MUST
+        statement: >
+          DM-01-001 Each domain object MUST be uniquely identified by the
+          composite key namespace:key:version.
+        rationale: >
+          A stable three-part key allows objects from different namespaces
+          and sources to coexist in the same registry without collision.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-01-002
+        priority: MUST
+        statement: >
+          DM-01-002 The namespace field of every domain object MUST hold a
+          value from the NameSpace enum defined in ssvc.namespaces.
+        rationale: >
+          Restricting namespaces to an enum prevents arbitrary strings from
+          polluting the registry and enables exhaustive validation.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-01-003
+        priority: MUST
+        statement: >
+          DM-01-003 The version field of every domain object MUST be a valid
+          semantic version string (semver 2.0.0).
+        rationale: >
+          Semantic versioning enables ordered comparison, range filtering,
+          and clear communication about breaking changes between releases.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-02
+    title: Decision Point Requirements
+    description: Requirements for DecisionPoint objects.
+    specs:
+      - id: DM-02-001
+        priority: MUST
+        statement: >
+          DM-02-001 Each DecisionPoint MUST declare a non-empty list of
+          values.
+        rationale: >
+          A decision point with no values cannot be used as a table input
+          and is therefore invalid at construction time.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-002
+        priority: MUST
+        statement: >
+          DM-02-002 All value key fields within a single DecisionPoint MUST
+          be unique.
+        rationale: >
+          Duplicate keys within a decision point make table row generation
+          ambiguous and produce incorrect cartesian products.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-003
+        priority: MUST
+        statement: >
+          DM-02-003 Each DecisionPointValue MUST have a non-empty key and a
+          non-empty name.
+        rationale: >
+          Both fields are required for table generation and human-readable
+          output; absent values produce malformed artifacts.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-004
+        priority: MUST
+        statement: >
+          DM-02-004 DecisionPoint definitions MUST reside in submodules
+          under ssvc.decision_points.
+        rationale: >
+          Centralising decision point definitions in one package subtree
+          ensures auto-import covers all instances and keeps the module
+          boundary clear.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-03
+    title: Decision Table Requirements
+    description: Requirements for DecisionTable objects.
+    specs:
+      - id: DM-03-001
+        priority: MUST
+        statement: >
+          DM-03-001 Each DecisionTable MUST reference at least one
+          DecisionPoint as an input.
+        rationale: >
+          A table with no inputs cannot generate rows and is not a valid
+          decision model.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-03-002
+        priority: MUST
+        statement: >
+          DM-03-002 A DecisionTable MUST map every combination of its input
+          DecisionPoint values to an outcome (complete coverage).
+        rationale: >
+          Incomplete tables leave undefined outcomes for valid inputs,
+          which would cause silent failures during scoring.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-03-003
+        priority: MUST
+        statement: >
+          DM-03-003 DecisionTable definitions MUST reside in submodules
+          under ssvc.decision_tables.
+        rationale: >
+          Centralising decision table definitions ensures auto-import covers
+          all instances and maintains a consistent module boundary.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-04
+    title: Outcome Requirements
+    description: Requirements for outcome and action label objects.
+    specs:
+      - id: DM-04-001
+        priority: MUST
+        statement: >
+          DM-04-001 Each outcome set MUST define at least one outcome value.
+        rationale: >
+          An empty outcome set cannot be referenced by a decision table
+          and is invalid at construction time.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-04-002
+        priority: MUST
+        statement: >
+          DM-04-002 Outcome values within a set MUST have unique keys.
+        rationale: >
+          Duplicate outcome keys make table output ambiguous and prevent
+          deterministic scoring.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-04-003
+        priority: MUST
+        statement: >
+          DM-04-003 Outcome definitions MUST reside in submodules under
+          ssvc.outcomes.
+        rationale: >
+          Co-locating all outcome definitions in one package subtree ensures
+          auto-import covers them and keeps the module boundary clear.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-05
+    title: Mixin Composition
+    description: >
+      Cross-cutting requirements for how capabilities are added to domain
+      objects via the shared mixin classes in ssvc._mixins.
+    specs:
+      - id: DM-05-001
+        priority: MUST
+        statement: >
+          DM-05-001 All domain model objects MUST compose the _Registered
+          mixin from ssvc._mixins to auto-register upon instantiation.
+        rationale: >
+          Auto-registration decouples object definition from registry
+          insertion: instantiating an object is sufficient to make it
+          available for lookup.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-05-002
+        priority: MUST
+        statement: >
+          DM-05-002 All domain model objects MUST use Pydantic v2 BaseModel
+          as their base class.
+        rationale: >
+          Pydantic v2 provides construction-time validation, JSON schema
+          generation, and serialization, all of which the toolchain depends
+          on.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-05-003
+        priority: MUST
+        statement: >
+          DM-05-003 Domain model invariants (e.g. unique value keys, valid
+          namespaces) MUST be enforced by Pydantic field_validator or
+          model_validator at construction time.
+        rationale: >
+          Failing fast at construction prevents invalid objects from ever
+          reaching the registry or being serialised to output artifacts.
+        testable: true
+        tags: [tooling]
