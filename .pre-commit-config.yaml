@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: spec-lint
+        name: Validate SSVC spec registry
+        entry: ssvc-spec-lint
+        language: system
+        types: [yaml]
+        files: ^specs/
+        pass_filenames: false

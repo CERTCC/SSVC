@@ -49,12 +49,15 @@ dependencies = [
     "pydantic>=2.11.7",
     "semver>=3.0.4",
     "fastapi[all,standard]>=0.116.1",
+    "pyyaml>=6.0",
 ]
 dynamic = ["version",]
 
 [project.scripts]
 ssvc_csv_analyzer="ssvc.csv_analyzer:main"
 ssvc_doctools="ssvc.doctools:main"
+ssvc-spec-lint="ssvc.metadata.specs.lint:main"
+ssvc-spec-dump="ssvc.metadata.specs.render:main_llm_json"
 
 [project.urls]
 "Homepage" = "https://certcc.github.io/SSVC"
