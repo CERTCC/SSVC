@@ -1,0 +1,136 @@
+id: NS
+title: Namespaces
+description: >
+  Requirements for how SSVC objects are identified by namespace. Namespaces
+  distinguish objects managed by the SSVC project from objects derived from
+  external sources, and enable private or experimental extensions. Registered
+  namespaces are controlled by the SSVC project; unregistered extension
+  namespaces follow a prescribed format so that third parties can safely
+  extend SSVC without collision. Implements ADR-0012.
+version: "0.1.0"
+kind: domain
+scope: [production]
+
+groups:
+  - id: NS-01
+    title: Registered Namespaces
+    description: >
+      Requirements for objects that use namespaces managed by the SSVC project.
+    specs:
+      - id: NS-01-001
+        priority: MUST
+        statement: >
+          NS-01-001 Every SSVC domain object MUST declare a namespace whose
+          value is either a member of the NameSpace enum in ssvc.namespaces
+          or a valid extension namespace string beginning with the x_ prefix.
+        rationale: >
+          Restricting the namespace to known values or the governed extension
+          prefix prevents arbitrary strings from polluting the registry and
+          enables exhaustive validation of object origin.
+        testable: true
+        tags: [tooling]
+
+      - id: NS-01-002
+        priority: MUST
+        statement: >
+          NS-01-002 The NameSpace enum in ssvc.namespaces MUST be the
+          authoritative list of registered namespace values; no registered
+          namespace value may be added by modifying only runtime data or
+          configuration files.
+        rationale: >
+          Embedding the canonical namespace list in a Python enum that is
+          version-controlled ensures traceability: every registered namespace
+          change goes through a code review process.
+        testable: true
+        tags: [tooling]
+
+      - id: NS-01-003
+        priority: MUST
+        statement: >
+          NS-01-003 Namespace validation MUST be enforced at object
+          construction time using the NameSpace.validate() method or
+          equivalent Pydantic field validator, rejecting any value that is
+          neither a NameSpace enum member nor a valid extension namespace.
+        rationale: >
+          Construction-time validation prevents invalid namespace strings
+          from reaching the registry or being serialised into output
+          artifacts.
+        testable: true
+        tags: [tooling]
+
+      - id: NS-01-004
+        priority: MUST_NOT
+        statement: >
+          NS-01-004 Reserved namespace strings listed in ssvc.namespaces
+          MUST NOT be used as the base of any namespace string (registered
+          or extension), as they are protected identifiers in the SSVC
+          specification.
+        rationale: >
+          Reserved strings prevent collision with future official namespaces
+          and protect the integrity of the specification against accidental
+          or deliberate hijacking.
+        testable: true
+        tags: [tooling]
+
+  - id: NS-02
+    title: Extension Namespaces
+    description: >
+      Requirements for unregistered (extension) namespaces used by
+      third-party adopters who wish to create custom SSVC objects or refine
+      existing ones without registering with the SSVC project.
+    specs:
+      - id: NS-02-001
+        priority: MUST
+        statement: >
+          NS-02-001 All unregistered extension namespace strings MUST begin
+          with the prefix x_ (underscore immediately after the letter x).
+        rationale: >
+          The x_ prefix is the universal signal for an experimental or
+          private identifier; it prevents collisions with current and future
+          registered namespaces.
+        testable: true
+        tags: [tooling]
+
+      - id: NS-02-002
+        priority: MUST
+        statement: >
+          NS-02-002 Extension namespace strings MUST follow the format
+          x_<reverse-domain>#<fragment> (e.g. x_example.agency#internal)
+          to ensure global uniqueness without central registration.
+        rationale: >
+          Reverse-domain notation delegates uniqueness to DNS ownership,
+          which is already managed globally; the fragment allows a single
+          domain owner to define multiple distinct namespaces.
+        testable: true
+        tags: [tooling]
+
+      - id: NS-02-003
+        priority: MAY
+        statement: >
+          NS-02-003 A namespace extension (a refinement of an existing
+          registered or extension namespace) MAY use the double-slash
+          extension separator in the form
+          <base-namespace>//<extension-domain>#<fragment> to indicate that
+          the extension refines the semantics of the base namespace for a
+          specific constituency.
+        rationale: >
+          Namespace extensions allow ISAOs, government agencies, or other
+          constituencies to add nuance to existing decision point semantics
+          without creating a wholly independent namespace.
+        testable: true
+        tags: [tooling]
+
+      - id: NS-02-004
+        priority: SHOULD
+        statement: >
+          NS-02-004 Objects in an extension namespace SHOULD clearly
+          document which registered or extension namespace they extend or
+          are compatible with, so that consumers can determine the degree
+          of interoperability.
+        rationale: >
+          Without provenance documentation, consumers of extension-namespace
+          objects cannot determine whether they are compatible with objects
+          from the base SSVC namespace.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]

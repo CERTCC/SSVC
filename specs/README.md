@@ -22,6 +22,8 @@ the schema, registry, linter, and exporters.
 | `registry.yaml` | RG | implementation | In-memory object registry structure, registration, and lookup |
 | `spec-registry.yaml` | SR | general | Requirements for the spec file schema and toolchain itself |
 | `testing.yaml` | TS | language | Test organisation, isolation, and quality standards |
+| `versioning.yaml` | VR | domain | Versioning rules for decision points (SemVer), JSON schemas (SchemaVer), and the project (CalVer) |
+| `namespaces.yaml` | NS | domain | Registered and extension namespace rules for SSVC domain objects |
 
 ### ID Prefix Convention
 

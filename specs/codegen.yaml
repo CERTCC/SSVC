@@ -86,3 +86,18 @@ groups:
         testable: false
         lint_suppress: [testable_without_steps]
         tags: [ci-cd, tooling]
+
+      - id: GN-02-004
+        priority: MUST
+        statement: >
+          GN-02-004 Generated JSON schema files MUST carry a SchemaVer
+          identifier in the schemaVersion field and in the $id URI, using
+          the MODEL-REVISION-ADDITION format (e.g. 1-0-0) rather than
+          SemVer dot notation.
+        rationale: >
+          SchemaVer communicates data-compatibility implications directly:
+          consumers can determine from the version string alone whether
+          their existing stored data will still validate, without consulting
+          a changelog.
+        testable: true
+        tags: [tooling]

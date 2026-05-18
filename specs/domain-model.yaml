@@ -98,6 +98,34 @@ groups:
         testable: true
         tags: [tooling]
 
+      - id: DM-02-005
+        priority: MUST_NOT
+        statement: >
+          DM-02-005 Description fields of DecisionPoint, DecisionPointValue,
+          OutcomeSet, and OutcomeValue objects MUST NOT embed worked examples
+          (e.g. "for example …", "an instance of this is …").
+        rationale: >
+          Examples grow stale independently of the concept they illustrate,
+          causing unnecessary version increments when only an example
+          changes. Examples belong in surrounding documentation text.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: DM-02-006
+        priority: SHOULD
+        statement: >
+          DM-02-006 Examples that would otherwise appear in object description
+          fields SHOULD be placed in the surrounding MkDocs documentation
+          pages or in the object's associated notes file.
+        rationale: >
+          Separating examples from definitions keeps object semantics stable
+          and allows examples to evolve independently without triggering
+          object version changes.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
   - id: DM-03
     title: Decision Table Requirements
     description: Requirements for DecisionTable objects.
@@ -209,5 +237,88 @@ groups:
         rationale: >
           Failing fast at construction prevents invalid objects from ever
           reaching the registry or being serialised to output artifacts.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-06
+    title: Ordering Constraints
+    description: >
+      Requirements for the ordering of values within decision points and
+      outcome sets. Implements ADR-0008 and ADR-0009.
+    specs:
+      - id: DM-06-001
+        priority: MUST
+        statement: >
+          DM-06-001 The values list of every DecisionPoint MUST be an
+          ordered sequence such that the index of each value reflects its
+          relative severity or urgency (lower index = lower severity/urgency).
+        rationale: >
+          An ordered value set enables partial-order reasoning across
+          combinations of decision point values, which in turn supports
+          automated policy generation and validation of monotonic policies.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-06-002
+        priority: MUST
+        statement: >
+          DM-06-002 The values list of every OutcomeSet MUST be an ordered
+          sequence such that the index of each outcome reflects its relative
+          urgency of response (lower index = lower urgency).
+        rationale: >
+          Ordering outcomes enables the policy monotonicity invariant: a
+          higher-severity input combination must map to an outcome of equal
+          or greater urgency than any lower-severity input combination.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-06-003
+        priority: MUST
+        statement: >
+          DM-06-003 The ordering of values within a DecisionPoint or
+          OutcomeSet MUST be stable across serialisation and
+          deserialisation (i.e. round-trip JSON/CSV encoding MUST preserve
+          the declared order).
+        rationale: >
+          If ordering is lost during serialisation, downstream consumers
+          may reconstruct the wrong partial order, silently producing
+          invalid policies.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-07
+    title: Separation of Concerns
+    description: >
+      Requirements that enforce the separation between the structure of a
+      decision model and the policy that maps inputs to outcomes. Implements
+      ADR-0010.
+    specs:
+      - id: DM-07-001
+        priority: MUST_NOT
+        statement: >
+          DM-07-001 A DecisionTable definition MUST NOT embed an OutcomeSet
+          as part of its structural identity; the outcome set is a separate,
+          stakeholder-specific concern.
+        rationale: >
+          Including the outcome set in the table definition would force
+          versioning events on the table whenever the outcome set changes,
+          even when the input structure is unchanged. Two organisations
+          sharing the same table structure but different outcome categories
+          would appear to use different tables.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-07-002
+        priority: MUST_NOT
+        statement: >
+          DM-07-002 Policy mappings (the specific assignment of outcome
+          values to input-value combinations) MUST NOT be embedded in the
+          DecisionTable definition; policies are stakeholder-specific and
+          must be expressed separately.
+        rationale: >
+          Embedding a policy in the table definition conflates the
+          reusable decision structure with the organisation-specific
+          prioritisation choices, preventing table sharing and independent
+          policy versioning.
         testable: true
         tags: [tooling]
