@@ -3,10 +3,10 @@ title: Versioning Rules
 description: >
   Requirements for how SSVC objects, schemas, and the overall project are
   versioned. SSVC uses a layered versioning strategy: individual domain
-  objects (decision points, decision point groups) use Semantic Versioning
-  (SemVer 2.0.0); JSON schema files use SchemaVer; and the overall SSVC
-  project uses Calendar Versioning (CalVer). These rules implement ADR-0002,
-  ADR-0005, ADR-0006, ADR-0013, and ADR-0015.
+  objects (decision points, decision point groups, decision tables) use
+  Semantic Versioning (SemVer 2.0.0); JSON schema files use SchemaVer; and
+  the overall SSVC project uses Calendar Versioning (CalVer). These rules
+  implement ADR-0002, ADR-0005, ADR-0006, ADR-0013, and ADR-0015.
 version: "0.1.0"
 kind: domain
 scope: [production]
@@ -92,7 +92,7 @@ groups:
         tags: [documentation]
 
       - id: VR-01-006
-        priority: SHOULD
+        priority: MAY
         statement: >
           VR-01-006 DecisionPoint objects SHOULD carry a status field
           indicating lifecycle stage (e.g. active, deprecated) so that
@@ -110,16 +110,15 @@ groups:
     title: Decision Point Group SemVer Rules
     description: >
       Rules governing how Semantic Version numbers are incremented for
-      DecisionPointGroup objects (and their successor, DecisionTable).
-      Implements ADR-0004 and ADR-0005.
+      DecisionPointGroup objects. Implements ADR-0004 and ADR-0005.
+      DecisionTable versioning is covered separately in VR-05.
     specs:
       - id: VR-02-001
         priority: MUST
         statement: >
-          VR-02-001 A new DecisionPointGroup or DecisionTable object (with a
-          new name) MUST be created when the stakeholder role and/or the
-          decision being modeled changes, even if the constituent decision
-          points remain the same.
+          VR-02-001 A new DecisionPointGroup object (with a new name) MUST be
+          created when the stakeholder role and/or the decision being modeled
+          changes, even if the constituent decision points remain the same.
         rationale: >
           Stakeholder role and modeled decision are the core identity of a
           group. A change in either represents a fork in version history that
@@ -263,6 +262,122 @@ groups:
           Object-level SemVer communicates compatibility semantics that
           CalVer cannot; the two schemes are complementary and operate at
           different granularities.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+  - id: VR-05
+    title: Decision Table SemVer Rules
+    description: >
+      Rules governing how Semantic Version numbers are incremented for
+      DecisionTable objects. A DecisionTable is a composite domain object
+      whose version reflects changes to its constituent decision points
+      (inputs and the designated outcome decision point). Implements
+      ADR-0004 and ADR-0005. Outcome sets are themselves decision points
+      and are versioned under VR-01.
+    specs:
+      - id: VR-05-001
+        priority: MUST
+        statement: >
+          VR-05-001 A new DecisionTable object (with a new name and key) MUST
+          be created when the stakeholder role and/or the decision being
+          modeled changes, even if the constituent decision points remain the
+          same.
+        rationale: >
+          Stakeholder role and modeled decision are the core identity of a
+          table. A change in either represents a fork in version history that
+          cannot be expressed as a version increment.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: VR-05-002
+        priority: MUST
+        statement: >
+          VR-05-002 A new DecisionTable object (with a new name and key) MUST
+          be created when the designated outcome decision point is replaced
+          with a conceptually different decision point.
+        rationale: >
+          The outcome decision point defines what question the table answers.
+          Replacing it with a conceptually different output changes the purpose
+          of the table in a way that cannot be expressed as a version
+          increment; a version bump would misrepresent backward compatibility.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: VR-05-003
+        priority: MUST
+        statement: >
+          VR-05-003 The major version of a DecisionTable MUST be incremented
+          when an input decision point is added to or removed from the table,
+          or when any constituent decision point (input or outcome) increments
+          its own major version.
+        rationale: >
+          Adding or removing an input changes the combinatoric space of the
+          table; a major constituent change breaks any downstream policies
+          that assumed the prior input structure. Both events require consumers
+          to reassess previously recorded answers.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: VR-05-004
+        priority: MUST
+        statement: >
+          VR-05-004 The minor version of a DecisionTable MUST be incremented
+          (and major held constant) when any constituent decision point (input
+          or outcome) increments its own minor version.
+        rationale: >
+          A constituent minor increment adds options without breaking existing
+          answers; a table minor increment mirrors that compatible expansion
+          and signals that prior answers remain valid.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: VR-05-005
+        priority: MUST
+        statement: >
+          VR-05-005 The patch version of a DecisionTable MUST be incremented
+          (and major/minor held constant) when any constituent decision point
+          (input or outcome) increments its own patch version, or when the
+          table's name or description changes without altering its semantics.
+        rationale: >
+          Patch increments carry no semantic shift; a table patch mirrors the
+          same signal for the table as a whole, and name/description-only
+          changes equally carry no semantic impact.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: VR-05-006
+        priority: MUST
+        statement: >
+          VR-05-006 A DecisionTable whose major version is 0 (i.e., v0.x)
+          MUST be treated as pre-support: its constituent decision points,
+          designated outcome, and any row-level mappings are all subject to
+          change without a major-version increment.
+        rationale: >
+          The v0.x convention provides an explicit pre-stability phase for new
+          decision tables before they enter production use and acquire
+          backward-compatibility obligations.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: VR-05-007
+        priority: MAY
+        statement: >
+          VR-05-007 DecisionTable objects MAY carry a status field indicating
+          lifecycle stage (e.g. active, deprecated) so that consumers can
+          distinguish supported tables from those that should no longer be
+          used.
+        rationale: >
+          Lifecycle status tracking for DecisionTable is a future concern; no
+          current implementation provides this field. This requirement
+          captures the intent as a forward-looking allowance without imposing
+          an obligation.
         testable: false
         lint_suppress: [testable_without_steps]
         tags: [documentation]
