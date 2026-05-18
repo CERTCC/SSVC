@@ -1,0 +1,209 @@
+id: DPG
+title: Decision Point Groups Removal
+description: >
+  Requirements for eliminating the deprecated `ssvc.dp_groups` package now
+  that `DecisionTable` provides a superior replacement. Covers three phases:
+  removing the redundant SSVC role group modules, migrating `policy_generator`
+  to use `DecisionTable`, and (once CVSS backfill issues land) removing the
+  CVSS group collections. Mandates a major-version bump when breaking removals
+  ship.
+version: "0.1.0"
+kind: implementation
+scope: [production]
+
+groups:
+  - id: DPG-01
+    title: Remove Redundant SSVC dp_group Modules
+    description: >
+      The four SSVC-role-specific `DecisionPointGroup` modules are fully
+      superseded by their `DecisionTable` counterparts. Phase 1 removes these
+      modules plus the `ssvc/dp_groups/ssvc/collections.py` version-bundling
+      module, and then deletes the entire `ssvc.dp_groups.ssvc` sub-package and
+      `base.py`. Tests and registry entries are updated in the same change.
+    specs:
+      - id: DPG-01-001
+        priority: MUST
+        statement: >
+          DPG-01-001 The implementation MUST delete
+          `src/ssvc/dp_groups/ssvc/supplier.py`,
+          `src/ssvc/dp_groups/ssvc/deployer.py`,
+          `src/ssvc/dp_groups/ssvc/coordinator_triage.py`, and
+          `src/ssvc/dp_groups/ssvc/coordinator_publication.py`; these modules
+          are fully superseded by `ssvc.decision_tables.ssvc`.
+        rationale: >
+          Each deleted module has a one-to-one `DecisionTable` equivalent.
+          Retaining them creates a maintained surface area that serves no
+          additional purpose.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-01-002
+        priority: MUST
+        statement: >
+          DPG-01-002 The implementation MUST delete
+          `src/ssvc/dp_groups/ssvc/collections.py`; the SSVCv1, SSVCv2, and
+          SSVCv2.1 version-bundling collections it provides are redundant
+          now that `DecisionTable` objects carry their own version metadata.
+        rationale: >
+          `collections.py` only exists because `DecisionTable` did not yet
+          exist when it was written. Historical bundling will be restored by
+          future backfill `DecisionTable` objects (see related issues #920).
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-01-003
+        priority: MUST
+        statement: >
+          DPG-01-003 The implementation MUST delete `src/ssvc/dp_groups/base.py`
+          and remove the `src/ssvc/dp_groups/ssvc/` sub-package directory once
+          all Python source files that depend on `DecisionPointGroup` or
+          `get_all_decision_points_from` have been migrated or removed.
+        rationale: >
+          Keeping a deprecated class with no callers introduces dead code and
+          misleads future contributors. Deletion is the appropriate conclusion
+          to the deprecation lifecycle.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-01-004
+        priority: MUST
+        statement: >
+          DPG-01-004 The implementation MUST remove `ssvc.dp_groups` from the
+          `IMPORTABLES` list in `src/ssvc/utils/defaults.py` once the
+          `ssvc/dp_groups/` package no longer contains importable modules.
+        rationale: >
+          `IMPORTABLES` drives auto-import logic in the registry loader. A
+          stale entry for a deleted package causes `ImportError` at runtime.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-01-005
+        priority: MUST
+        statement: >
+          DPG-01-005 The implementation MUST delete `src/test/dp_groups/`
+          (including `test_dp_groups.py`) when the corresponding source
+          modules are removed.
+        rationale: >
+          Tests for deleted modules have no value and will cause `pytest`
+          to fail if left in place.
+        testable: true
+        tags: [testing]
+
+      - id: DPG-01-006
+        priority: MUST
+        statement: >
+          DPG-01-006 Phase 1 changes MUST be shipped in a release that bumps
+          the project's major version number, because deleting
+          `ssvc.dp_groups.ssvc` and `ssvc.dp_groups.base` removes publicly
+          importable symbols.
+        rationale: >
+          Per the versioning spec (VR), removal of public API is a breaking
+          change requiring a major version increment.
+        testable: true
+        tags: [tooling]
+
+  - id: DPG-02
+    title: Migrate policy_generator to DecisionTable
+    description: >
+      `PolicyGenerator` currently requires a `DecisionPointGroup` argument.
+      Phase 2 replaces that parameter with `DecisionTable` so the class no
+      longer depends on the deprecated type.
+    specs:
+      - id: DPG-02-001
+        priority: MUST
+        statement: >
+          DPG-02-001 `PolicyGenerator.__init__` MUST accept a `DecisionTable`
+          instance in place of `DecisionPointGroup` for its primary
+          decision-point-collection argument.
+        rationale: >
+          `DecisionTable` is the canonical way to group decision points.
+          Retaining a `DecisionPointGroup`-typed parameter after the class is
+          removed would break at import time.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-02-002
+        priority: MUST_NOT
+        statement: >
+          DPG-02-002 `PolicyGenerator` MUST NOT accept `DecisionPointGroup`
+          after Phase 2 ships; existing callers MUST be migrated to pass a
+          `DecisionTable` instance instead.
+        rationale: >
+          Keeping a union-type parameter would delay removal of
+          `DecisionPointGroup` and keep the deprecated code path alive.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-02-003
+        priority: MUST
+        statement: >
+          DPG-02-003 All call sites of `PolicyGenerator` in
+          `src/ssvc/policy_generator.py` (including the `__main__` demo block)
+          MUST be updated to construct and pass a `DecisionTable` object.
+        rationale: >
+          Internal demo/test call sites using the old signature would prevent
+          the module from running correctly after the parameter type change.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-02-004
+        priority: MUST
+        statement: >
+          DPG-02-004 `doctools.dump_schemas` MUST remove `DecisionPointGroup`
+          from the set of classes whose JSON schema is emitted.
+        rationale: >
+          `dump_schemas` iterates a hardcoded tuple of classes. Leaving
+          `DecisionPointGroup` in that tuple after the class is deleted causes
+          an `ImportError` during doc generation.
+        testable: true
+        tags: [tooling]
+
+  - id: DPG-03
+    title: Remove CVSS dp_group Collections (Blocked)
+    description: >
+      `ssvc/dp_groups/cvss/collections.py` groups CVSS v1–v3 decision points
+      into `DecisionPointGroup` objects. Removing it requires backfill
+      `DecisionTable` objects for CVSS v1, v2, and v3 to already exist.
+      Phase 3 is therefore blocked by issues #922, #923, and #924.
+    specs:
+      - id: DPG-03-001
+        priority: MUST
+        statement: >
+          DPG-03-001 The implementation MUST NOT delete
+          `src/ssvc/dp_groups/cvss/collections.py` until `DecisionTable`
+          objects for CVSS v1, v2, and v3 exist (issues #922, #923, #924).
+        rationale: >
+          Deleting the CVSS collections before the backfill tables exist would
+          remove the only machine-readable representation of CVSS v1–v3
+          decision-point groupings.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-03-002
+        priority: MUST
+        statement: >
+          DPG-03-002 Once issues #922, #923, and #924 are merged, the
+          implementation MUST delete `src/ssvc/dp_groups/cvss/` and the
+          `ssvc/dp_groups/` package root, and remove any remaining
+          `ssvc.dp_groups` entries from `IMPORTABLES`.
+        rationale: >
+          After the CVSS backfill, no remaining functionality requires
+          `DecisionPointGroup` and the entire `ssvc.dp_groups` package can
+          be removed cleanly.
+        testable: true
+        tags: [tooling]
+
+      - id: DPG-03-003
+        priority: MUST
+        statement: >
+          DPG-03-003 The generated JSON schema files
+          `data/schema/v2/Decision_Point_Group-2-0-0.schema.json` and
+          `data/schema/v2/DecisionPointGroup_2_0_0.schema.json` MUST be
+          retained after Phase 3; they MUST NOT be regenerated or overwritten
+          by `make regenerate_json` or `doctools.dump_schemas`.
+        rationale: >
+          External tooling may reference these schema URLs for backward
+          compatibility. Keeping them as static files preserves that contract
+          without requiring the class to remain in the codebase.
+        testable: true
+        tags: [tooling]
