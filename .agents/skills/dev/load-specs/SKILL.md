@@ -1,22 +1,12 @@
 ---
-id: "load-specs"
-title: "Load all specs as LLM-optimized JSON"
-description: "Export all project specifications as flat, inheritance-resolved JSON for coding agents. Run this at the start of any implementation or design task."
-author: "CERTCC / SSVC"
+name: load-specs
+description: >
+  Export all project specifications as flat, inheritance-resolved JSON for
+  coding agents. Run this at the start of any implementation or design task.
 tags:
   - specs
   - requirements
   - agent-context
-shell: "zsh"
-commands:
-  - "uv run ssvc-spec-dump"
-inputs:
-  - name: repo_root
-    description: "Repository root where the command should be executed"
-    default: "."
-outputs:
-  - name: specs_json
-    description: "Compact JSON with all requirements, edges, and file metadata"
 ---
 
 # Skill: Load All Specs as LLM-Optimized JSON

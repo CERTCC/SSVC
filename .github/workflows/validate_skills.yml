@@ -1,0 +1,74 @@
+name: Validate Skills
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".agents/skills/**/SKILL.md"
+  pull_request:
+    paths:
+      - ".agents/skills/**/SKILL.md"
+
+jobs:
+  validate:
+    name: Validate SKILL.md files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SKILL.md front-matter
+        run: |
+          python3 - <<'EOF'
+          import sys
+          import pathlib
+
+          try:
+              import yaml
+          except ImportError:
+              import subprocess
+              subprocess.run(
+                  [sys.executable, "-m", "pip", "install", "pyyaml", "-q"],
+                  check=True,
+              )
+              import yaml
+
+          skills_root = pathlib.Path(".agents/skills")
+          skill_files = sorted(skills_root.rglob("SKILL.md"))
+
+          if not skill_files:
+              print("No SKILL.md files found — nothing to validate.")
+              sys.exit(0)
+
+          errors = []
+          for path in skill_files:
+              text = path.read_text()
+              if not text.startswith("---"):
+                  errors.append(f"{path}: missing front-matter block (file must start with ---)")
+                  continue
+              parts = text.split("---", 2)
+              if len(parts) < 3:
+                  errors.append(f"{path}: front-matter block not closed (missing closing ---)")
+                  continue
+              try:
+                  fm = yaml.safe_load(parts[1])
+              except yaml.YAMLError as exc:
+                  errors.append(f"{path}: invalid YAML front-matter — {exc}")
+                  continue
+              if not isinstance(fm, dict):
+                  errors.append(f"{path}: front-matter is not a YAML mapping")
+                  continue
+              for field in ("name", "description"):
+                  value = fm.get(field)
+                  if not value or not str(value).strip():
+                      errors.append(
+                          f"{path}: missing or empty required field '{field}'"
+                      )
+
+          if errors:
+              for err in errors:
+                  print(f"::error::{err}")
+              print(f"\n{len(errors)} error(s) found in {len(skill_files)} SKILL.md file(s).")
+              sys.exit(1)
+
+          print(f"All {len(skill_files)} SKILL.md file(s) valid.")
+          EOF
