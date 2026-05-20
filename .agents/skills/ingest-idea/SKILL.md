@@ -5,10 +5,11 @@ description: >
   and implementation notes, then close the idea issue, open a docs-only PR,
   and create a GitHub implementation Issue as a sub-issue of the idea issue.
   Runs a structured interview (grill-me), writes specs/<topic>.yaml and
-  notes/<topic>.md, archives the idea to plan/history/, opens a docs-only PR
-  with the specs-notes label, and creates a GitHub Issue tagged
-  group:unscheduled. Use when the user says "ingest idea", references a GitHub
-  Idea issue number, or wants to convert an idea into spec and notes files.
+  notes/<topic>.md, archives the idea to plan/history/ideas.md, opens a
+  docs-only PR with the specs-notes label, and creates a GitHub Issue tagged
+  group:unscheduled via the manage-github-issue skill. Use when the user says
+  "ingest idea", references a GitHub Idea issue number, or wants to convert
+  an idea into spec and notes files.
 ---
 
 # Skill: Ingest Idea
@@ -96,6 +97,19 @@ Invoke the `grill-me` skill. Follow its instructions to walk every design
 decision branch one at a time using `ask_user`, providing a recommendation
 for each question. Reach shared understanding before writing anything.
 
+### 4b. Create the task branch
+
+**Do this before writing any files.** Freshen the slot to the latest
+`origin/specs_bootstrap`, then create the task branch. All file writes
+(steps 5–7) happen on this branch so they are never at risk from a subsequent
+`git reset --hard`:
+
+```bash
+FRESHEN="$HOME/.copilot/skills/manage-worktree/scripts/manage_worktree.sh"
+[ -f "$FRESHEN" ] && bash "$FRESHEN" freshen
+git switch -c ingest/idea-<IDEA_NUMBER>-<slug>
+```
+
 ### 5. Write the spec file
 
 Create or modify `specs/<topic>.yaml` following `specs/meta-specifications.yaml`
@@ -128,40 +142,18 @@ Add the new spec to both:
 Invoke the `format-markdown` skill on all new/modified markdown files. Fix
 any errors before proceeding.
 
-### 9. Archive the idea
+### 9. Open a docs-only PR
 
-Append a record to `plan/history/ideas.md` (create the file if it doesn't
-exist). Include the full original idea text with a `**Processed**` line:
-
-```bash
-DATE=$(date +%Y-%m-%d)
-cat >> plan/history/ideas.md <<ENDOFENTRY
-
----
-
-## IDEA-${IDEA_NUMBER}: <short idea title>
-
-<full idea title and body here>
-
-**Processed**: ${DATE} — design decisions captured in
-\`specs/<topic>.yaml\` and \`notes/<topic>.md\`.
-ENDOFENTRY
-```
-
-### 10. Open a docs-only PR
-
-Create a branch, commit all spec/notes/README changes, and open a PR
-carrying the `specs-notes` label. Reference the originating idea issue in
-the PR body so GitHub auto-links them:
+Commit all spec/notes/README changes and open a PR carrying the
+`specs-notes` label. The branch was already created in step 4b.
+Reference the originating idea issue in the PR body so GitHub auto-links them:
 
 ```bash
-git switch -c ingest/idea-<IDEA_NUMBER>-<slug>
-git add specs/<topic>.yaml notes/<topic>.md specs/README.md plan/history/ideas.md
+git add specs/<topic>.yaml notes/<topic>.md specs/README.md
 git commit -m "specs: ingest idea #<IDEA_NUMBER> — <short title>
 
 - Add specs/<topic>.yaml (ID-01 through ID-NN)
 - Add notes/<topic>.md with implementation guidance
-- Archive idea #<IDEA_NUMBER> to plan/history/ideas.md
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
 git push -u origin ingest/idea-<IDEA_NUMBER>-<slug>
@@ -176,31 +168,20 @@ No .py files changed." \
   --label "specs-notes"
 ```
 
-### 11. Create a GitHub Issue for implementation
+This PR carries the `specs-notes` label for reviewer awareness. This ensures
+spec and notes files are on the default branch and referenceable from GitHub
+Issues before any implementation work begins.
 
-After opening the docs-only PR, create a GitHub Issue to track implementation.
-Wire the idea issue as the **parent** of the new implementation issue:
+### 10. Create a GitHub Issue for implementation
 
-```bash
-IMPL_ISSUE_NUMBER=$(gh api graphql -f query="
-mutation {
-  createIssue(input: {
-    repositoryId: \"MDEwOlJlcG9zaXRvcnkyMzU4MDkzNTU=\"
-    title: \"<Implementation title from spec>\"
-    body: \"## Summary\n\n<Description from spec — one paragraph>\n\n## Acceptance Criteria\n\n- [ ] AC-1: <from spec>\n- [ ] AC-2: <from spec>\n\n## Reference\n\nSpec: \`specs/<topic>.yaml\`\nNotes: \`notes/<topic>.md\`\"
-    issueTypeId: \"IT_kwDOAjf0s84AcFLs\"
-    labelIds: [\"<group:unscheduled label node ID>\", \"<size: label node ID>\"]
-  }) {
-    issue { number }
-  }
-}" --jq '.data.createIssue.issue.number')
-```
-
-If the GraphQL label approach is cumbersome, fall back to `gh issue create`
-and then set the parent relationship and labels separately:
+After opening the docs-only PR, create a GitHub Issue to track implementation
+using the `manage-github-issue` skill. Wire the idea issue as the **parent**
+of the new implementation issue — the idea is the origin, and the
+implementation is its child. If the issue has known blockers at creation time,
+wire them as structured relationships too.
 
 ```bash
-IMPL_ISSUE_NUMBER=$(gh issue create --repo CERTCC/SSVC \
+IMPL_ISSUE_NUMBER=$(.agents/skills/manage-github-issue/manage_github_issue.sh \
   --title "<Implementation title from spec>" \
   --body "## Summary
 
@@ -210,22 +191,16 @@ IMPL_ISSUE_NUMBER=$(gh issue create --repo CERTCC/SSVC \
 
 - [ ] AC-1: <from spec>
 - [ ] AC-2: <from spec>
+...
 
 ## Reference
 
-Spec: \`specs/<topic>.yaml\`
+Spec: \`specs/<topic>.yaml\` (ID-01 through ID-NN)
 Notes: \`notes/<topic>.md\`" \
   --label "group:unscheduled,size:<S|M|L>" \
-  | grep -oE '[0-9]+$')
-
-# Wire idea as parent of implementation issue
-gh api graphql -f query="
-mutation {
-  updateIssue(input: {
-    id: \"<impl_issue_node_id>\"
-    parentId: \"<idea_issue_node_id>\"
-  }) { issue { number } }
-}"
+  --parent "${IDEA_NUMBER}")
+  # Add --blocked-by N if this issue has known blockers at creation time
+echo "Created implementation issue #${IMPL_ISSUE_NUMBER}"
 ```
 
 Set the `size:` label based on AC checkbox count:
@@ -234,8 +209,34 @@ Set the `size:` label based on AC checkbox count:
 The implementation Issue sits in `group:unscheduled` until a human runs
 `review-priorities` to slot it into `plan/PRIORITIES.md`.
 
-After creating the implementation issue, post the closing comment on the
-idea issue and close it:
+### 11. Archive the idea and close the issue
+
+Now that both the PR URL and implementation issue number are known, append a
+record to `plan/history/ideas.md` (create the file if it doesn't exist).
+Include the full original idea text plus the PR URL and implementation issue:
+
+```bash
+DATE=$(date +%Y-%m-%d)
+cat >> plan/history/ideas.md <<ENDOFENTRY
+
+---
+
+## IDEA-${IDEA_NUMBER}: <short idea title>
+
+<full idea title and body here>
+
+**Processed**: ${DATE} — design decisions captured in
+\`specs/<topic>.yaml\` and \`notes/<topic>.md\`.
+Docs PR: <PR_URL>. Implementation tracked in #<IMPL_ISSUE_NUMBER>.
+ENDOFENTRY
+git add plan/history/ideas.md
+git commit -m "chore: archive idea #${IDEA_NUMBER} to history
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+git push
+```
+
+After archiving, post the closing comment and close the idea issue:
 
 ```bash
 gh issue comment "${IDEA_NUMBER}" --repo CERTCC/SSVC \
@@ -256,15 +257,18 @@ gh issue close "${IDEA_NUMBER}" --repo CERTCC/SSVC
 - [ ] Idea content fetched from GitHub issue
 - [ ] Codebase explored via `study-project-docs` before grilling
 - [ ] All design decision branches resolved via grill-me
+- [ ] Task branch created before writing any files (step 4b)
 - [ ] `specs/<topic>.yaml` created with correct ID scheme
 - [ ] `notes/<topic>.md` created with decision table + examples
 - [ ] `specs/README.md` updated (Spec Files table + ID Prefix section if new)
 - [ ] Markdown lint clean
-- [ ] Idea archived to `plan/history/ideas.md`
 - [ ] Docs-only PR opened with `specs-notes` label and `Ref #<idea_number>`
   in body
-- [ ] Implementation GitHub Issue created with `group:unscheduled` and
-  `size:` labels; idea issue wired as parent
+- [ ] Implementation GitHub Issue created via `manage-github-issue` with
+  `group:unscheduled` and `size:` labels; idea issue wired as parent;
+  other blockers wired as structured relationships
+- [ ] Idea archived to `plan/history/ideas.md` (after PR + impl issue created,
+  so entry body includes PR URL and impl issue number)
 - [ ] Idea issue commented with links to PR and implementation issue, then
   closed
 
