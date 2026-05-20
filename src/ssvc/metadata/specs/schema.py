@@ -211,7 +211,7 @@ class BehavioralSpec(StatementSpec):
 
     @field_validator("preconditions", "steps", "postconditions")
     @classmethod
-    def _nonempty_if_present(cls, v: list | None, info: object) -> list | None:
+    def _behavioral_lists_nonempty(cls, v: list | None, info: object) -> list | None:
         if v is not None and len(v) == 0:
             field_name = getattr(info, "field_name", "list field")
             raise ValueError(f"{field_name} must be non-empty if present")

@@ -128,7 +128,7 @@ def _topic_record(file: SpecFile) -> dict[str, str]:
         "id": file.id,
         "title": file.title,
         "version": file.version,
-        "kind": file.kind,
+        "kind": file.kind.value,
     }
 
 

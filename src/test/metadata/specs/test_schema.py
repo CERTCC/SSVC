@@ -246,6 +246,21 @@ def test_behavioral_spec_empty_list_rejected(field: str) -> None:
         BehavioralSpec(**kwargs)  # type: ignore[arg-type]
 
 
+@pytest.mark.parametrize(
+    "field", ["scope", "tags", "relationships", "lint_suppress"]
+)
+def test_behavioral_spec_inherited_empty_list_rejected(field: str) -> None:
+    """Inherited non-empty validators still fire on BehavioralSpec instances."""
+    kwargs: dict = {
+        "id": "AB-01-001",
+        "priority": RFC2119Priority.MUST,
+        "statement": "AB-01-001 MUST pass",
+        field: [],
+    }
+    with pytest.raises(ValidationError, match="non-empty"):
+        BehavioralSpec(**kwargs)  # type: ignore[arg-type]
+
+
 # ---------------------------------------------------------------------------
 # SpecGroup
 # ---------------------------------------------------------------------------
