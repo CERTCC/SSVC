@@ -9,6 +9,9 @@ on:
     paths:
       - ".agents/skills/**/SKILL.md"
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     name: Validate SKILL.md files
