@@ -774,6 +774,46 @@
         "cisa": {
           "namespace": "cisa",
           "keys": {
+            "AE": {
+              "key": "AE",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa",
+                    "key": "AE",
+                    "version": "1.0.0",
+                    "name": "Asset Exposure",
+                    "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "No",
+                        "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
+                      },
+                      {
+                        "key": "Y",
+                        "name": "Yes",
+                        "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "No",
+                      "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
+                    },
+                    "Y": {
+                      "key": "Y",
+                      "name": "Yes",
+                      "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
+                    }
+                  }
+                }
+              }
+            },
             "KEV": {
               "key": "KEV",
               "versions": {
@@ -919,6 +959,76 @@
                       "key": "AC",
                       "name": "Act",
                       "definition": "The vulnerability requires attention from the organization's internal, supervisory-level and leadership-level individuals. Necessary actions include requesting assistance or information about the vulnerability, as well as publishing a notification either internally and/or externally. Typically, internal groups would meet to determine the overall response and then execute agreed upon actions. CISA recommends remediating Act vulnerabilities as soon as possible."
+                    }
+                  }
+                }
+              }
+            },
+            "BOD2604": {
+              "key": "BOD2604",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa",
+                    "key": "BOD2604",
+                    "version": "1.0.0",
+                    "name": "CISA BOD 26-04 Remediation Timelines",
+                    "definition": "The CISA BOD 26-04 outcome group of remediation timelines for agencies to follow.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "FSU",
+                        "name": "Fix on system upgrade",
+                        "definition": "The vulnerability should be remediated the next time the vulnerable asset receives a scheduled major upgrade or rebuild."
+                      },
+                      {
+                        "key": "60D",
+                        "name": "60 days",
+                        "definition": "Remediate within 60 days."
+                      },
+                      {
+                        "key": "14D",
+                        "name": "14 days",
+                        "definition": "Remediate within 14 days."
+                      },
+                      {
+                        "key": "3D",
+                        "name": "3 days",
+                        "definition": "Remediate within 3 days."
+                      },
+                      {
+                        "key": "3DF",
+                        "name": "3 days & forensic investigation",
+                        "definition": "Remediate within 3 days and carry out a forensic triage of the asset to assess whether the system is compromised."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "FSU": {
+                      "key": "FSU",
+                      "name": "Fix on system upgrade",
+                      "definition": "The vulnerability should be remediated the next time the vulnerable asset receives a scheduled major upgrade or rebuild."
+                    },
+                    "60D": {
+                      "key": "60D",
+                      "name": "60 days",
+                      "definition": "Remediate within 60 days."
+                    },
+                    "14D": {
+                      "key": "14D",
+                      "name": "14 days",
+                      "definition": "Remediate within 14 days."
+                    },
+                    "3D": {
+                      "key": "3D",
+                      "name": "3 days",
+                      "definition": "Remediate within 3 days."
+                    },
+                    "3DF": {
+                      "key": "3DF",
+                      "name": "3 days & forensic investigation",
+                      "definition": "Remediate within 3 days and carry out a forensic triage of the asset to assess whether the system is compromised."
                     }
                   }
                 }
@@ -7759,6 +7869,254 @@
         "cisa": {
           "namespace": "cisa",
           "keys": {
+            "DT_BOD2604": {
+              "key": "DT_BOD2604",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa",
+                    "key": "DT_BOD2604",
+                    "version": "1.0.0",
+                    "name": "CISA BOD 26-04",
+                    "definition": "Decision table for CISA BOD 26-04.",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "cisa:AE:1.0.0": {
+                        "namespace": "cisa",
+                        "key": "AE",
+                        "version": "1.0.0",
+                        "name": "Asset Exposure",
+                        "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "No",
+                            "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
+                          },
+                          {
+                            "key": "Y",
+                            "name": "Yes",
+                            "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
+                          }
+                        ]
+                      },
+                      "cisa:KEV:1.0.0": {
+                        "namespace": "cisa",
+                        "key": "KEV",
+                        "version": "1.0.0",
+                        "name": "In KEV",
+                        "definition": "Denotes whether a vulnerability is in the CISA Known Exploited Vulnerabilities (KEV) list.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "No",
+                            "definition": "Vulnerability is not listed in KEV."
+                          },
+                          {
+                            "key": "Y",
+                            "name": "Yes",
+                            "definition": "Vulnerability is listed in KEV."
+                          }
+                        ]
+                      },
+                      "ssvc:A:2.0.0": {
+                        "namespace": "ssvc",
+                        "key": "A",
+                        "version": "2.0.0",
+                        "name": "Automatable",
+                        "definition": "Can an attacker reliably automate creating exploitation events for this vulnerability?",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "No",
+                            "definition": "Attackers cannot reliably automate steps 1-4 of the kill chain for this vulnerability. These steps are (1) reconnaissance, (2) weaponization, (3) delivery, and (4) exploitation."
+                          },
+                          {
+                            "key": "Y",
+                            "name": "Yes",
+                            "definition": "Attackers can reliably automate steps 1-4 of the kill chain."
+                          }
+                        ]
+                      },
+                      "ssvc:TI:1.0.0": {
+                        "namespace": "ssvc",
+                        "key": "TI",
+                        "version": "1.0.0",
+                        "name": "Technical Impact",
+                        "definition": "The technical impact of the vulnerability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "P",
+                            "name": "Partial",
+                            "definition": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
+                          },
+                          {
+                            "key": "T",
+                            "name": "Total",
+                            "definition": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+                          }
+                        ]
+                      },
+                      "cisa:BOD2604:1.0.0": {
+                        "namespace": "cisa",
+                        "key": "BOD2604",
+                        "version": "1.0.0",
+                        "name": "CISA BOD 26-04 Remediation Timelines",
+                        "definition": "The CISA BOD 26-04 outcome group of remediation timelines for agencies to follow.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "FSU",
+                            "name": "Fix on system upgrade",
+                            "definition": "The vulnerability should be remediated the next time the vulnerable asset receives a scheduled major upgrade or rebuild."
+                          },
+                          {
+                            "key": "60D",
+                            "name": "60 days",
+                            "definition": "Remediate within 60 days."
+                          },
+                          {
+                            "key": "14D",
+                            "name": "14 days",
+                            "definition": "Remediate within 14 days."
+                          },
+                          {
+                            "key": "3D",
+                            "name": "3 days",
+                            "definition": "Remediate within 3 days."
+                          },
+                          {
+                            "key": "3DF",
+                            "name": "3 days & forensic investigation",
+                            "definition": "Remediate within 3 days and carry out a forensic triage of the asset to assess whether the system is compromised."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "cisa:BOD2604:1.0.0",
+                    "mapping": [
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "FSU"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "14D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "60D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "60D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "FSU"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "14D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "14D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "14D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "14D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "14D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "60D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "P",
+                        "cisa:BOD2604:1.0.0": "3D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "N",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "3DF"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "N",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "3DF"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "N",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "3D"
+                      },
+                      {
+                        "cisa:KEV:1.0.0": "Y",
+                        "cisa:AE:1.0.0": "Y",
+                        "ssvc:A:2.0.0": "Y",
+                        "ssvc:TI:1.0.0": "T",
+                        "cisa:BOD2604:1.0.0": "3DF"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
             "DT_CO": {
               "key": "DT_CO",
               "versions": {

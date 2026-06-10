@@ -896,35 +896,41 @@ function check_select(ev) {
 	    outcome_set(dinput, true);
 	}
     });
-    /* Re-prune the whole tree from the state of every checkbox, walking the
-       saved _schildren rather than the rendered nodes, so boxes can be
-       toggled in any order and hidden branches stay in sync. */
-    let unchecked = {};
-    groupContainer.querySelectorAll('input[type="checkbox"].dp_input').forEach(function(xinput) {
-	if(!xinput.checked) {
-	    const dpdepth = parseInt($(xinput).data("dpdepth"));
-	    if(!(dpdepth in unchecked))
-		unchecked[dpdepth] = [];
-	    unchecked[dpdepth].push(parseInt($(xinput).data("dpvdepth")));
+    const finddpIndex = $(input).data("dpdepth");
+    const nodes = d3.selectAll("g.node.depth-"+String(finddpIndex));
+    function traverse_remove(xnode) {
+	if(!xnode.__data__) {
+	    console.log("Error no nodes to descend!");
 	}
-    });
-    function prune_tree(xnode, depth) {
-	if(!xnode._schildren) {
-	    if((!xnode.children) || (!xnode.children.length))
-		return;
-	    xnode._schildren = Array.from(xnode.children);
+	if(!xnode.__data__._schildren) {
+	    console.log("Error no node _schildren data to restore from!");
 	}
-	const removeValues = unchecked[depth] || [];
-	xnode.children = xnode._schildren.filter(function(_, vindex) {
-	    return !removeValues.includes(vindex);
+	let removeValues = [];
+	xnode.__data__.children = Array.from(xnode.__data__._schildren);
+	dpContainer.querySelectorAll("input").forEach(function(cinput) {
+	    if(!cinput.checked) 
+		removeValues.push($(cinput).data("dpvdepth"));
 	});
-	xnode._schildren.forEach(function(child) {
-	    prune_tree(child, depth + 1);
+	removeValues.reverse().forEach(function(rindex) {
+	    removevalueIndex = parseInt(rindex);
+	    xnode.__data__.children.splice(removevalueIndex,1);
 	});
-    }
-    if(root && $("svg.mgraph").length) {
-	prune_tree(root, 0);
-	update(root);
+	update(xnode.__data__);
+    }    
+    
+    if(nodes.length) {
+	nodes[0].forEach(function(xnode) {
+	    if(xnode.__data__) {
+		if(xnode.__data__._schildren) {
+		    traverse_remove(xnode);
+		} else if(xnode.__data__.children) {
+		    let removevalueIndex = $(input).data("dpvdepth");
+		    xnode.__data__._schildren = Array.from(xnode.__data__.children);
+		    xnode.__data__.children.splice(removevalueIndex,1);
+		    update(xnode.__data__);
+		}
+	    }
+	});
     }
 }
 function process_ssvc(ssvc, winput) {

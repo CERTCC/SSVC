@@ -1,0 +1,20 @@
+{
+  "namespace": "cisa",
+  "key": "AE",
+  "version": "1.0.0",
+  "name": "Asset Exposure",
+  "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "N",
+      "name": "No",
+      "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
+    },
+    {
+      "key": "Y",
+      "name": "Yes",
+      "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
+    }
+  ]
+}

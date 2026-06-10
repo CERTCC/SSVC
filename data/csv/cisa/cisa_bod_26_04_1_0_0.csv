@@ -1,0 +1,17 @@
+row,In KEV v1.0.0 (cisa),Asset Exposure v1.0.0 (cisa),Automatable v2.0.0,Technical Impact v1.0.0,CISA BOD 26-04 Remediation Timelines v1.0.0 (cisa)
+0,no,no,no,partial,fix on system upgrade
+1,yes,no,no,partial,14 days
+2,no,yes,no,partial,60 days
+3,no,no,yes,partial,60 days
+4,no,no,no,total,fix on system upgrade
+5,yes,yes,no,partial,14 days
+6,yes,no,yes,partial,14 days
+7,no,yes,yes,partial,14 days
+8,yes,no,no,total,14 days
+9,no,yes,no,total,14 days
+10,no,no,yes,total,60 days
+11,yes,yes,yes,partial,3 days
+12,yes,yes,no,total,3 days & forensic investigation
+13,yes,no,yes,total,3 days & forensic investigation
+14,no,yes,yes,total,3 days
+15,yes,yes,yes,total,3 days & forensic investigation
