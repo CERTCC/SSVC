@@ -17,10 +17,10 @@ These 4 decision points are combined to yield 4 outcomes for vulnerability
 response timelines:
 
 ```python exec="true" idprefix=""
-    from ssvc.outcomes.cisa.bod2604 import LATEST
-    from ssvc.doc_helpers import example_block
+from ssvc.outcomes.cisa.bod2604 import LATEST
+from ssvc.doc_helpers import example_block
     
-    print(example_block(LATEST))
+print(example_block(LATEST))
 ```
 
 InKEV, Automatable, and Technical Impact question the vulnernability whereas
@@ -49,24 +49,21 @@ it were InKEV:Y, and continue to monitor news sources for a better solution.
 
 ## More information about decision points
 
-```python exec="tru" idprefix=""
-    from ssvc.decision_points.cisa import (
-        InKEV,
-        AssetExposure,
-    )
+```python exec="true" idprefix=""
+from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as DT
+from ssvc.doc_helpers import example_block
 
-    from ssvc.decision_points.ssvc import (
-         Automatable,
-         TechnicalImpact,
-    )
-    from ssvc.doc_helpers import example_block
-    
-    print(example_block(InKEV))
-    print(example_block(AssetExposure))
-    print(example_block(Automatable))
-    print(example_block(TechnicalImpact))
+for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
+    print(example_block(dp))
 ```
 
 ## Visualizing the CISA Response Timeline Decision Table as a Tree Diagram
 
-tree diagram goes here.
+```python exec="true" idprefix=""
+from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as DT
+from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
+
+rows = DT.mapping
+title = mermaid_title_from_dt(DT)
+print(mapping2mermaid(rows, title=title))
+```
