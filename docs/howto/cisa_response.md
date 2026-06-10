@@ -7,7 +7,7 @@ the federal enterprise in exacting vulnerability response.
 The CISA Response Timeline has 4 binary decision points:
 
 1. InKEV
-2. Publicly Exposed
+2. Asset Exposure
 3. Automatable
 4. Technical Impact
 
@@ -24,11 +24,11 @@ response timelines:
 ```
 
 InKEV, Automatable, and Technical Impact question the vulnernability whereas
-PubliclyExposed questions the state of the asset. Agencies should know whether
+Asset Exposure questions the state of the asset. Agencies should know whether
 an asset is exposed, but if they do not, they can refer to the THIS LINKED
 DOCUMENTATION on creating an asset inventory.
 CISA scans assets on a regular basis. If the asset is in a CISA CyHy report,
-it should be considered PubliclyExposed=YES.
+it should be considered Asset Exposure=YES.
 
 With [Vulnrichment](https://www.cve.org/Media/News/item/blog/2024/06/04/CISA-Added-as-CVE-Authorized-Data-Publisher) data, the states of decision points Automatable and
 Technical Impact for a vulnerability are often publicly available on the
@@ -52,7 +52,7 @@ it were InKEV:Y, and continue to monitor news sources for a better solution.
 ```python exec="tru" idprefix=""
     from ssvc.decision_points.cisa import (
         InKEV,
-        PubliclyExposed,
+        AssetExposure,
     )
 
     from ssvc.decision_points.ssvc import (
@@ -62,7 +62,7 @@ it were InKEV:Y, and continue to monitor news sources for a better solution.
     from ssvc.doc_helpers import example_block
     
     print(example_block(InKEV))
-    print(example_block(PubliclyExposed))
+    print(example_block(AssetExposure))
     print(example_block(Automatable))
     print(example_block(TechnicalImpact))
 ```
