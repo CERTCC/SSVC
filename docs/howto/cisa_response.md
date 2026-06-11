@@ -22,10 +22,10 @@ These 4 decision points are combined to yield 4 outcomes for vulnerability
 response timelines:
 
 ```python exec="true" idprefix=""
-    from ssvc.outcomes.cisa.bod2604 import LATEST
-    from ssvc.doc_helpers import example_block
-    
-    print(example_block(LATEST))
+from ssvc.outcomes.cisa.bod2604 import LATEST
+from ssvc.doc_helpers import example_block
+
+print(example_block(LATEST))
 ```
 
 InKEV, Automatable, and Technical Impact address the vulnerability whereas
