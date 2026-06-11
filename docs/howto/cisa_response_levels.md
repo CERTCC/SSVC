@@ -32,21 +32,16 @@ InKEV, Automatable, and Technical Impact address the vulnerability whereas
 Asset Exposure questions the state of the asset. 
 
 ```python exec="true" idprefix=""
-from ssvc.decision_points.cisa import (
-    InKEV,
-    PubliclyExposed,
-)
-
-from ssvc.decision_points.ssvc import (
-     Automatable,
-     TechnicalImpact,
-)
+from ssvc.decision_points.cisa.in_kev import IN_KEV_1
+from ssvc.decision_points.cisa.publicly_exposed import PUBLICLY_EXPOSED_1
+from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2
+from ssvc.decision_points.ssvc.technical_impact import TECHNICAL_IMPACT_1
 from ssvc.doc_helpers import example_block
 
-print(example_block(InKEV))
-print(example_block(PubliclyExposed))
-print(example_block(Automatable))
-print(example_block(TechnicalImpact))
+print(example_block(IN_KEV_1))
+print(example_block(PUBLICLY_EXPOSED_1))
+print(example_block(AUTOMATABLE_2))
+print(example_block(TECHNICAL_IMPACT_1))
 ```
 
 ## CISA BOD 26-04 Decision Model

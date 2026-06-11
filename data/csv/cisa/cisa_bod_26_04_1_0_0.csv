@@ -1,4 +1,4 @@
-row,In KEV v1.0.0 (cisa),Asset Exposure v1.0.0 (cisa),Automatable v2.0.0,Technical Impact v1.0.0,CISA BOD 26-04 Remediation Timelines v1.0.0 (cisa)
+row,In KEV v1.0.0 (cisa),Publicly Exposed v1.0.0 (cisa),Automatable v2.0.0,Technical Impact v1.0.0,CISA BOD 26-04 Remediation Timelines v1.0.0 (cisa)
 0,no,no,no,partial,fix on system upgrade
 1,yes,no,no,partial,14 days
 2,no,yes,no,partial,60 days

@@ -43,7 +43,7 @@ YES = DecisionPointValue(
 
 
 PUBLICLY_EXPOSED_1 = CisaDecisionPoint(
-    name="Asset Exposure",
+    name="Publicly Exposed",
     definition="Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
     key="PE",
     version="1.0.0",

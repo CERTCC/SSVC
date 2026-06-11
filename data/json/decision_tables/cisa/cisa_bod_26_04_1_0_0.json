@@ -10,7 +10,7 @@
       "namespace": "cisa",
       "key": "PE",
       "version": "1.0.0",
-      "name": "Asset Exposure",
+      "name": "Publicly Exposed",
       "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
       "schemaVersion": "2.0.0",
       "values": [
