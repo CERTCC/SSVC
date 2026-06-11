@@ -1,7 +1,7 @@
 repos:
   # Black - Python code formatter
   - repo: https://github.com/psf/black
-    rev: 25.1.0
+    rev: &black-version 25.1.0
     hooks:
       - id: black
         language_version: python3.12
@@ -25,7 +25,8 @@ repos:
         name: doctools regenerate
         entry: bash -c 'PYTHONPATH=src:$PYTHONPATH uv run python src/ssvc/doctools.py --datadir=./data --overwrite'
         language: system
-        files: '^src/ssvc/(decision_points|decision_tables)/.*\.py$'
+        files: '^src/ssvc/.*\.py$'
+        exclude: '^(src/ssvc/api/|src/ssvc/test/)'
         pass_filenames: false
 
   # Custom hook: pytest - Run tests (non-blocking)
@@ -33,9 +34,8 @@ repos:
     hooks:
       - id: pytest-check
         name: pytest
-        entry: uv run pytest -v
+        entry: uv run pytest --tb=short -q
         language: system
-        types: [python]
+        files: '\.py$'
         pass_filenames: false
-        always_run: true
         fail_fast: false
