@@ -1,8 +1,7 @@
 # HOW TO USE THE CISA RESPONSE TIMELINE SSVC DECISION TREE
 
 The CISA Response Timeline SSVC Decision Tree is a tool support implementers
-of [CISA BOD 26-04](<https://www.cisa>.
-gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk).
+of [CISA BOD 26-04](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk).
 Readers should consult the directive for more details about how to use the
 decision table below. What follows is just a brief introduction to the
 outcomes, decision points, and decision table structure.
