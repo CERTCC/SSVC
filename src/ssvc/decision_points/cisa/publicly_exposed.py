@@ -2,6 +2,9 @@
 """
 Provides a decision point representing whether an asset is exposed via
 public networks.
+
+Source: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk
+Appendix A, paragraph (i).
 """
 #  Copyright (c) 2025-2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
@@ -26,22 +29,23 @@ from ssvc.decision_points.base import DecisionPointValue
 from ssvc.decision_points.cisa.base import CisaDecisionPoint
 from ssvc.decision_points.helpers import print_versions_and_diffs
 
-YES = DecisionPointValue(
-    name="Yes",
-    key="Y",
-    definition="The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location.",
-)
-
 NO = DecisionPointValue(
     name="No",
     key="N",
-    definition="The asset is NOT accessible to unauthenticated or untrusted entities via public networks.",
+    definition="The asset is not accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location.",
 )
 
-ASSET_EXPOSURE_1 = CisaDecisionPoint(
+YES = DecisionPointValue(
+    name="Yes",
+    key="Y",
+    definition="The asset is accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location.",
+)
+
+
+PUBLICLY_EXPOSED_1 = CisaDecisionPoint(
     name="Asset Exposure",
     definition="Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
-    key="AE",
+    key="PE",
     version="1.0.0",
     values=(
         NO,
@@ -49,7 +53,7 @@ ASSET_EXPOSURE_1 = CisaDecisionPoint(
     ),
 )
 
-VERSIONS = (ASSET_EXPOSURE_1,)
+VERSIONS = (PUBLICLY_EXPOSED_1,)
 LATEST = VERSIONS[-1]
 
 

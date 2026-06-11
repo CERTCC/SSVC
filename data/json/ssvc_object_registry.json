@@ -774,46 +774,6 @@
         "cisa": {
           "namespace": "cisa",
           "keys": {
-            "AE": {
-              "key": "AE",
-              "versions": {
-                "1.0.0": {
-                  "version": "1.0.0",
-                  "obj": {
-                    "namespace": "cisa",
-                    "key": "AE",
-                    "version": "1.0.0",
-                    "name": "Asset Exposure",
-                    "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
-                    "schemaVersion": "2.0.0",
-                    "values": [
-                      {
-                        "key": "N",
-                        "name": "No",
-                        "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
-                      },
-                      {
-                        "key": "Y",
-                        "name": "Yes",
-                        "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
-                      }
-                    ]
-                  },
-                  "values": {
-                    "N": {
-                      "key": "N",
-                      "name": "No",
-                      "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
-                    },
-                    "Y": {
-                      "key": "Y",
-                      "name": "Yes",
-                      "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
-                    }
-                  }
-                }
-              }
-            },
             "KEV": {
               "key": "KEV",
               "versions": {
@@ -899,6 +859,46 @@
                       "key": "E",
                       "name": "Essential",
                       "definition": "The vulnerable component directly provides capabilities that constitute at least one MEF for at least one entity; component failure may (but does not necessarily) lead to overall mission failure."
+                    }
+                  }
+                }
+              }
+            },
+            "PE": {
+              "key": "PE",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "cisa",
+                    "key": "PE",
+                    "version": "1.0.0",
+                    "name": "Asset Exposure",
+                    "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
+                    "schemaVersion": "2.0.0",
+                    "values": [
+                      {
+                        "key": "N",
+                        "name": "No",
+                        "definition": "The asset is not accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location."
+                      },
+                      {
+                        "key": "Y",
+                        "name": "Yes",
+                        "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location."
+                      }
+                    ]
+                  },
+                  "values": {
+                    "N": {
+                      "key": "N",
+                      "name": "No",
+                      "definition": "The asset is not accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location."
+                    },
+                    "Y": {
+                      "key": "Y",
+                      "name": "Yes",
+                      "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location."
                     }
                   }
                 }
@@ -7882,9 +7882,9 @@
                     "definition": "Decision table for CISA BOD 26-04.",
                     "schemaVersion": "2.0.0",
                     "decision_points": {
-                      "cisa:AE:1.0.0": {
+                      "cisa:PE:1.0.0": {
                         "namespace": "cisa",
-                        "key": "AE",
+                        "key": "PE",
                         "version": "1.0.0",
                         "name": "Asset Exposure",
                         "definition": "Denotes whether the asset is accessible to unauthenticated or untrusted entities via public networks.",
@@ -7893,12 +7893,12 @@
                           {
                             "key": "N",
                             "name": "No",
-                            "definition": "The asset is NOT accessible to unauthenticated or untrusted entities via public networks."
+                            "definition": "The asset is not accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location."
                           },
                           {
                             "key": "Y",
                             "name": "Yes",
-                            "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, regardless of its physical or logical location."
+                            "definition": "The asset is accessible to unauthenticated or untrusted entities via public networks, such as the internet, regardless of its physical or logical location."
                           }
                         ]
                       },
@@ -8002,112 +8002,112 @@
                     "mapping": [
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "FSU"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "14D"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "60D"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "60D"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "FSU"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "14D"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "14D"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "14D"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "14D"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "14D"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "60D"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "P",
                         "cisa:BOD2604:1.0.0": "3D"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "N",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "3DF"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "N",
+                        "cisa:PE:1.0.0": "N",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "3DF"
                       },
                       {
                         "cisa:KEV:1.0.0": "N",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "3D"
                       },
                       {
                         "cisa:KEV:1.0.0": "Y",
-                        "cisa:AE:1.0.0": "Y",
+                        "cisa:PE:1.0.0": "Y",
                         "ssvc:A:2.0.0": "Y",
                         "ssvc:TI:1.0.0": "T",
                         "cisa:BOD2604:1.0.0": "3DF"

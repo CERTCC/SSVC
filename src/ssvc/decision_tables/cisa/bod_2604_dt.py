@@ -21,10 +21,10 @@ Creates a decision table for CISA Binding Operational Directive 26-04.
 #  subject to its own license.
 #  DM24-0278
 
-from ssvc.decision_points.cisa.asset_exposure import (
-    ASSET_EXPOSURE_1 as PUBLICLY_EXPOSED,
-)
 from ssvc.decision_points.cisa.in_kev import IN_KEV_1 as InKEV
+from ssvc.decision_points.cisa.publicly_exposed import (
+    PUBLICLY_EXPOSED_1 as PUBLICLY_EXPOSED,
+)
 from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2 as AUTOMATABLE
 from ssvc.decision_points.ssvc.technical_impact import (
     TECHNICAL_IMPACT_1 as TECHNICAL_IMPACT,
@@ -53,112 +53,112 @@ BOD_26_04 = DecisionTable(
     mapping=[
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "FSU",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "14D",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "60D",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "60D",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "FSU",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "14D",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "14D",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "14D",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "14D",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "14D",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "60D",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "P",
             "cisa:BOD2604:1.0.0": "3D",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "N",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "3DF",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "N",
+            "cisa:PE:1.0.0": "N",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "3DF",
         },
         {
             "cisa:KEV:1.0.0": "N",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "3D",
         },
         {
             "cisa:KEV:1.0.0": "Y",
-            "cisa:AE:1.0.0": "Y",
+            "cisa:PE:1.0.0": "Y",
             "ssvc:A:2.0.0": "Y",
             "ssvc:TI:1.0.0": "T",
             "cisa:BOD2604:1.0.0": "3DF",
