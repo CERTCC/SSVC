@@ -12,7 +12,7 @@ outcomes, decision points, and decision table structure.
 The CISA Response Timeline has 4 binary decision points:
 
 1. InKEV
-2. Asset Exposure
+2. Publicly Exposed
 3. Automatable
 4. Technical Impact
 
@@ -29,7 +29,7 @@ print(example_block(LATEST))
 ```
 
 InKEV, Automatable, and Technical Impact address the vulnerability whereas
-Asset Exposure questions the state of the asset. 
+Publicly Exposed questions the state of the asset. 
 
 ```python exec="true" idprefix=""
 from ssvc.decision_points.cisa.in_kev import IN_KEV_1
