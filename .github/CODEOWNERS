@@ -31,3 +31,6 @@ mkdocs.yml @ahouseholder
 
 # github setup
 /.github/ @ahouseholder @sei-vsarvepalli
+
+# CISA-namespaced items are kept in folders named `cisa` at various depths
+**/cisa/** @j---

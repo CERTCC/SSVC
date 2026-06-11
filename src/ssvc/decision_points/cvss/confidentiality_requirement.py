@@ -3,7 +3,7 @@
 Models the CVSS Confidentiality Requirement metric as an SSVC decision point.
 """
 
-#  Copyright (c) 2023-2025 Carnegie Mellon University.
+#  Copyright (c) 2023-2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,

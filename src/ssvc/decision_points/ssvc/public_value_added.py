@@ -4,7 +4,7 @@
 This module provides the Public Value Added decision point for the Stakeholder Specific Vulnerability Categorization (SSVC) framework.
 """
 
-#  Copyright (c) 2024-2025 Carnegie Mellon University.
+#  Copyright (c) 2024-2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,

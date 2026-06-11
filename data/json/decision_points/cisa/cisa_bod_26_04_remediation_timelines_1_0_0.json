@@ -1,0 +1,35 @@
+{
+  "namespace": "cisa",
+  "key": "BOD2604",
+  "version": "1.0.0",
+  "name": "CISA BOD 26-04 Remediation Timelines",
+  "definition": "The CISA BOD 26-04 outcome group of remediation timelines for agencies to follow.",
+  "schemaVersion": "2.0.0",
+  "values": [
+    {
+      "key": "FSU",
+      "name": "Fix on system upgrade",
+      "definition": "The vulnerability should be remediated the next time the vulnerable asset receives a scheduled major upgrade or rebuild."
+    },
+    {
+      "key": "60D",
+      "name": "60 days",
+      "definition": "Remediate within 60 days."
+    },
+    {
+      "key": "14D",
+      "name": "14 days",
+      "definition": "Remediate within 14 days."
+    },
+    {
+      "key": "3D",
+      "name": "3 days",
+      "definition": "Remediate within 3 days."
+    },
+    {
+      "key": "3DF",
+      "name": "3 days & forensic investigation",
+      "definition": "Remediate within 3 days and carry out a forensic triage of the asset to assess whether the system is compromised."
+    }
+  ]
+}

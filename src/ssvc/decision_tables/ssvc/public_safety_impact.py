@@ -3,7 +3,7 @@
 Public Safety Impact Decision Table
 """
 
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,
@@ -29,7 +29,7 @@ from ssvc.decision_points.ssvc.safety_impact import SAFETY_IMPACT_2_0_1 as SI
 from ssvc.decision_tables.base import DecisionTable
 from ssvc.namespaces import NameSpace
 
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,

@@ -11,7 +11,7 @@ COPY . /app
 ENV PYTHONPATH=/app/src
 
 # install requirements
-RUN uv sync --frozen
+RUN uv sync --frozen --no-dev
 
 FROM dependencies AS test
 
@@ -19,10 +19,10 @@ ENV PYTHONPATH=/app/src
 # Install pytest and dev dependencies
 RUN uv sync --frozen --dev
 # Run the unit tests
-CMD ["uv", "run", "pytest"]
+CMD ["uv", "run", "--no-sync", "pytest"]
 
 FROM dependencies AS docs
-CMD ["uv", "run", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+CMD ["uv", "run", "--no-sync", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
 
 FROM dependencies AS registry_api
-CMD ["uv", "run", "uvicorn", "ssvc.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "--no-sync", "uvicorn", "ssvc.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -2,7 +2,7 @@
 """
 Models the CVSS v4.0 Qualitative Severity Ratings from Equivalence Set 1-6
 """
-#  Copyright (c) 2025 Carnegie Mellon University.
+#  Copyright (c) 2026 Carnegie Mellon University.
 #  NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE
 #  ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS.
 #  CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,

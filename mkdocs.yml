@@ -24,6 +24,7 @@ nav:
           - About Coordination: 'howto/coordination_intro.md'
           - Coordination Triage: 'howto/coordination_triage_decision.md'
           - Publication Decision: 'howto/publication_decision.md'
+        - CISA BOD 26-04 Response Model: 'howto/cisa_response.md'
         - CVSS v4 Analyst Models:
             - About CVSS v4: 'howto/cvss_v4/index.md'
             - Equivalence Set 1: 'howto/cvss_v4/eq1.md'
@@ -65,6 +66,7 @@ nav:
       - Scope: 'topics/scope.md'
       - SSVC and Asset Management: 'topics/asset_management.md'
     - Putting the Pieces Together: 'topics/decision_points_as_bricks.md'
+    - SSVC as a Human-Scale Bottleneck: 'topics/ssvc-human-scale-bottleneck.md'
     - Worked Example: 'topics/worked_example.md'
     - Evaluation: 'topics/evaluation_of_draft_trees.md'
     - Related Systems: 'topics/related_systems.md'
@@ -94,6 +96,11 @@ nav:
         - Human Impact: 'reference/decision_points/human_impact.md'
         - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
         - Utility: 'reference/decision_points/utility.md'
+      - CISA-based decision points:
+        - 'reference/decision_points/cisa/index.md'
+        - In KEV: 'reference/decision_points/cisa/in_kev.md'
+        - Mission Prevalence: 'reference/decision_points/cisa/mission_prevalence.md'
+        - Publicly Exposed: 'reference/decision_points/cisa/publicly_exposed.md'
       - CVSS-based decision points:
           - 'reference/decision_points/cvss/index.md'
           - Qualitative Severity: 'reference/decision_points/cvss/qualitative_severity.md'

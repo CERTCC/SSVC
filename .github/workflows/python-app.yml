@@ -37,7 +37,7 @@ jobs:
       run: |
         uv build 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: ssvc
         path: src/dist/ssvc-*.tar.gz

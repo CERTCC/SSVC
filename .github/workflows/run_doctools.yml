@@ -1,0 +1,64 @@
+name: "Run doctools on PR"
+
+on:
+  pull_request:
+    paths:
+      - 'src/ssvc/**'
+      - .github/workflows/run_doctools.yml
+
+permissions:
+  contents: write
+
+jobs:
+  run-doctools:
+    # Skip when the auto-commit from this workflow triggers a re-run
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip uv
+          uv sync --dev --frozen
+
+      - name: Run doctools
+        run: |
+          # Remove stale decision point files so doctools generates a clean set
+          rm -rf data/json/decision_points
+          export PYTHONPATH=$(pwd)/src
+          uv run python -m ssvc.doctools --overwrite --datadir ./data
+
+      - name: Fail if fork PR has uncommitted data/ changes
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data/ changes detected."
+          else
+            echo "::error::This PR is from a fork and data/ files need to be regenerated."
+            echo "::error::Please run 'make regenerate_json' locally and push the resulting data/ changes to your PR branch."
+            exit 1
+          fi
+
+      - name: Commit changes to data/
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: regenerate data files via doctools"
+            git push
+          fi
