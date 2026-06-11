@@ -95,6 +95,11 @@ nav:
         - Human Impact: 'reference/decision_points/human_impact.md'
         - Public Safety Impact: 'reference/decision_points/public_safety_impact.md'
         - Utility: 'reference/decision_points/utility.md'
+      - CISA-based decision points:
+        'reference/decision_points/cisa/index.md'
+        - In KEV: 'reference/decision_points/cisa/in_kev.md'
+        - Mission Prevalence: 'reference/decision_points/cisa/mission_prevalence.md'
+        - Publicly Exposed: 'reference/decision_points/cisa/publicly_exposed.md'
       - CVSS-based decision points:
           - 'reference/decision_points/cvss/index.md'
           - Qualitative Severity: 'reference/decision_points/cvss/qualitative_severity.md'
