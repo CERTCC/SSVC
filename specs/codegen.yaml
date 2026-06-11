@@ -1,0 +1,103 @@
+id: GN
+title: Code Generation
+description: >
+  Requirements governing the generated artifacts derived from the SSVC
+  Python source: JSON schema files, CSV decision tables, and the
+  namespace_patterns.py regex module. Python modules are the authoritative
+  source; all generated files are downstream artifacts.
+version: "0.1.0"
+kind: implementation
+scope: [production]
+
+groups:
+  - id: GN-01
+    title: Source Authority
+    description: >
+      Requirements establishing Python source as the single source of truth
+      for all SSVC data objects.
+    specs:
+      - id: GN-01-001
+        priority: MUST
+        statement: >
+          GN-01-001 Python module definitions MUST be the authoritative
+          source for all SSVC domain objects; data/json/ and data/csv/
+          artifacts MUST NOT be hand-edited.
+        rationale: >
+          Editing generated files by hand creates drift between source and
+          artifacts that is silently overwritten on the next regeneration,
+          losing the edits.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [tooling]
+
+      - id: GN-01-002
+        priority: MUST
+        statement: >
+          GN-01-002 src/ssvc/utils/namespace_patterns.py MUST be generated
+          from the ABNF grammar file (ssvc_namespace_pattern.abnf) via
+          make dev and MUST NOT be hand-edited.
+        rationale: >
+          The regex is derived mechanically from the grammar; manual edits
+          diverge from the grammar and are overwritten by make dev.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [tooling]
+
+  - id: GN-02
+    title: Artifact Generation
+    description: Requirements for how and when artifacts are regenerated.
+    specs:
+      - id: GN-02-001
+        priority: MUST
+        statement: >
+          GN-02-001 make regenerate_json MUST regenerate all files in
+          data/json/ and data/csv/ from the current Python source without
+          requiring additional arguments.
+        rationale: >
+          A single no-argument command lowers the barrier to keeping
+          artifacts up to date and reduces the risk of contributors
+          forgetting required flags.
+        testable: true
+        tags: [tooling]
+
+      - id: GN-02-002
+        priority: MUST
+        statement: >
+          GN-02-002 Generated artifact files (data/json/, data/csv/,
+          namespace_patterns.py) MUST be committed to the repository so
+          they are available without running a build step.
+        rationale: >
+          Committing generated files allows the package and its schemas to
+          be consumed immediately after checkout without requiring a local
+          build environment.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [tooling]
+
+      - id: GN-02-003
+        priority: SHOULD
+        statement: >
+          GN-02-003 CI SHOULD detect artifact drift by regenerating
+          data/json/, data/csv/, and namespace_patterns.py and comparing
+          the result against committed files.
+        rationale: >
+          Drift detection in CI catches cases where a source change was
+          committed without regenerating its downstream artifacts.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [ci-cd, tooling]
+
+      - id: GN-02-004
+        priority: MUST
+        statement: >
+          GN-02-004 Generated JSON schema files MUST carry a SchemaVer
+          identifier in the schemaVersion field and in the $id URI, using
+          the MODEL-REVISION-ADDITION format (e.g. 1-0-0) rather than
+          SemVer dot notation.
+        rationale: >
+          SchemaVer communicates data-compatibility implications directly:
+          consumers can determine from the version string alone whether
+          their existing stored data will still validate, without consulting
+          a changelog.
+        testable: true
+        tags: [tooling]

@@ -1,0 +1,112 @@
+id: AP
+title: REST API
+description: >
+  Requirements for the FastAPI-based read-only REST API that exposes the
+  SSVC object registry over HTTP. The API serves decision points, decision
+  tables, outcomes, and decision point groups.
+version: "0.1.0"
+kind: implementation
+scope: [production]
+
+groups:
+  - id: AP-01
+    title: API Structure
+    description: Requirements for how the API is organised and routed.
+    specs:
+      - id: AP-01-001
+        priority: MUST
+        statement: >
+          AP-01-001 The API MUST be implemented using FastAPI and expose all
+          routes under a versioned URL prefix (/v1).
+        rationale: >
+          A versioned prefix allows future breaking changes to be introduced
+          under a new version without disrupting existing clients.
+        testable: true
+        tags: [tooling]
+
+      - id: AP-01-002
+        priority: MUST
+        statement: >
+          AP-01-002 Each resource type (decision_points, decision_tables,
+          outcomes, dp_groups) MUST be served by a dedicated router module
+          under ssvc.api.v1.routers.
+        rationale: >
+          Separating resource routers keeps each module focused on one
+          resource, simplifies testing, and avoids a single large router
+          file.
+        testable: true
+        tags: [tooling]
+
+      - id: AP-01-003
+        priority: MUST
+        statement: >
+          AP-01-003 All currently exposed API endpoints MUST be read-only
+          (HTTP GET).
+        rationale: >
+          The registry is populated from Python source at startup; there is
+          no runtime write path, so all mutations must be made in source.
+        testable: true
+        tags: [security]
+
+  - id: AP-02
+    title: Response Format
+    description: Requirements for API response serialisation and typing.
+    specs:
+      - id: AP-02-001
+        priority: MUST
+        statement: >
+          AP-02-001 All API responses MUST be serialised as JSON using
+          Pydantic response models.
+        rationale: >
+          Pydantic response models provide automatic validation of output
+          shape, OpenAPI schema generation, and consistent serialisation.
+        testable: true
+        tags: [tooling]
+
+      - id: AP-02-002
+        priority: MUST
+        statement: >
+          AP-02-002 Path parameters that identify SSVC objects (namespace,
+          key, version) MUST be declared as typed FastAPI path parameters.
+        rationale: >
+          Typed path parameters enable FastAPI to reject malformed requests
+          at the routing layer before they reach business logic.
+        testable: true
+        tags: [tooling]
+
+      - id: AP-02-003
+        priority: MUST
+        statement: >
+          AP-02-003 API response models MUST NOT expose internal registry
+          data structures (e.g. _NsType, _Key, _Version).
+        rationale: >
+          Leaking internal types couples clients to implementation details
+          and makes refactoring harder.
+        testable: true
+        tags: [tooling]
+
+  - id: AP-03
+    title: Error Handling
+    description: Requirements for how the API reports errors to clients.
+    specs:
+      - id: AP-03-001
+        priority: MUST
+        statement: >
+          AP-03-001 A request for a non-existent SSVC object MUST return
+          HTTP 404 with a descriptive error body.
+        rationale: >
+          404 is the correct HTTP semantic for "this resource does not
+          exist"; a descriptive body helps callers diagnose incorrect keys.
+        testable: true
+        tags: [tooling]
+
+      - id: AP-03-002
+        priority: MUST
+        statement: >
+          AP-03-002 A request with an invalid path parameter type MUST
+          return HTTP 422 (Unprocessable Entity).
+        rationale: >
+          FastAPI returns 422 for validation failures; this requirement
+          documents the expected contract so tests can assert on it.
+        testable: true
+        tags: [tooling]

@@ -1,0 +1,324 @@
+id: DM
+title: Domain Model
+description: >
+  Requirements for the SSVC domain object model: decision points, decision
+  tables, outcomes, and the shared mixin abstractions that compose them.
+  Python modules are the authoritative source; JSON and CSV artifacts are
+  generated from them.
+version: "0.1.0"
+kind: domain
+scope: [production]
+
+groups:
+  - id: DM-01
+    title: Object Identity
+    description: >
+      Rules that govern how SSVC domain objects are uniquely named and
+      versioned.
+    specs:
+      - id: DM-01-001
+        priority: MUST
+        statement: >
+          DM-01-001 Each domain object MUST be uniquely identified by the
+          composite key namespace:key:version.
+        rationale: >
+          A stable three-part key allows objects from different namespaces
+          and sources to coexist in the same registry without collision.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-01-002
+        priority: MUST
+        statement: >
+          DM-01-002 The namespace field of every domain object MUST hold a
+          value from the NameSpace enum defined in ssvc.namespaces.
+        rationale: >
+          Restricting namespaces to an enum prevents arbitrary strings from
+          polluting the registry and enables exhaustive validation.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-01-003
+        priority: MUST
+        statement: >
+          DM-01-003 The version field of every domain object MUST be a valid
+          semantic version string (semver 2.0.0).
+        rationale: >
+          Semantic versioning enables ordered comparison, range filtering,
+          and clear communication about breaking changes between releases.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-02
+    title: Decision Point Requirements
+    description: Requirements for DecisionPoint objects.
+    specs:
+      - id: DM-02-001
+        priority: MUST
+        statement: >
+          DM-02-001 Each DecisionPoint MUST declare a non-empty list of
+          values.
+        rationale: >
+          A decision point with no values cannot be used as a table input
+          and is therefore invalid at construction time.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-002
+        priority: MUST
+        statement: >
+          DM-02-002 All value key fields within a single DecisionPoint MUST
+          be unique.
+        rationale: >
+          Duplicate keys within a decision point make table row generation
+          ambiguous and produce incorrect cartesian products.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-003
+        priority: MUST
+        statement: >
+          DM-02-003 Each DecisionPointValue MUST have a non-empty key and a
+          non-empty name.
+        rationale: >
+          Both fields are required for table generation and human-readable
+          output; absent values produce malformed artifacts.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-004
+        priority: MUST
+        statement: >
+          DM-02-004 DecisionPoint definitions MUST reside in submodules
+          under ssvc.decision_points.
+        rationale: >
+          Centralising decision point definitions in one package subtree
+          ensures auto-import covers all instances and keeps the module
+          boundary clear.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-02-005
+        priority: MUST_NOT
+        statement: >
+          DM-02-005 Description fields of DecisionPoint, DecisionPointValue,
+          OutcomeSet, and OutcomeValue objects MUST NOT embed worked examples
+          (e.g. "for example …", "an instance of this is …").
+        rationale: >
+          Examples grow stale independently of the concept they illustrate,
+          causing unnecessary version increments when only an example
+          changes. Examples belong in surrounding documentation text.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+      - id: DM-02-006
+        priority: SHOULD
+        statement: >
+          DM-02-006 Examples that would otherwise appear in object description
+          fields SHOULD be placed in the surrounding MkDocs documentation
+          pages or in the object's associated notes file.
+        rationale: >
+          Separating examples from definitions keeps object semantics stable
+          and allows examples to evolve independently without triggering
+          object version changes.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [documentation]
+
+  - id: DM-03
+    title: Decision Table Requirements
+    description: Requirements for DecisionTable objects.
+    specs:
+      - id: DM-03-001
+        priority: MUST
+        statement: >
+          DM-03-001 Each DecisionTable MUST reference at least one
+          DecisionPoint as an input.
+        rationale: >
+          A table with no inputs cannot generate rows and is not a valid
+          decision model.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-03-002
+        priority: MUST
+        statement: >
+          DM-03-002 A DecisionTable MUST map every combination of its input
+          DecisionPoint values to an outcome (complete coverage).
+        rationale: >
+          Incomplete tables leave undefined outcomes for valid inputs,
+          which would cause silent failures during scoring.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-03-003
+        priority: MUST
+        statement: >
+          DM-03-003 DecisionTable definitions MUST reside in submodules
+          under ssvc.decision_tables.
+        rationale: >
+          Centralising decision table definitions ensures auto-import covers
+          all instances and maintains a consistent module boundary.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-04
+    title: Outcome Requirements
+    description: Requirements for outcome and action label objects.
+    specs:
+      - id: DM-04-001
+        priority: MUST
+        statement: >
+          DM-04-001 Each outcome set MUST define at least one outcome value.
+        rationale: >
+          An empty outcome set cannot be referenced by a decision table
+          and is invalid at construction time.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-04-002
+        priority: MUST
+        statement: >
+          DM-04-002 Outcome values within a set MUST have unique keys.
+        rationale: >
+          Duplicate outcome keys make table output ambiguous and prevent
+          deterministic scoring.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-04-003
+        priority: MUST
+        statement: >
+          DM-04-003 Outcome definitions MUST reside in submodules under
+          ssvc.outcomes.
+        rationale: >
+          Co-locating all outcome definitions in one package subtree ensures
+          auto-import covers them and keeps the module boundary clear.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-05
+    title: Mixin Composition
+    description: >
+      Cross-cutting requirements for how capabilities are added to domain
+      objects via the shared mixin classes in ssvc._mixins.
+    specs:
+      - id: DM-05-001
+        priority: MUST
+        statement: >
+          DM-05-001 All domain model objects MUST compose the _Registered
+          mixin from ssvc._mixins to auto-register upon instantiation.
+        rationale: >
+          Auto-registration decouples object definition from registry
+          insertion: instantiating an object is sufficient to make it
+          available for lookup.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-05-002
+        priority: MUST
+        statement: >
+          DM-05-002 All domain model objects MUST use Pydantic v2 BaseModel
+          as their base class.
+        rationale: >
+          Pydantic v2 provides construction-time validation, JSON schema
+          generation, and serialization, all of which the toolchain depends
+          on.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-05-003
+        priority: MUST
+        statement: >
+          DM-05-003 Domain model invariants (e.g. unique value keys, valid
+          namespaces) MUST be enforced by Pydantic field_validator or
+          model_validator at construction time.
+        rationale: >
+          Failing fast at construction prevents invalid objects from ever
+          reaching the registry or being serialised to output artifacts.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-06
+    title: Ordering Constraints
+    description: >
+      Requirements for the ordering of values within decision points and
+      outcome sets. Implements ADR-0008 and ADR-0009.
+    specs:
+      - id: DM-06-001
+        priority: MUST
+        statement: >
+          DM-06-001 The values list of every DecisionPoint MUST be an
+          ordered sequence such that the index of each value reflects its
+          relative severity or urgency (lower index = lower severity/urgency).
+        rationale: >
+          An ordered value set enables partial-order reasoning across
+          combinations of decision point values, which in turn supports
+          automated policy generation and validation of monotonic policies.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-06-002
+        priority: MUST
+        statement: >
+          DM-06-002 The values list of every OutcomeSet MUST be an ordered
+          sequence such that the index of each outcome reflects its relative
+          urgency of response (lower index = lower urgency).
+        rationale: >
+          Ordering outcomes enables the policy monotonicity invariant: a
+          higher-severity input combination must map to an outcome of equal
+          or greater urgency than any lower-severity input combination.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-06-003
+        priority: MUST
+        statement: >
+          DM-06-003 The ordering of values within a DecisionPoint or
+          OutcomeSet MUST be stable across serialisation and
+          deserialisation (i.e. round-trip JSON/CSV encoding MUST preserve
+          the declared order).
+        rationale: >
+          If ordering is lost during serialisation, downstream consumers
+          may reconstruct the wrong partial order, silently producing
+          invalid policies.
+        testable: true
+        tags: [tooling]
+
+  - id: DM-07
+    title: Separation of Concerns
+    description: >
+      Requirements that enforce the separation between the structure of a
+      decision model and the policy that maps inputs to outcomes. Implements
+      ADR-0010.
+    specs:
+      - id: DM-07-001
+        priority: MUST_NOT
+        statement: >
+          DM-07-001 A DecisionTable definition MUST NOT embed an OutcomeSet
+          as part of its structural identity; the outcome set is a separate,
+          stakeholder-specific concern.
+        rationale: >
+          Including the outcome set in the table definition would force
+          versioning events on the table whenever the outcome set changes,
+          even when the input structure is unchanged. Two organisations
+          sharing the same table structure but different outcome categories
+          would appear to use different tables.
+        testable: true
+        tags: [tooling]
+
+      - id: DM-07-002
+        priority: MUST_NOT
+        statement: >
+          DM-07-002 Policy mappings (the specific assignment of outcome
+          values to input-value combinations) MUST NOT be embedded in the
+          DecisionTable definition; policies are stakeholder-specific and
+          must be expressed separately.
+        rationale: >
+          Embedding a policy in the table definition conflates the
+          reusable decision structure with the organisation-specific
+          prioritisation choices, preventing table sharing and independent
+          policy versioning.
+        testable: true
+        tags: [tooling]

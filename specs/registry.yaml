@@ -1,0 +1,118 @@
+id: RG
+title: Object Registry
+description: >
+  Requirements for the in-memory SsvcObjectRegistry singleton that stores
+  all domain objects and serves as the backing store for the REST API.
+version: "0.1.0"
+kind: implementation
+scope: [production]
+
+groups:
+  - id: RG-01
+    title: Registry Structure
+    description: >
+      Requirements for the shape and lifecycle of the registry singleton.
+    specs:
+      - id: RG-01-001
+        priority: MUST
+        statement: >
+          RG-01-001 The package MUST maintain a single SsvcObjectRegistry
+          instance per Python process.
+        rationale: >
+          A singleton registry ensures that all code paths consult the same
+          object store and that there is exactly one authoritative lookup
+          point per process.
+        testable: true
+        tags: [tooling]
+
+      - id: RG-01-002
+        priority: MUST
+        statement: >
+          RG-01-002 The registry MUST organise objects in a four-level index:
+          type → namespace → key → version.
+        rationale: >
+          A structured index enables efficient lookup by any combination of
+          type, namespace, key, and version without scanning all objects.
+        testable: true
+        tags: [tooling]
+
+      - id: RG-01-003
+        priority: MUST
+        statement: >
+          RG-01-003 The registry MUST expose a reset(force=True) method that
+          clears all registered objects.
+        rationale: >
+          Test suites require a clean registry before each test case to
+          prevent cross-test contamination from module-level singletons.
+        testable: true
+        tags: [testing]
+
+  - id: RG-02
+    title: Registration Behavior
+    description: Requirements for how objects enter the registry.
+    specs:
+      - id: RG-02-001
+        priority: MUST
+        statement: >
+          RG-02-001 Registering an object whose namespace:key:version
+          composite key already exists in the registry MUST raise ValueError.
+        rationale: >
+          Duplicate keys indicate conflicting object definitions; failing
+          loudly at startup surfaces the conflict before it causes silent
+          data errors.
+        testable: true
+        tags: [tooling]
+
+      - id: RG-02-002
+        priority: MUST
+        statement: >
+          RG-02-002 The _Registered.model_post_init hook MUST call
+          notify_registration to insert the object into the registry
+          immediately upon construction.
+        rationale: >
+          Registering in model_post_init ensures every valid domain object
+          is automatically available for lookup without requiring callers to
+          register manually.
+        testable: true
+        tags: [tooling]
+
+      - id: RG-02-003
+        priority: MUST
+        statement: >
+          RG-02-003 ssvc.__init__ MUST call import_modules to auto-import
+          all submodules under ssvc.decision_points, ssvc.outcomes,
+          ssvc.decision_tables, and ssvc.dp_groups.
+        rationale: >
+          Auto-import at package init guarantees that every domain object is
+          registered before any consumer queries the registry, without
+          requiring explicit per-module imports.
+        testable: true
+        tags: [tooling]
+
+  - id: RG-03
+    title: Lookup Behavior
+    description: Requirements for reading objects from the registry.
+    specs:
+      - id: RG-03-001
+        priority: MUST
+        statement: >
+          RG-03-001 registry.lookup(type, namespace, key, version) MUST
+          return the matching registered object or raise a descriptive
+          exception when no match is found.
+        rationale: >
+          Callers must receive a clear error, not None or a silent default,
+          so that missing objects surface as explicit failures rather than
+          incorrect downstream results.
+        testable: true
+        tags: [tooling]
+
+      - id: RG-03-002
+        priority: MUST
+        statement: >
+          RG-03-002 The registry MUST expose a method to retrieve all
+          registered objects of a given type.
+        rationale: >
+          Bulk retrieval is required for the API list endpoints and for
+          doctools artifact generation.
+        testable: true
+        tags: [tooling]

@@ -1,0 +1,190 @@
+id: SK
+title: Skills
+description: >
+  Requirements for the agent skill infrastructure: directory layout, canonical
+  SKILL.md interface, the two-tier (dev vs. domain) taxonomy, and CI
+  enforcement. Skills are Markdown-based capability descriptors consumed by
+  AI coding agents. Dev skills support SSVC project development workflows;
+  SSVC domain skills help practitioners perform SSVC analysis work.
+version: "0.1.0"
+kind: general
+scope: [production]
+
+groups:
+  - id: SK-01
+    title: Directory Layout
+    description: >
+      Requirements for where skill directories live and how they are organised
+      within the repository.
+    specs:
+      - id: SK-01-001
+        priority: MUST
+        statement: >
+          SK-01-001 All agent skills MUST reside under `.agents/skills/` at
+          the repository root.
+        rationale: >
+          Keeping skills under `.agents/` makes the directory's machine-facing
+          purpose explicit and separates agent tooling from production source
+          code and documentation.
+        testable: true
+        tags: [tooling]
+
+      - id: SK-01-002
+        priority: MUST
+        statement: >
+          SK-01-002 Dev skills (those that support SSVC project development
+          workflows) MUST live under `.agents/skills/dev/<skill-name>/`.
+        rationale: >
+          Separating dev skills from domain skills clarifies audience and
+          lifecycle: dev skills are used by agents working on the SSVC
+          codebase itself; domain skills are used by agents helping
+          practitioners apply SSVC.
+        testable: true
+        tags: [tooling]
+
+      - id: SK-01-003
+        priority: MUST
+        statement: >
+          SK-01-003 SSVC domain skills (those that help practitioners perform
+          SSVC analysis) MUST live under `.agents/skills/ssvc/<skill-name>/`.
+        rationale: >
+          A dedicated `ssvc/` subtree makes domain skills discoverable and
+          distinguishable from development-workflow skills.
+        testable: true
+        tags: [tooling]
+
+      - id: SK-01-004
+        priority: MUST
+        statement: >
+          SK-01-004 Each skill MUST be contained in its own subdirectory
+          named using kebab-case (e.g., `evaluate-decision-point/`).
+        rationale: >
+          One skill per directory allows each skill to carry supplemental
+          assets (templates, examples, sub-scripts) without namespace
+          collision.
+        testable: true
+        tags: [tooling]
+
+  - id: SK-02
+    title: SKILL.md Interface
+    description: >
+      Requirements for the canonical skill descriptor file that every skill
+      directory must contain.
+    specs:
+      - id: SK-02-001
+        priority: MUST
+        statement: >
+          SK-02-001 Every skill directory MUST contain a file named
+          `SKILL.md`.
+        rationale: >
+          A single well-known filename allows tooling, CI, and agents to
+          locate skill descriptors without directory scanning heuristics.
+        testable: true
+        tags: [tooling]
+
+      - id: SK-02-002
+        priority: MUST
+        statement: >
+          SK-02-002 Every `SKILL.md` MUST open with a YAML front-matter
+          block (delimited by `---`) containing at minimum the fields
+          `name` and `description`.
+        rationale: >
+          Machine-parseable front-matter enables CI validation, agent
+          discovery, and future registry tooling without parsing freeform
+          Markdown prose.
+        testable: true
+        tags: [tooling, ci-cd]
+
+      - id: SK-02-003
+        priority: MUST
+        statement: >
+          SK-02-003 The `name` field MUST be a non-empty string that
+          uniquely identifies the skill within the repository.
+        rationale: >
+          A unique name lets agents reference skills unambiguously and
+          prevents accidental duplication.
+        testable: true
+        tags: [tooling]
+
+      - id: SK-02-004
+        priority: MUST
+        statement: >
+          SK-02-004 The `description` field MUST be a non-empty string
+          of one or more sentences summarising what the skill does and when
+          to invoke it.
+        rationale: >
+          A clear description is the primary signal an agent uses when
+          deciding whether to invoke a skill; an absent or empty description
+          renders the skill undiscoverable.
+        testable: true
+        tags: [tooling]
+
+      - id: SK-02-005
+        priority: SHOULD
+        statement: >
+          SK-02-005 A `SKILL.md` SHOULD include optional front-matter
+          fields (`id`, `version`, `tags`, `runtime`, `capabilities`,
+          `prerequisites`, `env`, `usage_examples`) when those details
+          are known and stable.
+        rationale: >
+          Richer metadata improves agent selection accuracy and reduces
+          ambiguity for complex or narrowly-scoped skills, but must not be
+          mandated when the skill is in early or prototype state.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [tooling]
+
+      - id: SK-02-006
+        priority: MUST
+        statement: >
+          SK-02-006 `SKILL.md` MUST contain a `## Purpose` section and at
+          least one procedural section (e.g., `## Procedure` or
+          `## Workflow`) after the front-matter block.
+        rationale: >
+          Prose procedure is the primary content an agent executes when
+          running the skill; a skill that contains only front-matter
+          provides no actionable guidance.
+        testable: true
+        tags: [tooling]
+
+  - id: SK-03
+    title: CI Enforcement
+    description: >
+      Requirements for automated validation of skill files in continuous
+      integration.
+    specs:
+      - id: SK-03-001
+        priority: MUST
+        statement: >
+          SK-03-001 CI MUST validate every `.agents/skills/**/SKILL.md`
+          file for the presence of valid YAML front-matter and the required
+          `name` and `description` fields.
+        rationale: >
+          Automated enforcement prevents malformed or incomplete skill files
+          from being merged, keeping the skill surface reliable for agents.
+        testable: true
+        tags: [ci-cd, tooling]
+
+      - id: SK-03-002
+        priority: MUST
+        statement: >
+          SK-03-002 The skill-validation CI job MUST run on pull requests
+          and on pushes to the main branch, filtered to paths matching
+          `.agents/skills/**/SKILL.md`.
+        rationale: >
+          Path filtering avoids unnecessary CI runs on unrelated changes
+          while ensuring every SKILL.md change is validated before merge.
+        testable: true
+        tags: [ci-cd]
+
+      - id: SK-03-003
+        priority: MUST
+        statement: >
+          SK-03-003 The skill-validation CI job MUST exit with a non-zero
+          status code if any SKILL.md file fails validation, causing the
+          GitHub Actions check to fail.
+        rationale: >
+          A failing check blocks the PR merge, ensuring non-conforming
+          skill files cannot reach the main branch undetected.
+        testable: true
+        tags: [ci-cd]

@@ -1,0 +1,139 @@
+id: SR
+title: Spec Registry
+description: >
+  Requirements for the structured YAML specification registry system
+  (ssvc.metadata.specs). The registry is the authoritative source for
+  normative requirements in SSVC. It replaces ad-hoc markdown requirement
+  lists with structured, validated, machine-readable YAML files.
+version: "0.1.0"
+kind: general
+scope: [production]
+
+groups:
+  - id: SR-01
+    title: Schema Requirements
+    description: Requirements for the spec file format and Pydantic validation.
+    specs:
+      - id: SR-01-001
+        priority: MUST
+        statement: >
+          SR-01-001 Each spec file MUST be a valid YAML document that
+          conforms to the SpecFile schema (id, title, description, version,
+          kind, scope, groups).
+        rationale: >
+          Structural validation at load time catches authoring errors early
+          and ensures all downstream tooling (linter, renderer, LLM exporter)
+          can rely on the schema contract.
+        testable: true
+        tags: [tooling, documentation]
+
+      - id: SR-01-002
+        priority: MUST
+        statement: >
+          SR-01-002 Each spec file MUST contain at least one group.
+        rationale: >
+          A file with no groups contributes no requirements and adds noise
+          to the registry; it is rejected at load time.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-01-003
+        priority: MUST
+        statement: >
+          SR-01-003 Each spec group MUST contain at least one spec.
+        rationale: >
+          An empty group contributes no requirements and adds noise to the
+          registry; it is rejected at load time.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-01-004
+        priority: MUST
+        statement: >
+          SR-01-004 All spec IDs MUST be unique across all spec files loaded
+          into a single registry instance.
+        rationale: >
+          Duplicate IDs make cross-references ambiguous and break tooling
+          that relies on ID-based lookup.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-01-005
+        priority: MUST
+        statement: >
+          SR-01-005 Each group ID MUST share the same alphabetic prefix as
+          its containing file ID (e.g. group SR-01 must live in file SR).
+        rationale: >
+          Consistent prefixes allow tracing any requirement back to its
+          topic file without consulting the registry.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-01-006
+        priority: MUST
+        statement: >
+          SR-01-006 Each spec ID MUST share the same prefix as its containing
+          group ID (e.g. spec SR-01-001 must live in group SR-01).
+        rationale: >
+          Consistent prefixes enforce a three-level hierarchy (file, group,
+          spec) and prevent specs from being placed in the wrong group.
+        testable: true
+        tags: [tooling]
+
+  - id: SR-02
+    title: Linting Requirements
+    description: Requirements for the spec registry linter (ssvc-spec-lint).
+    specs:
+      - id: SR-02-001
+        priority: MUST
+        statement: >
+          SR-02-001 The linter MUST exit with code 1 when hard errors are
+          found (duplicate IDs, dangling cross-references, prefix
+          mismatches).
+        rationale: >
+          Non-zero exit codes allow CI gates to block merges on malformed
+          spec files.
+        testable: true
+        tags: [tooling, ci-cd]
+
+      - id: SR-02-002
+        priority: SHOULD
+        statement: >
+          SR-02-002 The linter SHOULD emit advisory warnings for specs that
+          have no tags, rationale exceeding 500 characters, or testable=false
+          with no behavioral steps.
+        rationale: >
+          Warnings surface common authoring oversights without blocking CI,
+          keeping signal-to-noise ratio high.
+        testable: true
+        tags: [tooling]
+
+      - id: SR-02-003
+        priority: MAY
+        statement: >
+          SR-02-003 Individual specs MAY suppress specific advisory warnings
+          via the lint_suppress field when the warning condition is
+          intentional and documented.
+        rationale: >
+          Some specs are legitimately untestable via automated tests (e.g.
+          process requirements verified by human review). Suppression with
+          explicit acknowledgement is preferable to reducing warning
+          sensitivity globally.
+        testable: true
+        tags: [tooling]
+
+  - id: SR-03
+    title: Pre-commit and CI Integration
+    description: Requirements for automation hooks.
+    specs:
+      - id: SR-03-001
+        priority: SHOULD
+        statement: >
+          SR-03-001 Projects SHOULD run ssvc-spec-lint as a pre-commit hook
+          triggered by any change to files under specs/.
+        rationale: >
+          Pre-commit enforcement catches spec errors before they reach CI,
+          shortening the feedback loop for authors.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [tooling, ci-cd]

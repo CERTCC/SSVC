@@ -1,0 +1,116 @@
+id: TS
+title: Testing Standards
+description: >
+  Requirements for test organisation, isolation, and quality within the
+  SSVC Python package. Tests use pytest with a unittest.TestCase hybrid
+  style and a manually-injected registry for isolation.
+version: "0.1.0"
+kind: language
+scope: [production]
+
+groups:
+  - id: TS-01
+    title: Test Organisation
+    description: Requirements for how test files and directories are structured.
+    specs:
+      - id: TS-01-001
+        priority: MUST
+        statement: >
+          TS-01-001 All tests MUST reside in src/test/ with a directory
+          layout that mirrors src/ssvc/.
+        rationale: >
+          Mirroring the source layout makes it trivial to locate the test
+          for any module and ensures pytest autodiscovery covers every test.
+        testable: true
+        tags: [testing]
+
+      - id: TS-01-002
+        priority: MUST
+        statement: >
+          TS-01-002 Test files MUST be named test_<module_name>.py.
+        rationale: >
+          Consistent naming enables pytest autodiscovery without extra
+          configuration and makes the correspondence between source and test
+          explicit.
+        testable: true
+        tags: [testing]
+
+      - id: TS-01-003
+        priority: MUST
+        statement: >
+          TS-01-003 Test classes MUST subclass unittest.TestCase and be
+          runnable under pytest without additional plugins.
+        rationale: >
+          The existing test suite uses unittest.TestCase; new tests MUST
+          follow the same style to keep the suite homogeneous until a
+          deliberate migration to native pytest fixtures is undertaken.
+        testable: true
+        tags: [testing]
+
+  - id: TS-02
+    title: Test Isolation
+    description: >
+      Requirements for preventing shared state from leaking between tests.
+    specs:
+      - id: TS-02-001
+        priority: MUST
+        statement: >
+          TS-02-001 Each test class setUp MUST call registry.reset(force=True)
+          before populating test fixtures.
+        rationale: >
+          The global SsvcObjectRegistry is mutated by module-level
+          instantiation; resetting it in setUp prevents fixtures from one
+          test contaminating another.
+        testable: true
+        tags: [testing]
+
+      - id: TS-02-002
+        priority: MUST
+        statement: >
+          TS-02-002 API router tests MUST inject an isolated test registry
+          by directly replacing the router module's r variable
+          (e.g. router.r = self.r).
+        rationale: >
+          Direct attribute replacement avoids patching at the module level
+          and keeps the test registry fully under the test's control.
+        testable: true
+        tags: [testing]
+
+      - id: TS-02-003
+        priority: MUST
+        statement: >
+          TS-02-003 Tests MUST NOT assume a particular module import order
+          or rely on global registry state left by prior tests.
+        rationale: >
+          Import-order assumptions produce fragile tests that pass in one
+          configuration and fail in another, making CI results unreliable.
+        testable: true
+        tags: [testing]
+
+  - id: TS-03
+    title: Test Quality
+    description: >
+      Requirements for breadth and depth of test coverage.
+    specs:
+      - id: TS-03-001
+        priority: SHOULD
+        statement: >
+          TS-03-001 Each new Python module added to src/ssvc/ SHOULD have a
+          corresponding test file in src/test/.
+        rationale: >
+          Paired test files prevent coverage blind spots from accumulating
+          as the codebase grows.
+        testable: false
+        lint_suppress: [testable_without_steps]
+        tags: [testing]
+
+      - id: TS-03-002
+        priority: SHOULD
+        statement: >
+          TS-03-002 Decision point and decision table modules SHOULD include
+          tests that verify JSON schema round-trip serialisation.
+        rationale: >
+          Round-trip tests catch regressions where a model change breaks the
+          generated JSON schema without triggering other test failures.
+        testable: true
+        tags: [testing]
