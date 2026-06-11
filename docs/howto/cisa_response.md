@@ -1,8 +1,13 @@
 # HOW TO USE THE CISA RESPONSE TIMELINE SSVC DECISION TREE
 
-The CISA Response Timeline SSVC Decision Tree is a tool to harmonize previous
-Binding Operational Directives (BODs), to provide a consistent timeline for
-the federal enterprise in exacting vulnerability response.
+The CISA Response Timeline SSVC Decision Tree is a tool support implementers 
+of [CISA BOD 26-04](https://www.cisa.
+gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk).
+Readers should consult the directive for more details about how to use the 
+decision table below. What follows is just a brief introduction to the 
+outcomes, decision points, and decision table structure.
+
+## Outcomes and Decision Points
 
 The CISA Response Timeline has 4 binary decision points:
 
@@ -17,47 +22,29 @@ These 4 decision points are combined to yield 4 outcomes for vulnerability
 response timelines:
 
 ```python exec="true" idprefix=""
-from ssvc.outcomes.cisa.bod2604 import LATEST
-from ssvc.doc_helpers import example_block
+    from ssvc.outcomes.cisa.bod2604 import LATEST
+    from ssvc.doc_helpers import example_block
     
-print(example_block(LATEST))
+    print(example_block(LATEST))
 ```
 
-InKEV, Automatable, and Technical Impact question the vulnernability whereas
-Asset Exposure questions the state of the asset. Agencies should know whether
-an asset is exposed, but if they do not, they can refer to the THIS LINKED
-DOCUMENTATION on creating an asset inventory.
-CISA scans assets on a regular basis. If the asset is in a CISA CyHy report,
-it should be considered Asset Exposure=YES.
-
-With [Vulnrichment](https://www.cve.org/Media/News/item/blog/2024/06/04/CISA-Added-as-CVE-Authorized-Data-Publisher) data, the states of decision points Automatable and
-Technical Impact for a vulnerability are often publicly available on the
-cve.org record page for the vulnernability in question. See "CISA-ADP" on
-the CVE record page for more information.
-SUGGEST PUTTING A SCREENSHOT OR HYPERLINK.
-
-If Vulnrichment data is unavailable, agencies can try to gather that
-information themselves. Advice for gathering information about [Automatable](../howto/gathering_info/automatable.md) and [Technical Impact](../howto/gathering_info/technical_impact.md) is available on this site.
-
-Additionally, this decision table is not exhaustive. For example, some
-vulnerabilities are exploited before having a public CVE ID, let alone a fix,
-and are therefore ineligible for a KEV entry. By considering Exploitation,
-even outside of KEV, using the SSVC Exploitation decision point, the federal
-enterprise can accelerate a mitigation response until a fix is available.
-If InKEV:N and E:A, the agency should act to mitigate the vulnernability as if
-it were InKEV:Y, and continue to monitor news sources for a better solution.
-
-## More information about decision points
+InKEV, Automatable, and Technical Impact address the vulnerability whereas
+Asset Exposure questions the state of the asset. 
 
 ```python exec="true" idprefix=""
-from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as DT
+from ssvc.decision_points.cisa.in_kev import IN_KEV_1
+from ssvc.decision_points.cisa.publicly_exposed import PUBLICLY_EXPOSED_1
+from ssvc.decision_points.ssvc.automatable import AUTOMATABLE_2
+from ssvc.decision_points.ssvc.technical_impact import TECHNICAL_IMPACT_1
 from ssvc.doc_helpers import example_block
 
-for dp in [v for k,v in DT.decision_points.items() if k != DT.outcome]:
-    print(example_block(dp))
+print(example_block(IN_KEV_1))
+print(example_block(PUBLICLY_EXPOSED_1))
+print(example_block(AUTOMATABLE_2))
+print(example_block(TECHNICAL_IMPACT_1))
 ```
 
-## Visualizing the CISA Response Timeline Decision Table as a Tree Diagram
+## CISA BOD 26-04 Decision Model
 
 ```python exec="true" idprefix=""
 from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as DT
@@ -66,4 +53,19 @@ from ssvc.decision_tables.helpers import mapping2mermaid, mermaid_title_from_dt
 rows = DT.mapping
 title = mermaid_title_from_dt(DT)
 print(mapping2mermaid(rows, title=title))
+```
+
+### Table of Values
+
+The table below shows the values for the decision model.
+Each row of the table corresponds to a path through the decision model diagram above.
+
+{% include-markdown "../_includes/_scrollable_table.md" heading-offset=1 %}
+
+```python exec="true" idprefix=""
+
+from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as DT
+from ssvc.decision_tables.helpers import dt2df_md
+
+print(dt2df_md(DT))
 ```
