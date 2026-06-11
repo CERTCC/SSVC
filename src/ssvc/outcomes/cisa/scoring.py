@@ -39,6 +39,14 @@ _TRACK_STAR = DecisionPointValue(
     "CISA recommends remediating Track* vulnerabilities within standard update timelines.",
 )
 
+
+_MONITOR = DecisionPointValue(
+    name="Monitor",
+    key="M",
+    description="The vulnerability contains specific characteristics that may require closer monitoring for changes. "
+    "CISA recommends remediating Monitor vulnerabilities within standard update timelines.",
+)
+
 _ATTEND = DecisionPointValue(
     name="Attend",
     key="AT",
@@ -56,7 +64,7 @@ _ACT = DecisionPointValue(
     "CISA recommends remediating Act vulnerabilities as soon as possible.",
 )
 
-CISA = CisaDecisionPoint(
+CISA1 = CisaDecisionPoint(
     name="CISA Levels",
     key="CISA",
     definition="The CISA outcome group. "
@@ -69,13 +77,27 @@ CISA = CisaDecisionPoint(
         _ACT,
     ),
 )
+
+CISA2 = CisaDecisionPoint(
+    name="CISA Levels",
+    key="CISA",
+    description="The CISA outcome group. "
+    "CISA uses its own SSVC decision tree model to prioritize relevant vulnerabilities into four possible decisions: Track, Track*, Attend, and Act.",
+    version="1.0.1",
+    values=(
+        _TRACK,
+        _MONITOR,
+        _ATTEND,
+        _ACT,
+    ),
+)
 """
 The CISA outcome group. Based on CISA's customizations of the SSVC model.
 See https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc
 """
 
 
-VERSIONS = (CISA,)
+VERSIONS = (CISA2,)
 LATEST = VERSIONS[-1]
 
 
