@@ -12,7 +12,7 @@ outcomes, decision points, and decision table structure.
 The CISA Response Timeline has 4 binary decision points:
 
 1. InKEV
-2. Asset Exposure
+2. Publicly Exposed
 3. Automatable
 4. Technical Impact
 
