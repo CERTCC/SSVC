@@ -19,6 +19,7 @@
 """
 Provides SSVC outcome groups for the cisa namespace
 """
+from .bod2604 import LATEST as BOD2604
 from .scoring import LATEST as CISA_SCORING
 
-ALL = (CISA_SCORING,)
+ALL = (CISA_SCORING, BOD2604)
