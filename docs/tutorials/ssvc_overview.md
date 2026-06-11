@@ -126,7 +126,7 @@ print(example_block(LATEST, include_json=False))
 
 *Safety Impact* is expansive to include impacts of physical harm, operator resiliency, system resiliency, environment, financial, and psychological harm. We used IEC 61508 to guide determinations of Negligible, Marginal, Critical, and Catastrophic impact on the aforementioned types of harm. Only one type of harm needs to qualify per category. Use the highest qualifying category to determine safety impact.
 
-*Safety Impact*
+### Safety Impact
 
 ```python exec="true" idprefix=""
 from ssvc.decision_points.ssvc.safety_impact import LATEST
@@ -141,8 +141,6 @@ print(example_block(LATEST, include_json=False))
  type="application/pdf"
  style="width: 100%;"
  height = "1000"/>
-
-#### Exploitation
 
 *Exploitation* is the same as for Exploitation in the *Supplier* model.
 
