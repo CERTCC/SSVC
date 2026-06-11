@@ -1,0 +1,41 @@
+repos:
+  # Black - Python code formatter
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+        language_version: python3.12
+        files: '\.py$'
+        exclude: '^(data/|obsolete/|src/ssvc/utils/namespace_patterns\.py)'
+
+  # Markdownlint - Markdown linting with auto-fix
+  - repo: local
+    hooks:
+      - id: markdownlint-fix
+        name: markdownlint
+        entry: markdownlint --config .markdownlint.yml --fix
+        language: system
+        files: '\.md$'
+        exclude: '^(data/|obsolete/)'
+
+  # Custom hook: doctools.py - Regenerate JSON from Python decision tables
+  - repo: local
+    hooks:
+      - id: doctools-regenerate
+        name: doctools regenerate
+        entry: bash -c 'PYTHONPATH=src:$PYTHONPATH uv run python src/ssvc/doctools.py --datadir=./data --overwrite'
+        language: system
+        files: '^src/ssvc/(decision_points|decision_tables)/.*\.py$'
+        pass_filenames: false
+
+  # Custom hook: pytest - Run tests (non-blocking)
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest
+        entry: uv run pytest -v
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true
+        fail_fast: false
