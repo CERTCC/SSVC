@@ -1462,8 +1462,12 @@ async function get_decision_points() {
     }    
     decision_points.sort(dtreeSort);
     if(!decision_trees.some(function(x) { return x.selected;})) {
-       decision_trees[0].selected = true;
-       console.log("Warning no matching decision tree founded loading the first one");
+        if (decision_trees.length === 0) {
+            topalert("No decision trees found in registry", "danger");
+            return;
+        }
+        decision_trees[0].selected = true;
+        console.warn("Warning: no matching decision tree found; loading the first one");
     }
     load_trees();
 }
