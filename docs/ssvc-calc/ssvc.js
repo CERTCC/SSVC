@@ -176,10 +176,14 @@ $(function () {
 		}
 	    }
 	}
-	if(!SSVC.decision_trees.some(function(x) { return x.selected;})) {
-            SSVC.decision_trees[0].selected = true;
-            console.log("Warning no matching decision tree founded loading the 1st one");
-            defaultTreeObj = SSVC.decision_trees[0];
+	if (!defaultTreeObj) {
+	    if (SSVC.decision_trees.length === 0) {
+		topalert("No decision trees found in registry","danger");
+		return;
+	    }
+	    SSVC.decision_trees[0].selected = true;
+	    console.warn("Warning: no matching decision tree found; loading the first one");
+	    defaultTreeObj = SSVC.decision_trees[0].data;
 	}
 	parse_json(defaultTreeObj);
 	SSVC.decision_trees.forEach(function(dpd, i) {
