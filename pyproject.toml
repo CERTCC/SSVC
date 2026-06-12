@@ -18,7 +18,7 @@ authors = [
     { name = "CERT/CC SSVC", email="cert+ssvc@cert.org"}
 ]
 description = "Tools for working with a Stakeholder Specific Vulnerability Categorization (SSVC)"
-readme = {file="README.md", content-type="text/markdown"}
+readme = {file="src/README.md", content-type="text/markdown"}
 requires-python = ">=3.12"
 keywords =["ssvc","vulnerability management","vulnerability management"]
 license-files = ["LICENSE"]

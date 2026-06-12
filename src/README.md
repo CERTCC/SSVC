@@ -90,7 +90,8 @@ For usage in vulnerability management scenarios consider the following popular S
     print(DeployerDT.model_dump_json(indent=2))
 
     # Example CISA Decision Table as Coordinator for Vulnerability Management writ large
-    from ssvc.decision_tables.cisa.cisa_coordinate_dt import LATEST as CISACoordinate
+    # using CISA Binding Operational Directive BOD-26-04
+    from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as CISACoordinate
     print(CISACoordinate.model_dump_json(indent=2))
 
     #Print CISA Decision Table as an ascii tree
