@@ -90,7 +90,8 @@ For usage in vulnerability management scenarios consider the following popular S
     print(DeployerDT.model_dump_json(indent=2))
 
     # Example CISA Decision Table as Coordinator for Vulnerability Management writ large
-    from ssvc.decision_tables.cisa.cisa_coordinate_dt import LATEST as CISACoordinate
+    # using CISA Binding Operational Directive BOD-26-04
+    from ssvc.decision_tables.cisa.bod_2604_dt import LATEST as CISACoordinate
     print(CISACoordinate.model_dump_json(indent=2))
 
     #Print CISA Decision Table as an ascii tree
@@ -112,12 +113,11 @@ For usage in vulnerability management scenarios consider the following popular S
            dp_index = decision_points.index(dp.name)
            selected = selection.Selection.from_decision_point(dp)
            selected.values = tuple(selection.MinimalDecisionPointValue(key=val.key,
-	   name=val.name) for val in dp.values if val.name in values[dp_index])
+    name=val.name) for val in dp.values if val.name in values[dp_index])
            selections.append(selected)
 
     out = selection.SelectionList(selections=selections,timestamp=timestamp)
     print(out.model_dump_json(exclude_none=True, indent=4))
-
 
 Resources
 ---------
