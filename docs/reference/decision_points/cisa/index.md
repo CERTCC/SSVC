@@ -1,6 +1,6 @@
 # CISA Custom Decision Points
 
-In their customization of SSVC, CISA has implemented a set of custom 
+In their customization of SSVC, CISA has implemented a set of custom
 decision points.
 
 - [In KEV](in_kev.md)

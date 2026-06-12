@@ -24,7 +24,7 @@ uv --project=src run uvicorn ssvc.api.main:app --reload --port=7777
 
 > [!TIP]
 > Adjust the port as needed.
-
+>
 > [!NOTE]
 > We're planning to move our `pyproject.toml` to the top level of the project,
 > so in the future you may be able to run this command without the `--project` flag.
@@ -47,10 +47,9 @@ This will start the FastAPI server in a Docker container.
 > Docker and Docker Compose must be installed on your machine to use this method.
 > Make sure to adjust the `docker-compose.yml` file if you want to change
 > the port or other settings.
-
+>
 > [!TIP]
 > The `api` docker target copies the code into the container at build time.
 > If you make changes to the code, you'll need to rebuild the Docker image
 > using `docker-compose build api` before restarting the container. Or else
 > use `docker-compose up --build api` to build and start in one command.
-

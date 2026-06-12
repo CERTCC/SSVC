@@ -233,7 +233,7 @@ class MyTestCase(unittest.TestCase):
         data = json.loads(json_text)
         self.assertIn("selections", data)
         self.assertNotIn("metadata", data)
-        self.assertIn("\n    \"selections\":", json_text)
+        self.assertIn('\n    "selections":', json_text)
 
     def test_model_dump_json_excludes_none(self):
         """exclude_none=True should work with post-processing."""
@@ -474,7 +474,7 @@ class MyTestCase(unittest.TestCase):
         )
         dumped = s.model_dump()
         with self.assertRaises(Exception):
-            del dumped['values']
+            del dumped["values"]
 
 
 if __name__ == "__main__":
