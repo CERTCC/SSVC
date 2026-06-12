@@ -18,7 +18,7 @@ authors = [
     { name = "CERT/CC SSVC", email="cert+ssvc@cert.org"}
 ]
 description = "Tools for working with a Stakeholder Specific Vulnerability Categorization (SSVC)"
-readme = {file="README.md", content-type="text/markdown"}
+readme = {file="src/README.md", content-type="text/markdown"}
 requires-python = ">=3.12"
 keywords =["ssvc","vulnerability management","vulnerability management"]
 license-files = ["LICENSE"]
@@ -49,6 +49,7 @@ dependencies = [
     "pydantic>=2.11.7",
     "semver>=3.0.4",
     "fastapi[all,standard]>=0.116.1",
+    "pre-commit>=4.6.0",
 ]
 dynamic = ["version",]
 

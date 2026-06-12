@@ -473,7 +473,20 @@ const SSVC = (function() {
     let dpMap = {};
     let default_namespace = "x_com.example#psirt";
     let namespaces = [];
-    let __version__ = "1.0.12";
+    let __version__ = "1.0.13";
+    let displayTree = "Deployer Patch Application Priority";
+    let query = "";
+    try {
+        query = (window.top && window.top !== window.self)
+            ? (window.top.location.search || window.top.location.hash.substring(1))
+            : "";
+    } catch (e) {
+        query = "";
+    }
+    query = query || window.location.search || window.location.hash.substring(1);
+    const urlParams = Object.fromEntries(new URLSearchParams(query));
+    const treeParam = urlParams.defaultTree || urlParams.displayTree || urlParams.display || urlParams.tree;
+    if (treeParam) displayTree = treeParam;
     
 function niceString(str) {
     if (str.length)
@@ -1440,7 +1453,7 @@ async function get_decision_points() {
 			    const versionEntry = keyEntry.versions[version];
 			    if (versionEntry.obj && versionEntry.obj.decision_points) {
 				let mdata = {data: versionEntry.obj, displayname: name_version(versionEntry.obj)};
-				if(versionEntry.obj.name.indexOf("Deployer") > -1)
+				if(versionEntry.obj.name.indexOf(displayTree) > -1)
 				    mdata['selected'] = true;
 				decision_trees.push(mdata);
 			    }
@@ -1451,6 +1464,14 @@ async function get_decision_points() {
 	}
     }    
     decision_points.sort(dtreeSort);
+    if(!decision_trees.some(function(x) { return x.selected;})) {
+        if (decision_trees.length === 0) {
+            topalert("No decision trees found in registry", "danger");
+            return;
+        }
+        decision_trees[0].selected = true;
+        console.warn("Warning: no matching decision tree found; loading the first one");
+    }
     load_trees();
 }
 

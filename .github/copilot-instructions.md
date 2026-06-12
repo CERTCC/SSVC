@@ -5,6 +5,7 @@ This repository contains the **Stakeholder-Specific Vulnerability Categorization
 ## Project Overview
 
 SSVC is a modular decision-making framework for vulnerability management that includes:
+
 - Python modules for decision points, decision tables, and outcomes
 - MkDocs-based documentation website
 - Interactive calculators and policy explorers
@@ -45,7 +46,7 @@ Use `make help` to see all available commands. Common targets include:
 - `make dev` - Set up development environment
 - `make test` - Run tests locally
 - `make docker_test` - Run tests in Docker
-- `make docs_local` - Serve documentation locally (http://localhost:8000/SSVC/)
+- `make docs_local` - Serve documentation locally (<http://localhost:8000/SSVC/>)
 - `make docs` - Build and run documentation in Docker
 - `make api_dev` - Run API locally with auto-reload
 - `make api` - Build and run API in Docker
@@ -141,8 +142,8 @@ Use `make help` to see all available commands. Common targets include:
 ## API Development
 
 - FastAPI application is in `/src/ssvc/api/`
-- Run locally with auto-reload: `make api_dev` (serves on http://127.0.0.1:8000/docs)
-- Run in Docker: `make api` (serves on http://127.0.0.1:8001/SSVC/)
+- Run locally with auto-reload: `make api_dev` (serves on <http://127.0.0.1:8000/docs>)
+- Run in Docker: `make api` (serves on <http://127.0.0.1:8001/SSVC/>)
 
 ## Git Workflow
 
@@ -154,11 +155,11 @@ Use `make help` to see all available commands. Common targets include:
 
 ## Additional Resources
 
-- Main documentation: https://certcc.github.io/SSVC/
-- Source repository: https://github.com/CERTCC/SSVC
-- SSVC Calculator: https://certcc.github.io/SSVC/ssvc-calc/
+- Main documentation: <https://certcc.github.io/SSVC/>
+- Source repository: <https://github.com/CERTCC/SSVC>
+- SSVC Calculator: <https://certcc.github.io/SSVC/ssvc-calc/>
 - Contributing guide: See CONTRIBUTING.md
-- Project wiki: https://github.com/CERTCC/SSVC/wiki
+- Project wiki: <https://github.com/CERTCC/SSVC/wiki>
 
 ## Special Notes
 

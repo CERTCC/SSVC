@@ -20,7 +20,7 @@
  */
 
 /* SSVC code for graph building */
-const _version = "6.0.2"
+const _version = "6.1.1"
 const _tool = "Dryad SSVC Calculator "+_version
 var showFullTree = false;
 /* The registryurl is now relative to local folder using symlink for convenience*/
@@ -116,10 +116,23 @@ function arrayReduce(arr,n) {
 $(function () {
     /* document.ready() */
     reset_form();
+    let displayTree = "Deployer Patch Application Priority";
+    let query = "";
+    try {
+        query = (window.top && window.top !== window.self)
+            ? (window.top.location.search || window.top.location.hash.substring(1))
+            : "";
+    } catch (e) {
+        query = "";
+    }
+    query = query || window.location.search || window.location.hash.substring(1);
+    const urlParams = Object.fromEntries(new URLSearchParams(query));
+    const treeParam = urlParams.defaultTree || urlParams.displayTree || urlParams.display || urlParams.tree;
+    if (treeParam) displayTree = treeParam;
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
     $.getJSON(registry_url).done(function(registry) {
-	let defaultTree;
+	let displayTreeObj;
 	if (registry.types && registry.types.DecisionPoint &&
 	    registry.types.DecisionPoint.namespaces) {
 	    const namespaces = registry.types.DecisionPoint.namespaces;
@@ -154,9 +167,9 @@ $(function () {
 				const versionEntry = keyEntry.versions[version];
 				if (versionEntry.obj && versionEntry.obj.decision_points) {
 				    let mdata = {data : versionEntry.obj, displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
-				    if(versionEntry.obj.name.indexOf("Deployer") > -1) {
+				    if(versionEntry.obj.name.indexOf(displayTree) > -1) {
 					mdata['selected'] = true;
-					defaultTree = versionEntry.obj;
+					displayTreeObj = versionEntry.obj;
 				    }
 				    SSVC.decision_trees.push(mdata);
 				}
@@ -166,7 +179,16 @@ $(function () {
 		}
 	    }
 	}
-	parse_json(defaultTree);
+	if (!displayTreeObj) {
+	    if (SSVC.decision_trees.length === 0) {
+		topalert("No decision trees found in registry","danger");
+		return;
+	    }
+	    SSVC.decision_trees[0].selected = true;
+	    console.warn("Warning: no matching decision tree found; loading the first one");
+	    displayTreeObj = SSVC.decision_trees[0].data;
+	}
+	parse_json(displayTreeObj);
 	SSVC.decision_trees.forEach(function(dpd, i) {
 	    $('#tree_samples').append($('<option>')
 				      .attr({value: i, selected: dpd.selected})
