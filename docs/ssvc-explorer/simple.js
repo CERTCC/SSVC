@@ -481,8 +481,8 @@ const SSVC = (function() {
             location.search || location.hash.substring(1)
        )
     );
-    if (urlParams.displayTree || urlParams.display) {
-	displayTree = urlParams.displayTree || urlParams.display;
+    if (urlParams.displayTree || urlParams.display || urlParams.tree) {
+	displayTree = urlParams.displayTree || urlParams.display || urlParams.tree;
     }
     
 function niceString(str) {
