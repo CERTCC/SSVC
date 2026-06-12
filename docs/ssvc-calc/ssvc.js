@@ -116,20 +116,20 @@ function arrayReduce(arr,n) {
 $(function () {
     /* document.ready() */
     reset_form();
-    let defaultTree = "Deployer Patch Application Priority";
+    let displayTree = "Deployer Patch Application Priority";
     const urlParams = Object.fromEntries(
         new URLSearchParams(
            top.location.search || top.location.hash.substring(1) ||
             location.search || location.hash.substring(1)
         )
     );
-    if (urlParams.defaultTree) {
-        defaultTree = urlParams.defaultTree;
+    if (urlParams.displayTree || urlParams.display) {
+        displayTree = urlParams.displayTree || urlParams.display;
     }
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
     $.getJSON(registry_url).done(function(registry) {
-	let defaultTreeObj;
+	let displayTreeObj;
 	if (registry.types && registry.types.DecisionPoint &&
 	    registry.types.DecisionPoint.namespaces) {
 	    const namespaces = registry.types.DecisionPoint.namespaces;
@@ -164,9 +164,9 @@ $(function () {
 				const versionEntry = keyEntry.versions[version];
 				if (versionEntry.obj && versionEntry.obj.decision_points) {
 				    let mdata = {data : versionEntry.obj, displayname: versionEntry.obj.name + " (" + versionEntry.obj.version + ")"};
-				    if(versionEntry.obj.name.indexOf(defaultTree) > -1) {
+				    if(versionEntry.obj.name.indexOf(displayTree) > -1) {
 					mdata['selected'] = true;
-					defaultTreeObj = versionEntry.obj;
+					displayTreeObj = versionEntry.obj;
 				    }
 				    SSVC.decision_trees.push(mdata);
 				}
@@ -176,16 +176,16 @@ $(function () {
 		}
 	    }
 	}
-	if (!defaultTreeObj) {
+	if (!displayTreeObj) {
 	    if (SSVC.decision_trees.length === 0) {
 		topalert("No decision trees found in registry","danger");
 		return;
 	    }
 	    SSVC.decision_trees[0].selected = true;
 	    console.warn("Warning: no matching decision tree found; loading the first one");
-	    defaultTreeObj = SSVC.decision_trees[0].data;
+	    displayTreeObj = SSVC.decision_trees[0].data;
 	}
-	parse_json(defaultTreeObj);
+	parse_json(displayTreeObj);
 	SSVC.decision_trees.forEach(function(dpd, i) {
 	    $('#tree_samples').append($('<option>')
 				      .attr({value: i, selected: dpd.selected})

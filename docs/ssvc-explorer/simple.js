@@ -474,15 +474,15 @@ const SSVC = (function() {
     let default_namespace = "x_com.example#psirt";
     let namespaces = [];
     let __version__ = "1.0.13";
-    let defaultTree = "Deployer Patch Application Priority";
+    let displayTree = "Deployer Patch Application Priority";
     const urlParams = Object.fromEntries(
        new URLSearchParams(
            top.location.search || top.location.hash.substring(1) ||
             location.search || location.hash.substring(1)
        )
     );
-    if (urlParams.defaultTree) {
-       defaultTree = urlParams.defaultTree;
+    if (urlParams.displayTree || urlParams.display) {
+	displayTree = urlParams.displayTree || urlParams.display;
     }
     
 function niceString(str) {
@@ -1450,7 +1450,7 @@ async function get_decision_points() {
 			    const versionEntry = keyEntry.versions[version];
 			    if (versionEntry.obj && versionEntry.obj.decision_points) {
 				let mdata = {data: versionEntry.obj, displayname: name_version(versionEntry.obj)};
-				if(versionEntry.obj.name.indexOf(defaultTree) > -1)
+				if(versionEntry.obj.name.indexOf(displayTree) > -1)
 				    mdata['selected'] = true;
 				decision_trees.push(mdata);
 			    }
