@@ -117,15 +117,18 @@ $(function () {
     /* document.ready() */
     reset_form();
     let displayTree = "Deployer Patch Application Priority";
-    const urlParams = Object.fromEntries(
-        new URLSearchParams(
-           top.location.search || top.location.hash.substring(1) ||
-            location.search || location.hash.substring(1)
-        )
-    );
-    if (urlParams.displayTree || urlParams.display || urlParams.tree) {
-        displayTree = urlParams.displayTree || urlParams.display || urlParams.tree;
+    let query = "";
+    try {
+        query = (window.top && window.top !== window.self)
+            ? (window.top.location.search || window.top.location.hash.substring(1))
+            : "";
+    } catch (e) {
+        query = "";
     }
+    query = query || window.location.search || window.location.hash.substring(1);
+    const urlParams = Object.fromEntries(new URLSearchParams(query));
+    const treeParam = urlParams.defaultTree || urlParams.displayTree || urlParams.display || urlParams.tree;
+    if (treeParam) displayTree = treeParam;
     $('#topalert').width($('main').width());
     window.onresize = function() { $('#topalert').width($('main').width())}
     $.getJSON(registry_url).done(function(registry) {
