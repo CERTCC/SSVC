@@ -1,9 +1,12 @@
+---
 name: Build and Publish to PyPI
 
 on:
   push:
     tags:
       - "20*"
+    branches:
+      - pypi
 
 permissions:
   contents: read
@@ -71,4 +74,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           verbose: true
-
