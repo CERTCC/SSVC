@@ -5,8 +5,7 @@ on:
   push:
     tags:
       - "20*"
-    branches:
-      - pypi
+
 
 permissions:
   contents: read
