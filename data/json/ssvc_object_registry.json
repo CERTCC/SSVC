@@ -22656,6 +22656,284 @@
                 }
               }
             },
+            "DT_CVSS4_TO_TI": {
+              "key": "DT_CVSS4_TO_TI",
+              "versions": {
+                "1.0.0": {
+                  "version": "1.0.0",
+                  "obj": {
+                    "namespace": "ssvc",
+                    "key": "DT_CVSS4_TO_TI",
+                    "version": "1.0.0",
+                    "name": "CVSSv4 to Technical Impact",
+                    "definition": "Maps CVSS v4 vector elements to SSVC Technical Impact",
+                    "schemaVersion": "2.0.0",
+                    "decision_points": {
+                      "cvss:PR:1.0.1": {
+                        "namespace": "cvss",
+                        "key": "PR",
+                        "version": "1.0.1",
+                        "name": "Privileges Required",
+                        "definition": "This metric describes the level of privileges an attacker must possess prior to successfully exploiting the vulnerability. The method by which the attacker obtains privileged credentials prior to the attack (e.g., free trial accounts), is outside the scope of this metric. Generally, self-service provisioned accounts do not constitute a privilege requirement if the attacker can grant themselves privileges as part of the attack.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "H",
+                            "name": "High",
+                            "definition": "The attacker is authorized with (i.e., requires) privileges that provide significant (e.g., administrative) control over the vulnerable system allowing full access to the vulnerable system’s settings and files."
+                          },
+                          {
+                            "key": "L",
+                            "name": "Low",
+                            "definition": "The attacker is authorized with (i.e., requires) privileges that provide basic capabilities that are typically limited to settings and resources owned by a single low-privileged user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources."
+                          },
+                          {
+                            "key": "N",
+                            "name": "None",
+                            "definition": "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files to carry out an attack."
+                          }
+                        ]
+                      },
+                      "cvss:VC:3.0.0": {
+                        "namespace": "cvss",
+                        "key": "VC",
+                        "version": "3.0.0",
+                        "name": "Confidentiality Impact to the Vulnerable System",
+                        "definition": "This metric measures the impact to the confidentiality of the information managed by the system due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "None",
+                            "definition": "There is no loss of confidentiality within the impacted component."
+                          },
+                          {
+                            "key": "L",
+                            "name": "Low",
+                            "definition": "There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is constrained. The information disclosure does not cause a direct, serious loss to the impacted component."
+                          },
+                          {
+                            "key": "H",
+                            "name": "High",
+                            "definition": "There is total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
+                          }
+                        ]
+                      },
+                      "cvss:VI:3.0.0": {
+                        "namespace": "cvss",
+                        "key": "VI",
+                        "version": "3.0.0",
+                        "name": "Integrity Impact to the Vulnerable System",
+                        "definition": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "N",
+                            "name": "None",
+                            "definition": "There is no loss of integrity within the Vulnerable System."
+                          },
+                          {
+                            "key": "L",
+                            "name": "Low",
+                            "definition": "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Vulnerable System."
+                          },
+                          {
+                            "key": "H",
+                            "name": "High",
+                            "definition": "There is a total loss of integrity, or a complete loss of protection."
+                          }
+                        ]
+                      },
+                      "ssvc:TI:1.0.0": {
+                        "namespace": "ssvc",
+                        "key": "TI",
+                        "version": "1.0.0",
+                        "name": "Technical Impact",
+                        "definition": "The technical impact of the vulnerability.",
+                        "schemaVersion": "2.0.0",
+                        "values": [
+                          {
+                            "key": "P",
+                            "name": "Partial",
+                            "definition": "The exploit gives the adversary limited control over, or information exposure about, the behavior of the software that contains the vulnerability. Or the exploit gives the adversary an importantly low stochastic opportunity for total control."
+                          },
+                          {
+                            "key": "T",
+                            "name": "Total",
+                            "definition": "The exploit gives the adversary total control over the behavior of the software, or it gives total disclosure of all information on the system that contains the vulnerability."
+                          }
+                        ]
+                      }
+                    },
+                    "outcome": "ssvc:TI:1.0.0",
+                    "mapping": [
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "P"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "N",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "N",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "H",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "L",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "L",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "L",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      },
+                      {
+                        "cvss:PR:1.0.1": "N",
+                        "cvss:VC:3.0.0": "H",
+                        "cvss:VI:3.0.0": "H",
+                        "ssvc:TI:1.0.0": "T"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
             "DT_HI": {
               "key": "DT_HI",
               "versions": {
