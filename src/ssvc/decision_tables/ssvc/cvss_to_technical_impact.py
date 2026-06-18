@@ -50,6 +50,178 @@ V1_0_0 = DecisionTable(
         ]
     },
     outcome=TECHNICAL_IMPACT_1.id,
+    mapping=[
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "N",
+            "ssvc:TI:1.0.0": "P",
+            # TODO: See comment thread on Issue #195 about this row.
+            # It could be either "P" or "T" depending on how that thread resolves.
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "N",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "P",
+            # TODO: See comment thread on Issue #195 about this row.
+            # It could be either "P" or "T" depending on how that thread resolves.
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "P",
+        },
+        {
+            "cvss:PR:1.0.1": "H",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "T",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "L",
+            "ssvc:TI:1.0.0": "T",
+            # TODO: See comment thread on Issue #195 about this row.
+            # It could be either "P" or "T" depending on how that thread resolves.
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "L",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "T",
+            # TODO: See comment thread on Issue #195 about this row.
+            # It could be either "P" or "T" depending on how that thread resolves.
+        },
+        {
+            "cvss:PR:1.0.1": "L",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "T",
+        },
+        {
+            "cvss:PR:1.0.1": "N",
+            "cvss:VC:3.0.0": "H",
+            "cvss:VI:3.0.0": "H",
+            "ssvc:TI:1.0.0": "T",
+        },
+    ],
 )
 
 VERSIONS = (V1_0_0,)

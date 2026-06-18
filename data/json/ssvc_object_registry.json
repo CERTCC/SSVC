@@ -22855,49 +22855,49 @@
                         "cvss:PR:1.0.1": "H",
                         "cvss:VC:3.0.0": "H",
                         "cvss:VI:3.0.0": "L",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "L",
                         "cvss:VC:3.0.0": "N",
                         "cvss:VI:3.0.0": "H",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "H",
                         "cvss:VC:3.0.0": "L",
                         "cvss:VI:3.0.0": "H",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "N",
                         "cvss:VC:3.0.0": "H",
                         "cvss:VI:3.0.0": "N",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "N",
                         "cvss:VC:3.0.0": "L",
                         "cvss:VI:3.0.0": "L",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "L",
                         "cvss:VC:3.0.0": "H",
                         "cvss:VI:3.0.0": "L",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "N",
                         "cvss:VC:3.0.0": "N",
                         "cvss:VI:3.0.0": "H",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "L",
                         "cvss:VC:3.0.0": "L",
                         "cvss:VI:3.0.0": "H",
-                        "ssvc:TI:1.0.0": "T"
+                        "ssvc:TI:1.0.0": "P"
                       },
                       {
                         "cvss:PR:1.0.1": "H",
