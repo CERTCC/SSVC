@@ -30,7 +30,7 @@ jobs:
 
       - name: Verify distributions
         run: |
-          uv pip install twine
+          pip install twine
           twine check dist/*
           ls -lah dist/
 
