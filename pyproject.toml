@@ -62,8 +62,11 @@ ssvc_doctools="ssvc.doctools:main"
 "Project" = "https://github.com/CERTCC/SSVC"
 "Bug Tracker" = "https://github.com/CERTCC/SSVC/issues"
 
+[tool.setuptools]
+package-dir = {"" = "src"}
+
 [tool.setuptools.packages.find]
-where = ["."]  # list of folders that contain the packages (["."] by default)
+where = ["src"]  # list of folders that contain the packages (["."] by default)
 include = ["ssvc*"]  # package names should match these glob patterns (["*"] by default)
 exclude = ["test*"]  # exclude packages matching these glob patterns (empty by default)
 #namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
