@@ -1404,13 +1404,23 @@ function shwhelp(w) {
 
 
 function safedivname(instr) {
-    var uri_esc = encodeURIComponent(instr)
-    var safestr = btoa(uri_esc.replace(/%([0-9A-F]{2})/g,
-				       (m, p)  =>
-				       String.fromCharCode('0x' + p)));
-    var fstr = "d-"+safestr.replace(/[\+\/\=]/gi,
-				    (m,p) => { return m.charCodeAt(0) });
-    return fstr.substr(0,14);
+  const uriEsc = encodeURIComponent(instr);
+  const base64 = btoa(
+    uriEsc.replace(/%([0-9A-F]{2})/g, (_, p) =>
+      String.fromCharCode(parseInt(p, 16))
+    )
+  )
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+  let h = 0x811c9dc5;
+  for (let i = 0; i < instr.length; i++) {
+    h ^= instr.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  const hash = (h >>> 0).toString(36);
+  const prefix = base64.slice(0, 24);
+  return "d-" + prefix + "-" + hash;
 }
 
 
