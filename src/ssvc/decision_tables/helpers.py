@@ -377,11 +377,13 @@ def ascii_tree(dt: DecisionTable, df: pd.DataFrame | None = None) -> str:
     Reads a Pandas data frame, builds a decision tree, and returns its ASCII representation.
     """
     # Check for the optional 'row' column and drop it if it exists.
-    if df == None:
+    if df is None:
         df = decision_table_to_longform_df(dt)
 
     if "row" in df.columns:
-        df.drop(columns="row", inplace=True)
+        # Not in place: df may belong to the caller, and dropping a column from
+        # under them is not something a read-only rendering helper should do.
+        df = df.drop(columns="row")
 
     # Separate feature columns from the outcome column.
     feature_cols = list(df.columns[:-1])
