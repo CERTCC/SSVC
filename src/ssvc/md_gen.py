@@ -141,7 +141,9 @@ def main():
             print(f"Module {module} does not exist")
             continue
 
-        with open(os.path.join(md_dir, fname), "w") as f:
+        with open(
+            os.path.join(md_dir, fname), "w", encoding="utf-8", newline="\n"
+        ) as f:
             f.write(
                 PAGE_TOP_TEMPLATE.format(
                     dp_name=snake_to_title(dp_fname), module=dp_fname
