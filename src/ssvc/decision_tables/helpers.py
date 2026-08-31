@@ -62,9 +62,11 @@ def write_csv(
 
     csv_path = os.path.join(target_dir, csvfile)
 
-    with open(csv_path, "w") as fp:
+    with open(csv_path, "w", encoding="utf-8", newline="") as fp:
         fp.write(
-            decision_table_to_longform_df(decision_table).to_csv(index=index)
+            decision_table_to_longform_df(decision_table).to_csv(
+                index=index, lineterminator="\n"
+            )
         )
 
 
