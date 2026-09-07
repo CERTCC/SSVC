@@ -38,8 +38,8 @@ bcp47 = (
     '(([a-zA-Z]{2,3}(-[a-zA-Z]{3}(-[a-zA-Z]{3}){0,2})?|[a-z'
     'A-Z]{4,8})(-[a-zA-Z]{4})?(-([a-zA-Z]{2}|[0-9]{3}))?(-'
     f'(({alnum}){{5,8}}|[0-9]({alnum}){{3}}))*(-{singleton}(-'
-    f'({alnum}){{2,8}})+)*(-[xX](-({alnum}){{2,8}})+)?|[xX](-'
-    f'({alnum}){{2,8}})+|i-default|i-mingo)'
+    f'({alnum}){{2,8}})+)*(-[xX](-({alnum}){{1,8}})+)?|[xX](-'
+    f'({alnum}){{1,8}})+|i-default|i-mingo)'
 )
 translation = f'\\.({reverse_dns}|{x_name})\\${bcp47}'
 ext_seg = f'({bcp47}|\\.{x_name}|{translation})'

@@ -49,8 +49,8 @@ bcp47 = ( 2*3ALPHA
         [ "-" ( 2ALPHA / 3DIGIT ) ]
         *( "-" ( 5*8ALNUM / (DIGIT 3ALNUM) ) )
         *( "-"  singleton 1*( "-" 2*8ALNUM ) )
-        [ "-" "x" 1*( "-" 2*8ALNUM ) ]
-      / "x" 1*( "-" 2*8ALNUM )
+        [ "-" "x" 1*( "-" 1*8ALNUM ) ]
+      / "x" 1*( "-" 1*8ALNUM )
       / "i-default"
       / "i-mingo"
 
