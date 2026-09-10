@@ -368,6 +368,12 @@
       "description": "The schema version of this selection list.",
       "type": "string"
     },
+    "generatedAt": {
+      "title": "Generatedat",
+      "description": "RFC 3339 timestamp indicating when the registry was generated.",
+      "format": "date-time",
+      "type": "string"
+    },
     "types": {
       "title": "Types",
       "additionalProperties": {
