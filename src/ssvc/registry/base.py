@@ -22,6 +22,7 @@ Work in progress on an experimental registry object for SSVC.
 #  DM24-0278
 
 import logging
+from datetime import datetime, timezone
 from typing import Any, ClassVar, Literal, Optional, Union
 
 import semver
@@ -137,6 +138,16 @@ class _NsType(BaseModel):
 
 class SsvcObjectRegistry(_SchemaVersioned, _Base, BaseModel):
     _schema_version: ClassVar[str] = SCHEMA_VERSION
+    generatedAt: str = Field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        description="RFC 3339 timestamp indicating when the registry was generated.",
+        json_schema_extra={"format": "date-time"},
+    )
+
+    def model_dump_json(self, *args, **kwargs) -> str:
+        # Refresh at serialization time so singleton registries record actual generation time.
+        self.generatedAt = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        return super().model_dump_json(*args, **kwargs)
     schemaVersion: Literal[SCHEMA_VERSION] = Field(
         ...,
         description="The schema version of this selection list.",
