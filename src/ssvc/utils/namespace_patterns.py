@@ -43,6 +43,5 @@ bcp47 = (
 )
 translation = f'\\.({reverse_dns}|{x_name})\\${bcp47}'
 ext_seg = f'({bcp47}|\\.{x_name}|{translation})'
-lang_ext = f'(/|/{bcp47})'
-extensions = f'{lang_ext}((/{ext_seg})+)?'
+extensions = f'(/{bcp47}(/{ext_seg})*|/(/{ext_seg})+)'
 namespace = f'{base_ns}({extensions})?'

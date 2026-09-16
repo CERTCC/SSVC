@@ -42,7 +42,6 @@ class TestNamespacePattern(unittest.TestCase):
             "abc",  # not in enum, but valid for the pattern
             "ssvc#reference-arch-1",  # valid namespace with hash
             "x_example.test#test",
-            "x_example.test#test/",
             "x_example.test#test//.org.example#bar",
             "ssvc/de-DE/.org.example#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
             "ssvc//.de.bund.bsi$de-DE",  # BSI's translation of SSVC
@@ -81,6 +80,7 @@ class TestNamespacePattern(unittest.TestCase):
             "ssvc$de-DE",  # official translations / base language are at the first extension level
             "anssi#800-30$fr-FR",  # official translations / base language are at the first extension level
             "x_gov.nist#800-30$de-DE",  # official translations / base language are at the first extension level
+            "ssvc/",  # empty language extension without extension segment; see #1233
             "ssvc/de-DE/example.organization##reference-arch-1",  # valid BCP-47 tag, reverse domain notation, double hash
             "ssvc/de-DE/example.organization#multi#hash#forbidden",  # valid BCP-47 tag, reverse domain notation, more than one hash per segment
             "x_custom.extension.",  # ends with punctuation
