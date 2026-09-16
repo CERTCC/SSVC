@@ -16,9 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Set up Python 3.12
@@ -53,6 +54,10 @@ jobs:
       - name: Commit changes to data/
         if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
+          if ! git ls-remote --exit-code --heads origin "${{ github.head_ref }}" >/dev/null; then
+            echo "PR branch '${{ github.head_ref }}' no longer exists; skipping data/ commit."
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
@@ -60,5 +65,5 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: regenerate data files via doctools"
-            git push
+            git push origin HEAD:${{ github.head_ref }}
           fi
