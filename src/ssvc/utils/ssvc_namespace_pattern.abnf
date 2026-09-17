@@ -27,12 +27,10 @@ label = ALNUMLOW [ *61ALNUMLOWDASH ALNUMLOW ]
 
 fragment-seg = 1*ALNUMLOW *( SPECIALCHAR 1*ALNUMLOW )
 
-extensions = lang-ext [ 1*( "/" ext-seg ) ]
-
-; Language extension: either / (empty language extension)
-; or /<bcp47> (BCP-47 language code)
-
-lang-ext = "/" / ( "/" bcp47 )
+; Extension:
+;   either /<bcp47> (BCP-47 language code) optionally followed by ext-segs
+;   or / (empty language extension => default: en-US) followed by ext-segs
+extensions = ("/"  bcp47 *("/" ext-seg)) / ("/" 1*( "/" ext-seg ))
 
 ; Extension segment between slashes.
 ; - is either a language or
