@@ -2,7 +2,7 @@
   "name": "SSVC Object Registry",
   "definition": "A registry for SSVC objects organized by type, namespace, key, and version.",
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-09-09T15:10:13.388981Z",
+  "generatedAt": "2026-09-17T15:32:30.224226Z",
   "types": {
     "DecisionPoint": {
       "type": "DecisionPoint",
