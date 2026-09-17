@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: "3.12"
 
@@ -42,7 +42,7 @@ jobs:
         if: github.event.pull_request.head.repo.full_name != github.repository
         run: |
           git add data/
-          if git diff --cached --quiet; then
+          if git diff --cached --quiet -I '^[ ]+"generatedAt":'; then
             echo "No data/ changes detected."
           else
             echo "::error::This PR is from a fork and data/ files need to be regenerated."
