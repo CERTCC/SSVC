@@ -846,14 +846,14 @@ wheels = [
 
 [[package]]
 name = "mkdocs-print-site-plugin"
-version = "2.8"
+version = "2.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "mkdocs-material" },
+    { name = "mkdocs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a9/18/5c71f48b83191fb30cc58617fea20f56647eaa6cafd06a7fb34c738c5acb/mkdocs_print_site_plugin-2.8.tar.gz", hash = "sha256:ab1c89cdb468352975e3bb3bb0ef25dcc2bb88931b03f173206dc95ab02f843f", size = 231688, upload-time = "2025-08-03T14:15:07.579Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2f/20/21a0fcb3a9b631f7135227fd660fe38d7ebe293d7b763378a3dc4dbf7f87/mkdocs_print_site_plugin-2.9.tar.gz", hash = "sha256:fb7f749a73e606e97bec7f871d9fa55ea76ba6d806d7ce124c814ac2327f537a", size = 233307, upload-time = "2026-09-08T11:30:00.048Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3f/3e/7513f2f37c563da65d1b91781e047f4a1c0ceac8206d4f6042428428e4ad/mkdocs_print_site_plugin-2.8-py3-none-any.whl", hash = "sha256:838bd0a9b7141c11c0f1fdaa51ffe70c35740bec1f07c0806f8018e92f93f9da", size = 21477, upload-time = "2025-08-03T14:15:06.301Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/d6/c1a77877a1206fc164dfded3aa7e0232a9580816da517946509ff14e1945/mkdocs_print_site_plugin-2.9-py3-none-any.whl", hash = "sha256:bd26729160b5e2eec49f027448d1c54086f50b91ba5a0a5999d9d0e75938c345", size = 22165, upload-time = "2026-09-08T11:29:58.93Z" },
 ]
 
 [[package]]
@@ -890,16 +890,16 @@ wheels = [
 
 [[package]]
 name = "mkdocstrings-python"
-version = "2.0.5"
+version = "2.0.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "griffelib" },
     { name = "mkdocs-autorefs" },
     { name = "mkdocstrings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b1/b6/e858701499d57eee8b3fd8e78168083956c6683ddbe727b46758b19e1119/mkdocstrings_python-2.0.5.tar.gz", hash = "sha256:3a4d92556ad39637e88af94a5374213af9a8e3040c3824ceaed04b486c017594", size = 199578, upload-time = "2026-06-19T10:41:08.868Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c5/65/0db919b7c91bf033b42d04f15ff16a56f4edd6afb26e84d448359660ece3/mkdocstrings_python-2.0.8.tar.gz", hash = "sha256:34545b54681cf0b212aab95394d37b0f5326a93b102f6ad1df3d965c79384c9d", size = 201771, upload-time = "2026-08-31T20:16:06.698Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/fc/10ab7e80650a9c9e8f4f1105f8c8e73567f88ed0c06ada589ab81d38687c/mkdocstrings_python-2.0.5-py3-none-any.whl", hash = "sha256:30c837bbff016549f659fcba6539ac351303f0fd7e713c89a040611072236e9d", size = 104951, upload-time = "2026-06-19T10:41:07.378Z" },
+    { url = "https://files.pythonhosted.org/packages/0b/b7/a5a854d4e44853f26decc0c5e0d68df052399f3da344a313da4178f00816/mkdocstrings_python-2.0.8-py3-none-any.whl", hash = "sha256:e555d9ef53b0febdeae4dd603144d4f86ec90fef672276645ea3bb61232c3d24", size = 105443, upload-time = "2026-08-31T20:16:05.25Z" },
 ]
 
 [[package]]
