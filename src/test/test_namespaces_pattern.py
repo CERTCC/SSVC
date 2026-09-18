@@ -45,6 +45,11 @@ class TestNamespacePattern(unittest.TestCase):
             "x_example.test#test//.org.example#bar",
             "ssvc/de-DE/.org.example#reference-arch-1",  # valid BCP-47 tag, reverse domain notation, hash
             "ssvc//.de.bund.bsi$de-DE",  # BSI's translation of SSVC
+            "ssvc//.de.bund.bsi$x-a", # SSVC private-use BCP-47 subtag should pass #1239
+            "ssvc//.de.bund.bsi$x-A", # SSVC private-use BCP-47 subtag should pass #1239
+            "ssvc//.de.bund.bsi$x-abcdefgh",   # 8-character private-use subtag should pass #1239
+            "ssvc//.de.bund.bsi$x-a1b2c3d4",   # 8-alphanumeric private-use subtag should pass #1239
+            "ssvc//.de.bund.bsi$x-12345678",   # 8-numeric private-use subtag should pass #1239
             "ssvc//.de.bund.bsi#ref-arch-1/de-DE",  # BSI's official translation to German as used in Germany of its ref-arch-1 model which is originally written in English
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE",  # BSI's ref-arch-2 model which is originally written in German
             "ssvc//.de.bund.bsi#ref-arch-2$de-DE/en-GB",  # BSI's official translation to English as used in GB of its ref-arch-2 model which is originally written in German
@@ -82,6 +87,10 @@ class TestNamespacePattern(unittest.TestCase):
             "x_gov.nist#800-30$de-DE",  # official translations / base language are at the first extension level
             "ssvc/",  # empty language extension without extension segment; see #1233
             "ssvc/de-DE/example.organization##reference-arch-1",  # valid BCP-47 tag, reverse domain notation, double hash
+            "ssvc//.de.bund.bsi$x-",  # SSVC private-use BCP-47 subtag must not be empty #1239
+            "ssvc//.de.bund.bsi$x-abcdefghi",  # 9-character private-use subtag should fail #1239
+            "ssvc//.de.bund.bsi$x-a1b2c3d4e",  # 9-alphanumeric private-use subtag should fail #1239
+            "ssvc//.de.bund.bsi$x-123456789",   # 9-numeric private-use subtag should fail #1239
             "ssvc/de-DE/example.organization#multi#hash#forbidden",  # valid BCP-47 tag, reverse domain notation, more than one hash per segment
             "x_custom.extension.",  # ends with punctuation
             "x_custom..extension",  # double dot
