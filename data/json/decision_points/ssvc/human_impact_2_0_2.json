@@ -9,17 +9,17 @@
     {
       "key": "L",
       "name": "Low",
-      "definition": "Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)"
+      "definition": "Safety Impact:(Negligible OR Marginal) AND Mission Impact:(Degraded OR MEF Support Crippled)"
     },
     {
       "key": "M",
       "name": "Medium",
-      "definition": "(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))"
+      "definition": "(Safety Impact:(Negligible OR Marginal) AND Mission Impact:MEF Failure) OR (Safety Impact:Critical AND Mission Impact:Degraded)"
     },
     {
       "key": "H",
       "name": "High",
-      "definition": "(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)"
+      "definition": "Safety Impact:Critical AND Mission Impact:(MEF Support Crippled OR MEF Failure)"
     },
     {
       "key": "VH",
