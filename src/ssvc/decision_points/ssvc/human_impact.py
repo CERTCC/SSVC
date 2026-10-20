@@ -47,7 +47,7 @@ LOW_3 = DecisionPointValue(
 LOW_4 = DecisionPointValue(
     name="Low",
     key="L",
-    definition="Safety Impact:(Negligible) AND Mission Impact:(Degraded OR Crippled)",
+    definition="Safety Impact:(Negligible OR Marginal) AND Mission Impact:(Degraded OR MEF Support Crippled)",
 )
 
 
@@ -72,7 +72,7 @@ MEDIUM_3 = DecisionPointValue(
 MEDIUM_4 = DecisionPointValue(
     name="Medium",
     key="M",
-    definition="(Safety Impact:Negligible AND Mission Impact:MEF Failure) OR (Safety Impact:Marginal AND Mission Impact:(Degraded OR Crippled))",
+    definition="(Safety Impact:(Negligible OR Marginal) AND Mission Impact:MEF Failure) OR (Safety Impact:Critical AND Mission Impact:Degraded)",
 )
 
 
@@ -98,7 +98,7 @@ HIGH_3 = DecisionPointValue(
 HIGH_4 = DecisionPointValue(
     name="High",
     key="H",
-    definition="(Safety Impact:Critical AND Mission Impact:(Degraded OR Crippled)) OR (Safety Impact:Marginal AND Mission Impact:MEF Failure)",
+    definition="Safety Impact:Critical AND Mission Impact:(MEF Support Crippled OR MEF Failure)",
 )
 
 VERY_HIGH_1 = DecisionPointValue(
