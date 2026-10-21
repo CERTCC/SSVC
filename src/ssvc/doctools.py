@@ -181,7 +181,7 @@ def dump_json(
     with EnsureDirExists(dirname):
         try:
             logger.info(f"Writing {json_file}")
-            with open(json_file, "x") as f:
+            with open(json_file, "x", encoding="utf-8", newline="\n") as f:
                 f.write(dp.model_dump_json(indent=2))
                 f.write("\n")  # newline at end of file
         except FileExistsError:
@@ -194,7 +194,7 @@ def dump_json(
 def dump_schema(filepath: str, schema: dict) -> None:
     schema = order_schema(schema)
     logger.info(f"Writing schema to {filepath}")
-    with open(filepath, "w") as f:
+    with open(filepath, "w", encoding="utf-8", newline="\n") as f:
         json.dump(schema, f, indent=2)
         f.write("\n")
 
@@ -244,7 +244,7 @@ def dump_decision_table(
     with EnsureDirExists(dirname):
         try:
             logger.info(f"Writing {json_file}")
-            with open(json_file, "x") as f:
+            with open(json_file, "x", encoding="utf-8", newline="\n") as f:
                 f.write(dt.model_dump_json(indent=2))
                 f.write("\n")  # newline at end of file
         except FileExistsError:
@@ -270,11 +270,11 @@ def dump_decision_table_csv(
     with EnsureDirExists(dirname):
         try:
             logger.info("Writing {csv_file}")
-            with open(csv_file, "x") as f:
+            with open(csv_file, "x", encoding="utf-8", newline="") as f:
                 df = decision_table_to_longform_df(dt=dt)
                 # set the index title
                 df.index.name = "row"
-                f.write(df.to_csv(index=True))
+                f.write(df.to_csv(index=True, lineterminator="\n"))
         except FileExistsError:
             logger.warning(
                 f"File {csv_file} already exists, use --overwrite to replace"
@@ -342,7 +342,7 @@ def main():
     with EnsureDirExists(jsondir):
         try:
             logger.info(f"Writing {registry_json}")
-            with open(registry_json, "x") as f:
+            with open(registry_json, "x", encoding="utf-8", newline="\n") as f:
                 f.write(registry.model_dump_json(indent=2, exclude_none=True))
                 f.write("\n")  # newline at end of file
         except FileExistsError:
