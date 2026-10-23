@@ -15,7 +15,7 @@ MD033: false
 # MD040/fenced-code-language : Fenced code blocks should have a language specified : https://github.com/DavidAnson/markdownlint/blob/v0.37.4/doc/md040.md
 MD040: false
 # 041 First line in file should be a top level header
-# Disabled because we use `include-markdown` plugin for merging markdown files
+# Disabled because we use `include-markdown` plugin for merging files
 MD041: false
 # 046 Code block style
 # Disabled because mkdocs-material uses indented blocks for admonitions
@@ -28,4 +28,4 @@ MD049:
 # Force asterisk style for strong
 MD050:
   style: "asterisk"
-
+MD060: false
